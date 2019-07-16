@@ -452,67 +452,67 @@ public class RbtConstants {
         /**
          * Temperature Unit 0.01 degC
          */
-        public static final double TEMPERATURE_UNIT = 0.01d;
+        public static final double OUTPUT_RANGE_TEMPERATURE_UNIT = 0.01d;
 
         /**
          * Relative humidity Unit 0.01 %RH
          */
-        public static final double RELATIVE_HUMIDITY_UNIT = 0.01d;
+        public static final double OUTPUT_RANGE_RELATIVE_HUMIDITY_UNIT = 0.01d;
 
         /**
          * Ambient light Unit 1 lx
          */
-        public static final double AMBIENT_LIGHT_UNIT = 1d;
+        public static final double OUTPUT_RANGE_AMBIENT_LIGHT_UNIT = 1d;
 
         /**
          * Barometric pressure Unit 0.001 hPa
          */
-        public static final double BAROMETRIC_PRESSURE_UNIT = 0.001d;
+        public static final double OUTPUT_RANGE_BAROMETRIC_PRESSURE_UNIT = 0.001d;
 
         /**
          * Sound noise Unit 0.01 dB
          */
-        public static final double SOUND_NOISE_UNIT = 0.01d;
+        public static final double OUTPUT_RANGE_SOUND_NOISE_UNIT = 0.01d;
 
         /**
          * eTVOC Unit 1 ppb
          */
-        public static final double ETVOC_UNIT = 1d;
+        public static final double OUTPUT_RANGE_ETVOC_UNIT = 1d;
 
         /**
-         * eCO2 Unit 1 ppb
+         * eCO2 Unit 1 ppm
          */
-        public static final double ECO2_UNIT = 1d;
+        public static final double OUTPUT_RANGE_ECO2_UNIT = 1d;
 
         /**
          * Discomfort index Unit 0.01
          */
-        public static final double DISCOMFORT_INDEX_UNIT = 0.01d;
+        public static final double OUTPUT_RANGE_DISCOMFORT_INDEX_UNIT = 0.01d;
 
         /**
          * Heat stroke Unit 0.01 degC
          */
-        public static final double HEAT_STROKE_UNIT = 0.01d;
+        public static final double OUTPUT_RANGE_HEAT_STROKE_UNIT = 0.01d;
 
         /**
          * Acceleration Unit 0.1 gal
          */
-        public static final double ACCELERATION_UNIT = 0.1d;
+        public static final double OUTPUT_RANGE_ACCELERATION_UNIT = 0.1d;
 
         /**
          * SI value Unit 0.1 kine
          */
-        public static final double SI_VALUE_UNIT = 0.1d;
+        public static final double OUTPUT_RANGE_SI_VALUE_UNIT = 0.1d;
 
         /**
          * PGA Unit 0.1 gal
          */
-        public static final double PGA_UNIT = 0.1d;
+        public static final double OUTPUT_RANGE_PGA_UNIT = 0.1d;
 
         /**
          * Seismic intensity Unit 0.001
          */
-        public static final double SEISMIC_INTENSITY_UNIT = 0.001d;
+        public static final double OUTPUT_RANGE_SEISMIC_INTENSITY_UNIT = 0.001d;
 
         /**
          * SI value calculation axis:YZ-axis
@@ -772,6 +772,100 @@ public class RbtConstants {
          * Change threshold [rise] 2
          */
         public static final int CHANGE_THRESHOLD_RISE_2 = 0b00010000;
+
+    }
+
+    /**
+     * 5.4. Event threshold
+     */
+    public static final class EventThreshold {
+
+        /**
+         * Temperature Unit 0.01 degC
+         */
+        public static final double EVENT_THRESHOLD_TEMPERATURE_UNIT = 0.01d;
+
+        /**
+         * Relative humidity Unit 0.01 %RH
+         */
+        public static final double EVENT_THRESHOLD_RELATIVE_HUMIDITY_UNIT = 0.01d;
+
+        /**
+         * Ambient light Unit 1 lx
+         */
+        public static final double EVENT_THRESHOLD_AMBIENT_LIGHT_UNIT = 1d;
+
+        /**
+         * <p>
+         * Barometric pressure Unit1 0.1 hPa
+         * <p>
+         * Simple threshold [upper limit] 1
+         * Simple threshold [upper limit] 2
+         * Simple threshold [lower limit] 1
+         * Simple threshold [lower limit] 2
+         * Average value threshold [upper]
+         * Average value threshold [lower]
+         * </p>
+         */
+        public static final double EVENT_THRESHOLD_BAROMETRIC_PRESSURE_UNIT_1 = 0.1d;
+
+        /**
+         * <p>
+         * Barometric pressure Unit2 0.1 hPa
+         * <p>
+         * Change threshold [rise] 1
+         * Change threshold [rise] 2
+         * Change threshold [decline] 1
+         * Change threshold [decline] 2
+         * Peak to Peak threshold [upper]
+         * Peak to Peak threshold [lower]
+         * Interval difference threshold [rise]
+         * Interval difference threshold [decline]
+         * Base difference threshold [upper]
+         * Base difference threshold [lower]
+         * </p>
+         */
+        public static final double EVENT_THRESHOLD_BAROMETRIC_PRESSURE_UNIT_2 = 0.001d;
+
+        /**
+         * Sound noise Unit 0.01 dB
+         */
+        public static final double EVENT_THRESHOLD_SOUND_NOISE_UNIT = 0.01d;
+
+        /**
+         * eTVOC Unit 1 ppb
+         */
+        public static final double EVENT_THRESHOLD_ETVOC_UNIT = 1d;
+
+        /**
+         * eCO2 Unit 1 ppm
+         */
+        public static final double EVENT_THRESHOLD_ECO2_UNIT = 1d;
+
+        /**
+         * Discomfort index Unit 0.01
+         */
+        public static final double EVENT_THRESHOLD_DISCOMFORT_INDEX_UNIT = 0.01d;
+
+        /**
+         * Heat stroke Unit 0.01 degC
+         */
+        public static final double EVENT_THRESHOLD_HEAT_STROKE_UNIT = 0.01d;
+
+        /**
+         * SI value Unit 0.1 kine
+         */
+        public static final double EVENT_THRESHOLD_SI_VALUE_UNIT = 0.1d;
+
+        /**
+         * PGA Unit 0.1 gal
+         */
+        public static final double EVENT_THRESHOLD_PGA_UNIT = 0.1d;
+
+        /**
+         * Seismic intensity Unit 0.001
+         */
+        public static final double EVENT_THRESHOLD_SEISMIC_INTENSITY_UNIT = 0.001d;
 
     }
 

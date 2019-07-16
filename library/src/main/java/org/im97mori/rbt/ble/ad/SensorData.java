@@ -6,9 +6,9 @@ import android.os.Parcelable;
 import org.im97mori.ble.ad.ManufacturerSpecificData;
 import org.im97mori.rbt.RbtConstants;
 
-import static org.im97mori.rbt.RbtConstants.OutputRange.AMBIENT_LIGHT_UNIT;
-import static org.im97mori.rbt.RbtConstants.OutputRange.ECO2_UNIT;
-import static org.im97mori.rbt.RbtConstants.OutputRange.ETVOC_UNIT;
+import static org.im97mori.rbt.RbtConstants.OutputRange.OUTPUT_RANGE_AMBIENT_LIGHT_UNIT;
+import static org.im97mori.rbt.RbtConstants.OutputRange.OUTPUT_RANGE_ECO2_UNIT;
+import static org.im97mori.rbt.RbtConstants.OutputRange.OUTPUT_RANGE_ETVOC_UNIT;
 
 /**
  * 3.1 Sensor data
@@ -100,7 +100,7 @@ public class SensorData extends AbstractRbtPacket implements Parcelable {
      *
      * @param in Parcel
      */
-    public SensorData(Parcel in) {
+    private SensorData(Parcel in) {
         mSequenceNumber = in.readInt();
         mTemperature = in.readInt();
         mRelativeHumidity = in.readInt();
@@ -160,7 +160,7 @@ public class SensorData extends AbstractRbtPacket implements Parcelable {
      * @return Temperature(degC)
      */
     public double getTemperatureDegC() {
-        return mTemperature * RbtConstants.OutputRange.TEMPERATURE_UNIT;
+        return mTemperature * RbtConstants.OutputRange.OUTPUT_RANGE_TEMPERATURE_UNIT;
     }
 
     /**
@@ -174,7 +174,7 @@ public class SensorData extends AbstractRbtPacket implements Parcelable {
      * @return Relative humidity(%RH)
      */
     public double getRelativeHumidityRh() {
-        return mRelativeHumidity * RbtConstants.OutputRange.RELATIVE_HUMIDITY_UNIT;
+        return mRelativeHumidity * RbtConstants.OutputRange.OUTPUT_RANGE_RELATIVE_HUMIDITY_UNIT;
     }
 
     /**
@@ -188,7 +188,7 @@ public class SensorData extends AbstractRbtPacket implements Parcelable {
      * @return Ambient light(lx)
      */
     public double getAmbientLightLx() {
-        return mAmbientLight * AMBIENT_LIGHT_UNIT;
+        return mAmbientLight * OUTPUT_RANGE_AMBIENT_LIGHT_UNIT;
     }
 
     /**
@@ -202,7 +202,7 @@ public class SensorData extends AbstractRbtPacket implements Parcelable {
      * @return Barometric pressure(hPa)
      */
     public double getBarometricPressureHpa() {
-        return mBarometricPressure * RbtConstants.OutputRange.BAROMETRIC_PRESSURE_UNIT;
+        return mBarometricPressure * RbtConstants.OutputRange.OUTPUT_RANGE_BAROMETRIC_PRESSURE_UNIT;
     }
 
     /**
@@ -216,7 +216,7 @@ public class SensorData extends AbstractRbtPacket implements Parcelable {
      * @return Sound noise(dB)
      */
     public double getSoundNoiseDb() {
-        return mSoundNoise * RbtConstants.OutputRange.SOUND_NOISE_UNIT;
+        return mSoundNoise * RbtConstants.OutputRange.OUTPUT_RANGE_SOUND_NOISE_UNIT;
     }
 
     /**
@@ -230,7 +230,7 @@ public class SensorData extends AbstractRbtPacket implements Parcelable {
      * @return eTVOC(ppb)
      */
     public double getEtvocPpb() {
-        return mEtvoc * ETVOC_UNIT;
+        return mEtvoc * OUTPUT_RANGE_ETVOC_UNIT;
     }
 
     /**
@@ -244,7 +244,7 @@ public class SensorData extends AbstractRbtPacket implements Parcelable {
      * @return eCO2(ppm)
      */
     public double getEco2Ppm() {
-        return mEco2 * ECO2_UNIT;
+        return mEco2 * OUTPUT_RANGE_ECO2_UNIT;
     }
 
 }

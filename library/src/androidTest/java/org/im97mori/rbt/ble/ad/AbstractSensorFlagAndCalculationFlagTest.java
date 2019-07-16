@@ -25,7 +25,7 @@ public abstract class AbstractSensorFlagAndCalculationFlagTest {
     static final int ALL_EVENT_FLAG_SENSOR_MSB = (ALL_EVENT_FLAG_SENSOR >> 8) & 0xff;
     static final int ALL_EVENT_FLAG_SENSOR_LSB = ALL_EVENT_FLAG_SENSOR & 0xff;
 
-    protected static final int ALL_EVENT_FLAG_ACCELERATION =
+    static final int ALL_EVENT_FLAG_ACCELERATION =
             RbtConstants.EventFlagAcceleration.SIMPLE_THRESHOLD_UPPER_LIMIT_1
                     | RbtConstants.EventFlagAcceleration.SIMPLE_THRESHOLD_UPPER_LIMIT_2
                     | RbtConstants.EventFlagAcceleration.CHANGE_THRESHOLD_RISE_1

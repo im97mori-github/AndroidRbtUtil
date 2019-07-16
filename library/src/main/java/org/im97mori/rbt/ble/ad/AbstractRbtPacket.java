@@ -68,7 +68,7 @@ public abstract class AbstractRbtPacket {
      * @return int type value
      */
     private int createInt(byte[] data, int offset, Class<? extends Number> clazz, boolean isUnsigned) {
-        int result = 0;
+        int result;
         int bitmask;
         ByteBuffer buffer = ByteBuffer.wrap(data, offset, data.length - offset).order(ByteOrder.LITTLE_ENDIAN);
         if (byte.class.equals(clazz)) {

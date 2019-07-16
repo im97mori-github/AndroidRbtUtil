@@ -1,0 +1,77 @@
+package org.im97mori.rbt.ble.characteristic;
+
+import android.bluetooth.BluetoothGattCharacteristic;
+import android.os.Parcel;
+
+import org.im97mori.ble.ad.AdvertisingDataConstants;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+
+public class MemoryIndexInformationTest {
+
+    @Test
+    public void test001() {
+        byte[] data = new byte[8];
+        data[ 0] = (byte) ((0x00) & 0xff);
+        data[ 1] = (byte) ((0x00) & 0xff);
+        data[ 2] = (byte) ((0x00) & 0xff);
+        data[ 3] = (byte) ((0x00) & 0xff);
+        data[ 4] = (byte) ((0x00) & 0xff);
+        data[ 5] = (byte) ((0x00) & 0xff);
+        data[ 6] = (byte) ((0x00) & 0xff);
+        data[ 7] = (byte) ((0x00) & 0xff);
+
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        bluetoothGattCharacteristic.setValue(data);
+
+        MemoryIndexInformation result = new MemoryIndexInformation(bluetoothGattCharacteristic);
+        assertEquals(0, result.getMemoryIndexLatest());
+        assertEquals(0, result.getMemoryIndexLast());
+    }
+
+    @Test
+    public void test002() {
+        byte[] data = new byte[8];
+        data[ 0] = (byte) ((0xff) & 0xff);
+        data[ 1] = (byte) ((0xff) & 0xff);
+        data[ 2] = (byte) ((0xff) & 0xff);
+        data[ 3] = (byte) ((0x7f) & 0xff);
+        data[ 4] = (byte) ((0xff) & 0xff);
+        data[ 5] = (byte) ((0xff) & 0xff);
+        data[ 6] = (byte) ((0xff) & 0xff);
+        data[ 7] = (byte) ((0x7f) & 0xff);
+
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        bluetoothGattCharacteristic.setValue(data);
+
+        MemoryIndexInformation result = new MemoryIndexInformation(bluetoothGattCharacteristic);
+        assertEquals(2147483647, result.getMemoryIndexLatest());
+        assertEquals(2147483647, result.getMemoryIndexLast());
+    }
+
+    @Test
+    public void test003() {
+        byte[] data = new byte[8];
+        data[ 0] = (byte) ((0xff) & 0xff);
+        data[ 1] = (byte) ((0xff) & 0xff);
+        data[ 2] = (byte) ((0xff) & 0xff);
+        data[ 3] = (byte) ((0x7f) & 0xff);
+        data[ 4] = (byte) ((0xff) & 0xff);
+        data[ 5] = (byte) ((0xff) & 0xff);
+        data[ 6] = (byte) ((0xff) & 0xff);
+        data[ 7] = (byte) ((0x7f) & 0xff);
+
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        bluetoothGattCharacteristic.setValue(data);
+
+        MemoryIndexInformation result1 = new MemoryIndexInformation(bluetoothGattCharacteristic);
+        Parcel parcel = Parcel.obtain();
+        result1.writeToParcel(parcel, 0);
+        parcel.setDataPosition(0);
+        MemoryIndexInformation result2 = MemoryIndexInformation.CREATOR.createFromParcel(parcel);
+
+        assertEquals(result1.getMemoryIndexLatest(), result2.getMemoryIndexLatest());
+        assertEquals(result1.getMemoryIndexLast(), result2.getMemoryIndexLast());
+    }
+}

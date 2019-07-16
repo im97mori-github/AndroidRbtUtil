@@ -60,7 +60,7 @@ public class SerialNumber extends AbstractRbtPacket implements Parcelable {
      *
      * @param in Parcel
      */
-    public SerialNumber(Parcel in) {
+    private SerialNumber(Parcel in) {
         mSerialNumber = in.readString();
         mMemoryIndex = in.readInt();
     }

@@ -108,7 +108,7 @@ public class CalculationData extends AbstractRbtPacket implements Parcelable {
      *
      * @param in Parcel
      */
-    public CalculationData(Parcel in) {
+    private CalculationData(Parcel in) {
         mSequenceNumber = in.readInt();
         mDiscomfortIndex = in.readInt();
         mHeatStroke = in.readInt();
@@ -172,7 +172,7 @@ public class CalculationData extends AbstractRbtPacket implements Parcelable {
      * @return Discomfort index(unit 0.01)
      */
     public double getDiscomfortIndexWithUnit() {
-        return mDiscomfortIndex * RbtConstants.OutputRange.DISCOMFORT_INDEX_UNIT;
+        return mDiscomfortIndex * RbtConstants.OutputRange.OUTPUT_RANGE_DISCOMFORT_INDEX_UNIT;
     }
 
     /**
@@ -186,7 +186,7 @@ public class CalculationData extends AbstractRbtPacket implements Parcelable {
      * @return Heat stroke(degC)
      */
     public double getHeatStrokeDegC() {
-        return mHeatStroke * RbtConstants.OutputRange.HEAT_STROKE_UNIT;
+        return mHeatStroke * RbtConstants.OutputRange.OUTPUT_RANGE_HEAT_STROKE_UNIT;
     }
 
     /**
@@ -207,7 +207,7 @@ public class CalculationData extends AbstractRbtPacket implements Parcelable {
      * @return SI value(kine)
      */
     public double getSiValueKine() {
-        return mSiValue * RbtConstants.OutputRange.SI_VALUE_UNIT;
+        return mSiValue * RbtConstants.OutputRange.OUTPUT_RANGE_SI_VALUE_UNIT;
     }
 
     /**
@@ -221,7 +221,7 @@ public class CalculationData extends AbstractRbtPacket implements Parcelable {
      * @return PGA(gal)
      */
     public double getPgaGal() {
-        return mPga * RbtConstants.OutputRange.PGA_UNIT;
+        return mPga * RbtConstants.OutputRange.OUTPUT_RANGE_PGA_UNIT;
     }
 
     /**
@@ -235,7 +235,7 @@ public class CalculationData extends AbstractRbtPacket implements Parcelable {
      * @return Seismic intensity(unit 0.001)
      */
     public double getSeismicIntensityWithUnit() {
-        return mSeismicIntensity * RbtConstants.OutputRange.SEISMIC_INTENSITY_UNIT;
+        return mSeismicIntensity * RbtConstants.OutputRange.OUTPUT_RANGE_SEISMIC_INTENSITY_UNIT;
     }
 
     /**
@@ -249,7 +249,7 @@ public class CalculationData extends AbstractRbtPacket implements Parcelable {
      * @return Acceleration (X-axis)(gal)
      */
     public double getAccelerationXAxisGal() {
-        return mAccelerationXAxis * RbtConstants.OutputRange.ACCELERATION_UNIT;
+        return mAccelerationXAxis * RbtConstants.OutputRange.OUTPUT_RANGE_ACCELERATION_UNIT;
     }
 
     /**
@@ -263,7 +263,7 @@ public class CalculationData extends AbstractRbtPacket implements Parcelable {
      * @return Acceleration (Y-axis)(gal)
      */
     public double getAccelerationYAxisGal() {
-        return mAccelerationYAxis * RbtConstants.OutputRange.ACCELERATION_UNIT;
+        return mAccelerationYAxis * RbtConstants.OutputRange.OUTPUT_RANGE_ACCELERATION_UNIT;
     }
 
     /**
@@ -277,7 +277,7 @@ public class CalculationData extends AbstractRbtPacket implements Parcelable {
      * @return Acceleration (Z-axis)(gal)
      */
     public double getAccelerationZAxisGal() {
-        return mAccelerationZAxis * RbtConstants.OutputRange.ACCELERATION_UNIT;
+        return mAccelerationZAxis * RbtConstants.OutputRange.OUTPUT_RANGE_ACCELERATION_UNIT;
     }
 
 }

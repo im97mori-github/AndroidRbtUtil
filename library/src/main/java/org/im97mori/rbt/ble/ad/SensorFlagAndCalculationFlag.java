@@ -127,7 +127,7 @@ public class SensorFlagAndCalculationFlag extends AbstractRbtPacket implements P
      *
      * @param in Parcel
      */
-    public SensorFlagAndCalculationFlag(Parcel in) {
+    private SensorFlagAndCalculationFlag(Parcel in) {
         mSequenceNumber = in.readInt();
         mTemperatureFlag = in.readInt();
         mRelativeHumidityFlag = in.readInt();
