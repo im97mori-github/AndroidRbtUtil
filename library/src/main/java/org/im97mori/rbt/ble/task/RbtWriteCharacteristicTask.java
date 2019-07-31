@@ -111,6 +111,8 @@ public class RbtWriteCharacteristicTask extends AbstractRbtTask {
         } else if (PROGRESS_INIT == mCurrentProgress) {
             // current:init, next:write start
             if (message.obj == this && PROGRESS_CHARACTERISTIC_WRITE_START == nextProgress) {
+
+                boolean result = false;
                 BluetoothGattService bluetoothGattService = mBluetoothGatt.getService(mServiceUUID);
                 if (bluetoothGattService != null) {
                     BluetoothGattCharacteristic bluetoothGattCharacteristic = bluetoothGattService.getCharacteristic(mCharacteristicUUID);
@@ -118,16 +120,16 @@ public class RbtWriteCharacteristicTask extends AbstractRbtTask {
                         bluetoothGattCharacteristic.setValue(mAbstractRbtCharacteristic.getBytes());
 
                         // write characteristic
-                        if (mBluetoothGatt.writeCharacteristic(bluetoothGattCharacteristic)) {
-
-                            // set timeout message
-                            Message timeoutMessage = createTimeoutMessage(mCharacteristicUUID, this);
-                            mTaskHandler.sendProcessingMessage(timeoutMessage, mTimeout);
-                        } else {
-                            nextProgress = PROGRESS_FINISHED;
-                            mBLEConnection.getBLECallback().onCharacteristicWriteFailed(mBLEConnection.getBluetoothDevice(), mCharacteristicUUID, UNKNOWN);
-                        }
+                        result = mBluetoothGatt.writeCharacteristic(bluetoothGattCharacteristic);
                     }
+                }
+
+                if (result) {
+                    // set timeout message
+                    mTaskHandler.sendProcessingMessage(createTimeoutMessage(mCharacteristicUUID, this), mTimeout);
+                } else {
+                    nextProgress = PROGRESS_FINISHED;
+                    mBLEConnection.getBLECallback().onCharacteristicWriteFailed(mBLEConnection.getBluetoothDevice(), mCharacteristicUUID, UNKNOWN);
                 }
                 mCurrentProgress = nextProgress;
             }

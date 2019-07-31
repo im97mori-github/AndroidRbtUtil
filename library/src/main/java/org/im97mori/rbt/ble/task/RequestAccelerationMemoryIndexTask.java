@@ -244,6 +244,7 @@ public class RequestAccelerationMemoryIndexTask extends AbstractRbtTask {
                     if (PROGRESS_CHECK_REQUEST == nextProgress) {
                         mTimeout = WriteDescriptorTask.TIMEOUT_MILLIS + WriteCharacteristicTask.TIMEOUT_MILLIS + DateUtils.SECOND_IN_MILLIS * mTotalTransferCount;
 
+                        boolean result = false;
                         BluetoothGattService bluetoothGattService = mBluetoothGatt.getService(ACCELERATION_SERVICE);
                         if (bluetoothGattService != null) {
                             BluetoothGattCharacteristic bluetoothGattCharacteristic = bluetoothGattService.getCharacteristic(ACCELERATION_MEMORY_DATA_CHARACTERISTIC);
@@ -253,15 +254,17 @@ public class RequestAccelerationMemoryIndexTask extends AbstractRbtTask {
                                     bluetoothGattDescriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
 
                                     // write descriptor
-                                    if (mBluetoothGatt.writeDescriptor(bluetoothGattDescriptor)) {
-                                        // set timeout message
-                                        mTaskHandler.sendProcessingMessage(createTimeoutMessage(REQUEST_ACCELERATION_MEMORY_INDEX_CHARACTERISTIC, this), mTimeout);
-                                    } else {
-                                        mRbtCallback.onRequestAccelerationMemoryIndexWriteFailed(mBluetoothGatt.getDevice(), BLEConstants.ErrorCodes.UNKNOWN);
-                                        nextProgress = PROGRESS_FINISHED;
-                                    }
+                                    result = mBluetoothGatt.writeDescriptor(bluetoothGattDescriptor);
                                 }
                             }
+                        }
+
+                        if (result) {
+                            // set timeout message
+                            mTaskHandler.sendProcessingMessage(createTimeoutMessage(REQUEST_ACCELERATION_MEMORY_INDEX_CHARACTERISTIC, this), mTimeout);
+                        } else {
+                            nextProgress = PROGRESS_FINISHED;
+                            mRbtCallback.onRequestAccelerationMemoryIndexWriteFailed(mBluetoothGatt.getDevice(), BLEConstants.ErrorCodes.UNKNOWN);
                         }
                     }
 
