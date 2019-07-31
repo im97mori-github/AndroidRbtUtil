@@ -4,11 +4,18 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.im97mori.ble.ByteArrayCreater;
+
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
+import static org.im97mori.rbt.RbtConstants.CharacteristicUUID.REQUEST_MEMORY_INDEX_CHARACTERISTIC;
+
 /**
  * 2.1.2 Request memory index (Characteristics UUID: 0x5005)
  */
 @SuppressWarnings("WeakerAccess")
-public class RequestMemoryIndex extends AbstractCharacteristic implements Parcelable {
+public class RequestMemoryIndex extends AbstractRbtCharacteristic implements Parcelable {
 
     /**
      * 0x00: Sensing data
@@ -31,9 +38,9 @@ public class RequestMemoryIndex extends AbstractCharacteristic implements Parcel
     public static final int DATA_TYPE_CALCULATION_FLAG = 0x03;
 
     /**
-     * @see Creator
+     * @see ByteArrayCreater
      */
-    public static final Creator<RequestMemoryIndex> CREATOR = new Creator<RequestMemoryIndex>() {
+    public static final ByteArrayCreater<RequestMemoryIndex> CREATOR = new ByteArrayCreater<RequestMemoryIndex>() {
 
         /**
          * {@inheritDoc}
@@ -49,6 +56,16 @@ public class RequestMemoryIndex extends AbstractCharacteristic implements Parcel
         @Override
         public RequestMemoryIndex[] newArray(int size) {
             return new RequestMemoryIndex[size];
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public RequestMemoryIndex createFromByteArray(byte[] values) {
+            BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(REQUEST_MEMORY_INDEX_CHARACTERISTIC, 0, 0);
+            bluetoothGattCharacteristic.setValue(values);
+            return new RequestMemoryIndex(bluetoothGattCharacteristic);
         }
 
     };
@@ -77,6 +94,22 @@ public class RequestMemoryIndex extends AbstractCharacteristic implements Parcel
         mMemoryIndexStart = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT32, 0);
         mMemoryIndexEnd = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT32, 4);
         mDataType = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 8);
+    }
+
+    /**
+     * Constructor from value
+     *
+     * @param memoryIndexStart Memory index (Start)
+     * @param memoryIndexEnd   Memory index (End)
+     * @param dataType         one of {@link #DATA_TYPE_SENSING_DATA}
+     *                         {@link #DATA_TYPE_CALCULATION_DATA}
+     *                         {@link #DATA_TYPE_SENSING_FLAG}
+     *                         {@link #DATA_TYPE_CALCULATION_FLAG}
+     */
+    public RequestMemoryIndex(int memoryIndexStart, int memoryIndexEnd, int dataType) {
+        mMemoryIndexStart = memoryIndexStart;
+        mMemoryIndexEnd = memoryIndexEnd;
+        mDataType = dataType;
     }
 
     /**
@@ -122,12 +155,24 @@ public class RequestMemoryIndex extends AbstractCharacteristic implements Parcel
         return mMemoryIndexEnd;
     }
 
-
     /**
      * @return Data type
      */
     public int getDataType() {
         return mDataType;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public byte[] getBytes() {
+        byte[] data = new byte[9];
+        ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);
+        byteBuffer.putInt(mMemoryIndexStart);
+        byteBuffer.putInt(mMemoryIndexEnd);
+        byteBuffer.put((byte) mDataType);
+        return data;
     }
 
 }

@@ -4,18 +4,23 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.im97mori.ble.ByteArrayCreater;
+
 import java.math.BigInteger;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
+import static org.im97mori.rbt.RbtConstants.CharacteristicUUID.TIME_SETTING_CHARACTERISTIC;
 
 /**
  * 2.5.2 Time setting (Characteristics UUID: 0x5202)
  */
-@SuppressWarnings("WeakerAccess")
-public class TimeSetting extends AbstractCharacteristic implements Parcelable {
+public class TimeSetting extends AbstractRbtCharacteristic implements Parcelable {
 
     /**
-     * @see Creator
+     * @see ByteArrayCreater
      */
-    public static final Creator<TimeSetting> CREATOR = new Creator<TimeSetting>() {
+    public static final ByteArrayCreater<TimeSetting> CREATOR = new ByteArrayCreater<TimeSetting>() {
 
         /**
          * {@inheritDoc}
@@ -33,6 +38,16 @@ public class TimeSetting extends AbstractCharacteristic implements Parcelable {
             return new TimeSetting[size];
         }
 
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public TimeSetting createFromByteArray(byte[] values) {
+            BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(TIME_SETTING_CHARACTERISTIC, 0, 0);
+            bluetoothGattCharacteristic.setValue(values);
+            return new TimeSetting(bluetoothGattCharacteristic);
+        }
+
     };
 
     /**
@@ -47,6 +62,15 @@ public class TimeSetting extends AbstractCharacteristic implements Parcelable {
      */
     public TimeSetting(BluetoothGattCharacteristic bluetoothGattCharacteristic) {
         mTimeSetting = createBigInteger(bluetoothGattCharacteristic.getValue(), 0, 8);
+    }
+
+    /**
+     * Constructor from value
+     *
+     * @param timeSetting Time setting
+     */
+    public TimeSetting(BigInteger timeSetting) {
+        mTimeSetting = timeSetting;
     }
 
     /**
@@ -79,6 +103,17 @@ public class TimeSetting extends AbstractCharacteristic implements Parcelable {
      */
     public BigInteger getTimeSetting() {
         return mTimeSetting;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public byte[] getBytes() {
+        byte[] data = new byte[8];
+        ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);
+        byteBuffer.put(createLittleEndianByteArrayFromBigInteger(mTimeSetting, 8));
+        return data;
     }
 
 }

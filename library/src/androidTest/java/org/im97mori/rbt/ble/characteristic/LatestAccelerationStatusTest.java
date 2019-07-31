@@ -12,6 +12,7 @@ import static org.im97mori.rbt.RbtConstants.OutputRange.SI_VALUE_CALCULATION_AXI
 import static org.im97mori.rbt.RbtConstants.OutputRange.VIBRATION_INFORMATION_DURING_EARTH_QUAKE_BIT;
 import static org.im97mori.rbt.RbtConstants.OutputRange.VIBRATION_INFORMATION_DURING_VIBRATION_BIT;
 import static org.im97mori.rbt.RbtConstants.OutputRange.VIBRATION_INFORMATION_NONE_BIT;
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class LatestAccelerationStatusTest {
@@ -141,18 +142,18 @@ public class LatestAccelerationStatusTest {
         byte[] data = new byte[15];
         data[ 0] = (byte) ((0xff) & 0xff);
         data[ 1] = (byte) ((VIBRATION_INFORMATION_DURING_EARTH_QUAKE_BIT) & 0xff);
-        data[ 2] = (byte) ((0xd0) & 0xff);
+        data[ 2] = (byte) ((0x01) & 0xff);
         data[ 3] = (byte) ((0x07) & 0xff);
-        data[ 4] = (byte) ((0xd0) & 0xff);
+        data[ 4] = (byte) ((0x02) & 0xff);
         data[ 5] = (byte) ((0x07) & 0xff);
-        data[ 6] = (byte) ((0xd0) & 0xff);
+        data[ 6] = (byte) ((0x03) & 0xff);
         data[ 7] = (byte) ((0x07) & 0xff);
         data[ 8] = (byte) ((SI_VALUE_CALCULATION_AXIS_XY_AXIS_BIT) & 0xff);
-        data[ 9] = (byte) ((0xd0) & 0xff);
+        data[ 9] = (byte) ((0x04) & 0xff);
         data[10] = (byte) ((0x07) & 0xff);
-        data[11] = (byte) ((0xd0) & 0xff);
+        data[11] = (byte) ((0x05) & 0xff);
         data[12] = (byte) ((0x07) & 0xff);
-        data[13] = (byte) ((0xd0) & 0xff);
+        data[13] = (byte) ((0x06) & 0xff);
         data[14] = (byte) ((0x07) & 0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
@@ -172,5 +173,32 @@ public class LatestAccelerationStatusTest {
         assertEquals(result1.getAccelerationOffsetXAxis(), result2.getAccelerationOffsetXAxis());
         assertEquals(result1.getAccelerationOffsetYAxis(), result2.getAccelerationOffsetYAxis());
         assertEquals(result1.getAccelerationOffsetZAxis(), result2.getAccelerationOffsetZAxis());
+    }
+
+    @Test
+    public void test005() {
+        byte[] data = new byte[15];
+        data[ 0] = (byte) ((0xff) & 0xff);
+        data[ 1] = (byte) ((VIBRATION_INFORMATION_DURING_EARTH_QUAKE_BIT) & 0xff);
+        data[ 2] = (byte) ((0x01) & 0xff);
+        data[ 3] = (byte) ((0x07) & 0xff);
+        data[ 4] = (byte) ((0x02) & 0xff);
+        data[ 5] = (byte) ((0x07) & 0xff);
+        data[ 6] = (byte) ((0x03) & 0xff);
+        data[ 7] = (byte) ((0x07) & 0xff);
+        data[ 8] = (byte) ((SI_VALUE_CALCULATION_AXIS_XY_AXIS_BIT) & 0xff);
+        data[ 9] = (byte) ((0x04) & 0xff);
+        data[10] = (byte) ((0x07) & 0xff);
+        data[11] = (byte) ((0x05) & 0xff);
+        data[12] = (byte) ((0x07) & 0xff);
+        data[13] = (byte) ((0x06) & 0xff);
+        data[14] = (byte) ((0x07) & 0xff);
+
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        bluetoothGattCharacteristic.setValue(data);
+
+        LatestAccelerationStatus result1 = new LatestAccelerationStatus(bluetoothGattCharacteristic);
+        byte[] resultData = result1.getBytes();
+        assertArrayEquals(data, resultData);
     }
 }

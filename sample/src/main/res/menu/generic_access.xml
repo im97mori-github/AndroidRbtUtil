@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/read_device_name"
+        android:title="@string/menu_read_2a00" />
+    <item
+        android:id="@+id/read_appearance"
+        android:title="@string/menu_read_2a01" />
+    <item
+        android:id="@+id/read_peripheral_preferred_connection_parameters"
+        android:title="@string/menu_read_2a04" />
+    <item
+        android:id="@+id/read_central_address_resolution"
+        android:title="@string/menu_read_2aa6" />
+</menu>

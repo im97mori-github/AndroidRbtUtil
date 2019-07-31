@@ -58,15 +58,6 @@ public class RbtConstants {
          */
         public static final UUID INFORMATION_SERVICE = UUID.fromString("ab705400-0a3a-11e8-ba89-0ed5f89f718b");
 
-        /**
-         * 2.8. Generic Access Service (Service UUID: 0x1800)
-         */
-        public static final UUID GENERIC_ACCESS_SERVICE = UUID.fromString("00001800-0000-1000-8000-00805f9b34fb");
-
-        /**
-         * 2.9. Device Information Service (Service UUID: 0x180A)
-         */
-        public static final UUID DEVICE_INFORMATION_SERVICE = UUID.fromString("0000180a-0000-1000-8000-00805f9b34fb");
     }
 
     /**
@@ -97,7 +88,7 @@ public class RbtConstants {
         public static final UUID MEMORY_SENSING_DATA_CHARACTERISTIC = UUID.fromString("ab70500a-0a3a-11e8-ba89-0ed5f89f718b");
 
         /**
-         * 2.1.5 Memory c alculation data (Characteristics UUID: 0x500B)
+         * 2.1.5 Memory calculation data (Characteristics UUID: 0x500B)
          */
         public static final UUID MEMORY_CALCULATION_DATA_CHARACTERISTIC = UUID.fromString("ab70500b-0a3a-11e8-ba89-0ed5f89f718b");
 
@@ -119,7 +110,7 @@ public class RbtConstants {
         public static final UUID LATEST_SENSING_DATA_CHARACTERISTIC = UUID.fromString("ab705012-0a3a-11e8-ba89-0ed5f89f718b");
 
         /**
-         * 2.2.2 Latest calculation data ( Characteristics UUID: 0x5013)
+         * 2.2.2 Latest calculation data (Characteristics UUID: 0x5013)
          */
         public static final UUID LATEST_CALCULATION_DATA_CHARACTERISTIC = UUID.fromString("ab705013-0a3a-11e8-ba89-0ed5f89f718b");
 
@@ -129,7 +120,7 @@ public class RbtConstants {
         public static final UUID LATEST_SENSING_FLAG_CHARACTERISTIC = UUID.fromString("ab705014-0a3a-11e8-ba89-0ed5f89f718b");
 
         /**
-         * 2.2.4 Latest calculation flag ( Characteristics UUID: 0x5015)
+         * 2.2.4 Latest calculation flag (Characteristics UUID: 0x5015)
          */
         public static final UUID LATEST_CALCULATION_FLAG_CHARACTERISTIC = UUID.fromString("ab705015-0a3a-11e8-ba89-0ed5f89f718b");
 
@@ -174,7 +165,7 @@ public class RbtConstants {
         public static final UUID LED_SETTING_EVENT_STATE_CHARACTERISTIC = UUID.fromString("ab705112-0a3a-11e8-ba89-0ed5f89f718b");
 
         /**
-         * 2.4.3 LED state [ operation] (Characteristics UUID: 0x5113)
+         * 2.4.3 LED state [operation] (Characteristics UUID: 0x5113)
          */
         public static final UUID LED_STATE_OPERATION_CHARACTERISTIC = UUID.fromString("ab705113-0a3a-11e8-ba89-0ed5f89f718b");
 
@@ -349,67 +340,6 @@ public class RbtConstants {
          */
         public static final UUID FLASH_MEMORY_STATUS_CHARACTERISTIC = UUID.fromString("ab705403-0a3a-11e8-ba89-0ed5f89f718b");
 
-        // 2.8. Generic Access Service (Service UUID: 0x1800)
-
-        /**
-         * 2.8.1 Device name (Characteristics UUID: 0x2A00)
-         */
-        public static final UUID DEVICE_NAME_CHARACTERISTIC = UUID.fromString("00002a00-0000-1000-8000-00805f9b34fb");
-
-        /**
-         * 2.8.2 Appearance (Characteristics UUID: 0x2A01)
-         */
-        public static final UUID APPEARANCE_CHARACTERISTIC = UUID.fromString("00002a01-0000-1000-8000-00805f9b34fb");
-
-        /**
-         * 2.8.3 Peripheral preferred c onnection parameters (Characteristics UUID: 0x2A04)
-         */
-        public static final UUID PERIPHERAL_PREFERRED_CONNECTION_PARAMATERS_CHARACTERISTIC = UUID.fromString("00002a04-0000-1000-8000-00805f9b34fb");
-
-        /**
-         * 2.8.4 Central address resolution (Characteristics UUID: 0x2AA6)
-         */
-        public static final UUID CENTRAL_ADDRESS_RESOLUTION_CHARACTERISTIC = UUID.fromString("00002aa6-0000-1000-8000-00805f9b34fb");
-
-        // 2.9. Device Information Service (Service UUID: 0x180A)
-
-        /**
-         * 2.9.1 Model number string (Characteristics UUID: 0x2A24)
-         */
-        public static final UUID MODEL_NUMBER_STRING_CHARACTERISTIC = UUID.fromString("00002a24-0000-1000-8000-00805f9b34fb");
-
-        /**
-         * 2.9.2 Serial number string (Characteristics UUID: 0x2A25)
-         */
-        public static final UUID SERIAL_NUMBER_STRING_CHARACTERISTIC = UUID.fromString("00002a25-0000-1000-8000-00805f9b34fb");
-
-        /**
-         * 2.9.3 Firmware revision string (Characteristics UUID: 0x2A26)
-         */
-        public static final UUID FIRMWARE_REVISION_STRING_CHARACTERISTIC = UUID.fromString("00002a26-0000-1000-8000-00805f9b34fb");
-
-        /**
-         * 2.9.4 Hardware revision string (Characteristics UUID: 0x2A27)
-         */
-        public static final UUID HARDWARE_REVISION_STRING_CHARACTERISTIC = UUID.fromString("00002a27-0000-1000-8000-00805f9b34fb");
-
-        /**
-         * 2.9.5 Manufacturer name string (Characteristics UUID: 0x2A28)
-         */
-        public static final UUID MANUFACTURER_NAME_STRING_CHARACTERISTIC = UUID.fromString("00002a29-0000-1000-8000-00805f9b34fb");
-
-    }
-
-    /**
-     * OMRON 2JCIE-BU01 BLE GATT Descriptors UUID
-     */
-    public static final class DescriptorUUID {
-
-        /**
-         * Core Specification v5.1 Vol 3 Part G 3.3.3.3
-         */
-        public static final UUID CLIENT_CHARACTERISTIC_CONFIGRATION_DESCRIPTOR = UUID.fromString("00002902-0000-1000-8000-00805f9b34fb");
-
     }
 
     /**
@@ -550,6 +480,11 @@ public class RbtConstants {
      * 5.2. Event enable/disable [Sensor]
      */
     public static final class EventEnableDisableSensor {
+
+        /**
+         * Disable all threshold
+         */
+        public static final int DISABLE = 0;
 
         /**
          * Simple threshold [upper limit] 1

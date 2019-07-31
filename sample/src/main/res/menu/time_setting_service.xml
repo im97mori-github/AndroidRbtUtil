@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/read_latest_time_counter"
+        android:title="@string/menu_read_5201" />
+
+    <item
+        android:id="@+id/read_time_setting"
+        android:title="@string/menu_read_5202" />
+    <item
+        android:id="@+id/write_time_setting"
+        android:title="@string/menu_write_5202" />
+
+    <item
+        android:id="@+id/read_memory_storage_interval"
+        android:title="@string/menu_read_5203" />
+    <item
+        android:id="@+id/write_memory_storage_interval"
+        android:title="@string/menu_write_5203" />
+</menu>

@@ -13,6 +13,7 @@ import static org.im97mori.rbt.ble.characteristic.ErrorStatus.ERROR_STATUS_FROZE
 import static org.im97mori.rbt.ble.characteristic.ErrorStatus.ERROR_STATUS_INITIALIZATION_ERROR;
 import static org.im97mori.rbt.ble.characteristic.ErrorStatus.ERROR_STATUS_REBOOT_WITH_WATCHDOG;
 import static org.im97mori.rbt.ble.characteristic.ErrorStatus.ERROR_STATUS_SENSING_DATA_IS_OUT_OF_RANGE;
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -33,17 +34,17 @@ public class ErrorStatusTest {
     @Test
     public void test001() {
         byte[] data = new byte[11];
-        data[0] = (byte) (ALL_FLAG_SENSOR);
-        data[1] = (byte) (0x00);
-        data[2] = (byte) (0x00);
-        data[3] = (byte) (0x00);
-        data[4] = (byte) (0x00);
-        data[5] = (byte) (0x00);
-        data[6] = (byte) (0x00);
-        data[7] = (byte) (0x00);
-        data[8] = (byte) (0x00);
-        data[9] = (byte) (0x00);
-        data[10] = (byte) (0x00);
+        data[ 0] = (byte) (ALL_FLAG_SENSOR);
+        data[ 1] = (byte) (0x00);
+        data[ 2] = (byte) (0x00);
+        data[ 3] = (byte) (0x00);
+        data[ 4] = (byte) (0x00);
+        data[ 5] = (byte) (0x00);
+        data[ 6] = (byte) (0x00);
+        data[ 7] = (byte) (0x00);
+        data[ 8] = (byte) (0x00);
+        data[ 9] = (byte) (0xff);
+        data[10] = (byte) (0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -107,17 +108,17 @@ public class ErrorStatusTest {
     @Test
     public void test002() {
         byte[] data = new byte[11];
-        data[0] = (byte) (ERROR_STATUS_INITIALIZATION_ERROR);
-        data[1] = (byte) (0x00);
-        data[2] = (byte) (0x00);
-        data[3] = (byte) (0x00);
-        data[4] = (byte) (0x00);
-        data[5] = (byte) (0x00);
-        data[6] = (byte) (0x00);
-        data[7] = (byte) (0x00);
-        data[8] = (byte) (0x00);
-        data[9] = (byte) (0x00);
-        data[10] = (byte) (0x00);
+        data[ 0] = (byte) (ERROR_STATUS_INITIALIZATION_ERROR);
+        data[ 1] = (byte) (0x00);
+        data[ 2] = (byte) (0x00);
+        data[ 3] = (byte) (0x00);
+        data[ 4] = (byte) (0x00);
+        data[ 5] = (byte) (0x00);
+        data[ 6] = (byte) (0x00);
+        data[ 7] = (byte) (0x00);
+        data[ 8] = (byte) (0x00);
+        data[ 9] = (byte) (0xff);
+        data[10] = (byte) (0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -181,17 +182,17 @@ public class ErrorStatusTest {
     @Test
     public void test003() {
         byte[] data = new byte[11];
-        data[0] = (byte) (ERROR_STATUS_FROZEN_OUTPUT);
-        data[1] = (byte) (0x00);
-        data[2] = (byte) (0x00);
-        data[3] = (byte) (0x00);
-        data[4] = (byte) (0x00);
-        data[5] = (byte) (0x00);
-        data[6] = (byte) (0x00);
-        data[7] = (byte) (0x00);
-        data[8] = (byte) (0x00);
-        data[9] = (byte) (0x00);
-        data[10] = (byte) (0x00);
+        data[ 0] = (byte) (ERROR_STATUS_FROZEN_OUTPUT);
+        data[ 1] = (byte) (0x00);
+        data[ 2] = (byte) (0x00);
+        data[ 3] = (byte) (0x00);
+        data[ 4] = (byte) (0x00);
+        data[ 5] = (byte) (0x00);
+        data[ 6] = (byte) (0x00);
+        data[ 7] = (byte) (0x00);
+        data[ 8] = (byte) (0x00);
+        data[ 9] = (byte) (0xff);
+        data[10] = (byte) (0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -255,17 +256,17 @@ public class ErrorStatusTest {
     @Test
     public void test004() {
         byte[] data = new byte[11];
-        data[0] = (byte) (ERROR_STATUS_SENSING_DATA_IS_OUT_OF_RANGE);
-        data[1] = (byte) (0x00);
-        data[2] = (byte) (0x00);
-        data[3] = (byte) (0x00);
-        data[4] = (byte) (0x00);
-        data[5] = (byte) (0x00);
-        data[6] = (byte) (0x00);
-        data[7] = (byte) (0x00);
-        data[8] = (byte) (0x00);
-        data[9] = (byte) (0x00);
-        data[10] = (byte) (0x00);
+        data[ 0] = (byte) (ERROR_STATUS_SENSING_DATA_IS_OUT_OF_RANGE);
+        data[ 1] = (byte) (0x00);
+        data[ 2] = (byte) (0x00);
+        data[ 3] = (byte) (0x00);
+        data[ 4] = (byte) (0x00);
+        data[ 5] = (byte) (0x00);
+        data[ 6] = (byte) (0x00);
+        data[ 7] = (byte) (0x00);
+        data[ 8] = (byte) (0x00);
+        data[ 9] = (byte) (0xff);
+        data[10] = (byte) (0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -329,17 +330,17 @@ public class ErrorStatusTest {
     @Test
     public void test005() {
         byte[] data = new byte[11];
-        data[0] = (byte) (ERROR_STATUS_COMMUNICATION_ERROR);
-        data[1] = (byte) (0x00);
-        data[2] = (byte) (0x00);
-        data[3] = (byte) (0x00);
-        data[4] = (byte) (0x00);
-        data[5] = (byte) (0x00);
-        data[6] = (byte) (0x00);
-        data[7] = (byte) (0x00);
-        data[8] = (byte) (0x00);
-        data[9] = (byte) (0x00);
-        data[10] = (byte) (0x00);
+        data[ 0] = (byte) (ERROR_STATUS_COMMUNICATION_ERROR);
+        data[ 1] = (byte) (0x00);
+        data[ 2] = (byte) (0x00);
+        data[ 3] = (byte) (0x00);
+        data[ 4] = (byte) (0x00);
+        data[ 5] = (byte) (0x00);
+        data[ 6] = (byte) (0x00);
+        data[ 7] = (byte) (0x00);
+        data[ 8] = (byte) (0x00);
+        data[ 9] = (byte) (0xff);
+        data[10] = (byte) (0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -403,17 +404,17 @@ public class ErrorStatusTest {
     @Test
     public void test101() {
         byte[] data = new byte[11];
-        data[0] = (byte) (0x00);
-        data[1] = (byte) (ALL_FLAG_SENSOR);
-        data[2] = (byte) (0x00);
-        data[3] = (byte) (0x00);
-        data[4] = (byte) (0x00);
-        data[5] = (byte) (0x00);
-        data[6] = (byte) (0x00);
-        data[7] = (byte) (0x00);
-        data[8] = (byte) (0x00);
-        data[9] = (byte) (0x00);
-        data[10] = (byte) (0x00);
+        data[ 0] = (byte) (0x00);
+        data[ 1] = (byte) (ALL_FLAG_SENSOR);
+        data[ 2] = (byte) (0x00);
+        data[ 3] = (byte) (0x00);
+        data[ 4] = (byte) (0x00);
+        data[ 5] = (byte) (0x00);
+        data[ 6] = (byte) (0x00);
+        data[ 7] = (byte) (0x00);
+        data[ 8] = (byte) (0x00);
+        data[ 9] = (byte) (0xff);
+        data[10] = (byte) (0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -477,17 +478,17 @@ public class ErrorStatusTest {
     @Test
     public void test102() {
         byte[] data = new byte[11];
-        data[0] = (byte) (0x00);
-        data[1] = (byte) (ERROR_STATUS_INITIALIZATION_ERROR);
-        data[2] = (byte) (0x00);
-        data[3] = (byte) (0x00);
-        data[4] = (byte) (0x00);
-        data[5] = (byte) (0x00);
-        data[6] = (byte) (0x00);
-        data[7] = (byte) (0x00);
-        data[8] = (byte) (0x00);
-        data[9] = (byte) (0x00);
-        data[10] = (byte) (0x00);
+        data[ 0] = (byte) (0x00);
+        data[ 1] = (byte) (ERROR_STATUS_INITIALIZATION_ERROR);
+        data[ 2] = (byte) (0x00);
+        data[ 3] = (byte) (0x00);
+        data[ 4] = (byte) (0x00);
+        data[ 5] = (byte) (0x00);
+        data[ 6] = (byte) (0x00);
+        data[ 7] = (byte) (0x00);
+        data[ 8] = (byte) (0x00);
+        data[ 9] = (byte) (0xff);
+        data[10] = (byte) (0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -551,17 +552,17 @@ public class ErrorStatusTest {
     @Test
     public void test103() {
         byte[] data = new byte[11];
-        data[0] = (byte) (0x00);
-        data[1] = (byte) (ERROR_STATUS_FROZEN_OUTPUT);
-        data[2] = (byte) (0x00);
-        data[3] = (byte) (0x00);
-        data[4] = (byte) (0x00);
-        data[5] = (byte) (0x00);
-        data[6] = (byte) (0x00);
-        data[7] = (byte) (0x00);
-        data[8] = (byte) (0x00);
-        data[9] = (byte) (0x00);
-        data[10] = (byte) (0x00);
+        data[ 0] = (byte) (0x00);
+        data[ 1] = (byte) (ERROR_STATUS_FROZEN_OUTPUT);
+        data[ 2] = (byte) (0x00);
+        data[ 3] = (byte) (0x00);
+        data[ 4] = (byte) (0x00);
+        data[ 5] = (byte) (0x00);
+        data[ 6] = (byte) (0x00);
+        data[ 7] = (byte) (0x00);
+        data[ 8] = (byte) (0x00);
+        data[ 9] = (byte) (0xff);
+        data[10] = (byte) (0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -625,17 +626,17 @@ public class ErrorStatusTest {
     @Test
     public void test104() {
         byte[] data = new byte[11];
-        data[0] = (byte) (0x00);
-        data[1] = (byte) (ERROR_STATUS_SENSING_DATA_IS_OUT_OF_RANGE);
-        data[2] = (byte) (0x00);
-        data[3] = (byte) (0x00);
-        data[4] = (byte) (0x00);
-        data[5] = (byte) (0x00);
-        data[6] = (byte) (0x00);
-        data[7] = (byte) (0x00);
-        data[8] = (byte) (0x00);
-        data[9] = (byte) (0x00);
-        data[10] = (byte) (0x00);
+        data[ 0] = (byte) (0x00);
+        data[ 1] = (byte) (ERROR_STATUS_SENSING_DATA_IS_OUT_OF_RANGE);
+        data[ 2] = (byte) (0x00);
+        data[ 3] = (byte) (0x00);
+        data[ 4] = (byte) (0x00);
+        data[ 5] = (byte) (0x00);
+        data[ 6] = (byte) (0x00);
+        data[ 7] = (byte) (0x00);
+        data[ 8] = (byte) (0x00);
+        data[ 9] = (byte) (0xff);
+        data[10] = (byte) (0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -699,17 +700,17 @@ public class ErrorStatusTest {
     @Test
     public void test105() {
         byte[] data = new byte[11];
-        data[0] = (byte) (0x00);
-        data[1] = (byte) (ERROR_STATUS_COMMUNICATION_ERROR);
-        data[2] = (byte) (0x00);
-        data[3] = (byte) (0x00);
-        data[4] = (byte) (0x00);
-        data[5] = (byte) (0x00);
-        data[6] = (byte) (0x00);
-        data[7] = (byte) (0x00);
-        data[8] = (byte) (0x00);
-        data[9] = (byte) (0x00);
-        data[10] = (byte) (0x00);
+        data[ 0] = (byte) (0x00);
+        data[ 1] = (byte) (ERROR_STATUS_COMMUNICATION_ERROR);
+        data[ 2] = (byte) (0x00);
+        data[ 3] = (byte) (0x00);
+        data[ 4] = (byte) (0x00);
+        data[ 5] = (byte) (0x00);
+        data[ 6] = (byte) (0x00);
+        data[ 7] = (byte) (0x00);
+        data[ 8] = (byte) (0x00);
+        data[ 9] = (byte) (0xff);
+        data[10] = (byte) (0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -773,17 +774,17 @@ public class ErrorStatusTest {
     @Test
     public void test201() {
         byte[] data = new byte[11];
-        data[0] = (byte) (0x00);
-        data[1] = (byte) (0x00);
-        data[2] = (byte) (ALL_FLAG_SENSOR);
-        data[3] = (byte) (0x00);
-        data[4] = (byte) (0x00);
-        data[5] = (byte) (0x00);
-        data[6] = (byte) (0x00);
-        data[7] = (byte) (0x00);
-        data[8] = (byte) (0x00);
-        data[9] = (byte) (0x00);
-        data[10] = (byte) (0x00);
+        data[ 0] = (byte) (0x00);
+        data[ 1] = (byte) (0x00);
+        data[ 2] = (byte) (ALL_FLAG_SENSOR);
+        data[ 3] = (byte) (0x00);
+        data[ 4] = (byte) (0x00);
+        data[ 5] = (byte) (0x00);
+        data[ 6] = (byte) (0x00);
+        data[ 7] = (byte) (0x00);
+        data[ 8] = (byte) (0x00);
+        data[ 9] = (byte) (0xff);
+        data[10] = (byte) (0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -847,17 +848,17 @@ public class ErrorStatusTest {
     @Test
     public void test202() {
         byte[] data = new byte[11];
-        data[0] = (byte) (0x00);
-        data[1] = (byte) (0x00);
-        data[2] = (byte) (ERROR_STATUS_INITIALIZATION_ERROR);
-        data[3] = (byte) (0x00);
-        data[4] = (byte) (0x00);
-        data[5] = (byte) (0x00);
-        data[6] = (byte) (0x00);
-        data[7] = (byte) (0x00);
-        data[8] = (byte) (0x00);
-        data[9] = (byte) (0x00);
-        data[10] = (byte) (0x00);
+        data[ 0] = (byte) (0x00);
+        data[ 1] = (byte) (0x00);
+        data[ 2] = (byte) (ERROR_STATUS_INITIALIZATION_ERROR);
+        data[ 3] = (byte) (0x00);
+        data[ 4] = (byte) (0x00);
+        data[ 5] = (byte) (0x00);
+        data[ 6] = (byte) (0x00);
+        data[ 7] = (byte) (0x00);
+        data[ 8] = (byte) (0x00);
+        data[ 9] = (byte) (0xff);
+        data[10] = (byte) (0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -921,17 +922,17 @@ public class ErrorStatusTest {
     @Test
     public void test203() {
         byte[] data = new byte[11];
-        data[0] = (byte) (0x00);
-        data[1] = (byte) (0x00);
-        data[2] = (byte) (ERROR_STATUS_FROZEN_OUTPUT);
-        data[3] = (byte) (0x00);
-        data[4] = (byte) (0x00);
-        data[5] = (byte) (0x00);
-        data[6] = (byte) (0x00);
-        data[7] = (byte) (0x00);
-        data[8] = (byte) (0x00);
-        data[9] = (byte) (0x00);
-        data[10] = (byte) (0x00);
+        data[ 0] = (byte) (0x00);
+        data[ 1] = (byte) (0x00);
+        data[ 2] = (byte) (ERROR_STATUS_FROZEN_OUTPUT);
+        data[ 3] = (byte) (0x00);
+        data[ 4] = (byte) (0x00);
+        data[ 5] = (byte) (0x00);
+        data[ 6] = (byte) (0x00);
+        data[ 7] = (byte) (0x00);
+        data[ 8] = (byte) (0x00);
+        data[ 9] = (byte) (0xff);
+        data[10] = (byte) (0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -995,17 +996,17 @@ public class ErrorStatusTest {
     @Test
     public void test204() {
         byte[] data = new byte[11];
-        data[0] = (byte) (0x00);
-        data[1] = (byte) (0x00);
-        data[2] = (byte) (ERROR_STATUS_SENSING_DATA_IS_OUT_OF_RANGE);
-        data[3] = (byte) (0x00);
-        data[4] = (byte) (0x00);
-        data[5] = (byte) (0x00);
-        data[6] = (byte) (0x00);
-        data[7] = (byte) (0x00);
-        data[8] = (byte) (0x00);
-        data[9] = (byte) (0x00);
-        data[10] = (byte) (0x00);
+        data[ 0] = (byte) (0x00);
+        data[ 1] = (byte) (0x00);
+        data[ 2] = (byte) (ERROR_STATUS_SENSING_DATA_IS_OUT_OF_RANGE);
+        data[ 3] = (byte) (0x00);
+        data[ 4] = (byte) (0x00);
+        data[ 5] = (byte) (0x00);
+        data[ 6] = (byte) (0x00);
+        data[ 7] = (byte) (0x00);
+        data[ 8] = (byte) (0x00);
+        data[ 9] = (byte) (0xff);
+        data[10] = (byte) (0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -1069,17 +1070,17 @@ public class ErrorStatusTest {
     @Test
     public void test205() {
         byte[] data = new byte[11];
-        data[0] = (byte) (0x00);
-        data[1] = (byte) (0x00);
-        data[2] = (byte) (ERROR_STATUS_COMMUNICATION_ERROR);
-        data[3] = (byte) (0x00);
-        data[4] = (byte) (0x00);
-        data[5] = (byte) (0x00);
-        data[6] = (byte) (0x00);
-        data[7] = (byte) (0x00);
-        data[8] = (byte) (0x00);
-        data[9] = (byte) (0x00);
-        data[10] = (byte) (0x00);
+        data[ 0] = (byte) (0x00);
+        data[ 1] = (byte) (0x00);
+        data[ 2] = (byte) (ERROR_STATUS_COMMUNICATION_ERROR);
+        data[ 3] = (byte) (0x00);
+        data[ 4] = (byte) (0x00);
+        data[ 5] = (byte) (0x00);
+        data[ 6] = (byte) (0x00);
+        data[ 7] = (byte) (0x00);
+        data[ 8] = (byte) (0x00);
+        data[ 9] = (byte) (0xff);
+        data[10] = (byte) (0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -1143,17 +1144,17 @@ public class ErrorStatusTest {
     @Test
     public void test301() {
         byte[] data = new byte[11];
-        data[0] = (byte) (0x00);
-        data[1] = (byte) (0x00);
-        data[2] = (byte) (0x00);
-        data[3] = (byte) (ALL_FLAG_SENSOR);
-        data[4] = (byte) (0x00);
-        data[5] = (byte) (0x00);
-        data[6] = (byte) (0x00);
-        data[7] = (byte) (0x00);
-        data[8] = (byte) (0x00);
-        data[9] = (byte) (0x00);
-        data[10] = (byte) (0x00);
+        data[ 0] = (byte) (0x00);
+        data[ 1] = (byte) (0x00);
+        data[ 2] = (byte) (0x00);
+        data[ 3] = (byte) (ALL_FLAG_SENSOR);
+        data[ 4] = (byte) (0x00);
+        data[ 5] = (byte) (0x00);
+        data[ 6] = (byte) (0x00);
+        data[ 7] = (byte) (0x00);
+        data[ 8] = (byte) (0x00);
+        data[ 9] = (byte) (0xff);
+        data[10] = (byte) (0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -1217,17 +1218,17 @@ public class ErrorStatusTest {
     @Test
     public void test302() {
         byte[] data = new byte[11];
-        data[0] = (byte) (0x00);
-        data[1] = (byte) (0x00);
-        data[2] = (byte) (0x00);
-        data[3] = (byte) (ERROR_STATUS_INITIALIZATION_ERROR);
-        data[4] = (byte) (0x00);
-        data[5] = (byte) (0x00);
-        data[6] = (byte) (0x00);
-        data[7] = (byte) (0x00);
-        data[8] = (byte) (0x00);
-        data[9] = (byte) (0x00);
-        data[10] = (byte) (0x00);
+        data[ 0] = (byte) (0x00);
+        data[ 1] = (byte) (0x00);
+        data[ 2] = (byte) (0x00);
+        data[ 3] = (byte) (ERROR_STATUS_INITIALIZATION_ERROR);
+        data[ 4] = (byte) (0x00);
+        data[ 5] = (byte) (0x00);
+        data[ 6] = (byte) (0x00);
+        data[ 7] = (byte) (0x00);
+        data[ 8] = (byte) (0x00);
+        data[ 9] = (byte) (0xff);
+        data[10] = (byte) (0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -1291,17 +1292,17 @@ public class ErrorStatusTest {
     @Test
     public void test303() {
         byte[] data = new byte[11];
-        data[0] = (byte) (0x00);
-        data[1] = (byte) (0x00);
-        data[2] = (byte) (0x00);
-        data[3] = (byte) (ERROR_STATUS_FROZEN_OUTPUT);
-        data[4] = (byte) (0x00);
-        data[5] = (byte) (0x00);
-        data[6] = (byte) (0x00);
-        data[7] = (byte) (0x00);
-        data[8] = (byte) (0x00);
-        data[9] = (byte) (0x00);
-        data[10] = (byte) (0x00);
+        data[ 0] = (byte) (0x00);
+        data[ 1] = (byte) (0x00);
+        data[ 2] = (byte) (0x00);
+        data[ 3] = (byte) (ERROR_STATUS_FROZEN_OUTPUT);
+        data[ 4] = (byte) (0x00);
+        data[ 5] = (byte) (0x00);
+        data[ 6] = (byte) (0x00);
+        data[ 7] = (byte) (0x00);
+        data[ 8] = (byte) (0x00);
+        data[ 9] = (byte) (0xff);
+        data[10] = (byte) (0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -1365,17 +1366,17 @@ public class ErrorStatusTest {
     @Test
     public void test304() {
         byte[] data = new byte[11];
-        data[0] = (byte) (0x00);
-        data[1] = (byte) (0x00);
-        data[2] = (byte) (0x00);
-        data[3] = (byte) (ERROR_STATUS_SENSING_DATA_IS_OUT_OF_RANGE);
-        data[4] = (byte) (0x00);
-        data[5] = (byte) (0x00);
-        data[6] = (byte) (0x00);
-        data[7] = (byte) (0x00);
-        data[8] = (byte) (0x00);
-        data[9] = (byte) (0x00);
-        data[10] = (byte) (0x00);
+        data[ 0] = (byte) (0x00);
+        data[ 1] = (byte) (0x00);
+        data[ 2] = (byte) (0x00);
+        data[ 3] = (byte) (ERROR_STATUS_SENSING_DATA_IS_OUT_OF_RANGE);
+        data[ 4] = (byte) (0x00);
+        data[ 5] = (byte) (0x00);
+        data[ 6] = (byte) (0x00);
+        data[ 7] = (byte) (0x00);
+        data[ 8] = (byte) (0x00);
+        data[ 9] = (byte) (0xff);
+        data[10] = (byte) (0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -1439,17 +1440,17 @@ public class ErrorStatusTest {
     @Test
     public void test305() {
         byte[] data = new byte[11];
-        data[0] = (byte) (0x00);
-        data[1] = (byte) (0x00);
-        data[2] = (byte) (0x00);
-        data[3] = (byte) (ERROR_STATUS_COMMUNICATION_ERROR);
-        data[4] = (byte) (0x00);
-        data[5] = (byte) (0x00);
-        data[6] = (byte) (0x00);
-        data[7] = (byte) (0x00);
-        data[8] = (byte) (0x00);
-        data[9] = (byte) (0x00);
-        data[10] = (byte) (0x00);
+        data[ 0] = (byte) (0x00);
+        data[ 1] = (byte) (0x00);
+        data[ 2] = (byte) (0x00);
+        data[ 3] = (byte) (ERROR_STATUS_COMMUNICATION_ERROR);
+        data[ 4] = (byte) (0x00);
+        data[ 5] = (byte) (0x00);
+        data[ 6] = (byte) (0x00);
+        data[ 7] = (byte) (0x00);
+        data[ 8] = (byte) (0x00);
+        data[ 9] = (byte) (0xff);
+        data[10] = (byte) (0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -1513,17 +1514,17 @@ public class ErrorStatusTest {
     @Test
     public void test401() {
         byte[] data = new byte[11];
-        data[0] = (byte) (0x00);
-        data[1] = (byte) (0x00);
-        data[2] = (byte) (0x00);
-        data[3] = (byte) (0x00);
-        data[4] = (byte) (ALL_FLAG_SENSOR);
-        data[5] = (byte) (0x00);
-        data[6] = (byte) (0x00);
-        data[7] = (byte) (0x00);
-        data[8] = (byte) (0x00);
-        data[9] = (byte) (0x00);
-        data[10] = (byte) (0x00);
+        data[ 0] = (byte) (0x00);
+        data[ 1] = (byte) (0x00);
+        data[ 2] = (byte) (0x00);
+        data[ 3] = (byte) (0x00);
+        data[ 4] = (byte) (ALL_FLAG_SENSOR);
+        data[ 5] = (byte) (0x00);
+        data[ 6] = (byte) (0x00);
+        data[ 7] = (byte) (0x00);
+        data[ 8] = (byte) (0x00);
+        data[ 9] = (byte) (0xff);
+        data[10] = (byte) (0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -1587,17 +1588,17 @@ public class ErrorStatusTest {
     @Test
     public void test402() {
         byte[] data = new byte[11];
-        data[0] = (byte) (0x00);
-        data[1] = (byte) (0x00);
-        data[2] = (byte) (0x00);
-        data[3] = (byte) (0x00);
-        data[4] = (byte) (ERROR_STATUS_INITIALIZATION_ERROR);
-        data[5] = (byte) (0x00);
-        data[6] = (byte) (0x00);
-        data[7] = (byte) (0x00);
-        data[8] = (byte) (0x00);
-        data[9] = (byte) (0x00);
-        data[10] = (byte) (0x00);
+        data[ 0] = (byte) (0x00);
+        data[ 1] = (byte) (0x00);
+        data[ 2] = (byte) (0x00);
+        data[ 3] = (byte) (0x00);
+        data[ 4] = (byte) (ERROR_STATUS_INITIALIZATION_ERROR);
+        data[ 5] = (byte) (0x00);
+        data[ 6] = (byte) (0x00);
+        data[ 7] = (byte) (0x00);
+        data[ 8] = (byte) (0x00);
+        data[ 9] = (byte) (0xff);
+        data[10] = (byte) (0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -1661,17 +1662,17 @@ public class ErrorStatusTest {
     @Test
     public void test403() {
         byte[] data = new byte[11];
-        data[0] = (byte) (0x00);
-        data[1] = (byte) (0x00);
-        data[2] = (byte) (0x00);
-        data[3] = (byte) (0x00);
-        data[4] = (byte) (ERROR_STATUS_FROZEN_OUTPUT);
-        data[5] = (byte) (0x00);
-        data[6] = (byte) (0x00);
-        data[7] = (byte) (0x00);
-        data[8] = (byte) (0x00);
-        data[9] = (byte) (0x00);
-        data[10] = (byte) (0x00);
+        data[ 0] = (byte) (0x00);
+        data[ 1] = (byte) (0x00);
+        data[ 2] = (byte) (0x00);
+        data[ 3] = (byte) (0x00);
+        data[ 4] = (byte) (ERROR_STATUS_FROZEN_OUTPUT);
+        data[ 5] = (byte) (0x00);
+        data[ 6] = (byte) (0x00);
+        data[ 7] = (byte) (0x00);
+        data[ 8] = (byte) (0x00);
+        data[ 9] = (byte) (0xff);
+        data[10] = (byte) (0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -1735,17 +1736,17 @@ public class ErrorStatusTest {
     @Test
     public void test404() {
         byte[] data = new byte[11];
-        data[0] = (byte) (0x00);
-        data[1] = (byte) (0x00);
-        data[2] = (byte) (0x00);
-        data[3] = (byte) (0x00);
-        data[4] = (byte) (ERROR_STATUS_SENSING_DATA_IS_OUT_OF_RANGE);
-        data[5] = (byte) (0x00);
-        data[6] = (byte) (0x00);
-        data[7] = (byte) (0x00);
-        data[8] = (byte) (0x00);
-        data[9] = (byte) (0x00);
-        data[10] = (byte) (0x00);
+        data[ 0] = (byte) (0x00);
+        data[ 1] = (byte) (0x00);
+        data[ 2] = (byte) (0x00);
+        data[ 3] = (byte) (0x00);
+        data[ 4] = (byte) (ERROR_STATUS_SENSING_DATA_IS_OUT_OF_RANGE);
+        data[ 5] = (byte) (0x00);
+        data[ 6] = (byte) (0x00);
+        data[ 7] = (byte) (0x00);
+        data[ 8] = (byte) (0x00);
+        data[ 9] = (byte) (0xff);
+        data[10] = (byte) (0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -1809,17 +1810,17 @@ public class ErrorStatusTest {
     @Test
     public void test405() {
         byte[] data = new byte[11];
-        data[0] = (byte) (0x00);
-        data[1] = (byte) (0x00);
-        data[2] = (byte) (0x00);
-        data[3] = (byte) (0x00);
-        data[4] = (byte) (ERROR_STATUS_COMMUNICATION_ERROR);
-        data[5] = (byte) (0x00);
-        data[6] = (byte) (0x00);
-        data[7] = (byte) (0x00);
-        data[8] = (byte) (0x00);
-        data[9] = (byte) (0x00);
-        data[10] = (byte) (0x00);
+        data[ 0] = (byte) (0x00);
+        data[ 1] = (byte) (0x00);
+        data[ 2] = (byte) (0x00);
+        data[ 3] = (byte) (0x00);
+        data[ 4] = (byte) (ERROR_STATUS_COMMUNICATION_ERROR);
+        data[ 5] = (byte) (0x00);
+        data[ 6] = (byte) (0x00);
+        data[ 7] = (byte) (0x00);
+        data[ 8] = (byte) (0x00);
+        data[ 9] = (byte) (0xff);
+        data[10] = (byte) (0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -1883,17 +1884,17 @@ public class ErrorStatusTest {
     @Test
     public void test501() {
         byte[] data = new byte[11];
-        data[0] = (byte) (0x00);
-        data[1] = (byte) (0x00);
-        data[2] = (byte) (0x00);
-        data[3] = (byte) (0x00);
-        data[4] = (byte) (0x00);
-        data[5] = (byte) (ALL_FLAG_SENSOR);
-        data[6] = (byte) (0x00);
-        data[7] = (byte) (0x00);
-        data[8] = (byte) (0x00);
-        data[9] = (byte) (0x00);
-        data[10] = (byte) (0x00);
+        data[ 0] = (byte) (0x00);
+        data[ 1] = (byte) (0x00);
+        data[ 2] = (byte) (0x00);
+        data[ 3] = (byte) (0x00);
+        data[ 4] = (byte) (0x00);
+        data[ 5] = (byte) (ALL_FLAG_SENSOR);
+        data[ 6] = (byte) (0x00);
+        data[ 7] = (byte) (0x00);
+        data[ 8] = (byte) (0x00);
+        data[ 9] = (byte) (0xff);
+        data[10] = (byte) (0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -1957,17 +1958,17 @@ public class ErrorStatusTest {
     @Test
     public void test502() {
         byte[] data = new byte[11];
-        data[0] = (byte) (0x00);
-        data[1] = (byte) (0x00);
-        data[2] = (byte) (0x00);
-        data[3] = (byte) (0x00);
-        data[4] = (byte) (0x00);
-        data[5] = (byte) (ERROR_STATUS_INITIALIZATION_ERROR);
-        data[6] = (byte) (0x00);
-        data[7] = (byte) (0x00);
-        data[8] = (byte) (0x00);
-        data[9] = (byte) (0x00);
-        data[10] = (byte) (0x00);
+        data[ 0] = (byte) (0x00);
+        data[ 1] = (byte) (0x00);
+        data[ 2] = (byte) (0x00);
+        data[ 3] = (byte) (0x00);
+        data[ 4] = (byte) (0x00);
+        data[ 5] = (byte) (ERROR_STATUS_INITIALIZATION_ERROR);
+        data[ 6] = (byte) (0x00);
+        data[ 7] = (byte) (0x00);
+        data[ 8] = (byte) (0x00);
+        data[ 9] = (byte) (0xff);
+        data[10] = (byte) (0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -2031,17 +2032,17 @@ public class ErrorStatusTest {
     @Test
     public void test503() {
         byte[] data = new byte[11];
-        data[0] = (byte) (0x00);
-        data[1] = (byte) (0x00);
-        data[2] = (byte) (0x00);
-        data[3] = (byte) (0x00);
-        data[4] = (byte) (0x00);
-        data[5] = (byte) (ERROR_STATUS_FROZEN_OUTPUT);
-        data[6] = (byte) (0x00);
-        data[7] = (byte) (0x00);
-        data[8] = (byte) (0x00);
-        data[9] = (byte) (0x00);
-        data[10] = (byte) (0x00);
+        data[ 0] = (byte) (0x00);
+        data[ 1] = (byte) (0x00);
+        data[ 2] = (byte) (0x00);
+        data[ 3] = (byte) (0x00);
+        data[ 4] = (byte) (0x00);
+        data[ 5] = (byte) (ERROR_STATUS_FROZEN_OUTPUT);
+        data[ 6] = (byte) (0x00);
+        data[ 7] = (byte) (0x00);
+        data[ 8] = (byte) (0x00);
+        data[ 9] = (byte) (0xff);
+        data[10] = (byte) (0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -2105,17 +2106,17 @@ public class ErrorStatusTest {
     @Test
     public void test504() {
         byte[] data = new byte[11];
-        data[0] = (byte) (0x00);
-        data[1] = (byte) (0x00);
-        data[2] = (byte) (0x00);
-        data[3] = (byte) (0x00);
-        data[4] = (byte) (0x00);
-        data[5] = (byte) (ERROR_STATUS_SENSING_DATA_IS_OUT_OF_RANGE);
-        data[6] = (byte) (0x00);
-        data[7] = (byte) (0x00);
-        data[8] = (byte) (0x00);
-        data[9] = (byte) (0x00);
-        data[10] = (byte) (0x00);
+        data[ 0] = (byte) (0x00);
+        data[ 1] = (byte) (0x00);
+        data[ 2] = (byte) (0x00);
+        data[ 3] = (byte) (0x00);
+        data[ 4] = (byte) (0x00);
+        data[ 5] = (byte) (ERROR_STATUS_SENSING_DATA_IS_OUT_OF_RANGE);
+        data[ 6] = (byte) (0x00);
+        data[ 7] = (byte) (0x00);
+        data[ 8] = (byte) (0x00);
+        data[ 9] = (byte) (0xff);
+        data[10] = (byte) (0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -2179,17 +2180,17 @@ public class ErrorStatusTest {
     @Test
     public void test505() {
         byte[] data = new byte[11];
-        data[0] = (byte) (0x00);
-        data[1] = (byte) (0x00);
-        data[2] = (byte) (0x00);
-        data[3] = (byte) (0x00);
-        data[4] = (byte) (0x00);
-        data[5] = (byte) (ERROR_STATUS_COMMUNICATION_ERROR);
-        data[6] = (byte) (0x00);
-        data[7] = (byte) (0x00);
-        data[8] = (byte) (0x00);
-        data[9] = (byte) (0x00);
-        data[10] = (byte) (0x00);
+        data[ 0] = (byte) (0x00);
+        data[ 1] = (byte) (0x00);
+        data[ 2] = (byte) (0x00);
+        data[ 3] = (byte) (0x00);
+        data[ 4] = (byte) (0x00);
+        data[ 5] = (byte) (ERROR_STATUS_COMMUNICATION_ERROR);
+        data[ 6] = (byte) (0x00);
+        data[ 7] = (byte) (0x00);
+        data[ 8] = (byte) (0x00);
+        data[ 9] = (byte) (0xff);
+        data[10] = (byte) (0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -2253,17 +2254,17 @@ public class ErrorStatusTest {
     @Test
     public void test601() {
         byte[] data = new byte[11];
-        data[0] = (byte) (0x00);
-        data[1] = (byte) (0x00);
-        data[2] = (byte) (0x00);
-        data[3] = (byte) (0x00);
-        data[4] = (byte) (0x00);
-        data[5] = (byte) (0x00);
-        data[6] = (byte) (ALL_FLAG_SENSOR);
-        data[7] = (byte) (0x00);
-        data[8] = (byte) (0x00);
-        data[9] = (byte) (0x00);
-        data[10] = (byte) (0x00);
+        data[ 0] = (byte) (0x00);
+        data[ 1] = (byte) (0x00);
+        data[ 2] = (byte) (0x00);
+        data[ 3] = (byte) (0x00);
+        data[ 4] = (byte) (0x00);
+        data[ 5] = (byte) (0x00);
+        data[ 6] = (byte) (ALL_FLAG_SENSOR);
+        data[ 7] = (byte) (0x00);
+        data[ 8] = (byte) (0x00);
+        data[ 9] = (byte) (0xff);
+        data[10] = (byte) (0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -2327,17 +2328,17 @@ public class ErrorStatusTest {
     @Test
     public void test602() {
         byte[] data = new byte[11];
-        data[0] = (byte) (0x00);
-        data[1] = (byte) (0x00);
-        data[2] = (byte) (0x00);
-        data[3] = (byte) (0x00);
-        data[4] = (byte) (0x00);
-        data[5] = (byte) (0x00);
-        data[6] = (byte) (ERROR_STATUS_INITIALIZATION_ERROR);
-        data[7] = (byte) (0x00);
-        data[8] = (byte) (0x00);
-        data[9] = (byte) (0x00);
-        data[10] = (byte) (0x00);
+        data[ 0] = (byte) (0x00);
+        data[ 1] = (byte) (0x00);
+        data[ 2] = (byte) (0x00);
+        data[ 3] = (byte) (0x00);
+        data[ 4] = (byte) (0x00);
+        data[ 5] = (byte) (0x00);
+        data[ 6] = (byte) (ERROR_STATUS_INITIALIZATION_ERROR);
+        data[ 7] = (byte) (0x00);
+        data[ 8] = (byte) (0x00);
+        data[ 9] = (byte) (0xff);
+        data[10] = (byte) (0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -2401,17 +2402,17 @@ public class ErrorStatusTest {
     @Test
     public void test603() {
         byte[] data = new byte[11];
-        data[0] = (byte) (0x00);
-        data[1] = (byte) (0x00);
-        data[2] = (byte) (0x00);
-        data[3] = (byte) (0x00);
-        data[4] = (byte) (0x00);
-        data[5] = (byte) (0x00);
-        data[6] = (byte) (ERROR_STATUS_FROZEN_OUTPUT);
-        data[7] = (byte) (0x00);
-        data[8] = (byte) (0x00);
-        data[9] = (byte) (0x00);
-        data[10] = (byte) (0x00);
+        data[ 0] = (byte) (0x00);
+        data[ 1] = (byte) (0x00);
+        data[ 2] = (byte) (0x00);
+        data[ 3] = (byte) (0x00);
+        data[ 4] = (byte) (0x00);
+        data[ 5] = (byte) (0x00);
+        data[ 6] = (byte) (ERROR_STATUS_FROZEN_OUTPUT);
+        data[ 7] = (byte) (0x00);
+        data[ 8] = (byte) (0x00);
+        data[ 9] = (byte) (0xff);
+        data[10] = (byte) (0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -2475,17 +2476,17 @@ public class ErrorStatusTest {
     @Test
     public void test604() {
         byte[] data = new byte[11];
-        data[0] = (byte) (0x00);
-        data[1] = (byte) (0x00);
-        data[2] = (byte) (0x00);
-        data[3] = (byte) (0x00);
-        data[4] = (byte) (0x00);
-        data[5] = (byte) (0x00);
-        data[6] = (byte) (ERROR_STATUS_SENSING_DATA_IS_OUT_OF_RANGE);
-        data[7] = (byte) (0x00);
-        data[8] = (byte) (0x00);
-        data[9] = (byte) (0x00);
-        data[10] = (byte) (0x00);
+        data[ 0] = (byte) (0x00);
+        data[ 1] = (byte) (0x00);
+        data[ 2] = (byte) (0x00);
+        data[ 3] = (byte) (0x00);
+        data[ 4] = (byte) (0x00);
+        data[ 5] = (byte) (0x00);
+        data[ 6] = (byte) (ERROR_STATUS_SENSING_DATA_IS_OUT_OF_RANGE);
+        data[ 7] = (byte) (0x00);
+        data[ 8] = (byte) (0x00);
+        data[ 9] = (byte) (0xff);
+        data[10] = (byte) (0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -2549,17 +2550,17 @@ public class ErrorStatusTest {
     @Test
     public void test605() {
         byte[] data = new byte[11];
-        data[0] = (byte) (0x00);
-        data[1] = (byte) (0x00);
-        data[2] = (byte) (0x00);
-        data[3] = (byte) (0x00);
-        data[4] = (byte) (0x00);
-        data[5] = (byte) (0x00);
-        data[6] = (byte) (ERROR_STATUS_COMMUNICATION_ERROR);
-        data[7] = (byte) (0x00);
-        data[8] = (byte) (0x00);
-        data[9] = (byte) (0x00);
-        data[10] = (byte) (0x00);
+        data[ 0] = (byte) (0x00);
+        data[ 1] = (byte) (0x00);
+        data[ 2] = (byte) (0x00);
+        data[ 3] = (byte) (0x00);
+        data[ 4] = (byte) (0x00);
+        data[ 5] = (byte) (0x00);
+        data[ 6] = (byte) (ERROR_STATUS_COMMUNICATION_ERROR);
+        data[ 7] = (byte) (0x00);
+        data[ 8] = (byte) (0x00);
+        data[ 9] = (byte) (0xff);
+        data[10] = (byte) (0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -2623,17 +2624,17 @@ public class ErrorStatusTest {
     @Test
     public void test701() {
         byte[] data = new byte[11];
-        data[0] = (byte) (0x00);
-        data[1] = (byte) (0x00);
-        data[2] = (byte) (0x00);
-        data[3] = (byte) (0x00);
-        data[4] = (byte) (0x00);
-        data[5] = (byte) (0x00);
-        data[6] = (byte) (0x00);
-        data[7] = (byte) (ALL_FLAG_SENSOR);
-        data[8] = (byte) (0x00);
-        data[9] = (byte) (0x00);
-        data[10] = (byte) (0x00);
+        data[ 0] = (byte) (0x00);
+        data[ 1] = (byte) (0x00);
+        data[ 2] = (byte) (0x00);
+        data[ 3] = (byte) (0x00);
+        data[ 4] = (byte) (0x00);
+        data[ 5] = (byte) (0x00);
+        data[ 6] = (byte) (0x00);
+        data[ 7] = (byte) (ALL_FLAG_SENSOR);
+        data[ 8] = (byte) (0x00);
+        data[ 9] = (byte) (0xff);
+        data[10] = (byte) (0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -2697,17 +2698,17 @@ public class ErrorStatusTest {
     @Test
     public void test702() {
         byte[] data = new byte[11];
-        data[0] = (byte) (0x00);
-        data[1] = (byte) (0x00);
-        data[2] = (byte) (0x00);
-        data[3] = (byte) (0x00);
-        data[4] = (byte) (0x00);
-        data[5] = (byte) (0x00);
-        data[6] = (byte) (0x00);
-        data[7] = (byte) (ERROR_STATUS_INITIALIZATION_ERROR);
-        data[8] = (byte) (0x00);
-        data[9] = (byte) (0x00);
-        data[10] = (byte) (0x00);
+        data[ 0] = (byte) (0x00);
+        data[ 1] = (byte) (0x00);
+        data[ 2] = (byte) (0x00);
+        data[ 3] = (byte) (0x00);
+        data[ 4] = (byte) (0x00);
+        data[ 5] = (byte) (0x00);
+        data[ 6] = (byte) (0x00);
+        data[ 7] = (byte) (ERROR_STATUS_INITIALIZATION_ERROR);
+        data[ 8] = (byte) (0x00);
+        data[ 9] = (byte) (0xff);
+        data[10] = (byte) (0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -2771,17 +2772,17 @@ public class ErrorStatusTest {
     @Test
     public void test703() {
         byte[] data = new byte[11];
-        data[0] = (byte) (0x00);
-        data[1] = (byte) (0x00);
-        data[2] = (byte) (0x00);
-        data[3] = (byte) (0x00);
-        data[4] = (byte) (0x00);
-        data[5] = (byte) (0x00);
-        data[6] = (byte) (0x00);
-        data[7] = (byte) (ERROR_STATUS_FROZEN_OUTPUT);
-        data[8] = (byte) (0x00);
-        data[9] = (byte) (0x00);
-        data[10] = (byte) (0x00);
+        data[ 0] = (byte) (0x00);
+        data[ 1] = (byte) (0x00);
+        data[ 2] = (byte) (0x00);
+        data[ 3] = (byte) (0x00);
+        data[ 4] = (byte) (0x00);
+        data[ 5] = (byte) (0x00);
+        data[ 6] = (byte) (0x00);
+        data[ 7] = (byte) (ERROR_STATUS_FROZEN_OUTPUT);
+        data[ 8] = (byte) (0x00);
+        data[ 9] = (byte) (0xff);
+        data[10] = (byte) (0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -2845,17 +2846,17 @@ public class ErrorStatusTest {
     @Test
     public void test704() {
         byte[] data = new byte[11];
-        data[0] = (byte) (0x00);
-        data[1] = (byte) (0x00);
-        data[2] = (byte) (0x00);
-        data[3] = (byte) (0x00);
-        data[4] = (byte) (0x00);
-        data[5] = (byte) (0x00);
-        data[6] = (byte) (0x00);
-        data[7] = (byte) (ERROR_STATUS_SENSING_DATA_IS_OUT_OF_RANGE);
-        data[8] = (byte) (0x00);
-        data[9] = (byte) (0x00);
-        data[10] = (byte) (0x00);
+        data[ 0] = (byte) (0x00);
+        data[ 1] = (byte) (0x00);
+        data[ 2] = (byte) (0x00);
+        data[ 3] = (byte) (0x00);
+        data[ 4] = (byte) (0x00);
+        data[ 5] = (byte) (0x00);
+        data[ 6] = (byte) (0x00);
+        data[ 7] = (byte) (ERROR_STATUS_SENSING_DATA_IS_OUT_OF_RANGE);
+        data[ 8] = (byte) (0x00);
+        data[ 9] = (byte) (0xff);
+        data[10] = (byte) (0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -2919,17 +2920,17 @@ public class ErrorStatusTest {
     @Test
     public void test705() {
         byte[] data = new byte[11];
-        data[0] = (byte) (0x00);
-        data[1] = (byte) (0x00);
-        data[2] = (byte) (0x00);
-        data[3] = (byte) (0x00);
-        data[4] = (byte) (0x00);
-        data[5] = (byte) (0x00);
-        data[6] = (byte) (0x00);
-        data[7] = (byte) (ERROR_STATUS_COMMUNICATION_ERROR);
-        data[8] = (byte) (0x00);
-        data[9] = (byte) (0x00);
-        data[10] = (byte) (0x00);
+        data[ 0] = (byte) (0x00);
+        data[ 1] = (byte) (0x00);
+        data[ 2] = (byte) (0x00);
+        data[ 3] = (byte) (0x00);
+        data[ 4] = (byte) (0x00);
+        data[ 5] = (byte) (0x00);
+        data[ 6] = (byte) (0x00);
+        data[ 7] = (byte) (ERROR_STATUS_COMMUNICATION_ERROR);
+        data[ 8] = (byte) (0x00);
+        data[ 9] = (byte) (0xff);
+        data[10] = (byte) (0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -2993,17 +2994,17 @@ public class ErrorStatusTest {
     @Test
     public void test801() {
         byte[] data = new byte[11];
-        data[0] = (byte) (0x00);
-        data[1] = (byte) (0x00);
-        data[2] = (byte) (0x00);
-        data[3] = (byte) (0x00);
-        data[4] = (byte) (0x00);
-        data[5] = (byte) (0x00);
-        data[6] = (byte) (0x00);
-        data[7] = (byte) (0x00);
-        data[8] = (byte) (ALL_FLAG_CPU);
-        data[9] = (byte) (0x00);
-        data[10] = (byte) (0x00);
+        data[ 0] = (byte) (0x00);
+        data[ 1] = (byte) (0x00);
+        data[ 2] = (byte) (0x00);
+        data[ 3] = (byte) (0x00);
+        data[ 4] = (byte) (0x00);
+        data[ 5] = (byte) (0x00);
+        data[ 6] = (byte) (0x00);
+        data[ 7] = (byte) (0x00);
+        data[ 8] = (byte) (ALL_FLAG_CPU);
+        data[ 9] = (byte) (0xff);
+        data[10] = (byte) (0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -3067,17 +3068,17 @@ public class ErrorStatusTest {
     @Test
     public void test802() {
         byte[] data = new byte[11];
-        data[0] = (byte) (0x00);
-        data[1] = (byte) (0x00);
-        data[2] = (byte) (0x00);
-        data[3] = (byte) (0x00);
-        data[4] = (byte) (0x00);
-        data[5] = (byte) (0x00);
-        data[6] = (byte) (0x00);
-        data[7] = (byte) (0x00);
-        data[8] = (byte) (ERROR_STATUS_REBOOT_WITH_WATCHDOG);
-        data[9] = (byte) (0x00);
-        data[10] = (byte) (0x00);
+        data[ 0] = (byte) (0x00);
+        data[ 1] = (byte) (0x00);
+        data[ 2] = (byte) (0x00);
+        data[ 3] = (byte) (0x00);
+        data[ 4] = (byte) (0x00);
+        data[ 5] = (byte) (0x00);
+        data[ 6] = (byte) (0x00);
+        data[ 7] = (byte) (0x00);
+        data[ 8] = (byte) (ERROR_STATUS_REBOOT_WITH_WATCHDOG);
+        data[ 9] = (byte) (0xff);
+        data[10] = (byte) (0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -3141,17 +3142,17 @@ public class ErrorStatusTest {
     @Test
     public void test803() {
         byte[] data = new byte[11];
-        data[0] = (byte) (0x00);
-        data[1] = (byte) (0x00);
-        data[2] = (byte) (0x00);
-        data[3] = (byte) (0x00);
-        data[4] = (byte) (0x00);
-        data[5] = (byte) (0x00);
-        data[6] = (byte) (0x00);
-        data[7] = (byte) (0x00);
-        data[8] = (byte) (ERROR_STATUS_FLASH_MEMORY_ERASE_ERROR);
-        data[9] = (byte) (0x00);
-        data[10] = (byte) (0x00);
+        data[ 0] = (byte) (0x00);
+        data[ 1] = (byte) (0x00);
+        data[ 2] = (byte) (0x00);
+        data[ 3] = (byte) (0x00);
+        data[ 4] = (byte) (0x00);
+        data[ 5] = (byte) (0x00);
+        data[ 6] = (byte) (0x00);
+        data[ 7] = (byte) (0x00);
+        data[ 8] = (byte) (ERROR_STATUS_FLASH_MEMORY_ERASE_ERROR);
+        data[ 9] = (byte) (0xff);
+        data[10] = (byte) (0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -3215,17 +3216,17 @@ public class ErrorStatusTest {
     @Test
     public void test804() {
         byte[] data = new byte[11];
-        data[0] = (byte) (0x00);
-        data[1] = (byte) (0x00);
-        data[2] = (byte) (0x00);
-        data[3] = (byte) (0x00);
-        data[4] = (byte) (0x00);
-        data[5] = (byte) (0x00);
-        data[6] = (byte) (0x00);
-        data[7] = (byte) (0x00);
-        data[8] = (byte) (ERROR_STATUS_FLASH_MEMORY_INITIALIZATION_ERROR);
-        data[9] = (byte) (0x00);
-        data[10] = (byte) (0x00);
+        data[ 0] = (byte) (0x00);
+        data[ 1] = (byte) (0x00);
+        data[ 2] = (byte) (0x00);
+        data[ 3] = (byte) (0x00);
+        data[ 4] = (byte) (0x00);
+        data[ 5] = (byte) (0x00);
+        data[ 6] = (byte) (0x00);
+        data[ 7] = (byte) (0x00);
+        data[ 8] = (byte) (ERROR_STATUS_FLASH_MEMORY_INITIALIZATION_ERROR);
+        data[ 9] = (byte) (0xff);
+        data[10] = (byte) (0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -3289,17 +3290,17 @@ public class ErrorStatusTest {
     @Test
     public void test901() {
         byte[] data = new byte[11];
-        data[0] = (byte) (ALL_FLAG_SENSOR);
-        data[1] = (byte) (ERROR_STATUS_INITIALIZATION_ERROR);
-        data[2] = (byte) (ERROR_STATUS_FROZEN_OUTPUT);
-        data[3] = (byte) (ERROR_STATUS_SENSING_DATA_IS_OUT_OF_RANGE);
-        data[4] = (byte) (ERROR_STATUS_COMMUNICATION_ERROR);
-        data[5] = (byte) (ALL_FLAG_SENSOR);
-        data[6] = (byte) (ERROR_STATUS_INITIALIZATION_ERROR);
-        data[7] = (byte) (ERROR_STATUS_FROZEN_OUTPUT);
-        data[8] = (byte) (ALL_FLAG_CPU);
-        data[9] = (byte) (0x00);
-        data[10] = (byte) (0x00);
+        data[ 0] = (byte) (ALL_FLAG_SENSOR);
+        data[ 1] = (byte) (ERROR_STATUS_INITIALIZATION_ERROR);
+        data[ 2] = (byte) (ERROR_STATUS_FROZEN_OUTPUT);
+        data[ 3] = (byte) (ERROR_STATUS_SENSING_DATA_IS_OUT_OF_RANGE);
+        data[ 4] = (byte) (ERROR_STATUS_COMMUNICATION_ERROR);
+        data[ 5] = (byte) (ALL_FLAG_SENSOR);
+        data[ 6] = (byte) (ERROR_STATUS_INITIALIZATION_ERROR);
+        data[ 7] = (byte) (ERROR_STATUS_FROZEN_OUTPUT);
+        data[ 8] = (byte) (ALL_FLAG_CPU);
+        data[ 9] = (byte) (0xff);
+        data[10] = (byte) (0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -3319,6 +3320,52 @@ public class ErrorStatusTest {
         assertEquals(result1.getEtvocSensorError(), result2.getEtvocSensorError());
         assertEquals(result1.getEco2SensorError(), result2.getEco2SensorError());
         assertEquals(result1.getCpuError(), result2.getCpuError());
+    }
+
+    @Test
+    public void test902() {
+        byte[] data = new byte[11];
+        data[ 0] = (byte) (ALL_FLAG_SENSOR);
+        data[ 1] = (byte) (ERROR_STATUS_INITIALIZATION_ERROR);
+        data[ 2] = (byte) (ERROR_STATUS_FROZEN_OUTPUT);
+        data[ 3] = (byte) (ERROR_STATUS_SENSING_DATA_IS_OUT_OF_RANGE);
+        data[ 4] = (byte) (ERROR_STATUS_COMMUNICATION_ERROR);
+        data[ 5] = (byte) (ALL_FLAG_SENSOR);
+        data[ 6] = (byte) (ERROR_STATUS_INITIALIZATION_ERROR);
+        data[ 7] = (byte) (ERROR_STATUS_FROZEN_OUTPUT);
+        data[ 8] = (byte) (ALL_FLAG_CPU);
+        data[ 9] = (byte) (0xff);
+        data[10] = (byte) (0xff);
+
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        bluetoothGattCharacteristic.setValue(data);
+
+        ErrorStatus result1 = new ErrorStatus(bluetoothGattCharacteristic);
+        byte[] resultData = result1.getBytes();
+        assertArrayEquals(data, resultData);
+    }
+
+    @Test
+    public void test903() {
+        byte[] data = new byte[11];
+        data[ 0] = (byte) (ALL_FLAG_SENSOR);
+        data[ 1] = (byte) (ERROR_STATUS_INITIALIZATION_ERROR);
+        data[ 2] = (byte) (ERROR_STATUS_FROZEN_OUTPUT);
+        data[ 3] = (byte) (ERROR_STATUS_SENSING_DATA_IS_OUT_OF_RANGE);
+        data[ 4] = (byte) (ERROR_STATUS_COMMUNICATION_ERROR);
+        data[ 5] = (byte) (ALL_FLAG_SENSOR);
+        data[ 6] = (byte) (ERROR_STATUS_INITIALIZATION_ERROR);
+        data[ 7] = (byte) (ERROR_STATUS_FROZEN_OUTPUT);
+        data[ 8] = (byte) (ALL_FLAG_CPU);
+        data[ 9] = (byte) (0xff);
+        data[10] = (byte) (0xff);
+
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        bluetoothGattCharacteristic.setValue(data);
+
+        ErrorStatus result1 = new ErrorStatus(bluetoothGattCharacteristic);
+        ErrorStatus result2 = ErrorStatus.CREATOR.createFromByteArray(data);
+        assertArrayEquals(result1.getBytes(), result2.getBytes());
     }
 
 }

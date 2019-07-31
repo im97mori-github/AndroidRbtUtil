@@ -6,6 +6,7 @@ import android.os.Parcel;
 import org.im97mori.ble.ad.AdvertisingDataConstants;
 import org.junit.Test;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class LatestSensingDataTest {
@@ -139,5 +140,63 @@ public class LatestSensingDataTest {
         assertEquals(result1.getEtvocPpb(), result2.getEtvocPpb(), 0);
         assertEquals(result1.getEco2(), result2.getEco2());
         assertEquals(result1.getEco2Ppm(), result2.getEco2Ppm(), 0);
+    }
+
+    @Test
+    public void test004() {
+        byte[] data = new byte[17];
+        data[0] = (byte) 0xff; // Sequence number
+        data[1] = (byte) 0xd4; // Temperature
+        data[2] = (byte) 0x30; // Temperature
+        data[3] = (byte) 0x10; // Relative humidity
+        data[4] = (byte) 0x27; // Relative humidity
+        data[5] = (byte) 0x30; // Ambient light
+        data[6] = (byte) 0x75; // Ambient light
+        data[7] = (byte) 0xe0; // Barometric pressure
+        data[8] = (byte) 0xc8; // Barometric pressure
+        data[9] = (byte) 0x10; // Barometric pressure
+        data[10] = (byte) 0x00; // Barometric pressure
+        data[11] = (byte) 0xe0; // Sound noise
+        data[12] = (byte) 0x2e; // Sound noise
+        data[13] = (byte) 0xff; // eTVOC
+        data[14] = (byte) 0x7f; // eTVOC
+        data[15] = (byte) 0xff; // eCO2
+        data[16] = (byte) 0x7f; // eCO2
+
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        bluetoothGattCharacteristic.setValue(data);
+
+        LatestSensingData result1 = new LatestSensingData(bluetoothGattCharacteristic);
+        byte[] resultData = result1.getBytes();
+        assertArrayEquals(data, resultData);
+    }
+
+    @Test
+    public void test005() {
+        byte[] data = new byte[17];
+        data[0] = (byte) 0xff; // Sequence number
+        data[1] = (byte) 0xd4; // Temperature
+        data[2] = (byte) 0x30; // Temperature
+        data[3] = (byte) 0x10; // Relative humidity
+        data[4] = (byte) 0x27; // Relative humidity
+        data[5] = (byte) 0x30; // Ambient light
+        data[6] = (byte) 0x75; // Ambient light
+        data[7] = (byte) 0xe0; // Barometric pressure
+        data[8] = (byte) 0xc8; // Barometric pressure
+        data[9] = (byte) 0x10; // Barometric pressure
+        data[10] = (byte) 0x00; // Barometric pressure
+        data[11] = (byte) 0xe0; // Sound noise
+        data[12] = (byte) 0x2e; // Sound noise
+        data[13] = (byte) 0xff; // eTVOC
+        data[14] = (byte) 0x7f; // eTVOC
+        data[15] = (byte) 0xff; // eCO2
+        data[16] = (byte) 0x7f; // eCO2
+
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        bluetoothGattCharacteristic.setValue(data);
+
+        LatestSensingData result1 = new LatestSensingData(bluetoothGattCharacteristic);
+        LatestSensingData result2 = LatestSensingData.CREATOR.createFromByteArray(data);
+        assertArrayEquals(result1.getBytes(), result2.getBytes());
     }
 }

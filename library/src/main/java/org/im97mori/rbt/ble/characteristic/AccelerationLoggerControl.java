@@ -4,11 +4,18 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.im97mori.ble.ByteArrayCreater;
+
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
+import static org.im97mori.rbt.RbtConstants.CharacteristicUUID.ACCELERATION_LOGGER_CONTROL_CHARACTERISTIC;
+
 /**
- * 2.4.8 Acceleration l ogger control (Characteristics UUID: 0x5118)
+ * 2.4.8 Acceleration logger control (Characteristics UUID: 0x5118)
  */
 @SuppressWarnings("WeakerAccess")
-public class AccelerationLoggerControl extends AbstractCharacteristic implements Parcelable {
+public class AccelerationLoggerControl extends AbstractRbtCharacteristic implements Parcelable {
 
     /**
      * 0x00: Log stop
@@ -56,9 +63,9 @@ public class AccelerationLoggerControl extends AbstractCharacteristic implements
     public static final int ODR_400_HZ = 0x05;
 
     /**
-     * @see Creator
+     * @see ByteArrayCreater
      */
-    public static final Creator<AccelerationLoggerControl> CREATOR = new Creator<AccelerationLoggerControl>() {
+    public static final ByteArrayCreater<AccelerationLoggerControl> CREATOR = new ByteArrayCreater<AccelerationLoggerControl>() {
 
         /**
          * {@inheritDoc}
@@ -74,6 +81,16 @@ public class AccelerationLoggerControl extends AbstractCharacteristic implements
         @Override
         public AccelerationLoggerControl[] newArray(int size) {
             return new AccelerationLoggerControl[size];
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public AccelerationLoggerControl createFromByteArray(byte[] values) {
+            BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(ACCELERATION_LOGGER_CONTROL_CHARACTERISTIC, 0, 0);
+            bluetoothGattCharacteristic.setValue(values);
+            return new AccelerationLoggerControl(bluetoothGattCharacteristic);
         }
 
     };
@@ -114,6 +131,29 @@ public class AccelerationLoggerControl extends AbstractCharacteristic implements
         mOdrSetting = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 2);
         mStartPage = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT16, 3);
         mEndPage = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT16, 5);
+    }
+
+    /**
+     * Constructor from value
+     *
+     * @param loggerCondition  one of {@link #LOG_STOP}
+     *                         {@link #LOG_START}
+     * @param rangeOfDetection {@link #RANGE_OF_DETECTION_FIXED_VALUE}(fixed value)
+     * @param odrSetting       one of {@link #ODR_1_HZ}
+     *                         {@link #ODR_10_HZ}
+     *                         {@link #ODR_25_HZ}
+     *                         {@link #ODR_100_HZ}
+     *                         {@link #ODR_200_HZ}
+     *                         {@link #ODR_400_HZ}
+     * @param startPage        Start page
+     * @param endPage          End page
+     */
+    public AccelerationLoggerControl(int loggerCondition, int rangeOfDetection, int odrSetting, int startPage, int endPage) {
+        mLoggerCondition = loggerCondition;
+        mRangeOfDetection = rangeOfDetection;
+        mOdrSetting = odrSetting;
+        mStartPage = startPage;
+        mEndPage = endPage;
     }
 
     /**
@@ -182,6 +222,21 @@ public class AccelerationLoggerControl extends AbstractCharacteristic implements
      */
     public int getEndPage() {
         return mEndPage;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public byte[] getBytes() {
+        byte[] data = new byte[7];
+        ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);
+        byteBuffer.put((byte) mLoggerCondition);
+        byteBuffer.put((byte) mRangeOfDetection);
+        byteBuffer.put((byte) mOdrSetting);
+        byteBuffer.putShort((short) mStartPage);
+        byteBuffer.putShort((short) mEndPage);
+        return data;
     }
 
 }

@@ -4,18 +4,24 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.im97mori.ble.ByteArrayCreater;
+
 import java.math.BigInteger;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
+import static org.im97mori.rbt.RbtConstants.CharacteristicUUID.VIBRATION_COUNT_CHARACTERISTIC;
 
 /**
  * 2.3.1 Vibration count (Characteristics UUID: 0x5031)
  */
 @SuppressWarnings("WeakerAccess")
-public class VibrationCount extends AbstractCharacteristic implements Parcelable {
+public class VibrationCount extends AbstractRbtCharacteristic implements Parcelable {
 
     /**
-     * @see Creator
+     * @see ByteArrayCreater
      */
-    public static final Creator<VibrationCount> CREATOR = new Creator<VibrationCount>() {
+    public static final ByteArrayCreater<VibrationCount> CREATOR = new ByteArrayCreater<VibrationCount>() {
 
         /**
          * {@inheritDoc}
@@ -31,6 +37,16 @@ public class VibrationCount extends AbstractCharacteristic implements Parcelable
         @Override
         public VibrationCount[] newArray(int size) {
             return new VibrationCount[size];
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public VibrationCount createFromByteArray(byte[] values) {
+            BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(VIBRATION_COUNT_CHARACTERISTIC, 0, 0);
+            bluetoothGattCharacteristic.setValue(values);
+            return new VibrationCount(bluetoothGattCharacteristic);
         }
 
     };
@@ -94,6 +110,18 @@ public class VibrationCount extends AbstractCharacteristic implements Parcelable
      */
     public BigInteger getVibrationCount() {
         return mVibrationCount;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public byte[] getBytes() {
+        byte[] data = new byte[8];
+        ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);
+        byteBuffer.put(createLittleEndianByteArrayFromBigInteger(mEarthquakeCount, 4));
+        byteBuffer.put(createLittleEndianByteArrayFromBigInteger(mVibrationCount, 4));
+        return data;
     }
 
 }

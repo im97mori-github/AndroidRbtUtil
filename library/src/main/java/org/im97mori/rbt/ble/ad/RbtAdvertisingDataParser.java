@@ -1,16 +1,16 @@
 package org.im97mori.rbt.ble.ad;
 
 import android.bluetooth.le.ScanRecord;
-import android.util.Log;
 
 import org.im97mori.ble.ad.AdvertisingDataParser;
 import org.im97mori.ble.ad.ManufacturerSpecificData;
-import org.im97mori.stacklog.LogUtils;
+import org.im97mori.rbt.RbtLogUtils;
 
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import static org.im97mori.ble.BLEConstants.ServiceUUID.DEVICE_INFORMATION_SERVICE;
 import static org.im97mori.ble.ad.AdvertisingDataConstants.AdvertisingDataTypes.DATA_TYPE_FLAGS;
 import static org.im97mori.ble.ad.AdvertisingDataConstants.AdvertisingDataTypes.DATA_TYPE_INCOMPLETE_LIST_OF_16_BIT_SERVICE_UUIDS;
 import static org.im97mori.ble.ad.AdvertisingDataConstants.AdvertisingDataTypes.DATA_TYPE_MANUFACTURER_SPECIFIC_DATA;
@@ -21,7 +21,6 @@ import static org.im97mori.rbt.RbtConstants.RbtAdvertisingDataType.DATA_TYPE_SEN
 import static org.im97mori.rbt.RbtConstants.RbtAdvertisingDataType.DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
 import static org.im97mori.rbt.RbtConstants.RbtAdvertisingDataType.DATA_TYPE_SERIAL_NUMBER;
 import static org.im97mori.rbt.RbtConstants.SHORTENED_NAME_RBT;
-import static org.im97mori.rbt.RbtConstants.ServiceUUID.DEVICE_INFORMATION_SERVICE;
 
 /**
  * Parser for OMRON 2JCIE-BU01 Advertising Data
@@ -188,6 +187,16 @@ public class RbtAdvertisingDataParser {
         public SerialNumber getSerialNumber() {
             return mSerialNumber;
         }
+
+        /**
+         * check Rbt or non-Rbt device
+         *
+         * @return {@code true}:Rbt device, {@code false}:non-Rbt device
+         */
+        public boolean isRbt() {
+            return mSensorData != null || mCalculationData != null || mSensorDataAndCalculationData != null || mSensorFlagAndCalculationFlag != null || mSerialNumber != null;
+        }
+
     }
 
     /**
@@ -288,7 +297,7 @@ public class RbtAdvertisingDataParser {
                 }
             }
         } catch (Exception e) {
-            LogUtils.stackLog(Log.getStackTraceString(e));
+            RbtLogUtils.stackLog(e);
         }
         return result;
     }

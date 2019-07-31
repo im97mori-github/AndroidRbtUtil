@@ -4,13 +4,19 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.im97mori.ble.ByteArrayCreater;
+
 import java.math.BigInteger;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
+import static org.im97mori.rbt.RbtConstants.CharacteristicUUID.ACCELERATION_MEMORY_DATA_CHARACTERISTIC;
 
 /**
  * 2.3.4 Acceleration memory data [Header] (Characteristics UUID: 0x5034)
  */
 @SuppressWarnings("WeakerAccess")
-public class AccelerationMemoryDataHeader1 extends AbstractCharacteristic implements Parcelable {
+public class AccelerationMemoryDataHeader1 extends AbstractRbtCharacteristic implements Parcelable {
 
     /**
      * Total transfer count data error
@@ -28,9 +34,9 @@ public class AccelerationMemoryDataHeader1 extends AbstractCharacteristic implem
     public static final int EARTHQUAKE_FLAG_EARTHQUAKE_DATA = 0x01;
 
     /**
-     * @see Creator
+     * @see ByteArrayCreater
      */
-    public static final Creator<AccelerationMemoryDataHeader1> CREATOR = new Creator<AccelerationMemoryDataHeader1>() {
+    public static final ByteArrayCreater<AccelerationMemoryDataHeader1> CREATOR = new ByteArrayCreater<AccelerationMemoryDataHeader1>() {
 
         /**
          * {@inheritDoc}
@@ -46,6 +52,16 @@ public class AccelerationMemoryDataHeader1 extends AbstractCharacteristic implem
         @Override
         public AccelerationMemoryDataHeader1[] newArray(int size) {
             return new AccelerationMemoryDataHeader1[size];
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public AccelerationMemoryDataHeader1 createFromByteArray(byte[] values) {
+            BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(ACCELERATION_MEMORY_DATA_CHARACTERISTIC, 0, 0);
+            bluetoothGattCharacteristic.setValue(values);
+            return new AccelerationMemoryDataHeader1(bluetoothGattCharacteristic);
         }
 
     };
@@ -176,6 +192,24 @@ public class AccelerationMemoryDataHeader1 extends AbstractCharacteristic implem
      */
     public int getSiValueCalculationAxis() {
         return mSiValueCalculationAxis;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public byte[] getBytes() {
+        byte[] data = new byte[20];
+        ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);
+        byteBuffer.putShort((short) mTotalTransferCount);
+        byteBuffer.putShort((short) mStorageTotalPage);
+        byteBuffer.put(createLittleEndianByteArrayFromBigInteger(mEarthQuakesOrVibrationCount, 4));
+        byteBuffer.put(createLittleEndianByteArrayFromBigInteger(mTimeCounter, 8));
+        byteBuffer.put((byte) mEarthQuakeFlag);
+        byteBuffer.put((byte) mSiValueCalculationAxis);
+        byteBuffer.put((byte) 0xff);
+        byteBuffer.put((byte) 0xff);
+        return data;
     }
 
 }

@@ -6,6 +6,7 @@ import android.os.Parcel;
 import org.im97mori.ble.ad.AdvertisingDataConstants;
 import org.junit.Test;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class AccelerationLoggerControlTest {
@@ -148,10 +149,10 @@ public class AccelerationLoggerControlTest {
         data[ 0] = (byte) ((AccelerationLoggerControl.LOG_START) & 0xff);
         data[ 1] = (byte) ((AccelerationLoggerControl.RANGE_OF_DETECTION_FIXED_VALUE) & 0xff);
         data[ 2] = (byte) ((AccelerationLoggerControl.ODR_400_HZ) & 0xff);
-        data[ 3] = (byte) ((0x00) & 0xff);
-        data[ 4] = (byte) ((0x28) & 0xff);
-        data[ 5] = (byte) ((0x00) & 0xff);
-        data[ 6] = (byte) ((0x28) & 0xff);
+        data[ 3] = (byte) ((0x01) & 0xff);
+        data[ 4] = (byte) ((0x00) & 0xff);
+        data[ 5] = (byte) ((0x02) & 0xff);
+        data[ 6] = (byte) ((0x00) & 0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -167,5 +168,59 @@ public class AccelerationLoggerControlTest {
         assertEquals(result1.getOdrSetting(), result2.getOdrSetting());
         assertEquals(result1.getStartPage(), result2.getStartPage());
         assertEquals(result1.getEndPage(), result2.getEndPage());
+    }
+
+    @Test
+    public void test008() {
+        byte[] data = new byte[7];
+        data[ 0] = (byte) ((AccelerationLoggerControl.LOG_START) & 0xff);
+        data[ 1] = (byte) ((AccelerationLoggerControl.RANGE_OF_DETECTION_FIXED_VALUE) & 0xff);
+        data[ 2] = (byte) ((AccelerationLoggerControl.ODR_400_HZ) & 0xff);
+        data[ 3] = (byte) ((0x01) & 0xff);
+        data[ 4] = (byte) ((0x00) & 0xff);
+        data[ 5] = (byte) ((0x02) & 0xff);
+        data[ 6] = (byte) ((0x00) & 0xff);
+
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        bluetoothGattCharacteristic.setValue(data);
+
+        AccelerationLoggerControl result1 = new AccelerationLoggerControl(bluetoothGattCharacteristic);
+        byte[] resultData = result1.getBytes();
+        assertArrayEquals(data, resultData);
+    }
+
+    @Test
+    public void test009() {
+        int loggerCondition = AccelerationLoggerControl.LOG_START;
+        int rangeOfDetection = AccelerationLoggerControl.RANGE_OF_DETECTION_FIXED_VALUE;
+        int odrSetting = AccelerationLoggerControl.ODR_10_HZ;
+        int startPage = 0x0001;
+        int endPage = 0x2800;
+
+        AccelerationLoggerControl result1 = new AccelerationLoggerControl(loggerCondition, rangeOfDetection, odrSetting, startPage, endPage);
+        assertEquals(loggerCondition, result1.getLoggerCondition());
+        assertEquals(rangeOfDetection, result1.getRangeOfDetection());
+        assertEquals(odrSetting, result1.getOdrSetting());
+        assertEquals(startPage, result1.getStartPage());
+        assertEquals(endPage, result1.getEndPage());
+    }
+
+    @Test
+    public void test010() {
+        byte[] data = new byte[7];
+        data[ 0] = (byte) ((AccelerationLoggerControl.LOG_START) & 0xff);
+        data[ 1] = (byte) ((AccelerationLoggerControl.RANGE_OF_DETECTION_FIXED_VALUE) & 0xff);
+        data[ 2] = (byte) ((AccelerationLoggerControl.ODR_400_HZ) & 0xff);
+        data[ 3] = (byte) ((0x01) & 0xff);
+        data[ 4] = (byte) ((0x00) & 0xff);
+        data[ 5] = (byte) ((0x02) & 0xff);
+        data[ 6] = (byte) ((0x00) & 0xff);
+
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        bluetoothGattCharacteristic.setValue(data);
+
+        AccelerationLoggerControl result1 = new AccelerationLoggerControl(bluetoothGattCharacteristic);
+        AccelerationLoggerControl result2 = AccelerationLoggerControl.CREATOR.createFromByteArray(data);
+        assertArrayEquals(result1.getBytes(), result2.getBytes());
     }
 }

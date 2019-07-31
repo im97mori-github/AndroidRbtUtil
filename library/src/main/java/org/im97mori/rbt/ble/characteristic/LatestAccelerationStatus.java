@@ -4,18 +4,24 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.im97mori.ble.ByteArrayCreater;
+
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
+import static org.im97mori.rbt.RbtConstants.CharacteristicUUID.LATEST_ACCELERATION_STATUS_CHARACTERISTIC;
 import static org.im97mori.rbt.RbtConstants.OutputRange.OUTPUT_RANGE_ACCELERATION_UNIT;
 
 /**
  * 2.2.5 Latest acceleration status (Characteristics UUID: 0x5016)
  */
 @SuppressWarnings("WeakerAccess")
-public class LatestAccelerationStatus extends AbstractCharacteristic implements Parcelable {
+public class LatestAccelerationStatus extends AbstractRbtCharacteristic implements Parcelable {
 
     /**
-     * @see Creator
+     * @see ByteArrayCreater
      */
-    public static final Creator<LatestAccelerationStatus> CREATOR = new Creator<LatestAccelerationStatus>() {
+    public static final ByteArrayCreater<LatestAccelerationStatus> CREATOR = new ByteArrayCreater<LatestAccelerationStatus>() {
 
         /**
          * {@inheritDoc}
@@ -31,6 +37,16 @@ public class LatestAccelerationStatus extends AbstractCharacteristic implements 
         @Override
         public LatestAccelerationStatus[] newArray(int size) {
             return new LatestAccelerationStatus[size];
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public LatestAccelerationStatus createFromByteArray(byte[] values) {
+            BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(LATEST_ACCELERATION_STATUS_CHARACTERISTIC, 0, 0);
+            bluetoothGattCharacteristic.setValue(values);
+            return new LatestAccelerationStatus(bluetoothGattCharacteristic);
         }
 
     };
@@ -241,6 +257,25 @@ public class LatestAccelerationStatus extends AbstractCharacteristic implements 
      */
     public double getAccelerationOffsetZAxisGal() {
         return mAccelerationOffsetZAxis * OUTPUT_RANGE_ACCELERATION_UNIT;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public byte[] getBytes() {
+        byte[] data = new byte[15];
+        ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);
+        byteBuffer.put((byte) mSequenceNumber);
+        byteBuffer.put((byte) mVibrationInformation);
+        byteBuffer.putShort((short) mMaximumAccelerationXAxis);
+        byteBuffer.putShort((short) mMaximumAccelerationYAxis);
+        byteBuffer.putShort((short) mMaximumAccelerationZAxis);
+        byteBuffer.put((byte) mSiValueCalculationAxis);
+        byteBuffer.putShort((short) mAccelerationOffsetXAxis);
+        byteBuffer.putShort((short) mAccelerationOffsetYAxis);
+        byteBuffer.putShort((short) mAccelerationOffsetZAxis);
+        return data;
     }
 
 }

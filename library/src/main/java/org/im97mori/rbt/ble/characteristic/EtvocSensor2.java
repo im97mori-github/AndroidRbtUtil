@@ -4,18 +4,24 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.im97mori.ble.ByteArrayCreater;
+
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
+import static org.im97mori.rbt.RbtConstants.CharacteristicUUID.ETVOC_SENSOR_2_CHARACTERISTIC;
 import static org.im97mori.rbt.RbtConstants.EventThreshold.EVENT_THRESHOLD_ETVOC_UNIT;
 
 /**
- * 2.6.2 Event pattern eTVOC (Characteristics UUID: 0x521C)
+ * 2.6.2 Event pattern eTVOC 2 (Characteristics UUID: 0x521C)
  */
 @SuppressWarnings("WeakerAccess")
-public class EtvocSensor2 extends AbstractCharacteristic implements Parcelable {
+public class EtvocSensor2 extends AbstractRbtCharacteristic implements Parcelable {
 
     /**
-     * @see Creator
+     * @see ByteArrayCreater
      */
-    public static final Creator<EtvocSensor2> CREATOR = new Creator<EtvocSensor2>() {
+    public static final ByteArrayCreater<EtvocSensor2> CREATOR = new ByteArrayCreater<EtvocSensor2>() {
 
         /**
          * {@inheritDoc}
@@ -31,6 +37,16 @@ public class EtvocSensor2 extends AbstractCharacteristic implements Parcelable {
         @Override
         public EtvocSensor2[] newArray(int size) {
             return new EtvocSensor2[size];
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public EtvocSensor2 createFromByteArray(byte[] values) {
+            BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(ETVOC_SENSOR_2_CHARACTERISTIC, 0, 0);
+            bluetoothGattCharacteristic.setValue(values);
+            return new EtvocSensor2(bluetoothGattCharacteristic);
         }
 
     };
@@ -113,6 +129,37 @@ public class EtvocSensor2 extends AbstractCharacteristic implements Parcelable {
         mPeakToPeakCount = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 17);
         mIntervalDifferenceCount = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 18);
         mBaseDifferenceCount = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 19);
+    }
+
+    /**
+     * Constructor from value
+     *
+     * @param averageValueThresholdUpper       Average value threshold [upper]
+     * @param averageValueThresholdLower       Average value threshold [lower]
+     * @param peakToPeakThresholdUpper         Peak to Peak threshold [upper]
+     * @param peakToPeakThresholdLower         Peak to Peak threshold [lower]
+     * @param intervalDifferenceThresholdUpper Interval difference threshold [upper]
+     * @param intervalDifferenceThresholdLower Interval difference threshold [lower]
+     * @param baseDifferenceThresholdUpper     Base difference threshold [lower]
+     * @param baseDifferenceThresholdLower     Base difference threshold [lower]
+     * @param averageValueCount                Average value count
+     * @param peakToPeakCount                  Peak to Peak count
+     * @param intervalDifferenceCount          Interval difference count
+     * @param baseDifferenceCount              Base difference count
+     */
+    public EtvocSensor2(int averageValueThresholdUpper, int averageValueThresholdLower, int peakToPeakThresholdUpper, int peakToPeakThresholdLower, int intervalDifferenceThresholdUpper, int intervalDifferenceThresholdLower, int baseDifferenceThresholdUpper, int baseDifferenceThresholdLower, int averageValueCount, int peakToPeakCount, int intervalDifferenceCount, int baseDifferenceCount) {
+        mAverageValueThresholdUpper = averageValueThresholdUpper;
+        mAverageValueThresholdLower = averageValueThresholdLower;
+        mPeakToPeakThresholdUpper = peakToPeakThresholdUpper;
+        mPeakToPeakThresholdLower = peakToPeakThresholdLower;
+        mIntervalDifferenceThresholdUpper = intervalDifferenceThresholdUpper;
+        mIntervalDifferenceThresholdLower = intervalDifferenceThresholdLower;
+        mBaseDifferenceThresholdUpper = baseDifferenceThresholdUpper;
+        mBaseDifferenceThresholdLower = baseDifferenceThresholdLower;
+        mAverageValueCount = averageValueCount;
+        mPeakToPeakCount = peakToPeakCount;
+        mIntervalDifferenceCount = intervalDifferenceCount;
+        mBaseDifferenceCount = baseDifferenceCount;
     }
 
     /**
@@ -300,6 +347,28 @@ public class EtvocSensor2 extends AbstractCharacteristic implements Parcelable {
      */
     public int getBaseDifferenceCount() {
         return mBaseDifferenceCount;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public byte[] getBytes() {
+        byte[] data = new byte[20];
+        ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);
+        byteBuffer.putShort((short) mAverageValueThresholdUpper);
+        byteBuffer.putShort((short) mAverageValueThresholdLower);
+        byteBuffer.putShort((short) mPeakToPeakThresholdUpper);
+        byteBuffer.putShort((short) mPeakToPeakThresholdLower);
+        byteBuffer.putShort((short) mIntervalDifferenceThresholdUpper);
+        byteBuffer.putShort((short) mIntervalDifferenceThresholdLower);
+        byteBuffer.putShort((short) mBaseDifferenceThresholdUpper);
+        byteBuffer.putShort((short) mBaseDifferenceThresholdLower);
+        byteBuffer.put((byte) mAverageValueCount);
+        byteBuffer.put((byte) mPeakToPeakCount);
+        byteBuffer.put((byte) mIntervalDifferenceCount);
+        byteBuffer.put((byte) mBaseDifferenceCount);
+        return data;
     }
 
 }

@@ -4,17 +4,23 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.im97mori.ble.ByteArrayCreater;
 import org.im97mori.rbt.RbtConstants;
+
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
+import static org.im97mori.rbt.RbtConstants.CharacteristicUUID.LATEST_SENSING_FLAG_CHARACTERISTIC;
 
 /**
  * 2.2.3 Latest sensing flag (Characteristics UUID: 0x5014)
  */
-public class LatestSensingFlag extends AbstractCharacteristic implements Parcelable {
+public class LatestSensingFlag extends AbstractRbtCharacteristic implements Parcelable {
 
     /**
-     * @see Creator
+     * @see ByteArrayCreater
      */
-    public static final Creator<LatestSensingFlag> CREATOR = new Creator<LatestSensingFlag>() {
+    public static final ByteArrayCreater<LatestSensingFlag> CREATOR = new ByteArrayCreater<LatestSensingFlag>() {
 
         /**
          * {@inheritDoc}
@@ -30,6 +36,16 @@ public class LatestSensingFlag extends AbstractCharacteristic implements Parcela
         @Override
         public LatestSensingFlag[] newArray(int size) {
             return new LatestSensingFlag[size];
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public LatestSensingFlag createFromByteArray(byte[] values) {
+            BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(LATEST_SENSING_FLAG_CHARACTERISTIC, 0, 0);
+            bluetoothGattCharacteristic.setValue(values);
+            return new LatestSensingFlag(bluetoothGattCharacteristic);
         }
 
     };
@@ -1351,6 +1367,24 @@ public class LatestSensingFlag extends AbstractCharacteristic implements Parcela
      */
     private boolean isSensorBaseDifferenceThresholdLowerReached(int flag) {
         return (flag & RbtConstants.EventFlagSensor.BASE_DIFFERENCE_THRESHOLD_LOWER) != 0;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public byte[] getBytes() {
+        byte[] data = new byte[15];
+        ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);
+        byteBuffer.put((byte) mSequenceNumber);
+        byteBuffer.putShort((short) mTemperatureFlag);
+        byteBuffer.putShort((short) mRelativeHumidityFlag);
+        byteBuffer.putShort((short) mAmbientLightFlag);
+        byteBuffer.putShort((short) mBarometricPressureFlag);
+        byteBuffer.putShort((short) mSoundNoiseFlag);
+        byteBuffer.putShort((short) mEtvocFlag);
+        byteBuffer.putShort((short) mEco2Flag);
+        return data;
     }
 
 }

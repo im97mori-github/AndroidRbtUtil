@@ -4,6 +4,12 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.im97mori.ble.ByteArrayCreater;
+
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
+import static org.im97mori.rbt.RbtConstants.CharacteristicUUID.LATEST_CALCULATION_DATA_CHARACTERISTIC;
 import static org.im97mori.rbt.RbtConstants.OutputRange.OUTPUT_RANGE_ACCELERATION_UNIT;
 import static org.im97mori.rbt.RbtConstants.OutputRange.OUTPUT_RANGE_DISCOMFORT_INDEX_UNIT;
 import static org.im97mori.rbt.RbtConstants.OutputRange.OUTPUT_RANGE_HEAT_STROKE_UNIT;
@@ -15,12 +21,12 @@ import static org.im97mori.rbt.RbtConstants.OutputRange.OUTPUT_RANGE_SI_VALUE_UN
  * 2.2.2 Latest calculation data (Characteristics UUID: 0x5013)
  */
 @SuppressWarnings("WeakerAccess")
-public class LatestCalculationData extends AbstractCharacteristic implements Parcelable {
+public class LatestCalculationData extends AbstractRbtCharacteristic implements Parcelable {
 
     /**
-     * @see Creator
+     * @see ByteArrayCreater
      */
-    public static final Creator<LatestCalculationData> CREATOR = new Creator<LatestCalculationData>() {
+    public static final ByteArrayCreater<LatestCalculationData> CREATOR = new ByteArrayCreater<LatestCalculationData>() {
 
         /**
          * {@inheritDoc}
@@ -36,6 +42,16 @@ public class LatestCalculationData extends AbstractCharacteristic implements Par
         @Override
         public LatestCalculationData[] newArray(int size) {
             return new LatestCalculationData[size];
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public LatestCalculationData createFromByteArray(byte[] values) {
+            BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(LATEST_CALCULATION_DATA_CHARACTERISTIC, 0, 0);
+            bluetoothGattCharacteristic.setValue(values);
+            return new LatestCalculationData(bluetoothGattCharacteristic);
         }
 
     };
@@ -275,6 +291,26 @@ public class LatestCalculationData extends AbstractCharacteristic implements Par
      */
     public double getAccelerationZAxisGal() {
         return mAccelerationZAxis * OUTPUT_RANGE_ACCELERATION_UNIT;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public byte[] getBytes() {
+        byte[] data = new byte[18];
+        ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);
+        byteBuffer.put((byte) mSequenceNumber);
+        byteBuffer.putShort((short) mDiscomfortIndex);
+        byteBuffer.putShort((short) mHeatStroke);
+        byteBuffer.put((byte) mVibrationInformation);
+        byteBuffer.putShort((short) mSiValue);
+        byteBuffer.putShort((short) mPga);
+        byteBuffer.putShort((short) mSeismicIntensity);
+        byteBuffer.putShort((short) mAccelerationXAxis);
+        byteBuffer.putShort((short) mAccelerationYAxis);
+        byteBuffer.putShort((short) mAccelerationZAxis);
+        return data;
     }
 
 }

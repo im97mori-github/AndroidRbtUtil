@@ -25,7 +25,7 @@ android {
 }
 
 dependencies {
-    api 'org.im97mori:ad:1.2.0'
+    api 'org.im97mori:ble:0.1.0'
     implementation 'org.im97mori:stacklog:0.0.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
@@ -66,15 +66,6 @@ uploadArchives {
             pom.groupId = GROUP_ID
             pom.artifactId = ARTIFACT_ID
             pom.version = VERSION_NAME
-
-            pom.withXml {
-                Node pomNode = asNode()
-                pomNode.dependencies.'*'.findAll() {
-                    it.artifactId.text() == 'stacklog'
-                }.each() {
-                    it.parent().remove(it)
-                }
-            }
         }
     }
 }

@@ -8,8 +8,10 @@ import static org.im97mori.rbt.RbtConstants.RbtAdvertisingDataType.DATA_TYPE_SEN
 import static org.im97mori.rbt.RbtConstants.RbtAdvertisingDataType.DATA_TYPE_SENSOR_DATA_AND_CALCULATION_DATA;
 import static org.im97mori.rbt.RbtConstants.RbtAdvertisingDataType.DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
 import static org.im97mori.rbt.RbtConstants.RbtAdvertisingDataType.DATA_TYPE_SERIAL_NUMBER;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 public class RbtAdvertisingDataParserTest {
 
@@ -31,16 +33,16 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser parser = builder.build();
 
         byte[] data = new byte[31];
-        data[ 0] = (byte) 0x02; // AD 1
-        data[ 1] = (byte) 0x01; // AD 1
-        data[ 2] = (byte) 0x06; // AD 1
-        data[ 3] = (byte) 0x16; // AD 2
-        data[ 4] = (byte) 0xff; // AD 2
-        data[ 5] = (byte) 0xd5; // AD 2
-        data[ 6] = (byte) 0x02; // AD 2
-        data[ 7] = (byte) 0x01; // AD 2
-        data[ 8] = (byte) 0x00; // Sequence numberuence number
-        data[ 9] = (byte) 0x60; // Temperature
+        data[0] = (byte) 0x02; // AD 1
+        data[1] = (byte) 0x01; // AD 1
+        data[2] = (byte) 0x06; // AD 1
+        data[3] = (byte) 0x16; // AD 2
+        data[4] = (byte) 0xff; // AD 2
+        data[5] = (byte) 0xd5; // AD 2
+        data[6] = (byte) 0x02; // AD 2
+        data[7] = (byte) 0x01; // AD 2
+        data[8] = (byte) 0x00; // Sequence numberuence number
+        data[9] = (byte) 0x60; // Temperature
         data[10] = (byte) 0xf0; // Temperature
         data[11] = (byte) 0x00; // Relative humidity
         data[12] = (byte) 0x00; // Relative humidity
@@ -71,6 +73,7 @@ public class RbtAdvertisingDataParserTest {
         assertNull(result.getSensorDataAndCalculationData());
         assertNull(result.getSensorFlagAndCalculationFlag());
         assertNull(result.getSerialNumber());
+        assertTrue(result.isRbt());
     }
 
     @Test
@@ -79,16 +82,16 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser parser = builder.build();
 
         byte[] data = new byte[31];
-        data[ 0] = (byte) 0x02; // AD 1
-        data[ 1] = (byte) 0x01; // AD 1
-        data[ 2] = (byte) 0x06; // AD 1
-        data[ 3] = (byte) 0x16; // AD 2
-        data[ 4] = (byte) 0xff; // AD 2
-        data[ 5] = (byte) 0xd5; // AD 2
-        data[ 6] = (byte) 0x02; // AD 2
-        data[ 7] = (byte) 0x02; // AD 2
-        data[ 8] = (byte) 0x00; // Sequence number
-        data[ 9] = (byte) 0x00; // Discomfort index
+        data[0] = (byte) 0x02; // AD 1
+        data[1] = (byte) 0x01; // AD 1
+        data[2] = (byte) 0x06; // AD 1
+        data[3] = (byte) 0x16; // AD 2
+        data[4] = (byte) 0xff; // AD 2
+        data[5] = (byte) 0xd5; // AD 2
+        data[6] = (byte) 0x02; // AD 2
+        data[7] = (byte) 0x02; // AD 2
+        data[8] = (byte) 0x00; // Sequence number
+        data[9] = (byte) 0x00; // Discomfort index
         data[10] = (byte) 0x00; // Discomfort index
         data[11] = (byte) 0x60; // Heat stroke
         data[12] = (byte) 0xf0; // Heat stroke
@@ -119,6 +122,7 @@ public class RbtAdvertisingDataParserTest {
         assertNull(result.getSensorDataAndCalculationData());
         assertNull(result.getSensorFlagAndCalculationFlag());
         assertNull(result.getSerialNumber());
+        assertTrue(result.isRbt());
     }
 
     @Test
@@ -127,16 +131,16 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser parser = builder.build();
 
         byte[] data = new byte[62];
-        data[ 0] = (byte) 0x02; // AD 1
-        data[ 1] = (byte) 0x01; // AD 1
-        data[ 2] = (byte) 0x06; // AD 1
-        data[ 3] = (byte) 0x16; // AD 2
-        data[ 4] = (byte) 0xff; // AD 2
-        data[ 5] = (byte) 0xd5; // AD 2
-        data[ 6] = (byte) 0x02; // AD 2
-        data[ 7] = (byte) 0x03; // AD 2
-        data[ 8] = (byte) 0x00; // Sequence numberuence number
-        data[ 9] = (byte) 0x60; // Temperature
+        data[0] = (byte) 0x02; // AD 1
+        data[1] = (byte) 0x01; // AD 1
+        data[2] = (byte) 0x06; // AD 1
+        data[3] = (byte) 0x16; // AD 2
+        data[4] = (byte) 0xff; // AD 2
+        data[5] = (byte) 0xd5; // AD 2
+        data[6] = (byte) 0x02; // AD 2
+        data[7] = (byte) 0x03; // AD 2
+        data[8] = (byte) 0x00; // Sequence numberuence number
+        data[9] = (byte) 0x60; // Temperature
         data[10] = (byte) 0xf0; // Temperature
         data[11] = (byte) 0x00; // Relative humidity
         data[12] = (byte) 0x00; // Relative humidity
@@ -198,6 +202,7 @@ public class RbtAdvertisingDataParserTest {
         assertNotNull(result.getSensorDataAndCalculationData());
         assertNull(result.getSensorFlagAndCalculationFlag());
         assertNull(result.getSerialNumber());
+        assertTrue(result.isRbt());
     }
 
     @Test
@@ -206,16 +211,16 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser parser = builder.build();
 
         byte[] data = new byte[62];
-        data[ 0] = (byte) 0x02; // AD 1
-        data[ 1] = (byte) 0x01; // AD 1
-        data[ 2] = (byte) 0x06; // AD 1
-        data[ 3] = (byte) 0x16; // AD 2
-        data[ 4] = (byte) 0xff; // AD 2
-        data[ 5] = (byte) 0xd5; // AD 2
-        data[ 6] = (byte) 0x02; // AD 2
-        data[ 7] = (byte) 0x04; // AD 2
-        data[ 8] = (byte) 0x00; // Sequence number
-        data[ 9] = (byte) 0x00; // Temperature flag
+        data[0] = (byte) 0x02; // AD 1
+        data[1] = (byte) 0x01; // AD 1
+        data[2] = (byte) 0x06; // AD 1
+        data[3] = (byte) 0x16; // AD 2
+        data[4] = (byte) 0xff; // AD 2
+        data[5] = (byte) 0xd5; // AD 2
+        data[6] = (byte) 0x02; // AD 2
+        data[7] = (byte) 0x04; // AD 2
+        data[8] = (byte) 0x00; // Sequence number
+        data[9] = (byte) 0x00; // Temperature flag
         data[10] = (byte) 0x00; // Temperature flag
         data[11] = (byte) 0x00; // Relative humidity flag
         data[12] = (byte) 0x00; // Relative humidity flag
@@ -277,6 +282,7 @@ public class RbtAdvertisingDataParserTest {
         assertNull(result.getSensorDataAndCalculationData());
         assertNotNull(result.getSensorFlagAndCalculationFlag());
         assertNull(result.getSerialNumber());
+        assertTrue(result.isRbt());
     }
 
     @Test
@@ -285,16 +291,16 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser parser = builder.build();
 
         byte[] data = new byte[31];
-        data[ 0] = (byte) 0x02; // AD 1
-        data[ 1] = (byte) 0x01; // AD 1
-        data[ 2] = (byte) 0x06; // AD 1
-        data[ 3] = (byte) 0x03; // AD 2
-        data[ 4] = (byte) 0x02; // AD 2
-        data[ 5] = (byte) 0x0a; // AD 2
-        data[ 6] = (byte) 0x18; // AD 2
-        data[ 7] = (byte) 0x12; // AD 3
-        data[ 8] = (byte) 0xff; // AD 3
-        data[ 9] = (byte) 0xd5; // AD 3
+        data[0] = (byte) 0x02; // AD 1
+        data[1] = (byte) 0x01; // AD 1
+        data[2] = (byte) 0x06; // AD 1
+        data[3] = (byte) 0x03; // AD 2
+        data[4] = (byte) 0x02; // AD 2
+        data[5] = (byte) 0x0a; // AD 2
+        data[6] = (byte) 0x18; // AD 2
+        data[7] = (byte) 0x12; // AD 3
+        data[8] = (byte) 0xff; // AD 3
+        data[9] = (byte) 0xd5; // AD 3
         data[10] = (byte) 0x02; // AD 3
         data[11] = (byte) 0x05; // AD 3
         data[12] = (byte) 0x00; // Serial number
@@ -325,26 +331,25 @@ public class RbtAdvertisingDataParserTest {
         assertNull(result.getSensorDataAndCalculationData());
         assertNull(result.getSensorFlagAndCalculationFlag());
         assertNotNull(result.getSerialNumber());
+        assertTrue(result.isRbt());
     }
 
     @Test
     public void builderTest0102() {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(true);
-        builder.exclude(DATA_TYPE_SENSOR_DATA);
-        builder.include(DATA_TYPE_SENSOR_DATA);
-        RbtAdvertisingDataParser parser = builder.build();
+        RbtAdvertisingDataParser parser = builder.exclude(DATA_TYPE_SENSOR_DATA).include(DATA_TYPE_SENSOR_DATA).build();
 
         byte[] data = new byte[31];
-        data[ 0] = (byte) 0x02; // AD 1
-        data[ 1] = (byte) 0x01; // AD 1
-        data[ 2] = (byte) 0x06; // AD 1
-        data[ 3] = (byte) 0x16; // AD 2
-        data[ 4] = (byte) 0xff; // AD 2
-        data[ 5] = (byte) 0xd5; // AD 2
-        data[ 6] = (byte) 0x02; // AD 2
-        data[ 7] = (byte) 0x01; // AD 2
-        data[ 8] = (byte) 0x00; // Sequence numberuence number
-        data[ 9] = (byte) 0x60; // Temperature
+        data[0] = (byte) 0x02; // AD 1
+        data[1] = (byte) 0x01; // AD 1
+        data[2] = (byte) 0x06; // AD 1
+        data[3] = (byte) 0x16; // AD 2
+        data[4] = (byte) 0xff; // AD 2
+        data[5] = (byte) 0xd5; // AD 2
+        data[6] = (byte) 0x02; // AD 2
+        data[7] = (byte) 0x01; // AD 2
+        data[8] = (byte) 0x00; // Sequence numberuence number
+        data[9] = (byte) 0x60; // Temperature
         data[10] = (byte) 0xf0; // Temperature
         data[11] = (byte) 0x00; // Relative humidity
         data[12] = (byte) 0x00; // Relative humidity
@@ -375,26 +380,25 @@ public class RbtAdvertisingDataParserTest {
         assertNull(result.getSensorDataAndCalculationData());
         assertNull(result.getSensorFlagAndCalculationFlag());
         assertNull(result.getSerialNumber());
+        assertTrue(result.isRbt());
     }
 
     @Test
     public void builderTest0103() {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(true);
-        builder.exclude(DATA_TYPE_CALCULATION_DATA);
-        builder.include(DATA_TYPE_CALCULATION_DATA);
-        RbtAdvertisingDataParser parser = builder.build();
+        RbtAdvertisingDataParser parser = builder.exclude(DATA_TYPE_CALCULATION_DATA).include(DATA_TYPE_CALCULATION_DATA).build();
 
         byte[] data = new byte[31];
-        data[ 0] = (byte) 0x02; // AD 1
-        data[ 1] = (byte) 0x01; // AD 1
-        data[ 2] = (byte) 0x06; // AD 1
-        data[ 3] = (byte) 0x16; // AD 2
-        data[ 4] = (byte) 0xff; // AD 2
-        data[ 5] = (byte) 0xd5; // AD 2
-        data[ 6] = (byte) 0x02; // AD 2
-        data[ 7] = (byte) 0x02; // AD 2
-        data[ 8] = (byte) 0x00; // Sequence number
-        data[ 9] = (byte) 0x00; // Discomfort index
+        data[0] = (byte) 0x02; // AD 1
+        data[1] = (byte) 0x01; // AD 1
+        data[2] = (byte) 0x06; // AD 1
+        data[3] = (byte) 0x16; // AD 2
+        data[4] = (byte) 0xff; // AD 2
+        data[5] = (byte) 0xd5; // AD 2
+        data[6] = (byte) 0x02; // AD 2
+        data[7] = (byte) 0x02; // AD 2
+        data[8] = (byte) 0x00; // Sequence number
+        data[9] = (byte) 0x00; // Discomfort index
         data[10] = (byte) 0x00; // Discomfort index
         data[11] = (byte) 0x60; // Heat stroke
         data[12] = (byte) 0xf0; // Heat stroke
@@ -425,26 +429,25 @@ public class RbtAdvertisingDataParserTest {
         assertNull(result.getSensorDataAndCalculationData());
         assertNull(result.getSensorFlagAndCalculationFlag());
         assertNull(result.getSerialNumber());
+        assertTrue(result.isRbt());
     }
 
     @Test
     public void builderTest0104() {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(true);
-        builder.exclude(DATA_TYPE_SENSOR_DATA_AND_CALCULATION_DATA);
-        builder.include(DATA_TYPE_SENSOR_DATA_AND_CALCULATION_DATA);
-        RbtAdvertisingDataParser parser = builder.build();
+        RbtAdvertisingDataParser parser = builder.exclude(DATA_TYPE_SENSOR_DATA_AND_CALCULATION_DATA).include(DATA_TYPE_SENSOR_DATA_AND_CALCULATION_DATA).build();
 
         byte[] data = new byte[62];
-        data[ 0] = (byte) 0x02; // AD 1
-        data[ 1] = (byte) 0x01; // AD 1
-        data[ 2] = (byte) 0x06; // AD 1
-        data[ 3] = (byte) 0x16; // AD 2
-        data[ 4] = (byte) 0xff; // AD 2
-        data[ 5] = (byte) 0xd5; // AD 2
-        data[ 6] = (byte) 0x02; // AD 2
-        data[ 7] = (byte) 0x03; // AD 2
-        data[ 8] = (byte) 0x00; // Sequence numberuence number
-        data[ 9] = (byte) 0x60; // Temperature
+        data[0] = (byte) 0x02; // AD 1
+        data[1] = (byte) 0x01; // AD 1
+        data[2] = (byte) 0x06; // AD 1
+        data[3] = (byte) 0x16; // AD 2
+        data[4] = (byte) 0xff; // AD 2
+        data[5] = (byte) 0xd5; // AD 2
+        data[6] = (byte) 0x02; // AD 2
+        data[7] = (byte) 0x03; // AD 2
+        data[8] = (byte) 0x00; // Sequence numberuence number
+        data[9] = (byte) 0x60; // Temperature
         data[10] = (byte) 0xf0; // Temperature
         data[11] = (byte) 0x00; // Relative humidity
         data[12] = (byte) 0x00; // Relative humidity
@@ -506,26 +509,25 @@ public class RbtAdvertisingDataParserTest {
         assertNotNull(result.getSensorDataAndCalculationData());
         assertNull(result.getSensorFlagAndCalculationFlag());
         assertNull(result.getSerialNumber());
+        assertTrue(result.isRbt());
     }
 
     @Test
     public void builderTest0105() {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(true);
-        builder.exclude(DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG);
-        builder.include(DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG);
-        RbtAdvertisingDataParser parser = builder.build();
+        RbtAdvertisingDataParser parser = builder.exclude(DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG).include(DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG).build();
 
         byte[] data = new byte[62];
-        data[ 0] = (byte) 0x02; // AD 1
-        data[ 1] = (byte) 0x01; // AD 1
-        data[ 2] = (byte) 0x06; // AD 1
-        data[ 3] = (byte) 0x16; // AD 2
-        data[ 4] = (byte) 0xff; // AD 2
-        data[ 5] = (byte) 0xd5; // AD 2
-        data[ 6] = (byte) 0x02; // AD 2
-        data[ 7] = (byte) 0x04; // AD 2
-        data[ 8] = (byte) 0x00; // Sequence number
-        data[ 9] = (byte) 0x00; // Temperature flag
+        data[0] = (byte) 0x02; // AD 1
+        data[1] = (byte) 0x01; // AD 1
+        data[2] = (byte) 0x06; // AD 1
+        data[3] = (byte) 0x16; // AD 2
+        data[4] = (byte) 0xff; // AD 2
+        data[5] = (byte) 0xd5; // AD 2
+        data[6] = (byte) 0x02; // AD 2
+        data[7] = (byte) 0x04; // AD 2
+        data[8] = (byte) 0x00; // Sequence number
+        data[9] = (byte) 0x00; // Temperature flag
         data[10] = (byte) 0x00; // Temperature flag
         data[11] = (byte) 0x00; // Relative humidity flag
         data[12] = (byte) 0x00; // Relative humidity flag
@@ -587,26 +589,25 @@ public class RbtAdvertisingDataParserTest {
         assertNull(result.getSensorDataAndCalculationData());
         assertNotNull(result.getSensorFlagAndCalculationFlag());
         assertNull(result.getSerialNumber());
+        assertTrue(result.isRbt());
     }
 
     @Test
     public void builderTest0106() {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(true);
-        builder.exclude(DATA_TYPE_SERIAL_NUMBER);
-        builder.include(DATA_TYPE_SERIAL_NUMBER);
-        RbtAdvertisingDataParser parser = builder.build();
+        RbtAdvertisingDataParser parser = builder.exclude(DATA_TYPE_SERIAL_NUMBER).include(DATA_TYPE_SERIAL_NUMBER).build();
 
         byte[] data = new byte[31];
-        data[ 0] = (byte) 0x02; // AD 1
-        data[ 1] = (byte) 0x01; // AD 1
-        data[ 2] = (byte) 0x06; // AD 1
-        data[ 3] = (byte) 0x03; // AD 2
-        data[ 4] = (byte) 0x02; // AD 2
-        data[ 5] = (byte) 0x0a; // AD 2
-        data[ 6] = (byte) 0x18; // AD 2
-        data[ 7] = (byte) 0x12; // AD 3
-        data[ 8] = (byte) 0xff; // AD 3
-        data[ 9] = (byte) 0xd5; // AD 3
+        data[0] = (byte) 0x02; // AD 1
+        data[1] = (byte) 0x01; // AD 1
+        data[2] = (byte) 0x06; // AD 1
+        data[3] = (byte) 0x03; // AD 2
+        data[4] = (byte) 0x02; // AD 2
+        data[5] = (byte) 0x0a; // AD 2
+        data[6] = (byte) 0x18; // AD 2
+        data[7] = (byte) 0x12; // AD 3
+        data[8] = (byte) 0xff; // AD 3
+        data[9] = (byte) 0xd5; // AD 3
         data[10] = (byte) 0x02; // AD 3
         data[11] = (byte) 0x05; // AD 3
         data[12] = (byte) 0x00; // Serial number
@@ -637,25 +638,25 @@ public class RbtAdvertisingDataParserTest {
         assertNull(result.getSensorDataAndCalculationData());
         assertNull(result.getSensorFlagAndCalculationFlag());
         assertNotNull(result.getSerialNumber());
+        assertTrue(result.isRbt());
     }
 
     @Test
     public void builderTest0202() {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(true);
-        builder.exclude(DATA_TYPE_SENSOR_DATA);
-        RbtAdvertisingDataParser parser = builder.build();
+        RbtAdvertisingDataParser parser = builder.exclude(DATA_TYPE_SENSOR_DATA).build();
 
         byte[] data = new byte[31];
-        data[ 0] = (byte) 0x02; // AD 1
-        data[ 1] = (byte) 0x01; // AD 1
-        data[ 2] = (byte) 0x06; // AD 1
-        data[ 3] = (byte) 0x16; // AD 2
-        data[ 4] = (byte) 0xff; // AD 2
-        data[ 5] = (byte) 0xd5; // AD 2
-        data[ 6] = (byte) 0x02; // AD 2
-        data[ 7] = (byte) 0x01; // AD 2
-        data[ 8] = (byte) 0x00; // Sequence numberuence number
-        data[ 9] = (byte) 0x60; // Temperature
+        data[0] = (byte) 0x02; // AD 1
+        data[1] = (byte) 0x01; // AD 1
+        data[2] = (byte) 0x06; // AD 1
+        data[3] = (byte) 0x16; // AD 2
+        data[4] = (byte) 0xff; // AD 2
+        data[5] = (byte) 0xd5; // AD 2
+        data[6] = (byte) 0x02; // AD 2
+        data[7] = (byte) 0x01; // AD 2
+        data[8] = (byte) 0x00; // Sequence numberuence number
+        data[9] = (byte) 0x60; // Temperature
         data[10] = (byte) 0xf0; // Temperature
         data[11] = (byte) 0x00; // Relative humidity
         data[12] = (byte) 0x00; // Relative humidity
@@ -686,25 +687,25 @@ public class RbtAdvertisingDataParserTest {
         assertNull(result.getSensorDataAndCalculationData());
         assertNull(result.getSensorFlagAndCalculationFlag());
         assertNull(result.getSerialNumber());
+        assertFalse(result.isRbt());
     }
 
     @Test
     public void builderTest0203() {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(true);
-        builder.exclude(DATA_TYPE_CALCULATION_DATA);
-        RbtAdvertisingDataParser parser = builder.build();
+        RbtAdvertisingDataParser parser = builder.exclude(DATA_TYPE_CALCULATION_DATA).build();
 
         byte[] data = new byte[31];
-        data[ 0] = (byte) 0x02; // AD 1
-        data[ 1] = (byte) 0x01; // AD 1
-        data[ 2] = (byte) 0x06; // AD 1
-        data[ 3] = (byte) 0x16; // AD 2
-        data[ 4] = (byte) 0xff; // AD 2
-        data[ 5] = (byte) 0xd5; // AD 2
-        data[ 6] = (byte) 0x02; // AD 2
-        data[ 7] = (byte) 0x02; // AD 2
-        data[ 8] = (byte) 0x00; // Sequence number
-        data[ 9] = (byte) 0x00; // Discomfort index
+        data[0] = (byte) 0x02; // AD 1
+        data[1] = (byte) 0x01; // AD 1
+        data[2] = (byte) 0x06; // AD 1
+        data[3] = (byte) 0x16; // AD 2
+        data[4] = (byte) 0xff; // AD 2
+        data[5] = (byte) 0xd5; // AD 2
+        data[6] = (byte) 0x02; // AD 2
+        data[7] = (byte) 0x02; // AD 2
+        data[8] = (byte) 0x00; // Sequence number
+        data[9] = (byte) 0x00; // Discomfort index
         data[10] = (byte) 0x00; // Discomfort index
         data[11] = (byte) 0x60; // Heat stroke
         data[12] = (byte) 0xf0; // Heat stroke
@@ -735,25 +736,25 @@ public class RbtAdvertisingDataParserTest {
         assertNull(result.getSensorDataAndCalculationData());
         assertNull(result.getSensorFlagAndCalculationFlag());
         assertNull(result.getSerialNumber());
+        assertFalse(result.isRbt());
     }
 
     @Test
     public void builderTest0204() {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(true);
-        builder.exclude(DATA_TYPE_SENSOR_DATA_AND_CALCULATION_DATA);
-        RbtAdvertisingDataParser parser = builder.build();
+        RbtAdvertisingDataParser parser = builder.exclude(DATA_TYPE_SENSOR_DATA_AND_CALCULATION_DATA).build();
 
         byte[] data = new byte[62];
-        data[ 0] = (byte) 0x02; // AD 1
-        data[ 1] = (byte) 0x01; // AD 1
-        data[ 2] = (byte) 0x06; // AD 1
-        data[ 3] = (byte) 0x16; // AD 2
-        data[ 4] = (byte) 0xff; // AD 2
-        data[ 5] = (byte) 0xd5; // AD 2
-        data[ 6] = (byte) 0x02; // AD 2
-        data[ 7] = (byte) 0x03; // AD 2
-        data[ 8] = (byte) 0x00; // Sequence numberuence number
-        data[ 9] = (byte) 0x60; // Temperature
+        data[0] = (byte) 0x02; // AD 1
+        data[1] = (byte) 0x01; // AD 1
+        data[2] = (byte) 0x06; // AD 1
+        data[3] = (byte) 0x16; // AD 2
+        data[4] = (byte) 0xff; // AD 2
+        data[5] = (byte) 0xd5; // AD 2
+        data[6] = (byte) 0x02; // AD 2
+        data[7] = (byte) 0x03; // AD 2
+        data[8] = (byte) 0x00; // Sequence numberuence number
+        data[9] = (byte) 0x60; // Temperature
         data[10] = (byte) 0xf0; // Temperature
         data[11] = (byte) 0x00; // Relative humidity
         data[12] = (byte) 0x00; // Relative humidity
@@ -815,25 +816,25 @@ public class RbtAdvertisingDataParserTest {
         assertNull(result.getSensorDataAndCalculationData());
         assertNull(result.getSensorFlagAndCalculationFlag());
         assertNull(result.getSerialNumber());
+        assertFalse(result.isRbt());
     }
 
     @Test
     public void builderTest0205() {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(true);
-        builder.exclude(DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG);
-        RbtAdvertisingDataParser parser = builder.build();
+        RbtAdvertisingDataParser parser = builder.exclude(DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG).build();
 
         byte[] data = new byte[62];
-        data[ 0] = (byte) 0x02; // AD 1
-        data[ 1] = (byte) 0x01; // AD 1
-        data[ 2] = (byte) 0x06; // AD 1
-        data[ 3] = (byte) 0x16; // AD 2
-        data[ 4] = (byte) 0xff; // AD 2
-        data[ 5] = (byte) 0xd5; // AD 2
-        data[ 6] = (byte) 0x02; // AD 2
-        data[ 7] = (byte) 0x04; // AD 2
-        data[ 8] = (byte) 0x00; // Sequence number
-        data[ 9] = (byte) 0x00; // Temperature flag
+        data[0] = (byte) 0x02; // AD 1
+        data[1] = (byte) 0x01; // AD 1
+        data[2] = (byte) 0x06; // AD 1
+        data[3] = (byte) 0x16; // AD 2
+        data[4] = (byte) 0xff; // AD 2
+        data[5] = (byte) 0xd5; // AD 2
+        data[6] = (byte) 0x02; // AD 2
+        data[7] = (byte) 0x04; // AD 2
+        data[8] = (byte) 0x00; // Sequence number
+        data[9] = (byte) 0x00; // Temperature flag
         data[10] = (byte) 0x00; // Temperature flag
         data[11] = (byte) 0x00; // Relative humidity flag
         data[12] = (byte) 0x00; // Relative humidity flag
@@ -895,25 +896,25 @@ public class RbtAdvertisingDataParserTest {
         assertNull(result.getSensorDataAndCalculationData());
         assertNull(result.getSensorFlagAndCalculationFlag());
         assertNull(result.getSerialNumber());
+        assertFalse(result.isRbt());
     }
 
     @Test
     public void builderTest0206() {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(true);
-        builder.exclude(DATA_TYPE_SERIAL_NUMBER);
-        RbtAdvertisingDataParser parser = builder.build();
+        RbtAdvertisingDataParser parser = builder.exclude(DATA_TYPE_SERIAL_NUMBER).build();
 
         byte[] data = new byte[31];
-        data[ 0] = (byte) 0x02; // AD 1
-        data[ 1] = (byte) 0x01; // AD 1
-        data[ 2] = (byte) 0x06; // AD 1
-        data[ 3] = (byte) 0x03; // AD 2
-        data[ 4] = (byte) 0x02; // AD 2
-        data[ 5] = (byte) 0x0a; // AD 2
-        data[ 6] = (byte) 0x18; // AD 2
-        data[ 7] = (byte) 0x12; // AD 3
-        data[ 8] = (byte) 0xff; // AD 3
-        data[ 9] = (byte) 0xd5; // AD 3
+        data[0] = (byte) 0x02; // AD 1
+        data[1] = (byte) 0x01; // AD 1
+        data[2] = (byte) 0x06; // AD 1
+        data[3] = (byte) 0x03; // AD 2
+        data[4] = (byte) 0x02; // AD 2
+        data[5] = (byte) 0x0a; // AD 2
+        data[6] = (byte) 0x18; // AD 2
+        data[7] = (byte) 0x12; // AD 3
+        data[8] = (byte) 0xff; // AD 3
+        data[9] = (byte) 0xd5; // AD 3
         data[10] = (byte) 0x02; // AD 3
         data[11] = (byte) 0x05; // AD 3
         data[12] = (byte) 0x00; // Serial number
@@ -944,6 +945,7 @@ public class RbtAdvertisingDataParserTest {
         assertNull(result.getSensorDataAndCalculationData());
         assertNull(result.getSensorFlagAndCalculationFlag());
         assertNull(result.getSerialNumber());
+        assertFalse(result.isRbt());
     }
 
     @Test
@@ -952,16 +954,16 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser parser = builder.build();
 
         byte[] data = new byte[31];
-        data[ 0] = (byte) 0x02; // AD 1
-        data[ 1] = (byte) 0x01; // AD 1
-        data[ 2] = (byte) 0x06; // AD 1
-        data[ 3] = (byte) 0x16; // AD 2
-        data[ 4] = (byte) 0xff; // AD 2
-        data[ 5] = (byte) 0xd5; // AD 2
-        data[ 6] = (byte) 0x02; // AD 2
-        data[ 7] = (byte) 0x01; // AD 2
-        data[ 8] = (byte) 0x00; // Sequence numberuence number
-        data[ 9] = (byte) 0x60; // Temperature
+        data[0] = (byte) 0x02; // AD 1
+        data[1] = (byte) 0x01; // AD 1
+        data[2] = (byte) 0x06; // AD 1
+        data[3] = (byte) 0x16; // AD 2
+        data[4] = (byte) 0xff; // AD 2
+        data[5] = (byte) 0xd5; // AD 2
+        data[6] = (byte) 0x02; // AD 2
+        data[7] = (byte) 0x01; // AD 2
+        data[8] = (byte) 0x00; // Sequence numberuence number
+        data[9] = (byte) 0x60; // Temperature
         data[10] = (byte) 0xf0; // Temperature
         data[11] = (byte) 0x00; // Relative humidity
         data[12] = (byte) 0x00; // Relative humidity
@@ -992,6 +994,7 @@ public class RbtAdvertisingDataParserTest {
         assertNull(result.getSensorDataAndCalculationData());
         assertNull(result.getSensorFlagAndCalculationFlag());
         assertNull(result.getSerialNumber());
+        assertFalse(result.isRbt());
     }
 
     @Test
@@ -1000,16 +1003,16 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser parser = builder.build();
 
         byte[] data = new byte[31];
-        data[ 0] = (byte) 0x02; // AD 1
-        data[ 1] = (byte) 0x01; // AD 1
-        data[ 2] = (byte) 0x06; // AD 1
-        data[ 3] = (byte) 0x16; // AD 2
-        data[ 4] = (byte) 0xff; // AD 2
-        data[ 5] = (byte) 0xd5; // AD 2
-        data[ 6] = (byte) 0x02; // AD 2
-        data[ 7] = (byte) 0x02; // AD 2
-        data[ 8] = (byte) 0x00; // Sequence number
-        data[ 9] = (byte) 0x00; // Discomfort index
+        data[0] = (byte) 0x02; // AD 1
+        data[1] = (byte) 0x01; // AD 1
+        data[2] = (byte) 0x06; // AD 1
+        data[3] = (byte) 0x16; // AD 2
+        data[4] = (byte) 0xff; // AD 2
+        data[5] = (byte) 0xd5; // AD 2
+        data[6] = (byte) 0x02; // AD 2
+        data[7] = (byte) 0x02; // AD 2
+        data[8] = (byte) 0x00; // Sequence number
+        data[9] = (byte) 0x00; // Discomfort index
         data[10] = (byte) 0x00; // Discomfort index
         data[11] = (byte) 0x60; // Heat stroke
         data[12] = (byte) 0xf0; // Heat stroke
@@ -1040,6 +1043,7 @@ public class RbtAdvertisingDataParserTest {
         assertNull(result.getSensorDataAndCalculationData());
         assertNull(result.getSensorFlagAndCalculationFlag());
         assertNull(result.getSerialNumber());
+        assertFalse(result.isRbt());
     }
 
     @Test
@@ -1048,16 +1052,16 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser parser = builder.build();
 
         byte[] data = new byte[62];
-        data[ 0] = (byte) 0x02; // AD 1
-        data[ 1] = (byte) 0x01; // AD 1
-        data[ 2] = (byte) 0x06; // AD 1
-        data[ 3] = (byte) 0x16; // AD 2
-        data[ 4] = (byte) 0xff; // AD 2
-        data[ 5] = (byte) 0xd5; // AD 2
-        data[ 6] = (byte) 0x02; // AD 2
-        data[ 7] = (byte) 0x03; // AD 2
-        data[ 8] = (byte) 0x00; // Sequence numberuence number
-        data[ 9] = (byte) 0x60; // Temperature
+        data[0] = (byte) 0x02; // AD 1
+        data[1] = (byte) 0x01; // AD 1
+        data[2] = (byte) 0x06; // AD 1
+        data[3] = (byte) 0x16; // AD 2
+        data[4] = (byte) 0xff; // AD 2
+        data[5] = (byte) 0xd5; // AD 2
+        data[6] = (byte) 0x02; // AD 2
+        data[7] = (byte) 0x03; // AD 2
+        data[8] = (byte) 0x00; // Sequence numberuence number
+        data[9] = (byte) 0x60; // Temperature
         data[10] = (byte) 0xf0; // Temperature
         data[11] = (byte) 0x00; // Relative humidity
         data[12] = (byte) 0x00; // Relative humidity
@@ -1119,6 +1123,7 @@ public class RbtAdvertisingDataParserTest {
         assertNull(result.getSensorDataAndCalculationData());
         assertNull(result.getSensorFlagAndCalculationFlag());
         assertNull(result.getSerialNumber());
+        assertFalse(result.isRbt());
     }
 
     @Test
@@ -1127,16 +1132,16 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser parser = builder.build();
 
         byte[] data = new byte[62];
-        data[ 0] = (byte) 0x02; // AD 1
-        data[ 1] = (byte) 0x01; // AD 1
-        data[ 2] = (byte) 0x06; // AD 1
-        data[ 3] = (byte) 0x16; // AD 2
-        data[ 4] = (byte) 0xff; // AD 2
-        data[ 5] = (byte) 0xd5; // AD 2
-        data[ 6] = (byte) 0x02; // AD 2
-        data[ 7] = (byte) 0x04; // AD 2
-        data[ 8] = (byte) 0x00; // Sequence number
-        data[ 9] = (byte) 0x00; // Temperature flag
+        data[0] = (byte) 0x02; // AD 1
+        data[1] = (byte) 0x01; // AD 1
+        data[2] = (byte) 0x06; // AD 1
+        data[3] = (byte) 0x16; // AD 2
+        data[4] = (byte) 0xff; // AD 2
+        data[5] = (byte) 0xd5; // AD 2
+        data[6] = (byte) 0x02; // AD 2
+        data[7] = (byte) 0x04; // AD 2
+        data[8] = (byte) 0x00; // Sequence number
+        data[9] = (byte) 0x00; // Temperature flag
         data[10] = (byte) 0x00; // Temperature flag
         data[11] = (byte) 0x00; // Relative humidity flag
         data[12] = (byte) 0x00; // Relative humidity flag
@@ -1198,6 +1203,7 @@ public class RbtAdvertisingDataParserTest {
         assertNull(result.getSensorDataAndCalculationData());
         assertNull(result.getSensorFlagAndCalculationFlag());
         assertNull(result.getSerialNumber());
+        assertFalse(result.isRbt());
     }
 
     @Test
@@ -1206,16 +1212,16 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser parser = builder.build();
 
         byte[] data = new byte[31];
-        data[ 0] = (byte) 0x02; // AD 1
-        data[ 1] = (byte) 0x01; // AD 1
-        data[ 2] = (byte) 0x06; // AD 1
-        data[ 3] = (byte) 0x03; // AD 2
-        data[ 4] = (byte) 0x02; // AD 2
-        data[ 5] = (byte) 0x0a; // AD 2
-        data[ 6] = (byte) 0x18; // AD 2
-        data[ 7] = (byte) 0x12; // AD 3
-        data[ 8] = (byte) 0xff; // AD 3
-        data[ 9] = (byte) 0xd5; // AD 3
+        data[0] = (byte) 0x02; // AD 1
+        data[1] = (byte) 0x01; // AD 1
+        data[2] = (byte) 0x06; // AD 1
+        data[3] = (byte) 0x03; // AD 2
+        data[4] = (byte) 0x02; // AD 2
+        data[5] = (byte) 0x0a; // AD 2
+        data[6] = (byte) 0x18; // AD 2
+        data[7] = (byte) 0x12; // AD 3
+        data[8] = (byte) 0xff; // AD 3
+        data[9] = (byte) 0xd5; // AD 3
         data[10] = (byte) 0x02; // AD 3
         data[11] = (byte) 0x05; // AD 3
         data[12] = (byte) 0x00; // Serial number
@@ -1246,26 +1252,25 @@ public class RbtAdvertisingDataParserTest {
         assertNull(result.getSensorDataAndCalculationData());
         assertNull(result.getSensorFlagAndCalculationFlag());
         assertNull(result.getSerialNumber());
+        assertFalse(result.isRbt());
     }
 
     @Test
     public void builderTest0402() {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(false);
-        builder.include(DATA_TYPE_SENSOR_DATA);
-        builder.exclude(DATA_TYPE_SENSOR_DATA);
-        RbtAdvertisingDataParser parser = builder.build();
+        RbtAdvertisingDataParser parser = builder.include(DATA_TYPE_SENSOR_DATA).exclude(DATA_TYPE_SENSOR_DATA).build();
 
         byte[] data = new byte[31];
-        data[ 0] = (byte) 0x02; // AD 1
-        data[ 1] = (byte) 0x01; // AD 1
-        data[ 2] = (byte) 0x06; // AD 1
-        data[ 3] = (byte) 0x16; // AD 2
-        data[ 4] = (byte) 0xff; // AD 2
-        data[ 5] = (byte) 0xd5; // AD 2
-        data[ 6] = (byte) 0x02; // AD 2
-        data[ 7] = (byte) 0x01; // AD 2
-        data[ 8] = (byte) 0x00; // Sequence numberuence number
-        data[ 9] = (byte) 0x60; // Temperature
+        data[0] = (byte) 0x02; // AD 1
+        data[1] = (byte) 0x01; // AD 1
+        data[2] = (byte) 0x06; // AD 1
+        data[3] = (byte) 0x16; // AD 2
+        data[4] = (byte) 0xff; // AD 2
+        data[5] = (byte) 0xd5; // AD 2
+        data[6] = (byte) 0x02; // AD 2
+        data[7] = (byte) 0x01; // AD 2
+        data[8] = (byte) 0x00; // Sequence numberuence number
+        data[9] = (byte) 0x60; // Temperature
         data[10] = (byte) 0xf0; // Temperature
         data[11] = (byte) 0x00; // Relative humidity
         data[12] = (byte) 0x00; // Relative humidity
@@ -1296,26 +1301,25 @@ public class RbtAdvertisingDataParserTest {
         assertNull(result.getSensorDataAndCalculationData());
         assertNull(result.getSensorFlagAndCalculationFlag());
         assertNull(result.getSerialNumber());
+        assertFalse(result.isRbt());
     }
 
     @Test
     public void builderTest0403() {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(false);
-        builder.include(DATA_TYPE_CALCULATION_DATA);
-        builder.exclude(DATA_TYPE_CALCULATION_DATA);
-        RbtAdvertisingDataParser parser = builder.build();
+        RbtAdvertisingDataParser parser = builder.include(DATA_TYPE_CALCULATION_DATA).exclude(DATA_TYPE_CALCULATION_DATA).build();
 
         byte[] data = new byte[31];
-        data[ 0] = (byte) 0x02; // AD 1
-        data[ 1] = (byte) 0x01; // AD 1
-        data[ 2] = (byte) 0x06; // AD 1
-        data[ 3] = (byte) 0x16; // AD 2
-        data[ 4] = (byte) 0xff; // AD 2
-        data[ 5] = (byte) 0xd5; // AD 2
-        data[ 6] = (byte) 0x02; // AD 2
-        data[ 7] = (byte) 0x02; // AD 2
-        data[ 8] = (byte) 0x00; // Sequence number
-        data[ 9] = (byte) 0x00; // Discomfort index
+        data[0] = (byte) 0x02; // AD 1
+        data[1] = (byte) 0x01; // AD 1
+        data[2] = (byte) 0x06; // AD 1
+        data[3] = (byte) 0x16; // AD 2
+        data[4] = (byte) 0xff; // AD 2
+        data[5] = (byte) 0xd5; // AD 2
+        data[6] = (byte) 0x02; // AD 2
+        data[7] = (byte) 0x02; // AD 2
+        data[8] = (byte) 0x00; // Sequence number
+        data[9] = (byte) 0x00; // Discomfort index
         data[10] = (byte) 0x00; // Discomfort index
         data[11] = (byte) 0x60; // Heat stroke
         data[12] = (byte) 0xf0; // Heat stroke
@@ -1346,26 +1350,25 @@ public class RbtAdvertisingDataParserTest {
         assertNull(result.getSensorDataAndCalculationData());
         assertNull(result.getSensorFlagAndCalculationFlag());
         assertNull(result.getSerialNumber());
+        assertFalse(result.isRbt());
     }
 
     @Test
     public void builderTest0404() {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(false);
-        builder.include(DATA_TYPE_SENSOR_DATA_AND_CALCULATION_DATA);
-        builder.exclude(DATA_TYPE_SENSOR_DATA_AND_CALCULATION_DATA);
-        RbtAdvertisingDataParser parser = builder.build();
+        RbtAdvertisingDataParser parser = builder.include(DATA_TYPE_SENSOR_DATA_AND_CALCULATION_DATA).exclude(DATA_TYPE_SENSOR_DATA_AND_CALCULATION_DATA).build();
 
         byte[] data = new byte[62];
-        data[ 0] = (byte) 0x02; // AD 1
-        data[ 1] = (byte) 0x01; // AD 1
-        data[ 2] = (byte) 0x06; // AD 1
-        data[ 3] = (byte) 0x16; // AD 2
-        data[ 4] = (byte) 0xff; // AD 2
-        data[ 5] = (byte) 0xd5; // AD 2
-        data[ 6] = (byte) 0x02; // AD 2
-        data[ 7] = (byte) 0x03; // AD 2
-        data[ 8] = (byte) 0x00; // Sequence numberuence number
-        data[ 9] = (byte) 0x60; // Temperature
+        data[0] = (byte) 0x02; // AD 1
+        data[1] = (byte) 0x01; // AD 1
+        data[2] = (byte) 0x06; // AD 1
+        data[3] = (byte) 0x16; // AD 2
+        data[4] = (byte) 0xff; // AD 2
+        data[5] = (byte) 0xd5; // AD 2
+        data[6] = (byte) 0x02; // AD 2
+        data[7] = (byte) 0x03; // AD 2
+        data[8] = (byte) 0x00; // Sequence numberuence number
+        data[9] = (byte) 0x60; // Temperature
         data[10] = (byte) 0xf0; // Temperature
         data[11] = (byte) 0x00; // Relative humidity
         data[12] = (byte) 0x00; // Relative humidity
@@ -1427,26 +1430,25 @@ public class RbtAdvertisingDataParserTest {
         assertNull(result.getSensorDataAndCalculationData());
         assertNull(result.getSensorFlagAndCalculationFlag());
         assertNull(result.getSerialNumber());
+        assertFalse(result.isRbt());
     }
 
     @Test
     public void builderTest0405() {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(false);
-        builder.include(DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG);
-        builder.exclude(DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG);
-        RbtAdvertisingDataParser parser = builder.build();
+        RbtAdvertisingDataParser parser = builder.include(DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG).exclude(DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG).build();
 
         byte[] data = new byte[62];
-        data[ 0] = (byte) 0x02; // AD 1
-        data[ 1] = (byte) 0x01; // AD 1
-        data[ 2] = (byte) 0x06; // AD 1
-        data[ 3] = (byte) 0x16; // AD 2
-        data[ 4] = (byte) 0xff; // AD 2
-        data[ 5] = (byte) 0xd5; // AD 2
-        data[ 6] = (byte) 0x02; // AD 2
-        data[ 7] = (byte) 0x04; // AD 2
-        data[ 8] = (byte) 0x00; // Sequence number
-        data[ 9] = (byte) 0x00; // Temperature flag
+        data[0] = (byte) 0x02; // AD 1
+        data[1] = (byte) 0x01; // AD 1
+        data[2] = (byte) 0x06; // AD 1
+        data[3] = (byte) 0x16; // AD 2
+        data[4] = (byte) 0xff; // AD 2
+        data[5] = (byte) 0xd5; // AD 2
+        data[6] = (byte) 0x02; // AD 2
+        data[7] = (byte) 0x04; // AD 2
+        data[8] = (byte) 0x00; // Sequence number
+        data[9] = (byte) 0x00; // Temperature flag
         data[10] = (byte) 0x00; // Temperature flag
         data[11] = (byte) 0x00; // Relative humidity flag
         data[12] = (byte) 0x00; // Relative humidity flag
@@ -1508,26 +1510,25 @@ public class RbtAdvertisingDataParserTest {
         assertNull(result.getSensorDataAndCalculationData());
         assertNull(result.getSensorFlagAndCalculationFlag());
         assertNull(result.getSerialNumber());
+        assertFalse(result.isRbt());
     }
 
     @Test
     public void builderTest0406() {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(false);
-        builder.include(DATA_TYPE_SERIAL_NUMBER);
-        builder.exclude(DATA_TYPE_SERIAL_NUMBER);
-        RbtAdvertisingDataParser parser = builder.build();
+        RbtAdvertisingDataParser parser = builder.include(DATA_TYPE_SERIAL_NUMBER).exclude(DATA_TYPE_SERIAL_NUMBER).build();
 
         byte[] data = new byte[31];
-        data[ 0] = (byte) 0x02; // AD 1
-        data[ 1] = (byte) 0x01; // AD 1
-        data[ 2] = (byte) 0x06; // AD 1
-        data[ 3] = (byte) 0x03; // AD 2
-        data[ 4] = (byte) 0x02; // AD 2
-        data[ 5] = (byte) 0x0a; // AD 2
-        data[ 6] = (byte) 0x18; // AD 2
-        data[ 7] = (byte) 0x12; // AD 3
-        data[ 8] = (byte) 0xff; // AD 3
-        data[ 9] = (byte) 0xd5; // AD 3
+        data[0] = (byte) 0x02; // AD 1
+        data[1] = (byte) 0x01; // AD 1
+        data[2] = (byte) 0x06; // AD 1
+        data[3] = (byte) 0x03; // AD 2
+        data[4] = (byte) 0x02; // AD 2
+        data[5] = (byte) 0x0a; // AD 2
+        data[6] = (byte) 0x18; // AD 2
+        data[7] = (byte) 0x12; // AD 3
+        data[8] = (byte) 0xff; // AD 3
+        data[9] = (byte) 0xd5; // AD 3
         data[10] = (byte) 0x02; // AD 3
         data[11] = (byte) 0x05; // AD 3
         data[12] = (byte) 0x00; // Serial number
@@ -1558,6 +1559,7 @@ public class RbtAdvertisingDataParserTest {
         assertNull(result.getSensorDataAndCalculationData());
         assertNull(result.getSensorFlagAndCalculationFlag());
         assertNull(result.getSerialNumber());
+        assertFalse(result.isRbt());
     }
 
     @Test
@@ -1567,16 +1569,16 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser parser = builder.build();
 
         byte[] data = new byte[31];
-        data[ 0] = (byte) 0x02; // AD 1
-        data[ 1] = (byte) 0x01; // AD 1
-        data[ 2] = (byte) 0x06; // AD 1
-        data[ 3] = (byte) 0x16; // AD 2
-        data[ 4] = (byte) 0xff; // AD 2
-        data[ 5] = (byte) 0xd5; // AD 2
-        data[ 6] = (byte) 0x02; // AD 2
-        data[ 7] = (byte) 0x01; // AD 2
-        data[ 8] = (byte) 0x00; // Sequence numberuence number
-        data[ 9] = (byte) 0x60; // Temperature
+        data[0] = (byte) 0x02; // AD 1
+        data[1] = (byte) 0x01; // AD 1
+        data[2] = (byte) 0x06; // AD 1
+        data[3] = (byte) 0x16; // AD 2
+        data[4] = (byte) 0xff; // AD 2
+        data[5] = (byte) 0xd5; // AD 2
+        data[6] = (byte) 0x02; // AD 2
+        data[7] = (byte) 0x01; // AD 2
+        data[8] = (byte) 0x00; // Sequence numberuence number
+        data[9] = (byte) 0x60; // Temperature
         data[10] = (byte) 0xf0; // Temperature
         data[11] = (byte) 0x00; // Relative humidity
         data[12] = (byte) 0x00; // Relative humidity
@@ -1607,6 +1609,7 @@ public class RbtAdvertisingDataParserTest {
         assertNull(result.getSensorDataAndCalculationData());
         assertNull(result.getSensorFlagAndCalculationFlag());
         assertNull(result.getSerialNumber());
+        assertTrue(result.isRbt());
     }
 
     @Test
@@ -1616,16 +1619,16 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser parser = builder.build();
 
         byte[] data = new byte[31];
-        data[ 0] = (byte) 0x02; // AD 1
-        data[ 1] = (byte) 0x01; // AD 1
-        data[ 2] = (byte) 0x06; // AD 1
-        data[ 3] = (byte) 0x16; // AD 2
-        data[ 4] = (byte) 0xff; // AD 2
-        data[ 5] = (byte) 0xd5; // AD 2
-        data[ 6] = (byte) 0x02; // AD 2
-        data[ 7] = (byte) 0x02; // AD 2
-        data[ 8] = (byte) 0x00; // Sequence number
-        data[ 9] = (byte) 0x00; // Discomfort index
+        data[0] = (byte) 0x02; // AD 1
+        data[1] = (byte) 0x01; // AD 1
+        data[2] = (byte) 0x06; // AD 1
+        data[3] = (byte) 0x16; // AD 2
+        data[4] = (byte) 0xff; // AD 2
+        data[5] = (byte) 0xd5; // AD 2
+        data[6] = (byte) 0x02; // AD 2
+        data[7] = (byte) 0x02; // AD 2
+        data[8] = (byte) 0x00; // Sequence number
+        data[9] = (byte) 0x00; // Discomfort index
         data[10] = (byte) 0x00; // Discomfort index
         data[11] = (byte) 0x60; // Heat stroke
         data[12] = (byte) 0xf0; // Heat stroke
@@ -1656,6 +1659,7 @@ public class RbtAdvertisingDataParserTest {
         assertNull(result.getSensorDataAndCalculationData());
         assertNull(result.getSensorFlagAndCalculationFlag());
         assertNull(result.getSerialNumber());
+        assertTrue(result.isRbt());
     }
 
     @Test
@@ -1665,16 +1669,16 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser parser = builder.build();
 
         byte[] data = new byte[62];
-        data[ 0] = (byte) 0x02; // AD 1
-        data[ 1] = (byte) 0x01; // AD 1
-        data[ 2] = (byte) 0x06; // AD 1
-        data[ 3] = (byte) 0x16; // AD 2
-        data[ 4] = (byte) 0xff; // AD 2
-        data[ 5] = (byte) 0xd5; // AD 2
-        data[ 6] = (byte) 0x02; // AD 2
-        data[ 7] = (byte) 0x03; // AD 2
-        data[ 8] = (byte) 0x00; // Sequence numberuence number
-        data[ 9] = (byte) 0x60; // Temperature
+        data[0] = (byte) 0x02; // AD 1
+        data[1] = (byte) 0x01; // AD 1
+        data[2] = (byte) 0x06; // AD 1
+        data[3] = (byte) 0x16; // AD 2
+        data[4] = (byte) 0xff; // AD 2
+        data[5] = (byte) 0xd5; // AD 2
+        data[6] = (byte) 0x02; // AD 2
+        data[7] = (byte) 0x03; // AD 2
+        data[8] = (byte) 0x00; // Sequence numberuence number
+        data[9] = (byte) 0x60; // Temperature
         data[10] = (byte) 0xf0; // Temperature
         data[11] = (byte) 0x00; // Relative humidity
         data[12] = (byte) 0x00; // Relative humidity
@@ -1736,6 +1740,7 @@ public class RbtAdvertisingDataParserTest {
         assertNotNull(result.getSensorDataAndCalculationData());
         assertNull(result.getSensorFlagAndCalculationFlag());
         assertNull(result.getSerialNumber());
+        assertTrue(result.isRbt());
     }
 
     @Test
@@ -1745,16 +1750,16 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser parser = builder.build();
 
         byte[] data = new byte[62];
-        data[ 0] = (byte) 0x02; // AD 1
-        data[ 1] = (byte) 0x01; // AD 1
-        data[ 2] = (byte) 0x06; // AD 1
-        data[ 3] = (byte) 0x16; // AD 2
-        data[ 4] = (byte) 0xff; // AD 2
-        data[ 5] = (byte) 0xd5; // AD 2
-        data[ 6] = (byte) 0x02; // AD 2
-        data[ 7] = (byte) 0x04; // AD 2
-        data[ 8] = (byte) 0x00; // Sequence number
-        data[ 9] = (byte) 0x00; // Temperature flag
+        data[0] = (byte) 0x02; // AD 1
+        data[1] = (byte) 0x01; // AD 1
+        data[2] = (byte) 0x06; // AD 1
+        data[3] = (byte) 0x16; // AD 2
+        data[4] = (byte) 0xff; // AD 2
+        data[5] = (byte) 0xd5; // AD 2
+        data[6] = (byte) 0x02; // AD 2
+        data[7] = (byte) 0x04; // AD 2
+        data[8] = (byte) 0x00; // Sequence number
+        data[9] = (byte) 0x00; // Temperature flag
         data[10] = (byte) 0x00; // Temperature flag
         data[11] = (byte) 0x00; // Relative humidity flag
         data[12] = (byte) 0x00; // Relative humidity flag
@@ -1816,6 +1821,7 @@ public class RbtAdvertisingDataParserTest {
         assertNull(result.getSensorDataAndCalculationData());
         assertNotNull(result.getSensorFlagAndCalculationFlag());
         assertNull(result.getSerialNumber());
+        assertTrue(result.isRbt());
     }
 
     @Test
@@ -1825,16 +1831,16 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser parser = builder.build();
 
         byte[] data = new byte[31];
-        data[ 0] = (byte) 0x02; // AD 1
-        data[ 1] = (byte) 0x01; // AD 1
-        data[ 2] = (byte) 0x06; // AD 1
-        data[ 3] = (byte) 0x03; // AD 2
-        data[ 4] = (byte) 0x02; // AD 2
-        data[ 5] = (byte) 0x0a; // AD 2
-        data[ 6] = (byte) 0x18; // AD 2
-        data[ 7] = (byte) 0x12; // AD 3
-        data[ 8] = (byte) 0xff; // AD 3
-        data[ 9] = (byte) 0xd5; // AD 3
+        data[0] = (byte) 0x02; // AD 1
+        data[1] = (byte) 0x01; // AD 1
+        data[2] = (byte) 0x06; // AD 1
+        data[3] = (byte) 0x03; // AD 2
+        data[4] = (byte) 0x02; // AD 2
+        data[5] = (byte) 0x0a; // AD 2
+        data[6] = (byte) 0x18; // AD 2
+        data[7] = (byte) 0x12; // AD 3
+        data[8] = (byte) 0xff; // AD 3
+        data[9] = (byte) 0xd5; // AD 3
         data[10] = (byte) 0x02; // AD 3
         data[11] = (byte) 0x05; // AD 3
         data[12] = (byte) 0x00; // Serial number
@@ -1865,26 +1871,25 @@ public class RbtAdvertisingDataParserTest {
         assertNull(result.getSensorDataAndCalculationData());
         assertNull(result.getSensorFlagAndCalculationFlag());
         assertNotNull(result.getSerialNumber());
+        assertTrue(result.isRbt());
     }
 
     @Test
     public void builderTest0602() {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(true);
-        builder.excludeAll();
-        builder.includeAll();
-        RbtAdvertisingDataParser parser = builder.build();
+        RbtAdvertisingDataParser parser = builder.excludeAll().includeAll().build();
 
         byte[] data = new byte[31];
-        data[ 0] = (byte) 0x02; // AD 1
-        data[ 1] = (byte) 0x01; // AD 1
-        data[ 2] = (byte) 0x06; // AD 1
-        data[ 3] = (byte) 0x16; // AD 2
-        data[ 4] = (byte) 0xff; // AD 2
-        data[ 5] = (byte) 0xd5; // AD 2
-        data[ 6] = (byte) 0x02; // AD 2
-        data[ 7] = (byte) 0x01; // AD 2
-        data[ 8] = (byte) 0x00; // Sequence numberuence number
-        data[ 9] = (byte) 0x60; // Temperature
+        data[0] = (byte) 0x02; // AD 1
+        data[1] = (byte) 0x01; // AD 1
+        data[2] = (byte) 0x06; // AD 1
+        data[3] = (byte) 0x16; // AD 2
+        data[4] = (byte) 0xff; // AD 2
+        data[5] = (byte) 0xd5; // AD 2
+        data[6] = (byte) 0x02; // AD 2
+        data[7] = (byte) 0x01; // AD 2
+        data[8] = (byte) 0x00; // Sequence numberuence number
+        data[9] = (byte) 0x60; // Temperature
         data[10] = (byte) 0xf0; // Temperature
         data[11] = (byte) 0x00; // Relative humidity
         data[12] = (byte) 0x00; // Relative humidity
@@ -1915,26 +1920,25 @@ public class RbtAdvertisingDataParserTest {
         assertNull(result.getSensorDataAndCalculationData());
         assertNull(result.getSensorFlagAndCalculationFlag());
         assertNull(result.getSerialNumber());
+        assertTrue(result.isRbt());
     }
 
     @Test
     public void builderTest0603() {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(true);
-        builder.excludeAll();
-        builder.includeAll();
-        RbtAdvertisingDataParser parser = builder.build();
+        RbtAdvertisingDataParser parser = builder.excludeAll().includeAll().build();
 
         byte[] data = new byte[31];
-        data[ 0] = (byte) 0x02; // AD 1
-        data[ 1] = (byte) 0x01; // AD 1
-        data[ 2] = (byte) 0x06; // AD 1
-        data[ 3] = (byte) 0x16; // AD 2
-        data[ 4] = (byte) 0xff; // AD 2
-        data[ 5] = (byte) 0xd5; // AD 2
-        data[ 6] = (byte) 0x02; // AD 2
-        data[ 7] = (byte) 0x02; // AD 2
-        data[ 8] = (byte) 0x00; // Sequence number
-        data[ 9] = (byte) 0x00; // Discomfort index
+        data[0] = (byte) 0x02; // AD 1
+        data[1] = (byte) 0x01; // AD 1
+        data[2] = (byte) 0x06; // AD 1
+        data[3] = (byte) 0x16; // AD 2
+        data[4] = (byte) 0xff; // AD 2
+        data[5] = (byte) 0xd5; // AD 2
+        data[6] = (byte) 0x02; // AD 2
+        data[7] = (byte) 0x02; // AD 2
+        data[8] = (byte) 0x00; // Sequence number
+        data[9] = (byte) 0x00; // Discomfort index
         data[10] = (byte) 0x00; // Discomfort index
         data[11] = (byte) 0x60; // Heat stroke
         data[12] = (byte) 0xf0; // Heat stroke
@@ -1965,26 +1969,25 @@ public class RbtAdvertisingDataParserTest {
         assertNull(result.getSensorDataAndCalculationData());
         assertNull(result.getSensorFlagAndCalculationFlag());
         assertNull(result.getSerialNumber());
+        assertTrue(result.isRbt());
     }
 
     @Test
     public void builderTest0604() {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(true);
-        builder.excludeAll();
-        builder.includeAll();
-        RbtAdvertisingDataParser parser = builder.build();
+        RbtAdvertisingDataParser parser = builder.excludeAll().includeAll().build();
 
         byte[] data = new byte[62];
-        data[ 0] = (byte) 0x02; // AD 1
-        data[ 1] = (byte) 0x01; // AD 1
-        data[ 2] = (byte) 0x06; // AD 1
-        data[ 3] = (byte) 0x16; // AD 2
-        data[ 4] = (byte) 0xff; // AD 2
-        data[ 5] = (byte) 0xd5; // AD 2
-        data[ 6] = (byte) 0x02; // AD 2
-        data[ 7] = (byte) 0x03; // AD 2
-        data[ 8] = (byte) 0x00; // Sequence numberuence number
-        data[ 9] = (byte) 0x60; // Temperature
+        data[0] = (byte) 0x02; // AD 1
+        data[1] = (byte) 0x01; // AD 1
+        data[2] = (byte) 0x06; // AD 1
+        data[3] = (byte) 0x16; // AD 2
+        data[4] = (byte) 0xff; // AD 2
+        data[5] = (byte) 0xd5; // AD 2
+        data[6] = (byte) 0x02; // AD 2
+        data[7] = (byte) 0x03; // AD 2
+        data[8] = (byte) 0x00; // Sequence numberuence number
+        data[9] = (byte) 0x60; // Temperature
         data[10] = (byte) 0xf0; // Temperature
         data[11] = (byte) 0x00; // Relative humidity
         data[12] = (byte) 0x00; // Relative humidity
@@ -2046,26 +2049,25 @@ public class RbtAdvertisingDataParserTest {
         assertNotNull(result.getSensorDataAndCalculationData());
         assertNull(result.getSensorFlagAndCalculationFlag());
         assertNull(result.getSerialNumber());
+        assertTrue(result.isRbt());
     }
 
     @Test
     public void builderTest0605() {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(true);
-        builder.excludeAll();
-        builder.includeAll();
-        RbtAdvertisingDataParser parser = builder.build();
+        RbtAdvertisingDataParser parser = builder.excludeAll().includeAll().build();
 
         byte[] data = new byte[62];
-        data[ 0] = (byte) 0x02; // AD 1
-        data[ 1] = (byte) 0x01; // AD 1
-        data[ 2] = (byte) 0x06; // AD 1
-        data[ 3] = (byte) 0x16; // AD 2
-        data[ 4] = (byte) 0xff; // AD 2
-        data[ 5] = (byte) 0xd5; // AD 2
-        data[ 6] = (byte) 0x02; // AD 2
-        data[ 7] = (byte) 0x04; // AD 2
-        data[ 8] = (byte) 0x00; // Sequence number
-        data[ 9] = (byte) 0x00; // Temperature flag
+        data[0] = (byte) 0x02; // AD 1
+        data[1] = (byte) 0x01; // AD 1
+        data[2] = (byte) 0x06; // AD 1
+        data[3] = (byte) 0x16; // AD 2
+        data[4] = (byte) 0xff; // AD 2
+        data[5] = (byte) 0xd5; // AD 2
+        data[6] = (byte) 0x02; // AD 2
+        data[7] = (byte) 0x04; // AD 2
+        data[8] = (byte) 0x00; // Sequence number
+        data[9] = (byte) 0x00; // Temperature flag
         data[10] = (byte) 0x00; // Temperature flag
         data[11] = (byte) 0x00; // Relative humidity flag
         data[12] = (byte) 0x00; // Relative humidity flag
@@ -2127,26 +2129,25 @@ public class RbtAdvertisingDataParserTest {
         assertNull(result.getSensorDataAndCalculationData());
         assertNotNull(result.getSensorFlagAndCalculationFlag());
         assertNull(result.getSerialNumber());
+        assertTrue(result.isRbt());
     }
 
     @Test
     public void builderTest0606() {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(true);
-        builder.excludeAll();
-        builder.includeAll();
-        RbtAdvertisingDataParser parser = builder.build();
+        RbtAdvertisingDataParser parser = builder.excludeAll().includeAll().build();
 
         byte[] data = new byte[31];
-        data[ 0] = (byte) 0x02; // AD 1
-        data[ 1] = (byte) 0x01; // AD 1
-        data[ 2] = (byte) 0x06; // AD 1
-        data[ 3] = (byte) 0x03; // AD 2
-        data[ 4] = (byte) 0x02; // AD 2
-        data[ 5] = (byte) 0x0a; // AD 2
-        data[ 6] = (byte) 0x18; // AD 2
-        data[ 7] = (byte) 0x12; // AD 3
-        data[ 8] = (byte) 0xff; // AD 3
-        data[ 9] = (byte) 0xd5; // AD 3
+        data[0] = (byte) 0x02; // AD 1
+        data[1] = (byte) 0x01; // AD 1
+        data[2] = (byte) 0x06; // AD 1
+        data[3] = (byte) 0x03; // AD 2
+        data[4] = (byte) 0x02; // AD 2
+        data[5] = (byte) 0x0a; // AD 2
+        data[6] = (byte) 0x18; // AD 2
+        data[7] = (byte) 0x12; // AD 3
+        data[8] = (byte) 0xff; // AD 3
+        data[9] = (byte) 0xd5; // AD 3
         data[10] = (byte) 0x02; // AD 3
         data[11] = (byte) 0x05; // AD 3
         data[12] = (byte) 0x00; // Serial number
@@ -2177,26 +2178,25 @@ public class RbtAdvertisingDataParserTest {
         assertNull(result.getSensorDataAndCalculationData());
         assertNull(result.getSensorFlagAndCalculationFlag());
         assertNotNull(result.getSerialNumber());
+        assertTrue(result.isRbt());
     }
 
     @Test
     public void builderTest0702() {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(false);
-        builder.includeAll();
-        builder.excludeAll();
-        RbtAdvertisingDataParser parser = builder.build();
+        RbtAdvertisingDataParser parser = builder.includeAll().excludeAll().build();
 
         byte[] data = new byte[31];
-        data[ 0] = (byte) 0x02; // AD 1
-        data[ 1] = (byte) 0x01; // AD 1
-        data[ 2] = (byte) 0x06; // AD 1
-        data[ 3] = (byte) 0x16; // AD 2
-        data[ 4] = (byte) 0xff; // AD 2
-        data[ 5] = (byte) 0xd5; // AD 2
-        data[ 6] = (byte) 0x02; // AD 2
-        data[ 7] = (byte) 0x01; // AD 2
-        data[ 8] = (byte) 0x00; // Sequence numberuence number
-        data[ 9] = (byte) 0x60; // Temperature
+        data[0] = (byte) 0x02; // AD 1
+        data[1] = (byte) 0x01; // AD 1
+        data[2] = (byte) 0x06; // AD 1
+        data[3] = (byte) 0x16; // AD 2
+        data[4] = (byte) 0xff; // AD 2
+        data[5] = (byte) 0xd5; // AD 2
+        data[6] = (byte) 0x02; // AD 2
+        data[7] = (byte) 0x01; // AD 2
+        data[8] = (byte) 0x00; // Sequence numberuence number
+        data[9] = (byte) 0x60; // Temperature
         data[10] = (byte) 0xf0; // Temperature
         data[11] = (byte) 0x00; // Relative humidity
         data[12] = (byte) 0x00; // Relative humidity
@@ -2227,26 +2227,25 @@ public class RbtAdvertisingDataParserTest {
         assertNull(result.getSensorDataAndCalculationData());
         assertNull(result.getSensorFlagAndCalculationFlag());
         assertNull(result.getSerialNumber());
+        assertFalse(result.isRbt());
     }
 
     @Test
     public void builderTest0703() {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(false);
-        builder.includeAll();
-        builder.excludeAll();
-        RbtAdvertisingDataParser parser = builder.build();
+        RbtAdvertisingDataParser parser = builder.includeAll().excludeAll().build();
 
         byte[] data = new byte[31];
-        data[ 0] = (byte) 0x02; // AD 1
-        data[ 1] = (byte) 0x01; // AD 1
-        data[ 2] = (byte) 0x06; // AD 1
-        data[ 3] = (byte) 0x16; // AD 2
-        data[ 4] = (byte) 0xff; // AD 2
-        data[ 5] = (byte) 0xd5; // AD 2
-        data[ 6] = (byte) 0x02; // AD 2
-        data[ 7] = (byte) 0x02; // AD 2
-        data[ 8] = (byte) 0x00; // Sequence number
-        data[ 9] = (byte) 0x00; // Discomfort index
+        data[0] = (byte) 0x02; // AD 1
+        data[1] = (byte) 0x01; // AD 1
+        data[2] = (byte) 0x06; // AD 1
+        data[3] = (byte) 0x16; // AD 2
+        data[4] = (byte) 0xff; // AD 2
+        data[5] = (byte) 0xd5; // AD 2
+        data[6] = (byte) 0x02; // AD 2
+        data[7] = (byte) 0x02; // AD 2
+        data[8] = (byte) 0x00; // Sequence number
+        data[9] = (byte) 0x00; // Discomfort index
         data[10] = (byte) 0x00; // Discomfort index
         data[11] = (byte) 0x60; // Heat stroke
         data[12] = (byte) 0xf0; // Heat stroke
@@ -2277,26 +2276,25 @@ public class RbtAdvertisingDataParserTest {
         assertNull(result.getSensorDataAndCalculationData());
         assertNull(result.getSensorFlagAndCalculationFlag());
         assertNull(result.getSerialNumber());
+        assertFalse(result.isRbt());
     }
 
     @Test
     public void builderTest0704() {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(false);
-        builder.includeAll();
-        builder.excludeAll();
-        RbtAdvertisingDataParser parser = builder.build();
+        RbtAdvertisingDataParser parser = builder.includeAll().excludeAll().build();
 
         byte[] data = new byte[62];
-        data[ 0] = (byte) 0x02; // AD 1
-        data[ 1] = (byte) 0x01; // AD 1
-        data[ 2] = (byte) 0x06; // AD 1
-        data[ 3] = (byte) 0x16; // AD 2
-        data[ 4] = (byte) 0xff; // AD 2
-        data[ 5] = (byte) 0xd5; // AD 2
-        data[ 6] = (byte) 0x02; // AD 2
-        data[ 7] = (byte) 0x03; // AD 2
-        data[ 8] = (byte) 0x00; // Sequence numberuence number
-        data[ 9] = (byte) 0x60; // Temperature
+        data[0] = (byte) 0x02; // AD 1
+        data[1] = (byte) 0x01; // AD 1
+        data[2] = (byte) 0x06; // AD 1
+        data[3] = (byte) 0x16; // AD 2
+        data[4] = (byte) 0xff; // AD 2
+        data[5] = (byte) 0xd5; // AD 2
+        data[6] = (byte) 0x02; // AD 2
+        data[7] = (byte) 0x03; // AD 2
+        data[8] = (byte) 0x00; // Sequence numberuence number
+        data[9] = (byte) 0x60; // Temperature
         data[10] = (byte) 0xf0; // Temperature
         data[11] = (byte) 0x00; // Relative humidity
         data[12] = (byte) 0x00; // Relative humidity
@@ -2358,26 +2356,25 @@ public class RbtAdvertisingDataParserTest {
         assertNull(result.getSensorDataAndCalculationData());
         assertNull(result.getSensorFlagAndCalculationFlag());
         assertNull(result.getSerialNumber());
+        assertFalse(result.isRbt());
     }
 
     @Test
     public void builderTest0705() {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(false);
-        builder.includeAll();
-        builder.excludeAll();
-        RbtAdvertisingDataParser parser = builder.build();
+        RbtAdvertisingDataParser parser = builder.includeAll().excludeAll().build();
 
         byte[] data = new byte[62];
-        data[ 0] = (byte) 0x02; // AD 1
-        data[ 1] = (byte) 0x01; // AD 1
-        data[ 2] = (byte) 0x06; // AD 1
-        data[ 3] = (byte) 0x16; // AD 2
-        data[ 4] = (byte) 0xff; // AD 2
-        data[ 5] = (byte) 0xd5; // AD 2
-        data[ 6] = (byte) 0x02; // AD 2
-        data[ 7] = (byte) 0x04; // AD 2
-        data[ 8] = (byte) 0x00; // Sequence number
-        data[ 9] = (byte) 0x00; // Temperature flag
+        data[0] = (byte) 0x02; // AD 1
+        data[1] = (byte) 0x01; // AD 1
+        data[2] = (byte) 0x06; // AD 1
+        data[3] = (byte) 0x16; // AD 2
+        data[4] = (byte) 0xff; // AD 2
+        data[5] = (byte) 0xd5; // AD 2
+        data[6] = (byte) 0x02; // AD 2
+        data[7] = (byte) 0x04; // AD 2
+        data[8] = (byte) 0x00; // Sequence number
+        data[9] = (byte) 0x00; // Temperature flag
         data[10] = (byte) 0x00; // Temperature flag
         data[11] = (byte) 0x00; // Relative humidity flag
         data[12] = (byte) 0x00; // Relative humidity flag
@@ -2439,26 +2436,25 @@ public class RbtAdvertisingDataParserTest {
         assertNull(result.getSensorDataAndCalculationData());
         assertNull(result.getSensorFlagAndCalculationFlag());
         assertNull(result.getSerialNumber());
+        assertFalse(result.isRbt());
     }
 
     @Test
     public void builderTest0706() {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(false);
-        builder.includeAll();
-        builder.excludeAll();
-        RbtAdvertisingDataParser parser = builder.build();
+        RbtAdvertisingDataParser parser = builder.includeAll().excludeAll().build();
 
         byte[] data = new byte[31];
-        data[ 0] = (byte) 0x02; // AD 1
-        data[ 1] = (byte) 0x01; // AD 1
-        data[ 2] = (byte) 0x06; // AD 1
-        data[ 3] = (byte) 0x03; // AD 2
-        data[ 4] = (byte) 0x02; // AD 2
-        data[ 5] = (byte) 0x0a; // AD 2
-        data[ 6] = (byte) 0x18; // AD 2
-        data[ 7] = (byte) 0x12; // AD 3
-        data[ 8] = (byte) 0xff; // AD 3
-        data[ 9] = (byte) 0xd5; // AD 3
+        data[0] = (byte) 0x02; // AD 1
+        data[1] = (byte) 0x01; // AD 1
+        data[2] = (byte) 0x06; // AD 1
+        data[3] = (byte) 0x03; // AD 2
+        data[4] = (byte) 0x02; // AD 2
+        data[5] = (byte) 0x0a; // AD 2
+        data[6] = (byte) 0x18; // AD 2
+        data[7] = (byte) 0x12; // AD 3
+        data[8] = (byte) 0xff; // AD 3
+        data[9] = (byte) 0xd5; // AD 3
         data[10] = (byte) 0x02; // AD 3
         data[11] = (byte) 0x05; // AD 3
         data[12] = (byte) 0x00; // Serial number
@@ -2489,6 +2485,7 @@ public class RbtAdvertisingDataParserTest {
         assertNull(result.getSensorDataAndCalculationData());
         assertNull(result.getSensorFlagAndCalculationFlag());
         assertNull(result.getSerialNumber());
+        assertFalse(result.isRbt());
     }
 
 }

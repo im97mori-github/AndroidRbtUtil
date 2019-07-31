@@ -4,11 +4,18 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.im97mori.ble.ByteArrayCreater;
+
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
+import static org.im97mori.rbt.RbtConstants.CharacteristicUUID.FLASH_MEMORY_STATUS_CHARACTERISTIC;
+
 /**
  * 2.7.3 FLASH memory status (Characteristics UUID: 0x5403)
  */
 @SuppressWarnings("WeakerAccess")
-public class FlashMemoryStatus extends AbstractCharacteristic implements Parcelable {
+public class FlashMemoryStatus extends AbstractRbtCharacteristic implements Parcelable {
 
     /**
      * 0x00: NONE
@@ -36,9 +43,9 @@ public class FlashMemoryStatus extends AbstractCharacteristic implements Parcela
     public static final int FLASH_MEMORY_STATUS_FLASH_MEMORY_ERASING = 0x04;
 
     /**
-     * @see Creator
+     * @see ByteArrayCreater
      */
-    public static final Creator<FlashMemoryStatus> CREATOR = new Creator<FlashMemoryStatus>() {
+    public static final ByteArrayCreater<FlashMemoryStatus> CREATOR = new ByteArrayCreater<FlashMemoryStatus>() {
 
         /**
          * {@inheritDoc}
@@ -54,6 +61,16 @@ public class FlashMemoryStatus extends AbstractCharacteristic implements Parcela
         @Override
         public FlashMemoryStatus[] newArray(int size) {
             return new FlashMemoryStatus[size];
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public FlashMemoryStatus createFromByteArray(byte[] values) {
+            BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(FLASH_MEMORY_STATUS_CHARACTERISTIC, 0, 0);
+            bluetoothGattCharacteristic.setValue(values);
+            return new FlashMemoryStatus(bluetoothGattCharacteristic);
         }
 
     };
@@ -102,6 +119,17 @@ public class FlashMemoryStatus extends AbstractCharacteristic implements Parcela
      */
     public int getFlashMemoryStatus() {
         return mFlashMemoryStatus;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public byte[] getBytes() {
+        byte[] data = new byte[1];
+        ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);
+        byteBuffer.put((byte) mFlashMemoryStatus);
+        return data;
     }
 
 }

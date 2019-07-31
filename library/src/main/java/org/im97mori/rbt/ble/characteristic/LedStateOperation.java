@@ -4,11 +4,18 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.im97mori.ble.ByteArrayCreater;
+
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
+import static org.im97mori.rbt.RbtConstants.CharacteristicUUID.LED_STATE_OPERATION_CHARACTERISTIC;
+
 /**
  * 2.4.3 LED state [operation] (Characteristics UUID: 0x5113)
  */
 @SuppressWarnings("WeakerAccess")
-public class LedStateOperation extends AbstractCharacteristic implements Parcelable {
+public class LedStateOperation extends AbstractRbtCharacteristic implements Parcelable {
 
     /**
      * 0x00: Rainbow (default)
@@ -41,9 +48,9 @@ public class LedStateOperation extends AbstractCharacteristic implements Parcela
     public static final int CONNECTION_GREEN = 0x01;
 
     /**
-     * @see Creator
+     * @see ByteArrayCreater
      */
-    public static final Creator<LedStateOperation> CREATOR = new Creator<LedStateOperation>() {
+    public static final ByteArrayCreater<LedStateOperation> CREATOR = new ByteArrayCreater<LedStateOperation>() {
 
         /**
          * {@inheritDoc}
@@ -59,6 +66,16 @@ public class LedStateOperation extends AbstractCharacteristic implements Parcela
         @Override
         public LedStateOperation[] newArray(int size) {
             return new LedStateOperation[size];
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public LedStateOperation createFromByteArray(byte[] values) {
+            BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(LED_STATE_OPERATION_CHARACTERISTIC, 0, 0);
+            bluetoothGattCharacteristic.setValue(values);
+            return new LedStateOperation(bluetoothGattCharacteristic);
         }
 
     };
@@ -88,6 +105,22 @@ public class LedStateOperation extends AbstractCharacteristic implements Parcela
         mStartUp = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 0);
         mError = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 1);
         mConnection = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 2);
+    }
+
+    /**
+     * Constructor from values
+     *
+     * @param startUp    one of {@link #START_UP_RAINBOW}
+     *                   {@link #START_UP_BLUE}
+     * @param error      one of {@link #ERROR_NONE}
+     *                   {@link #ERROR_RED}
+     * @param connection one of {@link #CONNECTION_NONE}
+     *                   {@link #CONNECTION_GREEN}
+     */
+    public LedStateOperation(int startUp, int error, int connection) {
+        mStartUp = startUp;
+        mError = error;
+        mConnection = connection;
     }
 
     /**
@@ -138,6 +171,19 @@ public class LedStateOperation extends AbstractCharacteristic implements Parcela
      */
     public int getConnection() {
         return mConnection;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public byte[] getBytes() {
+        byte[] data = new byte[3];
+        ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);
+        byteBuffer.put((byte) mStartUp);
+        byteBuffer.put((byte) mError);
+        byteBuffer.put((byte) mConnection);
+        return data;
     }
 
 }

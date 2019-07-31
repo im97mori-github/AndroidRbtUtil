@@ -4,18 +4,23 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.im97mori.ble.ByteArrayCreater;
+
 import java.math.BigInteger;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
+import static org.im97mori.rbt.RbtConstants.CharacteristicUUID.LATEST_TIME_COUNTER_CHARACTERISTIC;
 
 /**
  * 2.5.1 Latest time counter (Characteristics UUID: 0x5201)
  */
-@SuppressWarnings("WeakerAccess")
-public class LatestTimeCounter extends AbstractCharacteristic implements Parcelable {
+public class LatestTimeCounter extends AbstractRbtCharacteristic implements Parcelable {
 
     /**
-     * @see Creator
+     * @see ByteArrayCreater
      */
-    public static final Creator<LatestTimeCounter> CREATOR = new Creator<LatestTimeCounter>() {
+    public static final ByteArrayCreater<LatestTimeCounter> CREATOR = new ByteArrayCreater<LatestTimeCounter>() {
 
         /**
          * {@inheritDoc}
@@ -31,6 +36,16 @@ public class LatestTimeCounter extends AbstractCharacteristic implements Parcela
         @Override
         public LatestTimeCounter[] newArray(int size) {
             return new LatestTimeCounter[size];
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public LatestTimeCounter createFromByteArray(byte[] values) {
+            BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(LATEST_TIME_COUNTER_CHARACTERISTIC, 0, 0);
+            bluetoothGattCharacteristic.setValue(values);
+            return new LatestTimeCounter(bluetoothGattCharacteristic);
         }
 
     };
@@ -79,6 +94,17 @@ public class LatestTimeCounter extends AbstractCharacteristic implements Parcela
      */
     public BigInteger getTimeCounter() {
         return mTimeCounter;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public byte[] getBytes() {
+        byte[] data = new byte[8];
+        ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);
+        byteBuffer.put(createLittleEndianByteArrayFromBigInteger(mTimeCounter, 8));
+        return data;
     }
 
 }

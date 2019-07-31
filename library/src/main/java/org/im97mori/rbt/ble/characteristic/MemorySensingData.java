@@ -4,6 +4,12 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.im97mori.ble.ByteArrayCreater;
+
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
+import static org.im97mori.rbt.RbtConstants.CharacteristicUUID.MEMORY_SENSING_DATA_CHARACTERISTIC;
 import static org.im97mori.rbt.RbtConstants.OutputRange.OUTPUT_RANGE_AMBIENT_LIGHT_UNIT;
 import static org.im97mori.rbt.RbtConstants.OutputRange.OUTPUT_RANGE_BAROMETRIC_PRESSURE_UNIT;
 import static org.im97mori.rbt.RbtConstants.OutputRange.OUTPUT_RANGE_ECO2_UNIT;
@@ -16,7 +22,7 @@ import static org.im97mori.rbt.RbtConstants.OutputRange.OUTPUT_RANGE_TEMPERATURE
  * 2.1.4 Memory ssensing data (Characteristics UUID: 0x500A)
  */
 @SuppressWarnings("WeakerAccess")
-public class MemorySensingData extends AbstractCharacteristic implements Parcelable {
+public class MemorySensingData extends AbstractRbtCharacteristic implements Parcelable {
 
     /**
      * Memory index data error
@@ -24,9 +30,9 @@ public class MemorySensingData extends AbstractCharacteristic implements Parcela
     public static final int DATA_ERROR_BIT = 0b10000000_00000000_00000000_00000000;
 
     /**
-     * @see Creator
+     * @see ByteArrayCreater
      */
-    public static final Creator<MemorySensingData> CREATOR = new Creator<MemorySensingData>() {
+    public static final ByteArrayCreater<MemorySensingData> CREATOR = new ByteArrayCreater<MemorySensingData>() {
 
         /**
          * {@inheritDoc}
@@ -42,6 +48,16 @@ public class MemorySensingData extends AbstractCharacteristic implements Parcela
         @Override
         public MemorySensingData[] newArray(int size) {
             return new MemorySensingData[size];
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public MemorySensingData createFromByteArray(byte[] values) {
+            BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(MEMORY_SENSING_DATA_CHARACTERISTIC, 0, 0);
+            bluetoothGattCharacteristic.setValue(values);
+            return new MemorySensingData(bluetoothGattCharacteristic);
         }
 
     };
@@ -251,6 +267,24 @@ public class MemorySensingData extends AbstractCharacteristic implements Parcela
      */
     public double getEco2Ppm() {
         return mEco2 * OUTPUT_RANGE_ECO2_UNIT;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public byte[] getBytes() {
+        byte[] data = new byte[20];
+        ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);
+        byteBuffer.putInt(mMemoryIndex);
+        byteBuffer.putShort((short) mTemperature);
+        byteBuffer.putShort((short) mRelativeHumidity);
+        byteBuffer.putShort((short) mAmbientLight);
+        byteBuffer.putInt(mBarometricPressure);
+        byteBuffer.putShort((short) mSoundNoise);
+        byteBuffer.putShort((short) mEtvoc);
+        byteBuffer.putShort((short) mEco2);
+        return data;
     }
 
 }

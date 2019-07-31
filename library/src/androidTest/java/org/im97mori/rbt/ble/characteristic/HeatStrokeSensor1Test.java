@@ -7,6 +7,7 @@ import org.im97mori.ble.ad.AdvertisingDataConstants;
 import org.im97mori.rbt.RbtConstants;
 import org.junit.Test;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -1189,5 +1190,93 @@ public class HeatStrokeSensor1Test extends AbstractEventEnableDisableTest {
         assertEquals(result1.getChangeThresholdRise2(), result2.getChangeThresholdRise2());
         assertEquals(result1.getChangeThresholdDecline1(), result2.getChangeThresholdDecline1());
         assertEquals(result1.getChangeThresholdDecline2(), result2.getChangeThresholdDecline2());
+    }
+
+    @Test
+    public void test102() {
+        byte[] data = new byte[20];
+        data[ 0] = (byte) ((RbtConstants.EventEnableDisableSensor.BASE_DIFFERENCE_THRESHOLD_LOWER) & 0xff); // Event enable/disable
+        data[ 1] = (byte) ((RbtConstants.EventEnableDisableSensor.BASE_DIFFERENCE_THRESHOLD_LOWER >> 8) & 0xff); // Event enable/disable
+        data[ 2] = (byte) ((0x00) & 0xff); // Simple threshold [upper limit] 1
+        data[ 3] = (byte) ((0x00) & 0xff); // Simple threshold [upper limit] 1
+        data[ 4] = (byte) ((0x01) & 0xff); // Simple threshold [upper limit] 2
+        data[ 5] = (byte) ((0x00) & 0xff); // Simple threshold [upper limit] 2
+        data[ 6] = (byte) ((0x02) & 0xff); // Simple threshold [lower limit] 1
+        data[ 7] = (byte) ((0x00) & 0xff); // Simple threshold [lower limit] 1
+        data[ 8] = (byte) ((0x03) & 0xff); // Simple threshold [lower limit] 2
+        data[ 9] = (byte) ((0x00) & 0xff); // Simple threshold [lower limit] 2
+        data[10] = (byte) ((0x04) & 0xff); // Change threshold [rise] 1
+        data[11] = (byte) ((0x00) & 0xff); // Change threshold [rise] 1
+        data[12] = (byte) ((0x05) & 0xff); // Change threshold [rise] 2
+        data[13] = (byte) ((0x00) & 0xff); // Change threshold [rise] 2
+        data[14] = (byte) ((0x06) & 0xff); // Change threshold [decline] 1
+        data[15] = (byte) ((0x00) & 0xff); // Change threshold [decline] 1
+        data[16] = (byte) ((0x07) & 0xff); // Change threshold [decline] 2
+        data[17] = (byte) ((0x00) & 0xff); // Change threshold [decline] 2
+        data[18] = (byte) ((0xff) & 0xff); // Reserve for Future Use
+        data[19] = (byte) ((0xff) & 0xff); // Reserve for Future Use
+
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        bluetoothGattCharacteristic.setValue(data);
+
+        HeatStrokeSensor1 result1 = new HeatStrokeSensor1(bluetoothGattCharacteristic);
+        byte[] resultData = result1.getBytes();
+        assertArrayEquals(data, resultData);
+    }
+
+    @Test
+    public void test103() {
+        int eventEnableDisable = RbtConstants.EventEnableDisableSensor.BASE_DIFFERENCE_THRESHOLD_LOWER;
+        int simpleThresholdUpperLimit1 = 0xf060;
+        int simpleThresholdUpperLimit2 = 0xf061;
+        int simpleThresholdLowerLimit1 = 0xf062;
+        int simpleThresholdLowerLimit2 = 0xf063;
+        int changeThesholdRise1 = 0x0000;
+        int changeThesholdRise2 = 0x0001;
+        int changeThesholdDecline1 = 0x0002;
+        int changeThesholdDecline2 = 0x0003;
+
+        HeatStrokeSensor1 result1 = new HeatStrokeSensor1(eventEnableDisable, simpleThresholdUpperLimit1, simpleThresholdUpperLimit2, simpleThresholdLowerLimit1, simpleThresholdLowerLimit2, changeThesholdRise1, changeThesholdRise2, changeThesholdDecline1, changeThesholdDecline2);
+        assertEquals(eventEnableDisable, result1.getEventEnableDisable());
+        assertEquals(simpleThresholdUpperLimit1, result1.getSimpleThresholdUpperLimit1());
+        assertEquals(simpleThresholdUpperLimit2, result1.getSimpleThresholdUpperLimit2());
+        assertEquals(simpleThresholdLowerLimit1, result1.getSimpleThresholdLowerLimit1());
+        assertEquals(simpleThresholdLowerLimit2, result1.getSimpleThresholdLowerLimit2());
+        assertEquals(changeThesholdRise1, result1.getChangeThresholdRise1());
+        assertEquals(changeThesholdRise2, result1.getChangeThresholdRise2());
+        assertEquals(changeThesholdDecline1, result1.getChangeThresholdDecline1());
+        assertEquals(changeThesholdDecline2, result1.getChangeThresholdDecline2());
+    }
+
+    @Test
+    public void test104() {
+        byte[] data = new byte[20];
+        data[ 0] = (byte) ((RbtConstants.EventEnableDisableSensor.BASE_DIFFERENCE_THRESHOLD_LOWER) & 0xff); // Event enable/disable
+        data[ 1] = (byte) ((RbtConstants.EventEnableDisableSensor.BASE_DIFFERENCE_THRESHOLD_LOWER >> 8) & 0xff); // Event enable/disable
+        data[ 2] = (byte) ((0x00) & 0xff); // Simple threshold [upper limit] 1
+        data[ 3] = (byte) ((0x00) & 0xff); // Simple threshold [upper limit] 1
+        data[ 4] = (byte) ((0x01) & 0xff); // Simple threshold [upper limit] 2
+        data[ 5] = (byte) ((0x00) & 0xff); // Simple threshold [upper limit] 2
+        data[ 6] = (byte) ((0x02) & 0xff); // Simple threshold [lower limit] 1
+        data[ 7] = (byte) ((0x00) & 0xff); // Simple threshold [lower limit] 1
+        data[ 8] = (byte) ((0x03) & 0xff); // Simple threshold [lower limit] 2
+        data[ 9] = (byte) ((0x00) & 0xff); // Simple threshold [lower limit] 2
+        data[10] = (byte) ((0x04) & 0xff); // Change threshold [rise] 1
+        data[11] = (byte) ((0x00) & 0xff); // Change threshold [rise] 1
+        data[12] = (byte) ((0x05) & 0xff); // Change threshold [rise] 2
+        data[13] = (byte) ((0x00) & 0xff); // Change threshold [rise] 2
+        data[14] = (byte) ((0x06) & 0xff); // Change threshold [decline] 1
+        data[15] = (byte) ((0x00) & 0xff); // Change threshold [decline] 1
+        data[16] = (byte) ((0x07) & 0xff); // Change threshold [decline] 2
+        data[17] = (byte) ((0x00) & 0xff); // Change threshold [decline] 2
+        data[18] = (byte) ((0xff) & 0xff); // Reserve for Future Use
+        data[19] = (byte) ((0xff) & 0xff); // Reserve for Future Use
+
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        bluetoothGattCharacteristic.setValue(data);
+
+        HeatStrokeSensor1 result1 = new HeatStrokeSensor1(bluetoothGattCharacteristic);
+        HeatStrokeSensor1 result2 = HeatStrokeSensor1.CREATOR.createFromByteArray(data);
+        assertArrayEquals(result1.getBytes(), result2.getBytes());
     }
 }

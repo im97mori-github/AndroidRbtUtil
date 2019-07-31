@@ -4,16 +4,23 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.im97mori.ble.ByteArrayCreater;
+
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
+import static org.im97mori.rbt.RbtConstants.CharacteristicUUID.MEMORY_INDEX_INFORMATION_CHARACTERISTIC;
+
 /**
  * 2.1.1 Memory index information ( Characteristics UUID: 0x5004)
  */
-@SuppressWarnings("WeakerAccess")
-public class MemoryIndexInformation extends AbstractCharacteristic implements Parcelable {
+public class MemoryIndexInformation extends AbstractRbtCharacteristic implements Parcelable {
 
     /**
-     * @see Creator
+     * @see ByteArrayCreater
      */
-    public static final Creator<MemoryIndexInformation> CREATOR = new Creator<MemoryIndexInformation>() {
+    public static final ByteArrayCreater<MemoryIndexInformation> CREATOR = new ByteArrayCreater<MemoryIndexInformation>() {
+
 
         /**
          * {@inheritDoc}
@@ -29,6 +36,16 @@ public class MemoryIndexInformation extends AbstractCharacteristic implements Pa
         @Override
         public MemoryIndexInformation[] newArray(int size) {
             return new MemoryIndexInformation[size];
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public MemoryIndexInformation createFromByteArray(byte[] values) {
+            BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(MEMORY_INDEX_INFORMATION_CHARACTERISTIC, 0, 0);
+            bluetoothGattCharacteristic.setValue(values);
+            return new MemoryIndexInformation(bluetoothGattCharacteristic);
         }
 
     };
@@ -92,6 +109,18 @@ public class MemoryIndexInformation extends AbstractCharacteristic implements Pa
      */
     public int getMemoryIndexLast() {
         return mMemoryIndexLast;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public byte[] getBytes() {
+        byte[] data = new byte[8];
+        ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);
+        byteBuffer.putInt(mMemoryIndexLatest);
+        byteBuffer.putInt(mMemoryIndexLast);
+        return data;
     }
 
 }

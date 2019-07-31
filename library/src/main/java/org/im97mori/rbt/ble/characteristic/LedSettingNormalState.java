@@ -4,11 +4,18 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.im97mori.ble.ByteArrayCreater;
+
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
+import static org.im97mori.rbt.RbtConstants.CharacteristicUUID.LED_SETTING_NORMAL_STATE_CHARACTERISTIC;
+
 /**
  * 2.4.1 LED setting [normal state] (Characteristics UUID: 0x5111)
  */
 @SuppressWarnings("WeakerAccess")
-public class LedSettingNormalState extends AbstractCharacteristic implements Parcelable {
+public class LedSettingNormalState extends AbstractRbtCharacteristic implements Parcelable {
 
     /**
      * 0x0000: Normally OFF
@@ -61,9 +68,9 @@ public class LedSettingNormalState extends AbstractCharacteristic implements Par
     public static final int DISPLAY_RULE_PGA_VALUE_SCALES = 0x0009;
 
     /**
-     * @see Creator
+     * @see ByteArrayCreater
      */
-    public static final Creator<LedSettingNormalState> CREATOR = new Creator<LedSettingNormalState>() {
+    public static final ByteArrayCreater<LedSettingNormalState> CREATOR = new ByteArrayCreater<LedSettingNormalState>() {
 
         /**
          * {@inheritDoc}
@@ -79,6 +86,16 @@ public class LedSettingNormalState extends AbstractCharacteristic implements Par
         @Override
         public LedSettingNormalState[] newArray(int size) {
             return new LedSettingNormalState[size];
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public LedSettingNormalState createFromByteArray(byte[] values) {
+            BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(LED_SETTING_NORMAL_STATE_CHARACTERISTIC, 0, 0);
+            bluetoothGattCharacteristic.setValue(values);
+            return new LedSettingNormalState(bluetoothGattCharacteristic);
         }
 
     };
@@ -113,6 +130,30 @@ public class LedSettingNormalState extends AbstractCharacteristic implements Par
         mIntensityOfLedRed = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 2);
         mIntensityOfLedGreen = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 3);
         mIntensityOfLedBlue = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 4);
+    }
+
+    /**
+     * Constructor from values
+     *
+     * @param displayRule         one of {@link #DISPLAY_RULE_NORMALLY_OFF}
+     *                            {@link #DISPLAY_RULE_NORMALLY_ON}
+     *                            {@link #DISPLAY_RULE_TEMPERATURE_VALUE_SCALES}
+     *                            {@link #DISPLAY_RULE_RELATIVE_HUMIDITY_VALUE_SCALES}
+     *                            {@link #DISPLAY_RULE_AMBIENT_LIGHT_VALUE_SCALES}
+     *                            {@link #DISPLAY_RULE_BAROMETRIC_PRESSURE_VALUE_SCALES}
+     *                            {@link #DISPLAY_RULE_SOUND_NOISE_VALUE_SCALES}
+     *                            {@link #DISPLAY_RULE_ETVOC_VALUE_SCALES}
+     *                            {@link #DISPLAY_RULE_SI_VALUE_SCALES}
+     *                            {@link #DISPLAY_RULE_PGA_VALUE_SCALES}
+     * @param intensityOfLedRed   Intensity of LED (Red)
+     * @param intensityOfLedGreen Intensity of LED (Green)
+     * @param intensityOfLedBlue  Intensity of LED (Blue)
+     */
+    public LedSettingNormalState(int displayRule, int intensityOfLedRed, int intensityOfLedGreen, int intensityOfLedBlue) {
+        mDisplayRule = displayRule;
+        mIntensityOfLedRed = intensityOfLedRed;
+        mIntensityOfLedGreen = intensityOfLedGreen;
+        mIntensityOfLedBlue = intensityOfLedBlue;
     }
 
     /**
@@ -172,6 +213,20 @@ public class LedSettingNormalState extends AbstractCharacteristic implements Par
      */
     public int getIntensityOfLedBlue() {
         return mIntensityOfLedBlue;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public byte[] getBytes() {
+        byte[] data = new byte[5];
+        ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);
+        byteBuffer.putShort((short) mDisplayRule);
+        byteBuffer.put((byte) mIntensityOfLedRed);
+        byteBuffer.put((byte) mIntensityOfLedGreen);
+        byteBuffer.put((byte) mIntensityOfLedBlue);
+        return data;
     }
 
 }

@@ -6,6 +6,7 @@ import android.os.Parcel;
 import org.im97mori.ble.ad.AdvertisingDataConstants;
 import org.junit.Test;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -270,13 +271,13 @@ public class LedSettingEventStateTest {
     }
 
     @Test
-    public void test012() {
+    public void test011() {
         byte[] data = new byte[5];
         data[0] = (byte) ((LedSettingEventState.DISPLAY_RULE_BAROMETRIC_PRESSURE_EVENT_BIT) & 0xff);
         data[1] = (byte) ((LedSettingEventState.DISPLAY_RULE_BAROMETRIC_PRESSURE_EVENT_BIT >> 8) & 0xff);
-        data[2] = (byte) ((0xff) & 0xff);
-        data[3] = (byte) ((0xff) & 0xff);
-        data[4] = (byte) ((0x00) & 0xff);
+        data[2] = (byte) ((0x01) & 0xff);
+        data[3] = (byte) ((0x02) & 0xff);
+        data[4] = (byte) ((0x03) & 0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -291,5 +292,53 @@ public class LedSettingEventStateTest {
         assertEquals(result1.getIntensityOfLedRed(), result2.getIntensityOfLedRed());
         assertEquals(result1.getIntensityOfLedGreen(), result2.getIntensityOfLedGreen());
         assertEquals(result1.getIntensityOfLedBlue(), result2.getIntensityOfLedBlue());
+    }
+
+    @Test
+    public void test012() {
+        byte[] data = new byte[5];
+        data[0] = (byte) ((LedSettingEventState.DISPLAY_RULE_BAROMETRIC_PRESSURE_EVENT_BIT) & 0xff);
+        data[1] = (byte) ((LedSettingEventState.DISPLAY_RULE_BAROMETRIC_PRESSURE_EVENT_BIT >> 8) & 0xff);
+        data[2] = (byte) ((0x01) & 0xff);
+        data[3] = (byte) ((0x02) & 0xff);
+        data[4] = (byte) ((0x03) & 0xff);
+
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        bluetoothGattCharacteristic.setValue(data);
+
+        LedSettingEventState result1 = new LedSettingEventState(bluetoothGattCharacteristic);
+        byte[] resultData = result1.getBytes();
+        assertArrayEquals(data, resultData);
+    }
+
+    @Test
+    public void test013() {
+        int displayRule = LedSettingEventState.DISPLAY_RULE_PGA_EVENT_BIT;
+        int intensityOfLedRed = 0x00;
+        int intensityOfLedGreen = 0x01;
+        int intensityOfLedBlue = 0x02;
+
+        LedSettingEventState result1 = new LedSettingEventState(displayRule, intensityOfLedRed, intensityOfLedGreen, intensityOfLedBlue);
+        assertEquals(displayRule, result1.getDisplayRule());
+        assertEquals(intensityOfLedRed, result1.getIntensityOfLedRed());
+        assertEquals(intensityOfLedGreen, result1.getIntensityOfLedGreen());
+        assertEquals(intensityOfLedBlue, result1.getIntensityOfLedBlue());
+    }
+
+    @Test
+    public void test014() {
+        byte[] data = new byte[5];
+        data[0] = (byte) ((LedSettingEventState.DISPLAY_RULE_BAROMETRIC_PRESSURE_EVENT_BIT) & 0xff);
+        data[1] = (byte) ((LedSettingEventState.DISPLAY_RULE_BAROMETRIC_PRESSURE_EVENT_BIT >> 8) & 0xff);
+        data[2] = (byte) ((0x01) & 0xff);
+        data[3] = (byte) ((0x02) & 0xff);
+        data[4] = (byte) ((0x03) & 0xff);
+
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        bluetoothGattCharacteristic.setValue(data);
+
+        LedSettingEventState result1 = new LedSettingEventState(bluetoothGattCharacteristic);
+        LedSettingEventState result2 = LedSettingEventState.CREATOR.createFromByteArray(data);
+        assertArrayEquals(result1.getBytes(), result2.getBytes());
     }
 }

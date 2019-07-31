@@ -4,11 +4,18 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.im97mori.ble.ByteArrayCreater;
+
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
+import static org.im97mori.rbt.RbtConstants.CharacteristicUUID.REQUEST_ACCELERATION_MEMORY_INDEX_CHARACTERISTIC;
+
 /**
  * 2.3.2 Request acceleration memory index (Characteristics UUID: 0x5032)
  */
-@SuppressWarnings("WeakerAccess")
-public class RequestAccelerationMemoryIndex extends AbstractCharacteristic implements Parcelable {
+@SuppressWarnings({"WeakerAccess", "unused"})
+public class RequestAccelerationMemoryIndex extends AbstractRbtCharacteristic implements Parcelable {
 
     /**
      * 0x00: Earthquake data
@@ -21,9 +28,15 @@ public class RequestAccelerationMemoryIndex extends AbstractCharacteristic imple
     public static final int ACCELERATION_DATA_TYPE_VIBRATION_DATA = 0x01;
 
     /**
-     * @see Creator
+     * 0x02: Logger data
      */
-    public static final Creator<RequestAccelerationMemoryIndex> CREATOR = new Creator<RequestAccelerationMemoryIndex>() {
+    public static final int ACCELERATION_DATA_TYPE_LOGGER_DATA = 0x02;
+
+
+    /**
+     * @see ByteArrayCreater
+     */
+    public static final ByteArrayCreater<RequestAccelerationMemoryIndex> CREATOR = new ByteArrayCreater<RequestAccelerationMemoryIndex>() {
 
         /**
          * {@inheritDoc}
@@ -39,6 +52,16 @@ public class RequestAccelerationMemoryIndex extends AbstractCharacteristic imple
         @Override
         public RequestAccelerationMemoryIndex[] newArray(int size) {
             return new RequestAccelerationMemoryIndex[size];
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public RequestAccelerationMemoryIndex createFromByteArray(byte[] values) {
+            BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(REQUEST_ACCELERATION_MEMORY_INDEX_CHARACTERISTIC, 0, 0);
+            bluetoothGattCharacteristic.setValue(values);
+            return new RequestAccelerationMemoryIndex(bluetoothGattCharacteristic);
         }
 
     };
@@ -73,6 +96,21 @@ public class RequestAccelerationMemoryIndex extends AbstractCharacteristic imple
         mRequestAccelerationMemoryIndex = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 1);
         mRequestPageStart = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT16, 2);
         mRequestPageEnd = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT16, 4);
+    }
+
+    /**
+     * Constructor from value
+     *
+     * @param accelerationDataType           Acceleration data type
+     * @param requestAccelerationMemoryIndex Request acceleration memory index
+     * @param requestPageStart               Request page (Start)
+     * @param requestPageEnd                 Request page (End)
+     */
+    public RequestAccelerationMemoryIndex(int accelerationDataType, int requestAccelerationMemoryIndex, int requestPageStart, int requestPageEnd) {
+        mAccelerationDataType = accelerationDataType;
+        mRequestAccelerationMemoryIndex = requestAccelerationMemoryIndex;
+        mRequestPageStart = requestPageStart;
+        mRequestPageEnd = requestPageEnd;
     }
 
     /**
@@ -132,6 +170,20 @@ public class RequestAccelerationMemoryIndex extends AbstractCharacteristic imple
      */
     public int getRequestPageEnd() {
         return mRequestPageEnd;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public byte[] getBytes() {
+        byte[] data = new byte[6];
+        ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);
+        byteBuffer.put((byte) mAccelerationDataType);
+        byteBuffer.put((byte) mRequestAccelerationMemoryIndex);
+        byteBuffer.putShort((short) mRequestPageStart);
+        byteBuffer.putShort((short) mRequestPageEnd);
+        return data;
     }
 
 }

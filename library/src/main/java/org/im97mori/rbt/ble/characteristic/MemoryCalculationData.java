@@ -4,6 +4,12 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.im97mori.ble.ByteArrayCreater;
+
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
+import static org.im97mori.rbt.RbtConstants.CharacteristicUUID.MEMORY_CALCULATION_DATA_CHARACTERISTIC;
 import static org.im97mori.rbt.RbtConstants.OutputRange.OUTPUT_RANGE_DISCOMFORT_INDEX_UNIT;
 import static org.im97mori.rbt.RbtConstants.OutputRange.OUTPUT_RANGE_HEAT_STROKE_UNIT;
 import static org.im97mori.rbt.RbtConstants.OutputRange.OUTPUT_RANGE_PGA_UNIT;
@@ -14,7 +20,7 @@ import static org.im97mori.rbt.RbtConstants.OutputRange.OUTPUT_RANGE_SI_VALUE_UN
  * 2.1.5 Memory calculation data (Characteristics UUID: 0x500B)
  */
 @SuppressWarnings("WeakerAccess")
-public class MemoryCalculationData extends AbstractCharacteristic implements Parcelable {
+public class MemoryCalculationData extends AbstractRbtCharacteristic implements Parcelable {
 
     /**
      * Memory index data error
@@ -22,9 +28,9 @@ public class MemoryCalculationData extends AbstractCharacteristic implements Par
     public static final int DATA_ERROR_BIT = 0b10000000_00000000_00000000_00000000;
 
     /**
-     * @see Creator
+     * @see ByteArrayCreater
      */
-    public static final Creator<MemoryCalculationData> CREATOR = new Creator<MemoryCalculationData>() {
+    public static final ByteArrayCreater<MemoryCalculationData> CREATOR = new ByteArrayCreater<MemoryCalculationData>() {
 
         /**
          * {@inheritDoc}
@@ -40,6 +46,16 @@ public class MemoryCalculationData extends AbstractCharacteristic implements Par
         @Override
         public MemoryCalculationData[] newArray(int size) {
             return new MemoryCalculationData[size];
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public MemoryCalculationData createFromByteArray(byte[] values) {
+            BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(MEMORY_CALCULATION_DATA_CHARACTERISTIC, 0, 0);
+            bluetoothGattCharacteristic.setValue(values);
+            return new MemoryCalculationData(bluetoothGattCharacteristic);
         }
 
     };
@@ -220,6 +236,23 @@ public class MemoryCalculationData extends AbstractCharacteristic implements Par
      */
     public double getSeismicIntensityWithUnit() {
         return mSeismicIntensity * OUTPUT_RANGE_SEISMIC_INTENSITY_UNIT;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public byte[] getBytes() {
+        byte[] data = new byte[15];
+        ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);
+        byteBuffer.putInt(mMemoryIndex);
+        byteBuffer.putShort((short) mDiscomfortIndex);
+        byteBuffer.putShort((short) mHeatStroke);
+        byteBuffer.put((byte) mVibrationInformation);
+        byteBuffer.putShort((short) mSiValue);
+        byteBuffer.putShort((short) mPga);
+        byteBuffer.putShort((short) mSeismicIntensity);
+        return data;
     }
 
 }

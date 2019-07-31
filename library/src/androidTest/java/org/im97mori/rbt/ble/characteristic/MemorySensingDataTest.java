@@ -6,6 +6,7 @@ import android.os.Parcel;
 import org.im97mori.ble.ad.AdvertisingDataConstants;
 import org.junit.Test;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -191,5 +192,69 @@ public class MemorySensingDataTest {
         assertEquals(result1.getSoundNoise(), result2.getSoundNoise());
         assertEquals(result1.getEtvoc(), result2.getEtvoc());
         assertEquals(result1.getEco2(), result2.getEco2());
+    }
+
+    @Test
+    public void test005() {
+        byte[] data = new byte[20];
+        data[ 0] = (byte) ((0x00) & 0xff); // Memory index
+        data[ 1] = (byte) ((0x00) & 0xff); // Memory index
+        data[ 2] = (byte) ((0x00) & 0xff); // Memory index
+        data[ 3] = (byte) ((0x80) & 0xff); // Memory index
+        data[ 4] = (byte) 0xd4; // Temperature
+        data[ 5] = (byte) 0x30; // Temperature
+        data[ 6] = (byte) 0x10; // Relative humidity
+        data[ 7] = (byte) 0x27; // Relative humidity
+        data[ 8] = (byte) 0x30; // Ambient light
+        data[ 9] = (byte) 0x75; // Ambient light
+        data[10] = (byte) 0xe0; // Barometric pressure
+        data[11] = (byte) 0xc8; // Barometric pressure
+        data[12] = (byte) 0x10; // Barometric pressure
+        data[13] = (byte) 0x00; // Barometric pressure
+        data[14] = (byte) 0xe0; // Sound noise
+        data[15] = (byte) 0x2e; // Sound noise
+        data[16] = (byte) 0xff; // eTVOC
+        data[17] = (byte) 0x7f; // eTVOC
+        data[18] = (byte) 0xff; // eCO2
+        data[19] = (byte) 0x7f; // eCO2
+
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        bluetoothGattCharacteristic.setValue(data);
+
+        MemorySensingData result1 = new MemorySensingData(bluetoothGattCharacteristic);
+        byte[] resultData = result1.getBytes();
+        assertArrayEquals(data, resultData);
+    }
+
+    @Test
+    public void test006() {
+        byte[] data = new byte[20];
+        data[ 0] = (byte) ((0x00) & 0xff); // Memory index
+        data[ 1] = (byte) ((0x00) & 0xff); // Memory index
+        data[ 2] = (byte) ((0x00) & 0xff); // Memory index
+        data[ 3] = (byte) ((0x80) & 0xff); // Memory index
+        data[ 4] = (byte) 0xd4; // Temperature
+        data[ 5] = (byte) 0x30; // Temperature
+        data[ 6] = (byte) 0x10; // Relative humidity
+        data[ 7] = (byte) 0x27; // Relative humidity
+        data[ 8] = (byte) 0x30; // Ambient light
+        data[ 9] = (byte) 0x75; // Ambient light
+        data[10] = (byte) 0xe0; // Barometric pressure
+        data[11] = (byte) 0xc8; // Barometric pressure
+        data[12] = (byte) 0x10; // Barometric pressure
+        data[13] = (byte) 0x00; // Barometric pressure
+        data[14] = (byte) 0xe0; // Sound noise
+        data[15] = (byte) 0x2e; // Sound noise
+        data[16] = (byte) 0xff; // eTVOC
+        data[17] = (byte) 0x7f; // eTVOC
+        data[18] = (byte) 0xff; // eCO2
+        data[19] = (byte) 0x7f; // eCO2
+
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        bluetoothGattCharacteristic.setValue(data);
+
+        MemorySensingData result1 = new MemorySensingData(bluetoothGattCharacteristic);
+        MemorySensingData result2 = MemorySensingData.CREATOR.createFromByteArray(data);
+        assertArrayEquals(result1.getBytes(), result2.getBytes());
     }
 }

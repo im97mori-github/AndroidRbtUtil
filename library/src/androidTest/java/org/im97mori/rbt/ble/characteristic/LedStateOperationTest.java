@@ -6,6 +6,7 @@ import android.os.Parcel;
 import org.im97mori.ble.ad.AdvertisingDataConstants;
 import org.junit.Test;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class LedStateOperationTest {
@@ -42,12 +43,11 @@ public class LedStateOperationTest {
         assertEquals(LedStateOperation.CONNECTION_GREEN, ledStateOperation.getConnection());
     }
 
-
     @Test
-    public void test012() {
+    public void test003() {
         byte[] data = new byte[3];
         data[0] = (byte) ((LedStateOperation.START_UP_BLUE) & 0xff);
-        data[1] = (byte) ((LedStateOperation.ERROR_RED) & 0xff);
+        data[1] = (byte) ((LedStateOperation.ERROR_NONE) & 0xff);
         data[2] = (byte) ((LedStateOperation.CONNECTION_GREEN) & 0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
@@ -62,5 +62,48 @@ public class LedStateOperationTest {
         assertEquals(result1.getStartUp(), result2.getStartUp());
         assertEquals(result1.getError(), result2.getError());
         assertEquals(result1.getConnection(), result2.getConnection());
+    }
+
+    @Test
+    public void test004() {
+        byte[] data = new byte[3];
+        data[0] = (byte) ((LedStateOperation.START_UP_BLUE) & 0xff);
+        data[1] = (byte) ((LedStateOperation.ERROR_NONE) & 0xff);
+        data[2] = (byte) ((LedStateOperation.CONNECTION_GREEN) & 0xff);
+
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        bluetoothGattCharacteristic.setValue(data);
+
+        LedStateOperation result1 = new LedStateOperation(bluetoothGattCharacteristic);
+        byte[] resultData = result1.getBytes();
+        assertArrayEquals(data, resultData);
+    }
+
+    @Test
+    public void test005() {
+        int startUp = LedStateOperation.START_UP_BLUE;
+        int error = LedStateOperation.ERROR_NONE;
+        int connection = LedStateOperation.CONNECTION_GREEN;
+
+        LedStateOperation result1 = new LedStateOperation(startUp, error, connection);
+        assertEquals(startUp, result1.getStartUp());
+        assertEquals(error, result1.getError());
+        assertEquals(connection, result1.getConnection());
+    }
+
+
+    @Test
+    public void test006() {
+        byte[] data = new byte[3];
+        data[0] = (byte) ((LedStateOperation.START_UP_BLUE) & 0xff);
+        data[1] = (byte) ((LedStateOperation.ERROR_NONE) & 0xff);
+        data[2] = (byte) ((LedStateOperation.CONNECTION_GREEN) & 0xff);
+
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        bluetoothGattCharacteristic.setValue(data);
+
+        LedStateOperation result1 = new LedStateOperation(bluetoothGattCharacteristic);
+        LedStateOperation result2 = LedStateOperation.CREATOR.createFromByteArray(data);
+        assertArrayEquals(result1.getBytes(), result2.getBytes());
     }
 }

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/read_led_setting_normal_state"
+        android:title="@string/menu_read_5111" />
+    <item
+        android:id="@+id/write_led_setting_normal_state"
+        android:title="@string/menu_write_5111" />
+    <item
+        android:id="@+id/read_led_setting_event_state"
+        android:title="@string/menu_read_5112" />
+    <item
+        android:id="@+id/write_led_setting_event_state"
+        android:title="@string/menu_write_5112" />
+    <item
+        android:id="@+id/read_led_state_operation"
+        android:title="@string/menu_read_5113" />
+    <item
+        android:id="@+id/write_led_state_operation"
+        android:title="@string/menu_write_5113" />
+    <item
+        android:id="@+id/read_installation_offset"
+        android:title="@string/menu_read_5114" />
+    <item
+        android:id="@+id/write_installation_offset"
+        android:title="@string/menu_write_5114" />
+    <item
+        android:id="@+id/read_advertising_setting"
+        android:title="@string/menu_read_5115" />
+    <item
+        android:id="@+id/write_advertising_setting"
+        android:title="@string/menu_write_5115" />
+    <item
+        android:id="@+id/write_memory_reset"
+        android:title="@string/menu_write_5116" />
+    <item
+        android:id="@+id/read_mode_change"
+        android:title="@string/menu_read_5117" />
+    <item
+        android:id="@+id/write_mode_change"
+        android:title="@string/menu_write_5117" />
+    <item
+        android:id="@+id/write_acceleration_logger_control"
+        android:title="@string/menu_write_5118" />
+    <item
+        android:id="@+id/read_acceleration_logger_status"
+        android:title="@string/menu_read_5119" />
+</menu>

@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import java.math.BigInteger;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class MemoryStatusTest {
@@ -113,13 +114,13 @@ public class MemoryStatusTest {
         byte[] data = new byte[11];
         data[ 0] = (byte) ((MemoryStatus.STATUS_ERROR) & 0xff);
         data[ 1] = (byte) ((0x00) & 0xff);
-        data[ 2] = (byte) ((0xff) & 0xff);
-        data[ 3] = (byte) ((0xff) & 0xff);
-        data[ 4] = (byte) ((0xff) & 0xff);
-        data[ 5] = (byte) ((0xff) & 0xff);
-        data[ 6] = (byte) ((0xff) & 0xff);
-        data[ 7] = (byte) ((0xff) & 0xff);
-        data[ 8] = (byte) ((0xff) & 0xff);
+        data[ 2] = (byte) ((0x1f) & 0xff);
+        data[ 3] = (byte) ((0x2f) & 0xff);
+        data[ 4] = (byte) ((0x3f) & 0xff);
+        data[ 5] = (byte) ((0x4f) & 0xff);
+        data[ 6] = (byte) ((0x5f) & 0xff);
+        data[ 7] = (byte) ((0x6f) & 0xff);
+        data[ 8] = (byte) ((0x7f) & 0xff);
         data[ 9] = (byte) ((0x10) & 0xff);
         data[10] = (byte) ((0x0e) & 0xff);
 
@@ -135,5 +136,84 @@ public class MemoryStatusTest {
         assertEquals(result1.getStatus(), result2.getStatus());
         assertEquals(result1.getTimeCounter(), result2.getTimeCounter());
         assertEquals(result1.getMemoryStorageInterval(), result2.getMemoryStorageInterval());
+    }
+
+    @Test
+    public void test006() {
+        byte[] data = new byte[11];
+        data[ 0] = (byte) ((MemoryStatus.STATUS_ERROR) & 0xff);
+        data[ 1] = (byte) ((0x00) & 0xff);
+        data[ 2] = (byte) ((0x1f) & 0xff);
+        data[ 3] = (byte) ((0x2f) & 0xff);
+        data[ 4] = (byte) ((0x3f) & 0xff);
+        data[ 5] = (byte) ((0x4f) & 0xff);
+        data[ 6] = (byte) ((0x5f) & 0xff);
+        data[ 7] = (byte) ((0x6f) & 0xff);
+        data[ 8] = (byte) ((0x7f) & 0xff);
+        data[ 9] = (byte) ((0x10) & 0xff);
+        data[10] = (byte) ((0x0e) & 0xff);
+
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        bluetoothGattCharacteristic.setValue(data);
+
+        MemoryStatus result1 = new MemoryStatus(bluetoothGattCharacteristic);
+        byte[] resultData = result1.getBytes();
+        assertArrayEquals(data, resultData);
+    }
+
+    @Test
+    public void test007() {
+        byte[] data = new byte[11];
+        data[ 0] = (byte) ((MemoryStatus.STATUS_ERROR) & 0xff);
+        data[ 1] = (byte) ((0x00) & 0xff);
+        data[ 2] = (byte) ((0x1f) & 0xff);
+        data[ 3] = (byte) ((0x2f) & 0xff);
+        data[ 4] = (byte) ((0x3f) & 0xff);
+        data[ 5] = (byte) ((0x4f) & 0xff);
+        data[ 6] = (byte) ((0x5f) & 0xff);
+        data[ 7] = (byte) ((0x6f) & 0xff);
+        data[ 8] = (byte) ((0x7f) & 0xff);
+        data[ 9] = (byte) ((0x10) & 0xff);
+        data[10] = (byte) ((0x0e) & 0xff);
+
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        bluetoothGattCharacteristic.setValue(data);
+
+        MemoryStatus result1 = new MemoryStatus(bluetoothGattCharacteristic);
+        MemoryStatus result2 = MemoryStatus.CREATOR.createFromByteArray(data);
+        assertArrayEquals(result1.getBytes(), result2.getBytes());
+    }
+
+    @Test
+    public void test008() {
+        byte[] data = new byte[11];
+        data[ 0] = (byte) ((MemoryStatus.STATUS_ERROR) & 0xff);
+        data[ 1] = (byte) ((0x00) & 0xff);
+        data[ 8] = (byte) ((0x7f) & 0xff);
+        data[ 9] = (byte) ((0x10) & 0xff);
+        data[10] = (byte) ((0x0e) & 0xff);
+
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        bluetoothGattCharacteristic.setValue(data);
+
+        MemoryStatus result1 = new MemoryStatus(bluetoothGattCharacteristic);
+        MemoryStatus result2 = MemoryStatus.CREATOR.createFromByteArray(data);
+        assertArrayEquals(result1.getBytes(), result2.getBytes());
+    }
+
+    @Test
+    public void test009() {
+        byte[] data = new byte[11];
+        data[ 0] = (byte) ((MemoryStatus.STATUS_ERROR) & 0xff);
+        data[ 1] = (byte) ((0x00) & 0xff);
+        data[ 9] = (byte) ((0x10) & 0xff);
+        data[10] = (byte) ((0x0e) & 0xff);
+
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        bluetoothGattCharacteristic.setValue(data);
+
+        MemoryStatus result1 = new MemoryStatus(bluetoothGattCharacteristic);
+        MemoryStatus result2 = MemoryStatus.CREATOR.createFromByteArray(data);
+        assertArrayEquals(result1.getBytes(), result2.getBytes());
     }
 }

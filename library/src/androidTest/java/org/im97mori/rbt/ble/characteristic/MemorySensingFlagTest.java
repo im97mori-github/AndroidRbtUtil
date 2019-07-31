@@ -6,6 +6,7 @@ import android.os.Parcel;
 import org.im97mori.ble.ad.AdvertisingDataConstants;
 import org.junit.Test;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -481,27 +482,26 @@ public class MemorySensingFlagTest extends AbstractSensingFlagTest {
         assertFalse(result.isEco2BaseDifferenceThresholdLowerReached());
     }
 
-
     @Test
     public void test_004() {
         byte[] data1 = new byte[18];
-        data1[ 0] = (byte) ((0x00) & 0xff); // Memory index
-        data1[ 1] = (byte) ((0x00) & 0xff); // Memory index
-        data1[ 2] = (byte) ((0x00) & 0xff); // Memory index
-        data1[ 3] = (byte) ((0x80) & 0xff); // Memory index
-        data1[ 4] = (byte) 0x00; // Temperature flag
+        data1[ 0] = (byte) ((0x10) & 0xff); // Memory index
+        data1[ 1] = (byte) ((0x20) & 0xff); // Memory index
+        data1[ 2] = (byte) ((0x30) & 0xff); // Memory index
+        data1[ 3] = (byte) ((0x40) & 0xff); // Memory index
+        data1[ 4] = (byte) 0x50; // Temperature flag
         data1[ 5] = (byte) 0x00; // Temperature flag
-        data1[ 6] = (byte) 0x00; // Relative humidity flag
+        data1[ 6] = (byte) 0x60; // Relative humidity flag
         data1[ 7] = (byte) 0x00; // Relative humidity flag
-        data1[ 8] = (byte) 0x00; // Ambient light flag
+        data1[ 8] = (byte) 0x70; // Ambient light flag
         data1[ 9] = (byte) 0x00; // Ambient light flag
-        data1[10] = (byte) 0x00; // Barometric pressure flag
+        data1[10] = (byte) 0x80; // Barometric pressure flag
         data1[11] = (byte) 0x00; // Barometric pressure flag
-        data1[12] = (byte) 0x00; // Sound noise flag
+        data1[12] = (byte) 0x90; // Sound noise flag
         data1[13] = (byte) 0x00; // Sound noise flag
-        data1[14] = (byte) 0x00; // eTVOC flag
+        data1[14] = (byte) 0xa0; // eTVOC flag
         data1[15] = (byte) 0x00; // eTVOC flag
-        data1[16] = (byte) 0x00; // eCO2 flag
+        data1[16] = (byte) 0xb0; // eCO2 flag
         data1[17] = (byte) 0x00; // eCO2 flag
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
@@ -521,5 +521,65 @@ public class MemorySensingFlagTest extends AbstractSensingFlagTest {
         assertEquals(result2.getSoundNoiseFlag(), result1.getSoundNoiseFlag());
         assertEquals(result2.getEtvocFlag(), result1.getEtvocFlag());
         assertEquals(result2.getEco2Flag(), result1.getEco2Flag());
+    }
+
+    @Test
+    public void test_005() {
+        byte[] data1 = new byte[18];
+        data1[ 0] = (byte) ((0x10) & 0xff); // Memory index
+        data1[ 1] = (byte) ((0x20) & 0xff); // Memory index
+        data1[ 2] = (byte) ((0x30) & 0xff); // Memory index
+        data1[ 3] = (byte) ((0x40) & 0xff); // Memory index
+        data1[ 4] = (byte) 0x50; // Temperature flag
+        data1[ 5] = (byte) 0x00; // Temperature flag
+        data1[ 6] = (byte) 0x60; // Relative humidity flag
+        data1[ 7] = (byte) 0x00; // Relative humidity flag
+        data1[ 8] = (byte) 0x70; // Ambient light flag
+        data1[ 9] = (byte) 0x00; // Ambient light flag
+        data1[10] = (byte) 0x80; // Barometric pressure flag
+        data1[11] = (byte) 0x00; // Barometric pressure flag
+        data1[12] = (byte) 0x90; // Sound noise flag
+        data1[13] = (byte) 0x00; // Sound noise flag
+        data1[14] = (byte) 0xa0; // eTVOC flag
+        data1[15] = (byte) 0x00; // eTVOC flag
+        data1[16] = (byte) 0xb0; // eCO2 flag
+        data1[17] = (byte) 0x00; // eCO2 flag
+
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        bluetoothGattCharacteristic.setValue(data1);
+
+        MemorySensingFlag result1 = new MemorySensingFlag(bluetoothGattCharacteristic);
+        byte[] resultData = result1.getBytes();
+        assertArrayEquals(data1, resultData);
+    }
+
+    @Test
+    public void test_006() {
+        byte[] data1 = new byte[18];
+        data1[ 0] = (byte) ((0x10) & 0xff); // Memory index
+        data1[ 1] = (byte) ((0x20) & 0xff); // Memory index
+        data1[ 2] = (byte) ((0x30) & 0xff); // Memory index
+        data1[ 3] = (byte) ((0x40) & 0xff); // Memory index
+        data1[ 4] = (byte) 0x50; // Temperature flag
+        data1[ 5] = (byte) 0x00; // Temperature flag
+        data1[ 6] = (byte) 0x60; // Relative humidity flag
+        data1[ 7] = (byte) 0x00; // Relative humidity flag
+        data1[ 8] = (byte) 0x70; // Ambient light flag
+        data1[ 9] = (byte) 0x00; // Ambient light flag
+        data1[10] = (byte) 0x80; // Barometric pressure flag
+        data1[11] = (byte) 0x00; // Barometric pressure flag
+        data1[12] = (byte) 0x90; // Sound noise flag
+        data1[13] = (byte) 0x00; // Sound noise flag
+        data1[14] = (byte) 0xa0; // eTVOC flag
+        data1[15] = (byte) 0x00; // eTVOC flag
+        data1[16] = (byte) 0xb0; // eCO2 flag
+        data1[17] = (byte) 0x00; // eCO2 flag
+
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        bluetoothGattCharacteristic.setValue(data1);
+
+        MemorySensingFlag result1 = new MemorySensingFlag(bluetoothGattCharacteristic);
+        MemorySensingFlag result2 = MemorySensingFlag.CREATOR.createFromByteArray(data1);
+        assertArrayEquals(result1.getBytes(), result2.getBytes());
     }
 }

@@ -6,6 +6,7 @@ import android.os.Parcel;
 import org.im97mori.ble.ad.AdvertisingDataConstants;
 import org.junit.Test;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class MountingOrientationTest {
@@ -98,4 +99,31 @@ public class MountingOrientationTest {
 
         assertEquals(result1.getMountingOrientation(), result2.getMountingOrientation());
     }
+
+    @Test
+    public void test8() {
+        byte[] data = new byte[1];
+        data[0] = MountingOrientation.MOUNTING_ORIENTATION_POSITION_6;
+
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        bluetoothGattCharacteristic.setValue(data);
+
+        MountingOrientation result1 = new MountingOrientation(bluetoothGattCharacteristic);
+        byte[] resultData = result1.getBytes();
+        assertArrayEquals(data, resultData);
+    }
+
+    @Test
+    public void test9() {
+        byte[] data = new byte[1];
+        data[0] = MountingOrientation.MOUNTING_ORIENTATION_POSITION_6;
+
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        bluetoothGattCharacteristic.setValue(data);
+
+        MountingOrientation result1 = new MountingOrientation(bluetoothGattCharacteristic);
+        MountingOrientation result2 = MountingOrientation.CREATOR.createFromByteArray(data);
+        assertArrayEquals(result1.getBytes(), result2.getBytes());
+    }
+
 }

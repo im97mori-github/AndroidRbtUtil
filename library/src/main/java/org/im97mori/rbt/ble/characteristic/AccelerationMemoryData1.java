@@ -4,6 +4,12 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.im97mori.ble.ByteArrayCreater;
+
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
+import static org.im97mori.rbt.RbtConstants.CharacteristicUUID.ACCELERATION_MEMORY_DATA_CHARACTERISTIC;
 import static org.im97mori.rbt.RbtConstants.OutputRange.OUTPUT_RANGE_ACCELERATION_UNIT;
 import static org.im97mori.rbt.RbtConstants.OutputRange.OUTPUT_RANGE_PGA_UNIT;
 import static org.im97mori.rbt.RbtConstants.OutputRange.OUTPUT_RANGE_RELATIVE_HUMIDITY_UNIT;
@@ -15,7 +21,7 @@ import static org.im97mori.rbt.RbtConstants.OutputRange.OUTPUT_RANGE_TEMPERATURE
  * 2.3.5 Acceleration memory data [Data] (Characteristics UUID: 0x5034)
  */
 @SuppressWarnings("WeakerAccess")
-public class AccelerationMemoryData1 extends AbstractCharacteristic implements Parcelable {
+public class AccelerationMemoryData1 extends AbstractRbtCharacteristic implements Parcelable {
 
     /**
      * Total transfer count data error
@@ -28,9 +34,9 @@ public class AccelerationMemoryData1 extends AbstractCharacteristic implements P
     public static final int ACCELERATION_LOGGER_MODE_FIXED_VALUE = 0x0000;
 
     /**
-     * @see Creator
+     * @see ByteArrayCreater
      */
-    public static final Creator<AccelerationMemoryData1> CREATOR = new Creator<AccelerationMemoryData1>() {
+    public static final ByteArrayCreater<AccelerationMemoryData1> CREATOR = new ByteArrayCreater<AccelerationMemoryData1>() {
 
         /**
          * {@inheritDoc}
@@ -46,6 +52,16 @@ public class AccelerationMemoryData1 extends AbstractCharacteristic implements P
         @Override
         public AccelerationMemoryData1[] newArray(int size) {
             return new AccelerationMemoryData1[size];
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public AccelerationMemoryData1 createFromByteArray(byte[] values) {
+            BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(ACCELERATION_MEMORY_DATA_CHARACTERISTIC, 0, 0);
+            bluetoothGattCharacteristic.setValue(values);
+            return new AccelerationMemoryData1(bluetoothGattCharacteristic);
         }
 
     };
@@ -292,6 +308,26 @@ public class AccelerationMemoryData1 extends AbstractCharacteristic implements P
      */
     public double getRelativeHumidityRh() {
         return mRelativeHumidity * OUTPUT_RANGE_RELATIVE_HUMIDITY_UNIT;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public byte[] getBytes() {
+        byte[] data = new byte[20];
+        ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);
+        byteBuffer.putShort((short) mTotalTransferCount);
+        byteBuffer.putShort((short) mPageNumber);
+        byteBuffer.putShort((short) mSiValue);
+        byteBuffer.putShort((short) mPga);
+        byteBuffer.putShort((short) mSeismicIntensity);
+        byteBuffer.putShort((short) mMaximumAccelerationXAxis);
+        byteBuffer.putShort((short) mMaximumAccelerationYAxis);
+        byteBuffer.putShort((short) mMaximumAccelerationZAxis);
+        byteBuffer.putShort((short) mTemperature);
+        byteBuffer.putShort((short) mRelativeHumidity);
+        return data;
     }
 
 }

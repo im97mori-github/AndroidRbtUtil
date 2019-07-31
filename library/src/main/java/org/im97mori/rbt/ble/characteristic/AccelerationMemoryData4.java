@@ -4,13 +4,19 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.im97mori.ble.ByteArrayCreater;
+
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
+import static org.im97mori.rbt.RbtConstants.CharacteristicUUID.ACCELERATION_MEMORY_DATA_CHARACTERISTIC;
 import static org.im97mori.rbt.RbtConstants.OutputRange.OUTPUT_RANGE_ACCELERATION_UNIT;
 
 /**
  * 2.3.5 Acceleration memory data [Data] (Characteristics UUID: 0x5034)
  */
 @SuppressWarnings("WeakerAccess")
-public class AccelerationMemoryData4 extends AbstractCharacteristic implements Parcelable {
+public class AccelerationMemoryData4 extends AbstractRbtCharacteristic implements Parcelable {
 
     /**
      * Total transfer count data error
@@ -18,9 +24,9 @@ public class AccelerationMemoryData4 extends AbstractCharacteristic implements P
     public static final int DATA_ERROR_BIT = 0b10000000_00000000;
 
     /**
-     * @see Creator
+     * @see ByteArrayCreater
      */
-    public static final Creator<AccelerationMemoryData4> CREATOR = new Creator<AccelerationMemoryData4>() {
+    public static final ByteArrayCreater<AccelerationMemoryData4> CREATOR = new ByteArrayCreater<AccelerationMemoryData4>() {
 
         /**
          * {@inheritDoc}
@@ -37,6 +43,17 @@ public class AccelerationMemoryData4 extends AbstractCharacteristic implements P
         public AccelerationMemoryData4[] newArray(int size) {
             return new AccelerationMemoryData4[size];
         }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public AccelerationMemoryData4 createFromByteArray(byte[] values) {
+            BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(ACCELERATION_MEMORY_DATA_CHARACTERISTIC, 0, 0);
+            bluetoothGattCharacteristic.setValue(values);
+            return new AccelerationMemoryData4(bluetoothGattCharacteristic);
+        }
+
     };
 
     /**
@@ -288,6 +305,26 @@ public class AccelerationMemoryData4 extends AbstractCharacteristic implements P
      */
     public double getAccelerationZAxis3Gal() {
         return mAccelerationZAxis3 * OUTPUT_RANGE_ACCELERATION_UNIT;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public byte[] getBytes() {
+        byte[] data = new byte[20];
+        ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);
+        byteBuffer.putShort((short) mTotalTransferCount);
+        byteBuffer.putShort((short) mAccelerationXAxis1);
+        byteBuffer.putShort((short) mAccelerationYAxis1);
+        byteBuffer.putShort((short) mAccelerationZAxis1);
+        byteBuffer.putShort((short) mAccelerationXAxis2);
+        byteBuffer.putShort((short) mAccelerationYAxis2);
+        byteBuffer.putShort((short) mAccelerationZAxis2);
+        byteBuffer.putShort((short) mAccelerationXAxis3);
+        byteBuffer.putShort((short) mAccelerationYAxis3);
+        byteBuffer.putShort((short) mAccelerationZAxis3);
+        return data;
     }
 
 }

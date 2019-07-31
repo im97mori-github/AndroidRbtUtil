@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/read_model_number_string"
+        android:title="@string/menu_read_2a24" />
+    <item
+        android:id="@+id/read_serial_number_string"
+        android:title="@string/menu_read_2a25" />
+    <item
+        android:id="@+id/read_firmware_revision_string"
+        android:title="@string/menu_read_2a26" />
+    <item
+        android:id="@+id/read_hardware_revision_string"
+        android:title="@string/menu_read_2a27" />
+    <item
+        android:id="@+id/read_manufacturer_name_string"
+        android:title="@string/menu_read_2a28" />
+</menu>

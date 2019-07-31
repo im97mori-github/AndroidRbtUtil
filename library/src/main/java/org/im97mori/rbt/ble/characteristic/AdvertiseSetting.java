@@ -4,11 +4,18 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.im97mori.ble.ByteArrayCreater;
+
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
+import static org.im97mori.rbt.RbtConstants.CharacteristicUUID.ADVERTISE_SETTING_CHARACTERISTIC;
+
 /**
  * 2.4.5 Advertise setting (Characteristics UUID: 0x5115)
  */
 @SuppressWarnings("WeakerAccess")
-public class AdvertiseSetting extends AbstractCharacteristic implements Parcelable {
+public class AdvertiseSetting extends AbstractRbtCharacteristic implements Parcelable {
 
     /**
      * EventThreshold: 0.625ms
@@ -41,9 +48,9 @@ public class AdvertiseSetting extends AbstractCharacteristic implements Parcelab
     public static final int ADVERTISING_MODE_SERIAL_NUMBER = 0x05;
 
     /**
-     * @see Creator
+     * @see ByteArrayCreater
      */
-    public static final Creator<AdvertiseSetting> CREATOR = new Creator<AdvertiseSetting>() {
+    public static final ByteArrayCreater<AdvertiseSetting> CREATOR = new ByteArrayCreater<AdvertiseSetting>() {
 
         /**
          * {@inheritDoc}
@@ -59,6 +66,16 @@ public class AdvertiseSetting extends AbstractCharacteristic implements Parcelab
         @Override
         public AdvertiseSetting[] newArray(int size) {
             return new AdvertiseSetting[size];
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public AdvertiseSetting createFromByteArray(byte[] values) {
+            BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(ADVERTISE_SETTING_CHARACTERISTIC, 0, 0);
+            bluetoothGattCharacteristic.setValue(values);
+            return new AdvertiseSetting(bluetoothGattCharacteristic);
         }
 
     };
@@ -81,6 +98,21 @@ public class AdvertiseSetting extends AbstractCharacteristic implements Parcelab
     public AdvertiseSetting(BluetoothGattCharacteristic bluetoothGattCharacteristic) {
         mAdvertisingInterval = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT16, 0);
         mAdvertisingMode = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 2);
+    }
+
+    /**
+     * Constructor from value
+     *
+     * @param advertisingInterval Advertising interval
+     * @param advertisingMode     one of {@link #ADVERTISING_MODE_SENSOR_DATA}
+     *                            {@link #ADVERTISING_MODE_CALCULATION_DATA}
+     *                            {@link #ADVERTISING_MODE_SENSOR_DATA_AND_CALCULATION_DATA}
+     *                            {@link #ADVERTISING_MODE_SENSOR_FLAG_AND_CALCULATION_FLAG}
+     *                            {@link #ADVERTISING_MODE_SERIAL_NUMBER}
+     */
+    public AdvertiseSetting(int advertisingInterval, int advertisingMode) {
+        mAdvertisingInterval = advertisingInterval;
+        mAdvertisingMode = advertisingMode;
     }
 
     /**
@@ -129,6 +161,18 @@ public class AdvertiseSetting extends AbstractCharacteristic implements Parcelab
      */
     public int getAdvertisingMode() {
         return mAdvertisingMode;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public byte[] getBytes() {
+        byte[] data = new byte[3];
+        ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);
+        byteBuffer.putShort((short) mAdvertisingInterval);
+        byteBuffer.put((byte) mAdvertisingMode);
+        return data;
     }
 
 }

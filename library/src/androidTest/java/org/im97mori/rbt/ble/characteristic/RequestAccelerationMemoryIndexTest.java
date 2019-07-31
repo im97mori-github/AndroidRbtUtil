@@ -6,6 +6,7 @@ import android.os.Parcel;
 import org.im97mori.ble.ad.AdvertisingDataConstants;
 import org.junit.Test;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class RequestAccelerationMemoryIndexTest {
@@ -73,5 +74,55 @@ public class RequestAccelerationMemoryIndexTest {
         assertEquals(result1.getRequestAccelerationMemoryIndex(), result2.getRequestAccelerationMemoryIndex());
         assertEquals(result1.getRequestPageStart(), result2.getRequestPageStart());
         assertEquals(result1.getRequestPageEnd(), result2.getRequestPageEnd());
+    }
+
+    @Test
+    public void test004() {
+        byte[] data = new byte[6];
+        data[ 0] = (byte) ((RequestAccelerationMemoryIndex.ACCELERATION_DATA_TYPE_VIBRATION_DATA) & 0xff);
+        data[ 1] = (byte) ((0x0a) & 0xff);
+        data[ 2] = (byte) ((0x0f) & 0xff);
+        data[ 3] = (byte) ((0x01) & 0xff);
+        data[ 4] = (byte) ((0xff) & 0xff);
+        data[ 5] = (byte) ((0x01) & 0xff);
+
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        bluetoothGattCharacteristic.setValue(data);
+
+        RequestAccelerationMemoryIndex result1 = new RequestAccelerationMemoryIndex(bluetoothGattCharacteristic);
+        byte[] resultData = result1.getBytes();
+        assertArrayEquals(data, resultData);
+    }
+
+    @Test
+    public void test005() {
+        int accelerationDataType = RequestAccelerationMemoryIndex.ACCELERATION_DATA_TYPE_VIBRATION_DATA;
+        int requestAcceelrationMemoryIndex = 0x0a;
+        int requestPageStart = 0x0000;
+        int requestPageEnd = 0x01ff;
+
+        RequestAccelerationMemoryIndex resutl1 = new RequestAccelerationMemoryIndex(accelerationDataType, requestAcceelrationMemoryIndex, requestPageStart, requestPageEnd);
+        assertEquals(accelerationDataType, resutl1.getAccelerationDataType());
+        assertEquals(requestAcceelrationMemoryIndex, resutl1.getRequestAccelerationMemoryIndex());
+        assertEquals(requestPageStart, resutl1.getRequestPageStart());
+        assertEquals(requestPageEnd, resutl1.getRequestPageEnd());
+    }
+
+    @Test
+    public void test006() {
+        byte[] data = new byte[6];
+        data[ 0] = (byte) ((RequestAccelerationMemoryIndex.ACCELERATION_DATA_TYPE_VIBRATION_DATA) & 0xff);
+        data[ 1] = (byte) ((0x0a) & 0xff);
+        data[ 2] = (byte) ((0x0f) & 0xff);
+        data[ 3] = (byte) ((0x01) & 0xff);
+        data[ 4] = (byte) ((0xff) & 0xff);
+        data[ 5] = (byte) ((0x01) & 0xff);
+
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        bluetoothGattCharacteristic.setValue(data);
+
+        RequestAccelerationMemoryIndex result1 = new RequestAccelerationMemoryIndex(bluetoothGattCharacteristic);
+        RequestAccelerationMemoryIndex result2 = RequestAccelerationMemoryIndex.CREATOR.createFromByteArray(data);
+        assertArrayEquals(result1.getBytes(), result2.getBytes());
     }
 }

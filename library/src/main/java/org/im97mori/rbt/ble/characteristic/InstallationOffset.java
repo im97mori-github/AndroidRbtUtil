@@ -4,11 +4,18 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.im97mori.ble.ByteArrayCreater;
+
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
+import static org.im97mori.rbt.RbtConstants.CharacteristicUUID.INSTALLATION_OFFSET_CHARACTERISTIC;
+
 /**
  * 2.4.4 Installation offset (Characteristics UUID: 0x5114)
  */
 @SuppressWarnings("WeakerAccess")
-public class InstallationOffset extends AbstractCharacteristic implements Parcelable {
+public class InstallationOffset extends AbstractRbtCharacteristic implements Parcelable {
 
     /**
      * Bit4: Sound noise offset enable
@@ -61,9 +68,9 @@ public class InstallationOffset extends AbstractCharacteristic implements Parcel
     public static final double SOUND_NOISE_INSTALLATION_OFFSET_UNIT = 0.01d;
 
     /**
-     * @see Creator
+     * @see ByteArrayCreater
      */
-    public static final Creator<InstallationOffset> CREATOR = new Creator<InstallationOffset>() {
+    public static final ByteArrayCreater<InstallationOffset> CREATOR = new ByteArrayCreater<InstallationOffset>() {
 
         /**
          * {@inheritDoc}
@@ -79,6 +86,16 @@ public class InstallationOffset extends AbstractCharacteristic implements Parcel
         @Override
         public InstallationOffset[] newArray(int size) {
             return new InstallationOffset[size];
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public InstallationOffset createFromByteArray(byte[] values) {
+            BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(INSTALLATION_OFFSET_CHARACTERISTIC, 0, 0);
+            bluetoothGattCharacteristic.setValue(values);
+            return new InstallationOffset(bluetoothGattCharacteristic);
         }
 
     };
@@ -106,7 +123,7 @@ public class InstallationOffset extends AbstractCharacteristic implements Parcel
     /**
      * Barometric pressure installation offset
      */
-    private final int mBarometricPressureInstallOffset;
+    private final int mBarometricPressureInstallationOffset;
 
     /**
      * Sound noise installation offset
@@ -123,8 +140,31 @@ public class InstallationOffset extends AbstractCharacteristic implements Parcel
         mTemperatureInstallationOffset = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_SINT16, 1);
         mRelativeHumidityInstallationOffset = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_SINT16, 3);
         mAmbientLightInstallationGain = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_SINT16, 5);
-        mBarometricPressureInstallOffset = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_SINT32, 7);
+        mBarometricPressureInstallationOffset = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_SINT32, 7);
         mSoundNoiseInstallationOffset = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_SINT16, 11);
+    }
+
+    /**
+     * Constructor from values
+     *
+     * @param installationOffsetEnableDisable      combination of {@link #INSTALLATION_OFFSET_SOUND_NOISE_OFFSET_BIT}
+     *                                             {@link #INSTALLATION_OFFSET_BAROMETRIC_PRESSURE_OFFSET_BIT}
+     *                                             {@link #INSTALLATION_OFFSET_AMBIENT_LIGHT_GAIN_BIT}
+     *                                             {@link #INSTALLATION_OFFSET_RELATIVE_HUMIDITY_OFFSET_BIT}
+     *                                             {@link #INSTALLATION_OFFSET_TEMPERATURE_OFFSET_BIT}
+     * @param temperatureInstallationOffset        Temperature installation offset
+     * @param relativeHumidityInstallationOffset   Relative humidity installation offset
+     * @param ambientLightInstallationGain         Barometric pressure installation offset
+     * @param barometricPressureInstallationOffset Barometric pressure installation offset
+     * @param soundnoiseInstallationOffset         Sound noise installation offset
+     */
+    public InstallationOffset(int installationOffsetEnableDisable, int temperatureInstallationOffset, int relativeHumidityInstallationOffset, int ambientLightInstallationGain, int barometricPressureInstallationOffset, int soundnoiseInstallationOffset) {
+        mInstallationOffsetEnableDisable = installationOffsetEnableDisable;
+        mTemperatureInstallationOffset = temperatureInstallationOffset;
+        mRelativeHumidityInstallationOffset = relativeHumidityInstallationOffset;
+        mAmbientLightInstallationGain = ambientLightInstallationGain;
+        mBarometricPressureInstallationOffset = barometricPressureInstallationOffset;
+        mSoundNoiseInstallationOffset = soundnoiseInstallationOffset;
     }
 
     /**
@@ -137,7 +177,7 @@ public class InstallationOffset extends AbstractCharacteristic implements Parcel
         mTemperatureInstallationOffset = in.readInt();
         mRelativeHumidityInstallationOffset = in.readInt();
         mAmbientLightInstallationGain = in.readInt();
-        mBarometricPressureInstallOffset = in.readInt();
+        mBarometricPressureInstallationOffset = in.readInt();
         mSoundNoiseInstallationOffset = in.readInt();
     }
 
@@ -158,7 +198,7 @@ public class InstallationOffset extends AbstractCharacteristic implements Parcel
         dest.writeInt(mTemperatureInstallationOffset);
         dest.writeInt(mRelativeHumidityInstallationOffset);
         dest.writeInt(mAmbientLightInstallationGain);
-        dest.writeInt(mBarometricPressureInstallOffset);
+        dest.writeInt(mBarometricPressureInstallationOffset);
         dest.writeInt(mSoundNoiseInstallationOffset);
     }
 
@@ -259,15 +299,15 @@ public class InstallationOffset extends AbstractCharacteristic implements Parcel
     /**
      * @return Barometric pressure installation offset
      */
-    public int getBarometricPressureInstallOffset() {
-        return mBarometricPressureInstallOffset;
+    public int getBarometricPressureInstallationOffset() {
+        return mBarometricPressureInstallationOffset;
     }
 
     /**
      * @return Barometric pressure installation offset(hPa)
      */
-    public double getBarometricPressureInstallOffsetHpa() {
-        return mBarometricPressureInstallOffset * BAROMETRIC_PRESSURE_INSTALLATION_OFFSET_UNIT;
+    public double getBarometricPressureInstallationOffsetHpa() {
+        return mBarometricPressureInstallationOffset * BAROMETRIC_PRESSURE_INSTALLATION_OFFSET_UNIT;
     }
 
     /**
@@ -282,6 +322,22 @@ public class InstallationOffset extends AbstractCharacteristic implements Parcel
      */
     public double getSoundNoiseInstallationOffsetDb() {
         return mSoundNoiseInstallationOffset * SOUND_NOISE_INSTALLATION_OFFSET_UNIT;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public byte[] getBytes() {
+        byte[] data = new byte[13];
+        ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);
+        byteBuffer.put((byte) mInstallationOffsetEnableDisable);
+        byteBuffer.putShort((short) mTemperatureInstallationOffset);
+        byteBuffer.putShort((short) mRelativeHumidityInstallationOffset);
+        byteBuffer.putShort((short) mAmbientLightInstallationGain);
+        byteBuffer.putInt(mBarometricPressureInstallationOffset);
+        byteBuffer.putShort((short) mSoundNoiseInstallationOffset);
+        return data;
     }
 
 }

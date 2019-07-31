@@ -6,6 +6,7 @@ import android.os.Parcel;
 import org.im97mori.ble.ad.AdvertisingDataConstants;
 import org.junit.Test;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class MemoryResetTest {
@@ -49,5 +50,40 @@ public class MemoryResetTest {
         MemoryReset result2 = MemoryReset.CREATOR.createFromParcel(parcel);
 
         assertEquals(result1.getMemoryReset(), result2.getMemoryReset());
+    }
+
+    @Test
+    public void test004() {
+        byte[] data = new byte[1];
+        data[ 0] = (byte) ((MemoryReset.MEMORY_RESET_ACCELERATION_DATA_AREA) & 0xff);
+
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        bluetoothGattCharacteristic.setValue(data);
+
+        MemoryReset result1 = new MemoryReset(bluetoothGattCharacteristic);
+        byte[] resultData = result1.getBytes();
+        assertArrayEquals(data, resultData);
+    }
+
+    @Test
+    public void test005() {
+        int memoryReset = MemoryReset.MEMORY_RESET_SENSING_DATA_AREA;
+
+        MemoryReset result1 = new MemoryReset(memoryReset);
+        assertEquals(memoryReset, result1.getMemoryReset());
+    }
+
+
+    @Test
+    public void test006() {
+        byte[] data = new byte[1];
+        data[ 0] = (byte) ((MemoryReset.MEMORY_RESET_ACCELERATION_DATA_AREA) & 0xff);
+
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        bluetoothGattCharacteristic.setValue(data);
+
+        MemoryReset result1 = new MemoryReset(bluetoothGattCharacteristic);
+        MemoryReset result2 = MemoryReset.CREATOR.createFromByteArray(data);
+        assertArrayEquals(result1.getBytes(), result2.getBytes());
     }
 }

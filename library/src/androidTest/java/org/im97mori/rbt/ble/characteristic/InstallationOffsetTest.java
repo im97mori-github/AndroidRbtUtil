@@ -6,6 +6,7 @@ import android.os.Parcel;
 import org.im97mori.ble.ad.AdvertisingDataConstants;
 import org.junit.Test;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -52,8 +53,8 @@ public class InstallationOffsetTest {
         assertEquals(-100.00d, installationOffset.getRelativeHumidityInstallationOffsetRh(), 0);
         assertEquals(0, installationOffset.getAmbientLightInstallationGain());
         assertEquals(0.000d, installationOffset.getAmbientLightInstallationGainWithUnit(), 0);
-        assertEquals(-1000000, installationOffset.getBarometricPressureInstallOffset());
-        assertEquals(-1000.000d, installationOffset.getBarometricPressureInstallOffsetHpa(), 0);
+        assertEquals(-1000000, installationOffset.getBarometricPressureInstallationOffset());
+        assertEquals(-1000.000d, installationOffset.getBarometricPressureInstallationOffsetHpa(), 0);
         assertEquals(-10000, installationOffset.getSoundNoiseInstallationOffset());
         assertEquals(-100.00, installationOffset.getSoundNoiseInstallationOffsetDb(), 0);
     }
@@ -91,8 +92,8 @@ public class InstallationOffsetTest {
         assertEquals(100.00d, installationOffset.getRelativeHumidityInstallationOffsetRh(), 0);
         assertEquals(10000, installationOffset.getAmbientLightInstallationGain());
         assertEquals(10.000d, installationOffset.getAmbientLightInstallationGainWithUnit(), 0);
-        assertEquals(1000000, installationOffset.getBarometricPressureInstallOffset());
-        assertEquals(1000.000d, installationOffset.getBarometricPressureInstallOffsetHpa(), 0);
+        assertEquals(1000000, installationOffset.getBarometricPressureInstallationOffset());
+        assertEquals(1000.000d, installationOffset.getBarometricPressureInstallationOffsetHpa(), 0);
         assertEquals(10000, installationOffset.getSoundNoiseInstallationOffset());
         assertEquals(100.00, installationOffset.getSoundNoiseInstallationOffsetDb(), 0);
     }
@@ -130,8 +131,8 @@ public class InstallationOffsetTest {
         assertEquals(100.00d, installationOffset.getRelativeHumidityInstallationOffsetRh(), 0);
         assertEquals(10000, installationOffset.getAmbientLightInstallationGain());
         assertEquals(10.000d, installationOffset.getAmbientLightInstallationGainWithUnit(), 0);
-        assertEquals(1000000, installationOffset.getBarometricPressureInstallOffset());
-        assertEquals(1000.000d, installationOffset.getBarometricPressureInstallOffsetHpa(), 0);
+        assertEquals(1000000, installationOffset.getBarometricPressureInstallationOffset());
+        assertEquals(1000.000d, installationOffset.getBarometricPressureInstallationOffsetHpa(), 0);
         assertEquals(10000, installationOffset.getSoundNoiseInstallationOffset());
         assertEquals(100.00, installationOffset.getSoundNoiseInstallationOffsetDb(), 0);
     }
@@ -169,8 +170,8 @@ public class InstallationOffsetTest {
         assertEquals(100.00d, installationOffset.getRelativeHumidityInstallationOffsetRh(), 0);
         assertEquals(10000, installationOffset.getAmbientLightInstallationGain());
         assertEquals(10.000d, installationOffset.getAmbientLightInstallationGainWithUnit(), 0);
-        assertEquals(1000000, installationOffset.getBarometricPressureInstallOffset());
-        assertEquals(1000.000d, installationOffset.getBarometricPressureInstallOffsetHpa(), 0);
+        assertEquals(1000000, installationOffset.getBarometricPressureInstallationOffset());
+        assertEquals(1000.000d, installationOffset.getBarometricPressureInstallationOffsetHpa(), 0);
         assertEquals(10000, installationOffset.getSoundNoiseInstallationOffset());
         assertEquals(100.00, installationOffset.getSoundNoiseInstallationOffsetDb(), 0);
     }
@@ -208,8 +209,8 @@ public class InstallationOffsetTest {
         assertEquals(100.00d, installationOffset.getRelativeHumidityInstallationOffsetRh(), 0);
         assertEquals(10000, installationOffset.getAmbientLightInstallationGain());
         assertEquals(10.000d, installationOffset.getAmbientLightInstallationGainWithUnit(), 0);
-        assertEquals(1000000, installationOffset.getBarometricPressureInstallOffset());
-        assertEquals(1000.000d, installationOffset.getBarometricPressureInstallOffsetHpa(), 0);
+        assertEquals(1000000, installationOffset.getBarometricPressureInstallationOffset());
+        assertEquals(1000.000d, installationOffset.getBarometricPressureInstallationOffsetHpa(), 0);
         assertEquals(10000, installationOffset.getSoundNoiseInstallationOffset());
         assertEquals(100.00, installationOffset.getSoundNoiseInstallationOffsetDb(), 0);
     }
@@ -247,8 +248,8 @@ public class InstallationOffsetTest {
         assertEquals(100.00d, installationOffset.getRelativeHumidityInstallationOffsetRh(), 0);
         assertEquals(10000, installationOffset.getAmbientLightInstallationGain());
         assertEquals(10.000d, installationOffset.getAmbientLightInstallationGainWithUnit(), 0);
-        assertEquals(1000000, installationOffset.getBarometricPressureInstallOffset());
-        assertEquals(1000.000d, installationOffset.getBarometricPressureInstallOffsetHpa(), 0);
+        assertEquals(1000000, installationOffset.getBarometricPressureInstallationOffset());
+        assertEquals(1000.000d, installationOffset.getBarometricPressureInstallationOffsetHpa(), 0);
         assertEquals(10000, installationOffset.getSoundNoiseInstallationOffset());
         assertEquals(100.00, installationOffset.getSoundNoiseInstallationOffsetDb(), 0);
     }
@@ -286,8 +287,8 @@ public class InstallationOffsetTest {
         assertEquals(100.00d, installationOffset.getRelativeHumidityInstallationOffsetRh(), 0);
         assertEquals(10000, installationOffset.getAmbientLightInstallationGain());
         assertEquals(10.000d, installationOffset.getAmbientLightInstallationGainWithUnit(), 0);
-        assertEquals(1000000, installationOffset.getBarometricPressureInstallOffset());
-        assertEquals(1000.000d, installationOffset.getBarometricPressureInstallOffsetHpa(), 0);
+        assertEquals(1000000, installationOffset.getBarometricPressureInstallationOffset());
+        assertEquals(1000.000d, installationOffset.getBarometricPressureInstallationOffsetHpa(), 0);
         assertEquals(10000, installationOffset.getSoundNoiseInstallationOffset());
         assertEquals(100.00, installationOffset.getSoundNoiseInstallationOffsetDb(), 0);
     }
@@ -298,16 +299,16 @@ public class InstallationOffsetTest {
         data[0] = (byte) ((InstallationOffset.INSTALLATION_OFFSET_TEMPERATURE_OFFSET_BIT) & 0xff);
         data[1] = (byte) ((0x10) & 0xff);
         data[2] = (byte) ((0x27) & 0xff);
-        data[3] = (byte) ((0x10) & 0xff);
-        data[4] = (byte) ((0x27) & 0xff);
-        data[5] = (byte) ((0x10) & 0xff);
-        data[6] = (byte) ((0x27) & 0xff);
+        data[3] = (byte) ((0xf0) & 0xff);
+        data[4] = (byte) ((0xd8) & 0xff);
+        data[5] = (byte) ((0x09) & 0xff);
+        data[6] = (byte) ((0x26) & 0xff);
         data[7] = (byte) ((0x40) & 0xff);
         data[8] = (byte) ((0x42) & 0xff);
         data[9] = (byte) ((0x0f) & 0xff);
         data[10] = (byte) ((0x00) & 0xff);
-        data[11] = (byte) ((0x10) & 0xff);
-        data[12] = (byte) ((0x27) & 0xff);
+        data[11] = (byte) ((0x08) & 0xff);
+        data[12] = (byte) ((0x25) & 0xff);
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -322,7 +323,75 @@ public class InstallationOffsetTest {
         assertEquals(result1.getTemperatureInstallationOffset(), result2.getTemperatureInstallationOffset());
         assertEquals(result1.getRelativeHumidityInstallationOffset(), result2.getRelativeHumidityInstallationOffset());
         assertEquals(result1.getAmbientLightInstallationGain(), result2.getAmbientLightInstallationGain());
-        assertEquals(result1.getBarometricPressureInstallOffset(), result2.getBarometricPressureInstallOffset());
+        assertEquals(result1.getBarometricPressureInstallationOffset(), result2.getBarometricPressureInstallationOffset());
         assertEquals(result1.getSoundNoiseInstallationOffset(), result2.getSoundNoiseInstallationOffset());
+    }
+
+    @Test
+    public void test009() {
+        byte[] data = new byte[13];
+        data[0] = (byte) ((InstallationOffset.INSTALLATION_OFFSET_TEMPERATURE_OFFSET_BIT) & 0xff);
+        data[1] = (byte) ((0x10) & 0xff);
+        data[2] = (byte) ((0x27) & 0xff);
+        data[3] = (byte) ((0xf0) & 0xff);
+        data[4] = (byte) ((0xd8) & 0xff);
+        data[5] = (byte) ((0x09) & 0xff);
+        data[6] = (byte) ((0x26) & 0xff);
+        data[7] = (byte) ((0x40) & 0xff);
+        data[8] = (byte) ((0x42) & 0xff);
+        data[9] = (byte) ((0x0f) & 0xff);
+        data[10] = (byte) ((0x00) & 0xff);
+        data[11] = (byte) ((0x08) & 0xff);
+        data[12] = (byte) ((0x25) & 0xff);
+
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        bluetoothGattCharacteristic.setValue(data);
+
+        InstallationOffset result1 = new InstallationOffset(bluetoothGattCharacteristic);
+        byte[] resultData = result1.getBytes();
+        assertArrayEquals(data, resultData);
+    }
+
+    @Test
+    public void test010() {
+        int installationOffsetEnableDisable = InstallationOffset.INSTALLATION_OFFSET_SOUND_NOISE_OFFSET_BIT;
+        int temperatureInstallationOffet = 0xd8f0;
+        int relativeHumidityInstallationOffset = 0xd8f1;
+        int ambientLightInstallationGain = 0x0000;
+        int barometricPressureInstallationOffset = 0xfff0bdc0;
+        int soundNoiseInstallationOffset = 0xd8f2;
+
+        InstallationOffset result1 = new InstallationOffset(installationOffsetEnableDisable, temperatureInstallationOffet, relativeHumidityInstallationOffset, ambientLightInstallationGain, barometricPressureInstallationOffset, soundNoiseInstallationOffset);
+        assertEquals(installationOffsetEnableDisable, result1.getInstallationOffsetEnableDisable());
+        assertEquals(temperatureInstallationOffet, result1.getTemperatureInstallationOffset());
+        assertEquals(relativeHumidityInstallationOffset, result1.getRelativeHumidityInstallationOffset());
+        assertEquals(ambientLightInstallationGain, result1.getAmbientLightInstallationGain());
+        assertEquals(barometricPressureInstallationOffset, result1.getBarometricPressureInstallationOffset());
+        assertEquals(soundNoiseInstallationOffset, result1.getSoundNoiseInstallationOffset());
+    }
+
+    @Test
+    public void test011() {
+        byte[] data = new byte[13];
+        data[0] = (byte) ((InstallationOffset.INSTALLATION_OFFSET_TEMPERATURE_OFFSET_BIT) & 0xff);
+        data[1] = (byte) ((0x10) & 0xff);
+        data[2] = (byte) ((0x27) & 0xff);
+        data[3] = (byte) ((0xf0) & 0xff);
+        data[4] = (byte) ((0xd8) & 0xff);
+        data[5] = (byte) ((0x09) & 0xff);
+        data[6] = (byte) ((0x26) & 0xff);
+        data[7] = (byte) ((0x40) & 0xff);
+        data[8] = (byte) ((0x42) & 0xff);
+        data[9] = (byte) ((0x0f) & 0xff);
+        data[10] = (byte) ((0x00) & 0xff);
+        data[11] = (byte) ((0x08) & 0xff);
+        data[12] = (byte) ((0x25) & 0xff);
+
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        bluetoothGattCharacteristic.setValue(data);
+
+        InstallationOffset result1 = new InstallationOffset(bluetoothGattCharacteristic);
+        InstallationOffset result2 = InstallationOffset.CREATOR.createFromByteArray(data);
+        assertArrayEquals(result1.getBytes(), result2.getBytes());
     }
 }

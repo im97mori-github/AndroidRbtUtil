@@ -4,13 +4,18 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.im97mori.ble.ByteArrayCreater;
 import org.im97mori.rbt.RbtConstants;
+
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
+import static org.im97mori.rbt.RbtConstants.CharacteristicUUID.MEMORY_CALCULATION_FLAG_CHARACTERISTIC;
 
 /**
  * 2.1.7 Memory c alculation flag (Characteristics UUID: 0x500D)
  */
-@SuppressWarnings("WeakerAccess")
-public class MemoryCalculationFlag extends AbstractCharacteristic implements Parcelable {
+public class MemoryCalculationFlag extends AbstractRbtCharacteristic implements Parcelable {
 
     /**
      * Memory index data error
@@ -18,9 +23,9 @@ public class MemoryCalculationFlag extends AbstractCharacteristic implements Par
     public static final int DATA_ERROR_BIT = 0b10000000_00000000_00000000_00000000;
 
     /**
-     * @see Creator
+     * @see ByteArrayCreater
      */
-    public static final Creator<MemoryCalculationFlag> CREATOR = new Creator<MemoryCalculationFlag>() {
+    public static final ByteArrayCreater<MemoryCalculationFlag> CREATOR = new ByteArrayCreater<MemoryCalculationFlag>() {
 
         /**
          * {@inheritDoc}
@@ -36,6 +41,16 @@ public class MemoryCalculationFlag extends AbstractCharacteristic implements Par
         @Override
         public MemoryCalculationFlag[] newArray(int size) {
             return new MemoryCalculationFlag[size];
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public MemoryCalculationFlag createFromByteArray(byte[] values) {
+            BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(MEMORY_CALCULATION_FLAG_CHARACTERISTIC, 0, 0);
+            bluetoothGattCharacteristic.setValue(values);
+            return new MemoryCalculationFlag(bluetoothGattCharacteristic);
         }
 
     };
@@ -762,6 +777,22 @@ public class MemoryCalculationFlag extends AbstractCharacteristic implements Par
      */
     private boolean isAccelerationChangeThresholdRise2Reached(int flag) {
         return (flag & RbtConstants.EventFlagAcceleration.CHANGE_THRESHOLD_RISE_2) != 0;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public byte[] getBytes() {
+        byte[] data = new byte[11];
+        ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);
+        byteBuffer.putInt(mMemoryIndex);
+        byteBuffer.putShort((short) mDiscomfortIndexFlag);
+        byteBuffer.putShort((short) mHeatStrokeFlag);
+        byteBuffer.put((byte) mSiValueFlag);
+        byteBuffer.put((byte) mPgaFlag);
+        byteBuffer.put((byte) mSeismicIntensityFlag);
+        return data;
     }
 
 }

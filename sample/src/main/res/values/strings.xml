@@ -1,7 +1,126 @@
 <resources>
-    <string name="app_name">sample</string>
+    <string name="app_name">Rbt sample</string>
     <string name="get_permission">Get Permission</string>
     <string name="scan_start">Scan Start</string>
     <string name="scan_stop">Scan Stop</string>
+    <string name="connect">Connect</string>
+    <string name="disconnect">Disconnect</string>
     <string name="permission_message">bluetooth low energy feature needs coarse location permission</string>
+
+    <string name="label_advertising">Advertising sample</string>
+    <string name="label_connect">Connect sample</string>
+    <string name="label_memory_data_service">Memory Data Service sample</string>
+    <string name="label_latest_data_service">Latest Data Service sample</string>
+    <string name="label_acceleration_service">Acceleration Service sample</string>
+    <string name="label_control_service">Control Service sample</string>
+    <string name="label_information_service">Information Service sample</string>
+    <string name="label_time_setting_service">Time Setting Service sample</string>
+    <string name="label_event_setting_service">Event Setting Service sample</string>
+    <string name="label_generic_access">Generic Access sample</string>
+    <string name="label_device_information">Device Information sample</string>
+
+    <string name="menu_read_5004">Read Memory index information</string>
+    <string name="menu_write_5005">Write Request memory index</string>
+    <string name="menu_read_5006">Read Memory status</string>
+    <string name="menu_notification_500a">Notification Memory sensing data</string>
+    <string name="menu_notification_500b">Notification Memory calculation data</string>
+    <string name="menu_notification_500c">Notification Memory sensing flag</string>
+    <string name="menu_notification_500d">Notification Memory calculation flag</string>
+
+    <string name="menu_read_5012">Read Latest sensing data</string>
+    <string name="menu_notification_5012">Notification Latest sensing data</string>
+    <string name="menu_read_5013">Read Latest calculation data</string>
+    <string name="menu_notification_5013">Notification Latest calculation data</string>
+    <string name="menu_read_5014">Read Latest sensing flag</string>
+    <string name="menu_notification_5014">Notification Latest sensing flag</string>
+    <string name="menu_read_5015">Read Latest calculation flag</string>
+    <string name="menu_notification_5015">Notification Latest calculation flag</string>
+    <string name="menu_read_5016">Read Latest acceleration status</string>
+    <string name="menu_notification_5016">Notification Latest acceleration status</string>
+
+    <string name="menu_read_5031">Read Vibration count</string>
+    <string name="menu_write_5032">Write Request acceleration memory index</string>
+    <string name="menu_read_5033">Read Acceleration memory status</string>
+    <string name="menu_notification_5034">Notification Acceleration memory data</string>
+
+    <string name="menu_read_5111">Read LED setting [normal state]</string>
+    <string name="menu_write_5111">Write LED setting [normal state]</string>
+    <string name="menu_read_5112">Read LED setting [event state]</string>
+    <string name="menu_write_5112">Write LED setting [event state]</string>
+    <string name="menu_read_5113">Read LED state [operation]</string>
+    <string name="menu_write_5113">Write LED state [operation]</string>
+    <string name="menu_read_5114">Read Installation offset</string>
+    <string name="menu_write_5114">Write Installation offset</string>
+    <string name="menu_read_5115">Read Advertising setting</string>
+    <string name="menu_write_5115">Write Advertising setting</string>
+    <string name="menu_write_5116">Write Memory reset</string>
+    <string name="menu_read_5117">Read Mode change</string>
+    <string name="menu_write_5117">Write Mode change</string>
+    <string name="menu_write_5118">Write Acceleration logger control</string>
+    <string name="menu_read_5119">Read Acceleration logger status</string>
+
+    <string name="menu_read_5211">Read Temperature [Sensor 1]</string>
+    <string name="menu_write_5211">Write Temperature [Sensor 1]</string>
+    <string name="menu_read_5212">Read Temperature [Sensor 2]</string>
+    <string name="menu_write_5212">Write Temperature [Sensor 2]</string>
+    <string name="menu_read_5213">Read Relative humidity [Sensor 1]</string>
+    <string name="menu_write_5213">Write Relative humidity [Sensor 1]</string>
+    <string name="menu_read_5214">Read Relative humidity [Sensor 2]</string>
+    <string name="menu_write_5214">Write Relative humidity [Sensor 2]</string>
+    <string name="menu_read_5215">Read Ambient light [Sensor 1]</string>
+    <string name="menu_write_5215">Write Ambient light [Sensor 1]</string>
+    <string name="menu_read_5216">Read Ambient light [Sensor 2]</string>
+    <string name="menu_write_5216">Write Ambient light [Sensor 2]</string>
+    <string name="menu_read_5217">Read Barometric pressure [Sensor 1]</string>
+    <string name="menu_write_5217">Write Barometric pressure [Sensor 1]</string>
+    <string name="menu_read_5218">Read Barometric pressure [Sensor 2]</string>
+    <string name="menu_write_5218">Write Barometric pressure [Sensor 2]</string>
+    <string name="menu_read_5219">Read Sound noise [Sensor 1]</string>
+    <string name="menu_write_5219">Write Sound noise [Sensor 1]</string>
+    <string name="menu_read_521a">Read Sound noise [Sensor 2]</string>
+    <string name="menu_write_521a">Write Sound noise [Sensor 2]</string>
+    <string name="menu_read_521b">Read eTVOC [Sensor 1]</string>
+    <string name="menu_write_521b">Write eTVOC [Sensor 1]</string>
+    <string name="menu_read_521c">Read eTVOC [Sensor 2]</string>
+    <string name="menu_write_521c">Write eTVOC [Sensor 2]</string>
+    <string name="menu_read_521d">Read eCO2 [Sensor 1]</string>
+    <string name="menu_write_521d">Write eCO2 [Sensor 1]</string>
+    <string name="menu_read_521e">Read eCO2 [Sensor 2]</string>
+    <string name="menu_write_521e">Write eCO2 [Sensor 2]</string>
+    <string name="menu_read_521f">Read Discomfort index [Sensor 1]</string>
+    <string name="menu_write_521f">Write Discomfort index [Sensor 1]</string>
+    <string name="menu_read_5220">Read Discomfort index [Sensor 2]</string>
+    <string name="menu_write_5220">Write Discomfort index [Sensor 2]</string>
+    <string name="menu_read_5221">Read Heat stroke [Sensor 1]</string>
+    <string name="menu_write_5221">Write Heat stroke [Sensor 1]</string>
+    <string name="menu_read_5222">Read Heat stroke [Sensor 2]</string>
+    <string name="menu_write_5222">Write Heat stroke [Sensor 2]</string>
+    <string name="menu_read_5226">Read SI value [Acceleration]</string>
+    <string name="menu_write_5226">Write SI value [Acceleration]</string>
+    <string name="menu_read_5227">Read PGA[Acceleration]</string>
+    <string name="menu_write_5227">Write PGA[Acceleration]</string>
+    <string name="menu_read_5228">Read Seismic intensity [Acceleration]</string>
+    <string name="menu_write_5228">Write Seismic intensity [Acceleration]</string>
+
+
+    <string name="menu_read_5201">Read Time counter</string>
+    <string name="menu_read_5202">Read Time setting</string>
+    <string name="menu_write_5202">Write Time setting</string>
+    <string name="menu_read_5203">Read Memory storage interval</string>
+    <string name="menu_write_5203">Write Memory storage interval</string>
+
+    <string name="menu_read_5401">Read Error Status</string>
+    <string name="menu_read_5402">Read Mounting orientation</string>
+    <string name="menu_read_5403">Read FLASH memory status</string>
+
+    <string name="menu_read_2a00">Read Device name</string>
+    <string name="menu_read_2a01">Read Appearance</string>
+    <string name="menu_read_2a04">Read Peripheral preferredconnection parameters</string>
+    <string name="menu_read_2aa6">Read Central address r esolutio</string>
+
+    <string name="menu_read_2a24">Read Model Number String</string>
+    <string name="menu_read_2a25">Read Serial Number String</string>
+    <string name="menu_read_2a26">Read Firmware Revision String</string>
+    <string name="menu_read_2a27">Read Hardware Revision String</string>
+    <string name="menu_read_2a28">Read Manufacturer Name String</string>
 </resources>

@@ -6,6 +6,7 @@ import android.os.Parcel;
 import org.im97mori.ble.ad.AdvertisingDataConstants;
 import org.junit.Test;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -153,24 +154,24 @@ public class AccelerationMemorydataHeader3Test {
     @Test
     public void test004() {
         byte[] data = new byte[20];
-        data[0] = (byte) ((AccelerationMemoryDataHeader1.DATA_ERROR_BIT) & 0xff);
-        data[1] = (byte) ((AccelerationMemoryDataHeader1.DATA_ERROR_BIT >> 8) & 0xff);
-        data[2] = (byte) ((0x30) & 0xff);
-        data[3] = (byte) ((0x75) & 0xff);
-        data[4] = (byte) ((0xe8) & 0xff);
-        data[5] = (byte) ((0xc8) & 0xff);
-        data[6] = (byte) ((0x10) & 0xff);
-        data[7] = (byte) ((0x00) & 0xff);
-        data[8] = (byte) ((0xe0) & 0xff);
-        data[9] = (byte) ((0x2e) & 0xff);
-        data[10] = (byte) ((0xff) & 0xff);
-        data[11] = (byte) ((0x7f) & 0xff);
-        data[12] = (byte) ((0xff) & 0xff);
-        data[13] = (byte) ((0x7f) & 0xff);
-        data[14] = (byte) ((0x10) & 0xff);
-        data[15] = (byte) ((0x27) & 0xff);
-        data[16] = (byte) ((0xd4) & 0xff);
-        data[17] = (byte) ((0x30) & 0xff);
+        data[ 0] = (byte) ((AccelerationMemoryDataHeader1.DATA_ERROR_BIT) & 0xff);
+        data[ 1] = (byte) ((AccelerationMemoryDataHeader1.DATA_ERROR_BIT >> 8) & 0xff);
+        data[ 2] = (byte) ((0x01) & 0xff);
+        data[ 3] = (byte) ((0x02) & 0xff);
+        data[ 4] = (byte) ((0x03) & 0xff);
+        data[ 5] = (byte) ((0x04) & 0xff);
+        data[ 6] = (byte) ((0x05) & 0xff);
+        data[ 7] = (byte) ((0x06) & 0xff);
+        data[ 8] = (byte) ((0x07) & 0xff);
+        data[ 9] = (byte) ((0x08) & 0xff);
+        data[10] = (byte) ((0x09) & 0xff);
+        data[11] = (byte) ((0x0a) & 0xff);
+        data[12] = (byte) ((0x0b) & 0xff);
+        data[13] = (byte) ((0x0c) & 0xff);
+        data[14] = (byte) ((0x0d) & 0xff);
+        data[15] = (byte) ((0x0e) & 0xff);
+        data[16] = (byte) ((0x0f) & 0xff);
+        data[17] = (byte) ((0x0a) & 0xff);
         data[18] = (byte) ((0xff) & 0xff);
         data[19] = (byte) ((0xff) & 0xff);
 
@@ -191,5 +192,69 @@ public class AccelerationMemorydataHeader3Test {
         assertEquals(result1.getEco2(), result2.getEco2());
         assertEquals(result1.getDiscomfortIndex(), result2.getDiscomfortIndex());
         assertEquals(result1.getHeatStroke(), result2.getHeatStroke());
+    }
+
+    @Test
+    public void test005() {
+        byte[] data = new byte[20];
+        data[ 0] = (byte) ((AccelerationMemoryDataHeader1.DATA_ERROR_BIT) & 0xff);
+        data[ 1] = (byte) ((AccelerationMemoryDataHeader1.DATA_ERROR_BIT >> 8) & 0xff);
+        data[ 2] = (byte) ((0x01) & 0xff);
+        data[ 3] = (byte) ((0x02) & 0xff);
+        data[ 4] = (byte) ((0x03) & 0xff);
+        data[ 5] = (byte) ((0x04) & 0xff);
+        data[ 6] = (byte) ((0x05) & 0xff);
+        data[ 7] = (byte) ((0x06) & 0xff);
+        data[ 8] = (byte) ((0x07) & 0xff);
+        data[ 9] = (byte) ((0x08) & 0xff);
+        data[10] = (byte) ((0x09) & 0xff);
+        data[11] = (byte) ((0x0a) & 0xff);
+        data[12] = (byte) ((0x0b) & 0xff);
+        data[13] = (byte) ((0x0c) & 0xff);
+        data[14] = (byte) ((0x0d) & 0xff);
+        data[15] = (byte) ((0x0e) & 0xff);
+        data[16] = (byte) ((0x0f) & 0xff);
+        data[17] = (byte) ((0x0a) & 0xff);
+        data[18] = (byte) ((0xff) & 0xff);
+        data[19] = (byte) ((0xff) & 0xff);
+
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        bluetoothGattCharacteristic.setValue(data);
+
+        AccelerationMemoryDataHeader3 result1 = new AccelerationMemoryDataHeader3(bluetoothGattCharacteristic);
+        byte[] resultData = result1.getBytes();
+        assertArrayEquals(data, resultData);
+    }
+
+    @Test
+    public void test006() {
+        byte[] data = new byte[20];
+        data[ 0] = (byte) ((AccelerationMemoryDataHeader1.DATA_ERROR_BIT) & 0xff);
+        data[ 1] = (byte) ((AccelerationMemoryDataHeader1.DATA_ERROR_BIT >> 8) & 0xff);
+        data[ 2] = (byte) ((0x01) & 0xff);
+        data[ 3] = (byte) ((0x02) & 0xff);
+        data[ 4] = (byte) ((0x03) & 0xff);
+        data[ 5] = (byte) ((0x04) & 0xff);
+        data[ 6] = (byte) ((0x05) & 0xff);
+        data[ 7] = (byte) ((0x06) & 0xff);
+        data[ 8] = (byte) ((0x07) & 0xff);
+        data[ 9] = (byte) ((0x08) & 0xff);
+        data[10] = (byte) ((0x09) & 0xff);
+        data[11] = (byte) ((0x0a) & 0xff);
+        data[12] = (byte) ((0x0b) & 0xff);
+        data[13] = (byte) ((0x0c) & 0xff);
+        data[14] = (byte) ((0x0d) & 0xff);
+        data[15] = (byte) ((0x0e) & 0xff);
+        data[16] = (byte) ((0x0f) & 0xff);
+        data[17] = (byte) ((0x0a) & 0xff);
+        data[18] = (byte) ((0xff) & 0xff);
+        data[19] = (byte) ((0xff) & 0xff);
+
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        bluetoothGattCharacteristic.setValue(data);
+
+        AccelerationMemoryDataHeader3 result1 = new AccelerationMemoryDataHeader3(bluetoothGattCharacteristic);
+        AccelerationMemoryDataHeader3 result2 = AccelerationMemoryDataHeader3.CREATOR.createFromByteArray(data);
+        assertArrayEquals(result1.getBytes(), result2.getBytes());
     }
 }

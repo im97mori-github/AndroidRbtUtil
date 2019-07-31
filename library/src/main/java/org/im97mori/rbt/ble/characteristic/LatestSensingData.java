@@ -4,6 +4,12 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.im97mori.ble.ByteArrayCreater;
+
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
+import static org.im97mori.rbt.RbtConstants.CharacteristicUUID.LATEST_SENSING_DATA_CHARACTERISTIC;
 import static org.im97mori.rbt.RbtConstants.OutputRange.OUTPUT_RANGE_AMBIENT_LIGHT_UNIT;
 import static org.im97mori.rbt.RbtConstants.OutputRange.OUTPUT_RANGE_BAROMETRIC_PRESSURE_UNIT;
 import static org.im97mori.rbt.RbtConstants.OutputRange.OUTPUT_RANGE_ECO2_UNIT;
@@ -15,13 +21,12 @@ import static org.im97mori.rbt.RbtConstants.OutputRange.OUTPUT_RANGE_TEMPERATURE
 /**
  * 2.2.1 Latest sensing data (Characteristics UUID: 0x5012)
  */
-@SuppressWarnings("WeakerAccess")
-public class LatestSensingData extends AbstractCharacteristic implements Parcelable {
+public class LatestSensingData extends AbstractRbtCharacteristic implements Parcelable {
 
     /**
-     * @see Creator
+     * @see ByteArrayCreater
      */
-    public static final Creator<LatestSensingData> CREATOR = new Creator<LatestSensingData>() {
+    public static final ByteArrayCreater<LatestSensingData> CREATOR = new ByteArrayCreater<LatestSensingData>() {
 
         /**
          * {@inheritDoc}
@@ -37,6 +42,16 @@ public class LatestSensingData extends AbstractCharacteristic implements Parcela
         @Override
         public LatestSensingData[] newArray(int size) {
             return new LatestSensingData[size];
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public LatestSensingData createFromByteArray(byte[] values) {
+            BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(LATEST_SENSING_DATA_CHARACTERISTIC, 0, 0);
+            bluetoothGattCharacteristic.setValue(values);
+            return new LatestSensingData(bluetoothGattCharacteristic);
         }
 
     };
@@ -239,6 +254,24 @@ public class LatestSensingData extends AbstractCharacteristic implements Parcela
      */
     public double getEco2Ppm() {
         return mEco2 * OUTPUT_RANGE_ECO2_UNIT;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public byte[] getBytes() {
+        byte[] data = new byte[17];
+        ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);
+        byteBuffer.put((byte) mSequenceNumber);
+        byteBuffer.putShort((short) mTemperature);
+        byteBuffer.putShort((short) mRelativeHumidity);
+        byteBuffer.putShort((short) mAmbientLight);
+        byteBuffer.putInt(mBarometricPressure);
+        byteBuffer.putShort((short) mSoundNoise);
+        byteBuffer.putShort((short) mEtvoc);
+        byteBuffer.putShort((short) mEco2);
+        return data;
     }
 
 }

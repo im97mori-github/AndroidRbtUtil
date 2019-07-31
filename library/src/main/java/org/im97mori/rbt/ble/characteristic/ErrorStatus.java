@@ -4,11 +4,18 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.im97mori.ble.ByteArrayCreater;
+
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
+import static org.im97mori.rbt.RbtConstants.CharacteristicUUID.ERROR_STATUS_CHARACTERISTIC;
+
 /**
  * 2.7.1 Error status (Characteristics UUID: 0x5401)
  */
 @SuppressWarnings("WeakerAccess")
-public class ErrorStatus extends AbstractCharacteristic implements Parcelable {
+public class ErrorStatus extends AbstractRbtCharacteristic implements Parcelable {
 
     /**
      * Bit3: Initialization error
@@ -46,9 +53,9 @@ public class ErrorStatus extends AbstractCharacteristic implements Parcelable {
     public static final int ERROR_STATUS_FLASH_MEMORY_INITIALIZATION_ERROR = 0b00000001;
 
     /**
-     * @see Creator
+     * @see ByteArrayCreater
      */
-    public static final Creator<ErrorStatus> CREATOR = new Creator<ErrorStatus>() {
+    public static final ByteArrayCreater<ErrorStatus> CREATOR = new ByteArrayCreater<ErrorStatus>() {
 
         /**
          * {@inheritDoc}
@@ -64,6 +71,16 @@ public class ErrorStatus extends AbstractCharacteristic implements Parcelable {
         @Override
         public ErrorStatus[] newArray(int size) {
             return new ErrorStatus[size];
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public ErrorStatus createFromByteArray(byte[] values) {
+            BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(ERROR_STATUS_CHARACTERISTIC, 0, 0);
+            bluetoothGattCharacteristic.setValue(values);
+            return new ErrorStatus(bluetoothGattCharacteristic);
         }
 
     };
@@ -587,6 +604,27 @@ public class ErrorStatus extends AbstractCharacteristic implements Parcelable {
      */
     private boolean isSensorCommunicationError(int flag) {
         return (flag & ERROR_STATUS_COMMUNICATION_ERROR) != 0;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public byte[] getBytes() {
+        byte[] data = new byte[11];
+        ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);
+        byteBuffer.put((byte) mTemperatureSensorError);
+        byteBuffer.put((byte) mRelativeHumiditySensorError);
+        byteBuffer.put((byte) mAmbientLightSensorError);
+        byteBuffer.put((byte) mBarometricPressureSensorError);
+        byteBuffer.put((byte) mSoundNoiseSensorError);
+        byteBuffer.put((byte) mAccelerationSensorError);
+        byteBuffer.put((byte) mEtvocSensorError);
+        byteBuffer.put((byte) mEco2SensorError);
+        byteBuffer.put((byte) mCpuError);
+        byteBuffer.put((byte) 0xff);
+        byteBuffer.put((byte) 0xff);
+        return data;
     }
 
 }

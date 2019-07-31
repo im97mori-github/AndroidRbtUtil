@@ -9,6 +9,7 @@ import org.junit.Test;
 import static org.im97mori.rbt.RbtConstants.OutputRange.VIBRATION_INFORMATION_DURING_EARTH_QUAKE_BIT;
 import static org.im97mori.rbt.RbtConstants.OutputRange.VIBRATION_INFORMATION_DURING_VIBRATION_BIT;
 import static org.im97mori.rbt.RbtConstants.OutputRange.VIBRATION_INFORMATION_NONE_BIT;
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -141,11 +142,11 @@ public class MemoryCalculationDataTest {
         data[6] = (byte) 0xd4; // Heat stroke
         data[7] = (byte) 0x30; // Heat stroke
         data[8] = (byte) VIBRATION_INFORMATION_DURING_EARTH_QUAKE_BIT; // Vibration information// Vibration information
-        data[9] = (byte) 0xff; // SI value
+        data[9] = (byte) 0x1f; // SI value
         data[10] =(byte) 0xff; // SI value
-        data[11] =(byte) 0xff; // PGA
+        data[11] =(byte) 0x2f; // PGA
         data[12] =(byte) 0xff; // PGA
-        data[13] =(byte) 0xff; // Seismic intensity
+        data[13] =(byte) 0x3f; // Seismic intensity
         data[14] =(byte) 0xff; // Seismic intensity
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
@@ -164,5 +165,59 @@ public class MemoryCalculationDataTest {
         assertEquals(result1.getSiValue(), result2.getSiValue());
         assertEquals(result1.getPga(), result2.getPga());
         assertEquals(result1.getSeismicIntensity(), result2.getSeismicIntensity());
+    }
+
+    @Test
+    public void test005() {
+        byte[] data = new byte[15];
+        data[ 0] = (byte) ((0x00) & 0xff); // Memory index
+        data[ 1] = (byte) ((0x00) & 0xff); // Memory index
+        data[ 2] = (byte) ((0x00) & 0xff); // Memory index
+        data[ 3] = (byte) ((0x80) & 0xff); // Memory index
+        data[4] = (byte) 0x10; // Discomfort index
+        data[5] = (byte) 0x27; // Discomfort index
+        data[6] = (byte) 0xd4; // Heat stroke
+        data[7] = (byte) 0x30; // Heat stroke
+        data[8] = (byte) VIBRATION_INFORMATION_DURING_EARTH_QUAKE_BIT; // Vibration information// Vibration information
+        data[9] = (byte) 0x1f; // SI value
+        data[10] =(byte) 0xff; // SI value
+        data[11] =(byte) 0x2f; // PGA
+        data[12] =(byte) 0xff; // PGA
+        data[13] =(byte) 0x3f; // Seismic intensity
+        data[14] =(byte) 0xff; // Seismic intensity
+
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        bluetoothGattCharacteristic.setValue(data);
+
+        MemoryCalculationData result1 = new MemoryCalculationData(bluetoothGattCharacteristic);
+        byte[] resultData = result1.getBytes();
+        assertArrayEquals(data, resultData);
+    }
+
+    @Test
+    public void test006() {
+        byte[] data = new byte[15];
+        data[ 0] = (byte) ((0x00) & 0xff); // Memory index
+        data[ 1] = (byte) ((0x00) & 0xff); // Memory index
+        data[ 2] = (byte) ((0x00) & 0xff); // Memory index
+        data[ 3] = (byte) ((0x80) & 0xff); // Memory index
+        data[4] = (byte) 0x10; // Discomfort index
+        data[5] = (byte) 0x27; // Discomfort index
+        data[6] = (byte) 0xd4; // Heat stroke
+        data[7] = (byte) 0x30; // Heat stroke
+        data[8] = (byte) VIBRATION_INFORMATION_DURING_EARTH_QUAKE_BIT; // Vibration information// Vibration information
+        data[9] = (byte) 0x1f; // SI value
+        data[10] =(byte) 0xff; // SI value
+        data[11] =(byte) 0x2f; // PGA
+        data[12] =(byte) 0xff; // PGA
+        data[13] =(byte) 0x3f; // Seismic intensity
+        data[14] =(byte) 0xff; // Seismic intensity
+
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        bluetoothGattCharacteristic.setValue(data);
+
+        MemoryCalculationData result1 = new MemoryCalculationData(bluetoothGattCharacteristic);
+        MemoryCalculationData result2 = MemoryCalculationData.CREATOR.createFromByteArray(data);
+        assertArrayEquals(result1.getBytes(), result2.getBytes());
     }
 }

@@ -6,6 +6,7 @@ import android.os.Parcel;
 import org.im97mori.ble.ad.AdvertisingDataConstants;
 import org.junit.Test;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class FlashMemoryStatusTest {
@@ -85,5 +86,31 @@ public class FlashMemoryStatusTest {
         FlashMemoryStatus result2 = FlashMemoryStatus.CREATOR.createFromParcel(parcel);
 
         assertEquals(result1.getFlashMemoryStatus(), result2.getFlashMemoryStatus());
+    }
+
+    @Test
+    public void test7() {
+        byte[] data = new byte[1];
+        data[0] = FlashMemoryStatus.FLASH_MEMORY_STATUS_FLASH_MEMORY_ERASING;
+
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        bluetoothGattCharacteristic.setValue(data);
+
+        FlashMemoryStatus result1 = new FlashMemoryStatus(bluetoothGattCharacteristic);
+        byte[] resultData = result1.getBytes();
+        assertArrayEquals(data, resultData);
+    }
+
+    @Test
+    public void test8() {
+        byte[] data = new byte[1];
+        data[0] = FlashMemoryStatus.FLASH_MEMORY_STATUS_FLASH_MEMORY_ERASING;
+
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        bluetoothGattCharacteristic.setValue(data);
+
+        FlashMemoryStatus result1 = new FlashMemoryStatus(bluetoothGattCharacteristic);
+        FlashMemoryStatus result2 = FlashMemoryStatus.CREATOR.createFromByteArray(data);
+        assertArrayEquals(result1.getBytes(), result2.getBytes());
     }
 }

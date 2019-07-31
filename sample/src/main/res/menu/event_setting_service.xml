@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/read_temperature_sensor_1"
+        android:title="@string/menu_read_5211" />
+    <item
+        android:id="@+id/write_temperature_sensor_1"
+        android:title="@string/menu_write_5211" />
+    <item
+        android:id="@+id/read_temperature_sensor_2"
+        android:title="@string/menu_read_5212" />
+    <item
+        android:id="@+id/write_temperature_sensor_2"
+        android:title="@string/menu_write_5212" />
+
+    <item
+        android:id="@+id/read_relative_humidity_sensor_1"
+        android:title="@string/menu_read_5213" />
+    <item
+        android:id="@+id/write_relative_humidity_sensor_1"
+        android:title="@string/menu_write_5213" />
+    <item
+        android:id="@+id/read_relative_humidity_sensor_2"
+        android:title="@string/menu_read_5214" />
+    <item
+        android:id="@+id/write_relative_humidity_sensor_2"
+        android:title="@string/menu_write_5214" />
+
+    <item
+        android:id="@+id/read_ambient_light_sensor_1"
+        android:title="@string/menu_read_5215" />
+    <item
+        android:id="@+id/write_ambient_light_sensor_1"
+        android:title="@string/menu_write_5215" />
+    <item
+        android:id="@+id/read_ambient_light_sensor_2"
+        android:title="@string/menu_read_5216" />
+    <item
+        android:id="@+id/write_ambient_light_sensor_2"
+        android:title="@string/menu_write_5216" />
+
+    <item
+        android:id="@+id/read_barometric_pressure_sensor_1"
+        android:title="@string/menu_read_5217" />
+    <item
+        android:id="@+id/write_barometric_pressure_sensor_1"
+        android:title="@string/menu_write_5217" />
+    <item
+        android:id="@+id/read_barometric_pressure_sensor_2"
+        android:title="@string/menu_read_5218" />
+    <item
+        android:id="@+id/write_barometric_pressure_sensor_2"
+        android:title="@string/menu_write_5218" />
+
+    <item
+        android:id="@+id/read_sound_noise_sensor_1"
+        android:title="@string/menu_read_5219" />
+    <item
+        android:id="@+id/write_sound_noise_sensor_1"
+        android:title="@string/menu_write_5219" />
+    <item
+        android:id="@+id/read_sound_noise_sensor_2"
+        android:title="@string/menu_read_521a" />
+    <item
+        android:id="@+id/write_sound_noise_sensor_2"
+        android:title="@string/menu_write_521a" />
+
+    <item
+        android:id="@+id/read_etvoc_sensor_1"
+        android:title="@string/menu_read_521b" />
+    <item
+        android:id="@+id/write_etvoc_sensor_1"
+        android:title="@string/menu_write_521b" />
+    <item
+        android:id="@+id/read_etvoc_sensor_2"
+        android:title="@string/menu_read_521c" />
+    <item
+        android:id="@+id/write_etvoc_sensor_2"
+        android:title="@string/menu_write_521c" />
+
+    <item
+        android:id="@+id/read_eco2_sensor_1"
+        android:title="@string/menu_read_521d" />
+    <item
+        android:id="@+id/write_eco2_sensor_1"
+        android:title="@string/menu_write_521d" />
+    <item
+        android:id="@+id/read_eco2_sensor_2"
+        android:title="@string/menu_read_521e" />
+    <item
+        android:id="@+id/write_eco2_sensor_2"
+        android:title="@string/menu_write_521e" />
+
+    <item
+        android:id="@+id/read_discomfort_index_sensor_1"
+        android:title="@string/menu_read_521f" />
+    <item
+        android:id="@+id/write_discomfort_index_sensor_1"
+        android:title="@string/menu_write_521f" />
+    <item
+        android:id="@+id/read_discomfort_index_sensor_2"
+        android:title="@string/menu_read_5220" />
+    <item
+        android:id="@+id/write_discomfort_index_sensor_2"
+        android:title="@string/menu_write_5220" />
+
+    <item
+        android:id="@+id/read_heat_stroke_sensor_1"
+        android:title="@string/menu_read_5221" />
+    <item
+        android:id="@+id/write_heat_stroke_sensor_1"
+        android:title="@string/menu_write_5221" />
+    <item
+        android:id="@+id/read_heat_stroke_sensor_2"
+        android:title="@string/menu_read_5222" />
+    <item
+        android:id="@+id/write_heat_stroke_sensor_2"
+        android:title="@string/menu_write_5222" />
+
+    <item
+        android:id="@+id/read_si_value_acceleration"
+        android:title="@string/menu_read_5226" />
+    <item
+        android:id="@+id/write_si_value_acceleration"
+        android:title="@string/menu_write_5226" />
+
+    <item
+        android:id="@+id/read_pga_acceleration"
+        android:title="@string/menu_read_5227" />
+    <item
+        android:id="@+id/write_pga_acceleration"
+        android:title="@string/menu_write_5227" />
+
+    <item
+        android:id="@+id/read_seismic_intensity_acceleration"
+        android:title="@string/menu_read_5228" />
+    <item
+        android:id="@+id/write_seismic_intensity_acceleration"
+        android:title="@string/menu_write_5228" />
+</menu>

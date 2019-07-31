@@ -4,21 +4,26 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.im97mori.ble.ByteArrayCreater;
 import org.im97mori.rbt.RbtConstants;
 
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
+import static org.im97mori.rbt.RbtConstants.CharacteristicUUID.BAROMETRIC_PRESSURE_SENSOR_1_CHARACTERISTIC;
 import static org.im97mori.rbt.RbtConstants.EventThreshold.EVENT_THRESHOLD_BAROMETRIC_PRESSURE_UNIT_1;
 import static org.im97mori.rbt.RbtConstants.EventThreshold.EVENT_THRESHOLD_BAROMETRIC_PRESSURE_UNIT_2;
 
 /**
- * 2.6.1 Event pattern Barometric pressure (Characteristics UUID: 0x5217)
+ * 2.6.1 Event pattern Barometric pressure 1 (Characteristics UUID: 0x5217)
  */
 @SuppressWarnings("WeakerAccess")
-public class BarometricPressureSensor1 extends AbstractCharacteristic implements Parcelable {
+public class BarometricPressureSensor1 extends AbstractRbtCharacteristic implements Parcelable {
 
     /**
-     * @see Creator
+     * @see ByteArrayCreater
      */
-    public static final Creator<BarometricPressureSensor1> CREATOR = new Creator<BarometricPressureSensor1>() {
+    public static final ByteArrayCreater<BarometricPressureSensor1> CREATOR = new ByteArrayCreater<BarometricPressureSensor1>() {
 
         /**
          * {@inheritDoc}
@@ -34,6 +39,16 @@ public class BarometricPressureSensor1 extends AbstractCharacteristic implements
         @Override
         public BarometricPressureSensor1[] newArray(int size) {
             return new BarometricPressureSensor1[size];
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public BarometricPressureSensor1 createFromByteArray(byte[] values) {
+            BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BAROMETRIC_PRESSURE_SENSOR_1_CHARACTERISTIC, 0, 0);
+            bluetoothGattCharacteristic.setValue(values);
+            return new BarometricPressureSensor1(bluetoothGattCharacteristic);
         }
 
     };
@@ -98,6 +113,31 @@ public class BarometricPressureSensor1 extends AbstractCharacteristic implements
         mChangeThresholdRise2 = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_SINT16, 12);
         mChangeThresholdDecline1 = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_SINT16, 14);
         mChangeThresholdDecline2 = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_SINT16, 16);
+    }
+
+    /**
+     * Constructor from value
+     *
+     * @param eventEnableDisable         Event enable/disable
+     * @param simpleThresholdUpperLimit1 Simple threshold [upper limit] 1
+     * @param simpleThresholdUpperLimit2 Simple threshold [upper limit] 2
+     * @param simpleThresholdLowerLimit1 Simple threshold [lower limit] 1
+     * @param simpleThresholdLowerLimit2 Simple threshold [lower limit] 2
+     * @param changeThresholdRise1       Change threshold [rise] 1
+     * @param changeThresholdRise2       Change threshold [rise] 2
+     * @param changeThresholdDecline1    Change threshold [decline] 1
+     * @param changeThresholdDecline2    Change threshold [decline] 1
+     */
+    public BarometricPressureSensor1(int eventEnableDisable, int simpleThresholdUpperLimit1, int simpleThresholdUpperLimit2, int simpleThresholdLowerLimit1, int simpleThresholdLowerLimit2, int changeThresholdRise1, int changeThresholdRise2, int changeThresholdDecline1, int changeThresholdDecline2) {
+        mEventEnableDisable = eventEnableDisable;
+        mSimpleThresholdUpperLimit1 = simpleThresholdUpperLimit1;
+        mSimpleThresholdUpperLimit2 = simpleThresholdUpperLimit2;
+        mSimpleThresholdLowerLimit1 = simpleThresholdLowerLimit1;
+        mSimpleThresholdLowerLimit2 = simpleThresholdLowerLimit2;
+        mChangeThresholdRise1 = changeThresholdRise1;
+        mChangeThresholdRise2 = changeThresholdRise2;
+        mChangeThresholdDecline1 = changeThresholdDecline1;
+        mChangeThresholdDecline2 = changeThresholdDecline2;
     }
 
     /**
@@ -402,6 +442,27 @@ public class BarometricPressureSensor1 extends AbstractCharacteristic implements
      */
     public double getChangeThresholdDecline2Hpa() {
         return mChangeThresholdDecline2 * EVENT_THRESHOLD_BAROMETRIC_PRESSURE_UNIT_2;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public byte[] getBytes() {
+        byte[] data = new byte[20];
+        ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);
+        byteBuffer.putShort((short) mEventEnableDisable);
+        byteBuffer.putShort((short) mSimpleThresholdUpperLimit1);
+        byteBuffer.putShort((short) mSimpleThresholdUpperLimit2);
+        byteBuffer.putShort((short) mSimpleThresholdLowerLimit1);
+        byteBuffer.putShort((short) mSimpleThresholdLowerLimit2);
+        byteBuffer.putShort((short) mChangeThresholdRise1);
+        byteBuffer.putShort((short) mChangeThresholdRise2);
+        byteBuffer.putShort((short) mChangeThresholdDecline1);
+        byteBuffer.putShort((short) mChangeThresholdDecline2);
+        byteBuffer.put((byte) 0xff);
+        byteBuffer.put((byte) 0xff);
+        return data;
     }
 
 }

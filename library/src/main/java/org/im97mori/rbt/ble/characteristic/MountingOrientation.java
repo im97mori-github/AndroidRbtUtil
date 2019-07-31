@@ -4,11 +4,18 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.im97mori.ble.ByteArrayCreater;
+
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
+import static org.im97mori.rbt.RbtConstants.CharacteristicUUID.MOUNTING_ORIENTATION_CHARACTERISTIC;
+
 /**
  * 2.7.2 Mounting orientation (Characteristics UUID: 0x5402)
  */
 @SuppressWarnings("WeakerAccess")
-public class MountingOrientation extends AbstractCharacteristic implements Parcelable {
+public class MountingOrientation extends AbstractRbtCharacteristic implements Parcelable {
 
     /**
      * 0x01: Position 1
@@ -41,9 +48,9 @@ public class MountingOrientation extends AbstractCharacteristic implements Parce
     public static final int MOUNTING_ORIENTATION_POSITION_6 = 0x06;
 
     /**
-     * @see Creator
+     * @see ByteArrayCreater
      */
-    public static final Creator<MountingOrientation> CREATOR = new Creator<MountingOrientation>() {
+    public static final ByteArrayCreater<MountingOrientation> CREATOR = new ByteArrayCreater<MountingOrientation>() {
 
         /**
          * {@inheritDoc}
@@ -59,6 +66,16 @@ public class MountingOrientation extends AbstractCharacteristic implements Parce
         @Override
         public MountingOrientation[] newArray(int size) {
             return new MountingOrientation[size];
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public MountingOrientation createFromByteArray(byte[] values) {
+            BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(MOUNTING_ORIENTATION_CHARACTERISTIC, 0, 0);
+            bluetoothGattCharacteristic.setValue(values);
+            return new MountingOrientation(bluetoothGattCharacteristic);
         }
 
     };
@@ -107,6 +124,17 @@ public class MountingOrientation extends AbstractCharacteristic implements Parce
      */
     public int getMountingOrientation() {
         return mountingOrientation;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public byte[] getBytes() {
+        byte[] data = new byte[1];
+        ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);
+        byteBuffer.put((byte) mountingOrientation);
+        return data;
     }
 
 }

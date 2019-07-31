@@ -13,11 +13,45 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name="org.im97mori.sample.rbt.AdvertisingDataSampleActivity">
+        <activity android:name=".IndexActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".AdvertisingDataSampleActivity"
+            android:label="@string/label_advertising" />
+        <activity
+            android:name=".ConnectSampleActivity"
+            android:label="@string/label_connect" />
+        <activity
+            android:name=".MemoryDataServiceSampleActivity"
+            android:label="@string/label_memory_data_service" />
+        <activity
+            android:name=".LatestDataServiceSampleActivity"
+            android:label="@string/label_latest_data_service" />
+        <activity
+            android:name=".AccelerationServiceSampleActivity"
+            android:label="@string/label_acceleration_service" />
+        <activity
+            android:name=".ControlServiceSampleActivity"
+            android:label="@string/label_control_service" />
+        <activity
+            android:name=".TimeSettingSampleActivity"
+            android:label="@string/label_time_setting_service" />
+        <activity
+            android:name=".EventSettingServiceSampleActivity"
+            android:label="@string/label_event_setting_service" />
+        <activity
+            android:name=".InformationServiceSampleActivity"
+            android:label="@string/label_information_service" />
+        <activity
+            android:name=".GenericAccessSampleActivity"
+            android:label="@string/label_generic_access" />
+        <activity
+            android:name=".DeviceInformationSampleActivity"
+            android:label="@string/label_device_information" />
+
     </application>
 </manifest>

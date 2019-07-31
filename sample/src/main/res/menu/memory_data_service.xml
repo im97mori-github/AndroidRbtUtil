@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/read_memory_index_information"
+        android:title="@string/menu_read_5004" />
+    <item
+        android:id="@+id/write_request_memory_index"
+        android:title="@string/menu_write_5005" />
+    <item
+        android:id="@+id/read_memory_status"
+        android:title="@string/menu_read_5006" />
+
+    <item
+        android:id="@+id/notification_memory_sensing_data"
+        android:title="@string/menu_notification_500a" />
+
+    <item
+        android:id="@+id/notification_memory_calculation_data"
+        android:title="@string/menu_notification_500b" />
+
+    <item
+        android:id="@+id/notification_memory_sensing_flag"
+        android:title="@string/menu_notification_500c" />
+
+    <item
+        android:id="@+id/notification_memory_calculation_flag"
+        android:title="@string/menu_notification_500d" />
+
+</menu>

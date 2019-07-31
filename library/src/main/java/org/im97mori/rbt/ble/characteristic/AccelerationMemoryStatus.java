@@ -4,11 +4,18 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.im97mori.ble.ByteArrayCreater;
+
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
+import static org.im97mori.rbt.RbtConstants.CharacteristicUUID.ACCELERATION_MEMORY_STATUS_CHARACTERISTIC;
+
 /**
  * 2.3.3 Acceleration memory status (Characteristics UUID: 0x5033)
  */
 @SuppressWarnings("WeakerAccess")
-public class AccelerationMemoryStatus extends AbstractCharacteristic implements Parcelable {
+public class AccelerationMemoryStatus extends AbstractRbtCharacteristic implements Parcelable {
 
     /**
      * 0x00: Waiting
@@ -31,9 +38,9 @@ public class AccelerationMemoryStatus extends AbstractCharacteristic implements 
     public static final int STATUS_ERROR = 0x03;
 
     /**
-     * @see Creator
+     * @see ByteArrayCreater
      */
-    public static final Creator<AccelerationMemoryStatus> CREATOR = new Creator<AccelerationMemoryStatus>() {
+    public static final ByteArrayCreater<AccelerationMemoryStatus> CREATOR = new ByteArrayCreater<AccelerationMemoryStatus>() {
 
         /**
          * {@inheritDoc}
@@ -49,6 +56,16 @@ public class AccelerationMemoryStatus extends AbstractCharacteristic implements 
         @Override
         public AccelerationMemoryStatus[] newArray(int size) {
             return new AccelerationMemoryStatus[size];
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public AccelerationMemoryStatus createFromByteArray(byte[] values) {
+            BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(ACCELERATION_MEMORY_STATUS_CHARACTERISTIC, 0, 0);
+            bluetoothGattCharacteristic.setValue(values);
+            return new AccelerationMemoryStatus(bluetoothGattCharacteristic);
         }
 
     };
@@ -112,6 +129,18 @@ public class AccelerationMemoryStatus extends AbstractCharacteristic implements 
      */
     public int getTotalTransferCount() {
         return mTotalTransferCount;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public byte[] getBytes() {
+        byte[] data = new byte[3];
+        ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);
+        byteBuffer.put((byte) mStatus);
+        byteBuffer.putShort((short) mTotalTransferCount);
+        return data;
     }
 
 }

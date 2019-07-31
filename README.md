@@ -1,4 +1,6 @@
 # OMRON 2JCIE-BU01 Data Parser
+オムロン社の環境センサ[2JCIE-BU01](https://www.fa.omron.co.jp/products/family/3724/)をAndroid上から利用する為のライブラリです。
+バージョン0.2.0ではBLEのみをサポートしています(USB接続は未対応)。
 
 ## Prerequire
 minSdkVersion 19
@@ -15,149 +17,189 @@ project/build.gradle
 project/module/build.gradle
 
     dependencies {
-        implementation 'org.im97mori:rbt:0.1.0'
+        implementation 'org.im97mori:rbt:0.2.0'
     }
 
 ## How to use
-    class TestScanCallback extends ScanCallback {
-        @Override
-        public void onScanResult(int callbackType, ScanResult result) {
-            ScanRecord scanRecord = result.getScanRecord();
-            if (scanRecord != null) {
-                RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(true);
-                parser = builder.build();
+### Advertising data
+5種類(Sensor data / Calculation data / Sensor data & Calculation data / Sensor flag & Calculation flag / Serial Number)のAdvertising dataに対応しています。
+[LeScanCallback](https://developer.android.com/reference/android/bluetooth/BluetoothAdapter.LeScanCallback.html#onLeScan(android.bluetooth.BluetoothDevice,%20int,%20byte[])) や [ScanCallback](https://developer.android.com/reference/android/bluetooth/le/ScanCallback#onScanResult(int,%2520android.bluetooth.le.ScanResult))
+から取得したバイト配列を解析し、対応したデータクラスを生成します。
 
-                RbtAdvertisingDataParser.RbtAdvertisingDataParseResult rbtAdvertisingDataParseResult = parser.parse(scanRecord.getBytes());
+    @Override
+    public void onScanResult(int callbackType, ScanResult result) {
+        RbtAdvertisingDataParser parser = new RbtAdvertisingDataParser.Builder(true).build();
+        RbtAdvertisingDataParser.RbtAdvertisingDataParseResult rbtAdvertisingDataParseResult = parser.parse(record.getBytes());
+    }
 
-                SensorData sensorData = rbtAdvertisingDataParseResult.getSensorData();
-                if (sensorData != null) {
-                    sb.append("Sensor data");
-                    sb.append("\nSequence number\n");
-                    sb.append(sensorData.getSequenceNumber());
-                    sb.append("\nTemperature(degC)\n");
-                    sb.append(sensorData.getTemperatureDegC());
-                    sb.append("\nRelative humidity(%RH)\n");
-                    sb.append(sensorData.getRelativeHumidityRh());
-                    sb.append("\nAmbient light(lx)\n");
-                    sb.append(sensorData.getAmbientLightLx());
-                    sb.append("\nBarometric pressure(hPa)\n");
-                    sb.append(sensorData.getBarometricPressureHpa());
-                    sb.append("\nSound noise(dB)\n");
-                    sb.append(sensorData.getSoundNoiseDb());
-                    sb.append("\neTVOC(ppb)\n");
-                    sb.append(sensorData.getEtvocPpb());
-                    sb.append("\neCO2(ppm)\n");
-                    sb.append(sensorData.getEco2Ppm());
-                }
+バイト配列内に5種類のデータのいずれかが含まれている場合、RbtAdvertisingDataParseResultから対応したデータクラスを取得することが可能です。
 
-                CalculationData calculationData = rbtAdvertisingDataParseResult.getCalculationData();
-                if (calculationData != null) {
-                    sb.append("Calculation data");
-                    sb.append("\nSequence number\n");
-                    sb.append(calculationData.getSequenceNumber());
-                    sb.append("\nDiscomfort index(unit 0.01)\n");
-                    sb.append(calculationData.getDiscomfortIndexWithUnit());
-                    sb.append("\nHeat stroke(degC)\n");
-                    sb.append(calculationData.getHeatStrokeDegC());
-                    sb.append("\nVibration information\n");
-                    sb.append(calculationData.getVibrationInformation());
-                    sb.append("\nSI value(kine)\n");
-                    sb.append(calculationData.getSiValueKine());
-                    sb.append("\nPGA(gal)\n");
-                    sb.append(calculationData.getPgaGal());
-                    sb.append("\nSeismic intensity(unit 0.001)\n");
-                    sb.append(calculationData.getSeismicIntensityWithUnit());
-                    sb.append("\nAcceleration (X-axis)(gal)\n");
-                    sb.append(calculationData.getAccelerationXAxisGal());
-                    sb.append("\nAcceleration (Y-axis)(gal)\n");
-                    sb.append(calculationData.getAccelerationYAxisGal());
-                    sb.append("\nAcceleration (Z-axis)(gal)\n");
-                    sb.append(calculationData.getAccelerationZAxisGal());
-                }
-
-                SensorDataAndCalculationData sensorDataAndCalculationData = rbtAdvertisingDataParseResult.getSensorDataAndCalculationData();
-                if (sensorDataAndCalculationData != null) {
-                    sb.append("Sensor data & Calculation data (Scan rsp)");
-                    sb.append("\nSequence number\n");
-                    sb.append(sensorDataAndCalculationData.getSequenceNumber());
-                    sb.append("\nTemperature(degC)\n");
-                    sb.append(sensorDataAndCalculationData.getTemperatureDegC());
-                    sb.append("\nRelative humidity(%RH)\n");
-                    sb.append(sensorDataAndCalculationData.getRelativeHumidityRh());
-                    sb.append("\nAmbient light(lx)\n");
-                    sb.append(sensorDataAndCalculationData.getAmbientLightLx());
-                    sb.append("\nBarometric pressure(hPa)\n");
-                    sb.append(sensorDataAndCalculationData.getBarometricPressureHpa());
-                    sb.append("\nSound noise(dB)\n");
-                    sb.append(sensorDataAndCalculationData.getSoundNoiseDb());
-                    sb.append("\neTVOC(ppb)\n");
-                    sb.append(sensorDataAndCalculationData.getEtvocPpb());
-                    sb.append("\neCO2(ppm)\n");
-                    sb.append(sensorDataAndCalculationData.getEco2Ppm());
-
-                    sb.append("\nDiscomfort index(unit 0.01)\n");
-                    sb.append(sensorDataAndCalculationData.getDiscomfortIndexWithUnit());
-                    sb.append("\nHeat stroke(degC)\n");
-                    sb.append(sensorDataAndCalculationData.getHeatStrokeDegC());
-                    sb.append("\nVibration information\n");
-                    sb.append(sensorDataAndCalculationData.getVibrationInformation());
-                    sb.append("\nSI value(kine)\n");
-                    sb.append(sensorDataAndCalculationData.getSiValueKine());
-                    sb.append("\nPGA(gal)\n");
-                    sb.append(sensorDataAndCalculationData.getPgaGal());
-                    sb.append("\nSeismic intensity(unit 0.001)\n");
-                    sb.append(sensorDataAndCalculationData.getSeismicIntensityWithUnit());
-                    sb.append("\nAcceleration (X-axis)(gal)\n");
-                    sb.append(sensorDataAndCalculationData.getAccelerationXAxisGal());
-                    sb.append("\nAcceleration (Y-axis)(gal)\n");
-                    sb.append(sensorDataAndCalculationData.getAccelerationYAxisGal());
-                    sb.append("\nAcceleration (Z-axis)(gal)\n");
-                    sb.append(sensorDataAndCalculationData.getAccelerationZAxisGal());
-                }
-
-                SensorFlagAndCalculationFlag sensorFlagAndCalculationFlag = rbtAdvertisingDataParseResult.getSensorFlagAndCalculationFlag();
-                if (sensorFlagAndCalculationFlag != null) {
-                    sb.append("Sensor flag & Calculation flag (Scan rsp)");
-                    sb.append("\nSequence number\n");
-                    sb.append(Integer.toBinaryString(sensorFlagAndCalculationFlag.getSequenceNumber()));
-                    sb.append("\nTemperature flag\n");
-                    sb.append(Integer.toBinaryString(sensorFlagAndCalculationFlag.getTemperatureFlag()));
-                    sb.append("\nRelative humidity flag\n");
-                    sb.append(Integer.toBinaryString(sensorFlagAndCalculationFlag.getRelativeHumidityFlag()));
-                    sb.append("\nAmbient light flag\n");
-                    sb.append(Integer.toBinaryString(sensorFlagAndCalculationFlag.getAmbientLightFlag()));
-                    sb.append("\nBarometric pressure flag\n");
-                    sb.append(Integer.toBinaryString(sensorFlagAndCalculationFlag.getBarometricPressureFlag()));
-                    sb.append("\nSound noise flag\n");
-                    sb.append(Integer.toBinaryString(sensorFlagAndCalculationFlag.getSoundNoiseFlag()));
-                    sb.append("\neTVOC flag\n");
-                    sb.append(Integer.toBinaryString(sensorFlagAndCalculationFlag.getEtvocFlag()));
-                    sb.append("\neCO2 flag\n");
-                    sb.append(Integer.toBinaryString(sensorFlagAndCalculationFlag.getEco2Flag()));
-
-                    sb.append("\nDiscomfort index flag\n");
-                    sb.append(Integer.toBinaryString(sensorFlagAndCalculationFlag.getDiscomfortIndexFlag()));
-                    sb.append("\nHeat stroke flag\n");
-                    sb.append(Integer.toBinaryString(sensorFlagAndCalculationFlag.getHeatStrokeFlag()));
-                    sb.append("\nSI value flag\n");
-                    sb.append(Integer.toBinaryString(sensorFlagAndCalculationFlag.getSiValueFlag()));
-                    sb.append("\nPGA flag\n");
-                    sb.append(Integer.toBinaryString(sensorFlagAndCalculationFlag.getPgaFlag()));
-                    sb.append("\nSeismic intensity flag\n");
-                    sb.append(Integer.toBinaryString(sensorFlagAndCalculationFlag.getSeismicIntensityFlag()));
-                }
-
-                SerialNumber serialNumber = rbtAdvertisingDataParseResult.getSerialNumber();
-                if (serialNumber != null) {
-                    sb.append("Sensor data & Calculation data (Scan rsp)");
-                    sb.append("\nSerial number\n");
-                    sb.append(serialNumber.getSerialNumber());
-                    sb.append("\nMemory index (Latest)\n");
-                    sb.append(serialNumber.getMemoryIndex());
-                }
-                System.out.println(sb.toString());
-            }
+        // Sensor dataが含まれている場合
+        SensorData sensorData = rbtAdvertisingDataParseResult.getSensorData();
+        if (sensorData != null) {
+            System.out.println(sensorData.getSequenceNumber());
+            System.out.println(sensorData.getTemperatureDegC());
+            System.out.println(sensorData.getRelativeHumidityRh());
+            System.out.println(sensorData.getAmbientLightLx());
+            System.out.println(sensorData.getBarometricPressureHpa());
+            System.out.println(sensorData.getSoundNoiseDb());
+            System.out.println(sensorData.getEtvocPpb());
+            System.out.println(sensorData.getEco2Ppm());
         }
 
-## Note
-Current version support only advertising data
+### BLE GATT Services
+2JCIE-BU01に定義されている全てのServiceおよびCharacteristicに対応しています。
+
+#### 2JCIE-BU01への接続
+RbtBLEConnectionクラスを使用して接続を行います。
+
+    public class MainActivity2 extends Activity implements RbtCallback {
+    
+        private RbtBLEConnection rbtBLEConnection;
+        
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+    
+            Intent intent = getIntent();
+            BluetoothDevice bluetoothDevice = intent.getParcelableExtra("device");
+            
+            rbtBLEConnection = new RbtBLEConnection(this, bluetoothDevice, this);
+            rbtBLEConnection.connect(ConnectTask.TIMEOUT_MILLIS);
+        }
+
+        @Override
+        public void onRbtConnected(BluetoothDevice bluetoothDevice) {
+            // 接続完了
+        }
+    
+        @Override
+        public void onRbtConnectTimeout(BluetoothDevice bluetoothDevice) {
+            /// 接続失敗 or タイムアウト
+        }
+
+#### 2JCIE-BU01から切断
+RbtBLEConnectionインスタンスはペリフェラルへのリクエスト/レスポンスを処理する専用の[Handler](https://developer.android.com/reference/android/os/Handler)を保持しているためかならず終了する必要があります。
+
+    @Override
+    protected void onDestroy() {
+        rbtBLEConnection.quit();
+        super.onDestroy();
+    }
+
+この処理を行わない場合、Handlerスレッドが解放さないためメモリリークを引き起こします。
+
+### Characteristicの読み込み / 書き込み
+RbtBLEConnectionクラスにはそれぞれのCharacteristic(およびDescriptor)の読み込み/書き込みを行うメソッドが定義されています。
+またRbtCallbackインターフェースには対応した処理結果メソッドが定義されています。
+
+#### 読み込み
+例 Control Service(0x5110)内のLED setting normal state(0x5111)の場合
+
+    // 読み込みタスクをキューイング
+    @Override
+    public void onClick(View v) {
+        rbtBLEConnection.readLedSettingNormalState();
+    }
+    
+    @Override
+    public void onLedSettingNormalStateReadSuccess(BluetoothDevice bluetoothDevice, LedSettingNormalState ledSettingNormalState) {
+        // 読み込み成功
+        System.out.println(ledSettingNormalState.getDisplayRule());
+        System.out.println(ledSettingNormalState.getIntensityOfLedRed());
+        System.out.println(ledSettingNormalState.getIntensityOfLedGreen());
+        System.out.println(ledSettingNormalState.getIntensityOfLedBlue());
+    }
+
+    @Override
+    public void onLedSettingNormalStateReadFailed(BluetoothDevice bluetoothDevice, int status) {
+        // 読み込み失敗
+    }
+
+    @Override
+    public void onLedSettingNormalStateReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+        // タイムアウト
+    }
+
+#### 書き込み
+2JCIE-BU01は一部のCharacteristic書き込み完了後、FLASH memory status(0x5403)による書き込み成否の判断を行う必要がありますが
+この処理は個々のCharacteristic書き込み処理タスク内で自動的に行われるため別途読み込み処理を行う必要はありません。
+
+例1 LED setting normal state(Flash memory statusチェックが必要)の書き込みタスク内処理
+1. LED setting normal state書き込み
+1. FLASH memory status読み込み
+1. FLASH memory status結果がWrite success (0x02)の場合は成功としてタスク終了およびコールバックインターフェース呼び出し
+1. FLASH memory status結果がWrite failure (0x03)の場合は失敗としてタスク終了およびコールバックインターフェース呼び出し
+1. FLASH memory status結果がWriting (0x01)の場合は再度FLASH memory status読み込み
+
+```
+    @Override
+    public void onClick(View v) {
+        rbtBLEConnection.writeLedSettingNormalState(
+                new LedSettingNormalState(
+                        LedSettingNormalState.DISPLAY_RULE_NORMALLY_ON
+                        , 255
+                        , 0
+                        , 255
+                )
+        );
+    }
+    
+    @Override
+    public void onLedSettingNormalStateWriteSuccess(BluetoothDevice bluetoothDevice, LedSettingNormalState ledSettingNormalState) {
+        // 書き込み成功
+    }
+
+    @Override
+    public void onLedSettingNormalStateWriteFailed(BluetoothDevice bluetoothDevice, int status) {
+        // 書き込み失敗
+    }
+
+    @Override
+    public void onLedSettingNormalStateWriteTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+        // タイムアウト
+    }
+```
+
+例2 Time setting(Flash memory statusチェックが不要)の書き込みタスク内処理
+1. Time setting書き込み後タスク終了、成功 / 失敗コールバックインターフェース呼び出し
+
+Request memory index(0x5005)およびRequest acceleration memory index(0x5032)については書き込み直後にnotificationが発生します。
+発生するnotificationの順番によりデータ構造が異なるため、上記のCharacteristic書き込みの場合は後続のnotificationの受信とセットとなる処理になっています。
+
+例 Request acceleration memory indexの書き込みタスク内処理
+1. Request acceleration memory indexのCCCDにnotificationを書き込み
+1. Request acceleration memory index書き込み
+1. Acceleration memory data(0x5034)からのnotificationを受信しHeader(20byte * 4packet)もしくはData(20byte * 13packet * リクエストしたページ数)として解析完了毎にコールバックインターフェース呼び出し
+
+```
+    @Override
+    public void onClick(View v) {
+        rbtBLEConnection.writeRequestAccelerationMemoryIndex(new RequestAccelerationMemoryIndex(
+                RequestAccelerationMemoryIndex.ACCELERATION_DATA_TYPE_EARTHQUAKE_DATA
+                , 0x01
+                , 0x0000
+                , 0x0001
+        ));
+    }
+    
+    @Override
+    public void onAccelerationMemoryDataHeaderNotified(BluetoothDevice bluetoothDevice, AccelerationMemoryDataHeader accelerationMemoryDataHeader) {
+        // Headerがnotifyされた
+    }
+
+    @Override
+    public void onAccelerationMemoryDataNotified(BluetoothDevice bluetoothDevice, AccelerationMemoryData accelerationMemoryData) {
+        // Dataがnotifyされた
+    }
+    
+    @Override
+    public void onRequestAccelerationMemoryIndexWriteFailed(BluetoothDevice bluetoothDevice, int status) {
+        // 書き込み失敗
+    }
+
+    @Override
+    public void onRequestAccelerationMemoryIndexWriteTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+        // タイムアウト
+    }
+```

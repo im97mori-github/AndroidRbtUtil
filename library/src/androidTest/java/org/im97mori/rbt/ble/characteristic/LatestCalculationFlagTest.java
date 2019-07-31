@@ -6,7 +6,7 @@ import android.os.Parcel;
 import org.im97mori.ble.ad.AdvertisingDataConstants;
 import org.junit.Test;
 
-import static org.im97mori.rbt.RbtConstants.RbtAdvertisingDataType.DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
@@ -230,16 +230,15 @@ public class LatestCalculationFlagTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_004() {
-        byte[] data2 = new byte[27];
-        data2[0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
-        data2[1] = (byte) 0x00; // Sequence number
+        byte[] data2 = new byte[8];
+        data2[0] = (byte) 0x01; // Sequence number
+        data2[1] = (byte) 0x02; // Discomfort index flag
         data2[2] = (byte) 0x00; // Discomfort index flag
-        data2[3] = (byte) 0x00; // Discomfort index flag
+        data2[3] = (byte) 0x03; // Heat stroke flag
         data2[4] = (byte) 0x00; // Heat stroke flag
-        data2[5] = (byte) 0x00; // Heat stroke flag
-        data2[6] = (byte) 0x00; // SI value flag
-        data2[7] = (byte) 0x00; // PGA flag
-        data2[8] = (byte) 0x00; // Seismic intensity flag
+        data2[5] = (byte) 0x04; // SI value flag
+        data2[6] = (byte) 0x05; // PGA flag
+        data2[7] = (byte) 0x06; // Seismic intensity flag
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
@@ -260,7 +259,6 @@ public class LatestCalculationFlagTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_005() {
-
         byte[] data2 = new byte[8];
         data2[0] = (byte) 0xff; // Sequence number
         data2[1] = (byte) ALL_EVENT_FLAG_SENSOR_LSB; // Discomfort index flag
@@ -288,4 +286,43 @@ public class LatestCalculationFlagTest extends AbstractSensingFlagTest {
         assertEquals(result2.getSeismicIntensityFlag(), result1.getSeismicIntensityFlag());
     }
 
+    @Test
+    public void test_006() {
+        byte[] data2 = new byte[8];
+        data2[0] = (byte) 0x01; // Sequence number
+        data2[1] = (byte) 0x02; // Discomfort index flag
+        data2[2] = (byte) 0x00; // Discomfort index flag
+        data2[3] = (byte) 0x03; // Heat stroke flag
+        data2[4] = (byte) 0x00; // Heat stroke flag
+        data2[5] = (byte) 0x04; // SI value flag
+        data2[6] = (byte) 0x05; // PGA flag
+        data2[7] = (byte) 0x06; // Seismic intensity flag
+
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        bluetoothGattCharacteristic.setValue(data2);
+
+        LatestCalculationFlag result1 = new LatestCalculationFlag(bluetoothGattCharacteristic);
+        byte[] resultData = result1.getBytes();
+        assertArrayEquals(data2, resultData);
+    }
+
+    @Test
+    public void test_007() {
+        byte[] data2 = new byte[8];
+        data2[0] = (byte) 0x01; // Sequence number
+        data2[1] = (byte) 0x02; // Discomfort index flag
+        data2[2] = (byte) 0x00; // Discomfort index flag
+        data2[3] = (byte) 0x03; // Heat stroke flag
+        data2[4] = (byte) 0x00; // Heat stroke flag
+        data2[5] = (byte) 0x04; // SI value flag
+        data2[6] = (byte) 0x05; // PGA flag
+        data2[7] = (byte) 0x06; // Seismic intensity flag
+
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        bluetoothGattCharacteristic.setValue(data2);
+
+        LatestCalculationFlag result1 = new LatestCalculationFlag(bluetoothGattCharacteristic);
+        LatestCalculationFlag result2 = LatestCalculationFlag.CREATOR.createFromByteArray(data2);
+        assertArrayEquals(result1.getBytes(), result2.getBytes());
+    }
 }

@@ -4,13 +4,19 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.im97mori.ble.ByteArrayCreater;
+
 import java.math.BigInteger;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
+import static org.im97mori.rbt.RbtConstants.CharacteristicUUID.MEMORY_STATUS_CHARACTERISTIC;
 
 /**
  * 2.1.3 Memory status (Characteristics UUID: 0x5006)
  */
 @SuppressWarnings("WeakerAccess")
-public class MemoryStatus extends AbstractCharacteristic implements Parcelable {
+public class MemoryStatus extends AbstractRbtCharacteristic implements Parcelable {
 
     /**
      * 0x00: Waiting
@@ -33,9 +39,9 @@ public class MemoryStatus extends AbstractCharacteristic implements Parcelable {
     public static final int STATUS_ERROR = 0x03;
 
     /**
-     * @see Creator
+     * @see ByteArrayCreater
      */
-    public static final Creator<MemoryStatus> CREATOR = new Creator<MemoryStatus>() {
+    public static final ByteArrayCreater<MemoryStatus> CREATOR = new ByteArrayCreater<MemoryStatus>() {
 
         /**
          * {@inheritDoc}
@@ -51,6 +57,16 @@ public class MemoryStatus extends AbstractCharacteristic implements Parcelable {
         @Override
         public MemoryStatus[] newArray(int size) {
             return new MemoryStatus[size];
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public MemoryStatus createFromByteArray(byte[] values) {
+            BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(MEMORY_STATUS_CHARACTERISTIC, 0, 0);
+            bluetoothGattCharacteristic.setValue(values);
+            return new MemoryStatus(bluetoothGattCharacteristic);
         }
 
     };
@@ -129,6 +145,19 @@ public class MemoryStatus extends AbstractCharacteristic implements Parcelable {
      */
     public int getMemoryStorageInterval() {
         return mMemoryStorageInterval;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public byte[] getBytes() {
+        byte[] data = new byte[11];
+        ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);
+        byteBuffer.put((byte) mStatus);
+        byteBuffer.put(createLittleEndianByteArrayFromBigInteger(mTimeCounter, 8));
+        byteBuffer.putShort((short) mMemoryStorageInterval);
+        return data;
     }
 
 }

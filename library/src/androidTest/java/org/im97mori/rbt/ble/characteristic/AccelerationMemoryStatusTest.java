@@ -6,6 +6,7 @@ import android.os.Parcel;
 import org.im97mori.ble.ad.AdvertisingDataConstants;
 import org.junit.Test;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class AccelerationMemoryStatusTest {
@@ -88,5 +89,20 @@ public class AccelerationMemoryStatusTest {
 
         assertEquals(result1.getStatus(), result2.getStatus());
         assertEquals(result1.getTotalTransferCount(), result2.getTotalTransferCount());
+    }
+
+    @Test
+    public void test006() {
+        byte[] data = new byte[3];
+        data[ 0] = (byte) ((AccelerationMemoryStatus.STATUS_ERROR) & 0xff);
+        data[ 1] = (byte) ((0xff) & 0xff);
+        data[ 2] = (byte) ((0x7f) & 0xff);
+
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        bluetoothGattCharacteristic.setValue(data);
+
+        AccelerationMemoryStatus result1 = new AccelerationMemoryStatus(bluetoothGattCharacteristic);
+        byte[] resultData = result1.getBytes();
+        assertArrayEquals(data, resultData);
     }
 }

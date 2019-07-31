@@ -6,6 +6,7 @@ import android.os.Parcel;
 import org.im97mori.ble.ad.AdvertisingDataConstants;
 import org.junit.Test;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class MemoryStorageIntervalTest {
@@ -39,7 +40,7 @@ public class MemoryStorageIntervalTest {
     }
 
     @Test
-    public void test7() {
+    public void test3() {
         byte[] data = new byte[2];
         data[0] = (byte) (0x10 & 0xff);
         data[1] = (byte) (0x0e & 0xff);
@@ -54,5 +55,41 @@ public class MemoryStorageIntervalTest {
         MemoryStorageInterval result2 = MemoryStorageInterval.CREATOR.createFromParcel(parcel);
 
         assertEquals(result1.getMemoryStorageInterval(), result2.getMemoryStorageInterval());
+    }
+
+    @Test
+    public void test4() {
+        byte[] data = new byte[2];
+        data[0] = (byte) (0x10 & 0xff);
+        data[1] = (byte) (0x0e & 0xff);
+
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        bluetoothGattCharacteristic.setValue(data);
+
+        MemoryStorageInterval result1 = new MemoryStorageInterval(bluetoothGattCharacteristic);
+        byte[] resultData = result1.getBytes();
+        assertArrayEquals(data, resultData);
+    }
+
+    @Test
+    public void test5() {
+        int memoryStorageInterval = 0x01;
+
+        MemoryStorageInterval result1 = new MemoryStorageInterval(memoryStorageInterval);
+        assertEquals(memoryStorageInterval, result1.getMemoryStorageInterval());
+    }
+
+    @Test
+    public void test6() {
+        byte[] data = new byte[2];
+        data[0] = (byte) (0x10 & 0xff);
+        data[1] = (byte) (0x0e & 0xff);
+
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        bluetoothGattCharacteristic.setValue(data);
+
+        MemoryStorageInterval result1 = new MemoryStorageInterval(bluetoothGattCharacteristic);
+        MemoryStorageInterval result2 = MemoryStorageInterval.CREATOR.createFromByteArray(data);
+        assertArrayEquals(result1.getBytes(), result2.getBytes());
     }
 }

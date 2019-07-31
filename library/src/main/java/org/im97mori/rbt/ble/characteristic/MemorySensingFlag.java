@@ -4,12 +4,18 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.im97mori.ble.ByteArrayCreater;
 import org.im97mori.rbt.RbtConstants;
+
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
+import static org.im97mori.rbt.RbtConstants.CharacteristicUUID.MEMORY_SENSING_FLAG_CHARACTERISTIC;
 
 /**
  * 2.1.6 Memory s ensing flag ( Characteristics UUID: 0x500C)
  */
-public class MemorySensingFlag extends AbstractCharacteristic implements Parcelable {
+public class MemorySensingFlag extends AbstractRbtCharacteristic implements Parcelable {
 
     /**
      * Memory index data error
@@ -17,9 +23,9 @@ public class MemorySensingFlag extends AbstractCharacteristic implements Parcela
     public static final int DATA_ERROR_BIT = 0b10000000_00000000_00000000_00000000;
 
     /**
-     * @see Creator
+     * @see ByteArrayCreater
      */
-    public static final Creator<MemorySensingFlag> CREATOR = new Creator<MemorySensingFlag>() {
+    public static final ByteArrayCreater<MemorySensingFlag> CREATOR = new ByteArrayCreater<MemorySensingFlag>() {
 
         /**
          * {@inheritDoc}
@@ -35,6 +41,16 @@ public class MemorySensingFlag extends AbstractCharacteristic implements Parcela
         @Override
         public MemorySensingFlag[] newArray(int size) {
             return new MemorySensingFlag[size];
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public MemorySensingFlag createFromByteArray(byte[] values) {
+            BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(MEMORY_SENSING_FLAG_CHARACTERISTIC, 0, 0);
+            bluetoothGattCharacteristic.setValue(values);
+            return new MemorySensingFlag(bluetoothGattCharacteristic);
         }
 
     };
@@ -1363,6 +1379,24 @@ public class MemorySensingFlag extends AbstractCharacteristic implements Parcela
      */
     private boolean isSensorBaseDifferenceThresholdLowerReached(int flag) {
         return (flag & RbtConstants.EventFlagSensor.BASE_DIFFERENCE_THRESHOLD_LOWER) != 0;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public byte[] getBytes() {
+        byte[] data = new byte[18];
+        ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);
+        byteBuffer.putInt(mMemoryIndex);
+        byteBuffer.putShort((short) mTemperatureFlag);
+        byteBuffer.putShort((short) mRelativeHumidityFlag);
+        byteBuffer.putShort((short) mAmbientLightFlag);
+        byteBuffer.putShort((short) mBarometricPressureFlag);
+        byteBuffer.putShort((short) mSoundNoiseFlag);
+        byteBuffer.putShort((short) mEtvocFlag);
+        byteBuffer.putShort((short) mEco2Flag);
+        return data;
     }
 
 }

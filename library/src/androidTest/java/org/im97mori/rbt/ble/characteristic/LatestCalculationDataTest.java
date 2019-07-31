@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import static org.im97mori.rbt.RbtConstants.OutputRange.VIBRATION_INFORMATION_DURING_EARTH_QUAKE_BIT;
 import static org.im97mori.rbt.RbtConstants.OutputRange.VIBRATION_INFORMATION_NONE_BIT;
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class LatestCalculationDataTest {
@@ -113,18 +114,18 @@ public class LatestCalculationDataTest {
         data[ 3] = (byte) 0xd4; // Heat stroke
         data[ 4] = (byte) 0x30; // Heat stroke
         data[ 5] = (byte) VIBRATION_INFORMATION_DURING_EARTH_QUAKE_BIT; // Vibration information
-        data[ 6] = (byte) 0xff; // SI value
+        data[ 6] = (byte) 0x1f; // SI value
         data[ 7] = (byte) 0xff; // SI value
-        data[ 8] = (byte) 0xff; // PGA
+        data[ 8] = (byte) 0x2f; // PGA
         data[ 9] = (byte) 0xff; // PGA
-        data[10] = (byte) 0xff; // Seismic intensity
+        data[10] = (byte) 0x3f; // Seismic intensity
         data[11] = (byte) 0xff; // Seismic intensity
-        data[12] = (byte) 0x20; // Acceleration (X-axis)
-        data[13] = (byte) 0x4e; // Acceleration (X-axis)
-        data[14] = (byte) 0x20; // Acceleration (Y-axis)
-        data[15] = (byte) 0x4e; // Acceleration (Y-axis)
-        data[16] = (byte) 0x20; // Acceleration (Z-axis)
-        data[17] = (byte) 0x4e; // Acceleration (Z-axis)
+        data[12] = (byte) 0x21; // Acceleration (X-axis)
+        data[13] = (byte) 0x42; // Acceleration (X-axis)
+        data[14] = (byte) 0x23; // Acceleration (Y-axis)
+        data[15] = (byte) 0x44; // Acceleration (Y-axis)
+        data[16] = (byte) 0x25; // Acceleration (Z-axis)
+        data[17] = (byte) 0x46; // Acceleration (Z-axis)
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -145,5 +146,65 @@ public class LatestCalculationDataTest {
         assertEquals(result1.getAccelerationXAxis(), result2.getAccelerationXAxis());
         assertEquals(result1.getAccelerationYAxis(), result2.getAccelerationYAxis());
         assertEquals(result1.getAccelerationZAxis(), result2.getAccelerationZAxis());
+    }
+
+    @Test
+    public void test004() {
+        byte[] data = new byte[18];
+        data[ 0] = (byte) 0xff; // Sequence number
+        data[ 1] = (byte) 0x10; // Discomfort index
+        data[ 2] = (byte) 0x27; // Discomfort index
+        data[ 3] = (byte) 0xd4; // Heat stroke
+        data[ 4] = (byte) 0x30; // Heat stroke
+        data[ 5] = (byte) VIBRATION_INFORMATION_DURING_EARTH_QUAKE_BIT; // Vibration information
+        data[ 6] = (byte) 0x1f; // SI value
+        data[ 7] = (byte) 0xff; // SI value
+        data[ 8] = (byte) 0x2f; // PGA
+        data[ 9] = (byte) 0xff; // PGA
+        data[10] = (byte) 0x3f; // Seismic intensity
+        data[11] = (byte) 0xff; // Seismic intensity
+        data[12] = (byte) 0x21; // Acceleration (X-axis)
+        data[13] = (byte) 0x42; // Acceleration (X-axis)
+        data[14] = (byte) 0x23; // Acceleration (Y-axis)
+        data[15] = (byte) 0x44; // Acceleration (Y-axis)
+        data[16] = (byte) 0x25; // Acceleration (Z-axis)
+        data[17] = (byte) 0x46; // Acceleration (Z-axis)
+
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        bluetoothGattCharacteristic.setValue(data);
+
+        LatestCalculationData result1 = new LatestCalculationData(bluetoothGattCharacteristic);
+        byte[] resultData = result1.getBytes();
+        assertArrayEquals(data, resultData);
+    }
+
+    @Test
+    public void test005() {
+        byte[] data = new byte[18];
+        data[ 0] = (byte) 0xff; // Sequence number
+        data[ 1] = (byte) 0x10; // Discomfort index
+        data[ 2] = (byte) 0x27; // Discomfort index
+        data[ 3] = (byte) 0xd4; // Heat stroke
+        data[ 4] = (byte) 0x30; // Heat stroke
+        data[ 5] = (byte) VIBRATION_INFORMATION_DURING_EARTH_QUAKE_BIT; // Vibration information
+        data[ 6] = (byte) 0x1f; // SI value
+        data[ 7] = (byte) 0xff; // SI value
+        data[ 8] = (byte) 0x2f; // PGA
+        data[ 9] = (byte) 0xff; // PGA
+        data[10] = (byte) 0x3f; // Seismic intensity
+        data[11] = (byte) 0xff; // Seismic intensity
+        data[12] = (byte) 0x21; // Acceleration (X-axis)
+        data[13] = (byte) 0x42; // Acceleration (X-axis)
+        data[14] = (byte) 0x23; // Acceleration (Y-axis)
+        data[15] = (byte) 0x44; // Acceleration (Y-axis)
+        data[16] = (byte) 0x25; // Acceleration (Z-axis)
+        data[17] = (byte) 0x46; // Acceleration (Z-axis)
+
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        bluetoothGattCharacteristic.setValue(data);
+
+        LatestCalculationData result1 = new LatestCalculationData(bluetoothGattCharacteristic);
+        LatestCalculationData result2 = LatestCalculationData.CREATOR.createFromByteArray(data);
+        assertArrayEquals(result1.getBytes(), result2.getBytes());
     }
 }

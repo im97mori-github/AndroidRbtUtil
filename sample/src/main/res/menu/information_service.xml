@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/read_error_status"
+        android:title="@string/menu_read_5401" />
+    <item
+        android:id="@+id/read_mounting_orientation"
+        android:title="@string/menu_read_5402" />
+    <item
+        android:id="@+id/read_flash_memory_status"
+        android:title="@string/menu_read_5403" />
+</menu>

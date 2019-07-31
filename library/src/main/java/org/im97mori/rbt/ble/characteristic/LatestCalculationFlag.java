@@ -4,18 +4,23 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.im97mori.ble.ByteArrayCreater;
 import org.im97mori.rbt.RbtConstants;
+
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
+import static org.im97mori.rbt.RbtConstants.CharacteristicUUID.LATEST_CALCULATION_FLAG_CHARACTERISTIC;
 
 /**
  * 2.2.4 Latest calculation flag (Characteristics UUID: 0x5015)
  */
-@SuppressWarnings("WeakerAccess")
-public class LatestCalculationFlag extends AbstractCharacteristic implements Parcelable {
+public class LatestCalculationFlag extends AbstractRbtCharacteristic implements Parcelable {
 
     /**
-     * @see Creator
+     * @see ByteArrayCreater
      */
-    public static final Creator<LatestCalculationFlag> CREATOR = new Creator<LatestCalculationFlag>() {
+    public static final ByteArrayCreater<LatestCalculationFlag> CREATOR = new ByteArrayCreater<LatestCalculationFlag>() {
 
         /**
          * {@inheritDoc}
@@ -31,6 +36,16 @@ public class LatestCalculationFlag extends AbstractCharacteristic implements Par
         @Override
         public LatestCalculationFlag[] newArray(int size) {
             return new LatestCalculationFlag[size];
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public LatestCalculationFlag createFromByteArray(byte[] values) {
+            BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(LATEST_CALCULATION_FLAG_CHARACTERISTIC, 0, 0);
+            bluetoothGattCharacteristic.setValue(values);
+            return new LatestCalculationFlag(bluetoothGattCharacteristic);
         }
 
     };
@@ -750,6 +765,22 @@ public class LatestCalculationFlag extends AbstractCharacteristic implements Par
      */
     private boolean isAccelerationChangeThresholdRise2Reached(int flag) {
         return (flag & RbtConstants.EventFlagAcceleration.CHANGE_THRESHOLD_RISE_2) != 0;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public byte[] getBytes() {
+        byte[] data = new byte[8];
+        ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);
+        byteBuffer.put((byte) mSequenceNumber);
+        byteBuffer.putShort((short) mDiscomfortIndexFlag);
+        byteBuffer.putShort((short) mHeatStrokeFlag);
+        byteBuffer.put((byte) mSiValueFlag);
+        byteBuffer.put((byte) mPgaFlag);
+        byteBuffer.put((byte) mSeismicIntensityFlag);
+        return data;
     }
 
 }

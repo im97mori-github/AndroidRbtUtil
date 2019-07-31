@@ -4,20 +4,25 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.im97mori.ble.ByteArrayCreater;
 import org.im97mori.rbt.RbtConstants;
 
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
+import static org.im97mori.rbt.RbtConstants.CharacteristicUUID.SEISMIC_INTENSITY_ACCELERATION_CHARACTERISTIC;
 import static org.im97mori.rbt.RbtConstants.EventThreshold.EVENT_THRESHOLD_SEISMIC_INTENSITY_UNIT;
 
 /**
  * 2.6.3 Event pattern Seismic intensity (Characteristics UUID: 0x5228)
  */
 @SuppressWarnings("WeakerAccess")
-public class SeismicIntensityAcceleration extends AbstractCharacteristic implements Parcelable {
+public class SeismicIntensityAcceleration extends AbstractRbtCharacteristic implements Parcelable {
 
     /**
-     * @see Creator
+     * @see ByteArrayCreater
      */
-    public static final Creator<SeismicIntensityAcceleration> CREATOR = new Creator<SeismicIntensityAcceleration>() {
+    public static final ByteArrayCreater<SeismicIntensityAcceleration> CREATOR = new ByteArrayCreater<SeismicIntensityAcceleration>() {
 
         /**
          * {@inheritDoc}
@@ -33,6 +38,16 @@ public class SeismicIntensityAcceleration extends AbstractCharacteristic impleme
         @Override
         public SeismicIntensityAcceleration[] newArray(int size) {
             return new SeismicIntensityAcceleration[size];
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public SeismicIntensityAcceleration createFromByteArray(byte[] values) {
+            BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(SEISMIC_INTENSITY_ACCELERATION_CHARACTERISTIC, 0, 0);
+            bluetoothGattCharacteristic.setValue(values);
+            return new SeismicIntensityAcceleration(bluetoothGattCharacteristic);
         }
 
     };
@@ -73,6 +88,23 @@ public class SeismicIntensityAcceleration extends AbstractCharacteristic impleme
         mSimpleThresholdUpperLimit2 = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT16, 3);
         mChangeThresholdRise1 = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT16, 5);
         mChangeThresholdRise2 = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT16, 7);
+    }
+
+    /**
+     * Constructor from value
+     *
+     * @param eventEnableDisable         Event enable/disable
+     * @param simpleThresholdUpperLimit1 Simple threshold [upper limit] 1
+     * @param simpleThresholdUpperLimit2 Simple threshold [upper limit] 2
+     * @param changeThresholdRise1       Change threshold [rise] 1
+     * @param changeThresholdRise2       Change threshold [rise] 2
+     */
+    public SeismicIntensityAcceleration(int eventEnableDisable, int simpleThresholdUpperLimit1, int simpleThresholdUpperLimit2, int changeThresholdRise1, int changeThresholdRise2) {
+        mEventEnableDisable = eventEnableDisable;
+        mSimpleThresholdUpperLimit1 = simpleThresholdUpperLimit1;
+        mSimpleThresholdUpperLimit2 = simpleThresholdUpperLimit2;
+        mChangeThresholdRise1 = changeThresholdRise1;
+        mChangeThresholdRise2 = changeThresholdRise2;
     }
 
     /**
@@ -205,6 +237,21 @@ public class SeismicIntensityAcceleration extends AbstractCharacteristic impleme
      */
     public double getChangeThresholdRise2WithUnit() {
         return mChangeThresholdRise2 * EVENT_THRESHOLD_SEISMIC_INTENSITY_UNIT;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public byte[] getBytes() {
+        byte[] data = new byte[9];
+        ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);
+        byteBuffer.put((byte) mEventEnableDisable);
+        byteBuffer.putShort((short) mSimpleThresholdUpperLimit1);
+        byteBuffer.putShort((short) mSimpleThresholdUpperLimit2);
+        byteBuffer.putShort((short) mChangeThresholdRise1);
+        byteBuffer.putShort((short) mChangeThresholdRise2);
+        return data;
     }
 
 }

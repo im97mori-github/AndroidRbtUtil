@@ -4,11 +4,18 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.im97mori.ble.ByteArrayCreater;
+
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
+import static org.im97mori.rbt.RbtConstants.CharacteristicUUID.ACCELERATION_LOGGER_STATUS_CHARACTERISTIC;
+
 /**
  * 2.4.9 Acceleration logger status (Characteristics UUID: 0x5119)
  */
 @SuppressWarnings("WeakerAccess")
-public class AccelerationLoggerStatus  extends AbstractCharacteristic implements Parcelable {
+public class AccelerationLoggerStatus extends AbstractRbtCharacteristic implements Parcelable {
 
     /**
      * 0x00: Waiting
@@ -21,9 +28,9 @@ public class AccelerationLoggerStatus  extends AbstractCharacteristic implements
     public static final int LOGGER_STATUS_RUNNING = 0x01;
 
     /**
-     * @see Creator
+     * @see ByteArrayCreater
      */
-    public static final Creator<AccelerationLoggerStatus> CREATOR = new Creator<AccelerationLoggerStatus>() {
+    public static final ByteArrayCreater<AccelerationLoggerStatus> CREATOR = new ByteArrayCreater<AccelerationLoggerStatus>() {
 
         /**
          * {@inheritDoc}
@@ -39,6 +46,16 @@ public class AccelerationLoggerStatus  extends AbstractCharacteristic implements
         @Override
         public AccelerationLoggerStatus[] newArray(int size) {
             return new AccelerationLoggerStatus[size];
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public AccelerationLoggerStatus createFromByteArray(byte[] values) {
+            BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(ACCELERATION_LOGGER_STATUS_CHARACTERISTIC, 0, 0);
+            bluetoothGattCharacteristic.setValue(values);
+            return new AccelerationLoggerStatus(bluetoothGattCharacteristic);
         }
 
     };
@@ -102,6 +119,18 @@ public class AccelerationLoggerStatus  extends AbstractCharacteristic implements
      */
     public int getRunningPage() {
         return mRunningPage;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public byte[] getBytes() {
+        byte[] data = new byte[3];
+        ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);
+        byteBuffer.put((byte) mLoggerStatus);
+        byteBuffer.putShort((short) mRunningPage);
+        return data;
     }
 
 }
