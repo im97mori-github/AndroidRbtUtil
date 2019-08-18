@@ -1,6 +1,7 @@
 package org.im97mori.rbt.ble;
 
 import android.bluetooth.BluetoothDevice;
+import android.os.Bundle;
 
 import org.im97mori.ble.BLECallback;
 import org.im97mori.ble.characteristic.Appearance;
@@ -145,7 +146,7 @@ class RbtBLECallback implements BLECallback {
      * {@inheritDoc}
      */
     @Override
-    public void onBLEConnected(BluetoothDevice bluetoothDevice) {
+    public void onBLEConnected(long taskId, BluetoothDevice bluetoothDevice, Bundle argument) {
         mRbtCallback.onRbtConnected(bluetoothDevice);
     }
 
@@ -153,7 +154,15 @@ class RbtBLECallback implements BLECallback {
      * {@inheritDoc}
      */
     @Override
-    public void onBLEConnectTimeout(BluetoothDevice bluetoothDevice) {
+    public void onBLEConnectFailed(long taskId, BluetoothDevice bluetoothDevice, int status, Bundle argument) {
+        mRbtCallback.onRbtConnectFailed(bluetoothDevice);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void onBLEConnectTimeout(long taskId, BluetoothDevice bluetoothDevice, Bundle argument) {
         mRbtCallback.onRbtConnectTimeout(bluetoothDevice);
     }
 
@@ -161,7 +170,7 @@ class RbtBLECallback implements BLECallback {
      * {@inheritDoc}
      */
     @Override
-    public void onBLEDisonnected(BluetoothDevice bluetoothDevice) {
+    public void onBLEDisonnected(long taskId, BluetoothDevice bluetoothDevice, int status, Bundle argument) {
         mRbtCallback.onRbtDisonnected(bluetoothDevice);
     }
 
@@ -169,7 +178,7 @@ class RbtBLECallback implements BLECallback {
      * {@inheritDoc}
      */
     @Override
-    public void onCharacteristicReadSuccess(BluetoothDevice bluetoothDevice, UUID characteristicUUID, byte[] values) {
+    public void onCharacteristicReadSuccess(long taskId, BluetoothDevice bluetoothDevice, UUID serviceUUID, UUID characteristicUUID, byte[] values, Bundle argument) {
         if (MEMORY_INDEX_INFORMATION_CHARACTERISTIC.equals(characteristicUUID)) {
             mRbtCallback.onMemoryIndexInformationReadSuccess(bluetoothDevice, MemoryIndexInformation.CREATOR.createFromByteArray(values));
         } else if (MEMORY_STATUS_CHARACTERISTIC.equals(characteristicUUID)) {
@@ -281,7 +290,7 @@ class RbtBLECallback implements BLECallback {
      * {@inheritDoc}
      */
     @Override
-    public void onCharacteristicReadFailed(BluetoothDevice bluetoothDevice, UUID characteristicUUID, int status) {
+    public void onCharacteristicReadFailed(long taskId, BluetoothDevice bluetoothDevice, UUID serviceUUID, UUID characteristicUUID, int status, Bundle argument) {
         if (MEMORY_INDEX_INFORMATION_CHARACTERISTIC.equals(characteristicUUID)) {
             mRbtCallback.onMemoryIndexInformationReadFailed(bluetoothDevice, status);
         } else if (MEMORY_STATUS_CHARACTERISTIC.equals(characteristicUUID)) {
@@ -393,7 +402,7 @@ class RbtBLECallback implements BLECallback {
      * {@inheritDoc}
      */
     @Override
-    public void onCharacteristicReadTimeout(BluetoothDevice bluetoothDevice, UUID characteristicUUID, long timeout) {
+    public void onCharacteristicReadTimeout(long taskId, BluetoothDevice bluetoothDevice, UUID serviceUUID, UUID characteristicUUID, long timeout, Bundle argument) {
         if (MEMORY_INDEX_INFORMATION_CHARACTERISTIC.equals(characteristicUUID)) {
             mRbtCallback.onMemoryIndexInformationReadTimeout(bluetoothDevice, timeout);
         } else if (MEMORY_STATUS_CHARACTERISTIC.equals(characteristicUUID)) {
@@ -505,7 +514,7 @@ class RbtBLECallback implements BLECallback {
      * {@inheritDoc}
      */
     @Override
-    public void onCharacteristicWriteSuccess(BluetoothDevice bluetoothDevice, UUID characteristicUUID, byte[] values) {
+    public void onCharacteristicWriteSuccess(long taskId, BluetoothDevice bluetoothDevice, UUID serviceUUID, UUID characteristicUUID, byte[] values, Bundle argument) {
         if (LED_SETTING_NORMAL_STATE_CHARACTERISTIC.equals(characteristicUUID)) {
             mRbtCallback.onLedSettingNormalStateWriteSuccess(bluetoothDevice, LedSettingNormalState.CREATOR.createFromByteArray(values));
         } else if (LED_SETTING_EVENT_STATE_CHARACTERISTIC.equals(characteristicUUID)) {
@@ -575,7 +584,7 @@ class RbtBLECallback implements BLECallback {
      * {@inheritDoc}
      */
     @Override
-    public void onCharacteristicWriteFailed(BluetoothDevice bluetoothDevice, UUID characteristicUUID, int status) {
+    public void onCharacteristicWriteFailed(long taskId, BluetoothDevice bluetoothDevice, UUID serviceUUID, UUID characteristicUUID, int status, Bundle argument) {
         if (LED_SETTING_NORMAL_STATE_CHARACTERISTIC.equals(characteristicUUID)) {
             mRbtCallback.onLedSettingNormalStateWriteFailed(bluetoothDevice, status);
         } else if (LED_SETTING_EVENT_STATE_CHARACTERISTIC.equals(characteristicUUID)) {
@@ -645,7 +654,7 @@ class RbtBLECallback implements BLECallback {
      * {@inheritDoc}
      */
     @Override
-    public void onCharacteristicWriteTimeout(BluetoothDevice bluetoothDevice, UUID characteristicUUID, long timeout) {
+    public void onCharacteristicWriteTimeout(long taskId, BluetoothDevice bluetoothDevice, UUID serviceUUID, UUID characteristicUUID, long timeout, Bundle argument) {
         if (LED_SETTING_NORMAL_STATE_CHARACTERISTIC.equals(characteristicUUID)) {
             mRbtCallback.onLedSettingNormalStateWriteTimeout(bluetoothDevice, timeout);
         } else if (LED_SETTING_EVENT_STATE_CHARACTERISTIC.equals(characteristicUUID)) {
@@ -715,7 +724,7 @@ class RbtBLECallback implements BLECallback {
      * {@inheritDoc}
      */
     @Override
-    public void onDescriptorReadSuccess(BluetoothDevice bluetoothDevice, UUID characteristicUUID, UUID descriptorUUID, byte[] values) {
+    public void onDescriptorReadSuccess(long taskId, BluetoothDevice bluetoothDevice, UUID serviceUUID, UUID characteristicUUID, UUID descriptorUUID, byte[] values, Bundle argument) {
         // do nothing
     }
 
@@ -723,7 +732,7 @@ class RbtBLECallback implements BLECallback {
      * {@inheritDoc}
      */
     @Override
-    public void onDescriptorReadFailed(BluetoothDevice bluetoothDevice, UUID characteristicUUID, UUID descriptorUUID, int status) {
+    public void onDescriptorReadFailed(long taskId, BluetoothDevice bluetoothDevice, UUID serviceUUID, UUID characteristicUUID, UUID descriptorUUID, int status, Bundle argument) {
         // do nothing
     }
 
@@ -731,7 +740,7 @@ class RbtBLECallback implements BLECallback {
      * {@inheritDoc}
      */
     @Override
-    public void onDescriptorReadTimeout(BluetoothDevice bluetoothDevice, UUID characteristicUUID, UUID descriptorUUID, long timeout) {
+    public void onDescriptorReadTimeout(long taskId, BluetoothDevice bluetoothDevice, UUID serviceUUID, UUID characteristicUUID, UUID descriptorUUID, long timeout, Bundle argument) {
         // do nothing
     }
 
@@ -739,7 +748,7 @@ class RbtBLECallback implements BLECallback {
      * {@inheritDoc}
      */
     @Override
-    public void onDescriptorWriteSuccess(BluetoothDevice bluetoothDevice, UUID characteristicUUID, UUID descriptorUUID, byte[] values) {
+    public void onDescriptorWriteSuccess(long taskId, BluetoothDevice bluetoothDevice, UUID serviceUUID, UUID characteristicUUID, UUID descriptorUUID, byte[] values, Bundle argument) {
         if (MEMORY_SENSING_DATA_CHARACTERISTIC.equals(characteristicUUID)) {
             mRbtCallback.onMemorySensingDataClientCharactericsticConfigurationSuccess(bluetoothDevice, ClientCharacteristicConfiguration.CREATOR.createFromByteArray(values));
         } else if (MEMORY_CALCULATION_DATA_CHARACTERISTIC.equals(characteristicUUID)) {
@@ -765,7 +774,7 @@ class RbtBLECallback implements BLECallback {
      * {@inheritDoc}
      */
     @Override
-    public void onDescriptorWriteFailed(BluetoothDevice bluetoothDevice, UUID characteristicUUID, UUID descriptorUUID, int status) {
+    public void onDescriptorWriteFailed(long taskId, BluetoothDevice bluetoothDevice, UUID serviceUUID, UUID characteristicUUID, UUID descriptorUUID, int status, Bundle argument) {
         if (MEMORY_SENSING_DATA_CHARACTERISTIC.equals(characteristicUUID)) {
             mRbtCallback.onMemorySensingDataClientCharactericsticConfigurationFailed(bluetoothDevice, status);
         } else if (MEMORY_CALCULATION_DATA_CHARACTERISTIC.equals(characteristicUUID)) {
@@ -791,7 +800,7 @@ class RbtBLECallback implements BLECallback {
      * {@inheritDoc}
      */
     @Override
-    public void onDescriptorWriteTimeout(BluetoothDevice bluetoothDevice, UUID characteristicUUID, UUID descriptorUUID, long timeout) {
+    public void onDescriptorWriteTimeout(long taskId, BluetoothDevice bluetoothDevice, UUID serviceUUID, UUID characteristicUUID, UUID descriptorUUID, long timeout, Bundle argument) {
         if (MEMORY_SENSING_DATA_CHARACTERISTIC.equals(characteristicUUID)) {
             mRbtCallback.onMemorySensingDataClientCharactericsticConfigurationTimeout(bluetoothDevice, timeout);
         } else if (MEMORY_CALCULATION_DATA_CHARACTERISTIC.equals(characteristicUUID)) {
@@ -817,7 +826,7 @@ class RbtBLECallback implements BLECallback {
      * {@inheritDoc}
      */
     @Override
-    public void onCharacteristicNotified(BluetoothDevice bluetoothDevice, UUID characteristicUUID, byte[] values) {
+    public void onCharacteristicNotified(BluetoothDevice bluetoothDevice, UUID serviceUUID, UUID characteristicUUID, byte[] values) {
         if (MEMORY_SENSING_DATA_CHARACTERISTIC.equals(characteristicUUID)) {
             mRbtCallback.onMemorySensingDataNotified(bluetoothDevice, MemorySensingData.CREATOR.createFromByteArray(values));
         } else if (MEMORY_CALCULATION_DATA_CHARACTERISTIC.equals(characteristicUUID)) {

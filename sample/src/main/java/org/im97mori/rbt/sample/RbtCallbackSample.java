@@ -114,6 +114,11 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
+    public void onRbtConnectFailed(BluetoothDevice bluetoothDevice) {
+        callback();
+    }
+
+    @Override
     public void onRbtConnectTimeout(BluetoothDevice bluetoothDevice) {
         callback();
     }

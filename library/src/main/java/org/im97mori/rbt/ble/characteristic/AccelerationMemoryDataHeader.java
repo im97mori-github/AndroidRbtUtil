@@ -3,6 +3,7 @@ package org.im97mori.rbt.ble.characteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+// TODO comment
 public class AccelerationMemoryDataHeader implements Parcelable {
 
 

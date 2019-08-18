@@ -84,6 +84,15 @@ public interface RbtCallback {
     void onRbtConnected(BluetoothDevice bluetoothDevice);
 
     /**
+     * Connecte task failed callback
+     *
+     * @param bluetoothDevice Rbt device
+     * @see BluetoothGatt#connect()
+     * @see org.im97mori.ble.task.ConnectTask
+     */
+    void onRbtConnectFailed(BluetoothDevice bluetoothDevice);
+
+    /**
      * Connect task timeout callback
      *
      * @param bluetoothDevice Rbt device
@@ -2431,7 +2440,7 @@ public interface RbtCallback {
     /**
      * Notification callback Acceleration memory data [Header] (Characteristics UUID: 0x5034)
      *
-     * @param bluetoothDevice       Rbt device
+     * @param bluetoothDevice              Rbt device
      * @param accelerationMemoryDataHeader notification data
      */
     void onAccelerationMemoryDataHeaderNotified(BluetoothDevice bluetoothDevice, AccelerationMemoryDataHeader accelerationMemoryDataHeader);
@@ -2439,7 +2448,7 @@ public interface RbtCallback {
     /**
      * Notification callback Acceleration memory data [Data] (Characteristics UUID: 0x5034)
      *
-     * @param bluetoothDevice       Rbt device
+     * @param bluetoothDevice        Rbt device
      * @param accelerationMemoryData notification data
      */
     void onAccelerationMemoryDataNotified(BluetoothDevice bluetoothDevice, AccelerationMemoryData accelerationMemoryData);

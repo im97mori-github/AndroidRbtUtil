@@ -17,7 +17,7 @@ import static org.im97mori.rbt.RbtConstants.OutputRange.OUTPUT_RANGE_ETVOC_UNIT;
 public class SensorDataAndCalculationData extends AbstractRbtPacket implements Parcelable {
 
     /**
-     * @see Creator
+     * @see android.os.Parcelable.Creator
      */
     public static final Creator<SensorDataAndCalculationData> CREATOR = new Creator<SensorDataAndCalculationData>() {
 

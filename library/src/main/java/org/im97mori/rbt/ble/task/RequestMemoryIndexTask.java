@@ -8,10 +8,10 @@ import android.os.Bundle;
 import android.os.Message;
 import android.text.format.DateUtils;
 
-import org.im97mori.ble.BLEConstants;
 import org.im97mori.ble.TaskHandler;
 import org.im97mori.ble.task.WriteCharacteristicTask;
 import org.im97mori.ble.task.WriteDescriptorTask;
+import org.im97mori.rbt.RbtLogUtils;
 import org.im97mori.rbt.ble.RbtCallback;
 import org.im97mori.rbt.ble.characteristic.MemoryCalculationData;
 import org.im97mori.rbt.ble.characteristic.MemoryCalculationFlag;
@@ -22,6 +22,9 @@ import org.im97mori.rbt.ble.characteristic.RequestMemoryIndex;
 import java.util.UUID;
 
 import static org.im97mori.ble.BLEConstants.DescriptorUUID.CLIENT_CHARACTERISTIC_CONFIGRATION_DESCRIPTOR;
+import static org.im97mori.ble.BLEConstants.ErrorCodes.BUSY;
+import static org.im97mori.ble.BLEConstants.ErrorCodes.CANCEL;
+import static org.im97mori.ble.BLEConstants.ErrorCodes.UNKNOWN;
 import static org.im97mori.rbt.RbtConstants.CharacteristicUUID.MEMORY_CALCULATION_DATA_CHARACTERISTIC;
 import static org.im97mori.rbt.RbtConstants.CharacteristicUUID.MEMORY_CALCULATION_FLAG_CHARACTERISTIC;
 import static org.im97mori.rbt.RbtConstants.CharacteristicUUID.MEMORY_SENSING_DATA_CHARACTERISTIC;
@@ -166,30 +169,35 @@ public class RequestMemoryIndexTask extends AbstractRbtTask {
                         } else {
                             // wrong request
 
-                            mRbtCallback.onRequestMemoryIndexWriteFailed(mBluetoothGatt.getDevice(), BLEConstants.ErrorCodes.UNKNOWN);
+                            mRbtCallback.onRequestMemoryIndexWriteFailed(mBluetoothGatt.getDevice(), UNKNOWN);
                             nextProgress = PROGRESS_FINISHED;
                         }
                     } else {
                         // wrong request
 
-                        mRbtCallback.onRequestMemoryIndexWriteFailed(mBluetoothGatt.getDevice(), BLEConstants.ErrorCodes.UNKNOWN);
+                        mRbtCallback.onRequestMemoryIndexWriteFailed(mBluetoothGatt.getDevice(), UNKNOWN);
                         nextProgress = PROGRESS_FINISHED;
                     }
 
                     if (PROGRESS_CHECK_REQUEST == nextProgress) {
                         mTimeout = WriteDescriptorTask.TIMEOUT_MILLIS + WriteCharacteristicTask.TIMEOUT_MILLIS + DateUtils.SECOND_IN_MILLIS * mTotalTransferCount;
 
+                        BluetoothGattDescriptor bluetoothGattDescriptor = null;
                         boolean result = false;
                         BluetoothGattService bluetoothGattService = mBluetoothGatt.getService(MEMORY_DATA_SERVICE);
                         if (bluetoothGattService != null) {
                             BluetoothGattCharacteristic bluetoothGattCharacteristic = bluetoothGattService.getCharacteristic(mNotifyTargetUUID);
                             if (bluetoothGattCharacteristic != null) {
-                                BluetoothGattDescriptor bluetoothGattDescriptor = bluetoothGattCharacteristic.getDescriptor(CLIENT_CHARACTERISTIC_CONFIGRATION_DESCRIPTOR);
+                                bluetoothGattDescriptor = bluetoothGattCharacteristic.getDescriptor(CLIENT_CHARACTERISTIC_CONFIGRATION_DESCRIPTOR);
                                 if (bluetoothGattDescriptor != null) {
                                     bluetoothGattDescriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
 
                                     // write descriptor
-                                    result = mBluetoothGatt.writeDescriptor(bluetoothGattDescriptor);
+                                    try {
+                                        result = mBluetoothGatt.writeDescriptor(bluetoothGattDescriptor);
+                                    } catch (Exception e) {
+                                        RbtLogUtils.stackLog(e);
+                                    }
                                 }
                             }
                         }
@@ -198,8 +206,13 @@ public class RequestMemoryIndexTask extends AbstractRbtTask {
                             // set timeout message
                             mTaskHandler.sendProcessingMessage(createTimeoutMessage(REQUEST_MEMORY_INDEX_CHARACTERISTIC, this), mTimeout);
                         } else {
-                            nextProgress = PROGRESS_FINISHED;
-                            mRbtCallback.onRequestMemoryIndexWriteFailed(mBluetoothGatt.getDevice(), BLEConstants.ErrorCodes.UNKNOWN);
+                            if (bluetoothGattDescriptor == null) {
+                                nextProgress = PROGRESS_FINISHED;
+                                mRbtCallback.onRequestMemoryIndexWriteFailed(mBluetoothGatt.getDevice(), UNKNOWN);
+                            } else {
+                                nextProgress = PROGRESS_BUSY;
+                                mRbtCallback.onRequestMemoryIndexWriteFailed(mBluetoothGatt.getDevice(), BUSY);
+                            }
                         }
                     }
 
@@ -210,20 +223,40 @@ public class RequestMemoryIndexTask extends AbstractRbtTask {
             if (mNotifyTargetUUID != null && mNotifyTargetUUID.equals(characteristicUUID)) {
                 // current:check request, next:write descriptor success
                 if (PROGRESS_DESCRIPTOR_WRITE_SUCCESS == nextProgress) {
+
+                    BluetoothGattCharacteristic bluetoothGattCharacteristic = null;
+                    boolean result = false;
                     BluetoothGattService bluetoothGattService = mBluetoothGatt.getService(MEMORY_DATA_SERVICE);
                     if (bluetoothGattService != null) {
-                        BluetoothGattCharacteristic bluetoothGattCharacteristic = bluetoothGattService.getCharacteristic(REQUEST_MEMORY_INDEX_CHARACTERISTIC);
+                        bluetoothGattCharacteristic = bluetoothGattService.getCharacteristic(REQUEST_MEMORY_INDEX_CHARACTERISTIC);
                         if (bluetoothGattCharacteristic != null) {
                             bluetoothGattCharacteristic.setValue(mRequestMemoryIndex.getBytes());
 
                             // write characteristic
+                            try {
+                                result = mBluetoothGatt.writeCharacteristic(bluetoothGattCharacteristic);
+                            } catch (Exception e) {
+                                RbtLogUtils.stackLog(e);
+                            }
                             if (!mBluetoothGatt.writeCharacteristic(bluetoothGattCharacteristic)) {
                                 nextProgress = PROGRESS_FINISHED;
-                                mRbtCallback.onRequestMemoryIndexWriteFailed(mBluetoothGatt.getDevice(), BLEConstants.ErrorCodes.UNKNOWN);
+                                mRbtCallback.onRequestMemoryIndexWriteFailed(mBluetoothGatt.getDevice(), UNKNOWN);
                                 // remove timeout message
                                 mTaskHandler.removeCallbacksAndMessages(this);
                             }
                         }
+                    }
+
+                    if (!result) {
+                        if (bluetoothGattCharacteristic == null) {
+                            nextProgress = PROGRESS_FINISHED;
+                            mRbtCallback.onRequestMemoryIndexWriteFailed(mBluetoothGatt.getDevice(), UNKNOWN);
+                        } else {
+                            nextProgress = PROGRESS_BUSY;
+                            mRbtCallback.onRequestMemoryIndexWriteFailed(mBluetoothGatt.getDevice(), BUSY);
+                        }
+                        // remove timeout message
+                        mTaskHandler.removeCallbacksAndMessages(this);
                     }
                 } else if (PROGRESS_DESCRIPTOR_WRITE_ERROR == nextProgress) {
                     // current:check request, next:write descriptor error
@@ -272,7 +305,25 @@ public class RequestMemoryIndexTask extends AbstractRbtTask {
             }
         }
 
-        return PROGRESS_FINISHED == mCurrentProgress || PROGRESS_TIMEOUT == mCurrentProgress;
+        return PROGRESS_FINISHED == mCurrentProgress || PROGRESS_BUSY == mCurrentProgress || PROGRESS_TIMEOUT == mCurrentProgress;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean isBusy() {
+        return PROGRESS_BUSY == mCurrentProgress || PROGRESS_TIMEOUT == mCurrentProgress;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void cancel() {
+        mTaskHandler.removeCallbacksAndMessages(this);
+        mCurrentProgress = PROGRESS_FINISHED;
+        mRbtCallback.onRequestMemoryIndexWriteFailed(mBluetoothGatt.getDevice(), CANCEL);
     }
 
 }

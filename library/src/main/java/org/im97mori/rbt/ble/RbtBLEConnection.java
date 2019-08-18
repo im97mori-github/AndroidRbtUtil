@@ -8,11 +8,11 @@ import android.os.Message;
 import android.text.format.DateUtils;
 
 import org.im97mori.ble.BLEConnection;
-import org.im97mori.ble.BLELogUtils;
 import org.im97mori.ble.descriptor.ClientCharacteristicConfiguration;
 import org.im97mori.ble.task.ReadCharacteristicTask;
 import org.im97mori.ble.task.WriteCharacteristicTask;
 import org.im97mori.ble.task.WriteDescriptorTask;
+import org.im97mori.rbt.RbtLogUtils;
 import org.im97mori.rbt.ble.characteristic.AbstractRbtCharacteristic;
 import org.im97mori.rbt.ble.characteristic.AccelerationLoggerControl;
 import org.im97mori.rbt.ble.characteristic.AdvertiseSetting;
@@ -920,7 +920,7 @@ public class RbtBLEConnection extends BLEConnection {
         BluetoothGatt bluetoothGatt = mBluetoothGatt;
         if (bluetoothGatt != null) {
             RbtWriteCharacteristicTask task = new RbtWriteCharacteristicTask(this, bluetoothGatt, mTaskHandler, serviceUUID, characteristicUUID, abstractRbtCharacteristic, waitTarget, timeout);
-            Message message = WriteCharacteristicTask.createWriteCharacteristicMessage(characteristicUUID, task);
+            Message message = WriteCharacteristicTask.createWriteCharacteristicMessage(serviceUUID, characteristicUUID, task);
             mTaskHandler.addTask(task, message);
         }
     }
@@ -928,7 +928,6 @@ public class RbtBLEConnection extends BLEConnection {
     /**
      * {@inheritDoc}
      */
-    @SuppressWarnings("CatchMayIgnoreException")
     @Override
     public void onCharacteristicChanged(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic) {
         // gatt instance is not matched
@@ -948,11 +947,11 @@ public class RbtBLEConnection extends BLEConnection {
                 } else if (ACCELERATION_MEMORY_DATA_CHARACTERISTIC.equals(uuid)) {
                     mTaskHandler.sendProcessingMessage(RequestAccelerationMemoryIndexTask.createBatchNotifyMessage(characteristic.getValue()));
                 } else {
-                    mBLECallback.onCharacteristicNotified(mBluetoothDevice, uuid, characteristic.getValue());
+                    super.onCharacteristicChanged(gatt, characteristic);
                 }
             }
         } catch (Exception e) {
-            BLELogUtils.stackLog(e);
+            RbtLogUtils.stackLog(e);
         }
     }
 }

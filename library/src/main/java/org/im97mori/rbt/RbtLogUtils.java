@@ -23,7 +23,7 @@ public class RbtLogUtils {
      * @see LogUtils#stackLog(Object...)
      */
     public static void stackLog(Throwable t) {
-        if (org.im97mori.ble.ad.BuildConfig.DEBUG) {
+        if (BuildConfig.DEBUG) {
             LogUtils.stackLogWithOffset(1, Log.getStackTraceString(t));
         }
     }

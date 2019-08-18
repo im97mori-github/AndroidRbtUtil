@@ -3,7 +3,7 @@
 バージョン0.2.0ではBLEのみをサポートしています(USB接続は未対応)。
 
 ## Prerequire
-minSdkVersion 19
+minSdkVersion 18
 
 ## Download
 project/build.gradle
@@ -17,7 +17,7 @@ project/build.gradle
 project/module/build.gradle
 
     dependencies {
-        implementation 'org.im97mori:rbt:0.2.1'
+        implementation 'org.im97mori:rbt:0.2.2'
     }
 
 ## How to use

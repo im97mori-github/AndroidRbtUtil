@@ -2,7 +2,7 @@ package org.im97mori.rbt.ble.characteristic;
 
 import android.bluetooth.BluetoothGattCharacteristic;
 
-import org.im97mori.ble.characteristic.AbstractCharacteristic;
+import org.im97mori.ble.ByteArrayInterface;
 
 import java.math.BigInteger;
 import java.util.Arrays;
@@ -11,7 +11,7 @@ import java.util.Arrays;
  * Rbt characteristic base class
  */
 @SuppressWarnings("WeakerAccess")
-public abstract class AbstractRbtCharacteristic extends AbstractCharacteristic {
+public abstract class AbstractRbtCharacteristic implements ByteArrayInterface {
 
     /**
      * Create {@link BigInteger} instance

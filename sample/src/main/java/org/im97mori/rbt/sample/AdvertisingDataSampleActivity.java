@@ -56,6 +56,8 @@ public class AdvertisingDataSampleActivity extends BaseActivity implements View.
                 RbtAdvertisingDataParser.RbtAdvertisingDataParseResult rbtAdvertisingDataParseResult = mRbtAdvertisingDataParser.parse(data);
                 if (rbtAdvertisingDataParseResult != null && rbtAdvertisingDataParseResult.isRbt()) {
                     final StringBuilder sb = new StringBuilder();
+                    sb.append(result.getDevice().getAddress());
+                    sb.append('\n');
 
                     SensorData sensorData = rbtAdvertisingDataParseResult.getSensorData();
                     if (sensorData != null) {

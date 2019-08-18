@@ -12,7 +12,7 @@ import org.im97mori.rbt.RbtConstants;
 public class SensorFlagAndCalculationFlag extends AbstractRbtPacket implements Parcelable {
 
     /**
-     * @see Creator
+     * @see android.os.Parcelable.Creator
      */
     public static final Creator<SensorFlagAndCalculationFlag> CREATOR = new Creator<SensorFlagAndCalculationFlag>() {
 

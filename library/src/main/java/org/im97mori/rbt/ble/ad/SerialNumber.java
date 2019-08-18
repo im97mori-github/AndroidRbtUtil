@@ -13,7 +13,7 @@ import org.im97mori.rbt.RbtConstants;
 public class SerialNumber extends AbstractRbtPacket implements Parcelable {
 
     /**
-     * @see Creator
+     * @see android.os.Parcelable.Creator
      */
     public static final Creator<SerialNumber> CREATOR = new Creator<SerialNumber>() {
 

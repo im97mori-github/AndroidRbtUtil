@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 28
-    buildToolsVersion "29.0.1"
+    buildToolsVersion "29.0.2"
 
 
     defaultConfig {
@@ -22,7 +22,6 @@ android {
 }
 
 dependencies {
-    implementation 'org.im97mori:stacklog:0.0.2'
     implementation 'androidx.fragment:fragment:1.0.0'
     implementation project(path: ':library')
 }
