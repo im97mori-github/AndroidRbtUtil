@@ -8,7 +8,7 @@ import java.nio.ByteOrder;
 /**
  * Rbt Advertising packet
  */
-@SuppressWarnings({"WeakerAccess", "SameParameterValue", "unused", "JavadocReference"})
+@SuppressWarnings({"WeakerAccess", "SameParameterValue", "unused"})
 public abstract class AbstractRbtPacket {
 
     /**

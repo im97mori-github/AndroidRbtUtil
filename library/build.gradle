@@ -4,18 +4,18 @@ apply plugin: 'maven'
 
 def GROUP_ID = 'org.im97mori'
 def ARTIFACT_ID = 'rbt'
-def VERSION_NAME = '0.2.2'
+def VERSION_NAME = '0.2.3'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
         minSdkVersion 18
-        targetSdkVersion 28
-        versionCode 4
+        targetSdkVersion 29
+        versionCode 5
         versionName VERSION_NAME
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -25,9 +25,8 @@ android {
 }
 
 dependencies {
-    api 'org.im97mori:ble:0.2.1' // central feature
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    api 'org.im97mori:ble:0.2.2' // central feature
+    androidTestImplementation 'androidx.test:runner:1.2.0'
 }
 
 
@@ -55,7 +54,7 @@ publishing {
 }
 
 publish {
-    dependsOn ':library:assembleRelease'
+    dependsOn ':library:assemble'
 }
 
 uploadArchives {

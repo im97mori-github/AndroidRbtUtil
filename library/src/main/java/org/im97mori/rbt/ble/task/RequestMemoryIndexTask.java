@@ -35,29 +35,12 @@ import static org.im97mori.rbt.RbtConstants.ServiceUUID.MEMORY_DATA_SERVICE;
 /**
  * Request 0x5005 to notify 0x500a / 0x500b / 0x500c / 0x500d batch task
  */
-@SuppressWarnings({"JavadocReference"})
 public class RequestMemoryIndexTask extends AbstractRbtTask {
 
     /**
      * start of data page
      */
     private static final int MINIMUM_DATA_PAGE = 1;
-
-    /**
-     * create write Request memory index message
-     *
-     * @param obj instance for {@link android.os.Handler#removeCallbacksAndMessages(Object)}
-     * @return write Request memory index {@link Message} instance
-     */
-    public static Message createWriteRequestMemoryIndexMessage(Object obj) {
-        Bundle bundle = new Bundle();
-        bundle.putSerializable(KEY_CHARACTERISTIC_UUID, REQUEST_MEMORY_INDEX_CHARACTERISTIC);
-        bundle.putInt(KEY_NEXT_PROGRESS, PROGRESS_CHECK_REQUEST);
-        Message message = new Message();
-        message.setData(bundle);
-        message.obj = obj;
-        return message;
-    }
 
     /**
      * create notify Memory sensing data / Memory calculation data / Memory sensing flag / Memory calculation flag message
@@ -131,6 +114,20 @@ public class RequestMemoryIndexTask extends AbstractRbtTask {
         mTaskHandler = taskHandler;
         mRequestMemoryIndex = requestMemoryIndex;
         mRbtCallback = rbtCallback;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Message createInitialMessage() {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(KEY_CHARACTERISTIC_UUID, REQUEST_MEMORY_INDEX_CHARACTERISTIC);
+        bundle.putInt(KEY_NEXT_PROGRESS, PROGRESS_CHECK_REQUEST);
+        Message message = new Message();
+        message.setData(bundle);
+        message.obj = this;
+        return message;
     }
 
     /**

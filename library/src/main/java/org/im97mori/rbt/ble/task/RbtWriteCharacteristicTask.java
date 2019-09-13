@@ -45,7 +45,6 @@ public class RbtWriteCharacteristicTask extends AbstractRbtTask {
      */
     private final BluetoothGatt mBluetoothGatt;
 
-
     /**
      * task target {@link TaskHandler} instance
      */
@@ -96,6 +95,21 @@ public class RbtWriteCharacteristicTask extends AbstractRbtTask {
         mAbstractRbtCharacteristic = abstractRbtCharacteristic;
         mWaitTarget = waitTarget;
         mTimeout = timeout;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Message createInitialMessage() {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(KEY_SERVICE_UUID, mServiceUUID);
+        bundle.putSerializable(KEY_CHARACTERISTIC_UUID, mCharacteristicUUID);
+        bundle.putInt(KEY_NEXT_PROGRESS, PROGRESS_CHARACTERISTIC_WRITE_START);
+        Message message = new Message();
+        message.setData(bundle);
+        message.obj = this;
+        return message;
     }
 
     /**

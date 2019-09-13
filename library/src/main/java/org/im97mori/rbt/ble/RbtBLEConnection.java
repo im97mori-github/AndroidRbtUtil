@@ -4,7 +4,6 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGatt;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.content.Context;
-import android.os.Message;
 import android.text.format.DateUtils;
 
 import org.im97mori.ble.BLEConnection;
@@ -518,8 +517,7 @@ public class RbtBLEConnection extends BLEConnection {
         BluetoothGatt bluetoothGatt = mBluetoothGatt;
         if (bluetoothGatt != null) {
             RequestMemoryIndexTask task = new RequestMemoryIndexTask(bluetoothGatt, mTaskHandler, data, mRbtCallback);
-            Message message = RequestMemoryIndexTask.createWriteRequestMemoryIndexMessage(task);
-            mTaskHandler.addTask(task, message);
+            mTaskHandler.addTask(task);
         }
     }
 
@@ -532,8 +530,7 @@ public class RbtBLEConnection extends BLEConnection {
         BluetoothGatt bluetoothGatt = mBluetoothGatt;
         if (bluetoothGatt != null) {
             RequestAccelerationMemoryIndexTask task = new RequestAccelerationMemoryIndexTask(bluetoothGatt, mTaskHandler, data, mRbtCallback);
-            Message message = RequestAccelerationMemoryIndexTask.createWriteRequestAccelerationMemoryIndexMessage(task);
-            mTaskHandler.addTask(task, message);
+            mTaskHandler.addTask(task);
         }
     }
 
@@ -920,8 +917,7 @@ public class RbtBLEConnection extends BLEConnection {
         BluetoothGatt bluetoothGatt = mBluetoothGatt;
         if (bluetoothGatt != null) {
             RbtWriteCharacteristicTask task = new RbtWriteCharacteristicTask(this, bluetoothGatt, mTaskHandler, serviceUUID, characteristicUUID, abstractRbtCharacteristic, waitTarget, timeout);
-            Message message = WriteCharacteristicTask.createWriteCharacteristicMessage(serviceUUID, characteristicUUID, task);
-            mTaskHandler.addTask(task, message);
+            mTaskHandler.addTask(task);
         }
     }
 
