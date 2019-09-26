@@ -3,6 +3,8 @@ package org.im97mori.rbt.ble.ad;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import org.im97mori.ble.ad.ManufacturerSpecificData;
 import org.im97mori.rbt.RbtConstants;
 
@@ -25,7 +27,8 @@ public class SensorDataAndCalculationData extends AbstractRbtPacket implements P
          * {@inheritDoc}
          */
         @Override
-        public SensorDataAndCalculationData createFromParcel(Parcel in) {
+        @NonNull
+        public SensorDataAndCalculationData createFromParcel(@NonNull Parcel in) {
             return new SensorDataAndCalculationData(in);
         }
 
@@ -33,6 +36,7 @@ public class SensorDataAndCalculationData extends AbstractRbtPacket implements P
          * {@inheritDoc}
          */
         @Override
+        @NonNull
         public SensorDataAndCalculationData[] newArray(int size) {
             return new SensorDataAndCalculationData[size];
         }
@@ -130,7 +134,7 @@ public class SensorDataAndCalculationData extends AbstractRbtPacket implements P
      * @param data1 1st byte array from {@link ManufacturerSpecificData#getManufacturerSpecificData()}
      * @param data2 2nd byte array from {@link ManufacturerSpecificData#getManufacturerSpecificData()}
      */
-    public SensorDataAndCalculationData(byte[] data1, byte[] data2) {
+    public SensorDataAndCalculationData(@NonNull byte[] data1, @NonNull byte[] data2) {
         mSequenceNumber = createUInt8(1, data1);
         mTemperature = createSInt16(2, data1);
         mRelativeHumidity = createSInt16(4, data1);
@@ -156,7 +160,7 @@ public class SensorDataAndCalculationData extends AbstractRbtPacket implements P
      *
      * @param in Parcel
      */
-    private SensorDataAndCalculationData(Parcel in) {
+    private SensorDataAndCalculationData(@NonNull Parcel in) {
         mSequenceNumber = in.readInt();
         mTemperature = in.readInt();
         mRelativeHumidity = in.readInt();
@@ -189,7 +193,7 @@ public class SensorDataAndCalculationData extends AbstractRbtPacket implements P
      * {@inheritDoc}
      */
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeInt(mSequenceNumber);
         dest.writeInt(mTemperature);
         dest.writeInt(mRelativeHumidity);

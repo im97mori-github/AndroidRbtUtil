@@ -4,6 +4,8 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import org.im97mori.ble.ByteArrayCreater;
 
 import java.nio.ByteBuffer;
@@ -66,7 +68,8 @@ public class LedSettingEventState extends AbstractRbtCharacteristic implements P
          * {@inheritDoc}
          */
         @Override
-        public LedSettingEventState createFromParcel(Parcel in) {
+        @NonNull
+        public LedSettingEventState createFromParcel(@NonNull Parcel in) {
             return new LedSettingEventState(in);
         }
 
@@ -74,6 +77,7 @@ public class LedSettingEventState extends AbstractRbtCharacteristic implements P
          * {@inheritDoc}
          */
         @Override
+        @NonNull
         public LedSettingEventState[] newArray(int size) {
             return new LedSettingEventState[size];
         }
@@ -82,7 +86,8 @@ public class LedSettingEventState extends AbstractRbtCharacteristic implements P
          * {@inheritDoc}
          */
         @Override
-        public LedSettingEventState createFromByteArray(byte[] values) {
+        @NonNull
+        public LedSettingEventState createFromByteArray(@NonNull byte[] values) {
             BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(LED_SETTING_EVENT_STATE_CHARACTERISTIC, 0, 0);
             bluetoothGattCharacteristic.setValue(values);
             return new LedSettingEventState(bluetoothGattCharacteristic);
@@ -115,7 +120,7 @@ public class LedSettingEventState extends AbstractRbtCharacteristic implements P
      *
      * @param bluetoothGattCharacteristic Characteristics UUID: 0x5112
      */
-    public LedSettingEventState(BluetoothGattCharacteristic bluetoothGattCharacteristic) {
+    public LedSettingEventState(@NonNull BluetoothGattCharacteristic bluetoothGattCharacteristic) {
         mDisplayRule = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT16, 0);
         mIntensityOfLedRed = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 2);
         mIntensityOfLedGreen = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 3);
@@ -149,7 +154,7 @@ public class LedSettingEventState extends AbstractRbtCharacteristic implements P
      *
      * @param in Parcel
      */
-    private LedSettingEventState(Parcel in) {
+    private LedSettingEventState(@NonNull Parcel in) {
         mDisplayRule = in.readInt();
         mIntensityOfLedRed = in.readInt();
         mIntensityOfLedGreen = in.readInt();
@@ -168,7 +173,7 @@ public class LedSettingEventState extends AbstractRbtCharacteristic implements P
      * {@inheritDoc}
      */
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeInt(mDisplayRule);
         dest.writeInt(mIntensityOfLedRed);
         dest.writeInt(mIntensityOfLedGreen);
@@ -279,6 +284,7 @@ public class LedSettingEventState extends AbstractRbtCharacteristic implements P
      * {@inheritDoc}
      */
     @Override
+    @NonNull
     public byte[] getBytes() {
         byte[] data = new byte[5];
         ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);

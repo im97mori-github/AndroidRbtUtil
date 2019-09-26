@@ -4,6 +4,8 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import org.im97mori.ble.ByteArrayCreater;
 
 import java.nio.ByteBuffer;
@@ -32,7 +34,8 @@ public class LatestCalculationData extends AbstractRbtCharacteristic implements 
          * {@inheritDoc}
          */
         @Override
-        public LatestCalculationData createFromParcel(Parcel in) {
+        @NonNull
+        public LatestCalculationData createFromParcel(@NonNull Parcel in) {
             return new LatestCalculationData(in);
         }
 
@@ -40,6 +43,7 @@ public class LatestCalculationData extends AbstractRbtCharacteristic implements 
          * {@inheritDoc}
          */
         @Override
+        @NonNull
         public LatestCalculationData[] newArray(int size) {
             return new LatestCalculationData[size];
         }
@@ -48,7 +52,8 @@ public class LatestCalculationData extends AbstractRbtCharacteristic implements 
          * {@inheritDoc}
          */
         @Override
-        public LatestCalculationData createFromByteArray(byte[] values) {
+        @NonNull
+        public LatestCalculationData createFromByteArray(@NonNull byte[] values) {
             BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(LATEST_CALCULATION_DATA_CHARACTERISTIC, 0, 0);
             bluetoothGattCharacteristic.setValue(values);
             return new LatestCalculationData(bluetoothGattCharacteristic);
@@ -111,7 +116,7 @@ public class LatestCalculationData extends AbstractRbtCharacteristic implements 
      *
      * @param bluetoothGattCharacteristic Characteristics UUID: 0x5013
      */
-    public LatestCalculationData(BluetoothGattCharacteristic bluetoothGattCharacteristic) {
+    public LatestCalculationData(@NonNull BluetoothGattCharacteristic bluetoothGattCharacteristic) {
         mSequenceNumber = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 0);
         mDiscomfortIndex = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_SINT16, 1);
         mHeatStroke = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_SINT16, 3);
@@ -129,7 +134,7 @@ public class LatestCalculationData extends AbstractRbtCharacteristic implements 
      *
      * @param in Parcel
      */
-    private LatestCalculationData(Parcel in) {
+    private LatestCalculationData(@NonNull Parcel in) {
         mSequenceNumber = in.readInt();
         mDiscomfortIndex = in.readInt();
         mHeatStroke = in.readInt();
@@ -154,7 +159,7 @@ public class LatestCalculationData extends AbstractRbtCharacteristic implements 
      * {@inheritDoc}
      */
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeInt(mSequenceNumber);
         dest.writeInt(mDiscomfortIndex);
         dest.writeInt(mHeatStroke);
@@ -297,6 +302,7 @@ public class LatestCalculationData extends AbstractRbtCharacteristic implements 
      * {@inheritDoc}
      */
     @Override
+    @NonNull
     public byte[] getBytes() {
         byte[] data = new byte[18];
         ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);

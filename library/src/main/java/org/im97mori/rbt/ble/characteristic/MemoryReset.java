@@ -4,6 +4,8 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import org.im97mori.ble.ByteArrayCreater;
 
 import java.nio.ByteBuffer;
@@ -35,7 +37,8 @@ public class MemoryReset extends AbstractRbtCharacteristic implements Parcelable
          * {@inheritDoc}
          */
         @Override
-        public MemoryReset createFromParcel(Parcel in) {
+        @NonNull
+        public MemoryReset createFromParcel(@NonNull Parcel in) {
             return new MemoryReset(in);
         }
 
@@ -43,6 +46,7 @@ public class MemoryReset extends AbstractRbtCharacteristic implements Parcelable
          * {@inheritDoc}
          */
         @Override
+        @NonNull
         public MemoryReset[] newArray(int size) {
             return new MemoryReset[size];
         }
@@ -51,7 +55,8 @@ public class MemoryReset extends AbstractRbtCharacteristic implements Parcelable
          * {@inheritDoc}
          */
         @Override
-        public MemoryReset createFromByteArray(byte[] values) {
+        @NonNull
+        public MemoryReset createFromByteArray(@NonNull byte[] values) {
             BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(MEMORY_RESET_CHARACTERISTIC, 0, 0);
             bluetoothGattCharacteristic.setValue(values);
             return new MemoryReset(bluetoothGattCharacteristic);
@@ -69,7 +74,7 @@ public class MemoryReset extends AbstractRbtCharacteristic implements Parcelable
      *
      * @param bluetoothGattCharacteristic Characteristics UUID: 0x5116
      */
-    public MemoryReset(BluetoothGattCharacteristic bluetoothGattCharacteristic) {
+    public MemoryReset(@NonNull BluetoothGattCharacteristic bluetoothGattCharacteristic) {
         mMemoryReset = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 0);
     }
 
@@ -104,7 +109,7 @@ public class MemoryReset extends AbstractRbtCharacteristic implements Parcelable
      * {@inheritDoc}
      */
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeInt(mMemoryReset);
     }
 
@@ -119,6 +124,7 @@ public class MemoryReset extends AbstractRbtCharacteristic implements Parcelable
      * {@inheritDoc}
      */
     @Override
+    @NonNull
     public byte[] getBytes() {
         byte[] data = new byte[1];
         ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);

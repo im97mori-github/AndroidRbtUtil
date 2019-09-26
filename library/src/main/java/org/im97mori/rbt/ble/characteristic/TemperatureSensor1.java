@@ -4,6 +4,8 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import org.im97mori.ble.ByteArrayCreater;
 import org.im97mori.rbt.RbtConstants;
 
@@ -16,7 +18,6 @@ import static org.im97mori.rbt.RbtConstants.EventThreshold.EVENT_THRESHOLD_TEMPE
 /**
  * 2.6.1 Event pattern Temperature 1 (Characteristics UUID: 0x5211)
  */
-@SuppressWarnings("WeakerAccess")
 public class TemperatureSensor1 extends AbstractRbtCharacteristic implements Parcelable {
 
     /**
@@ -28,7 +29,8 @@ public class TemperatureSensor1 extends AbstractRbtCharacteristic implements Par
          * {@inheritDoc}
          */
         @Override
-        public TemperatureSensor1 createFromParcel(Parcel in) {
+        @NonNull
+        public TemperatureSensor1 createFromParcel(@NonNull Parcel in) {
             return new TemperatureSensor1(in);
         }
 
@@ -36,6 +38,7 @@ public class TemperatureSensor1 extends AbstractRbtCharacteristic implements Par
          * {@inheritDoc}
          */
         @Override
+        @NonNull
         public TemperatureSensor1[] newArray(int size) {
             return new TemperatureSensor1[size];
         }
@@ -44,7 +47,8 @@ public class TemperatureSensor1 extends AbstractRbtCharacteristic implements Par
          * {@inheritDoc}
          */
         @Override
-        public TemperatureSensor1 createFromByteArray(byte[] values) {
+        @NonNull
+        public TemperatureSensor1 createFromByteArray(@NonNull byte[] values) {
             BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(TEMPERATURE_SENSOR_1_CHARACTERISTIC, 0, 0);
             bluetoothGattCharacteristic.setValue(values);
             return new TemperatureSensor1(bluetoothGattCharacteristic);
@@ -102,7 +106,7 @@ public class TemperatureSensor1 extends AbstractRbtCharacteristic implements Par
      *
      * @param bluetoothGattCharacteristic Characteristics UUID: 0x5211
      */
-    public TemperatureSensor1(BluetoothGattCharacteristic bluetoothGattCharacteristic) {
+    public TemperatureSensor1(@NonNull BluetoothGattCharacteristic bluetoothGattCharacteristic) {
         mEventEnableDisable = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT16, 0);
         mSimpleThresholdUpperLimit1 = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_SINT16, 2);
         mSimpleThresholdUpperLimit2 = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_SINT16, 4);
@@ -144,7 +148,7 @@ public class TemperatureSensor1 extends AbstractRbtCharacteristic implements Par
      *
      * @param in Parcel
      */
-    private TemperatureSensor1(Parcel in) {
+    private TemperatureSensor1(@NonNull Parcel in) {
         mEventEnableDisable = in.readInt();
         mSimpleThresholdUpperLimit1 = in.readInt();
         mSimpleThresholdUpperLimit2 = in.readInt();
@@ -447,6 +451,7 @@ public class TemperatureSensor1 extends AbstractRbtCharacteristic implements Par
      * {@inheritDoc}
      */
     @Override
+    @NonNull
     public byte[] getBytes() {
         byte[] data = new byte[20];
         ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);

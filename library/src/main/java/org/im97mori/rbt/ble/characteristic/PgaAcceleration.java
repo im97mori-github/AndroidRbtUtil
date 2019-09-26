@@ -4,6 +4,8 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import org.im97mori.ble.ByteArrayCreater;
 import org.im97mori.rbt.RbtConstants;
 
@@ -28,7 +30,8 @@ public class PgaAcceleration extends AbstractRbtCharacteristic implements Parcel
          * {@inheritDoc}
          */
         @Override
-        public PgaAcceleration createFromParcel(Parcel in) {
+        @NonNull
+        public PgaAcceleration createFromParcel(@NonNull Parcel in) {
             return new PgaAcceleration(in);
         }
 
@@ -36,6 +39,7 @@ public class PgaAcceleration extends AbstractRbtCharacteristic implements Parcel
          * {@inheritDoc}
          */
         @Override
+        @NonNull
         public PgaAcceleration[] newArray(int size) {
             return new PgaAcceleration[size];
         }
@@ -44,7 +48,8 @@ public class PgaAcceleration extends AbstractRbtCharacteristic implements Parcel
          * {@inheritDoc}
          */
         @Override
-        public PgaAcceleration createFromByteArray(byte[] values) {
+        @NonNull
+        public PgaAcceleration createFromByteArray(@NonNull byte[] values) {
             BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(PGA_ACCELERATION_CHARACTERISTIC, 0, 0);
             bluetoothGattCharacteristic.setValue(values);
             return new PgaAcceleration(bluetoothGattCharacteristic);
@@ -82,7 +87,7 @@ public class PgaAcceleration extends AbstractRbtCharacteristic implements Parcel
      *
      * @param bluetoothGattCharacteristic Characteristics UUID: 0x5227
      */
-    public PgaAcceleration(BluetoothGattCharacteristic bluetoothGattCharacteristic) {
+    public PgaAcceleration(@NonNull BluetoothGattCharacteristic bluetoothGattCharacteristic) {
         mEventEnableDisable = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 0);
         mSimpleThresholdUpperLimit1 = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT16, 1);
         mSimpleThresholdUpperLimit2 = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT16, 3);
@@ -112,7 +117,7 @@ public class PgaAcceleration extends AbstractRbtCharacteristic implements Parcel
      *
      * @param in Parcel
      */
-    private PgaAcceleration(Parcel in) {
+    private PgaAcceleration(@NonNull Parcel in) {
         mEventEnableDisable = in.readInt();
         mSimpleThresholdUpperLimit1 = in.readInt();
         mSimpleThresholdUpperLimit2 = in.readInt();
@@ -132,7 +137,7 @@ public class PgaAcceleration extends AbstractRbtCharacteristic implements Parcel
      * {@inheritDoc}
      */
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeInt(mEventEnableDisable);
         dest.writeInt(mSimpleThresholdUpperLimit1);
         dest.writeInt(mSimpleThresholdUpperLimit2);
@@ -243,6 +248,7 @@ public class PgaAcceleration extends AbstractRbtCharacteristic implements Parcel
      * {@inheritDoc}
      */
     @Override
+    @NonNull
     public byte[] getBytes() {
         byte[] data = new byte[9];
         ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);

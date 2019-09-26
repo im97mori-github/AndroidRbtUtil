@@ -4,6 +4,8 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import org.im97mori.ble.ByteArrayCreater;
 
 import java.nio.ByteBuffer;
@@ -27,7 +29,8 @@ public class RelativeHumiditySensor2 extends AbstractRbtCharacteristic implement
          * {@inheritDoc}
          */
         @Override
-        public RelativeHumiditySensor2 createFromParcel(Parcel in) {
+        @NonNull
+        public RelativeHumiditySensor2 createFromParcel(@NonNull Parcel in) {
             return new RelativeHumiditySensor2(in);
         }
 
@@ -35,6 +38,7 @@ public class RelativeHumiditySensor2 extends AbstractRbtCharacteristic implement
          * {@inheritDoc}
          */
         @Override
+        @NonNull
         public RelativeHumiditySensor2[] newArray(int size) {
             return new RelativeHumiditySensor2[size];
         }
@@ -43,7 +47,8 @@ public class RelativeHumiditySensor2 extends AbstractRbtCharacteristic implement
          * {@inheritDoc}
          */
         @Override
-        public RelativeHumiditySensor2 createFromByteArray(byte[] values) {
+        @NonNull
+        public RelativeHumiditySensor2 createFromByteArray(@NonNull byte[] values) {
             BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(RELATIVE_HUMIDITY_SENSOR_2_CHARACTERISTIC, 0, 0);
             bluetoothGattCharacteristic.setValue(values);
             return new RelativeHumiditySensor2(bluetoothGattCharacteristic);
@@ -116,7 +121,7 @@ public class RelativeHumiditySensor2 extends AbstractRbtCharacteristic implement
      *
      * @param bluetoothGattCharacteristic Characteristics UUID: 0x5214
      */
-    public RelativeHumiditySensor2(BluetoothGattCharacteristic bluetoothGattCharacteristic) {
+    public RelativeHumiditySensor2(@NonNull BluetoothGattCharacteristic bluetoothGattCharacteristic) {
         mAverageValueThresholdUpper = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_SINT16, 0);
         mAverageValueThresholdLower = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_SINT16, 2);
         mPeakToPeakThresholdUpper = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_SINT16, 4);
@@ -167,7 +172,7 @@ public class RelativeHumiditySensor2 extends AbstractRbtCharacteristic implement
      *
      * @param in Parcel
      */
-    private RelativeHumiditySensor2(Parcel in) {
+    private RelativeHumiditySensor2(@NonNull Parcel in) {
         mAverageValueThresholdUpper = in.readInt();
         mAverageValueThresholdLower = in.readInt();
         mPeakToPeakThresholdUpper = in.readInt();
@@ -194,7 +199,7 @@ public class RelativeHumiditySensor2 extends AbstractRbtCharacteristic implement
      * {@inheritDoc}
      */
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeInt(mAverageValueThresholdUpper);
         dest.writeInt(mAverageValueThresholdLower);
         dest.writeInt(mPeakToPeakThresholdUpper);
@@ -354,6 +359,7 @@ public class RelativeHumiditySensor2 extends AbstractRbtCharacteristic implement
      * {@inheritDoc}
      */
     @Override
+    @NonNull
     public byte[] getBytes() {
         byte[] data = new byte[20];
         ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);

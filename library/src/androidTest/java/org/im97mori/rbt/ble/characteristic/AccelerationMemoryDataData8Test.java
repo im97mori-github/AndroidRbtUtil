@@ -11,7 +11,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-public class AccelerationMemorydataData7Test {
+public class AccelerationMemoryDataData8Test {
 
     @Test
     public void test001() {
@@ -40,7 +40,7 @@ public class AccelerationMemorydataData7Test {
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
-        AccelerationMemoryData7 result = new AccelerationMemoryData7(bluetoothGattCharacteristic);
+        AccelerationMemoryData8 result = new AccelerationMemoryData8(bluetoothGattCharacteristic);
         assertEquals(1, result.getTotalTransferCount());
         assertFalse(result.isTotalTransferCountDataError());
         assertEquals(-20000, result.getAccelerationXAxis1());
@@ -90,7 +90,7 @@ public class AccelerationMemorydataData7Test {
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
-        AccelerationMemoryData7 result = new AccelerationMemoryData7(bluetoothGattCharacteristic);
+        AccelerationMemoryData8 result = new AccelerationMemoryData8(bluetoothGattCharacteristic);
         assertEquals(32767, result.getTotalTransferCount());
         assertFalse(result.isTotalTransferCountDataError());
         assertEquals(20000, result.getAccelerationXAxis1());
@@ -116,8 +116,8 @@ public class AccelerationMemorydataData7Test {
     @Test
     public void test003() {
         byte[] data = new byte[20];
-        data[0] = (byte) ((AccelerationMemoryData7.DATA_ERROR_BIT) & 0xff);
-        data[1] = (byte) ((AccelerationMemoryData7.DATA_ERROR_BIT >> 8) & 0xff);
+        data[0] = (byte) ((AccelerationMemoryData8.DATA_ERROR_BIT) & 0xff);
+        data[1] = (byte) ((AccelerationMemoryData8.DATA_ERROR_BIT >> 8) & 0xff);
         data[ 2] = (byte) ((0x20) & 0xff);
         data[ 3] = (byte) ((0x4e) & 0xff);
         data[ 4] = (byte) ((0x20) & 0xff);
@@ -140,7 +140,7 @@ public class AccelerationMemorydataData7Test {
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
-        AccelerationMemoryData7 result = new AccelerationMemoryData7(bluetoothGattCharacteristic);
+        AccelerationMemoryData8 result = new AccelerationMemoryData8(bluetoothGattCharacteristic);
         assertEquals(32768, result.getTotalTransferCount());
         assertTrue(result.isTotalTransferCountDataError());
         assertEquals(20000, result.getAccelerationXAxis1());
@@ -166,8 +166,8 @@ public class AccelerationMemorydataData7Test {
     @Test
     public void test004() {
         byte[] data = new byte[20];
-        data[0] = (byte) ((AccelerationMemoryData7.DATA_ERROR_BIT) & 0xff);
-        data[1] = (byte) ((AccelerationMemoryData7.DATA_ERROR_BIT >> 8) & 0xff);
+        data[0] = (byte) ((AccelerationMemoryData8.DATA_ERROR_BIT) & 0xff);
+        data[1] = (byte) ((AccelerationMemoryData8.DATA_ERROR_BIT >> 8) & 0xff);
         data[ 2] = (byte) ((0x01) & 0xff);
         data[ 3] = (byte) ((0x00) & 0xff);
         data[ 4] = (byte) ((0x02) & 0xff);
@@ -190,11 +190,11 @@ public class AccelerationMemorydataData7Test {
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
-        AccelerationMemoryData7 result1 = new AccelerationMemoryData7(bluetoothGattCharacteristic);
+        AccelerationMemoryData8 result1 = new AccelerationMemoryData8(bluetoothGattCharacteristic);
         Parcel parcel = Parcel.obtain();
         result1.writeToParcel(parcel, 0);
         parcel.setDataPosition(0);
-        AccelerationMemoryData7 result2 = AccelerationMemoryData7.CREATOR.createFromParcel(parcel);
+        AccelerationMemoryData8 result2 = AccelerationMemoryData8.CREATOR.createFromParcel(parcel);
 
         assertEquals(result1.getTotalTransferCount(), result2.getTotalTransferCount());
         assertEquals(result1.getAccelerationXAxis1(), result2.getAccelerationXAxis1());
@@ -211,8 +211,8 @@ public class AccelerationMemorydataData7Test {
     @Test
     public void test005() {
         byte[] data = new byte[20];
-        data[0] = (byte) ((AccelerationMemoryData7.DATA_ERROR_BIT) & 0xff);
-        data[1] = (byte) ((AccelerationMemoryData7.DATA_ERROR_BIT >> 8) & 0xff);
+        data[0] = (byte) ((AccelerationMemoryData8.DATA_ERROR_BIT) & 0xff);
+        data[1] = (byte) ((AccelerationMemoryData8.DATA_ERROR_BIT >> 8) & 0xff);
         data[ 2] = (byte) ((0x01) & 0xff);
         data[ 3] = (byte) ((0x00) & 0xff);
         data[ 4] = (byte) ((0x02) & 0xff);
@@ -235,7 +235,7 @@ public class AccelerationMemorydataData7Test {
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
-        AccelerationMemoryData7 result1 = new AccelerationMemoryData7(bluetoothGattCharacteristic);
+        AccelerationMemoryData8 result1 = new AccelerationMemoryData8(bluetoothGattCharacteristic);
         byte[] resultData = result1.getBytes();
         assertArrayEquals(data, resultData);
     }
@@ -243,8 +243,8 @@ public class AccelerationMemorydataData7Test {
     @Test
     public void test006() {
         byte[] data = new byte[20];
-        data[0] = (byte) ((AccelerationMemoryData7.DATA_ERROR_BIT) & 0xff);
-        data[1] = (byte) ((AccelerationMemoryData7.DATA_ERROR_BIT >> 8) & 0xff);
+        data[0] = (byte) ((AccelerationMemoryData8.DATA_ERROR_BIT) & 0xff);
+        data[1] = (byte) ((AccelerationMemoryData8.DATA_ERROR_BIT >> 8) & 0xff);
         data[ 2] = (byte) ((0x01) & 0xff);
         data[ 3] = (byte) ((0x00) & 0xff);
         data[ 4] = (byte) ((0x02) & 0xff);
@@ -267,8 +267,8 @@ public class AccelerationMemorydataData7Test {
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
-        AccelerationMemoryData7 result1 = new AccelerationMemoryData7(bluetoothGattCharacteristic);
-        AccelerationMemoryData7 result2 = AccelerationMemoryData7.CREATOR.createFromByteArray(data);
+        AccelerationMemoryData8 result1 = new AccelerationMemoryData8(bluetoothGattCharacteristic);
+        AccelerationMemoryData8 result2 = AccelerationMemoryData8.CREATOR.createFromByteArray(data);
         assertArrayEquals(result1.getBytes(), result2.getBytes());
     }
 }

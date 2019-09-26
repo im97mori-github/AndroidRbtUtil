@@ -2,7 +2,7 @@ package org.im97mori.rbt.sample;
 
 import android.util.Pair;
 
-public interface SampleCallback {
+interface SampleCallback {
 
     void onCallbacked(Pair<String, String> log);
 }

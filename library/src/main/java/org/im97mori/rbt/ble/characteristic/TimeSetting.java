@@ -4,6 +4,8 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import org.im97mori.ble.ByteArrayCreater;
 
 import java.math.BigInteger;
@@ -26,7 +28,8 @@ public class TimeSetting extends AbstractRbtCharacteristic implements Parcelable
          * {@inheritDoc}
          */
         @Override
-        public TimeSetting createFromParcel(Parcel in) {
+        @NonNull
+        public TimeSetting createFromParcel(@NonNull Parcel in) {
             return new TimeSetting(in);
         }
 
@@ -34,6 +37,7 @@ public class TimeSetting extends AbstractRbtCharacteristic implements Parcelable
          * {@inheritDoc}
          */
         @Override
+        @NonNull
         public TimeSetting[] newArray(int size) {
             return new TimeSetting[size];
         }
@@ -42,7 +46,8 @@ public class TimeSetting extends AbstractRbtCharacteristic implements Parcelable
          * {@inheritDoc}
          */
         @Override
-        public TimeSetting createFromByteArray(byte[] values) {
+        @NonNull
+        public TimeSetting createFromByteArray(@NonNull byte[] values) {
             BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(TIME_SETTING_CHARACTERISTIC, 0, 0);
             bluetoothGattCharacteristic.setValue(values);
             return new TimeSetting(bluetoothGattCharacteristic);
@@ -60,7 +65,7 @@ public class TimeSetting extends AbstractRbtCharacteristic implements Parcelable
      *
      * @param bluetoothGattCharacteristic Characteristics UUID: 0x5202
      */
-    public TimeSetting(BluetoothGattCharacteristic bluetoothGattCharacteristic) {
+    public TimeSetting(@NonNull BluetoothGattCharacteristic bluetoothGattCharacteristic) {
         mTimeSetting = createBigInteger(bluetoothGattCharacteristic.getValue(), 0, 8);
     }
 
@@ -69,7 +74,7 @@ public class TimeSetting extends AbstractRbtCharacteristic implements Parcelable
      *
      * @param timeSetting Time setting
      */
-    public TimeSetting(BigInteger timeSetting) {
+    public TimeSetting(@NonNull BigInteger timeSetting) {
         mTimeSetting = timeSetting;
     }
 
@@ -78,7 +83,7 @@ public class TimeSetting extends AbstractRbtCharacteristic implements Parcelable
      *
      * @param in Parcel
      */
-    private TimeSetting(Parcel in) {
+    private TimeSetting(@NonNull Parcel in) {
         mTimeSetting = (BigInteger) in.readSerializable();
     }
 
@@ -94,7 +99,7 @@ public class TimeSetting extends AbstractRbtCharacteristic implements Parcelable
      * {@inheritDoc}
      */
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeSerializable(mTimeSetting);
     }
 
@@ -109,6 +114,7 @@ public class TimeSetting extends AbstractRbtCharacteristic implements Parcelable
      * {@inheritDoc}
      */
     @Override
+    @NonNull
     public byte[] getBytes() {
         byte[] data = new byte[8];
         ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);

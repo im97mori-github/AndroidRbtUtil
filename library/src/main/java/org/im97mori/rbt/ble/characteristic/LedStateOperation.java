@@ -4,6 +4,8 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import org.im97mori.ble.ByteArrayCreater;
 
 import java.nio.ByteBuffer;
@@ -56,7 +58,8 @@ public class LedStateOperation extends AbstractRbtCharacteristic implements Parc
          * {@inheritDoc}
          */
         @Override
-        public LedStateOperation createFromParcel(Parcel in) {
+        @NonNull
+        public LedStateOperation createFromParcel(@NonNull Parcel in) {
             return new LedStateOperation(in);
         }
 
@@ -64,6 +67,7 @@ public class LedStateOperation extends AbstractRbtCharacteristic implements Parc
          * {@inheritDoc}
          */
         @Override
+        @NonNull
         public LedStateOperation[] newArray(int size) {
             return new LedStateOperation[size];
         }
@@ -72,7 +76,8 @@ public class LedStateOperation extends AbstractRbtCharacteristic implements Parc
          * {@inheritDoc}
          */
         @Override
-        public LedStateOperation createFromByteArray(byte[] values) {
+        @NonNull
+        public LedStateOperation createFromByteArray(@NonNull byte[] values) {
             BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(LED_STATE_OPERATION_CHARACTERISTIC, 0, 0);
             bluetoothGattCharacteristic.setValue(values);
             return new LedStateOperation(bluetoothGattCharacteristic);
@@ -101,7 +106,7 @@ public class LedStateOperation extends AbstractRbtCharacteristic implements Parc
      *
      * @param bluetoothGattCharacteristic Characteristics UUID: 0x5113
      */
-    public LedStateOperation(BluetoothGattCharacteristic bluetoothGattCharacteristic) {
+    public LedStateOperation(@NonNull BluetoothGattCharacteristic bluetoothGattCharacteristic) {
         mStartUp = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 0);
         mError = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 1);
         mConnection = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 2);
@@ -128,7 +133,7 @@ public class LedStateOperation extends AbstractRbtCharacteristic implements Parc
      *
      * @param in Parcel
      */
-    private LedStateOperation(Parcel in) {
+    private LedStateOperation(@NonNull Parcel in) {
         mStartUp = in.readInt();
         mError = in.readInt();
         mConnection = in.readInt();
@@ -146,7 +151,7 @@ public class LedStateOperation extends AbstractRbtCharacteristic implements Parc
      * {@inheritDoc}
      */
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeInt(mStartUp);
         dest.writeInt(mError);
         dest.writeInt(mConnection);
@@ -177,6 +182,7 @@ public class LedStateOperation extends AbstractRbtCharacteristic implements Parc
      * {@inheritDoc}
      */
     @Override
+    @NonNull
     public byte[] getBytes() {
         byte[] data = new byte[3];
         ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);

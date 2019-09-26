@@ -1,8 +1,12 @@
 package org.im97mori.rbt.ble;
 
 import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothGatt;
+import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import org.im97mori.ble.BLECallback;
 import org.im97mori.ble.characteristic.Appearance;
 import org.im97mori.ble.characteristic.CentralAddressResolution;
 import org.im97mori.ble.characteristic.DeviceName;
@@ -15,8 +19,6 @@ import org.im97mori.ble.characteristic.SerialNumberString;
 import org.im97mori.ble.descriptor.ClientCharacteristicConfiguration;
 import org.im97mori.rbt.ble.characteristic.AccelerationLoggerControl;
 import org.im97mori.rbt.ble.characteristic.AccelerationLoggerStatus;
-import org.im97mori.rbt.ble.characteristic.AccelerationMemoryData;
-import org.im97mori.rbt.ble.characteristic.AccelerationMemoryDataHeader;
 import org.im97mori.rbt.ble.characteristic.AccelerationMemoryStatus;
 import org.im97mori.rbt.ble.characteristic.AdvertiseSetting;
 import org.im97mori.rbt.ble.characteristic.AmbientLightSensor1;
@@ -43,12 +45,8 @@ import org.im97mori.rbt.ble.characteristic.LatestTimeCounter;
 import org.im97mori.rbt.ble.characteristic.LedSettingEventState;
 import org.im97mori.rbt.ble.characteristic.LedSettingNormalState;
 import org.im97mori.rbt.ble.characteristic.LedStateOperation;
-import org.im97mori.rbt.ble.characteristic.MemoryCalculationData;
-import org.im97mori.rbt.ble.characteristic.MemoryCalculationFlag;
 import org.im97mori.rbt.ble.characteristic.MemoryIndexInformation;
 import org.im97mori.rbt.ble.characteristic.MemoryReset;
-import org.im97mori.rbt.ble.characteristic.MemorySensingData;
-import org.im97mori.rbt.ble.characteristic.MemorySensingFlag;
 import org.im97mori.rbt.ble.characteristic.MemoryStatus;
 import org.im97mori.rbt.ble.characteristic.MemoryStorageInterval;
 import org.im97mori.rbt.ble.characteristic.ModeChange;
@@ -67,295 +65,402 @@ import org.im97mori.rbt.ble.characteristic.VibrationCount;
 
 /**
  * Rbt BLE callback
- *
- * @see org.im97mori.ble.BLECallback
  */
-public interface RbtCallback {
-
-    /**
-     * Connected callback
-     *
-     * @param bluetoothDevice Rbt device
-     * @see BluetoothGatt#connect()
-     * @see android.bluetooth.BluetoothGattCallback#onConnectionStateChange(BluetoothGatt, int, int)
-     * @see android.bluetooth.BluetoothGattCallback#onServicesDiscovered(BluetoothGatt, int)
-     * @see org.im97mori.ble.task.ConnectTask
-     */
-    void onRbtConnected(BluetoothDevice bluetoothDevice);
-
-    /**
-     * Connecte task failed callback
-     *
-     * @param bluetoothDevice Rbt device
-     * @see BluetoothGatt#connect()
-     * @see org.im97mori.ble.task.ConnectTask
-     */
-    void onRbtConnectFailed(BluetoothDevice bluetoothDevice);
-
-    /**
-     * Connect task timeout callback
-     *
-     * @param bluetoothDevice Rbt device
-     * @see BluetoothGatt#connect()
-     * @see org.im97mori.ble.task.ConnectTask
-     */
-    void onRbtConnectTimeout(BluetoothDevice bluetoothDevice);
-
-    /**
-     * Disconnected callback
-     *
-     * @param bluetoothDevice Rbt device
-     * @see BluetoothGatt#disconnect()
-     * @see BluetoothGatt#close()
-     * @see android.bluetooth.BluetoothGattCallback#onConnectionStateChange(BluetoothGatt, int, int)
-     * @see RbtBLEConnection#quit()
-     * @see org.im97mori.ble.task.DisconnectTask
-     */
-    void onRbtDisonnected(BluetoothDevice bluetoothDevice);
+@SuppressWarnings("unused")
+public interface RbtCallback extends BLECallback {
 
     // Memory Data Service (Service UUID: 0x5000)
 
     /**
      * Read success callback Memory index information (Characteristics UUID: 0x5004)
      *
+     * @param taskId                 task id
      * @param bluetoothDevice        Rbt device
      * @param memoryIndexInformation read result data
+     * @param argument               callback argument
      */
-    void onMemoryIndexInformationReadSuccess(BluetoothDevice bluetoothDevice, MemoryIndexInformation memoryIndexInformation);
+    void onMemoryIndexInformationReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull MemoryIndexInformation memoryIndexInformation, @Nullable Bundle argument);
 
     /**
      * Read failed callback Memory index information (Characteristics UUID: 0x5004)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onMemoryIndexInformationReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onMemoryIndexInformationReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback Memory index information (Characteristics UUID: 0x5004)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onMemoryIndexInformationReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
-
-    /**
-     * Write failed callback Request memory index (Characteristics UUID: 0x5005)
-     *
-     * @param bluetoothDevice Rbt device
-     * @param status          error status
-     */
-    void onRequestMemoryIndexWriteFailed(BluetoothDevice bluetoothDevice, int status);
-
-    /**
-     * Write timeout callback Request memory index (Characteristics UUID: 0x5005)
-     *
-     * @param bluetoothDevice Rbt device
-     * @param timeout         timeout(millis)
-     */
-    void onRequestMemoryIndexWriteTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onMemoryIndexInformationReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Read success callback Memory status (Characteristics UUID: 0x5006)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param memoryStatus    read result data
+     * @param argument        callback argument
      */
-    void onMemoryStatusReadSuccess(BluetoothDevice bluetoothDevice, MemoryStatus memoryStatus);
+    void onMemoryStatusReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull MemoryStatus memoryStatus, @Nullable Bundle argument);
 
     /**
      * Read failed callback Memory status (Characteristics UUID: 0x5006)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onMemoryStatusReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onMemoryStatusReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback Memory status (Characteristics UUID: 0x5006)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onMemoryStatusReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onMemoryStatusReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
-     * Notification setting success callback Memory sensing data (Characteristics UUID: 0x500A)
+     * Notification setting read success callback Memory sensing data (Characteristics UUID: 0x500A)
      *
+     * @param taskId                            task id
      * @param bluetoothDevice                   Rbt device
      * @param clientCharacteristicConfiguration notification setting data
+     * @param argument                          callback argument
      */
-    void onMemorySensingDataClientCharactericsticConfigurationSuccess(BluetoothDevice bluetoothDevice, ClientCharacteristicConfiguration clientCharacteristicConfiguration);
+    void onMemorySensingDataClientCharactericsticConfigurationReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument);
 
     /**
-     * Notification setting failed callback Memory sensing data (Characteristics UUID: 0x500A)
+     * Notification setting read failed callback Memory sensing data (Characteristics UUID: 0x500A)
      *
+     * @param taskId          task id
+     * @param bluetoothDevice Rbt device
+     * @param status          error status
+     * @param argument        callback argument
+     */
+    void onMemorySensingDataClientCharactericsticConfigurationReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
+
+    /**
+     * Notification setting read timeout callback Memory sensing data (Characteristics UUID: 0x500A)
+     *
+     * @param taskId          task id
+     * @param bluetoothDevice Rbt device
+     * @param timeout         timeout(millis)
+     * @param argument        callback argument
+     */
+    void onMemorySensingDataClientCharactericsticConfigurationReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
+
+    /**
+     * Notification setting write success callback Memory sensing data (Characteristics UUID: 0x500A)
+     *
+     * @param taskId                            task id
+     * @param bluetoothDevice                   Rbt device
+     * @param clientCharacteristicConfiguration notification setting data
+     * @param argument                          callback argument
+     */
+    void onMemorySensingDataClientCharactericsticConfigurationWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument);
+
+    /**
+     * Notification setting write failed callback Memory sensing data (Characteristics UUID: 0x500A)
+     *
+     * @param taskId          task id
+     * @param bluetoothDevice Rbt device
+     * @param status          error status
+     * @param argument        callback argument
+     */
+    void onMemorySensingDataClientCharactericsticConfigurationWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
+
+    /**
+     * Notification setting write timeout callback Memory sensing data (Characteristics UUID: 0x500A)
+     *
+     * @param taskId          task id
+     * @param bluetoothDevice Rbt device
+     * @param timeout         timeout(millis)
+     * @param argument        callback argument
+     */
+    void onMemorySensingDataClientCharactericsticConfigurationWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
+
+    /**
+     * Notification setting read success callback Memory calculation data (Characteristics UUID: 0x500B)
+     *
+     * @param taskId                            task id
+     * @param bluetoothDevice                   Rbt device
+     * @param clientCharacteristicConfiguration notification setting data
+     * @param argument                          callback argument
+     */
+    void onMemoryCalculationDataClientCharactericsticConfigurationReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument);
+
+    /**
+     * Notification setting read failed callback Memory calculation data (Characteristics UUID: 0x500B)
+     *
+     * @param taskId          task id
+     * @param bluetoothDevice Rbt device
+     * @param status          error status
+     * @param argument        callback argument
+     */
+    void onMemoryCalculationDataClientCharactericsticConfigurationReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
+
+    /**
+     * Notification setting read timeout callback Memory calculation data (Characteristics UUID: 0x500B)
+     *
+     * @param taskId          task id
+     * @param bluetoothDevice Rbt device
+     * @param timeout         timeout(millis)
+     * @param argument        callback argument
+     */
+    void onMemoryCalculationDataClientCharactericsticConfigurationReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
+
+    /**
+     * Notification setting write success callback Memory calculation data (Characteristics UUID: 0x500B)
+     *
+     * @param taskId                            task id
+     * @param bluetoothDevice                   Rbt device
+     * @param clientCharacteristicConfiguration notification setting data
+     * @param argument                          callback argument
+     */
+    void onMemoryCalculationDataClientCharactericsticConfigurationWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument);
+
+    /**
+     * Notification setting write failed callback Memory calculation data (Characteristics UUID: 0x500B)
+     *
+     * @param taskId          task id
+     * @param bluetoothDevice Rbt device
+     * @param status          error status
+     * @param argument        callback argument
+     */
+    void onMemoryCalculationDataClientCharactericsticConfigurationWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
+
+    /**
+     * Notification setting write timeout callback Memory calculation data (Characteristics UUID: 0x500B)
+     *
+     * @param taskId          task id
+     * @param bluetoothDevice Rbt device
+     * @param timeout         timeout(millis)
+     * @param argument        callback argument
+     */
+    void onMemoryCalculationDataClientCharactericsticConfigurationWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
+
+    /**
+     * Notification setting read success callback Memory sensing flag (Characteristics UUID: 0x500C)
+     *
+     * @param taskId                            task id
+     * @param bluetoothDevice                   Rbt device
+     * @param clientCharacteristicConfiguration notification setting data
+     * @param argument                          callback argument
+     */
+    void onMemorySensingFlagClientCharactericsticConfigurationReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument);
+
+    /**
+     * Notification setting read failed callback Memory sensing flag (Characteristics UUID: 0x500C)
+     *
+     * @param taskId          task id
+     * @param bluetoothDevice Rbt device
+     * @param status          error status
+     * @param argument        callback argument
+     */
+    void onMemorySensingFlagClientCharactericsticConfigurationReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
+
+    /**
+     * Notification setting read timeout callback Memory sensing flag (Characteristics UUID: 0x500C)
+     *
+     * @param taskId          task id
+     * @param bluetoothDevice Rbt device
+     * @param timeout         timeout(millis)
+     * @param argument        callback argument
+     */
+    void onMemorySensingFlagClientCharactericsticConfigurationReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
+
+    /**
+     * Notification setting write success callback Memory sensing flag (Characteristics UUID: 0x500C)
+     *
+     * @param taskId                            task id
+     * @param bluetoothDevice                   Rbt device
+     * @param clientCharacteristicConfiguration notification setting data
+     * @param argument                          callback argument
+     */
+    void onMemorySensingFlagClientCharactericsticConfigurationWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument);
+
+    /**
+     * Notification setting write failed callback Memory sensing flag (Characteristics UUID: 0x500C)
+     *
+     * @param taskId          task id
+     * @param bluetoothDevice Rbt device
+     * @param status          error status
+     * @param argument        callback argument
+     */
+    void onMemorySensingFlagClientCharactericsticConfigurationWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
+
+    /**
+     * Notification setting write timeout callback Memory sensing flag (Characteristics UUID: 0x500C)
+     *
+     * @param taskId          task id
+     * @param bluetoothDevice Rbt device
+     * @param timeout         timeout(millis)
+     * @param argument        callback argument
+     */
+    void onMemorySensingFlagClientCharactericsticConfigurationWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
+
+    /**
+     * Notification setting read success callback Memory calculation flag (Characteristics UUID: 0x500D)
+     *
+     * @param taskId                            task id
+     * @param bluetoothDevice                   Rbt device
+     * @param clientCharacteristicConfiguration notification setting data
+     * @param argument                          callback argument
+     */
+    void onMemoryCalculationFlagClientCharactericsticConfigurationReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument);
+
+    /**
+     * Notification setting read failed callback Memory calculation flag (Characteristics UUID: 0x500D)
+     *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
      */
-    void onMemorySensingDataClientCharactericsticConfigurationFailed(BluetoothDevice bluetoothDevice, int status);
+    void onMemoryCalculationFlagClientCharactericsticConfigurationReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
-     * Notification setting timeout callback Memory sensing data (Characteristics UUID: 0x500A)
+     * Notification setting read timeout callback Memory calculation flag (Characteristics UUID: 0x500D)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onMemorySensingDataClientCharactericsticConfigurationTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onMemoryCalculationFlagClientCharactericsticConfigurationReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
-     * Notification callback Memory sensing data (Characteristics UUID: 0x500A)
+     * Notification setting write success callback Memory calculation flag (Characteristics UUID: 0x500D)
      *
-     * @param bluetoothDevice   Rbt device
-     * @param memorySensingData notification data
-     */
-    void onMemorySensingDataNotified(BluetoothDevice bluetoothDevice, MemorySensingData memorySensingData);
-
-    /**
-     * Notification setting success callback Memory calculation data (Characteristics UUID: 0x500B)
-     *
+     * @param taskId                            task id
      * @param bluetoothDevice                   Rbt device
      * @param clientCharacteristicConfiguration notification setting data
+     * @param argument                          callback argument
      */
-    void onMemoryCalculationDataClientCharactericsticConfigurationSuccess(BluetoothDevice bluetoothDevice, ClientCharacteristicConfiguration clientCharacteristicConfiguration);
+    void onMemoryCalculationFlagClientCharactericsticConfigurationWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument);
 
     /**
-     * Notification setting failed callback Memory calculation data (Characteristics UUID: 0x500B)
+     * Notification setting write failed callback Memory calculation flag (Characteristics UUID: 0x500D)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onMemoryCalculationDataClientCharactericsticConfigurationFailed(BluetoothDevice bluetoothDevice, int status);
+    void onMemoryCalculationFlagClientCharactericsticConfigurationWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
-     * Notification setting timeout callback Memory calculation data (Characteristics UUID: 0x500B)
+     * Notification setting write timeout callback Memory calculation flag (Characteristics UUID: 0x500D)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onMemoryCalculationDataClientCharactericsticConfigurationTimeout(BluetoothDevice bluetoothDevice, long timeout);
-
-    /**
-     * Notification callback Memory calculation data (Characteristics UUID: 0x500B)
-     *
-     * @param bluetoothDevice       Rbt device
-     * @param memoryCalculationData notification data
-     */
-    void onMemoryCalculationDataNotified(BluetoothDevice bluetoothDevice, MemoryCalculationData memoryCalculationData);
-
-    /**
-     * Notification setting success callback Memory sensing flag (Characteristics UUID: 0x500C)
-     *
-     * @param bluetoothDevice                   Rbt device
-     * @param clientCharacteristicConfiguration notification setting data
-     */
-    void onMemorySensingFlagClientCharactericsticConfigurationSuccess(BluetoothDevice bluetoothDevice, ClientCharacteristicConfiguration clientCharacteristicConfiguration);
-
-    /**
-     * Notification setting failed callback Memory sensing flag (Characteristics UUID: 0x500C)
-     *
-     * @param bluetoothDevice Rbt device
-     * @param status          error status
-     */
-    void onMemorySensingFlagClientCharactericsticConfigurationFailed(BluetoothDevice bluetoothDevice, int status);
-
-    /**
-     * Notification setting timeout callback Memory sensing flag (Characteristics UUID: 0x500C)
-     *
-     * @param bluetoothDevice Rbt device
-     * @param timeout         timeout(millis)
-     */
-    void onMemorySensingFlagClientCharactericsticConfigurationTimeout(BluetoothDevice bluetoothDevice, long timeout);
-
-    /**
-     * Notification callback Memory sensing flag (Characteristics UUID: 0x500C)
-     *
-     * @param bluetoothDevice   Rbt device
-     * @param memorySensingFlag notification data
-     */
-    void onMemorySensingFlagNotified(BluetoothDevice bluetoothDevice, MemorySensingFlag memorySensingFlag);
-
-    /**
-     * Notification setting success callback Memory calculation flag (Characteristics UUID: 0x500D)
-     *
-     * @param bluetoothDevice                   Rbt device
-     * @param clientCharacteristicConfiguration notification setting data
-     */
-    void onMemoryCalculationFlagClientCharactericsticConfigurationSuccess(BluetoothDevice bluetoothDevice, ClientCharacteristicConfiguration clientCharacteristicConfiguration);
-
-    /**
-     * Notification setting failed callback Memory calculation flag (Characteristics UUID: 0x500D)
-     *
-     * @param bluetoothDevice Rbt device
-     * @param status          error status
-     */
-    void onMemoryCalculationFlagClientCharactericsticConfigurationFailed(BluetoothDevice bluetoothDevice, int status);
-
-    /**
-     * Notification setting timeout callback Memory calculation flag (Characteristics UUID: 0x500D)
-     *
-     * @param bluetoothDevice Rbt device
-     * @param timeout         timeout(millis)
-     */
-    void onMemoryCalculationFlagClientCharactericsticConfigurationTimeout(BluetoothDevice bluetoothDevice, long timeout);
-
-    /**
-     * Notification callback Memory calculation flag (Characteristics UUID: 0x500D)
-     *
-     * @param bluetoothDevice       Rbt device
-     * @param memoryCalculationFlag notification data
-     */
-    void onMemoryCalculationFlagNotified(BluetoothDevice bluetoothDevice, MemoryCalculationFlag memoryCalculationFlag);
+    void onMemoryCalculationFlagClientCharactericsticConfigurationWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     // Latest Data Service (Service UUID: 0x5010)
 
     /**
      * Read success callback Latest sensing data (Characteristics UUID: 0x5012)
      *
+     * @param taskId            task id
      * @param bluetoothDevice   Rbt device
      * @param latestSensingData read result data
+     * @param argument          callback argument
      */
-    void onLatestSensingDataReadSuccess(BluetoothDevice bluetoothDevice, LatestSensingData latestSensingData);
+    void onLatestSensingDataReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull LatestSensingData latestSensingData, @Nullable Bundle argument);
 
     /**
      * Read failed callback Latest sensing data (Characteristics UUID: 0x5012)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onLatestSensingDataReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onLatestSensingDataReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback Latest sensing data (Characteristics UUID: 0x5012)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onLatestSensingDataReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onLatestSensingDataReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
-     * Notification setting success callback Latest sensing data (Characteristics UUID: 0x5012)
+     * Notification setting read success callback Latest sensing data (Characteristics UUID: 0x5012)
      *
+     * @param taskId                            task id
      * @param bluetoothDevice                   Rbt device
      * @param clientCharacteristicConfiguration notification setting data
+     * @param argument                          callback argument
      */
-    void onLatestSensingDataClientCharactericsticConfigurationSuccess(BluetoothDevice bluetoothDevice, ClientCharacteristicConfiguration clientCharacteristicConfiguration);
+    void onLatestSensingDataClientCharactericsticConfigurationReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument);
 
     /**
-     * Notification setting failed callback Latest sensing data (Characteristics UUID: 0x5012)
+     * Notification setting read failed callback Latest sensing data (Characteristics UUID: 0x5012)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onLatestSensingDataClientCharactericsticConfigurationFailed(BluetoothDevice bluetoothDevice, int status);
+    void onLatestSensingDataClientCharactericsticConfigurationReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
-     * Notification setting timeout callback Latest sensing data (Characteristics UUID: 0x5012)
+     * Notification setting read timeout callback Latest sensing data (Characteristics UUID: 0x5012)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onLatestSensingDataClientCharactericsticConfigurationTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onLatestSensingDataClientCharactericsticConfigurationReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
+
+    /**
+     * Notification setting write success callback Latest sensing data (Characteristics UUID: 0x5012)
+     *
+     * @param taskId                            task id
+     * @param bluetoothDevice                   Rbt device
+     * @param clientCharacteristicConfiguration notification setting data
+     * @param argument                          callback argument
+     */
+    void onLatestSensingDataClientCharactericsticConfigurationWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument);
+
+    /**
+     * Notification setting write failed callback Latest sensing data (Characteristics UUID: 0x5012)
+     *
+     * @param taskId          task id
+     * @param bluetoothDevice Rbt device
+     * @param status          error status
+     * @param argument        callback argument
+     */
+    void onLatestSensingDataClientCharactericsticConfigurationWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
+
+    /**
+     * Notification setting write timeout callback Latest sensing data (Characteristics UUID: 0x5012)
+     *
+     * @param taskId          task id
+     * @param bluetoothDevice Rbt device
+     * @param timeout         timeout(millis)
+     * @param argument        callback argument
+     */
+    void onLatestSensingDataClientCharactericsticConfigurationWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Notification callback Latest sensing data (Characteristics UUID: 0x5012)
@@ -363,55 +468,97 @@ public interface RbtCallback {
      * @param bluetoothDevice   Rbt device
      * @param latestSensingData notification data
      */
-    void onLatestSensingDataNotified(BluetoothDevice bluetoothDevice, LatestSensingData latestSensingData);
+    void onLatestSensingDataNotified(@NonNull BluetoothDevice bluetoothDevice, @NonNull LatestSensingData latestSensingData);
 
     /**
      * Read success callback Latest calculation data (Characteristics UUID: 0x5013)
      *
+     * @param taskId                task id
      * @param bluetoothDevice       Rbt device
      * @param latestCalculationData read result data
+     * @param argument              callback argument
      */
-    void onLatestCalculationDataReadSuccess(BluetoothDevice bluetoothDevice, LatestCalculationData latestCalculationData);
+    void onLatestCalculationDataReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull LatestCalculationData latestCalculationData, @Nullable Bundle argument);
 
     /**
      * Read failed callback Latest calculation data (Characteristics UUID: 0x5013)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onLatestCalculationDataReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onLatestCalculationDataReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback Latest calculation data (Characteristics UUID: 0x5013)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onLatestCalculationDataReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onLatestCalculationDataReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
-     * Notification setting success callback Latest calculation data (Characteristics UUID: 0x5013)
+     * Notification setting read success callback Latest calculation data (Characteristics UUID: 0x5013)
      *
+     * @param taskId                            task id
      * @param bluetoothDevice                   Rbt device
      * @param clientCharacteristicConfiguration notification setting data
+     * @param argument                          callback argument
      */
-    void onLatestCalculationDataClientCharactericsticConfigurationSuccess(BluetoothDevice bluetoothDevice, ClientCharacteristicConfiguration clientCharacteristicConfiguration);
+    void onLatestCalculationDataClientCharactericsticConfigurationReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument);
 
     /**
-     * Notification setting failed callback Latest calculation data (Characteristics UUID: 0x5013)
+     * Notification setting read failed callback Latest calculation data (Characteristics UUID: 0x5013)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onLatestCalculationDataClientCharactericsticConfigurationFailed(BluetoothDevice bluetoothDevice, int status);
+    void onLatestCalculationDataClientCharactericsticConfigurationReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
-     * Notification setting timeout callback Latest calculation data (Characteristics UUID: 0x5013)
+     * Notification setting read timeout callback Latest calculation data (Characteristics UUID: 0x5013)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onLatestCalculationDataClientCharactericsticConfigurationTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onLatestCalculationDataClientCharactericsticConfigurationReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
+
+    /**
+     * Notification setting write success callback Latest calculation data (Characteristics UUID: 0x5013)
+     *
+     * @param taskId                            task id
+     * @param bluetoothDevice                   Rbt device
+     * @param clientCharacteristicConfiguration notification setting data
+     * @param argument                          callback argument
+     */
+    void onLatestCalculationDataClientCharactericsticConfigurationWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument);
+
+    /**
+     * Notification setting write failed callback Latest calculation data (Characteristics UUID: 0x5013)
+     *
+     * @param taskId          task id
+     * @param bluetoothDevice Rbt device
+     * @param status          error status
+     * @param argument        callback argument
+     */
+    void onLatestCalculationDataClientCharactericsticConfigurationWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
+
+    /**
+     * Notification setting write timeout callback Latest calculation data (Characteristics UUID: 0x5013)
+     *
+     * @param taskId          task id
+     * @param bluetoothDevice Rbt device
+     * @param timeout         timeout(millis)
+     * @param argument        callback argument
+     */
+    void onLatestCalculationDataClientCharactericsticConfigurationWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Notification callback Latest calculation data (Characteristics UUID: 0x5013)
@@ -419,55 +566,97 @@ public interface RbtCallback {
      * @param bluetoothDevice       Rbt device
      * @param latestCalculationData notification data
      */
-    void onLatestCalculationDataNotified(BluetoothDevice bluetoothDevice, LatestCalculationData latestCalculationData);
+    void onLatestCalculationDataNotified(@NonNull BluetoothDevice bluetoothDevice, @NonNull LatestCalculationData latestCalculationData);
 
     /**
      * Read success callback Latest sensing flag (Characteristics UUID: 0x5014)
      *
+     * @param taskId            task id
      * @param bluetoothDevice   Rbt device
      * @param latestSensingFlag read result data
+     * @param argument          callback argument
      */
-    void onLatestSensingFlagReadSuccess(BluetoothDevice bluetoothDevice, LatestSensingFlag latestSensingFlag);
+    void onLatestSensingFlagReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull LatestSensingFlag latestSensingFlag, @Nullable Bundle argument);
 
     /**
      * Read failed callback Latest sensing flag (Characteristics UUID: 0x5014)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onLatestSensingFlagReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onLatestSensingFlagReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback Latest sensing flag (Characteristics UUID: 0x5014)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onLatestSensingFlagReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onLatestSensingFlagReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
-     * Notification setting success callback Latest calculation data (Characteristics UUID: 0x5014)
+     * Notification setting read success callback Latest calculation data (Characteristics UUID: 0x5014)
      *
+     * @param taskId                            task id
      * @param bluetoothDevice                   Rbt device
      * @param clientCharacteristicConfiguration notification setting data
+     * @param argument                          callback argument
      */
-    void onLatestSensingFlagClientCharactericsticConfigurationSuccess(BluetoothDevice bluetoothDevice, ClientCharacteristicConfiguration clientCharacteristicConfiguration);
+    void onLatestSensingFlagClientCharactericsticConfigurationReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument);
 
     /**
-     * Notification setting failed callback Latest calculation data (Characteristics UUID: 0x5014)
+     * Notification setting read failed callback Latest calculation data (Characteristics UUID: 0x5014)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onLatestSensingFlagClientCharactericsticConfigurationFailed(BluetoothDevice bluetoothDevice, int status);
+    void onLatestSensingFlagClientCharactericsticConfigurationReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
-     * Notification setting timeout callback Latest sensing flag (Characteristics UUID: 0x5014)
+     * Notification setting read timeout callback Latest sensing flag (Characteristics UUID: 0x5014)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onLatestSensingFlagClientCharactericsticConfigurationTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onLatestSensingFlagClientCharactericsticConfigurationReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
+
+    /**
+     * Notification setting write success callback Latest calculation data (Characteristics UUID: 0x5014)
+     *
+     * @param taskId                            task id
+     * @param bluetoothDevice                   Rbt device
+     * @param clientCharacteristicConfiguration notification setting data
+     * @param argument                          callback argument
+     */
+    void onLatestSensingFlagClientCharactericsticConfigurationWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument);
+
+    /**
+     * Notification setting write failed callback Latest calculation data (Characteristics UUID: 0x5014)
+     *
+     * @param taskId          task id
+     * @param bluetoothDevice Rbt device
+     * @param status          error status
+     * @param argument        callback argument
+     */
+    void onLatestSensingFlagClientCharactericsticConfigurationWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
+
+    /**
+     * Notification setting write timeout callback Latest sensing flag (Characteristics UUID: 0x5014)
+     *
+     * @param taskId          task id
+     * @param bluetoothDevice Rbt device
+     * @param timeout         timeout(millis)
+     * @param argument        callback argument
+     */
+    void onLatestSensingFlagClientCharactericsticConfigurationWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Notification callback Latest calculation data (Characteristics UUID: 0x5014)
@@ -475,55 +664,97 @@ public interface RbtCallback {
      * @param bluetoothDevice   Rbt device
      * @param latestSensingFlag notification data
      */
-    void onLatestSensingFlagNotified(BluetoothDevice bluetoothDevice, LatestSensingFlag latestSensingFlag);
+    void onLatestSensingFlagNotified(@NonNull BluetoothDevice bluetoothDevice, @NonNull LatestSensingFlag latestSensingFlag);
 
     /**
      * Read success callback Latest calculation flag (Characteristics UUID: 0x5015)
      *
+     * @param taskId                task id
      * @param bluetoothDevice       Rbt device
      * @param latestCalculationFlag read result data
+     * @param argument              callback argument
      */
-    void onLatestCalculationFlagReadSuccess(BluetoothDevice bluetoothDevice, LatestCalculationFlag latestCalculationFlag);
+    void onLatestCalculationFlagReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull LatestCalculationFlag latestCalculationFlag, @Nullable Bundle argument);
 
     /**
      * Read failed callback Latest calculation flag (Characteristics UUID: 0x5015)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onLatestCalculationFlagReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onLatestCalculationFlagReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback Latest calculation flag (Characteristics UUID: 0x5015)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onLatestCalculationFlagReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onLatestCalculationFlagReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
-     * Notification setting success callback Latest calculation flag (Characteristics UUID: 0x5015)
+     * Notification setting read success callback Latest calculation flag (Characteristics UUID: 0x5015)
      *
+     * @param taskId                            task id
      * @param bluetoothDevice                   Rbt device
      * @param clientCharacteristicConfiguration notification setting data
+     * @param argument                          callback argument
      */
-    void onLatestCalculationFlagClientCharactericsticConfigurationSuccess(BluetoothDevice bluetoothDevice, ClientCharacteristicConfiguration clientCharacteristicConfiguration);
+    void onLatestCalculationFlagClientCharactericsticConfigurationReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument);
 
     /**
-     * Notification setting failed callback Latest calculation flag (Characteristics UUID: 0x5015)
+     * Notification setting read failed callback Latest calculation flag (Characteristics UUID: 0x5015)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onLatestCalculationFlagClientCharactericsticConfigurationFailed(BluetoothDevice bluetoothDevice, int status);
+    void onLatestCalculationFlagClientCharactericsticConfigurationReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
-     * Notification setting timeout callback Latest calculation flag (Characteristics UUID: 0x5015)
+     * Notification setting read timeout callback Latest calculation flag (Characteristics UUID: 0x5015)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onLatestCalculationFlagClientCharactericsticConfigurationTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onLatestCalculationFlagClientCharactericsticConfigurationReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
+
+    /**
+     * Notification setting write success callback Latest calculation flag (Characteristics UUID: 0x5015)
+     *
+     * @param taskId                            task id
+     * @param bluetoothDevice                   Rbt device
+     * @param clientCharacteristicConfiguration notification setting data
+     * @param argument                          callback argument
+     */
+    void onLatestCalculationFlagClientCharactericsticConfigurationWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument);
+
+    /**
+     * Notification setting write failed callback Latest calculation flag (Characteristics UUID: 0x5015)
+     *
+     * @param taskId          task id
+     * @param bluetoothDevice Rbt device
+     * @param status          error status
+     * @param argument        callback argument
+     */
+    void onLatestCalculationFlagClientCharactericsticConfigurationWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
+
+    /**
+     * Notification setting write timeout callback Latest calculation flag (Characteristics UUID: 0x5015)
+     *
+     * @param taskId          task id
+     * @param bluetoothDevice Rbt device
+     * @param timeout         timeout(millis)
+     * @param argument        callback argument
+     */
+    void onLatestCalculationFlagClientCharactericsticConfigurationWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Notification callback Latest calculation flag (Characteristics UUID: 0x5015)
@@ -531,55 +762,97 @@ public interface RbtCallback {
      * @param bluetoothDevice       Rbt device
      * @param latestCalculationFlag notification data
      */
-    void onLatestCalculationFlagNotified(BluetoothDevice bluetoothDevice, LatestCalculationFlag latestCalculationFlag);
+    void onLatestCalculationFlagNotified(@NonNull BluetoothDevice bluetoothDevice, @NonNull LatestCalculationFlag latestCalculationFlag);
 
     /**
      * Read success callback Latest acceleration status (Characteristics UUID: 0x5016)
      *
+     * @param taskId                   task id
      * @param bluetoothDevice          Rbt device
      * @param latestAccelerationStatus read result data
+     * @param argument                 callback argument
      */
-    void onLatestAccelerationStatusReadSuccess(BluetoothDevice bluetoothDevice, LatestAccelerationStatus latestAccelerationStatus);
+    void onLatestAccelerationStatusReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull LatestAccelerationStatus latestAccelerationStatus, @Nullable Bundle argument);
 
     /**
      * Read failed callback Latest acceleration status (Characteristics UUID: 0x5016)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onLatestAccelerationStatusReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onLatestAccelerationStatusReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback Latest acceleration status (Characteristics UUID: 0x5016)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onLatestAccelerationStatusReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onLatestAccelerationStatusReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
-     * Notification setting success callback Latest acceleration status (Characteristics UUID: 0x5016)
+     * Notification setting read success callback Latest acceleration status (Characteristics UUID: 0x5016)
      *
+     * @param taskId                            task id
      * @param bluetoothDevice                   Rbt device
      * @param clientCharacteristicConfiguration notification setting data
+     * @param argument                          callback argument
      */
-    void onLatestAccelerationStatusClientCharactericsticConfigurationSuccess(BluetoothDevice bluetoothDevice, ClientCharacteristicConfiguration clientCharacteristicConfiguration);
+    void onLatestAccelerationStatusClientCharactericsticConfigurationReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument);
 
     /**
-     * Notification setting failed callback Latest acceleration status (Characteristics UUID: 0x5016)
+     * Notification setting read failed callback Latest acceleration status (Characteristics UUID: 0x5016)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onLatestAccelerationStatusClientCharactericsticConfigurationFailed(BluetoothDevice bluetoothDevice, int status);
+    void onLatestAccelerationStatusClientCharactericsticConfigurationReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
-     * Notification setting timeout callback Latest acceleration status (Characteristics UUID: 0x5016)
+     * Notification setting read timeout callback Latest acceleration status (Characteristics UUID: 0x5016)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onLatestAccelerationStatusClientCharactericsticConfigurationTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onLatestAccelerationStatusClientCharactericsticConfigurationReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
+
+    /**
+     * Notification setting write success callback Latest acceleration status (Characteristics UUID: 0x5016)
+     *
+     * @param taskId                            task id
+     * @param bluetoothDevice                   Rbt device
+     * @param clientCharacteristicConfiguration notification setting data
+     * @param argument                          callback argument
+     */
+    void onLatestAccelerationStatusClientCharactericsticConfigurationWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument);
+
+    /**
+     * Notification setting write failed callback Latest acceleration status (Characteristics UUID: 0x5016)
+     *
+     * @param taskId          task id
+     * @param bluetoothDevice Rbt device
+     * @param status          error status
+     * @param argument        callback argument
+     */
+    void onLatestAccelerationStatusClientCharactericsticConfigurationWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
+
+    /**
+     * Notification setting write timeout callback Latest acceleration status (Characteristics UUID: 0x5016)
+     *
+     * @param taskId          task id
+     * @param bluetoothDevice Rbt device
+     * @param timeout         timeout(millis)
+     * @param argument        callback argument
+     */
+    void onLatestAccelerationStatusClientCharactericsticConfigurationWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Notification callback Latest acceleration status (Characteristics UUID: 0x5016)
@@ -587,1870 +860,2353 @@ public interface RbtCallback {
      * @param bluetoothDevice          Rbt device
      * @param latestAccelerationStatus notification data
      */
-    void onLatestAccelerationStatusNotified(BluetoothDevice bluetoothDevice, LatestAccelerationStatus latestAccelerationStatus);
+    void onLatestAccelerationStatusNotified(@NonNull BluetoothDevice bluetoothDevice, @NonNull LatestAccelerationStatus latestAccelerationStatus);
 
     // 2.3. Acceleration Service (Service UUID: 0x5030)
 
     /**
      * Read success callback Vibration count (Characteristics UUID: 0x5031)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param vibrationCount  read result data
+     * @param argument        callback argument
      */
-    void onVibrationCountReadSuccess(BluetoothDevice bluetoothDevice, VibrationCount vibrationCount);
+    void onVibrationCountReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull VibrationCount vibrationCount, @Nullable Bundle argument);
 
     /**
      * Read failed callback Vibration count (Characteristics UUID: 0x5031)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onVibrationCountReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onVibrationCountReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback Vibration count (Characteristics UUID: 0x5031)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onVibrationCountReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
-
-    /**
-     * Write failed callback Request acceleration memory index (Characteristics UUID: 0x5032)
-     *
-     * @param bluetoothDevice Rbt device
-     * @param status          error status
-     */
-    void onRequestAccelerationMemoryIndexWriteFailed(BluetoothDevice bluetoothDevice, int status);
-
-    /**
-     * Write timeout callback Request acceleration memory index (Characteristics UUID: 0x5032)
-     *
-     * @param bluetoothDevice Rbt device
-     * @param timeout         timeout(millis)
-     */
-    void onRequestAccelerationMemoryIndexWriteTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onVibrationCountReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Read success callback Acceleration memory status (Characteristics UUID: 0x5033)
      *
+     * @param taskId                   task id
      * @param bluetoothDevice          Rbt device
      * @param accelerationMemoryStatus read result data
+     * @param argument                 callback argument
      */
-    void onAccelerationMemoryStatusReadSuccess(BluetoothDevice bluetoothDevice, AccelerationMemoryStatus accelerationMemoryStatus);
+    void onAccelerationMemoryStatusReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull AccelerationMemoryStatus accelerationMemoryStatus, @Nullable Bundle argument);
 
     /**
      * Read failed callback Acceleration memory status (Characteristics UUID: 0x5033)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onAccelerationMemoryStatusReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onAccelerationMemoryStatusReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback Acceleration memory status (Characteristics UUID: 0x5033)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onAccelerationMemoryStatusReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onAccelerationMemoryStatusReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
+
+    /**
+     * Notification setting read success callback Acceleration memory data (Characteristics UUID: 0x5034)
+     *
+     * @param taskId                            task id
+     * @param bluetoothDevice                   Rbt device
+     * @param clientCharacteristicConfiguration notification setting data
+     * @param argument                          callback argument
+     */
+    void onAccelerationMemoryDataClientCharactericsticConfigurationReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument);
+
+    /**
+     * Notification setting read failed callback Acceleration memory data (Characteristics UUID: 0x5034)
+     *
+     * @param taskId          task id
+     * @param bluetoothDevice Rbt device
+     * @param status          error status
+     * @param argument        callback argument
+     */
+    void onAccelerationMemoryDataClientCharactericsticConfigurationReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
+
+    /**
+     * Notification setting read timeout callback Acceleration memory data (Characteristics UUID: 0x5034)
+     *
+     * @param taskId          task id
+     * @param bluetoothDevice Rbt device
+     * @param timeout         timeout(millis)
+     * @param argument        callback argument
+     */
+    void onAccelerationMemoryDataClientCharactericsticConfigurationReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
+
+    /**
+     * Notification setting write success callback Acceleration memory data (Characteristics UUID: 0x5034)
+     *
+     * @param taskId                            task id
+     * @param bluetoothDevice                   Rbt device
+     * @param clientCharacteristicConfiguration notification setting data
+     * @param argument                          callback argument
+     */
+    void onAccelerationMemoryDataClientCharactericsticConfigurationWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument);
+
+    /**
+     * Notification setting write failed callback Acceleration memory data (Characteristics UUID: 0x5034)
+     *
+     * @param taskId          task id
+     * @param bluetoothDevice Rbt device
+     * @param status          error status
+     * @param argument        callback argument
+     */
+    void onAccelerationMemoryDataClientCharactericsticConfigurationWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
+
+    /**
+     * Notification setting write timeout callback Acceleration memory data (Characteristics UUID: 0x5034)
+     *
+     * @param taskId          task id
+     * @param bluetoothDevice Rbt device
+     * @param timeout         timeout(millis)
+     * @param argument        callback argument
+     */
+    void onAccelerationMemoryDataClientCharactericsticConfigurationWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     // Control Service (Service UUID: 0x5110)
 
     /**
      * Read success callback LED setting [normal state] (Characteristics UUID: 0x5111)
      *
+     * @param taskId                task id
      * @param bluetoothDevice       Rbt device
      * @param ledSettingNormalState read result data
+     * @param argument              callback argument
      */
-    void onLedSettingNormalStateReadSuccess(BluetoothDevice bluetoothDevice, LedSettingNormalState ledSettingNormalState);
+    void onLedSettingNormalStateReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull LedSettingNormalState ledSettingNormalState, @Nullable Bundle argument);
 
     /**
      * Read failed callback LED setting [normal state] (Characteristics UUID: 0x5111)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onLedSettingNormalStateReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onLedSettingNormalStateReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback LED setting [normal state] (Characteristics UUID: 0x5111)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onLedSettingNormalStateReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onLedSettingNormalStateReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Write success callback LED setting [normal state] (Characteristics UUID: 0x5111)
      *
+     * @param taskId                task id
      * @param bluetoothDevice       Rbt device
      * @param ledSettingNormalState write data
+     * @param argument              callback argument
      */
-    void onLedSettingNormalStateWriteSuccess(BluetoothDevice bluetoothDevice, LedSettingNormalState ledSettingNormalState);
+    void onLedSettingNormalStateWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull LedSettingNormalState ledSettingNormalState, @Nullable Bundle argument);
 
     /**
      * Write failed callback LED setting [normal state] (Characteristics UUID: 0x5111)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onLedSettingNormalStateWriteFailed(BluetoothDevice bluetoothDevice, int status);
+    void onLedSettingNormalStateWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Write timeout callback LED setting [normal state] (Characteristics UUID: 0x5111)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onLedSettingNormalStateWriteTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onLedSettingNormalStateWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Read success callback LED setting [event state] (Characteristics UUID: 0x5112)
      *
+     * @param taskId               task id
      * @param bluetoothDevice      Rbt device
      * @param ledSettingEventState read result data
+     * @param argument             callback argument
      */
-    void onLedSettingEventStateReadSuccess(BluetoothDevice bluetoothDevice, LedSettingEventState ledSettingEventState);
+    void onLedSettingEventStateReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull LedSettingEventState ledSettingEventState, @Nullable Bundle argument);
 
     /**
      * Read failed callback LED setting [event state] (Characteristics UUID: 0x5112)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onLedSettingEventStateReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onLedSettingEventStateReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback LED setting [event state] (Characteristics UUID: 0x5112)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onLedSettingEventStateReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onLedSettingEventStateReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Write success callback LED setting [event state] (Characteristics UUID: 0x5112)
      *
+     * @param taskId               task id
      * @param bluetoothDevice      Rbt device
      * @param ledSettingEventState write data
+     * @param argument             callback argument
      */
-    void onLedSettingEventStateWriteSuccess(BluetoothDevice bluetoothDevice, LedSettingEventState ledSettingEventState);
+    void onLedSettingEventStateWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull LedSettingEventState ledSettingEventState, @Nullable Bundle argument);
 
     /**
      * Write failed callback LED setting [event state] (Characteristics UUID: 0x5112)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onLedSettingEventStateWriteFailed(BluetoothDevice bluetoothDevice, int status);
+    void onLedSettingEventStateWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Write timeout callback LED setting [event state] (Characteristics UUID: 0x5112)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onLedSettingEventStateWriteTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onLedSettingEventStateWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Read success callback LED state [operation] (Characteristics UUID: 0x5113)
      *
+     * @param taskId            task id
      * @param bluetoothDevice   Rbt device
      * @param ledStateOperation read result data
+     * @param argument          callback argument
      */
-    void onLedStateOperationReadSuccess(BluetoothDevice bluetoothDevice, LedStateOperation ledStateOperation);
+    void onLedStateOperationReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull LedStateOperation ledStateOperation, @Nullable Bundle argument);
 
     /**
      * Read failed callback LED state [operation] (Characteristics UUID: 0x5113)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onLedStateOperationReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onLedStateOperationReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback LED state [operation] (Characteristics UUID: 0x5113)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onLedStateOperationReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onLedStateOperationReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Write success callback LED state [operation] (Characteristics UUID: 0x5113)
      *
+     * @param taskId            task id
      * @param bluetoothDevice   Rbt device
      * @param ledStateOperation write data
+     * @param argument          callback argument
      */
-    void onLedStateOperationWriteSuccess(BluetoothDevice bluetoothDevice, LedStateOperation ledStateOperation);
+    void onLedStateOperationWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull LedStateOperation ledStateOperation, @Nullable Bundle argument);
 
     /**
      * Write failed callback LED state [operation] (Characteristics UUID: 0x5113)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onLedStateOperationWriteFailed(BluetoothDevice bluetoothDevice, int status);
+    void onLedStateOperationWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Write timeout callback LED state [operation] (Characteristics UUID: 0x5113)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onLedStateOperationWriteTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onLedStateOperationWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Read success callback Installation offset (Characteristics UUID: 0x5114)
      *
+     * @param taskId             task id
      * @param bluetoothDevice    Rbt device
      * @param installationOffset read result data
+     * @param argument           callback argument
      */
-    void onInstallationOffsetReadSuccess(BluetoothDevice bluetoothDevice, InstallationOffset installationOffset);
+    void onInstallationOffsetReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull InstallationOffset installationOffset, @Nullable Bundle argument);
 
     /**
      * Read failed callback Installation offset (Characteristics UUID: 0x5114)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onInstallationOffsetReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onInstallationOffsetReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback Installation offset (Characteristics UUID: 0x5114)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onInstallationOffsetReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onInstallationOffsetReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Write success callback Installation offset (Characteristics UUID: 0x5114)
      *
+     * @param taskId             task id
      * @param bluetoothDevice    Rbt device
      * @param installationOffset write data
+     * @param argument           callback argument
      */
-    void onInstallationOffsetWriteSuccess(BluetoothDevice bluetoothDevice, InstallationOffset installationOffset);
+    void onInstallationOffsetWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull InstallationOffset installationOffset, @Nullable Bundle argument);
 
     /**
      * Write failed callback Installation offset (Characteristics UUID: 0x5114)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onInstallationOffsetWriteFailed(BluetoothDevice bluetoothDevice, int status);
+    void onInstallationOffsetWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Write timeout callback Installation offset (Characteristics UUID: 0x5114)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onInstallationOffsetWriteTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onInstallationOffsetWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Read success callback Advertise setting (Characteristics UUID: 0x5115)
      *
+     * @param taskId           task id
      * @param bluetoothDevice  Rbt device
      * @param advertiseSetting read result data
+     * @param argument         callback argument
      */
-    void onAdvertiseSettingReadSuccess(BluetoothDevice bluetoothDevice, AdvertiseSetting advertiseSetting);
+    void onAdvertiseSettingReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull AdvertiseSetting advertiseSetting, @Nullable Bundle argument);
 
     /**
      * Read failed callback Advertise setting (Characteristics UUID: 0x5115)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onAdvertiseSettingReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onAdvertiseSettingReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback Advertise setting (Characteristics UUID: 0x5115)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onAdvertiseSettingReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onAdvertiseSettingReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Write success callback Advertise setting (Characteristics UUID: 0x5115)
      *
+     * @param taskId           task id
      * @param bluetoothDevice  Rbt device
      * @param advertiseSetting write data
+     * @param argument         callback argument
      */
-    void onAdvertiseSettingWriteSuccess(BluetoothDevice bluetoothDevice, AdvertiseSetting advertiseSetting);
+    void onAdvertiseSettingWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull AdvertiseSetting advertiseSetting, @Nullable Bundle argument);
 
     /**
      * Write failed callback Advertise setting (Characteristics UUID: 0x5115)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onAdvertiseSettingWriteFailed(BluetoothDevice bluetoothDevice, int status);
+    void onAdvertiseSettingWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Write timeout callback Advertise setting (Characteristics UUID: 0x5115)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onAdvertiseSettingWriteTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onAdvertiseSettingWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Write success callback Memory reset (Characteristics UUID: 0x5116)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param memoryReset     write data
+     * @param argument        callback argument
      */
-    void onMemoryResetWriteSuccess(BluetoothDevice bluetoothDevice, MemoryReset memoryReset);
+    void onMemoryResetWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull MemoryReset memoryReset, @Nullable Bundle argument);
 
     /**
      * Write failed callback Memory reset (Characteristics UUID: 0x5116)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onMemoryResetWriteFailed(BluetoothDevice bluetoothDevice, int status);
+    void onMemoryResetWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Write timeout callback Memory reset (Characteristics UUID: 0x5116)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onMemoryResetWriteTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onMemoryResetWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Read success callback Mode change (Characteristics UUID: 0x5117)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param modeChange      read result data
+     * @param argument        callback argument
      */
-    void onModeChangeReadSuccess(BluetoothDevice bluetoothDevice, ModeChange modeChange);
+    void onModeChangeReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ModeChange modeChange, @Nullable Bundle argument);
 
     /**
      * Read failed callback Mode change (Characteristics UUID: 0x5117)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onModeChangeReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onModeChangeReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback Mode change (Characteristics UUID: 0x5117)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onModeChangeReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onModeChangeReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Write success callback Mode change (Characteristics UUID: 0x5117)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param modeChange      write data
+     * @param argument        callback argument
      */
-    void onModeChangeWriteSuccess(BluetoothDevice bluetoothDevice, ModeChange modeChange);
+    void onModeChangeWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ModeChange modeChange, @Nullable Bundle argument);
 
     /**
      * Write failed callback Mode change (Characteristics UUID: 0x5117)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onModeChangeWriteFailed(BluetoothDevice bluetoothDevice, int status);
+    void onModeChangeWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Write timeout callback Mode change (Characteristics UUID: 0x5117)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onModeChangeWriteTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onModeChangeWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Write success callback Acceleration logger control (Characteristics UUID: 0x5118)
      *
+     * @param taskId                    task id
      * @param bluetoothDevice           Rbt device
      * @param accelerationLoggerControl write data
+     * @param argument                  callback argument
      */
-    void onAccelerationLoggerControlWriteSuccess(BluetoothDevice bluetoothDevice, AccelerationLoggerControl accelerationLoggerControl);
+    void onAccelerationLoggerControlWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, AccelerationLoggerControl accelerationLoggerControl, @Nullable Bundle argument);
 
     /**
      * Write failed callback Acceleration logger control (Characteristics UUID: 0x5118)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onAccelerationLoggerControlWriteFailed(BluetoothDevice bluetoothDevice, int status);
+    void onAccelerationLoggerControlWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Write timeout callback Acceleration logger control (Characteristics UUID: 0x5118)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onAccelerationLoggerControlWriteTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onAccelerationLoggerControlWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Read success callback Acceleration logger status (Characteristics UUID: 0x5119)
      *
+     * @param taskId                   task id
      * @param bluetoothDevice          Rbt device
      * @param accelerationLoggerStatus read result data
+     * @param argument                 callback argument
      */
-    void onAccelerationLoggerStatusReadSuccess(BluetoothDevice bluetoothDevice, AccelerationLoggerStatus accelerationLoggerStatus);
+    void onAccelerationLoggerStatusReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull AccelerationLoggerStatus accelerationLoggerStatus, @Nullable Bundle argument);
 
     /**
      * Read failed callback Acceleration logger status (Characteristics UUID: 0x5119)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onAccelerationLoggerStatusReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onAccelerationLoggerStatusReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback Acceleration logger status (Characteristics UUID: 0x5119)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onAccelerationLoggerStatusReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onAccelerationLoggerStatusReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     // Time Setting Service (Service UUID: 0x5200)
 
     /**
      * Read success callback Latest time counter (Characteristics UUID: 0x5201)
      *
+     * @param taskId            task id
      * @param bluetoothDevice   Rbt device
      * @param latestTimeCounter read result data
+     * @param argument          callback argument
      */
-    void onLatestTimeCounterReadSuccess(BluetoothDevice bluetoothDevice, LatestTimeCounter latestTimeCounter);
+    void onLatestTimeCounterReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull LatestTimeCounter latestTimeCounter, @Nullable Bundle argument);
 
     /**
      * Read failed callback Latest time counter (Characteristics UUID: 0x5201)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onLatestTimeCounterReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onLatestTimeCounterReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback Latest time counter (Characteristics UUID: 0x5201)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onLatestTimeCounterReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onLatestTimeCounterReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Read success callback Time setting (Characteristics UUID: 0x5202)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeSetting     read result data
+     * @param argument        callback argument
      */
-    void onTimeSettingReadSuccess(BluetoothDevice bluetoothDevice, TimeSetting timeSetting);
+    void onTimeSettingReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull TimeSetting timeSetting, @Nullable Bundle argument);
 
     /**
      * Read failed callback Time setting (Characteristics UUID: 0x5202)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onTimeSettingReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onTimeSettingReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback Time setting (Characteristics UUID: 0x5202)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onTimeSettingReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onTimeSettingReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Write success callback Time setting (Characteristics UUID: 0x5202)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeSetting     write data
+     * @param argument        callback argument
      */
-    void onTimeSettingWriteSuccess(BluetoothDevice bluetoothDevice, TimeSetting timeSetting);
+    void onTimeSettingWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, TimeSetting timeSetting, @Nullable Bundle argument);
 
     /**
      * Write failed callback Time setting (Characteristics UUID: 0x5202)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onTimeSettingWriteFailed(BluetoothDevice bluetoothDevice, int status);
+    void onTimeSettingWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Write timeout callback Time setting (Characteristics UUID: 0x5202)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onTimeSettingWriteTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onTimeSettingWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Read success callback Memory storage interval (Characteristics UUID: 0x5203)
      *
+     * @param taskId                task id
      * @param bluetoothDevice       Rbt device
      * @param memoryStorageInterval read result data
+     * @param argument              callback argument
      */
-    void onMemoryStorageIntervalReadSuccess(BluetoothDevice bluetoothDevice, MemoryStorageInterval memoryStorageInterval);
+    void onMemoryStorageIntervalReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull MemoryStorageInterval memoryStorageInterval, @Nullable Bundle argument);
 
     /**
      * Read failed callback Memory storage interval (Characteristics UUID: 0x5203)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onMemoryStorageIntervalReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onMemoryStorageIntervalReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback Memory storage interval (Characteristics UUID: 0x5203)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onMemoryStorageIntervalReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onMemoryStorageIntervalReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Write success callback Memory storage interval (Characteristics UUID: 0x5203)
      *
+     * @param taskId                task id
      * @param bluetoothDevice       Rbt device
      * @param memoryStorageInterval write data
+     * @param argument              callback argument
      */
-    void onMemoryStorageIntervalWriteSuccess(BluetoothDevice bluetoothDevice, MemoryStorageInterval memoryStorageInterval);
+    void onMemoryStorageIntervalWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull MemoryStorageInterval memoryStorageInterval, @Nullable Bundle argument);
 
     /**
      * Write failed callback Memory storage interval (Characteristics UUID: 0x5203)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onMemoryStorageIntervalWriteFailed(BluetoothDevice bluetoothDevice, int status);
+    void onMemoryStorageIntervalWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Write timeout callback Memory storage interval (Characteristics UUID: 0x5203)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onMemoryStorageIntervalWriteTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onMemoryStorageIntervalWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     // Event Setting Service (Service UUID: 0x5210)
 
     /**
      * Read success callback Event pattern Temperature 1 (Characteristics UUID: 0x5211)
      *
+     * @param taskId             task id
      * @param bluetoothDevice    Rbt device
      * @param temperatureSensor1 read result data
+     * @param argument           callback argument
      */
-    void onTemperatureSensor1ReadSuccess(BluetoothDevice bluetoothDevice, TemperatureSensor1 temperatureSensor1);
+    void onTemperatureSensor1ReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull TemperatureSensor1 temperatureSensor1, @Nullable Bundle argument);
 
     /**
      * Read failed callback Event pattern Temperature 1 (Characteristics UUID: 0x5211)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onTemperatureSensor1ReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onTemperatureSensor1ReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback Event pattern Temperature 1 (Characteristics UUID: 0x5211)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onTemperatureSensor1ReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onTemperatureSensor1ReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Write success callback Event pattern Temperature 1 (Characteristics UUID: 0x5211)
      *
+     * @param taskId             task id
      * @param bluetoothDevice    Rbt device
      * @param temperatureSensor1 write data
+     * @param argument           callback argument
      */
-    void onTemperatureSensor1WriteSuccess(BluetoothDevice bluetoothDevice, TemperatureSensor1 temperatureSensor1);
+    void onTemperatureSensor1WriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull TemperatureSensor1 temperatureSensor1, @Nullable Bundle argument);
 
     /**
      * Write failed callback Event pattern Temperature 1 (Characteristics UUID: 0x5211)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onTemperatureSensor1WriteFailed(BluetoothDevice bluetoothDevice, int status);
+    void onTemperatureSensor1WriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Write timeout callback Event pattern Temperature 1 (Characteristics UUID: 0x5211)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onTemperatureSensor1WriteTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onTemperatureSensor1WriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Read success callback Event pattern Event pattern Temperature 2 (Characteristics UUID: 0x5212)
      *
+     * @param taskId             task id
      * @param bluetoothDevice    Rbt device
      * @param temperatureSensor2 read result data
+     * @param argument           callback argument
      */
-    void onTemperatureSensor2ReadSuccess(BluetoothDevice bluetoothDevice, TemperatureSensor2 temperatureSensor2);
+    void onTemperatureSensor2ReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull TemperatureSensor2 temperatureSensor2, @Nullable Bundle argument);
 
     /**
      * Read failed callback Event pattern Temperature 2 (Characteristics UUID: 0x5212)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onTemperatureSensor2ReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onTemperatureSensor2ReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback Event pattern Temperature 2 (Characteristics UUID: 0x5212)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onTemperatureSensor2ReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onTemperatureSensor2ReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Write success callback Event pattern Temperature 2 (Characteristics UUID: 0x5212)
      *
+     * @param taskId             task id
      * @param bluetoothDevice    Rbt device
      * @param temperatureSensor2 write data
+     * @param argument           callback argument
      */
-    void onTemperatureSensor2WriteSuccess(BluetoothDevice bluetoothDevice, TemperatureSensor2 temperatureSensor2);
+    void onTemperatureSensor2WriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull TemperatureSensor2 temperatureSensor2, @Nullable Bundle argument);
 
     /**
      * Write failed callback Event pattern Temperature 2 (Characteristics UUID: 0x5212)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onTemperatureSensor2WriteFailed(BluetoothDevice bluetoothDevice, int status);
+    void onTemperatureSensor2WriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Write timeout callback Event pattern Temperature 2 (Characteristics UUID: 0x5212)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onTemperatureSensor2WriteTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onTemperatureSensor2WriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Read success callback Event pattern Relative humidity 1 (Characteristics UUID: 0x5213)
      *
+     * @param taskId                  task id
      * @param bluetoothDevice         Rbt device
      * @param relativeHumiditySensor1 read result data
+     * @param argument                callback argument
      */
-    void onRelativeHumiditySensor1ReadSuccess(BluetoothDevice bluetoothDevice, RelativeHumiditySensor1 relativeHumiditySensor1);
+    void onRelativeHumiditySensor1ReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull RelativeHumiditySensor1 relativeHumiditySensor1, @Nullable Bundle argument);
 
     /**
      * Read failed callback Event pattern Relative humidity 1 (Characteristics UUID: 0x5213)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onRelativeHumiditySensor1ReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onRelativeHumiditySensor1ReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback Event pattern Relative humidity 1 (Characteristics UUID: 0x5213)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onRelativeHumiditySensor1ReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onRelativeHumiditySensor1ReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Write success callback Event pattern Relative humidity 1 (Characteristics UUID: 0x5213)
      *
+     * @param taskId                  task id
      * @param bluetoothDevice         Rbt device
      * @param relativeHumiditySensor1 write data
+     * @param argument                callback argument
      */
-    void onRelativeHumiditySensor1WriteSuccess(BluetoothDevice bluetoothDevice, RelativeHumiditySensor1 relativeHumiditySensor1);
+    void onRelativeHumiditySensor1WriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull RelativeHumiditySensor1 relativeHumiditySensor1, @Nullable Bundle argument);
 
     /**
      * Write failed callback Event pattern Relative humidity 1 (Characteristics UUID: 0x5213)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onRelativeHumiditySensor1WriteFailed(BluetoothDevice bluetoothDevice, int status);
+    void onRelativeHumiditySensor1WriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Write timeout callback Event pattern Relative humidity 1 (Characteristics UUID: 0x5213)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onRelativeHumiditySensor1WriteTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onRelativeHumiditySensor1WriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Read success callback Event pattern Relative humidity 2 (Characteristics UUID: 0x5214)
      *
+     * @param taskId                  task id
      * @param bluetoothDevice         Rbt device
      * @param relativeHumiditySensor2 read result data
+     * @param argument                callback argument
      */
-    void onRelativeHumiditySensor2ReadSuccess(BluetoothDevice bluetoothDevice, RelativeHumiditySensor2 relativeHumiditySensor2);
+    void onRelativeHumiditySensor2ReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull RelativeHumiditySensor2 relativeHumiditySensor2, @Nullable Bundle argument);
 
     /**
      * Read failed callback Event pattern Relative humidity 2 (Characteristics UUID: 0x5214)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onRelativeHumiditySensor2ReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onRelativeHumiditySensor2ReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback Event pattern Relative humidity 2 (Characteristics UUID: 0x5214)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onRelativeHumiditySensor2ReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onRelativeHumiditySensor2ReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Write success callback Event pattern Relative humidity 2 (Characteristics UUID: 0x5214)
      *
+     * @param taskId                  task id
      * @param bluetoothDevice         Rbt device
      * @param relativeHumiditySensor2 write data
+     * @param argument                callback argument
      */
-    void onRelativeHumiditySensor2WriteSuccess(BluetoothDevice bluetoothDevice, RelativeHumiditySensor2 relativeHumiditySensor2);
+    void onRelativeHumiditySensor2WriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull RelativeHumiditySensor2 relativeHumiditySensor2, @Nullable Bundle argument);
 
     /**
      * Write failed callback Event pattern Relative humidity 2 (Characteristics UUID: 0x5214)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onRelativeHumiditySensor2WriteFailed(BluetoothDevice bluetoothDevice, int status);
+    void onRelativeHumiditySensor2WriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Write timeout callback Event pattern Relative humidity 2 (Characteristics UUID: 0x5214)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onRelativeHumiditySensor2WriteTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onRelativeHumiditySensor2WriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Read success callback Event pattern Ambient light 1 (Characteristics UUID: 0x5215)
      *
+     * @param taskId              task id
      * @param bluetoothDevice     Rbt device
      * @param ambientLightSensor1 read result data
+     * @param argument            callback argument
      */
-    void onAmbientLightSensor1ReadSuccess(BluetoothDevice bluetoothDevice, AmbientLightSensor1 ambientLightSensor1);
+    void onAmbientLightSensor1ReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull AmbientLightSensor1 ambientLightSensor1, @Nullable Bundle argument);
 
     /**
      * Read failed callback Event pattern Ambient light 1 (Characteristics UUID: 0x5215)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onAmbientLightSensor1ReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onAmbientLightSensor1ReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback Event pattern Ambient light 1 (Characteristics UUID: 0x5215)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onAmbientLightSensor1ReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onAmbientLightSensor1ReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Write success callback Event pattern Ambient light 1 (Characteristics UUID: 0x5215)
      *
+     * @param taskId              task id
      * @param bluetoothDevice     Rbt device
      * @param ambientLightSensor1 write data
+     * @param argument            callback argument
      */
-    void onAmbientLightSensor1WriteSuccess(BluetoothDevice bluetoothDevice, AmbientLightSensor1 ambientLightSensor1);
+    void onAmbientLightSensor1WriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull AmbientLightSensor1 ambientLightSensor1, @Nullable Bundle argument);
 
     /**
      * Write failed callback Event pattern Ambient light 1 (Characteristics UUID: 0x5215)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onAmbientLightSensor1WriteFailed(BluetoothDevice bluetoothDevice, int status);
+    void onAmbientLightSensor1WriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Write timeout callback Event pattern Ambient light 1 (Characteristics UUID: 0x5215)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onAmbientLightSensor1WriteTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onAmbientLightSensor1WriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Read success callback Event pattern Ambient light 2 (Characteristics UUID: 0x5216)
      *
+     * @param taskId              task id
      * @param bluetoothDevice     Rbt device
      * @param ambientLightSensor2 read result data
+     * @param argument            callback argument
      */
-    void onAmbientLightSensor2ReadSuccess(BluetoothDevice bluetoothDevice, AmbientLightSensor2 ambientLightSensor2);
+    void onAmbientLightSensor2ReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull AmbientLightSensor2 ambientLightSensor2, @Nullable Bundle argument);
 
     /**
      * Read failed callback Event pattern Ambient light 2 (Characteristics UUID: 0x5216)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onAmbientLightSensor2ReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onAmbientLightSensor2ReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback Event pattern Ambient light 2 (Characteristics UUID: 0x5216)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onAmbientLightSensor2ReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onAmbientLightSensor2ReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Write success callback Event pattern Ambient light 2 (Characteristics UUID: 0x5216)
      *
+     * @param taskId              task id
      * @param bluetoothDevice     Rbt device
      * @param ambientLightSensor2 write data
+     * @param argument            callback argument
      */
-    void onAmbientLightSensor2WriteSuccess(BluetoothDevice bluetoothDevice, AmbientLightSensor2 ambientLightSensor2);
+    void onAmbientLightSensor2WriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull AmbientLightSensor2 ambientLightSensor2, @Nullable Bundle argument);
 
     /**
      * Write failed callback Event pattern Ambient light 2 (Characteristics UUID: 0x5216)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onAmbientLightSensor2WriteFailed(BluetoothDevice bluetoothDevice, int status);
+    void onAmbientLightSensor2WriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Write timeout callback Event pattern Ambient light 2 (Characteristics UUID: 0x5216)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onAmbientLightSensor2WriteTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onAmbientLightSensor2WriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Read success callback Event pattern Barometric pressure 1 (Characteristics UUID: 0x5217)
      *
+     * @param taskId                    task id
      * @param bluetoothDevice           Rbt device
      * @param barometricPressureSensor1 read result data
+     * @param argument                  callback argument
      */
-    void onBarometricPressureSensor1ReadSuccess(BluetoothDevice bluetoothDevice, BarometricPressureSensor1 barometricPressureSensor1);
+    void onBarometricPressureSensor1ReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull BarometricPressureSensor1 barometricPressureSensor1, @Nullable Bundle argument);
 
     /**
      * Read failed callback Event pattern Barometric pressure 1 (Characteristics UUID: 0x5217)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onBarometricPressureSensor1ReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onBarometricPressureSensor1ReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback Event pattern Barometric pressure 1 (Characteristics UUID: 0x5217)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onBarometricPressureSensor1ReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onBarometricPressureSensor1ReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Write success callback Event pattern Barometric pressure 1 (Characteristics UUID: 0x5217)
      *
+     * @param taskId                    task id
      * @param bluetoothDevice           Rbt device
      * @param barometricPressureSensor1 write data
+     * @param argument                  callback argument
      */
-    void onBarometricPressureSensor1WriteSuccess(BluetoothDevice bluetoothDevice, BarometricPressureSensor1 barometricPressureSensor1);
+    void onBarometricPressureSensor1WriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull BarometricPressureSensor1 barometricPressureSensor1, @Nullable Bundle argument);
 
     /**
      * Write failed callback Event pattern Barometric pressure 1 (Characteristics UUID: 0x5217)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onBarometricPressureSensor1WriteFailed(BluetoothDevice bluetoothDevice, int status);
+    void onBarometricPressureSensor1WriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Write timeout callback Event pattern Barometric pressure 1 (Characteristics UUID: 0x5217)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onBarometricPressureSensor1WriteTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onBarometricPressureSensor1WriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Read success callback Event pattern Barometric pressure 2 (Characteristics UUID: 0x5218)
      *
+     * @param taskId                    task id
      * @param bluetoothDevice           Rbt device
      * @param barometricPressureSensor2 read result data
+     * @param argument                  callback argument
      */
-    void onBarometricPressureSensor2ReadSuccess(BluetoothDevice bluetoothDevice, BarometricPressureSensor2 barometricPressureSensor2);
+    void onBarometricPressureSensor2ReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull BarometricPressureSensor2 barometricPressureSensor2, @Nullable Bundle argument);
 
     /**
      * Read failed callback Event pattern Barometric pressure 2 (Characteristics UUID: 0x5218)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onBarometricPressureSensor2ReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onBarometricPressureSensor2ReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback Event pattern Barometric pressure 2 (Characteristics UUID: 0x5218
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onBarometricPressureSensor2ReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onBarometricPressureSensor2ReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Write success callback Event pattern Barometric pressure 2 (Characteristics UUID: 0x5218)
      *
+     * @param taskId                    task id
      * @param bluetoothDevice           Rbt device
      * @param barometricPressureSensor2 write data
+     * @param argument                  callback argument
      */
-    void onBarometricPressureSensor2WriteSuccess(BluetoothDevice bluetoothDevice, BarometricPressureSensor2 barometricPressureSensor2);
+    void onBarometricPressureSensor2WriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull BarometricPressureSensor2 barometricPressureSensor2, @Nullable Bundle argument);
 
     /**
      * Write failed callback Event pattern Barometric pressure 2 (Characteristics UUID: 0x5218)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onBarometricPressureSensor2WriteFailed(BluetoothDevice bluetoothDevice, int status);
+    void onBarometricPressureSensor2WriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Write timeout callback Event pattern Barometric pressure 2 (Characteristics UUID: 0x5218)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
      */
-    void onBarometricPressureSensor2WriteTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onBarometricPressureSensor2WriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Read success callback Event pattern Sound noise 1 (Characteristics UUID: 0x5219)
      *
+     * @param taskId            task id
      * @param bluetoothDevice   Rbt device
      * @param soundNoiseSensor1 read result data
+     * @param argument          callback argument
      */
-    void onSoundNoiseSensor1ReadSuccess(BluetoothDevice bluetoothDevice, SoundNoiseSensor1 soundNoiseSensor1);
+    void onSoundNoiseSensor1ReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull SoundNoiseSensor1 soundNoiseSensor1, @Nullable Bundle argument);
 
     /**
      * Read failed callback Event pattern Sound noise 1 (Characteristics UUID: 0x5219)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onSoundNoiseSensor1ReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onSoundNoiseSensor1ReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback Event pattern Sound noise 1 (Characteristics UUID: 0x5219)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onSoundNoiseSensor1ReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onSoundNoiseSensor1ReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Write success callback Event pattern Sound noise 1 (Characteristics UUID: 0x5219)
      *
+     * @param taskId            task id
      * @param bluetoothDevice   Rbt device
      * @param soundNoiseSensor1 write data
+     * @param argument          callback argument
      */
-    void onSoundNoiseSensor1WriteSuccess(BluetoothDevice bluetoothDevice, SoundNoiseSensor1 soundNoiseSensor1);
+    void onSoundNoiseSensor1WriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull SoundNoiseSensor1 soundNoiseSensor1, @Nullable Bundle argument);
 
     /**
      * Write failed callback Event pattern Sound noise 1 (Characteristics UUID: 0x5219)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onSoundNoiseSensor1WriteFailed(BluetoothDevice bluetoothDevice, int status);
+    void onSoundNoiseSensor1WriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Write timeout callback Event pattern Sound noise 1 (Characteristics UUID: 0x5219)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onSoundNoiseSensor1WriteTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onSoundNoiseSensor1WriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Read success callback Event pattern Sound noise 2 (Characteristics UUID: 0x521A)
      *
+     * @param taskId            task id
      * @param bluetoothDevice   Rbt device
      * @param soundNoiseSensor2 read result data
+     * @param argument          callback argument
      */
-    void onSoundNoiseSensor2ReadSuccess(BluetoothDevice bluetoothDevice, SoundNoiseSensor2 soundNoiseSensor2);
+    void onSoundNoiseSensor2ReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull SoundNoiseSensor2 soundNoiseSensor2, @Nullable Bundle argument);
 
     /**
      * Read failed callback Event pattern Sound noise 2 (Characteristics UUID: 0x521A)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onSoundNoiseSensor2ReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onSoundNoiseSensor2ReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback Event pattern Sound noise 2 (Characteristics UUID: 0x521A)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onSoundNoiseSensor2ReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onSoundNoiseSensor2ReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Write success callback Event pattern Sound noise 2 (Characteristics UUID: 0x521A)
      *
+     * @param taskId            task id
      * @param bluetoothDevice   Rbt device
      * @param soundNoiseSensor2 write data
+     * @param argument          callback argument
      */
-    void onSoundNoiseSensor2WriteSuccess(BluetoothDevice bluetoothDevice, SoundNoiseSensor2 soundNoiseSensor2);
+    void onSoundNoiseSensor2WriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull SoundNoiseSensor2 soundNoiseSensor2, @Nullable Bundle argument);
 
     /**
      * Write failed callback Event pattern Sound noise 2 (Characteristics UUID: 0x521A)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onSoundNoiseSensor2WriteFailed(BluetoothDevice bluetoothDevice, int status);
+    void onSoundNoiseSensor2WriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Write timeout callback Event pattern Sound noise 2 (Characteristics UUID: 0x521A)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onSoundNoiseSensor2WriteTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onSoundNoiseSensor2WriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Read success callback Event pattern eTVOC 1 (Characteristics UUID: 0x521B)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param etvocSensor1    read result data
+     * @param argument        callback argument
      */
-    void onEtvocSensor1ReadSuccess(BluetoothDevice bluetoothDevice, EtvocSensor1 etvocSensor1);
+    void onEtvocSensor1ReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull EtvocSensor1 etvocSensor1, @Nullable Bundle argument);
 
     /**
      * Read failed callback Event pattern eTVOC 1 (Characteristics UUID: 0x521B)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onEtvocSensor1ReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onEtvocSensor1ReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback Event pattern eTVOC 1 (Characteristics UUID: 0x521B)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onEtvocSensor1ReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onEtvocSensor1ReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Write success callback Event pattern eTVOC 1 (Characteristics UUID: 0x521B)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param etvocSensor1    write data
+     * @param argument        callback argument
      */
-    void onEtvocSensor1WriteSuccess(BluetoothDevice bluetoothDevice, EtvocSensor1 etvocSensor1);
+    void onEtvocSensor1WriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull EtvocSensor1 etvocSensor1, @Nullable Bundle argument);
 
     /**
      * Write failed callback Event pattern eTVOC 1 (Characteristics UUID: 0x521B)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onEtvocSensor1WriteFailed(BluetoothDevice bluetoothDevice, int status);
+    void onEtvocSensor1WriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Write timeout callback Event pattern eTVOC 1 (Characteristics UUID: 0x521B)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onEtvocSensor1WriteTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onEtvocSensor1WriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Read success callback Event pattern eTVOC 2 (Characteristics UUID: 0x521C)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param etvocSensor2    read result data
+     * @param argument        callback argument
      */
-    void onEtvocSensor2ReadSuccess(BluetoothDevice bluetoothDevice, EtvocSensor2 etvocSensor2);
+    void onEtvocSensor2ReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull EtvocSensor2 etvocSensor2, @Nullable Bundle argument);
 
     /**
      * Read failed callback Event pattern eTVOC 2 (Characteristics UUID: 0x521C)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onEtvocSensor2ReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onEtvocSensor2ReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback Event pattern eTVOC 2 (Characteristics UUID: 0x521C)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onEtvocSensor2ReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onEtvocSensor2ReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Write success callback Event pattern eTVOC 2 (Characteristics UUID: 0x521C)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param etvocSensor2    write data
+     * @param argument        callback argument
      */
-    void onEtvocSensor2WriteSuccess(BluetoothDevice bluetoothDevice, EtvocSensor2 etvocSensor2);
+    void onEtvocSensor2WriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull EtvocSensor2 etvocSensor2, @Nullable Bundle argument);
 
     /**
      * Write failed callback Event pattern eTVOC 2 (Characteristics UUID: 0x521C)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onEtvocSensor2WriteFailed(BluetoothDevice bluetoothDevice, int status);
+    void onEtvocSensor2WriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Write timeout callback Event pattern eTVOC 2 (Characteristics UUID: 0x521C)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onEtvocSensor2WriteTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onEtvocSensor2WriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Read success callback Event pattern eCO2 1 (Characteristics UUID: 0x521D)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param eco2Sensor1     read result data
+     * @param argument        callback argument
      */
-    void onEco2Sensor1ReadSuccess(BluetoothDevice bluetoothDevice, Eco2Sensor1 eco2Sensor1);
+    void onEco2Sensor1ReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull Eco2Sensor1 eco2Sensor1, @Nullable Bundle argument);
 
     /**
      * Read failed callback Event pattern eCO2 1 (Characteristics UUID: 0x521D)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onEco2Sensor1ReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onEco2Sensor1ReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback Event pattern eCO2 1 (Characteristics UUID: 0x521D)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onEco2Sensor1ReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onEco2Sensor1ReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Write success callback Event pattern eCO2 1 (Characteristics UUID: 0x521D)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param eco2Sensor1     write data
+     * @param argument        callback argument
      */
-    void onEco2Sensor1WriteSuccess(BluetoothDevice bluetoothDevice, Eco2Sensor1 eco2Sensor1);
+    void onEco2Sensor1WriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull Eco2Sensor1 eco2Sensor1, @Nullable Bundle argument);
 
     /**
      * Write failed callback Event pattern eCO2 1 (Characteristics UUID: 0x521D)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onEco2Sensor1WriteFailed(BluetoothDevice bluetoothDevice, int status);
+    void onEco2Sensor1WriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Write timeout callback Event pattern eCO2 1 (Characteristics UUID: 0x521D)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onEco2Sensor1WriteTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onEco2Sensor1WriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Read success callback Event pattern eCO2 2 (Characteristics UUID: 0x521E)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param eco2Sensor2     read result data
+     * @param argument        callback argument
      */
-    void onEco2Sensor2ReadSuccess(BluetoothDevice bluetoothDevice, Eco2Sensor2 eco2Sensor2);
+    void onEco2Sensor2ReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull Eco2Sensor2 eco2Sensor2, @Nullable Bundle argument);
 
     /**
      * Read failed callback Event pattern eCO2 2 (Characteristics UUID: 0x521E)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onEco2Sensor2ReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onEco2Sensor2ReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback Event pattern eCO2 2 (Characteristics UUID: 0x521E)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onEco2Sensor2ReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onEco2Sensor2ReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Write success callback Event pattern eCO2 2 (Characteristics UUID: 0x521E)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param eco2Sensor2     write data
+     * @param argument        callback argument
      */
-    void onEco2Sensor2WriteSuccess(BluetoothDevice bluetoothDevice, Eco2Sensor2 eco2Sensor2);
+    void onEco2Sensor2WriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull Eco2Sensor2 eco2Sensor2, @Nullable Bundle argument);
 
     /**
      * Write failed callback Event pattern eCO2 2 (Characteristics UUID: 0x521E)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onEco2Sensor2WriteFailed(BluetoothDevice bluetoothDevice, int status);
+    void onEco2Sensor2WriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Write timeout callback Event pattern eCO2 2 (Characteristics UUID: 0x521E)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onEco2Sensor2WriteTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onEco2Sensor2WriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Read success callback Event pattern Discomfort index 1 (Characteristics UUID: 0x521F)
      *
+     * @param taskId                 task id
      * @param bluetoothDevice        Rbt device
      * @param discomfortIndexSensor1 read result data
+     * @param argument               callback argument
      */
-    void onDiscomfortIndexSensor1ReadSuccess(BluetoothDevice bluetoothDevice, DiscomfortIndexSensor1 discomfortIndexSensor1);
+    void onDiscomfortIndexSensor1ReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull DiscomfortIndexSensor1 discomfortIndexSensor1, @Nullable Bundle argument);
 
     /**
      * Read failed callback Event pattern Discomfort index 1 (Characteristics UUID: 0x521F)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onDiscomfortIndexSensor1ReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onDiscomfortIndexSensor1ReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback Event pattern Discomfort index 1 (Characteristics UUID: 0x521F)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onDiscomfortIndexSensor1ReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onDiscomfortIndexSensor1ReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Write success callback Event pattern Discomfort index 1 (Characteristics UUID: 0x521F)
      *
+     * @param taskId                 task id
      * @param bluetoothDevice        Rbt device
      * @param discomfortIndexSensor1 write data
+     * @param argument               callback argument
      */
-    void onDiscomfortIndexSensor1WriteSuccess(BluetoothDevice bluetoothDevice, DiscomfortIndexSensor1 discomfortIndexSensor1);
+    void onDiscomfortIndexSensor1WriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull DiscomfortIndexSensor1 discomfortIndexSensor1, @Nullable Bundle argument);
 
     /**
      * Write failed callback Event pattern Discomfort index 1 (Characteristics UUID: 0x521F)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onDiscomfortIndexSensor1WriteFailed(BluetoothDevice bluetoothDevice, int status);
+    void onDiscomfortIndexSensor1WriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Write timeout callback Event pattern Discomfort index 1 (Characteristics UUID: 0x521F)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onDiscomfortIndexSensor1WriteTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onDiscomfortIndexSensor1WriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Read success callback Event pattern Discomfort index 2 (Characteristics UUID: 0x5220)
      *
+     * @param taskId                 task id
      * @param bluetoothDevice        Rbt device
      * @param discomfortIndexSensor2 read result data
+     * @param argument               callback argument
      */
-    void onDiscomfortIndexSensor2ReadSuccess(BluetoothDevice bluetoothDevice, DiscomfortIndexSensor2 discomfortIndexSensor2);
+    void onDiscomfortIndexSensor2ReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull DiscomfortIndexSensor2 discomfortIndexSensor2, @Nullable Bundle argument);
 
     /**
      * Read failed callback Event pattern Discomfort index 2 (Characteristics UUID: 0x5220)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onDiscomfortIndexSensor2ReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onDiscomfortIndexSensor2ReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback Event pattern Discomfort index 2 (Characteristics UUID: 0x5220)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onDiscomfortIndexSensor2ReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onDiscomfortIndexSensor2ReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Write success callback Event pattern Discomfort index 2 (Characteristics UUID: 0x5220)
      *
+     * @param taskId                 task id
      * @param bluetoothDevice        Rbt device
      * @param discomfortIndexSensor2 write data
+     * @param argument               callback argument
      */
-    void onDiscomfortIndexSensor2WriteSuccess(BluetoothDevice bluetoothDevice, DiscomfortIndexSensor2 discomfortIndexSensor2);
+    void onDiscomfortIndexSensor2WriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull DiscomfortIndexSensor2 discomfortIndexSensor2, @Nullable Bundle argument);
 
     /**
      * Write failed callback Event pattern Discomfort index 2 (Characteristics UUID: 0x5220)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onDiscomfortIndexSensor2WriteFailed(BluetoothDevice bluetoothDevice, int status);
+    void onDiscomfortIndexSensor2WriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Write timeout callback Event pattern Discomfort index 2 (Characteristics UUID: 0x5220)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onDiscomfortIndexSensor2WriteTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onDiscomfortIndexSensor2WriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Read success callback Event pattern Heat stroke 1 (Characteristics UUID: 0x5221)
      *
+     * @param taskId            task id
      * @param bluetoothDevice   Rbt device
      * @param heatStrokeSensor1 read result data
+     * @param argument          callback argument
      */
-    void onHeatStrokeSensor1ReadSuccess(BluetoothDevice bluetoothDevice, HeatStrokeSensor1 heatStrokeSensor1);
+    void onHeatStrokeSensor1ReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull HeatStrokeSensor1 heatStrokeSensor1, @Nullable Bundle argument);
 
     /**
      * Read failed callback Event pattern Heat stroke 1 (Characteristics UUID: 0x5221)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onHeatStrokeSensor1ReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onHeatStrokeSensor1ReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback Event pattern Heat stroke 1 (Characteristics UUID: 0x5221)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onHeatStrokeSensor1ReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onHeatStrokeSensor1ReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Write success callback Event pattern Heat stroke 1 (Characteristics UUID: 0x5221)
      *
+     * @param taskId            task id
      * @param bluetoothDevice   Rbt device
      * @param heatStrokeSensor1 write data
+     * @param argument          callback argument
      */
-    void onHeatStrokeSensor1WriteSuccess(BluetoothDevice bluetoothDevice, HeatStrokeSensor1 heatStrokeSensor1);
+    void onHeatStrokeSensor1WriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull HeatStrokeSensor1 heatStrokeSensor1, @Nullable Bundle argument);
 
     /**
      * Write failed callback Event pattern Heat stroke 1 (Characteristics UUID: 0x5221)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onHeatStrokeSensor1WriteFailed(BluetoothDevice bluetoothDevice, int status);
+    void onHeatStrokeSensor1WriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Write timeout callback Event pattern Heat stroke 1 (Characteristics UUID: 0x5221)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onHeatStrokeSensor1WriteTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onHeatStrokeSensor1WriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Read success callback Event pattern Heat stroke 2 (Characteristics UUID: 0x5222)
      *
+     * @param taskId            task id
      * @param bluetoothDevice   Rbt device
      * @param heatStrokeSensor2 read result data
+     * @param argument          callback argument
      */
-    void onHeatStrokeSensor2ReadSuccess(BluetoothDevice bluetoothDevice, HeatStrokeSensor2 heatStrokeSensor2);
+    void onHeatStrokeSensor2ReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull HeatStrokeSensor2 heatStrokeSensor2, @Nullable Bundle argument);
 
     /**
      * Read failed callback Event pattern Heat stroke 2 (Characteristics UUID: 0x5222)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onHeatStrokeSensor2ReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onHeatStrokeSensor2ReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback Event pattern Heat stroke 2 (Characteristics UUID: 0x5222)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onHeatStrokeSensor2ReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onHeatStrokeSensor2ReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Write success callback Event pattern Heat stroke 2 (Characteristics UUID: 0x5222)
      *
+     * @param taskId            task id
      * @param bluetoothDevice   Rbt device
      * @param heatStrokeSensor2 write data
+     * @param argument          callback argument
      */
-    void onHeatStrokeSensor2WriteSuccess(BluetoothDevice bluetoothDevice, HeatStrokeSensor2 heatStrokeSensor2);
+    void onHeatStrokeSensor2WriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull HeatStrokeSensor2 heatStrokeSensor2, @Nullable Bundle argument);
 
     /**
      * Write failed callback Event pattern Heat stroke 2 (Characteristics UUID: 0x5222)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onHeatStrokeSensor2WriteFailed(BluetoothDevice bluetoothDevice, int status);
+    void onHeatStrokeSensor2WriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Write timeout callback Event pattern Heat stroke 2 (Characteristics UUID: 0x5222)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onHeatStrokeSensor2WriteTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onHeatStrokeSensor2WriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Read success callback Event pattern SI value (Characteristics UUID: 0x5226)
      *
+     * @param taskId              task id
      * @param bluetoothDevice     Rbt device
      * @param siValueAcceleration read result data
+     * @param argument            callback argument
      */
-    void onSiValueAccelerationReadSuccess(BluetoothDevice bluetoothDevice, SiValueAcceleration siValueAcceleration);
+    void onSiValueAccelerationReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull SiValueAcceleration siValueAcceleration, @Nullable Bundle argument);
 
     /**
      * Read failed callback Event pattern SI value (Characteristics UUID: 0x5226)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onSiValueAccelerationReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onSiValueAccelerationReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback Event pattern SI value (Characteristics UUID: 0x5226)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onSiValueAccelerationReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onSiValueAccelerationReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Write success callback Event pattern SI value (Characteristics UUID: 0x5226)
      *
+     * @param taskId              task id
      * @param bluetoothDevice     Rbt device
      * @param siValueAcceleration write data
+     * @param argument            callback argument
      */
-    void onSiValueAccelerationWriteSuccess(BluetoothDevice bluetoothDevice, SiValueAcceleration siValueAcceleration);
+    void onSiValueAccelerationWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull SiValueAcceleration siValueAcceleration, @Nullable Bundle argument);
 
     /**
      * Write failed callback Event pattern SI value (Characteristics UUID: 0x5226)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onSiValueAccelerationWriteFailed(BluetoothDevice bluetoothDevice, int status);
+    void onSiValueAccelerationWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Write timeout callback Event pattern SI value (Characteristics UUID: 0x5226)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onSiValueAccelerationWriteTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onSiValueAccelerationWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Read success callback Event pattern PGA (Characteristics UUID: 0x5227)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param pgaAcceleration read result data
+     * @param argument        callback argument
      */
-    void onPgaAccelerationReadSuccess(BluetoothDevice bluetoothDevice, PgaAcceleration pgaAcceleration);
+    void onPgaAccelerationReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull PgaAcceleration pgaAcceleration, @Nullable Bundle argument);
 
     /**
      * Read failed callback Event pattern PGA (Characteristics UUID: 0x5227)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onPgaAccelerationReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onPgaAccelerationReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback Event pattern PGA (Characteristics UUID: 0x5227)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onPgaAccelerationReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onPgaAccelerationReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Write success callback Event pattern PGA (Characteristics UUID: 0x5227)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param pgaAcceleration write data
+     * @param argument        callback argument
      */
-    void onPgaAccelerationWriteSuccess(BluetoothDevice bluetoothDevice, PgaAcceleration pgaAcceleration);
+    void onPgaAccelerationWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull PgaAcceleration pgaAcceleration, @Nullable Bundle argument);
 
     /**
      * Write failed callback Event pattern PGA (Characteristics UUID: 0x5227)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onPgaAccelerationWriteFailed(BluetoothDevice bluetoothDevice, int status);
+    void onPgaAccelerationWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Write timeout callback Event pattern PGA (Characteristics UUID: 0x5227)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onPgaAccelerationWriteTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onPgaAccelerationWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Read success callback Event pattern Seismic intensity (Characteristics UUID: 0x5228)
      *
+     * @param taskId                       task id
      * @param bluetoothDevice              Rbt device
      * @param seismicIntensityAcceleration read result data
+     * @param argument                     callback argument
      */
-    void onSeismicIntensityAccelerationReadSuccess(BluetoothDevice bluetoothDevice, SeismicIntensityAcceleration seismicIntensityAcceleration);
+    void onSeismicIntensityAccelerationReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull SeismicIntensityAcceleration seismicIntensityAcceleration, @Nullable Bundle argument);
 
     /**
      * Read failed callback Event pattern Seismic intensity (Characteristics UUID: 0x5228)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onSeismicIntensityAccelerationReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onSeismicIntensityAccelerationReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback Event pattern Seismic intensity (Characteristics UUID: 0x5228)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onSeismicIntensityAccelerationReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onSeismicIntensityAccelerationReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Write success callback Event pattern Seismic intensity (Characteristics UUID: 0x5228)
      *
+     * @param taskId                       task id
      * @param bluetoothDevice              Rbt device
      * @param seismicIntensityAcceleration write data
+     * @param argument                     callback argument
      */
-    void onSeismicIntensityAccelerationWriteSuccess(BluetoothDevice bluetoothDevice, SeismicIntensityAcceleration seismicIntensityAcceleration);
+    void onSeismicIntensityAccelerationWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull SeismicIntensityAcceleration seismicIntensityAcceleration, @Nullable Bundle argument);
 
     /**
      * Write failed callback Event pattern Seismic intensity (Characteristics UUID: 0x5228)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onSeismicIntensityAccelerationWriteFailed(BluetoothDevice bluetoothDevice, int status);
+    void onSeismicIntensityAccelerationWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Write timeout callback Event pattern Seismic intensity (Characteristics UUID: 0x5228)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onSeismicIntensityAccelerationWriteTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onSeismicIntensityAccelerationWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Read success callback Error status (Characteristics UUID: 0x5401)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param errorStatus     read result data
+     * @param argument        callback argument
      */
-    void onErrorStatusReadSuccess(BluetoothDevice bluetoothDevice, ErrorStatus errorStatus);
+    void onErrorStatusReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ErrorStatus errorStatus, @Nullable Bundle argument);
 
     /**
      * Read failed callback Error status (Characteristics UUID: 0x5401)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onErrorStatusReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onErrorStatusReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback Error status (Characteristics UUID: 0x5401)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onErrorStatusReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onErrorStatusReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Read success callback Mounting orientation (Characteristics UUID: 0x5402)
      *
+     * @param taskId              task id
      * @param bluetoothDevice     Rbt device
      * @param mountingOrientation read result data
+     * @param argument            callback argument
      */
-    void onMountingOrientationReadSuccess(BluetoothDevice bluetoothDevice, MountingOrientation mountingOrientation);
+    void onMountingOrientationReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull MountingOrientation mountingOrientation, @Nullable Bundle argument);
 
     /**
      * Read failed callback Mounting orientation (Characteristics UUID: 0x5402)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onMountingOrientationReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onMountingOrientationReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback Mounting orientation (Characteristics UUID: 0x5402)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onMountingOrientationReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onMountingOrientationReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Read success callback FLASH memory status (Characteristics UUID: 0x5403)
      *
+     * @param taskId            task id
      * @param bluetoothDevice   Rbt device
      * @param flashMemoryStatus read result data
+     * @param argument          callback argument
      */
-    void onFlashMemoryStatusReadSuccess(BluetoothDevice bluetoothDevice, FlashMemoryStatus flashMemoryStatus);
+    void onFlashMemoryStatusReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull FlashMemoryStatus flashMemoryStatus, @Nullable Bundle argument);
 
     /**
      * Read failed callback FLASH memory status (Characteristics UUID: 0x5403)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onFlashMemoryStatusReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onFlashMemoryStatusReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback FLASH memory status (Characteristics UUID: 0x5403)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onFlashMemoryStatusReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onFlashMemoryStatusReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Read success callback Device Name (Characteristics UUID: 0x2A00)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param deviceName      read result data
+     * @param argument        callback argument
      */
-    void onDeviceNameReadSuccess(BluetoothDevice bluetoothDevice, DeviceName deviceName);
+    void onDeviceNameReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull DeviceName deviceName, @Nullable Bundle argument);
 
     /**
      * Read failed callback Device Name (Characteristics UUID: 0x2A00)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onDeviceNameReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onDeviceNameReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback Device Name (Characteristics UUID: 0x2A00)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onDeviceNameReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onDeviceNameReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Read success callback Appearance (Characteristics UUID: 0x2A01)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param appearance      read result data
+     * @param argument        callback argument
      */
-    void onAppearanceReadSuccess(BluetoothDevice bluetoothDevice, Appearance appearance);
+    void onAppearanceReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull Appearance appearance, @Nullable Bundle argument);
 
     /**
      * Read failed callback Appearance (Characteristics UUID: 0x2A01)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onAppearanceReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onAppearanceReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback Appearance (Characteristics UUID: 0x2A01)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onAppearanceReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onAppearanceReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Read success callback Peripheral preferred connection parameters (Characteristics UUID: 0x2A04)
      *
+     * @param taskId                                  task id
      * @param bluetoothDevice                         Rbt device
      * @param peripheralPreferredConnectionParameters read result data
+     * @param argument                                callback argument
      */
-    void onPeripheralPreferredConnectionParametersReadSuccess(BluetoothDevice bluetoothDevice, PeripheralPreferredConnectionParameters peripheralPreferredConnectionParameters);
+    void onPeripheralPreferredConnectionParametersReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull PeripheralPreferredConnectionParameters peripheralPreferredConnectionParameters, @Nullable Bundle argument);
 
     /**
      * Read failed callback Peripheral preferred connection parameters (Characteristics UUID: 0x2A04)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onPeripheralPreferredConnectionParametersReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onPeripheralPreferredConnectionParametersReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback Peripheral preferred connection parameters (Characteristics UUID: 0x2A04)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onPeripheralPreferredConnectionParametersReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onPeripheralPreferredConnectionParametersReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Read success callback Central address resolution (Characteristics UUID: 0x2AA6)
      *
+     * @param taskId                   task id
      * @param bluetoothDevice          Rbt device
      * @param centralAddressResolution read result data
+     * @param argument                 callback argument
      */
-    void onCentralAddressResolutionReadSuccess(BluetoothDevice bluetoothDevice, CentralAddressResolution centralAddressResolution);
+    void onCentralAddressResolutionReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull CentralAddressResolution centralAddressResolution, @Nullable Bundle argument);
 
     /**
      * Read failed callback Central address resolution (Characteristics UUID: 0x2AA6)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onCentralAddressResolutionReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onCentralAddressResolutionReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback Central address resolution (Characteristics UUID: 0x2AA6)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onCentralAddressResolutionReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onCentralAddressResolutionReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Read success callback Model number string (Characteristics UUID: 0x2A24)
      *
+     * @param taskId            task id
      * @param bluetoothDevice   Rbt device
      * @param modelNumberString read result data
+     * @param argument          callback argument
      */
-    void onModelNumberStringReadSuccess(BluetoothDevice bluetoothDevice, ModelNumberString modelNumberString);
+    void onModelNumberStringReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ModelNumberString modelNumberString, @Nullable Bundle argument);
 
     /**
      * Read failed callback Model number string (Characteristics UUID: 0x2A24)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onModelNumberStringReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onModelNumberStringReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback Model number string (Characteristics UUID: 0x2A24)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onModelNumberStringReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onModelNumberStringReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Read success callback Serial number string (Characteristics UUID: 0x2A25)
      *
+     * @param taskId             task id
      * @param bluetoothDevice    Rbt device
      * @param serialNumberString read result data
+     * @param argument           callback argument
      */
-    void onSerialNumberStringReadSuccess(BluetoothDevice bluetoothDevice, SerialNumberString serialNumberString);
+    void onSerialNumberStringReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull SerialNumberString serialNumberString, @Nullable Bundle argument);
 
     /**
      * Read failed callback Serial number string (Characteristics UUID: 0x2A25)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onSerialNumberStringReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onSerialNumberStringReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback Serial number string (Characteristics UUID: 0x2A25)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onSerialNumberStringReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onSerialNumberStringReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Read success callback Firmware revision string (Characteristics UUID: 0x2A26)
      *
+     * @param taskId                 task id
      * @param bluetoothDevice        Rbt device
      * @param firmwareRevisionString read result data
+     * @param argument               callback argument
      */
-    void onFirmwareRevisionStringReadSuccess(BluetoothDevice bluetoothDevice, FirmwareRevisionString firmwareRevisionString);
+    void onFirmwareRevisionStringReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull FirmwareRevisionString firmwareRevisionString, @Nullable Bundle argument);
 
     /**
      * Read failed callback Firmware revision string (Characteristics UUID: 0x2A26)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onFirmwareRevisionStringReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onFirmwareRevisionStringReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback Firmware revision string (Characteristics UUID: 0x2A26)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onFirmwareRevisionStringReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onFirmwareRevisionStringReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Read success callback Hardware revision string (Characteristics UUID: 0x2A27)
      *
+     * @param taskId                 task id
      * @param bluetoothDevice        Rbt device
      * @param hardwareRevisionString read result data
+     * @param argument               callback argument
      */
-    void onHardwareRevisionStringReadSuccess(BluetoothDevice bluetoothDevice, HardwareRevisionString hardwareRevisionString);
+    void onHardwareRevisionStringReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull HardwareRevisionString hardwareRevisionString, @Nullable Bundle argument);
 
     /**
      * Read failed callback Hardware revision string (Characteristics UUID: 0x2A27)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onHardwareRevisionStringReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onHardwareRevisionStringReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback Hardware revision string (Characteristics UUID: 0x2A27)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onHardwareRevisionStringReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
+    void onHardwareRevisionStringReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
     /**
      * Read success callback Manufacturer name string (Characteristics UUID: 0x2A28)
      *
+     * @param taskId                 task id
      * @param bluetoothDevice        Rbt device
      * @param manufacturerNameString read result data
+     * @param argument               callback argument
      */
-    void onManufacturerNameStringReadSuccess(BluetoothDevice bluetoothDevice, ManufacturerNameString manufacturerNameString);
+    void onManufacturerNameStringReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ManufacturerNameString manufacturerNameString, @Nullable Bundle argument);
 
     /**
      * Read failed callback Manufacturer name string (Characteristics UUID: 0x2A28)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param status          error status
+     * @param argument        callback argument
      */
-    void onManufacturerNameStringReadFailed(BluetoothDevice bluetoothDevice, int status);
+    void onManufacturerNameStringReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument);
 
     /**
      * Read timeout callback Manufacturer name string (Characteristics UUID: 0x2A28)
      *
+     * @param taskId          task id
      * @param bluetoothDevice Rbt device
      * @param timeout         timeout(millis)
+     * @param argument        callback argument
      */
-    void onManufacturerNameStringReadTimeout(BluetoothDevice bluetoothDevice, long timeout);
-
-    /**
-     * Notification callback Acceleration memory data [Header] (Characteristics UUID: 0x5034)
-     *
-     * @param bluetoothDevice              Rbt device
-     * @param accelerationMemoryDataHeader notification data
-     */
-    void onAccelerationMemoryDataHeaderNotified(BluetoothDevice bluetoothDevice, AccelerationMemoryDataHeader accelerationMemoryDataHeader);
-
-    /**
-     * Notification callback Acceleration memory data [Data] (Characteristics UUID: 0x5034)
-     *
-     * @param bluetoothDevice        Rbt device
-     * @param accelerationMemoryData notification data
-     */
-    void onAccelerationMemoryDataNotified(BluetoothDevice bluetoothDevice, AccelerationMemoryData accelerationMemoryData);
+    void onManufacturerNameStringReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument);
 
 }

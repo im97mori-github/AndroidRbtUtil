@@ -3,6 +3,8 @@ package org.im97mori.rbt.ble.ad;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import org.im97mori.ble.ad.ManufacturerSpecificData;
 import org.im97mori.rbt.RbtConstants;
 
@@ -20,7 +22,8 @@ public class SensorFlagAndCalculationFlag extends AbstractRbtPacket implements P
          * {@inheritDoc}
          */
         @Override
-        public SensorFlagAndCalculationFlag createFromParcel(Parcel in) {
+        @NonNull
+        public SensorFlagAndCalculationFlag createFromParcel(@NonNull Parcel in) {
             return new SensorFlagAndCalculationFlag(in);
         }
 
@@ -28,6 +31,7 @@ public class SensorFlagAndCalculationFlag extends AbstractRbtPacket implements P
          * {@inheritDoc}
          */
         @Override
+        @NonNull
         public SensorFlagAndCalculationFlag[] newArray(int size) {
             return new SensorFlagAndCalculationFlag[size];
         }
@@ -105,7 +109,7 @@ public class SensorFlagAndCalculationFlag extends AbstractRbtPacket implements P
      * @param data1 1st byte array from {@link ManufacturerSpecificData#getManufacturerSpecificData()}
      * @param data2 2nd byte array from {@link ManufacturerSpecificData#getManufacturerSpecificData()}
      */
-    public SensorFlagAndCalculationFlag(byte[] data1, byte[] data2) {
+    public SensorFlagAndCalculationFlag(@NonNull byte[] data1, @NonNull byte[] data2) {
         mSequenceNumber = createUInt8(1, data1);
         mTemperatureFlag = createUInt16(2, data1);
         mRelativeHumidityFlag = createUInt16(4, data1);
@@ -127,7 +131,7 @@ public class SensorFlagAndCalculationFlag extends AbstractRbtPacket implements P
      *
      * @param in Parcel
      */
-    private SensorFlagAndCalculationFlag(Parcel in) {
+    private SensorFlagAndCalculationFlag(@NonNull Parcel in) {
         mSequenceNumber = in.readInt();
         mTemperatureFlag = in.readInt();
         mRelativeHumidityFlag = in.readInt();
@@ -156,7 +160,7 @@ public class SensorFlagAndCalculationFlag extends AbstractRbtPacket implements P
      * {@inheritDoc}
      */
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeInt(mSequenceNumber);
         dest.writeInt(mTemperatureFlag);
         dest.writeInt(mRelativeHumidityFlag);

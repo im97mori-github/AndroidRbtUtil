@@ -4,6 +4,8 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import org.im97mori.ble.ByteArrayCreater;
 
 import java.nio.ByteBuffer;
@@ -56,7 +58,8 @@ public class AdvertiseSetting extends AbstractRbtCharacteristic implements Parce
          * {@inheritDoc}
          */
         @Override
-        public AdvertiseSetting createFromParcel(Parcel in) {
+        @NonNull
+        public AdvertiseSetting createFromParcel(@NonNull Parcel in) {
             return new AdvertiseSetting(in);
         }
 
@@ -64,6 +67,7 @@ public class AdvertiseSetting extends AbstractRbtCharacteristic implements Parce
          * {@inheritDoc}
          */
         @Override
+        @NonNull
         public AdvertiseSetting[] newArray(int size) {
             return new AdvertiseSetting[size];
         }
@@ -72,7 +76,8 @@ public class AdvertiseSetting extends AbstractRbtCharacteristic implements Parce
          * {@inheritDoc}
          */
         @Override
-        public AdvertiseSetting createFromByteArray(byte[] values) {
+        @NonNull
+        public AdvertiseSetting createFromByteArray(@NonNull byte[] values) {
             BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(ADVERTISE_SETTING_CHARACTERISTIC, 0, 0);
             bluetoothGattCharacteristic.setValue(values);
             return new AdvertiseSetting(bluetoothGattCharacteristic);
@@ -95,7 +100,7 @@ public class AdvertiseSetting extends AbstractRbtCharacteristic implements Parce
      *
      * @param bluetoothGattCharacteristic Characteristics UUID: 0x5115
      */
-    public AdvertiseSetting(BluetoothGattCharacteristic bluetoothGattCharacteristic) {
+    public AdvertiseSetting(@NonNull BluetoothGattCharacteristic bluetoothGattCharacteristic) {
         mAdvertisingInterval = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT16, 0);
         mAdvertisingMode = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 2);
     }
@@ -120,7 +125,7 @@ public class AdvertiseSetting extends AbstractRbtCharacteristic implements Parce
      *
      * @param in Parcel
      */
-    private AdvertiseSetting(Parcel in) {
+    private AdvertiseSetting(@NonNull Parcel in) {
         mAdvertisingInterval = in.readInt();
         mAdvertisingMode = in.readInt();
     }
@@ -137,7 +142,7 @@ public class AdvertiseSetting extends AbstractRbtCharacteristic implements Parce
      * {@inheritDoc}
      */
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeInt(mAdvertisingInterval);
         dest.writeInt(mAdvertisingMode);
     }
@@ -167,6 +172,7 @@ public class AdvertiseSetting extends AbstractRbtCharacteristic implements Parce
      * {@inheritDoc}
      */
     @Override
+    @NonNull
     public byte[] getBytes() {
         byte[] data = new byte[3];
         ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);

@@ -10,9 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
-import org.im97mori.rbt.sample.R;
-
-public class AlertDialogFragment extends DialogFragment implements DialogInterface.OnClickListener {
+class AlertDialogFragment extends DialogFragment implements DialogInterface.OnClickListener {
 
     public interface AlertDialogFragmentCallback {
         void onOk();
@@ -23,7 +21,7 @@ public class AlertDialogFragment extends DialogFragment implements DialogInterfa
     private AlertDialogFragmentCallback mAlertDialogFragmentCallback;
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
 
         if (context instanceof AlertDialogFragmentCallback) {

@@ -4,6 +4,8 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import org.im97mori.ble.ByteArrayCreater;
 
 import java.nio.ByteBuffer;
@@ -71,7 +73,8 @@ public class AccelerationLoggerControl extends AbstractRbtCharacteristic impleme
          * {@inheritDoc}
          */
         @Override
-        public AccelerationLoggerControl createFromParcel(Parcel in) {
+        @NonNull
+        public AccelerationLoggerControl createFromParcel(@NonNull Parcel in) {
             return new AccelerationLoggerControl(in);
         }
 
@@ -79,6 +82,7 @@ public class AccelerationLoggerControl extends AbstractRbtCharacteristic impleme
          * {@inheritDoc}
          */
         @Override
+        @NonNull
         public AccelerationLoggerControl[] newArray(int size) {
             return new AccelerationLoggerControl[size];
         }
@@ -87,7 +91,8 @@ public class AccelerationLoggerControl extends AbstractRbtCharacteristic impleme
          * {@inheritDoc}
          */
         @Override
-        public AccelerationLoggerControl createFromByteArray(byte[] values) {
+        @NonNull
+        public AccelerationLoggerControl createFromByteArray(@NonNull byte[] values) {
             BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(ACCELERATION_LOGGER_CONTROL_CHARACTERISTIC, 0, 0);
             bluetoothGattCharacteristic.setValue(values);
             return new AccelerationLoggerControl(bluetoothGattCharacteristic);
@@ -125,7 +130,7 @@ public class AccelerationLoggerControl extends AbstractRbtCharacteristic impleme
      *
      * @param bluetoothGattCharacteristic Characteristics UUID: 0x5118
      */
-    public AccelerationLoggerControl(BluetoothGattCharacteristic bluetoothGattCharacteristic) {
+    public AccelerationLoggerControl(@NonNull BluetoothGattCharacteristic bluetoothGattCharacteristic) {
         mLoggerCondition = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 0);
         mRangeOfDetection = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 1);
         mOdrSetting = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 2);
@@ -161,7 +166,7 @@ public class AccelerationLoggerControl extends AbstractRbtCharacteristic impleme
      *
      * @param in Parcel
      */
-    private AccelerationLoggerControl(Parcel in) {
+    private AccelerationLoggerControl(@NonNull Parcel in) {
         mLoggerCondition = in.readInt();
         mRangeOfDetection = in.readInt();
         mOdrSetting = in.readInt();
@@ -181,7 +186,7 @@ public class AccelerationLoggerControl extends AbstractRbtCharacteristic impleme
      * {@inheritDoc}
      */
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeInt(mLoggerCondition);
         dest.writeInt(mRangeOfDetection);
         dest.writeInt(mOdrSetting);
@@ -228,6 +233,7 @@ public class AccelerationLoggerControl extends AbstractRbtCharacteristic impleme
      * {@inheritDoc}
      */
     @Override
+    @NonNull
     public byte[] getBytes() {
         byte[] data = new byte[7];
         ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);

@@ -11,19 +11,35 @@
         android:title="@string/menu_read_5006" />
 
     <item
-        android:id="@+id/notification_memory_sensing_data"
-        android:title="@string/menu_notification_500a" />
+        android:id="@+id/read_notification_memory_sensing_data"
+        android:title="@string/menu_read_notification_500a" />
 
     <item
-        android:id="@+id/notification_memory_calculation_data"
-        android:title="@string/menu_notification_500b" />
+        android:id="@+id/write_notification_memory_sensing_data"
+        android:title="@string/menu_write_notification_500a" />
 
     <item
-        android:id="@+id/notification_memory_sensing_flag"
-        android:title="@string/menu_notification_500c" />
+        android:id="@+id/read_notification_memory_calculation_data"
+        android:title="@string/menu_read_notification_500b" />
 
     <item
-        android:id="@+id/notification_memory_calculation_flag"
-        android:title="@string/menu_notification_500d" />
+        android:id="@+id/write_notification_memory_calculation_data"
+        android:title="@string/menu_write_notification_500b" />
+
+    <item
+        android:id="@+id/read_notification_memory_sensing_flag"
+        android:title="@string/menu_read_notification_500c" />
+
+    <item
+        android:id="@+id/write_notification_memory_sensing_flag"
+        android:title="@string/menu_write_notification_500c" />
+
+    <item
+        android:id="@+id/read_notification_memory_calculation_flag"
+        android:title="@string/menu_read_notification_500d" />
+
+    <item
+        android:id="@+id/write_notification_memory_calculation_flag"
+        android:title="@string/menu_write_notification_500d" />
 
 </menu>

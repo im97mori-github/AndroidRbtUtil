@@ -4,6 +4,8 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import org.im97mori.ble.ByteArrayCreater;
 
 import java.nio.ByteBuffer;
@@ -26,7 +28,8 @@ public class MemoryIndexInformation extends AbstractRbtCharacteristic implements
          * {@inheritDoc}
          */
         @Override
-        public MemoryIndexInformation createFromParcel(Parcel in) {
+        @NonNull
+        public MemoryIndexInformation createFromParcel(@NonNull Parcel in) {
             return new MemoryIndexInformation(in);
         }
 
@@ -34,6 +37,7 @@ public class MemoryIndexInformation extends AbstractRbtCharacteristic implements
          * {@inheritDoc}
          */
         @Override
+        @NonNull
         public MemoryIndexInformation[] newArray(int size) {
             return new MemoryIndexInformation[size];
         }
@@ -42,7 +46,8 @@ public class MemoryIndexInformation extends AbstractRbtCharacteristic implements
          * {@inheritDoc}
          */
         @Override
-        public MemoryIndexInformation createFromByteArray(byte[] values) {
+        @NonNull
+        public MemoryIndexInformation createFromByteArray(@NonNull byte[] values) {
             BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(MEMORY_INDEX_INFORMATION_CHARACTERISTIC, 0, 0);
             bluetoothGattCharacteristic.setValue(values);
             return new MemoryIndexInformation(bluetoothGattCharacteristic);
@@ -65,7 +70,7 @@ public class MemoryIndexInformation extends AbstractRbtCharacteristic implements
      *
      * @param bluetoothGattCharacteristic Characteristics UUID: 0x5004
      */
-    public MemoryIndexInformation(BluetoothGattCharacteristic bluetoothGattCharacteristic) {
+    public MemoryIndexInformation(@NonNull BluetoothGattCharacteristic bluetoothGattCharacteristic) {
         mMemoryIndexLatest = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT32, 0);
         mMemoryIndexLast = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT32, 4);
     }
@@ -75,7 +80,7 @@ public class MemoryIndexInformation extends AbstractRbtCharacteristic implements
      *
      * @param in Parcel
      */
-    private MemoryIndexInformation(Parcel in) {
+    private MemoryIndexInformation(@NonNull Parcel in) {
         mMemoryIndexLatest = in.readInt();
         mMemoryIndexLast = in.readInt();
     }
@@ -92,7 +97,7 @@ public class MemoryIndexInformation extends AbstractRbtCharacteristic implements
      * {@inheritDoc}
      */
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeInt(mMemoryIndexLatest);
         dest.writeInt(mMemoryIndexLast);
     }
@@ -115,6 +120,7 @@ public class MemoryIndexInformation extends AbstractRbtCharacteristic implements
      * {@inheritDoc}
      */
     @Override
+    @NonNull
     public byte[] getBytes() {
         byte[] data = new byte[8];
         ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);

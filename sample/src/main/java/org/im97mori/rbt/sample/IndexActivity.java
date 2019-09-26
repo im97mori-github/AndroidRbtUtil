@@ -17,6 +17,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import org.im97mori.ble.BLEConnectionHolder;
 import org.im97mori.rbt.RbtLogUtils;
 
 import java.util.ArrayList;
@@ -27,23 +31,25 @@ public class IndexActivity extends Activity implements AdapterView.OnItemClickLi
 
     private static class IndexAdapter extends ArrayAdapter<ActivityInfo> {
 
-        private LayoutInflater mLayoutInflater;
+        private final LayoutInflater mLayoutInflater;
 
         IndexAdapter(Context context, List<ActivityInfo> list) {
             super(context, 0, list);
             mLayoutInflater = LayoutInflater.from(context);
         }
-
+        @NonNull
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
             View view = convertView;
             if (view == null) {
                 view = mLayoutInflater.inflate(android.R.layout.simple_list_item_1, parent, false);
             }
 
             ActivityInfo activityInfo = getItem(position);
-            TextView textView = view.findViewById(android.R.id.text1);
-            textView.setText(activityInfo.labelRes);
+            if (activityInfo != null) {
+                TextView textView = view.findViewById(android.R.id.text1);
+                textView.setText(activityInfo.labelRes);
+            }
             return view;
         }
     }
@@ -72,6 +78,12 @@ public class IndexActivity extends Activity implements AdapterView.OnItemClickLi
             listView.setAdapter(new IndexAdapter(this, list));
             listView.setOnItemClickListener(this);
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        BLEConnectionHolder.clearInstance();
+        super.onDestroy();
     }
 
     @Override

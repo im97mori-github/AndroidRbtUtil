@@ -4,6 +4,8 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import org.im97mori.ble.ByteArrayCreater;
 
 import java.nio.ByteBuffer;
@@ -27,7 +29,8 @@ public class Eco2Sensor2 extends AbstractRbtCharacteristic implements Parcelable
          * {@inheritDoc}
          */
         @Override
-        public Eco2Sensor2 createFromParcel(Parcel in) {
+        @NonNull
+        public Eco2Sensor2 createFromParcel(@NonNull Parcel in) {
             return new Eco2Sensor2(in);
         }
 
@@ -35,6 +38,7 @@ public class Eco2Sensor2 extends AbstractRbtCharacteristic implements Parcelable
          * {@inheritDoc}
          */
         @Override
+        @NonNull
         public Eco2Sensor2[] newArray(int size) {
             return new Eco2Sensor2[size];
         }
@@ -43,7 +47,8 @@ public class Eco2Sensor2 extends AbstractRbtCharacteristic implements Parcelable
          * {@inheritDoc}
          */
         @Override
-        public Eco2Sensor2 createFromByteArray(byte[] values) {
+        @NonNull
+        public Eco2Sensor2 createFromByteArray(@NonNull byte[] values) {
             BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(ECO2_SENSOR_2_CHARACTERISTIC, 0, 0);
             bluetoothGattCharacteristic.setValue(values);
             return new Eco2Sensor2(bluetoothGattCharacteristic);
@@ -116,7 +121,7 @@ public class Eco2Sensor2 extends AbstractRbtCharacteristic implements Parcelable
      *
      * @param bluetoothGattCharacteristic Characteristics UUID: 0x521E
      */
-    public Eco2Sensor2(BluetoothGattCharacteristic bluetoothGattCharacteristic) {
+    public Eco2Sensor2(@NonNull BluetoothGattCharacteristic bluetoothGattCharacteristic) {
         mAverageValueThresholdUpper = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_SINT16, 0);
         mAverageValueThresholdLower = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_SINT16, 2);
         mPeakToPeakThresholdUpper = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_SINT16, 4);
@@ -167,7 +172,7 @@ public class Eco2Sensor2 extends AbstractRbtCharacteristic implements Parcelable
      *
      * @param in Parcel
      */
-    private Eco2Sensor2(Parcel in) {
+    private Eco2Sensor2(@NonNull Parcel in) {
         mAverageValueThresholdUpper = in.readInt();
         mAverageValueThresholdLower = in.readInt();
         mPeakToPeakThresholdUpper = in.readInt();
@@ -194,7 +199,7 @@ public class Eco2Sensor2 extends AbstractRbtCharacteristic implements Parcelable
      * {@inheritDoc}
      */
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeInt(mAverageValueThresholdUpper);
         dest.writeInt(mAverageValueThresholdLower);
         dest.writeInt(mPeakToPeakThresholdUpper);
@@ -353,6 +358,7 @@ public class Eco2Sensor2 extends AbstractRbtCharacteristic implements Parcelable
      * {@inheritDoc}
      */
     @Override
+    @NonNull
     public byte[] getBytes() {
         byte[] data = new byte[20];
         ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);

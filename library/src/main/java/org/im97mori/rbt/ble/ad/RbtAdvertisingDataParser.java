@@ -2,6 +2,9 @@ package org.im97mori.rbt.ble.ad;
 
 import android.bluetooth.le.ScanRecord;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import org.im97mori.ble.ad.AdvertisingDataParser;
 import org.im97mori.ble.ad.ManufacturerSpecificData;
 import org.im97mori.rbt.RbtLogUtils;
@@ -74,6 +77,7 @@ public class RbtAdvertisingDataParser {
          *
          * @return myself
          */
+        @NonNull
         public Builder includeAll() {
             mTypeSet.addAll(ALL_DATA_TYPE_SET);
             return this;
@@ -85,6 +89,7 @@ public class RbtAdvertisingDataParser {
          * @param advertisingDataTypes one of {@link org.im97mori.rbt.RbtConstants.RbtAdvertisingDataType}
          * @return myself
          */
+        @NonNull
         public Builder include(int advertisingDataTypes) {
             if (ALL_DATA_TYPE_SET.contains(advertisingDataTypes)) {
                 mTypeSet.add(advertisingDataTypes);
@@ -97,6 +102,7 @@ public class RbtAdvertisingDataParser {
          *
          * @return myself
          */
+        @NonNull
         public Builder excludeAll() {
             mTypeSet.clear();
             return this;
@@ -108,6 +114,7 @@ public class RbtAdvertisingDataParser {
          * @param advertisingDataTypes one of {@link org.im97mori.rbt.RbtConstants.RbtAdvertisingDataType}
          * @return myself
          */
+        @NonNull
         public Builder exclude(int advertisingDataTypes) {
             mTypeSet.remove(advertisingDataTypes);
             return this;
@@ -118,6 +125,7 @@ public class RbtAdvertisingDataParser {
          *
          * @return {@link RbtAdvertisingDataParser}
          */
+        @NonNull
         public RbtAdvertisingDataParser build() {
             return new RbtAdvertisingDataParser(mTypeSet);
         }
@@ -170,13 +178,15 @@ public class RbtAdvertisingDataParser {
         /**
          * @return 3.3 Sensor data & Calculation data (Scan rsp)
          */
+        @Nullable
         public SensorDataAndCalculationData getSensorDataAndCalculationData() {
             return mSensorDataAndCalculationData;
         }
 
         /**
-         * @return 3.4 ensor flag & Calculation flag (Scan rsp)
+         * @return 3.4 Sensor flag & Calculation flag (Scan rsp)
          */
+        @Nullable
         public SensorFlagAndCalculationFlag getSensorFlagAndCalculationFlag() {
             return mSensorFlagAndCalculationFlag;
         }
@@ -184,6 +194,7 @@ public class RbtAdvertisingDataParser {
         /**
          * @return 3.5 Serial number
          */
+        @Nullable
         public SerialNumber getSerialNumber() {
             return mSerialNumber;
         }
@@ -209,7 +220,10 @@ public class RbtAdvertisingDataParser {
      */
     private final AdvertisingDataParser mAdvertisingDataParser;
 
-    private RbtAdvertisingDataParser(Set<Integer> targetDataTypeSet) {
+    /**
+     * constructor from builder
+     */
+    private RbtAdvertisingDataParser(@NonNull Set<Integer> targetDataTypeSet) {
         mTargetDataTypeSet = targetDataTypeSet;
 
         AdvertisingDataParser.Builder builder = new AdvertisingDataParser.Builder(false);
@@ -224,7 +238,8 @@ public class RbtAdvertisingDataParser {
     /**
      * @see #parse(byte[], int, int)
      */
-    public RbtAdvertisingDataParseResult parse(byte[] data) {
+    @Nullable
+    public RbtAdvertisingDataParseResult parse(@NonNull byte[] data) {
         return parse(data, 0, data.length);
     }
 
@@ -236,7 +251,8 @@ public class RbtAdvertisingDataParser {
      * @param totalLength data length
      * @return {@link RbtAdvertisingDataParseResult} instance, null:non-Rbt Advertising data
      */
-    public RbtAdvertisingDataParseResult parse(byte[] data, int offset, int totalLength) {
+    @Nullable
+    public RbtAdvertisingDataParseResult parse(@NonNull byte[] data, int offset, int totalLength) {
         RbtAdvertisingDataParseResult result = null;
 
         try {

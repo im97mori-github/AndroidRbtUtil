@@ -1,8 +1,12 @@
 package org.im97mori.rbt.sample;
 
 import android.bluetooth.BluetoothDevice;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Pair;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.im97mori.ble.characteristic.Appearance;
 import org.im97mori.ble.characteristic.CentralAddressResolution;
@@ -14,7 +18,7 @@ import org.im97mori.ble.characteristic.ModelNumberString;
 import org.im97mori.ble.characteristic.PeripheralPreferredConnectionParameters;
 import org.im97mori.ble.characteristic.SerialNumberString;
 import org.im97mori.ble.descriptor.ClientCharacteristicConfiguration;
-import org.im97mori.rbt.ble.RbtCallback;
+import org.im97mori.rbt.ble.AbstractRbtBLECallback;
 import org.im97mori.rbt.ble.characteristic.AccelerationLoggerControl;
 import org.im97mori.rbt.ble.characteristic.AccelerationLoggerStatus;
 import org.im97mori.rbt.ble.characteristic.AccelerationMemoryData;
@@ -58,6 +62,8 @@ import org.im97mori.rbt.ble.characteristic.MountingOrientation;
 import org.im97mori.rbt.ble.characteristic.PgaAcceleration;
 import org.im97mori.rbt.ble.characteristic.RelativeHumiditySensor1;
 import org.im97mori.rbt.ble.characteristic.RelativeHumiditySensor2;
+import org.im97mori.rbt.ble.characteristic.RequestAccelerationMemoryIndex;
+import org.im97mori.rbt.ble.characteristic.RequestMemoryIndex;
 import org.im97mori.rbt.ble.characteristic.SeismicIntensityAcceleration;
 import org.im97mori.rbt.ble.characteristic.SiValueAcceleration;
 import org.im97mori.rbt.ble.characteristic.SoundNoiseSensor1;
@@ -75,9 +81,9 @@ import java.util.Locale;
 import static org.im97mori.ble.BLEConstants.APPEARANCE_DESCRIPTION_MAP;
 import static org.im97mori.ble.BLEConstants.APPEARANCE_VALUE_MAP;
 
-public class RbtCallbackSample implements RbtCallback {
+public class RbtCallbackSample extends AbstractRbtBLECallback {
 
-    private SampleCallback mSampleCallback;
+    private final SampleCallback mSampleCallback;
     private final SimpleDateFormat format = new SimpleDateFormat("MM/dd HH:mm:ss", Locale.US);
 
     RbtCallbackSample(SampleCallback sampleCallback) {
@@ -109,82 +115,99 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onRbtConnected(BluetoothDevice bluetoothDevice) {
-        callback();
-    }
-
-    @Override
-    public void onRbtConnectFailed(BluetoothDevice bluetoothDevice) {
-        callback();
-    }
-
-    @Override
-    public void onRbtConnectTimeout(BluetoothDevice bluetoothDevice) {
-        callback();
-    }
-
-    @Override
-    public void onRbtDisonnected(BluetoothDevice bluetoothDevice) {
-        callback();
-    }
-
-    @Override
-    public void onMemoryIndexInformationReadSuccess(BluetoothDevice bluetoothDevice, MemoryIndexInformation memoryIndexInformation) {
+    public void onMemoryIndexInformationReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull MemoryIndexInformation memoryIndexInformation, @Nullable Bundle argument) {
         callback(memoryIndexInformation.getMemoryIndexLatest(), memoryIndexInformation.getMemoryIndexLast());
     }
 
     @Override
-    public void onMemoryIndexInformationReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onMemoryIndexInformationReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onMemoryIndexInformationReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onMemoryIndexInformationReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onRequestMemoryIndexWriteFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onRequestMemoryIndexWriteWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull RequestMemoryIndex requestMemoryIndex, @Nullable Bundle argument) {
+        callback(requestMemoryIndex.getDataType()
+                , requestMemoryIndex.getMemoryIndexStart()
+                , requestMemoryIndex.getMemoryIndexEnd());
+    }
+
+    @Override
+    public void onRequestMemoryIndexWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onRequestMemoryIndexWriteTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onRequestMemoryIndexWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onMemoryStatusReadSuccess(BluetoothDevice bluetoothDevice, MemoryStatus memoryStatus) {
+    public void onMemoryStatusReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull MemoryStatus memoryStatus, @Nullable Bundle argument) {
         callback(memoryStatus.getStatus(), memoryStatus.getTimeCounter(), memoryStatus.getMemoryStorageInterval());
     }
 
     @Override
-    public void onMemoryStatusReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onMemoryStatusReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onMemoryStatusReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onMemoryStatusReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onMemorySensingDataClientCharactericsticConfigurationSuccess(BluetoothDevice bluetoothDevice, ClientCharacteristicConfiguration clientCharacteristicConfiguration) {
+    public void onMemorySensingDataClientCharactericsticConfigurationReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument) {
         callback(Arrays.toString(clientCharacteristicConfiguration.getConfiguration()));
     }
 
     @Override
-    public void onMemorySensingDataClientCharactericsticConfigurationFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onMemorySensingDataClientCharactericsticConfigurationReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onMemorySensingDataClientCharactericsticConfigurationTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onMemorySensingDataClientCharactericsticConfigurationReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onMemorySensingDataNotified(BluetoothDevice bluetoothDevice, MemorySensingData memorySensingData) {
+    public void onMemorySensingDataClientCharactericsticConfigurationWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument) {
+        callback(Arrays.toString(clientCharacteristicConfiguration.getConfiguration()));
+    }
+
+    @Override
+    public void onMemorySensingDataClientCharactericsticConfigurationWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
+        callback(status);
+    }
+
+    @Override
+    public void onMemorySensingDataClientCharactericsticConfigurationWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
+        callback(timeout);
+    }
+
+    @Override
+    public void onMemoryCalculationDataClientCharactericsticConfigurationReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument) {
+        callback(Arrays.toString(clientCharacteristicConfiguration.getConfiguration()));
+    }
+
+    @Override
+    public void onMemoryCalculationDataClientCharactericsticConfigurationReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
+        callback(status);
+    }
+
+    @Override
+    public void onMemoryCalculationDataClientCharactericsticConfigurationReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
+        callback(timeout);
+    }
+
+    @Override
+    public void onMemorySensingDataNotified(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull MemorySensingData memorySensingData, @Nullable Bundle argument) {
         callback(memorySensingData.getMemoryIndex()
                 , memorySensingData.getTemperatureDegC()
                 , memorySensingData.getRelativeHumidityRh()
@@ -196,22 +219,37 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onMemoryCalculationDataClientCharactericsticConfigurationSuccess(BluetoothDevice bluetoothDevice, ClientCharacteristicConfiguration clientCharacteristicConfiguration) {
+    public void onMemoryCalculationDataClientCharactericsticConfigurationWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument) {
         callback(Arrays.toString(clientCharacteristicConfiguration.getConfiguration()));
     }
 
     @Override
-    public void onMemoryCalculationDataClientCharactericsticConfigurationFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onMemoryCalculationDataClientCharactericsticConfigurationWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onMemoryCalculationDataClientCharactericsticConfigurationTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onMemoryCalculationDataClientCharactericsticConfigurationWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onMemoryCalculationDataNotified(BluetoothDevice bluetoothDevice, MemoryCalculationData memoryCalculationData) {
+    public void onMemorySensingFlagClientCharactericsticConfigurationReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument) {
+        callback(Arrays.toString(clientCharacteristicConfiguration.getConfiguration()));
+    }
+
+    @Override
+    public void onMemorySensingFlagClientCharactericsticConfigurationReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
+        callback(status);
+    }
+
+    @Override
+    public void onMemorySensingFlagClientCharactericsticConfigurationReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
+        callback(timeout);
+    }
+
+    @Override
+    public void onMemoryCalculationDataNotified(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull MemoryCalculationData memoryCalculationData, @Nullable Bundle argument) {
         callback(memoryCalculationData.getMemoryIndex()
                 , memoryCalculationData.getDiscomfortIndexWithUnit()
                 , memoryCalculationData.getHeatStrokeDegC()
@@ -222,22 +260,37 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onMemorySensingFlagClientCharactericsticConfigurationSuccess(BluetoothDevice bluetoothDevice, ClientCharacteristicConfiguration clientCharacteristicConfiguration) {
+    public void onMemorySensingFlagClientCharactericsticConfigurationWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument) {
         callback(Arrays.toString(clientCharacteristicConfiguration.getConfiguration()));
     }
 
     @Override
-    public void onMemorySensingFlagClientCharactericsticConfigurationFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onMemorySensingFlagClientCharactericsticConfigurationWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onMemorySensingFlagClientCharactericsticConfigurationTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onMemorySensingFlagClientCharactericsticConfigurationWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onMemorySensingFlagNotified(BluetoothDevice bluetoothDevice, MemorySensingFlag memorySensingFlag) {
+    public void onMemoryCalculationFlagClientCharactericsticConfigurationReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument) {
+        callback(Arrays.toString(clientCharacteristicConfiguration.getConfiguration()));
+    }
+
+    @Override
+    public void onMemoryCalculationFlagClientCharactericsticConfigurationReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
+        callback(status);
+    }
+
+    @Override
+    public void onMemoryCalculationFlagClientCharactericsticConfigurationReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
+        callback(timeout);
+    }
+
+    @Override
+    public void onMemorySensingFlagNotified(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull MemorySensingFlag memorySensingFlag, @Nullable Bundle argument) {
         callback(memorySensingFlag.getMemoryIndex()
                 , memorySensingFlag.getTemperatureFlag()
                 , memorySensingFlag.getRelativeHumidityFlag()
@@ -249,22 +302,22 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onMemoryCalculationFlagClientCharactericsticConfigurationSuccess(BluetoothDevice bluetoothDevice, ClientCharacteristicConfiguration clientCharacteristicConfiguration) {
+    public void onMemoryCalculationFlagClientCharactericsticConfigurationWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument) {
         callback(Arrays.toString(clientCharacteristicConfiguration.getConfiguration()));
     }
 
     @Override
-    public void onMemoryCalculationFlagClientCharactericsticConfigurationFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onMemoryCalculationFlagClientCharactericsticConfigurationWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onMemoryCalculationFlagClientCharactericsticConfigurationTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onMemoryCalculationFlagClientCharactericsticConfigurationWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onMemoryCalculationFlagNotified(BluetoothDevice bluetoothDevice, MemoryCalculationFlag memoryCalculationFlag) {
+    public void onMemoryCalculationFlagNotified(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull MemoryCalculationFlag memoryCalculationFlag, @Nullable Bundle argument) {
         callback(memoryCalculationFlag.getMemoryIndex()
                 , memoryCalculationFlag.getDiscomfortIndexFlag()
                 , memoryCalculationFlag.getHeatStrokeFlag()
@@ -274,7 +327,7 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onLatestSensingDataReadSuccess(BluetoothDevice bluetoothDevice, LatestSensingData latestSensingData) {
+    public void onLatestSensingDataReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull LatestSensingData latestSensingData, @Nullable Bundle argument) {
         callback(latestSensingData.getSequenceNumber()
                 , latestSensingData.getTemperatureDegC()
                 , latestSensingData.getRelativeHumidityRh()
@@ -287,32 +340,47 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onLatestSensingDataReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onLatestSensingDataReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onLatestSensingDataReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onLatestSensingDataReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onLatestSensingDataClientCharactericsticConfigurationSuccess(BluetoothDevice bluetoothDevice, ClientCharacteristicConfiguration clientCharacteristicConfiguration) {
+    public void onLatestSensingDataClientCharactericsticConfigurationReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument) {
         callback(Arrays.toString(clientCharacteristicConfiguration.getConfiguration()));
     }
 
     @Override
-    public void onLatestSensingDataClientCharactericsticConfigurationFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onLatestSensingDataClientCharactericsticConfigurationReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onLatestSensingDataClientCharactericsticConfigurationTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onLatestSensingDataClientCharactericsticConfigurationReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onLatestSensingDataNotified(BluetoothDevice bluetoothDevice, LatestSensingData latestSensingData) {
+    public void onLatestSensingDataClientCharactericsticConfigurationWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument) {
+        callback(Arrays.toString(clientCharacteristicConfiguration.getConfiguration()));
+    }
+
+    @Override
+    public void onLatestSensingDataClientCharactericsticConfigurationWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
+        callback(status);
+    }
+
+    @Override
+    public void onLatestSensingDataClientCharactericsticConfigurationWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
+        callback(timeout);
+    }
+
+    @Override
+    public void onLatestSensingDataNotified(@NonNull BluetoothDevice bluetoothDevice, @NonNull LatestSensingData latestSensingData) {
         callback(latestSensingData.getSequenceNumber()
                 , latestSensingData.getTemperatureDegC()
                 , latestSensingData.getRelativeHumidityRh()
@@ -325,7 +393,7 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onLatestCalculationDataReadSuccess(BluetoothDevice bluetoothDevice, LatestCalculationData latestCalculationData) {
+    public void onLatestCalculationDataReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull LatestCalculationData latestCalculationData, @Nullable Bundle argument) {
         callback(latestCalculationData.getSequenceNumber()
                 , latestCalculationData.getDiscomfortIndexWithUnit()
                 , latestCalculationData.getHeatStrokeDegC()
@@ -340,32 +408,47 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onLatestCalculationDataReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onLatestCalculationDataReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onLatestCalculationDataReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onLatestCalculationDataReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onLatestCalculationDataClientCharactericsticConfigurationSuccess(BluetoothDevice bluetoothDevice, ClientCharacteristicConfiguration clientCharacteristicConfiguration) {
+    public void onLatestCalculationDataClientCharactericsticConfigurationReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument) {
         callback(Arrays.toString(clientCharacteristicConfiguration.getConfiguration()));
     }
 
     @Override
-    public void onLatestCalculationDataClientCharactericsticConfigurationFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onLatestCalculationDataClientCharactericsticConfigurationReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onLatestCalculationDataClientCharactericsticConfigurationTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onLatestCalculationDataClientCharactericsticConfigurationReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onLatestCalculationDataNotified(BluetoothDevice bluetoothDevice, LatestCalculationData latestCalculationData) {
+    public void onLatestCalculationDataClientCharactericsticConfigurationWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument) {
+        callback(Arrays.toString(clientCharacteristicConfiguration.getConfiguration()));
+    }
+
+    @Override
+    public void onLatestCalculationDataClientCharactericsticConfigurationWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
+        callback(status);
+    }
+
+    @Override
+    public void onLatestCalculationDataClientCharactericsticConfigurationWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
+        callback(timeout);
+    }
+
+    @Override
+    public void onLatestCalculationDataNotified(@NonNull BluetoothDevice bluetoothDevice, @NonNull LatestCalculationData latestCalculationData) {
         callback(latestCalculationData.getSequenceNumber()
                 , latestCalculationData.getDiscomfortIndexWithUnit()
                 , latestCalculationData.getHeatStrokeDegC()
@@ -380,7 +463,7 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onLatestSensingFlagReadSuccess(BluetoothDevice bluetoothDevice, LatestSensingFlag latestSensingFlag) {
+    public void onLatestSensingFlagReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull LatestSensingFlag latestSensingFlag, @Nullable Bundle argument) {
         callback(latestSensingFlag.getSequenceNumber()
                 , latestSensingFlag.getTemperatureFlag()
                 , latestSensingFlag.getRelativeHumidityFlag()
@@ -393,32 +476,47 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onLatestSensingFlagReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onLatestSensingFlagReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onLatestSensingFlagReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onLatestSensingFlagReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onLatestSensingFlagClientCharactericsticConfigurationSuccess(BluetoothDevice bluetoothDevice, ClientCharacteristicConfiguration clientCharacteristicConfiguration) {
+    public void onLatestSensingFlagClientCharactericsticConfigurationReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument) {
         callback(Arrays.toString(clientCharacteristicConfiguration.getConfiguration()));
     }
 
     @Override
-    public void onLatestSensingFlagClientCharactericsticConfigurationFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onLatestSensingFlagClientCharactericsticConfigurationReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onLatestSensingFlagClientCharactericsticConfigurationTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onLatestSensingFlagClientCharactericsticConfigurationReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onLatestSensingFlagNotified(BluetoothDevice bluetoothDevice, LatestSensingFlag latestSensingFlag) {
+    public void onLatestSensingFlagClientCharactericsticConfigurationWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument) {
+        callback(Arrays.toString(clientCharacteristicConfiguration.getConfiguration()));
+    }
+
+    @Override
+    public void onLatestSensingFlagClientCharactericsticConfigurationWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
+        callback(status);
+    }
+
+    @Override
+    public void onLatestSensingFlagClientCharactericsticConfigurationWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
+        callback(timeout);
+    }
+
+    @Override
+    public void onLatestSensingFlagNotified(@NonNull BluetoothDevice bluetoothDevice, @NonNull LatestSensingFlag latestSensingFlag) {
         callback(latestSensingFlag.getSequenceNumber()
                 , latestSensingFlag.getTemperatureFlag()
                 , latestSensingFlag.getRelativeHumidityFlag()
@@ -431,7 +529,7 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onLatestCalculationFlagReadSuccess(BluetoothDevice bluetoothDevice, LatestCalculationFlag latestCalculationFlag) {
+    public void onLatestCalculationFlagReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull LatestCalculationFlag latestCalculationFlag, @Nullable Bundle argument) {
         callback(latestCalculationFlag.getSequenceNumber()
                 , latestCalculationFlag.getDiscomfortIndexFlag()
                 , latestCalculationFlag.getHeatStrokeFlag()
@@ -442,32 +540,47 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onLatestCalculationFlagReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onLatestCalculationFlagReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onLatestCalculationFlagReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onLatestCalculationFlagReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onLatestCalculationFlagClientCharactericsticConfigurationSuccess(BluetoothDevice bluetoothDevice, ClientCharacteristicConfiguration clientCharacteristicConfiguration) {
+    public void onLatestCalculationFlagClientCharactericsticConfigurationReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument) {
         callback(Arrays.toString(clientCharacteristicConfiguration.getConfiguration()));
     }
 
     @Override
-    public void onLatestCalculationFlagClientCharactericsticConfigurationFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onLatestCalculationFlagClientCharactericsticConfigurationReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onLatestCalculationFlagClientCharactericsticConfigurationTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onLatestCalculationFlagClientCharactericsticConfigurationReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onLatestCalculationFlagNotified(BluetoothDevice bluetoothDevice, LatestCalculationFlag latestCalculationFlag) {
+    public void onLatestCalculationFlagClientCharactericsticConfigurationWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument) {
+        callback(Arrays.toString(clientCharacteristicConfiguration.getConfiguration()));
+    }
+
+    @Override
+    public void onLatestCalculationFlagClientCharactericsticConfigurationWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
+        callback(status);
+    }
+
+    @Override
+    public void onLatestCalculationFlagClientCharactericsticConfigurationWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
+        callback(timeout);
+    }
+
+    @Override
+    public void onLatestCalculationFlagNotified(@NonNull BluetoothDevice bluetoothDevice, @NonNull LatestCalculationFlag latestCalculationFlag) {
         callback(latestCalculationFlag.getSequenceNumber()
                 , latestCalculationFlag.getDiscomfortIndexFlag()
                 , latestCalculationFlag.getHeatStrokeFlag()
@@ -478,7 +591,7 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onLatestAccelerationStatusReadSuccess(BluetoothDevice bluetoothDevice, LatestAccelerationStatus latestAccelerationStatus) {
+    public void onLatestAccelerationStatusReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull LatestAccelerationStatus latestAccelerationStatus, @Nullable Bundle argument) {
         callback(latestAccelerationStatus.getSequenceNumber()
                 , latestAccelerationStatus.getVibrationInformation()
                 , latestAccelerationStatus.getMaximumAccelerationXAxisGal()
@@ -492,32 +605,47 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onLatestAccelerationStatusReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onLatestAccelerationStatusReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onLatestAccelerationStatusReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onLatestAccelerationStatusReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onLatestAccelerationStatusClientCharactericsticConfigurationSuccess(BluetoothDevice bluetoothDevice, ClientCharacteristicConfiguration clientCharacteristicConfiguration) {
+    public void onLatestAccelerationStatusClientCharactericsticConfigurationReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument) {
         callback(Arrays.toString(clientCharacteristicConfiguration.getConfiguration()));
     }
 
     @Override
-    public void onLatestAccelerationStatusClientCharactericsticConfigurationFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onLatestAccelerationStatusClientCharactericsticConfigurationReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onLatestAccelerationStatusClientCharactericsticConfigurationTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onLatestAccelerationStatusClientCharactericsticConfigurationReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onLatestAccelerationStatusNotified(BluetoothDevice bluetoothDevice, LatestAccelerationStatus latestAccelerationStatus) {
+    public void onLatestAccelerationStatusClientCharactericsticConfigurationWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument) {
+        callback(Arrays.toString(clientCharacteristicConfiguration.getConfiguration()));
+    }
+
+    @Override
+    public void onLatestAccelerationStatusClientCharactericsticConfigurationWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
+        callback(status);
+    }
+
+    @Override
+    public void onLatestAccelerationStatusClientCharactericsticConfigurationWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
+        callback(timeout);
+    }
+
+    @Override
+    public void onLatestAccelerationStatusNotified(@NonNull BluetoothDevice bluetoothDevice, @NonNull LatestAccelerationStatus latestAccelerationStatus) {
         callback(latestAccelerationStatus.getSequenceNumber()
                 , latestAccelerationStatus.getVibrationInformation()
                 , latestAccelerationStatus.getMaximumAccelerationXAxisGal()
@@ -531,7 +659,7 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onVibrationCountReadSuccess(BluetoothDevice bluetoothDevice, VibrationCount vibrationCount) {
+    public void onVibrationCountReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull VibrationCount vibrationCount, @Nullable Bundle argument) {
         callback(
                 vibrationCount.getEarthquakeCount()
                 , vibrationCount.getVibrationCount()
@@ -539,27 +667,37 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onVibrationCountReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onVibrationCountReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onVibrationCountReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onVibrationCountReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onRequestAccelerationMemoryIndexWriteFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onRequestAccelerationMemoryIndexWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull RequestAccelerationMemoryIndex requestAccelerationMemoryIndex, @Nullable Bundle argument) {
+        callback(
+                requestAccelerationMemoryIndex.getAccelerationDataType()
+                , requestAccelerationMemoryIndex.getRequestAccelerationMemoryIndex()
+                , requestAccelerationMemoryIndex.getRequestPageStart()
+                , requestAccelerationMemoryIndex.getRequestPageEnd()
+        );
+    }
+
+    @Override
+    public void onRequestAccelerationMemoryIndexWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onRequestAccelerationMemoryIndexWriteTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onRequestAccelerationMemoryIndexWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onAccelerationMemoryStatusReadSuccess(BluetoothDevice bluetoothDevice, AccelerationMemoryStatus accelerationMemoryStatus) {
+    public void onAccelerationMemoryStatusReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull AccelerationMemoryStatus accelerationMemoryStatus, @Nullable Bundle argument) {
         callback(
                 accelerationMemoryStatus.getStatus()
                 , accelerationMemoryStatus.getTotalTransferCount()
@@ -567,17 +705,47 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onAccelerationMemoryStatusReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onAccelerationMemoryStatusReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onAccelerationMemoryStatusReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onAccelerationMemoryStatusReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onLedSettingNormalStateReadSuccess(BluetoothDevice bluetoothDevice, LedSettingNormalState ledSettingNormalState) {
+    public void onAccelerationMemoryDataClientCharactericsticConfigurationReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument) {
+        callback(Arrays.toString(clientCharacteristicConfiguration.getConfiguration()));
+    }
+
+    @Override
+    public void onAccelerationMemoryDataClientCharactericsticConfigurationReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
+        callback(status);
+    }
+
+    @Override
+    public void onAccelerationMemoryDataClientCharactericsticConfigurationReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
+        callback(timeout);
+    }
+
+    @Override
+    public void onAccelerationMemoryDataClientCharactericsticConfigurationWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument) {
+        callback(Arrays.toString(clientCharacteristicConfiguration.getConfiguration()));
+    }
+
+    @Override
+    public void onAccelerationMemoryDataClientCharactericsticConfigurationWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
+        callback(status);
+    }
+
+    @Override
+    public void onAccelerationMemoryDataClientCharactericsticConfigurationWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
+        callback(timeout);
+    }
+
+    @Override
+    public void onLedSettingNormalStateReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull LedSettingNormalState ledSettingNormalState, @Nullable Bundle argument) {
         callback(ledSettingNormalState.getDisplayRule()
                 , ledSettingNormalState.getIntensityOfLedRed()
                 , ledSettingNormalState.getIntensityOfLedGreen()
@@ -585,17 +753,17 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onLedSettingNormalStateReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onLedSettingNormalStateReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onLedSettingNormalStateReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onLedSettingNormalStateReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onLedSettingNormalStateWriteSuccess(BluetoothDevice bluetoothDevice, LedSettingNormalState ledSettingNormalState) {
+    public void onLedSettingNormalStateWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull LedSettingNormalState ledSettingNormalState, @Nullable Bundle argument) {
         callback(ledSettingNormalState.getDisplayRule()
                 , ledSettingNormalState.getIntensityOfLedRed()
                 , ledSettingNormalState.getIntensityOfLedGreen()
@@ -603,17 +771,17 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onLedSettingNormalStateWriteFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onLedSettingNormalStateWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onLedSettingNormalStateWriteTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onLedSettingNormalStateWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onLedSettingEventStateReadSuccess(BluetoothDevice bluetoothDevice, LedSettingEventState ledSettingEventState) {
+    public void onLedSettingEventStateReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull LedSettingEventState ledSettingEventState, @Nullable Bundle argument) {
         callback(ledSettingEventState.getDisplayRule()
                 , ledSettingEventState.getIntensityOfLedRed()
                 , ledSettingEventState.getIntensityOfLedGreen()
@@ -621,17 +789,17 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onLedSettingEventStateReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onLedSettingEventStateReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onLedSettingEventStateReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onLedSettingEventStateReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onLedSettingEventStateWriteSuccess(BluetoothDevice bluetoothDevice, LedSettingEventState ledSettingEventState) {
+    public void onLedSettingEventStateWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull LedSettingEventState ledSettingEventState, @Nullable Bundle argument) {
         callback(ledSettingEventState.getDisplayRule()
                 , ledSettingEventState.getIntensityOfLedRed()
                 , ledSettingEventState.getIntensityOfLedGreen()
@@ -639,51 +807,51 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onLedSettingEventStateWriteFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onLedSettingEventStateWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onLedSettingEventStateWriteTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onLedSettingEventStateWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onLedStateOperationReadSuccess(BluetoothDevice bluetoothDevice, LedStateOperation ledStateOperation) {
+    public void onLedStateOperationReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull LedStateOperation ledStateOperation, @Nullable Bundle argument) {
         callback(ledStateOperation.getStartUp()
                 , ledStateOperation.getError()
                 , ledStateOperation.getConnection());
     }
 
     @Override
-    public void onLedStateOperationReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onLedStateOperationReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onLedStateOperationReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onLedStateOperationReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onLedStateOperationWriteSuccess(BluetoothDevice bluetoothDevice, LedStateOperation ledStateOperation) {
+    public void onLedStateOperationWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull LedStateOperation ledStateOperation, @Nullable Bundle argument) {
         callback(ledStateOperation.getStartUp()
                 , ledStateOperation.getError()
                 , ledStateOperation.getConnection());
     }
 
     @Override
-    public void onLedStateOperationWriteFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onLedStateOperationWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onLedStateOperationWriteTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onLedStateOperationWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onInstallationOffsetReadSuccess(BluetoothDevice bluetoothDevice, InstallationOffset installationOffset) {
+    public void onInstallationOffsetReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull InstallationOffset installationOffset, @Nullable Bundle argument) {
         callback(installationOffset.getInstallationOffsetEnableDisable()
                 , installationOffset.getTemperatureInstallationOffsetDegC()
                 , installationOffset.getRelativeHumidityInstallationOffsetRh()
@@ -693,17 +861,17 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onInstallationOffsetReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onInstallationOffsetReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onInstallationOffsetReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onInstallationOffsetReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onInstallationOffsetWriteSuccess(BluetoothDevice bluetoothDevice, InstallationOffset installationOffset) {
+    public void onInstallationOffsetWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull InstallationOffset installationOffset, @Nullable Bundle argument) {
         callback(installationOffset.getInstallationOffsetEnableDisable()
                 , installationOffset.getTemperatureInstallationOffsetDegC()
                 , installationOffset.getRelativeHumidityInstallationOffsetRh()
@@ -713,94 +881,94 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onInstallationOffsetWriteFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onInstallationOffsetWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onInstallationOffsetWriteTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onInstallationOffsetWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onAdvertiseSettingReadSuccess(BluetoothDevice bluetoothDevice, AdvertiseSetting advertiseSetting) {
+    public void onAdvertiseSettingReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull AdvertiseSetting advertiseSetting, @Nullable Bundle argument) {
         callback(advertiseSetting.getAdvertisingIntervalMillis()
                 , advertiseSetting.getAdvertisingMode());
     }
 
     @Override
-    public void onAdvertiseSettingReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onAdvertiseSettingReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onAdvertiseSettingReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onAdvertiseSettingReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onAdvertiseSettingWriteSuccess(BluetoothDevice bluetoothDevice, AdvertiseSetting advertiseSetting) {
+    public void onAdvertiseSettingWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull AdvertiseSetting advertiseSetting, @Nullable Bundle argument) {
         callback(advertiseSetting.getAdvertisingIntervalMillis()
                 , advertiseSetting.getAdvertisingMode());
     }
 
     @Override
-    public void onAdvertiseSettingWriteFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onAdvertiseSettingWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onAdvertiseSettingWriteTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onAdvertiseSettingWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onMemoryResetWriteSuccess(BluetoothDevice bluetoothDevice, MemoryReset memoryReset) {
+    public void onMemoryResetWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull MemoryReset memoryReset, @Nullable Bundle argument) {
         callback(memoryReset.getMemoryReset());
     }
 
     @Override
-    public void onMemoryResetWriteFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onMemoryResetWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onMemoryResetWriteTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onMemoryResetWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onModeChangeReadSuccess(BluetoothDevice bluetoothDevice, ModeChange modeChange) {
+    public void onModeChangeReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ModeChange modeChange, @Nullable Bundle argument) {
         callback(modeChange.getModeChange());
     }
 
     @Override
-    public void onModeChangeReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onModeChangeReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onModeChangeReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onModeChangeReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onModeChangeWriteSuccess(BluetoothDevice bluetoothDevice, ModeChange modeChange) {
+    public void onModeChangeWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ModeChange modeChange, @Nullable Bundle argument) {
         callback(modeChange.getModeChange());
     }
 
     @Override
-    public void onModeChangeWriteFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onModeChangeWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onModeChangeWriteTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onModeChangeWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onAccelerationLoggerControlWriteSuccess(BluetoothDevice bluetoothDevice, AccelerationLoggerControl accelerationLoggerControl) {
+    public void onAccelerationLoggerControlWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, AccelerationLoggerControl accelerationLoggerControl, @Nullable Bundle argument) {
         callback(accelerationLoggerControl.getLoggerCondition()
                 , accelerationLoggerControl.getRangeOfDetection()
                 , accelerationLoggerControl.getOdrSetting()
@@ -809,108 +977,108 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onAccelerationLoggerControlWriteFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onAccelerationLoggerControlWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onAccelerationLoggerControlWriteTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onAccelerationLoggerControlWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onAccelerationLoggerStatusReadSuccess(BluetoothDevice bluetoothDevice, AccelerationLoggerStatus accelerationLoggerStatus) {
+    public void onAccelerationLoggerStatusReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull AccelerationLoggerStatus accelerationLoggerStatus, @Nullable Bundle argument) {
         callback(accelerationLoggerStatus.getLoggerStatus()
                 , accelerationLoggerStatus.getRunningPage());
     }
 
     @Override
-    public void onAccelerationLoggerStatusReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onAccelerationLoggerStatusReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onAccelerationLoggerStatusReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onAccelerationLoggerStatusReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onLatestTimeCounterReadSuccess(BluetoothDevice bluetoothDevice, LatestTimeCounter latestTimeCounter) {
+    public void onLatestTimeCounterReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull LatestTimeCounter latestTimeCounter, @Nullable Bundle argument) {
         callback(latestTimeCounter.getTimeCounter());
     }
 
     @Override
-    public void onLatestTimeCounterReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onLatestTimeCounterReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onLatestTimeCounterReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onLatestTimeCounterReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onTimeSettingReadSuccess(BluetoothDevice bluetoothDevice, TimeSetting timeSetting) {
+    public void onTimeSettingReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull TimeSetting timeSetting, @Nullable Bundle argument) {
         callback(timeSetting.getTimeSetting());
     }
 
     @Override
-    public void onTimeSettingReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onTimeSettingReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onTimeSettingReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onTimeSettingReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onTimeSettingWriteSuccess(BluetoothDevice bluetoothDevice, TimeSetting timeSetting) {
+    public void onTimeSettingWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, TimeSetting timeSetting, @Nullable Bundle argument) {
         callback(timeSetting.getTimeSetting());
     }
 
     @Override
-    public void onTimeSettingWriteFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onTimeSettingWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onTimeSettingWriteTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onTimeSettingWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onMemoryStorageIntervalReadSuccess(BluetoothDevice bluetoothDevice, MemoryStorageInterval memoryStorageInterval) {
+    public void onMemoryStorageIntervalReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull MemoryStorageInterval memoryStorageInterval, @Nullable Bundle argument) {
         callback(memoryStorageInterval.getMemoryStorageIntervalSec());
     }
 
     @Override
-    public void onMemoryStorageIntervalReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onMemoryStorageIntervalReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onMemoryStorageIntervalReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onMemoryStorageIntervalReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onMemoryStorageIntervalWriteSuccess(BluetoothDevice bluetoothDevice, MemoryStorageInterval memoryStorageInterval) {
+    public void onMemoryStorageIntervalWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull MemoryStorageInterval memoryStorageInterval, @Nullable Bundle argument) {
         callback(memoryStorageInterval.getMemoryStorageIntervalSec());
     }
 
     @Override
-    public void onMemoryStorageIntervalWriteFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onMemoryStorageIntervalWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onMemoryStorageIntervalWriteTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onMemoryStorageIntervalWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onTemperatureSensor1ReadSuccess(BluetoothDevice bluetoothDevice, TemperatureSensor1 temperatureSensor1) {
+    public void onTemperatureSensor1ReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull TemperatureSensor1 temperatureSensor1, @Nullable Bundle argument) {
         callback(temperatureSensor1.getEventEnableDisable()
                 , temperatureSensor1.getSimpleThresholdUpperLimit1DegC()
                 , temperatureSensor1.getSimpleThresholdUpperLimit2DegC()
@@ -924,17 +1092,17 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onTemperatureSensor1ReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onTemperatureSensor1ReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onTemperatureSensor1ReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onTemperatureSensor1ReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onTemperatureSensor1WriteSuccess(BluetoothDevice bluetoothDevice, TemperatureSensor1 temperatureSensor1) {
+    public void onTemperatureSensor1WriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull TemperatureSensor1 temperatureSensor1, @Nullable Bundle argument) {
         callback(temperatureSensor1.getEventEnableDisable()
                 , temperatureSensor1.getSimpleThresholdUpperLimit1DegC()
                 , temperatureSensor1.getSimpleThresholdUpperLimit2DegC()
@@ -948,17 +1116,17 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onTemperatureSensor1WriteFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onTemperatureSensor1WriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onTemperatureSensor1WriteTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onTemperatureSensor1WriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onTemperatureSensor2ReadSuccess(BluetoothDevice bluetoothDevice, TemperatureSensor2 temperatureSensor2) {
+    public void onTemperatureSensor2ReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull TemperatureSensor2 temperatureSensor2, @Nullable Bundle argument) {
         callback(temperatureSensor2.getAverageValueThresholdUpperDegC()
                 , temperatureSensor2.getAverageValueThresholdLowerDegC()
                 , temperatureSensor2.getPeakToPeakThresholdUpperDegC()
@@ -975,17 +1143,17 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onTemperatureSensor2ReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onTemperatureSensor2ReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onTemperatureSensor2ReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onTemperatureSensor2ReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onTemperatureSensor2WriteSuccess(BluetoothDevice bluetoothDevice, TemperatureSensor2 temperatureSensor2) {
+    public void onTemperatureSensor2WriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull TemperatureSensor2 temperatureSensor2, @Nullable Bundle argument) {
         callback(temperatureSensor2.getAverageValueThresholdUpperDegC()
                 , temperatureSensor2.getAverageValueThresholdLowerDegC()
                 , temperatureSensor2.getPeakToPeakThresholdUpperDegC()
@@ -1002,17 +1170,17 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onTemperatureSensor2WriteFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onTemperatureSensor2WriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onTemperatureSensor2WriteTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onTemperatureSensor2WriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onRelativeHumiditySensor1ReadSuccess(BluetoothDevice bluetoothDevice, RelativeHumiditySensor1 relativeHumiditySensor1) {
+    public void onRelativeHumiditySensor1ReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull RelativeHumiditySensor1 relativeHumiditySensor1, @Nullable Bundle argument) {
         callback(relativeHumiditySensor1.getEventEnableDisable()
                 , relativeHumiditySensor1.getSimpleThresholdUpperLimit1Rh()
                 , relativeHumiditySensor1.getSimpleThresholdUpperLimit2Rh()
@@ -1026,17 +1194,17 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onRelativeHumiditySensor1ReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onRelativeHumiditySensor1ReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onRelativeHumiditySensor1ReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onRelativeHumiditySensor1ReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onRelativeHumiditySensor1WriteSuccess(BluetoothDevice bluetoothDevice, RelativeHumiditySensor1 relativeHumiditySensor1) {
+    public void onRelativeHumiditySensor1WriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull RelativeHumiditySensor1 relativeHumiditySensor1, @Nullable Bundle argument) {
         callback(relativeHumiditySensor1.getEventEnableDisable()
                 , relativeHumiditySensor1.getSimpleThresholdUpperLimit1Rh()
                 , relativeHumiditySensor1.getSimpleThresholdUpperLimit2Rh()
@@ -1050,17 +1218,17 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onRelativeHumiditySensor1WriteFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onRelativeHumiditySensor1WriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onRelativeHumiditySensor1WriteTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onRelativeHumiditySensor1WriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onRelativeHumiditySensor2ReadSuccess(BluetoothDevice bluetoothDevice, RelativeHumiditySensor2 relativeHumiditySensor2) {
+    public void onRelativeHumiditySensor2ReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull RelativeHumiditySensor2 relativeHumiditySensor2, @Nullable Bundle argument) {
         callback(relativeHumiditySensor2.getAverageValueThresholdUpperRh()
                 , relativeHumiditySensor2.getAverageValueThresholdLowerRh()
                 , relativeHumiditySensor2.getPeakToPeakThresholdUpperRh()
@@ -1077,17 +1245,17 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onRelativeHumiditySensor2ReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onRelativeHumiditySensor2ReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onRelativeHumiditySensor2ReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onRelativeHumiditySensor2ReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onRelativeHumiditySensor2WriteSuccess(BluetoothDevice bluetoothDevice, RelativeHumiditySensor2 relativeHumiditySensor2) {
+    public void onRelativeHumiditySensor2WriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull RelativeHumiditySensor2 relativeHumiditySensor2, @Nullable Bundle argument) {
         callback(relativeHumiditySensor2.getAverageValueThresholdUpperRh()
                 , relativeHumiditySensor2.getAverageValueThresholdLowerRh()
                 , relativeHumiditySensor2.getPeakToPeakThresholdUpperRh()
@@ -1104,17 +1272,17 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onRelativeHumiditySensor2WriteFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onRelativeHumiditySensor2WriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onRelativeHumiditySensor2WriteTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onRelativeHumiditySensor2WriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onAmbientLightSensor1ReadSuccess(BluetoothDevice bluetoothDevice, AmbientLightSensor1 ambientLightSensor1) {
+    public void onAmbientLightSensor1ReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull AmbientLightSensor1 ambientLightSensor1, @Nullable Bundle argument) {
         callback(ambientLightSensor1.getEventEnableDisable()
                 , ambientLightSensor1.getSimpleThresholdUpperLimit1Lx()
                 , ambientLightSensor1.getSimpleThresholdUpperLimit2Lx()
@@ -1128,17 +1296,17 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onAmbientLightSensor1ReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onAmbientLightSensor1ReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onAmbientLightSensor1ReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onAmbientLightSensor1ReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onAmbientLightSensor1WriteSuccess(BluetoothDevice bluetoothDevice, AmbientLightSensor1 ambientLightSensor1) {
+    public void onAmbientLightSensor1WriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull AmbientLightSensor1 ambientLightSensor1, @Nullable Bundle argument) {
         callback(ambientLightSensor1.getEventEnableDisable()
                 , ambientLightSensor1.getSimpleThresholdUpperLimit1Lx()
                 , ambientLightSensor1.getSimpleThresholdUpperLimit2Lx()
@@ -1152,17 +1320,17 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onAmbientLightSensor1WriteFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onAmbientLightSensor1WriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onAmbientLightSensor1WriteTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onAmbientLightSensor1WriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onAmbientLightSensor2ReadSuccess(BluetoothDevice bluetoothDevice, AmbientLightSensor2 ambientLightSensor2) {
+    public void onAmbientLightSensor2ReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull AmbientLightSensor2 ambientLightSensor2, @Nullable Bundle argument) {
         callback(ambientLightSensor2.getAverageValueThresholdUpperLx()
                 , ambientLightSensor2.getAverageValueThresholdLowerLx()
                 , ambientLightSensor2.getPeakToPeakThresholdUpperLx()
@@ -1179,17 +1347,17 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onAmbientLightSensor2ReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onAmbientLightSensor2ReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onAmbientLightSensor2ReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onAmbientLightSensor2ReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onAmbientLightSensor2WriteSuccess(BluetoothDevice bluetoothDevice, AmbientLightSensor2 ambientLightSensor2) {
+    public void onAmbientLightSensor2WriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull AmbientLightSensor2 ambientLightSensor2, @Nullable Bundle argument) {
         callback(ambientLightSensor2.getAverageValueThresholdUpperLx()
                 , ambientLightSensor2.getAverageValueThresholdLowerLx()
                 , ambientLightSensor2.getPeakToPeakThresholdUpperLx()
@@ -1206,17 +1374,17 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onAmbientLightSensor2WriteFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onAmbientLightSensor2WriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onAmbientLightSensor2WriteTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onAmbientLightSensor2WriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onBarometricPressureSensor1ReadSuccess(BluetoothDevice bluetoothDevice, BarometricPressureSensor1 barometricPressureSensor1) {
+    public void onBarometricPressureSensor1ReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull BarometricPressureSensor1 barometricPressureSensor1, @Nullable Bundle argument) {
         callback(barometricPressureSensor1.getEventEnableDisable()
                 , barometricPressureSensor1.getSimpleThresholdUpperLimit1Hpa()
                 , barometricPressureSensor1.getSimpleThresholdUpperLimit2Hpa()
@@ -1230,17 +1398,17 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onBarometricPressureSensor1ReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onBarometricPressureSensor1ReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onBarometricPressureSensor1ReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onBarometricPressureSensor1ReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onBarometricPressureSensor1WriteSuccess(BluetoothDevice bluetoothDevice, BarometricPressureSensor1 barometricPressureSensor1) {
+    public void onBarometricPressureSensor1WriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull BarometricPressureSensor1 barometricPressureSensor1, @Nullable Bundle argument) {
         callback(barometricPressureSensor1.getEventEnableDisable()
                 , barometricPressureSensor1.getSimpleThresholdUpperLimit1Hpa()
                 , barometricPressureSensor1.getSimpleThresholdUpperLimit2Hpa()
@@ -1254,17 +1422,17 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onBarometricPressureSensor1WriteFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onBarometricPressureSensor1WriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onBarometricPressureSensor1WriteTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onBarometricPressureSensor1WriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onBarometricPressureSensor2ReadSuccess(BluetoothDevice bluetoothDevice, BarometricPressureSensor2 barometricPressureSensor2) {
+    public void onBarometricPressureSensor2ReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull BarometricPressureSensor2 barometricPressureSensor2, @Nullable Bundle argument) {
         callback(barometricPressureSensor2.getAverageValueThresholdUpperHpa()
                 , barometricPressureSensor2.getAverageValueThresholdLowerHpa()
                 , barometricPressureSensor2.getPeakToPeakThresholdUpperHpa()
@@ -1281,17 +1449,17 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onBarometricPressureSensor2ReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onBarometricPressureSensor2ReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onBarometricPressureSensor2ReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onBarometricPressureSensor2ReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onBarometricPressureSensor2WriteSuccess(BluetoothDevice bluetoothDevice, BarometricPressureSensor2 barometricPressureSensor2) {
+    public void onBarometricPressureSensor2WriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull BarometricPressureSensor2 barometricPressureSensor2, @Nullable Bundle argument) {
         callback(barometricPressureSensor2.getAverageValueThresholdUpperHpa()
                 , barometricPressureSensor2.getAverageValueThresholdLowerHpa()
                 , barometricPressureSensor2.getPeakToPeakThresholdUpperHpa()
@@ -1308,17 +1476,17 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onBarometricPressureSensor2WriteFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onBarometricPressureSensor2WriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onBarometricPressureSensor2WriteTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onBarometricPressureSensor2WriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onSoundNoiseSensor1ReadSuccess(BluetoothDevice bluetoothDevice, SoundNoiseSensor1 soundNoiseSensor1) {
+    public void onSoundNoiseSensor1ReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull SoundNoiseSensor1 soundNoiseSensor1, @Nullable Bundle argument) {
         callback(soundNoiseSensor1.getEventEnableDisable()
                 , soundNoiseSensor1.getSimpleThresholdUpperLimit1Db()
                 , soundNoiseSensor1.getSimpleThresholdUpperLimit2Db()
@@ -1332,17 +1500,17 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onSoundNoiseSensor1ReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onSoundNoiseSensor1ReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onSoundNoiseSensor1ReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onSoundNoiseSensor1ReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onSoundNoiseSensor1WriteSuccess(BluetoothDevice bluetoothDevice, SoundNoiseSensor1 soundNoiseSensor1) {
+    public void onSoundNoiseSensor1WriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull SoundNoiseSensor1 soundNoiseSensor1, @Nullable Bundle argument) {
         callback(soundNoiseSensor1.getEventEnableDisable()
                 , soundNoiseSensor1.getSimpleThresholdUpperLimit1Db()
                 , soundNoiseSensor1.getSimpleThresholdUpperLimit2Db()
@@ -1356,17 +1524,17 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onSoundNoiseSensor1WriteFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onSoundNoiseSensor1WriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onSoundNoiseSensor1WriteTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onSoundNoiseSensor1WriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onSoundNoiseSensor2ReadSuccess(BluetoothDevice bluetoothDevice, SoundNoiseSensor2 soundNoiseSensor2) {
+    public void onSoundNoiseSensor2ReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull SoundNoiseSensor2 soundNoiseSensor2, @Nullable Bundle argument) {
         callback(soundNoiseSensor2.getAverageValueThresholdUpperDb()
                 , soundNoiseSensor2.getAverageValueThresholdLowerDb()
                 , soundNoiseSensor2.getPeakToPeakThresholdUpperDb()
@@ -1383,17 +1551,17 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onSoundNoiseSensor2ReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onSoundNoiseSensor2ReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onSoundNoiseSensor2ReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onSoundNoiseSensor2ReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onSoundNoiseSensor2WriteSuccess(BluetoothDevice bluetoothDevice, SoundNoiseSensor2 soundNoiseSensor2) {
+    public void onSoundNoiseSensor2WriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull SoundNoiseSensor2 soundNoiseSensor2, @Nullable Bundle argument) {
         callback(soundNoiseSensor2.getAverageValueThresholdUpperDb()
                 , soundNoiseSensor2.getAverageValueThresholdLowerDb()
                 , soundNoiseSensor2.getPeakToPeakThresholdUpperDb()
@@ -1410,17 +1578,17 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onSoundNoiseSensor2WriteFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onSoundNoiseSensor2WriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onSoundNoiseSensor2WriteTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onSoundNoiseSensor2WriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onEtvocSensor1ReadSuccess(BluetoothDevice bluetoothDevice, EtvocSensor1 etvocSensor1) {
+    public void onEtvocSensor1ReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull EtvocSensor1 etvocSensor1, @Nullable Bundle argument) {
         callback(etvocSensor1.getEventEnableDisable()
                 , etvocSensor1.getSimpleThresholdUpperLimit1Ppb()
                 , etvocSensor1.getSimpleThresholdUpperLimit2Ppb()
@@ -1434,17 +1602,17 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onEtvocSensor1ReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onEtvocSensor1ReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onEtvocSensor1ReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onEtvocSensor1ReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onEtvocSensor1WriteSuccess(BluetoothDevice bluetoothDevice, EtvocSensor1 etvocSensor1) {
+    public void onEtvocSensor1WriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull EtvocSensor1 etvocSensor1, @Nullable Bundle argument) {
         callback(etvocSensor1.getEventEnableDisable()
                 , etvocSensor1.getSimpleThresholdUpperLimit1Ppb()
                 , etvocSensor1.getSimpleThresholdUpperLimit2Ppb()
@@ -1458,17 +1626,17 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onEtvocSensor1WriteFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onEtvocSensor1WriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onEtvocSensor1WriteTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onEtvocSensor1WriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onEtvocSensor2ReadSuccess(BluetoothDevice bluetoothDevice, EtvocSensor2 etvocSensor2) {
+    public void onEtvocSensor2ReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull EtvocSensor2 etvocSensor2, @Nullable Bundle argument) {
         callback(etvocSensor2.getAverageValueThresholdUpperPpb()
                 , etvocSensor2.getAverageValueThresholdLowerPpb()
                 , etvocSensor2.getPeakToPeakThresholdUpperPpb()
@@ -1485,17 +1653,17 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onEtvocSensor2ReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onEtvocSensor2ReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onEtvocSensor2ReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onEtvocSensor2ReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onEtvocSensor2WriteSuccess(BluetoothDevice bluetoothDevice, EtvocSensor2 etvocSensor2) {
+    public void onEtvocSensor2WriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull EtvocSensor2 etvocSensor2, @Nullable Bundle argument) {
         callback(etvocSensor2.getAverageValueThresholdUpperPpb()
                 , etvocSensor2.getAverageValueThresholdLowerPpb()
                 , etvocSensor2.getPeakToPeakThresholdUpperPpb()
@@ -1512,17 +1680,17 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onEtvocSensor2WriteFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onEtvocSensor2WriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onEtvocSensor2WriteTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onEtvocSensor2WriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onEco2Sensor1ReadSuccess(BluetoothDevice bluetoothDevice, Eco2Sensor1 eco2Sensor1) {
+    public void onEco2Sensor1ReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull Eco2Sensor1 eco2Sensor1, @Nullable Bundle argument) {
         callback(eco2Sensor1.getEventEnableDisable()
                 , eco2Sensor1.getSimpleThresholdUpperLimit1Ppm()
                 , eco2Sensor1.getSimpleThresholdUpperLimit2Ppm()
@@ -1536,17 +1704,17 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onEco2Sensor1ReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onEco2Sensor1ReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onEco2Sensor1ReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onEco2Sensor1ReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onEco2Sensor1WriteSuccess(BluetoothDevice bluetoothDevice, Eco2Sensor1 eco2Sensor1) {
+    public void onEco2Sensor1WriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull Eco2Sensor1 eco2Sensor1, @Nullable Bundle argument) {
         callback(eco2Sensor1.getEventEnableDisable()
                 , eco2Sensor1.getSimpleThresholdUpperLimit1Ppm()
                 , eco2Sensor1.getSimpleThresholdUpperLimit2Ppm()
@@ -1560,17 +1728,17 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onEco2Sensor1WriteFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onEco2Sensor1WriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onEco2Sensor1WriteTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onEco2Sensor1WriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onEco2Sensor2ReadSuccess(BluetoothDevice bluetoothDevice, Eco2Sensor2 eco2Sensor2) {
+    public void onEco2Sensor2ReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull Eco2Sensor2 eco2Sensor2, @Nullable Bundle argument) {
         callback(eco2Sensor2.getAverageValueThresholdUpperPpm()
                 , eco2Sensor2.getAverageValueThresholdLowerPpm()
                 , eco2Sensor2.getPeakToPeakThresholdUpperPpm()
@@ -1587,17 +1755,17 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onEco2Sensor2ReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onEco2Sensor2ReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onEco2Sensor2ReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onEco2Sensor2ReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onEco2Sensor2WriteSuccess(BluetoothDevice bluetoothDevice, Eco2Sensor2 eco2Sensor2) {
+    public void onEco2Sensor2WriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull Eco2Sensor2 eco2Sensor2, @Nullable Bundle argument) {
         callback(eco2Sensor2.getAverageValueThresholdUpperPpm()
                 , eco2Sensor2.getAverageValueThresholdLowerPpm()
                 , eco2Sensor2.getPeakToPeakThresholdUpperPpm()
@@ -1614,17 +1782,17 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onEco2Sensor2WriteFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onEco2Sensor2WriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onEco2Sensor2WriteTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onEco2Sensor2WriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onDiscomfortIndexSensor1ReadSuccess(BluetoothDevice bluetoothDevice, DiscomfortIndexSensor1 discomfortIndexSensor1) {
+    public void onDiscomfortIndexSensor1ReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull DiscomfortIndexSensor1 discomfortIndexSensor1, @Nullable Bundle argument) {
         callback(discomfortIndexSensor1.getEventEnableDisable()
                 , discomfortIndexSensor1.getSimpleThresholdUpperLimit1WithUnit()
                 , discomfortIndexSensor1.getSimpleThresholdUpperLimit2WithUnit()
@@ -1638,17 +1806,17 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onDiscomfortIndexSensor1ReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onDiscomfortIndexSensor1ReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onDiscomfortIndexSensor1ReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onDiscomfortIndexSensor1ReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onDiscomfortIndexSensor1WriteSuccess(BluetoothDevice bluetoothDevice, DiscomfortIndexSensor1 discomfortIndexSensor1) {
+    public void onDiscomfortIndexSensor1WriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull DiscomfortIndexSensor1 discomfortIndexSensor1, @Nullable Bundle argument) {
         callback(discomfortIndexSensor1.getEventEnableDisable()
                 , discomfortIndexSensor1.getSimpleThresholdUpperLimit1WithUnit()
                 , discomfortIndexSensor1.getSimpleThresholdUpperLimit2WithUnit()
@@ -1662,17 +1830,17 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onDiscomfortIndexSensor1WriteFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onDiscomfortIndexSensor1WriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onDiscomfortIndexSensor1WriteTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onDiscomfortIndexSensor1WriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onDiscomfortIndexSensor2ReadSuccess(BluetoothDevice bluetoothDevice, DiscomfortIndexSensor2 discomfortIndexSensor2) {
+    public void onDiscomfortIndexSensor2ReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull DiscomfortIndexSensor2 discomfortIndexSensor2, @Nullable Bundle argument) {
         callback(discomfortIndexSensor2.getAverageValueThresholdUpperWithUnit()
                 , discomfortIndexSensor2.getAverageValueThresholdLowerWithUnit()
                 , discomfortIndexSensor2.getPeakToPeakThresholdUpperWithUnit()
@@ -1689,17 +1857,17 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onDiscomfortIndexSensor2ReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onDiscomfortIndexSensor2ReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onDiscomfortIndexSensor2ReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onDiscomfortIndexSensor2ReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onDiscomfortIndexSensor2WriteSuccess(BluetoothDevice bluetoothDevice, DiscomfortIndexSensor2 discomfortIndexSensor2) {
+    public void onDiscomfortIndexSensor2WriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull DiscomfortIndexSensor2 discomfortIndexSensor2, @Nullable Bundle argument) {
         callback(discomfortIndexSensor2.getAverageValueThresholdUpperWithUnit()
                 , discomfortIndexSensor2.getAverageValueThresholdLowerWithUnit()
                 , discomfortIndexSensor2.getPeakToPeakThresholdUpperWithUnit()
@@ -1716,17 +1884,17 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onDiscomfortIndexSensor2WriteFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onDiscomfortIndexSensor2WriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onDiscomfortIndexSensor2WriteTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onDiscomfortIndexSensor2WriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onHeatStrokeSensor1ReadSuccess(BluetoothDevice bluetoothDevice, HeatStrokeSensor1 heatStrokeSensor1) {
+    public void onHeatStrokeSensor1ReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull HeatStrokeSensor1 heatStrokeSensor1, @Nullable Bundle argument) {
         callback(heatStrokeSensor1.getEventEnableDisable()
                 , heatStrokeSensor1.getSimpleThresholdUpperLimit1DegC()
                 , heatStrokeSensor1.getSimpleThresholdUpperLimit2DegC()
@@ -1740,17 +1908,17 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onHeatStrokeSensor1ReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onHeatStrokeSensor1ReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onHeatStrokeSensor1ReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onHeatStrokeSensor1ReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onHeatStrokeSensor1WriteSuccess(BluetoothDevice bluetoothDevice, HeatStrokeSensor1 heatStrokeSensor1) {
+    public void onHeatStrokeSensor1WriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull HeatStrokeSensor1 heatStrokeSensor1, @Nullable Bundle argument) {
         callback(heatStrokeSensor1.getEventEnableDisable()
                 , heatStrokeSensor1.getSimpleThresholdUpperLimit1DegC()
                 , heatStrokeSensor1.getSimpleThresholdUpperLimit2DegC()
@@ -1764,17 +1932,17 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onHeatStrokeSensor1WriteFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onHeatStrokeSensor1WriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onHeatStrokeSensor1WriteTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onHeatStrokeSensor1WriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onHeatStrokeSensor2ReadSuccess(BluetoothDevice bluetoothDevice, HeatStrokeSensor2 heatStrokeSensor2) {
+    public void onHeatStrokeSensor2ReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull HeatStrokeSensor2 heatStrokeSensor2, @Nullable Bundle argument) {
         callback(heatStrokeSensor2.getAverageValueThresholdUpperDegC()
                 , heatStrokeSensor2.getAverageValueThresholdLowerDegC()
                 , heatStrokeSensor2.getPeakToPeakThresholdUpperDegC()
@@ -1791,17 +1959,17 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onHeatStrokeSensor2ReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onHeatStrokeSensor2ReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onHeatStrokeSensor2ReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onHeatStrokeSensor2ReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onHeatStrokeSensor2WriteSuccess(BluetoothDevice bluetoothDevice, HeatStrokeSensor2 heatStrokeSensor2) {
+    public void onHeatStrokeSensor2WriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull HeatStrokeSensor2 heatStrokeSensor2, @Nullable Bundle argument) {
         callback(heatStrokeSensor2.getAverageValueThresholdUpperDegC()
                 , heatStrokeSensor2.getAverageValueThresholdLowerDegC()
                 , heatStrokeSensor2.getPeakToPeakThresholdUpperDegC()
@@ -1818,17 +1986,17 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onHeatStrokeSensor2WriteFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onHeatStrokeSensor2WriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onHeatStrokeSensor2WriteTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onHeatStrokeSensor2WriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onSiValueAccelerationReadSuccess(BluetoothDevice bluetoothDevice, SiValueAcceleration siValueAcceleration) {
+    public void onSiValueAccelerationReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull SiValueAcceleration siValueAcceleration, @Nullable Bundle argument) {
         callback(siValueAcceleration.getEventEnableDisable()
                 , siValueAcceleration.getSimpleThresholdUpperLimit1Kine()
                 , siValueAcceleration.getSimpleThresholdUpperLimit2Kine()
@@ -1838,17 +2006,17 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onSiValueAccelerationReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onSiValueAccelerationReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onSiValueAccelerationReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onSiValueAccelerationReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onSiValueAccelerationWriteSuccess(BluetoothDevice bluetoothDevice, SiValueAcceleration siValueAcceleration) {
+    public void onSiValueAccelerationWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull SiValueAcceleration siValueAcceleration, @Nullable Bundle argument) {
         callback(siValueAcceleration.getEventEnableDisable()
                 , siValueAcceleration.getSimpleThresholdUpperLimit1Kine()
                 , siValueAcceleration.getSimpleThresholdUpperLimit2Kine()
@@ -1858,17 +2026,17 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onSiValueAccelerationWriteFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onSiValueAccelerationWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onSiValueAccelerationWriteTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onSiValueAccelerationWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onPgaAccelerationReadSuccess(BluetoothDevice bluetoothDevice, PgaAcceleration pgaAcceleration) {
+    public void onPgaAccelerationReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull PgaAcceleration pgaAcceleration, @Nullable Bundle argument) {
         callback(pgaAcceleration.getEventEnableDisable()
                 , pgaAcceleration.getSimpleThresholdUpperLimit1Gal()
                 , pgaAcceleration.getSimpleThresholdUpperLimit2Gal()
@@ -1878,17 +2046,17 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onPgaAccelerationReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onPgaAccelerationReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onPgaAccelerationReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onPgaAccelerationReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onPgaAccelerationWriteSuccess(BluetoothDevice bluetoothDevice, PgaAcceleration pgaAcceleration) {
+    public void onPgaAccelerationWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull PgaAcceleration pgaAcceleration, @Nullable Bundle argument) {
         callback(pgaAcceleration.getEventEnableDisable()
                 , pgaAcceleration.getSimpleThresholdUpperLimit1Gal()
                 , pgaAcceleration.getSimpleThresholdUpperLimit2Gal()
@@ -1898,17 +2066,17 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onPgaAccelerationWriteFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onPgaAccelerationWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onPgaAccelerationWriteTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onPgaAccelerationWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onSeismicIntensityAccelerationReadSuccess(BluetoothDevice bluetoothDevice, SeismicIntensityAcceleration seismicIntensityAcceleration) {
+    public void onSeismicIntensityAccelerationReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull SeismicIntensityAcceleration seismicIntensityAcceleration, @Nullable Bundle argument) {
         callback(seismicIntensityAcceleration.getEventEnableDisable()
                 , seismicIntensityAcceleration.getSimpleThresholdUpperLimit1WithUnit()
                 , seismicIntensityAcceleration.getSimpleThresholdUpperLimit2WithUnit()
@@ -1918,17 +2086,17 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onSeismicIntensityAccelerationReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onSeismicIntensityAccelerationReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onSeismicIntensityAccelerationReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onSeismicIntensityAccelerationReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onSeismicIntensityAccelerationWriteSuccess(BluetoothDevice bluetoothDevice, SeismicIntensityAcceleration seismicIntensityAcceleration) {
+    public void onSeismicIntensityAccelerationWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull SeismicIntensityAcceleration seismicIntensityAcceleration, @Nullable Bundle argument) {
         callback(seismicIntensityAcceleration.getEventEnableDisable()
                 , seismicIntensityAcceleration.getSimpleThresholdUpperLimit1WithUnit()
                 , seismicIntensityAcceleration.getSimpleThresholdUpperLimit2WithUnit()
@@ -1938,17 +2106,17 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onSeismicIntensityAccelerationWriteFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onSeismicIntensityAccelerationWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onSeismicIntensityAccelerationWriteTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onSeismicIntensityAccelerationWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onErrorStatusReadSuccess(BluetoothDevice bluetoothDevice, ErrorStatus errorStatus) {
+    public void onErrorStatusReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ErrorStatus errorStatus, @Nullable Bundle argument) {
         callback(errorStatus.getTemperatureSensorError()
                 , errorStatus.getRelativeHumiditySensorError()
                 , errorStatus.getAmbientLightSensorError()
@@ -1961,182 +2129,182 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onErrorStatusReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onErrorStatusReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onErrorStatusReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onErrorStatusReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onMountingOrientationReadSuccess(BluetoothDevice bluetoothDevice, MountingOrientation mountingOrientation) {
+    public void onMountingOrientationReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull MountingOrientation mountingOrientation, @Nullable Bundle argument) {
         callback(mountingOrientation.getMountingOrientation());
     }
 
     @Override
-    public void onMountingOrientationReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onMountingOrientationReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onMountingOrientationReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onMountingOrientationReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onFlashMemoryStatusReadSuccess(BluetoothDevice bluetoothDevice, FlashMemoryStatus flashMemoryStatus) {
+    public void onFlashMemoryStatusReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull FlashMemoryStatus flashMemoryStatus, @Nullable Bundle argument) {
         callback(flashMemoryStatus.getFlashMemoryStatus());
     }
 
     @Override
-    public void onFlashMemoryStatusReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onFlashMemoryStatusReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onFlashMemoryStatusReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onFlashMemoryStatusReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onDeviceNameReadSuccess(BluetoothDevice bluetoothDevice, DeviceName deviceName) {
+    public void onDeviceNameReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull DeviceName deviceName, @Nullable Bundle argument) {
         callback(deviceName.getName());
     }
 
     @Override
-    public void onDeviceNameReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onDeviceNameReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onDeviceNameReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onDeviceNameReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onAppearanceReadSuccess(BluetoothDevice bluetoothDevice, Appearance appearance) {
+    public void onAppearanceReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull Appearance appearance, @Nullable Bundle argument) {
         callback(APPEARANCE_VALUE_MAP.get(appearance.getCategory()) + '(' + APPEARANCE_DESCRIPTION_MAP.get(appearance.getCategory()) + ')');
     }
 
     @Override
-    public void onAppearanceReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onAppearanceReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onAppearanceReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onAppearanceReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onPeripheralPreferredConnectionParametersReadSuccess(BluetoothDevice bluetoothDevice, PeripheralPreferredConnectionParameters peripheralPreferredConnectionParameters) {
+    public void onPeripheralPreferredConnectionParametersReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull PeripheralPreferredConnectionParameters peripheralPreferredConnectionParameters, @Nullable Bundle argument) {
         callback(peripheralPreferredConnectionParameters.getMinimumConnectionIntervalMillis(), peripheralPreferredConnectionParameters.getMaximumConnectionIntervalMillis(), peripheralPreferredConnectionParameters.getSlaveLatency(), peripheralPreferredConnectionParameters.getConnectionSupervisionTimeoutMultiplierMillis());
     }
 
     @Override
-    public void onPeripheralPreferredConnectionParametersReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onPeripheralPreferredConnectionParametersReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onPeripheralPreferredConnectionParametersReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onPeripheralPreferredConnectionParametersReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onCentralAddressResolutionReadSuccess(BluetoothDevice bluetoothDevice, CentralAddressResolution centralAddressResolution) {
+    public void onCentralAddressResolutionReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull CentralAddressResolution centralAddressResolution, @Nullable Bundle argument) {
         callback(centralAddressResolution.getCentralAddressResolutionSupport());
     }
 
     @Override
-    public void onCentralAddressResolutionReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onCentralAddressResolutionReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onCentralAddressResolutionReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onCentralAddressResolutionReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onModelNumberStringReadSuccess(BluetoothDevice bluetoothDevice, ModelNumberString modelNumberString) {
+    public void onModelNumberStringReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ModelNumberString modelNumberString, @Nullable Bundle argument) {
         callback(modelNumberString.getModelNumber());
     }
 
     @Override
-    public void onModelNumberStringReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onModelNumberStringReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onModelNumberStringReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onModelNumberStringReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onSerialNumberStringReadSuccess(BluetoothDevice bluetoothDevice, SerialNumberString serialNumberString) {
+    public void onSerialNumberStringReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull SerialNumberString serialNumberString, @Nullable Bundle argument) {
         callback(serialNumberString.getSerialNumber());
     }
 
     @Override
-    public void onSerialNumberStringReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onSerialNumberStringReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onSerialNumberStringReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onSerialNumberStringReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onFirmwareRevisionStringReadSuccess(BluetoothDevice bluetoothDevice, FirmwareRevisionString firmwareRevisionString) {
+    public void onFirmwareRevisionStringReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull FirmwareRevisionString firmwareRevisionString, @Nullable Bundle argument) {
         callback(firmwareRevisionString.getFirmwareRevision());
     }
 
     @Override
-    public void onFirmwareRevisionStringReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onFirmwareRevisionStringReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onFirmwareRevisionStringReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onFirmwareRevisionStringReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onHardwareRevisionStringReadSuccess(BluetoothDevice bluetoothDevice, HardwareRevisionString hardwareRevisionString) {
+    public void onHardwareRevisionStringReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull HardwareRevisionString hardwareRevisionString, @Nullable Bundle argument) {
         callback(hardwareRevisionString.getHardwareRevision());
     }
 
     @Override
-    public void onHardwareRevisionStringReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onHardwareRevisionStringReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onHardwareRevisionStringReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onHardwareRevisionStringReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onManufacturerNameStringReadSuccess(BluetoothDevice bluetoothDevice, ManufacturerNameString manufacturerNameString) {
+    public void onManufacturerNameStringReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ManufacturerNameString manufacturerNameString, @Nullable Bundle argument) {
         callback(manufacturerNameString.getManufactureName());
     }
 
     @Override
-    public void onManufacturerNameStringReadFailed(BluetoothDevice bluetoothDevice, int status) {
+    public void onManufacturerNameStringReadFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status);
     }
 
     @Override
-    public void onManufacturerNameStringReadTimeout(BluetoothDevice bluetoothDevice, long timeout) {
+    public void onManufacturerNameStringReadTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
         callback(timeout);
     }
 
     @Override
-    public void onAccelerationMemoryDataHeaderNotified(BluetoothDevice bluetoothDevice, AccelerationMemoryDataHeader accelerationMemoryDataHeader) {
+    public void onAccelerationMemoryDataHeaderNotified(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull AccelerationMemoryDataHeader accelerationMemoryDataHeader, @Nullable Bundle argument) {
         if (accelerationMemoryDataHeader.getAccelerationMemoryDataHeader1() != null) {
             callback(
                     accelerationMemoryDataHeader.getAccelerationMemoryDataHeader1().getTotalTransferCount()
@@ -2184,7 +2352,7 @@ public class RbtCallbackSample implements RbtCallback {
     }
 
     @Override
-    public void onAccelerationMemoryDataNotified(BluetoothDevice bluetoothDevice, AccelerationMemoryData accelerationMemoryData) {
+    public void onAccelerationMemoryDataNotified(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull AccelerationMemoryData accelerationMemoryData, @Nullable Bundle argument) {
         if (accelerationMemoryData.getAccelerationMemoryData1() != null) {
             callback(
                     accelerationMemoryData.getAccelerationMemoryData1().getTotalTransferCount()
@@ -2362,5 +2530,25 @@ public class RbtCallbackSample implements RbtCallback {
                     , accelerationMemoryData.getAccelerationMemoryData13().getAccelerationZAxis2Gal()
             );
         }
+    }
+
+    @Override
+    public void onBLEConnected(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @Nullable Bundle argument) {
+        callback(argument);
+    }
+
+    @Override
+    public void onBLEConnectFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
+        callback(status, argument);
+    }
+
+    @Override
+    public void onBLEConnectTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @Nullable Bundle argument) {
+        callback(argument);
+    }
+
+    @Override
+    public void onBLEDisconnected(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
+        callback(status, argument);
     }
 }

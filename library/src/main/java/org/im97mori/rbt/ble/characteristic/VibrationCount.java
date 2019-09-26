@@ -4,6 +4,8 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import org.im97mori.ble.ByteArrayCreater;
 
 import java.math.BigInteger;
@@ -27,7 +29,8 @@ public class VibrationCount extends AbstractRbtCharacteristic implements Parcela
          * {@inheritDoc}
          */
         @Override
-        public VibrationCount createFromParcel(Parcel in) {
+        @NonNull
+        public VibrationCount createFromParcel(@NonNull Parcel in) {
             return new VibrationCount(in);
         }
 
@@ -35,6 +38,7 @@ public class VibrationCount extends AbstractRbtCharacteristic implements Parcela
          * {@inheritDoc}
          */
         @Override
+        @NonNull
         public VibrationCount[] newArray(int size) {
             return new VibrationCount[size];
         }
@@ -43,7 +47,8 @@ public class VibrationCount extends AbstractRbtCharacteristic implements Parcela
          * {@inheritDoc}
          */
         @Override
-        public VibrationCount createFromByteArray(byte[] values) {
+        @NonNull
+        public VibrationCount createFromByteArray(@NonNull byte[] values) {
             BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(VIBRATION_COUNT_CHARACTERISTIC, 0, 0);
             bluetoothGattCharacteristic.setValue(values);
             return new VibrationCount(bluetoothGattCharacteristic);
@@ -66,7 +71,7 @@ public class VibrationCount extends AbstractRbtCharacteristic implements Parcela
      *
      * @param bluetoothGattCharacteristic Characteristics UUID: 0x5031
      */
-    public VibrationCount(BluetoothGattCharacteristic bluetoothGattCharacteristic) {
+    public VibrationCount(@NonNull BluetoothGattCharacteristic bluetoothGattCharacteristic) {
         mEarthquakeCount = createBigInteger(bluetoothGattCharacteristic.getValue(), 0, 4);
         mVibrationCount = createBigInteger(bluetoothGattCharacteristic.getValue(), 4, 4);
     }
@@ -76,7 +81,7 @@ public class VibrationCount extends AbstractRbtCharacteristic implements Parcela
      *
      * @param in Parcel
      */
-    private VibrationCount(Parcel in) {
+    private VibrationCount(@NonNull Parcel in) {
         mEarthquakeCount = (BigInteger) in.readSerializable();
         mVibrationCount = (BigInteger) in.readSerializable();
     }
@@ -93,7 +98,7 @@ public class VibrationCount extends AbstractRbtCharacteristic implements Parcela
      * {@inheritDoc}
      */
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeSerializable(mEarthquakeCount);
         dest.writeSerializable(mVibrationCount);
     }
@@ -116,6 +121,7 @@ public class VibrationCount extends AbstractRbtCharacteristic implements Parcela
      * {@inheritDoc}
      */
     @Override
+    @NonNull
     public byte[] getBytes() {
         byte[] data = new byte[8];
         ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);

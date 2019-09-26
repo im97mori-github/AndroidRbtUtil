@@ -4,6 +4,8 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import org.im97mori.ble.ByteArrayCreater;
 
 import java.nio.ByteBuffer;
@@ -51,7 +53,8 @@ public class FlashMemoryStatus extends AbstractRbtCharacteristic implements Parc
          * {@inheritDoc}
          */
         @Override
-        public FlashMemoryStatus createFromParcel(Parcel in) {
+        @NonNull
+        public FlashMemoryStatus createFromParcel(@NonNull Parcel in) {
             return new FlashMemoryStatus(in);
         }
 
@@ -59,6 +62,7 @@ public class FlashMemoryStatus extends AbstractRbtCharacteristic implements Parc
          * {@inheritDoc}
          */
         @Override
+        @NonNull
         public FlashMemoryStatus[] newArray(int size) {
             return new FlashMemoryStatus[size];
         }
@@ -67,7 +71,8 @@ public class FlashMemoryStatus extends AbstractRbtCharacteristic implements Parc
          * {@inheritDoc}
          */
         @Override
-        public FlashMemoryStatus createFromByteArray(byte[] values) {
+        @NonNull
+        public FlashMemoryStatus createFromByteArray(@NonNull byte[] values) {
             BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(FLASH_MEMORY_STATUS_CHARACTERISTIC, 0, 0);
             bluetoothGattCharacteristic.setValue(values);
             return new FlashMemoryStatus(bluetoothGattCharacteristic);
@@ -85,7 +90,7 @@ public class FlashMemoryStatus extends AbstractRbtCharacteristic implements Parc
      *
      * @param bluetoothGattCharacteristic Characteristics UUID: 0x5403
      */
-    public FlashMemoryStatus(BluetoothGattCharacteristic bluetoothGattCharacteristic) {
+    public FlashMemoryStatus(@NonNull BluetoothGattCharacteristic bluetoothGattCharacteristic) {
         mFlashMemoryStatus = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 0);
     }
 
@@ -94,7 +99,7 @@ public class FlashMemoryStatus extends AbstractRbtCharacteristic implements Parc
      *
      * @param in Parcel
      */
-    private FlashMemoryStatus(Parcel in) {
+    private FlashMemoryStatus(@NonNull Parcel in) {
         mFlashMemoryStatus = in.readInt();
     }
 
@@ -110,7 +115,7 @@ public class FlashMemoryStatus extends AbstractRbtCharacteristic implements Parc
      * {@inheritDoc}
      */
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeInt(mFlashMemoryStatus);
     }
 
@@ -125,6 +130,7 @@ public class FlashMemoryStatus extends AbstractRbtCharacteristic implements Parc
      * {@inheritDoc}
      */
     @Override
+    @NonNull
     public byte[] getBytes() {
         byte[] data = new byte[1];
         ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);

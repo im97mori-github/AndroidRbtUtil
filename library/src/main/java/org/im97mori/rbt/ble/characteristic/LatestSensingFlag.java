@@ -4,6 +4,8 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import org.im97mori.ble.ByteArrayCreater;
 import org.im97mori.rbt.RbtConstants;
 
@@ -26,6 +28,7 @@ public class LatestSensingFlag extends AbstractRbtCharacteristic implements Parc
          * {@inheritDoc}
          */
         @Override
+        @NonNull
         public LatestSensingFlag createFromParcel(Parcel in) {
             return new LatestSensingFlag(in);
         }
@@ -34,6 +37,7 @@ public class LatestSensingFlag extends AbstractRbtCharacteristic implements Parc
          * {@inheritDoc}
          */
         @Override
+        @NonNull
         public LatestSensingFlag[] newArray(int size) {
             return new LatestSensingFlag[size];
         }
@@ -42,7 +46,8 @@ public class LatestSensingFlag extends AbstractRbtCharacteristic implements Parc
          * {@inheritDoc}
          */
         @Override
-        public LatestSensingFlag createFromByteArray(byte[] values) {
+        @NonNull
+        public LatestSensingFlag createFromByteArray(@NonNull byte[] values) {
             BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(LATEST_SENSING_FLAG_CHARACTERISTIC, 0, 0);
             bluetoothGattCharacteristic.setValue(values);
             return new LatestSensingFlag(bluetoothGattCharacteristic);
@@ -95,7 +100,7 @@ public class LatestSensingFlag extends AbstractRbtCharacteristic implements Parc
      *
      * @param bluetoothGattCharacteristic Characteristics UUID: 0x5014
      */
-    public LatestSensingFlag(BluetoothGattCharacteristic bluetoothGattCharacteristic) {
+    public LatestSensingFlag(@NonNull BluetoothGattCharacteristic bluetoothGattCharacteristic) {
         mSequenceNumber = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 0);
         mTemperatureFlag = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT16, 1);
         mRelativeHumidityFlag = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT16, 3);
@@ -111,7 +116,7 @@ public class LatestSensingFlag extends AbstractRbtCharacteristic implements Parc
      *
      * @param in Parcel
      */
-    private LatestSensingFlag(Parcel in) {
+    private LatestSensingFlag(@NonNull Parcel in) {
         mSequenceNumber = in.readInt();
         mTemperatureFlag = in.readInt();
         mRelativeHumidityFlag = in.readInt();
@@ -134,7 +139,7 @@ public class LatestSensingFlag extends AbstractRbtCharacteristic implements Parc
      * {@inheritDoc}
      */
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeInt(mSequenceNumber);
         dest.writeInt(mTemperatureFlag);
         dest.writeInt(mRelativeHumidityFlag);
@@ -1373,6 +1378,7 @@ public class LatestSensingFlag extends AbstractRbtCharacteristic implements Parc
      * {@inheritDoc}
      */
     @Override
+    @NonNull
     public byte[] getBytes() {
         byte[] data = new byte[15];
         ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);

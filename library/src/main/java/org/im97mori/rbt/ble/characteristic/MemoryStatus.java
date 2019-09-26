@@ -4,6 +4,8 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import org.im97mori.ble.ByteArrayCreater;
 
 import java.math.BigInteger;
@@ -47,7 +49,8 @@ public class MemoryStatus extends AbstractRbtCharacteristic implements Parcelabl
          * {@inheritDoc}
          */
         @Override
-        public MemoryStatus createFromParcel(Parcel in) {
+        @NonNull
+        public MemoryStatus createFromParcel(@NonNull Parcel in) {
             return new MemoryStatus(in);
         }
 
@@ -55,6 +58,7 @@ public class MemoryStatus extends AbstractRbtCharacteristic implements Parcelabl
          * {@inheritDoc}
          */
         @Override
+        @NonNull
         public MemoryStatus[] newArray(int size) {
             return new MemoryStatus[size];
         }
@@ -63,7 +67,8 @@ public class MemoryStatus extends AbstractRbtCharacteristic implements Parcelabl
          * {@inheritDoc}
          */
         @Override
-        public MemoryStatus createFromByteArray(byte[] values) {
+        @NonNull
+        public MemoryStatus createFromByteArray(@NonNull byte[] values) {
             BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(MEMORY_STATUS_CHARACTERISTIC, 0, 0);
             bluetoothGattCharacteristic.setValue(values);
             return new MemoryStatus(bluetoothGattCharacteristic);
@@ -91,7 +96,7 @@ public class MemoryStatus extends AbstractRbtCharacteristic implements Parcelabl
      *
      * @param bluetoothGattCharacteristic Characteristics UUID: 0x5006
      */
-    public MemoryStatus(BluetoothGattCharacteristic bluetoothGattCharacteristic) {
+    public MemoryStatus(@NonNull BluetoothGattCharacteristic bluetoothGattCharacteristic) {
         mStatus = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 0);
         mTimeCounter = createBigInteger(bluetoothGattCharacteristic.getValue(), 1, 8);
         mMemoryStorageInterval = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT16, 9);
@@ -102,7 +107,7 @@ public class MemoryStatus extends AbstractRbtCharacteristic implements Parcelabl
      *
      * @param in Parcel
      */
-    private MemoryStatus(Parcel in) {
+    private MemoryStatus(@NonNull Parcel in) {
         mStatus = in.readInt();
         mTimeCounter = (BigInteger) in.readSerializable();
         mMemoryStorageInterval = in.readInt();
@@ -120,7 +125,7 @@ public class MemoryStatus extends AbstractRbtCharacteristic implements Parcelabl
      * {@inheritDoc}
      */
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeInt(mStatus);
         dest.writeSerializable(mTimeCounter);
         dest.writeInt(mMemoryStorageInterval);
@@ -151,6 +156,7 @@ public class MemoryStatus extends AbstractRbtCharacteristic implements Parcelabl
      * {@inheritDoc}
      */
     @Override
+    @NonNull
     public byte[] getBytes() {
         byte[] data = new byte[11];
         ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);

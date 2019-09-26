@@ -4,6 +4,8 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import org.im97mori.ble.ByteArrayCreater;
 
 import java.nio.ByteBuffer;
@@ -76,7 +78,8 @@ public class LedSettingNormalState extends AbstractRbtCharacteristic implements 
          * {@inheritDoc}
          */
         @Override
-        public LedSettingNormalState createFromParcel(Parcel in) {
+        @NonNull
+        public LedSettingNormalState createFromParcel(@NonNull Parcel in) {
             return new LedSettingNormalState(in);
         }
 
@@ -84,6 +87,7 @@ public class LedSettingNormalState extends AbstractRbtCharacteristic implements 
          * {@inheritDoc}
          */
         @Override
+        @NonNull
         public LedSettingNormalState[] newArray(int size) {
             return new LedSettingNormalState[size];
         }
@@ -92,7 +96,8 @@ public class LedSettingNormalState extends AbstractRbtCharacteristic implements 
          * {@inheritDoc}
          */
         @Override
-        public LedSettingNormalState createFromByteArray(byte[] values) {
+        @NonNull
+        public LedSettingNormalState createFromByteArray(@NonNull byte[] values) {
             BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(LED_SETTING_NORMAL_STATE_CHARACTERISTIC, 0, 0);
             bluetoothGattCharacteristic.setValue(values);
             return new LedSettingNormalState(bluetoothGattCharacteristic);
@@ -125,7 +130,7 @@ public class LedSettingNormalState extends AbstractRbtCharacteristic implements 
      *
      * @param bluetoothGattCharacteristic Characteristics UUID: 0x5111
      */
-    public LedSettingNormalState(BluetoothGattCharacteristic bluetoothGattCharacteristic) {
+    public LedSettingNormalState(@NonNull BluetoothGattCharacteristic bluetoothGattCharacteristic) {
         mDisplayRule = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT16, 0);
         mIntensityOfLedRed = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 2);
         mIntensityOfLedGreen = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 3);
@@ -161,7 +166,7 @@ public class LedSettingNormalState extends AbstractRbtCharacteristic implements 
      *
      * @param in Parcel
      */
-    private LedSettingNormalState(Parcel in) {
+    private LedSettingNormalState(@NonNull Parcel in) {
         mDisplayRule = in.readInt();
         mIntensityOfLedRed = in.readInt();
         mIntensityOfLedGreen = in.readInt();
@@ -180,7 +185,7 @@ public class LedSettingNormalState extends AbstractRbtCharacteristic implements 
      * {@inheritDoc}
      */
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeInt(mDisplayRule);
         dest.writeInt(mIntensityOfLedRed);
         dest.writeInt(mIntensityOfLedGreen);
@@ -219,6 +224,7 @@ public class LedSettingNormalState extends AbstractRbtCharacteristic implements 
      * {@inheritDoc}
      */
     @Override
+    @NonNull
     public byte[] getBytes() {
         byte[] data = new byte[5];
         ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);

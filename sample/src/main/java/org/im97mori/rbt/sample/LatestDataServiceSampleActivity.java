@@ -1,7 +1,10 @@
 package org.im97mori.rbt.sample;
 
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGattDescriptor;
+import android.bluetooth.BluetoothManager;
+import android.bluetooth.BluetoothProfile;
 import android.bluetooth.le.BluetoothLeScanner;
 import android.bluetooth.le.ScanCallback;
 import android.bluetooth.le.ScanRecord;
@@ -20,6 +23,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.im97mori.ble.BLEConnectionHolder;
+import org.im97mori.ble.BLEConstants;
 import org.im97mori.ble.descriptor.ClientCharacteristicConfiguration;
 import org.im97mori.ble.task.ConnectTask;
 import org.im97mori.rbt.ble.RbtBLEConnection;
@@ -70,7 +75,12 @@ public class LatestDataServiceSampleActivity extends BaseActivity implements Vie
                         @Override
                         public void run() {
                             try {
-                                mActivity.mRbtBLEConnection = new RbtBLEConnection(mActivity, result.getDevice(), mActivity.mRbtBleCallbackSample);
+                                mActivity.mRbtBLEConnection = BLEConnectionHolder.getInstance(result.getDevice());
+                                if (mActivity.mRbtBLEConnection == null) {
+                                    mActivity.mRbtBLEConnection = new RbtBLEConnection(mActivity, result.getDevice());
+                                    BLEConnectionHolder.addInstance(mActivity.mRbtBLEConnection, true);
+                                }
+                                mActivity.mRbtBLEConnection.attach(mActivity.mRbtBleCallbackSample);
                                 mActivity.mBluetoothLeScanner.stopScan(LatestDataServiceSampleActivity.TestScanCallback.this);
                                 mActivity.mTestScanCallback = null;
 
@@ -110,10 +120,13 @@ public class LatestDataServiceSampleActivity extends BaseActivity implements Vie
                 if (child == null) {
                     child = getLayoutInflater().inflate(R.layout.list_child, parent, false);
                 }
-                TextView textView = child.findViewById(R.id.time);
-                textView.setText(getItem(position).first);
-                textView = child.findViewById(R.id.body);
-                textView.setText(getItem(position).second);
+                Pair<String, String> item = getItem(position);
+                if (item != null) {
+                    TextView textView = child.findViewById(R.id.time);
+                    textView.setText(item.first);
+                    textView = child.findViewById(R.id.body);
+                    textView.setText(item.second);
+                }
                 return child;
             }
         };
@@ -153,7 +166,11 @@ public class LatestDataServiceSampleActivity extends BaseActivity implements Vie
                 mConnectDisconnectButton.setText(R.string.connect);
             } else {
                 if (mRbtBLEConnection.isConnected()) {
-                    mConnectDisconnectButton.setText(R.string.disconnect);
+                    if (mRbtBLEConnection.isAttached(mRbtBleCallbackSample)) {
+                        mConnectDisconnectButton.setText(R.string.disconnect);
+                    } else {
+                        mConnectDisconnectButton.setText(R.string.connect);
+                    }
                 } else {
                     mConnectDisconnectButton.setText(R.string.connect);
                 }
@@ -169,7 +186,7 @@ public class LatestDataServiceSampleActivity extends BaseActivity implements Vie
             mTestScanCallback = null;
         }
         if (mRbtBLEConnection != null) {
-            mRbtBLEConnection.quit();
+            mRbtBLEConnection.detach(mRbtBleCallbackSample);
             mRbtBLEConnection = null;
         }
         super.onDestroy();
@@ -193,24 +210,34 @@ public class LatestDataServiceSampleActivity extends BaseActivity implements Vie
     public boolean onOptionsItemSelected(MenuItem item) {
         if (R.id.read_latest_sensing_data == item.getItemId()) {
             mRbtBLEConnection.readLatestSensingData();
-        } else if (R.id.notification_latest_sensing_data == item.getItemId()) {
-            mRbtBLEConnection.notificationSettingLatestSensingData(ClientCharacteristicConfiguration.CREATOR.createFromByteArray(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE));
+        } else if (R.id.read_notification_latest_sensing_data == item.getItemId()) {
+            mRbtBLEConnection.readNotificationSettingLatestSensingData();
+        } else if (R.id.write_notification_latest_sensing_data == item.getItemId()) {
+            mRbtBLEConnection.writeNotificationSettingLatestSensingData(ClientCharacteristicConfiguration.CREATOR.createFromByteArray(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE));
         } else if (R.id.read_latest_calculation_data == item.getItemId()) {
             mRbtBLEConnection.readLatestCalculationData();
-        } else if (R.id.notification_latest_calculation_data == item.getItemId()) {
-            mRbtBLEConnection.notificationSettingLatestCalculationData(ClientCharacteristicConfiguration.CREATOR.createFromByteArray(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE));
+        } else if (R.id.read_notification_latest_calculation_data == item.getItemId()) {
+            mRbtBLEConnection.readNotificationSettingLatestCalculationData();
+        } else if (R.id.write_notification_latest_calculation_data == item.getItemId()) {
+            mRbtBLEConnection.writeNotificationSettingLatestCalculationData(ClientCharacteristicConfiguration.CREATOR.createFromByteArray(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE));
         } else if (R.id.read_latest_sensing_flag == item.getItemId()) {
             mRbtBLEConnection.readLatestSensingFlag();
-        } else if (R.id.notification_latest_sensing_flag == item.getItemId()) {
-            mRbtBLEConnection.notificationSettingLatestSensingFlag(ClientCharacteristicConfiguration.CREATOR.createFromByteArray(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE));
+        } else if (R.id.read_notification_latest_sensing_flag == item.getItemId()) {
+            mRbtBLEConnection.readNotificationSettingLatestSensingFlag();
+        } else if (R.id.write_notification_latest_sensing_flag == item.getItemId()) {
+            mRbtBLEConnection.writeNotificationSettingLatestSensingFlag(ClientCharacteristicConfiguration.CREATOR.createFromByteArray(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE));
         } else if (R.id.read_latest_calculation_flag == item.getItemId()) {
             mRbtBLEConnection.readLatestCalculationFlag();
-        } else if (R.id.notification_latest_calculation_flag == item.getItemId()) {
-            mRbtBLEConnection.notificationSettingLatestCalculationFlag(ClientCharacteristicConfiguration.CREATOR.createFromByteArray(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE));
+        } else if (R.id.read_notification_latest_calculation_flag == item.getItemId()) {
+            mRbtBLEConnection.readNotificationSettingLatestCalculationFlag();
+        } else if (R.id.write_notification_latest_calculation_flag == item.getItemId()) {
+            mRbtBLEConnection.writeNotificationSettingLatestCalculationFlag(ClientCharacteristicConfiguration.CREATOR.createFromByteArray(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE));
         } else if (R.id.read_latest_acceleration_status == item.getItemId()) {
             mRbtBLEConnection.readLatestAccelerationStatus();
-        } else if (R.id.notification_latest_acceleration_status == item.getItemId()) {
-            mRbtBLEConnection.notificationSettingLatestAccelerationSetting(ClientCharacteristicConfiguration.CREATOR.createFromByteArray(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE));
+        } else if (R.id.read_notification_latest_acceleration_status == item.getItemId()) {
+            mRbtBLEConnection.readNotificationSettingLatestAccelerationSetting();
+        } else if (R.id.write_notification_latest_acceleration_status == item.getItemId()) {
+            mRbtBLEConnection.writeNotificationSettingLatestAccelerationSetting(ClientCharacteristicConfiguration.CREATOR.createFromByteArray(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE));
         }
         return true;
     }
@@ -219,26 +246,52 @@ public class LatestDataServiceSampleActivity extends BaseActivity implements Vie
     public void onClick(View v) {
         if (R.id.connectDisconnectButton == v.getId()) {
             if (mRbtBLEConnection == null) {
-                if (mBluetoothLeScanner != null) {
-                    if (mTestScanCallback == null) {
-                        if (hasPermission()) {
-                            if (mRbtBLEConnection != null) {
-                                mRbtBLEConnection.quit();
-                                mRbtBLEConnection = null;
+                BluetoothDevice target = findDevice();
+                if (target == null) {
+                    if (mBluetoothLeScanner != null) {
+                        if (mTestScanCallback == null) {
+                            if (hasPermission()) {
+                                if (mRbtBLEConnection != null) {
+                                    mRbtBLEConnection.quit();
+                                    mRbtBLEConnection = null;
+                                }
+                                mTestScanCallback = new TestScanCallback(this);
+                                mBluetoothLeScanner.startScan(mTestScanCallback);
                             }
-                            mTestScanCallback = new TestScanCallback(this);
-                            mBluetoothLeScanner.startScan(mTestScanCallback);
+                        } else {
+                            mBluetoothLeScanner.stopScan(mTestScanCallback);
+                            mTestScanCallback = null;
                         }
+                    }
+                } else {
+                    mRbtBLEConnection = BLEConnectionHolder.getInstance(target);
+                    if (mRbtBLEConnection == null) {
+                        mRbtBLEConnection = new RbtBLEConnection(this, target);
+                        BLEConnectionHolder.addInstance(mRbtBLEConnection, true);
+                    }
+                    mRbtBLEConnection.attach(mRbtBleCallbackSample);
+                    if (mRbtBLEConnection.isConnected()) {
+                        mRbtBleCallbackSample.onBLEConnected(Integer.MIN_VALUE, target, null);
                     } else {
-                        mBluetoothLeScanner.stopScan(mTestScanCallback);
-                        mTestScanCallback = null;
+                        mRbtBLEConnection.connect(ConnectTask.TIMEOUT_MILLIS);
                     }
                 }
             } else {
                 if (mRbtBLEConnection.isConnected()) {
-                    mRbtBLEConnection.quit();
+                    if (mRbtBLEConnection.isAttached(mRbtBleCallbackSample)) {
+                        mRbtBLEConnection.detach(mRbtBleCallbackSample);
+                        mRbtBleCallbackSample.onBLEDisconnected(Integer.MIN_VALUE, mRbtBLEConnection.getBluetoothDevice(), BLEConstants.ErrorCodes.UNKNOWN, null);
+                    } else {
+                        mRbtBLEConnection.attach(mRbtBleCallbackSample);
+                        mRbtBleCallbackSample.onBLEConnected(Integer.MIN_VALUE, mRbtBLEConnection.getBluetoothDevice(), null);
+                    }
                 } else {
-                    mRbtBLEConnection.connect(ConnectTask.TIMEOUT_MILLIS);
+                    if (mRbtBLEConnection.isAttached(mRbtBleCallbackSample)) {
+                        mRbtBLEConnection.detach(mRbtBleCallbackSample);
+                    } else {
+                        mRbtBLEConnection.attach(mRbtBleCallbackSample);
+                        mRbtBLEConnection.connect(ConnectTask.TIMEOUT_MILLIS);
+                    }
                 }
             }
 
@@ -259,6 +312,23 @@ public class LatestDataServiceSampleActivity extends BaseActivity implements Vie
                 updateLayout();
             }
         });
+    }
+
+    private BluetoothDevice findDevice() {
+        BluetoothDevice target = null;
+
+        BluetoothManager bluetoothManager = (BluetoothManager) getSystemService(BLUETOOTH_SERVICE);
+        if (bluetoothManager != null) {
+            List<BluetoothDevice> list = bluetoothManager.getConnectedDevices(BluetoothProfile.GATT);
+            for (BluetoothDevice bluetoothDevice : list) {
+                RbtBLEConnection rbtBLEConnection = BLEConnectionHolder.getInstance(bluetoothDevice);
+                if (rbtBLEConnection != null) {
+                    target = bluetoothDevice;
+                    break;
+                }
+            }
+        }
+        return target;
     }
 
 }

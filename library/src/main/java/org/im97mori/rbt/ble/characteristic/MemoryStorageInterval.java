@@ -4,6 +4,8 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import org.im97mori.ble.ByteArrayCreater;
 
 import java.nio.ByteBuffer;
@@ -31,7 +33,8 @@ public class MemoryStorageInterval extends AbstractRbtCharacteristic implements 
          * {@inheritDoc}
          */
         @Override
-        public MemoryStorageInterval createFromParcel(Parcel in) {
+        @NonNull
+        public MemoryStorageInterval createFromParcel(@NonNull Parcel in) {
             return new MemoryStorageInterval(in);
         }
 
@@ -39,6 +42,7 @@ public class MemoryStorageInterval extends AbstractRbtCharacteristic implements 
          * {@inheritDoc}
          */
         @Override
+        @NonNull
         public MemoryStorageInterval[] newArray(int size) {
             return new MemoryStorageInterval[size];
         }
@@ -47,7 +51,8 @@ public class MemoryStorageInterval extends AbstractRbtCharacteristic implements 
          * {@inheritDoc}
          */
         @Override
-        public MemoryStorageInterval createFromByteArray(byte[] values) {
+        @NonNull
+        public MemoryStorageInterval createFromByteArray(@NonNull byte[] values) {
             BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(MEMORY_STORAGE_INTERVAL_CHARACTERISTIC, 0, 0);
             bluetoothGattCharacteristic.setValue(values);
             return new MemoryStorageInterval(bluetoothGattCharacteristic);
@@ -65,7 +70,7 @@ public class MemoryStorageInterval extends AbstractRbtCharacteristic implements 
      *
      * @param bluetoothGattCharacteristic Characteristics UUID: 0x5203
      */
-    public MemoryStorageInterval(BluetoothGattCharacteristic bluetoothGattCharacteristic) {
+    public MemoryStorageInterval(@NonNull BluetoothGattCharacteristic bluetoothGattCharacteristic) {
         mMemoryStorageInterval = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT16, 0);
     }
 
@@ -83,7 +88,7 @@ public class MemoryStorageInterval extends AbstractRbtCharacteristic implements 
      *
      * @param in Parcel
      */
-    private MemoryStorageInterval(Parcel in) {
+    private MemoryStorageInterval(@NonNull Parcel in) {
         mMemoryStorageInterval = in.readInt();
     }
 
@@ -99,7 +104,7 @@ public class MemoryStorageInterval extends AbstractRbtCharacteristic implements 
      * {@inheritDoc}
      */
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeInt(mMemoryStorageInterval);
     }
 
@@ -121,6 +126,7 @@ public class MemoryStorageInterval extends AbstractRbtCharacteristic implements 
      * {@inheritDoc}
      */
     @Override
+    @NonNull
     public byte[] getBytes() {
         byte[] data = new byte[2];
         ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);

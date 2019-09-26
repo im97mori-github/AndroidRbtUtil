@@ -22,26 +22,36 @@
     <string name="menu_read_5004">Read Memory index information</string>
     <string name="menu_write_5005">Write Request memory index</string>
     <string name="menu_read_5006">Read Memory status</string>
-    <string name="menu_notification_500a">Notification Memory sensing data</string>
-    <string name="menu_notification_500b">Notification Memory calculation data</string>
-    <string name="menu_notification_500c">Notification Memory sensing flag</string>
-    <string name="menu_notification_500d">Notification Memory calculation flag</string>
+    <string name="menu_read_notification_500a">Read Notification Setting Memory sensing data</string>
+    <string name="menu_read_notification_500b">Read Notification Setting Memory calculation data</string>
+    <string name="menu_read_notification_500c">Read Notification Setting  Memory sensing flag</string>
+    <string name="menu_read_notification_500d">Read Notification Setting  Memory calculation flag</string>
+    <string name="menu_write_notification_500a">Write Notification Setting Memory sensing data</string>
+    <string name="menu_write_notification_500b">Write Notification Setting Memory calculation data</string>
+    <string name="menu_write_notification_500c">Write Notification Setting  Memory sensing flag</string>
+    <string name="menu_write_notification_500d">Write Notification Setting  Memory calculation flag</string>
 
     <string name="menu_read_5012">Read Latest sensing data</string>
-    <string name="menu_notification_5012">Notification Latest sensing data</string>
+    <string name="menu_read_notification_5012">Read Notification Latest sensing data</string>
+    <string name="menu_write_notification_5012">Write Notification Latest sensing data</string>
     <string name="menu_read_5013">Read Latest calculation data</string>
-    <string name="menu_notification_5013">Notification Latest calculation data</string>
+    <string name="menu_read_notification_5013">Read Notification Latest calculation data</string>
+    <string name="menu_write_notification_5013">Write Notification Latest calculation data</string>
     <string name="menu_read_5014">Read Latest sensing flag</string>
-    <string name="menu_notification_5014">Notification Latest sensing flag</string>
+    <string name="menu_read_notification_5014">Read Notification Latest sensing flag</string>
+    <string name="menu_write_notification_5014">Write Notification Latest sensing flag</string>
     <string name="menu_read_5015">Read Latest calculation flag</string>
-    <string name="menu_notification_5015">Notification Latest calculation flag</string>
+    <string name="menu_read_notification_5015">Read Notification Latest calculation flag</string>
+    <string name="menu_write_notification_5015">Write Notification Latest calculation flag</string>
     <string name="menu_read_5016">Read Latest acceleration status</string>
-    <string name="menu_notification_5016">Notification Latest acceleration status</string>
+    <string name="menu_read_notification_5016">Read Notification Latest acceleration status</string>
+    <string name="menu_write_notification_5016">Write Notification Latest acceleration status</string>
 
     <string name="menu_read_5031">Read Vibration count</string>
     <string name="menu_write_5032">Write Request acceleration memory index</string>
     <string name="menu_read_5033">Read Acceleration memory status</string>
-    <string name="menu_notification_5034">Notification Acceleration memory data</string>
+    <string name="menu_read_notification_5034">Read Notification Acceleration memory data</string>
+    <string name="menu_write_notification_5034">Write Notification Acceleration memory data</string>
 
     <string name="menu_read_5111">Read LED setting [normal state]</string>
     <string name="menu_write_5111">Write LED setting [normal state]</string>
@@ -116,7 +126,7 @@
     <string name="menu_read_2a00">Read Device name</string>
     <string name="menu_read_2a01">Read Appearance</string>
     <string name="menu_read_2a04">Read Peripheral preferredconnection parameters</string>
-    <string name="menu_read_2aa6">Read Central address r esolutio</string>
+    <string name="menu_read_2aa6">Read Central address resolution</string>
 
     <string name="menu_read_2a24">Read Model Number String</string>
     <string name="menu_read_2a25">Read Serial Number String</string>

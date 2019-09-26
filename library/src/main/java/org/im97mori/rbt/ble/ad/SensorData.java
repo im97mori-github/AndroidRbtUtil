@@ -3,6 +3,8 @@ package org.im97mori.rbt.ble.ad;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import org.im97mori.ble.ad.ManufacturerSpecificData;
 import org.im97mori.rbt.RbtConstants;
 
@@ -25,7 +27,8 @@ public class SensorData extends AbstractRbtPacket implements Parcelable {
          * {@inheritDoc}
          */
         @Override
-        public SensorData createFromParcel(Parcel in) {
+        @NonNull
+        public SensorData createFromParcel(@NonNull Parcel in) {
             return new SensorData(in);
         }
 
@@ -33,6 +36,7 @@ public class SensorData extends AbstractRbtPacket implements Parcelable {
          * {@inheritDoc}
          */
         @Override
+        @NonNull
         public SensorData[] newArray(int size) {
             return new SensorData[size];
         }
@@ -84,7 +88,7 @@ public class SensorData extends AbstractRbtPacket implements Parcelable {
      *
      * @param data byte array from {@link ManufacturerSpecificData#getManufacturerSpecificData()}
      */
-    public SensorData(byte[] data) {
+    public SensorData(@NonNull byte[] data) {
         mSequenceNumber = createUInt8(1, data);
         mTemperature = createSInt16(2, data);
         mRelativeHumidity = createSInt16(4, data);
@@ -100,7 +104,7 @@ public class SensorData extends AbstractRbtPacket implements Parcelable {
      *
      * @param in Parcel
      */
-    private SensorData(Parcel in) {
+    private SensorData(@NonNull Parcel in) {
         mSequenceNumber = in.readInt();
         mTemperature = in.readInt();
         mRelativeHumidity = in.readInt();
@@ -123,7 +127,7 @@ public class SensorData extends AbstractRbtPacket implements Parcelable {
      * {@inheritDoc}
      */
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeInt(mSequenceNumber);
         dest.writeInt(mTemperature);
         dest.writeInt(mRelativeHumidity);

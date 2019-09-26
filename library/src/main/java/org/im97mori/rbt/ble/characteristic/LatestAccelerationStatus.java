@@ -4,6 +4,8 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import org.im97mori.ble.ByteArrayCreater;
 
 import java.nio.ByteBuffer;
@@ -27,7 +29,8 @@ public class LatestAccelerationStatus extends AbstractRbtCharacteristic implemen
          * {@inheritDoc}
          */
         @Override
-        public LatestAccelerationStatus createFromParcel(Parcel in) {
+        @NonNull
+        public LatestAccelerationStatus createFromParcel(@NonNull Parcel in) {
             return new LatestAccelerationStatus(in);
         }
 
@@ -35,6 +38,7 @@ public class LatestAccelerationStatus extends AbstractRbtCharacteristic implemen
          * {@inheritDoc}
          */
         @Override
+        @NonNull
         public LatestAccelerationStatus[] newArray(int size) {
             return new LatestAccelerationStatus[size];
         }
@@ -43,7 +47,8 @@ public class LatestAccelerationStatus extends AbstractRbtCharacteristic implemen
          * {@inheritDoc}
          */
         @Override
-        public LatestAccelerationStatus createFromByteArray(byte[] values) {
+        @NonNull
+        public LatestAccelerationStatus createFromByteArray(@NonNull byte[] values) {
             BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(LATEST_ACCELERATION_STATUS_CHARACTERISTIC, 0, 0);
             bluetoothGattCharacteristic.setValue(values);
             return new LatestAccelerationStatus(bluetoothGattCharacteristic);
@@ -101,7 +106,7 @@ public class LatestAccelerationStatus extends AbstractRbtCharacteristic implemen
      *
      * @param bluetoothGattCharacteristic Characteristics UUID: 0x5016
      */
-    public LatestAccelerationStatus(BluetoothGattCharacteristic bluetoothGattCharacteristic) {
+    public LatestAccelerationStatus(@NonNull BluetoothGattCharacteristic bluetoothGattCharacteristic) {
         mSequenceNumber = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 0);
         mVibrationInformation = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 1);
         mMaximumAccelerationXAxis = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_SINT16, 2);
@@ -118,7 +123,7 @@ public class LatestAccelerationStatus extends AbstractRbtCharacteristic implemen
      *
      * @param in Parcel
      */
-    private LatestAccelerationStatus(Parcel in) {
+    private LatestAccelerationStatus(@NonNull Parcel in) {
         mSequenceNumber = in.readInt();
         mVibrationInformation = in.readInt();
         mMaximumAccelerationXAxis = in.readInt();
@@ -142,7 +147,7 @@ public class LatestAccelerationStatus extends AbstractRbtCharacteristic implemen
      * {@inheritDoc}
      */
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeInt(mSequenceNumber);
         dest.writeInt(mVibrationInformation);
         dest.writeInt(mMaximumAccelerationXAxis);
@@ -263,6 +268,7 @@ public class LatestAccelerationStatus extends AbstractRbtCharacteristic implemen
      * {@inheritDoc}
      */
     @Override
+    @NonNull
     public byte[] getBytes() {
         byte[] data = new byte[15];
         ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);

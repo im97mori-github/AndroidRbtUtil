@@ -4,6 +4,8 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import org.im97mori.ble.ByteArrayCreater;
 import org.im97mori.rbt.RbtConstants;
 
@@ -31,7 +33,8 @@ public class MemoryCalculationFlag extends AbstractRbtCharacteristic implements 
          * {@inheritDoc}
          */
         @Override
-        public MemoryCalculationFlag createFromParcel(Parcel in) {
+        @NonNull
+        public MemoryCalculationFlag createFromParcel(@NonNull Parcel in) {
             return new MemoryCalculationFlag(in);
         }
 
@@ -39,6 +42,7 @@ public class MemoryCalculationFlag extends AbstractRbtCharacteristic implements 
          * {@inheritDoc}
          */
         @Override
+        @NonNull
         public MemoryCalculationFlag[] newArray(int size) {
             return new MemoryCalculationFlag[size];
         }
@@ -47,7 +51,8 @@ public class MemoryCalculationFlag extends AbstractRbtCharacteristic implements 
          * {@inheritDoc}
          */
         @Override
-        public MemoryCalculationFlag createFromByteArray(byte[] values) {
+        @NonNull
+        public MemoryCalculationFlag createFromByteArray(@NonNull byte[] values) {
             BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(MEMORY_CALCULATION_FLAG_CHARACTERISTIC, 0, 0);
             bluetoothGattCharacteristic.setValue(values);
             return new MemoryCalculationFlag(bluetoothGattCharacteristic);
@@ -90,7 +95,7 @@ public class MemoryCalculationFlag extends AbstractRbtCharacteristic implements 
      *
      * @param bluetoothGattCharacteristic Characteristics UUID: 0x500D
      */
-    public MemoryCalculationFlag(BluetoothGattCharacteristic bluetoothGattCharacteristic) {
+    public MemoryCalculationFlag(@NonNull BluetoothGattCharacteristic bluetoothGattCharacteristic) {
         mMemoryIndex = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT32, 0);
         mDiscomfortIndexFlag = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT16, 4);
         mHeatStrokeFlag = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT16, 6);
@@ -104,7 +109,7 @@ public class MemoryCalculationFlag extends AbstractRbtCharacteristic implements 
      *
      * @param in Parcel
      */
-    private MemoryCalculationFlag(Parcel in) {
+    private MemoryCalculationFlag(@NonNull Parcel in) {
         mMemoryIndex = in.readInt();
         mDiscomfortIndexFlag = in.readInt();
         mHeatStrokeFlag = in.readInt();
@@ -125,7 +130,7 @@ public class MemoryCalculationFlag extends AbstractRbtCharacteristic implements 
      * {@inheritDoc}
      */
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeInt(mMemoryIndex);
         dest.writeInt(mDiscomfortIndexFlag);
         dest.writeInt(mHeatStrokeFlag);
@@ -783,6 +788,7 @@ public class MemoryCalculationFlag extends AbstractRbtCharacteristic implements 
      * {@inheritDoc}
      */
     @Override
+    @NonNull
     public byte[] getBytes() {
         byte[] data = new byte[11];
         ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);

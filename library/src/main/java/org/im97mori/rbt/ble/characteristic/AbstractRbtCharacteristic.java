@@ -2,6 +2,8 @@ package org.im97mori.rbt.ble.characteristic;
 
 import android.bluetooth.BluetoothGattCharacteristic;
 
+import androidx.annotation.NonNull;
+
 import org.im97mori.ble.ByteArrayInterface;
 
 import java.math.BigInteger;
@@ -21,7 +23,7 @@ public abstract class AbstractRbtCharacteristic implements ByteArrayInterface {
      * @param length second parameter length of {@link BigInteger#BigInteger(int, byte[])}
      * @return Unsigned 64bit(8bytes) integer value
      */
-    protected BigInteger createBigInteger(byte[] data, int offset, int length) {
+    protected BigInteger createBigInteger(@NonNull byte[] data, int offset, int length) {
         // little to big endian
         byte[] reversed = new byte[length];
         for (int i = 0; i < length; i++) {
@@ -36,7 +38,7 @@ public abstract class AbstractRbtCharacteristic implements ByteArrayInterface {
      * @param length byte array length
      * @return little-endian byte array
      */
-    protected byte[] createLittleEndianByteArrayFromBigInteger(BigInteger bigInteger, int length) {
+    protected byte[] createLittleEndianByteArrayFromBigInteger(@NonNull BigInteger bigInteger, int length) {
         byte[] original = bigInteger.toByteArray();
         byte[] data = new byte[length];
         if (bigInteger.signum() == -1) {

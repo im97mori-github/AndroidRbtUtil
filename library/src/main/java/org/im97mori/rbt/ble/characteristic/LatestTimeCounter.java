@@ -4,6 +4,8 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import org.im97mori.ble.ByteArrayCreater;
 
 import java.math.BigInteger;
@@ -15,6 +17,7 @@ import static org.im97mori.rbt.RbtConstants.CharacteristicUUID.LATEST_TIME_COUNT
 /**
  * 2.5.1 Latest time counter (Characteristics UUID: 0x5201)
  */
+@SuppressWarnings("WeakerAccess")
 public class LatestTimeCounter extends AbstractRbtCharacteristic implements Parcelable {
 
     /**
@@ -26,7 +29,8 @@ public class LatestTimeCounter extends AbstractRbtCharacteristic implements Parc
          * {@inheritDoc}
          */
         @Override
-        public LatestTimeCounter createFromParcel(Parcel in) {
+        @NonNull
+        public LatestTimeCounter createFromParcel(@NonNull Parcel in) {
             return new LatestTimeCounter(in);
         }
 
@@ -34,6 +38,7 @@ public class LatestTimeCounter extends AbstractRbtCharacteristic implements Parc
          * {@inheritDoc}
          */
         @Override
+        @NonNull
         public LatestTimeCounter[] newArray(int size) {
             return new LatestTimeCounter[size];
         }
@@ -42,7 +47,8 @@ public class LatestTimeCounter extends AbstractRbtCharacteristic implements Parc
          * {@inheritDoc}
          */
         @Override
-        public LatestTimeCounter createFromByteArray(byte[] values) {
+        @NonNull
+        public LatestTimeCounter createFromByteArray(@NonNull byte[] values) {
             BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(LATEST_TIME_COUNTER_CHARACTERISTIC, 0, 0);
             bluetoothGattCharacteristic.setValue(values);
             return new LatestTimeCounter(bluetoothGattCharacteristic);
@@ -60,7 +66,7 @@ public class LatestTimeCounter extends AbstractRbtCharacteristic implements Parc
      *
      * @param bluetoothGattCharacteristic Characteristics UUID: 0x5201
      */
-    public LatestTimeCounter(BluetoothGattCharacteristic bluetoothGattCharacteristic) {
+    public LatestTimeCounter(@NonNull BluetoothGattCharacteristic bluetoothGattCharacteristic) {
         mTimeCounter = createBigInteger(bluetoothGattCharacteristic.getValue(), 0, 8);
     }
 
@@ -69,7 +75,7 @@ public class LatestTimeCounter extends AbstractRbtCharacteristic implements Parc
      *
      * @param in Parcel
      */
-    private LatestTimeCounter(Parcel in) {
+    private LatestTimeCounter(@NonNull Parcel in) {
         mTimeCounter = (BigInteger) in.readSerializable();
     }
 
@@ -85,7 +91,7 @@ public class LatestTimeCounter extends AbstractRbtCharacteristic implements Parc
      * {@inheritDoc}
      */
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeSerializable(mTimeCounter);
     }
 
@@ -100,6 +106,7 @@ public class LatestTimeCounter extends AbstractRbtCharacteristic implements Parc
      * {@inheritDoc}
      */
     @Override
+    @NonNull
     public byte[] getBytes() {
         byte[] data = new byte[8];
         ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);

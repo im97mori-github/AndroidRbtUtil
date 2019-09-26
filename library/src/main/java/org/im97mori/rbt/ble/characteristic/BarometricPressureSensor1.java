@@ -4,6 +4,8 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import org.im97mori.ble.ByteArrayCreater;
 import org.im97mori.rbt.RbtConstants;
 
@@ -29,7 +31,8 @@ public class BarometricPressureSensor1 extends AbstractRbtCharacteristic impleme
          * {@inheritDoc}
          */
         @Override
-        public BarometricPressureSensor1 createFromParcel(Parcel in) {
+        @NonNull
+        public BarometricPressureSensor1 createFromParcel(@NonNull Parcel in) {
             return new BarometricPressureSensor1(in);
         }
 
@@ -37,6 +40,7 @@ public class BarometricPressureSensor1 extends AbstractRbtCharacteristic impleme
          * {@inheritDoc}
          */
         @Override
+        @NonNull
         public BarometricPressureSensor1[] newArray(int size) {
             return new BarometricPressureSensor1[size];
         }
@@ -45,7 +49,8 @@ public class BarometricPressureSensor1 extends AbstractRbtCharacteristic impleme
          * {@inheritDoc}
          */
         @Override
-        public BarometricPressureSensor1 createFromByteArray(byte[] values) {
+        @NonNull
+        public BarometricPressureSensor1 createFromByteArray(@NonNull byte[] values) {
             BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BAROMETRIC_PRESSURE_SENSOR_1_CHARACTERISTIC, 0, 0);
             bluetoothGattCharacteristic.setValue(values);
             return new BarometricPressureSensor1(bluetoothGattCharacteristic);
@@ -103,7 +108,7 @@ public class BarometricPressureSensor1 extends AbstractRbtCharacteristic impleme
      *
      * @param bluetoothGattCharacteristic Characteristics UUID: 0x5217
      */
-    public BarometricPressureSensor1(BluetoothGattCharacteristic bluetoothGattCharacteristic) {
+    public BarometricPressureSensor1(@NonNull BluetoothGattCharacteristic bluetoothGattCharacteristic) {
         mEventEnableDisable = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT16, 0);
         mSimpleThresholdUpperLimit1 = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_SINT16, 2);
         mSimpleThresholdUpperLimit2 = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_SINT16, 4);
@@ -145,7 +150,7 @@ public class BarometricPressureSensor1 extends AbstractRbtCharacteristic impleme
      *
      * @param in Parcel
      */
-    private BarometricPressureSensor1(Parcel in) {
+    private BarometricPressureSensor1(@NonNull Parcel in) {
         mEventEnableDisable = in.readInt();
         mSimpleThresholdUpperLimit1 = in.readInt();
         mSimpleThresholdUpperLimit2 = in.readInt();
@@ -169,7 +174,7 @@ public class BarometricPressureSensor1 extends AbstractRbtCharacteristic impleme
      * {@inheritDoc}
      */
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeInt(mEventEnableDisable);
         dest.writeInt(mSimpleThresholdUpperLimit1);
         dest.writeInt(mSimpleThresholdUpperLimit2);
@@ -448,6 +453,7 @@ public class BarometricPressureSensor1 extends AbstractRbtCharacteristic impleme
      * {@inheritDoc}
      */
     @Override
+    @NonNull
     public byte[] getBytes() {
         byte[] data = new byte[20];
         ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);

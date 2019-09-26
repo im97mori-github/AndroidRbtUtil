@@ -4,6 +4,8 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import org.im97mori.ble.ByteArrayCreater;
 
 import java.nio.ByteBuffer;
@@ -21,6 +23,7 @@ import static org.im97mori.rbt.RbtConstants.OutputRange.OUTPUT_RANGE_TEMPERATURE
 /**
  * 2.2.1 Latest sensing data (Characteristics UUID: 0x5012)
  */
+@SuppressWarnings("WeakerAccess")
 public class LatestSensingData extends AbstractRbtCharacteristic implements Parcelable {
 
     /**
@@ -32,7 +35,8 @@ public class LatestSensingData extends AbstractRbtCharacteristic implements Parc
          * {@inheritDoc}
          */
         @Override
-        public LatestSensingData createFromParcel(Parcel in) {
+        @NonNull
+        public LatestSensingData createFromParcel(@NonNull Parcel in) {
             return new LatestSensingData(in);
         }
 
@@ -40,6 +44,7 @@ public class LatestSensingData extends AbstractRbtCharacteristic implements Parc
          * {@inheritDoc}
          */
         @Override
+        @NonNull
         public LatestSensingData[] newArray(int size) {
             return new LatestSensingData[size];
         }
@@ -48,7 +53,8 @@ public class LatestSensingData extends AbstractRbtCharacteristic implements Parc
          * {@inheritDoc}
          */
         @Override
-        public LatestSensingData createFromByteArray(byte[] values) {
+        @NonNull
+        public LatestSensingData createFromByteArray(@NonNull byte[] values) {
             BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(LATEST_SENSING_DATA_CHARACTERISTIC, 0, 0);
             bluetoothGattCharacteristic.setValue(values);
             return new LatestSensingData(bluetoothGattCharacteristic);
@@ -101,7 +107,7 @@ public class LatestSensingData extends AbstractRbtCharacteristic implements Parc
      *
      * @param bluetoothGattCharacteristic Characteristics UUID: 0x5012
      */
-    public LatestSensingData(BluetoothGattCharacteristic bluetoothGattCharacteristic) {
+    public LatestSensingData(@NonNull BluetoothGattCharacteristic bluetoothGattCharacteristic) {
         mSequenceNumber = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 0);
         mTemperature = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_SINT16, 1);
         mRelativeHumidity = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_SINT16, 3);
@@ -117,7 +123,7 @@ public class LatestSensingData extends AbstractRbtCharacteristic implements Parc
      *
      * @param in Parcel
      */
-    private LatestSensingData(Parcel in) {
+    private LatestSensingData(@NonNull Parcel in) {
         mSequenceNumber = in.readInt();
         mTemperature = in.readInt();
         mRelativeHumidity = in.readInt();
@@ -140,7 +146,7 @@ public class LatestSensingData extends AbstractRbtCharacteristic implements Parc
      * {@inheritDoc}
      */
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeInt(mSequenceNumber);
         dest.writeInt(mTemperature);
         dest.writeInt(mRelativeHumidity);
@@ -260,6 +266,7 @@ public class LatestSensingData extends AbstractRbtCharacteristic implements Parc
      * {@inheritDoc}
      */
     @Override
+    @NonNull
     public byte[] getBytes() {
         byte[] data = new byte[17];
         ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);

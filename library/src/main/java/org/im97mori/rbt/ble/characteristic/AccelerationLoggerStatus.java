@@ -4,6 +4,8 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import org.im97mori.ble.ByteArrayCreater;
 
 import java.nio.ByteBuffer;
@@ -36,7 +38,8 @@ public class AccelerationLoggerStatus extends AbstractRbtCharacteristic implemen
          * {@inheritDoc}
          */
         @Override
-        public AccelerationLoggerStatus createFromParcel(Parcel in) {
+        @NonNull
+        public AccelerationLoggerStatus createFromParcel(@NonNull Parcel in) {
             return new AccelerationLoggerStatus(in);
         }
 
@@ -44,6 +47,7 @@ public class AccelerationLoggerStatus extends AbstractRbtCharacteristic implemen
          * {@inheritDoc}
          */
         @Override
+        @NonNull
         public AccelerationLoggerStatus[] newArray(int size) {
             return new AccelerationLoggerStatus[size];
         }
@@ -52,7 +56,8 @@ public class AccelerationLoggerStatus extends AbstractRbtCharacteristic implemen
          * {@inheritDoc}
          */
         @Override
-        public AccelerationLoggerStatus createFromByteArray(byte[] values) {
+        @NonNull
+        public AccelerationLoggerStatus createFromByteArray(@NonNull byte[] values) {
             BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(ACCELERATION_LOGGER_STATUS_CHARACTERISTIC, 0, 0);
             bluetoothGattCharacteristic.setValue(values);
             return new AccelerationLoggerStatus(bluetoothGattCharacteristic);
@@ -75,7 +80,7 @@ public class AccelerationLoggerStatus extends AbstractRbtCharacteristic implemen
      *
      * @param bluetoothGattCharacteristic Characteristics UUID: 0x5119
      */
-    public AccelerationLoggerStatus(BluetoothGattCharacteristic bluetoothGattCharacteristic) {
+    public AccelerationLoggerStatus(@NonNull BluetoothGattCharacteristic bluetoothGattCharacteristic) {
         mLoggerStatus = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 0);
         mRunningPage = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT16, 1);
     }
@@ -85,7 +90,7 @@ public class AccelerationLoggerStatus extends AbstractRbtCharacteristic implemen
      *
      * @param in Parcel
      */
-    private AccelerationLoggerStatus(Parcel in) {
+    private AccelerationLoggerStatus(@NonNull Parcel in) {
         mLoggerStatus = in.readInt();
         mRunningPage = in.readInt();
     }
@@ -102,7 +107,7 @@ public class AccelerationLoggerStatus extends AbstractRbtCharacteristic implemen
      * {@inheritDoc}
      */
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeInt(mLoggerStatus);
         dest.writeInt(mRunningPage);
     }
@@ -125,6 +130,7 @@ public class AccelerationLoggerStatus extends AbstractRbtCharacteristic implemen
      * {@inheritDoc}
      */
     @Override
+    @NonNull
     public byte[] getBytes() {
         byte[] data = new byte[3];
         ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);

@@ -487,6 +487,11 @@ public class RbtConstants {
         public static final int DISABLE = 0;
 
         /**
+         * Enable all threshold
+         */
+        public static final int ENABLE = 1;
+
+        /**
          * Simple threshold [upper limit] 1
          */
         public static final int SIMPLE_THRESHOLD_UPPER_LIMIT_1 = 0b00000000_00000001;

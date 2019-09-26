@@ -3,6 +3,8 @@ package org.im97mori.rbt.ble.ad;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import org.im97mori.ble.ad.ManufacturerSpecificData;
 import org.im97mori.rbt.RbtConstants;
 
@@ -21,7 +23,8 @@ public class SerialNumber extends AbstractRbtPacket implements Parcelable {
          * {@inheritDoc}
          */
         @Override
-        public SerialNumber createFromParcel(Parcel in) {
+        @NonNull
+        public SerialNumber createFromParcel(@NonNull Parcel in) {
             return new SerialNumber(in);
         }
 
@@ -29,6 +32,7 @@ public class SerialNumber extends AbstractRbtPacket implements Parcelable {
          * {@inheritDoc}
          */
         @Override
+        @NonNull
         public SerialNumber[] newArray(int size) {
             return new SerialNumber[size];
         }
@@ -50,7 +54,7 @@ public class SerialNumber extends AbstractRbtPacket implements Parcelable {
      *
      * @param data byte array from {@link ManufacturerSpecificData#getManufacturerSpecificData()}
      */
-    public SerialNumber(byte[] data) {
+    public SerialNumber(@NonNull byte[] data) {
         mSerialNumber = new String(data, 1, 10);
         mMemoryIndex = createUInt32(11, data);
     }
@@ -60,7 +64,7 @@ public class SerialNumber extends AbstractRbtPacket implements Parcelable {
      *
      * @param in Parcel
      */
-    private SerialNumber(Parcel in) {
+    private SerialNumber(@NonNull Parcel in) {
         mSerialNumber = in.readString();
         mMemoryIndex = in.readInt();
     }
@@ -77,7 +81,7 @@ public class SerialNumber extends AbstractRbtPacket implements Parcelable {
      * {@inheritDoc}
      */
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeString(mSerialNumber);
         dest.writeInt(mMemoryIndex);
     }

@@ -11,7 +11,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-public class AccelerationMemorydataHeader4Test {
+public class AccelerationMemoryDataHeader4Test {
 
     @Test
     public void test001() {

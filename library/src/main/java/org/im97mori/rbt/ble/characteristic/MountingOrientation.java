@@ -4,6 +4,8 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import org.im97mori.ble.ByteArrayCreater;
 
 import java.nio.ByteBuffer;
@@ -56,7 +58,8 @@ public class MountingOrientation extends AbstractRbtCharacteristic implements Pa
          * {@inheritDoc}
          */
         @Override
-        public MountingOrientation createFromParcel(Parcel in) {
+        @NonNull
+        public MountingOrientation createFromParcel(@NonNull Parcel in) {
             return new MountingOrientation(in);
         }
 
@@ -64,6 +67,7 @@ public class MountingOrientation extends AbstractRbtCharacteristic implements Pa
          * {@inheritDoc}
          */
         @Override
+        @NonNull
         public MountingOrientation[] newArray(int size) {
             return new MountingOrientation[size];
         }
@@ -72,7 +76,8 @@ public class MountingOrientation extends AbstractRbtCharacteristic implements Pa
          * {@inheritDoc}
          */
         @Override
-        public MountingOrientation createFromByteArray(byte[] values) {
+        @NonNull
+        public MountingOrientation createFromByteArray(@NonNull byte[] values) {
             BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(MOUNTING_ORIENTATION_CHARACTERISTIC, 0, 0);
             bluetoothGattCharacteristic.setValue(values);
             return new MountingOrientation(bluetoothGattCharacteristic);
@@ -90,7 +95,7 @@ public class MountingOrientation extends AbstractRbtCharacteristic implements Pa
      *
      * @param bluetoothGattCharacteristic Characteristics UUID: 0x5402
      */
-    public MountingOrientation(BluetoothGattCharacteristic bluetoothGattCharacteristic) {
+    public MountingOrientation(@NonNull BluetoothGattCharacteristic bluetoothGattCharacteristic) {
         mountingOrientation = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 0);
     }
 
@@ -99,7 +104,7 @@ public class MountingOrientation extends AbstractRbtCharacteristic implements Pa
      *
      * @param in Parcel
      */
-    private MountingOrientation(Parcel in) {
+    private MountingOrientation(@NonNull Parcel in) {
         mountingOrientation = in.readInt();
     }
 
@@ -115,7 +120,7 @@ public class MountingOrientation extends AbstractRbtCharacteristic implements Pa
      * {@inheritDoc}
      */
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeInt(mountingOrientation);
     }
 
@@ -130,6 +135,7 @@ public class MountingOrientation extends AbstractRbtCharacteristic implements Pa
      * {@inheritDoc}
      */
     @Override
+    @NonNull
     public byte[] getBytes() {
         byte[] data = new byte[1];
         ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);

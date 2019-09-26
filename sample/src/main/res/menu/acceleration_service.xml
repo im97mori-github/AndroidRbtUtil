@@ -11,8 +11,10 @@
         android:title="@string/menu_read_5033" />
 
     <item
-        android:id="@+id/notification_acceleration_memory_data"
-        android:title="@string/menu_notification_5034" />
-
+        android:id="@+id/read_notification_acceleration_memory_data"
+        android:title="@string/menu_read_notification_5034" />
+    <item
+        android:id="@+id/write_notification_acceleration_memory_data"
+        android:title="@string/menu_write_notification_5034" />
 
 </menu>

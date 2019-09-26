@@ -4,6 +4,8 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import org.im97mori.ble.ByteArrayCreater;
 
 import java.nio.ByteBuffer;
@@ -46,7 +48,8 @@ public class AccelerationMemoryStatus extends AbstractRbtCharacteristic implemen
          * {@inheritDoc}
          */
         @Override
-        public AccelerationMemoryStatus createFromParcel(Parcel in) {
+        @NonNull
+        public AccelerationMemoryStatus createFromParcel(@NonNull Parcel in) {
             return new AccelerationMemoryStatus(in);
         }
 
@@ -54,6 +57,7 @@ public class AccelerationMemoryStatus extends AbstractRbtCharacteristic implemen
          * {@inheritDoc}
          */
         @Override
+        @NonNull
         public AccelerationMemoryStatus[] newArray(int size) {
             return new AccelerationMemoryStatus[size];
         }
@@ -62,7 +66,8 @@ public class AccelerationMemoryStatus extends AbstractRbtCharacteristic implemen
          * {@inheritDoc}
          */
         @Override
-        public AccelerationMemoryStatus createFromByteArray(byte[] values) {
+        @NonNull
+        public AccelerationMemoryStatus createFromByteArray(@NonNull byte[] values) {
             BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(ACCELERATION_MEMORY_STATUS_CHARACTERISTIC, 0, 0);
             bluetoothGattCharacteristic.setValue(values);
             return new AccelerationMemoryStatus(bluetoothGattCharacteristic);
@@ -85,7 +90,7 @@ public class AccelerationMemoryStatus extends AbstractRbtCharacteristic implemen
      *
      * @param bluetoothGattCharacteristic Characteristics UUID: 0x5033
      */
-    public AccelerationMemoryStatus(BluetoothGattCharacteristic bluetoothGattCharacteristic) {
+    public AccelerationMemoryStatus(@NonNull BluetoothGattCharacteristic bluetoothGattCharacteristic) {
         mStatus = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 0);
         mTotalTransferCount = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT16, 1);
     }
@@ -95,7 +100,7 @@ public class AccelerationMemoryStatus extends AbstractRbtCharacteristic implemen
      *
      * @param in Parcel
      */
-    private AccelerationMemoryStatus(Parcel in) {
+    private AccelerationMemoryStatus(@NonNull Parcel in) {
         mStatus = in.readInt();
         mTotalTransferCount = in.readInt();
     }
@@ -112,7 +117,7 @@ public class AccelerationMemoryStatus extends AbstractRbtCharacteristic implemen
      * {@inheritDoc}
      */
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeInt(mStatus);
         dest.writeInt(mTotalTransferCount);
     }
@@ -135,6 +140,7 @@ public class AccelerationMemoryStatus extends AbstractRbtCharacteristic implemen
      * {@inheritDoc}
      */
     @Override
+    @NonNull
     public byte[] getBytes() {
         byte[] data = new byte[3];
         ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);

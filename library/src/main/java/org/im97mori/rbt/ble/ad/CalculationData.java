@@ -3,6 +3,8 @@ package org.im97mori.rbt.ble.ad;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import org.im97mori.ble.ad.ManufacturerSpecificData;
 import org.im97mori.rbt.RbtConstants;
 
@@ -21,7 +23,8 @@ public class CalculationData extends AbstractRbtPacket implements Parcelable {
          * {@inheritDoc}
          */
         @Override
-        public CalculationData createFromParcel(Parcel in) {
+        @NonNull
+        public CalculationData createFromParcel(@NonNull Parcel in) {
             return new CalculationData(in);
         }
 
@@ -29,6 +32,7 @@ public class CalculationData extends AbstractRbtPacket implements Parcelable {
          * {@inheritDoc}
          */
         @Override
+        @NonNull
         public CalculationData[] newArray(int size) {
             return new CalculationData[size];
         }
@@ -90,7 +94,7 @@ public class CalculationData extends AbstractRbtPacket implements Parcelable {
      *
      * @param data byte array from {@link ManufacturerSpecificData#getManufacturerSpecificData()}
      */
-    public CalculationData(byte[] data) {
+    public CalculationData(@NonNull byte[] data) {
         mSequenceNumber = createUInt8(1, data);
         mDiscomfortIndex = createSInt16(2, data);
         mHeatStroke = createSInt16(4, data);
@@ -108,7 +112,7 @@ public class CalculationData extends AbstractRbtPacket implements Parcelable {
      *
      * @param in Parcel
      */
-    private CalculationData(Parcel in) {
+    private CalculationData(@NonNull Parcel in) {
         mSequenceNumber = in.readInt();
         mDiscomfortIndex = in.readInt();
         mHeatStroke = in.readInt();
@@ -133,7 +137,7 @@ public class CalculationData extends AbstractRbtPacket implements Parcelable {
      * {@inheritDoc}
      */
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeInt(mSequenceNumber);
         dest.writeInt(mDiscomfortIndex);
         dest.writeInt(mHeatStroke);

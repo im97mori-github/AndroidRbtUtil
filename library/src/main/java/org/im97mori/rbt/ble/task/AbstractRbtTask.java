@@ -2,7 +2,7 @@ package org.im97mori.rbt.ble.task;
 
 import org.im97mori.ble.task.AbstractBLETask;
 
-@SuppressWarnings("ALL")
+@SuppressWarnings("WeakerAccess")
 public abstract class AbstractRbtTask extends AbstractBLETask {
 
     /**

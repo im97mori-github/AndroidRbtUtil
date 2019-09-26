@@ -4,6 +4,8 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import org.im97mori.ble.ByteArrayCreater;
 
 import java.nio.ByteBuffer;
@@ -13,7 +15,7 @@ import static org.im97mori.rbt.RbtConstants.CharacteristicUUID.ACCELERATION_MEMO
 import static org.im97mori.rbt.RbtConstants.OutputRange.OUTPUT_RANGE_ACCELERATION_UNIT;
 
 /**
- * 2.3.5 Acceleration memory data [Data] (Characteristics UUID: 0x5034)
+ * 2.3.5 Acceleration memory data [Data] (Characteristics UUID: 0x5034) 10 / 13
  */
 @SuppressWarnings("WeakerAccess")
 public class AccelerationMemoryData10 extends AbstractRbtCharacteristic implements Parcelable {
@@ -32,7 +34,8 @@ public class AccelerationMemoryData10 extends AbstractRbtCharacteristic implemen
          * {@inheritDoc}
          */
         @Override
-        public AccelerationMemoryData10 createFromParcel(Parcel in) {
+        @NonNull
+        public AccelerationMemoryData10 createFromParcel(@NonNull Parcel in) {
             return new AccelerationMemoryData10(in);
         }
 
@@ -40,6 +43,7 @@ public class AccelerationMemoryData10 extends AbstractRbtCharacteristic implemen
          * {@inheritDoc}
          */
         @Override
+        @NonNull
         public AccelerationMemoryData10[] newArray(int size) {
             return new AccelerationMemoryData10[size];
         }
@@ -48,7 +52,8 @@ public class AccelerationMemoryData10 extends AbstractRbtCharacteristic implemen
          * {@inheritDoc}
          */
         @Override
-        public AccelerationMemoryData10 createFromByteArray(byte[] values) {
+        @NonNull
+        public AccelerationMemoryData10 createFromByteArray(@NonNull byte[] values) {
             BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(ACCELERATION_MEMORY_DATA_CHARACTERISTIC, 0, 0);
             bluetoothGattCharacteristic.setValue(values);
             return new AccelerationMemoryData10(bluetoothGattCharacteristic);
@@ -111,7 +116,7 @@ public class AccelerationMemoryData10 extends AbstractRbtCharacteristic implemen
      *
      * @param bluetoothGattCharacteristic Characteristics UUID: 0x5034
      */
-    public AccelerationMemoryData10(BluetoothGattCharacteristic bluetoothGattCharacteristic) {
+    public AccelerationMemoryData10(@NonNull BluetoothGattCharacteristic bluetoothGattCharacteristic) {
         mTotalTransferCount = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT16, 0);
         mAccelerationXAxis1 = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_SINT16, 2);
         mAccelerationYAxis1 = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_SINT16, 4);
@@ -129,7 +134,7 @@ public class AccelerationMemoryData10 extends AbstractRbtCharacteristic implemen
      *
      * @param in Parcel
      */
-    private AccelerationMemoryData10(Parcel in) {
+    private AccelerationMemoryData10(@NonNull Parcel in) {
         mTotalTransferCount = in.readInt();
         mAccelerationXAxis1 = in.readInt();
         mAccelerationYAxis1 = in.readInt();
@@ -154,7 +159,7 @@ public class AccelerationMemoryData10 extends AbstractRbtCharacteristic implemen
      * {@inheritDoc}
      */
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeInt(mTotalTransferCount);
         dest.writeInt(mAccelerationXAxis1);
         dest.writeInt(mAccelerationYAxis1);
@@ -311,6 +316,7 @@ public class AccelerationMemoryData10 extends AbstractRbtCharacteristic implemen
      * {@inheritDoc}
      */
     @Override
+    @NonNull
     public byte[] getBytes() {
         byte[] data = new byte[20];
         ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);

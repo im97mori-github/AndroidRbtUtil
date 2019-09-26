@@ -4,6 +4,8 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import org.im97mori.ble.ByteArrayCreater;
 
 import java.nio.ByteBuffer;
@@ -36,7 +38,8 @@ public class ModeChange extends AbstractRbtCharacteristic implements Parcelable 
          * {@inheritDoc}
          */
         @Override
-        public ModeChange createFromParcel(Parcel in) {
+        @NonNull
+        public ModeChange createFromParcel(@NonNull Parcel in) {
             return new ModeChange(in);
         }
 
@@ -44,6 +47,7 @@ public class ModeChange extends AbstractRbtCharacteristic implements Parcelable 
          * {@inheritDoc}
          */
         @Override
+        @NonNull
         public ModeChange[] newArray(int size) {
             return new ModeChange[size];
         }
@@ -52,7 +56,8 @@ public class ModeChange extends AbstractRbtCharacteristic implements Parcelable 
          * {@inheritDoc}
          */
         @Override
-        public ModeChange createFromByteArray(byte[] values) {
+        @NonNull
+        public ModeChange createFromByteArray(@NonNull byte[] values) {
             BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(MODE_CHANGE_CHARACTERISTIC, 0, 0);
             bluetoothGattCharacteristic.setValue(values);
             return new ModeChange(bluetoothGattCharacteristic);
@@ -70,7 +75,7 @@ public class ModeChange extends AbstractRbtCharacteristic implements Parcelable 
      *
      * @param bluetoothGattCharacteristic Characteristics UUID: 0x5117
      */
-    public ModeChange(BluetoothGattCharacteristic bluetoothGattCharacteristic) {
+    public ModeChange(@NonNull BluetoothGattCharacteristic bluetoothGattCharacteristic) {
         mModeChange = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 0);
     }
 
@@ -89,7 +94,7 @@ public class ModeChange extends AbstractRbtCharacteristic implements Parcelable 
      *
      * @param in Parcel
      */
-    private ModeChange(Parcel in) {
+    private ModeChange(@NonNull Parcel in) {
         mModeChange = in.readInt();
     }
 
@@ -105,7 +110,7 @@ public class ModeChange extends AbstractRbtCharacteristic implements Parcelable 
      * {@inheritDoc}
      */
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeInt(mModeChange);
     }
 
@@ -122,6 +127,7 @@ public class ModeChange extends AbstractRbtCharacteristic implements Parcelable 
      * {@inheritDoc}
      */
     @Override
+    @NonNull
     public byte[] getBytes() {
         byte[] data = new byte[1];
         ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);

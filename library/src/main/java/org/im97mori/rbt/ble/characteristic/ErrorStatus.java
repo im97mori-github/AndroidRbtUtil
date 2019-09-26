@@ -4,6 +4,8 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import org.im97mori.ble.ByteArrayCreater;
 
 import java.nio.ByteBuffer;
@@ -61,7 +63,8 @@ public class ErrorStatus extends AbstractRbtCharacteristic implements Parcelable
          * {@inheritDoc}
          */
         @Override
-        public ErrorStatus createFromParcel(Parcel in) {
+        @NonNull
+        public ErrorStatus createFromParcel(@NonNull Parcel in) {
             return new ErrorStatus(in);
         }
 
@@ -69,6 +72,7 @@ public class ErrorStatus extends AbstractRbtCharacteristic implements Parcelable
          * {@inheritDoc}
          */
         @Override
+        @NonNull
         public ErrorStatus[] newArray(int size) {
             return new ErrorStatus[size];
         }
@@ -77,7 +81,8 @@ public class ErrorStatus extends AbstractRbtCharacteristic implements Parcelable
          * {@inheritDoc}
          */
         @Override
-        public ErrorStatus createFromByteArray(byte[] values) {
+        @NonNull
+        public ErrorStatus createFromByteArray(@NonNull byte[] values) {
             BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(ERROR_STATUS_CHARACTERISTIC, 0, 0);
             bluetoothGattCharacteristic.setValue(values);
             return new ErrorStatus(bluetoothGattCharacteristic);
@@ -135,7 +140,7 @@ public class ErrorStatus extends AbstractRbtCharacteristic implements Parcelable
      *
      * @param bluetoothGattCharacteristic Characteristics UUID: 0x5401
      */
-    public ErrorStatus(BluetoothGattCharacteristic bluetoothGattCharacteristic) {
+    public ErrorStatus(@NonNull BluetoothGattCharacteristic bluetoothGattCharacteristic) {
         mTemperatureSensorError = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 0);
         mRelativeHumiditySensorError = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 1);
         mAmbientLightSensorError = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 2);
@@ -152,7 +157,7 @@ public class ErrorStatus extends AbstractRbtCharacteristic implements Parcelable
      *
      * @param in Parcel
      */
-    private ErrorStatus(Parcel in) {
+    private ErrorStatus(@NonNull Parcel in) {
         mTemperatureSensorError = in.readInt();
         mRelativeHumiditySensorError = in.readInt();
         mAmbientLightSensorError = in.readInt();
@@ -176,7 +181,7 @@ public class ErrorStatus extends AbstractRbtCharacteristic implements Parcelable
      * {@inheritDoc}
      */
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeInt(mTemperatureSensorError);
         dest.writeInt(mRelativeHumiditySensorError);
         dest.writeInt(mAmbientLightSensorError);
@@ -610,6 +615,7 @@ public class ErrorStatus extends AbstractRbtCharacteristic implements Parcelable
      * {@inheritDoc}
      */
     @Override
+    @NonNull
     public byte[] getBytes() {
         byte[] data = new byte[11];
         ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);

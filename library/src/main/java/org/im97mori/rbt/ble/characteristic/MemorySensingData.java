@@ -4,6 +4,8 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import org.im97mori.ble.ByteArrayCreater;
 
 import java.nio.ByteBuffer;
@@ -38,7 +40,8 @@ public class MemorySensingData extends AbstractRbtCharacteristic implements Parc
          * {@inheritDoc}
          */
         @Override
-        public MemorySensingData createFromParcel(Parcel in) {
+        @NonNull
+        public MemorySensingData createFromParcel(@NonNull Parcel in) {
             return new MemorySensingData(in);
         }
 
@@ -46,6 +49,7 @@ public class MemorySensingData extends AbstractRbtCharacteristic implements Parc
          * {@inheritDoc}
          */
         @Override
+        @NonNull
         public MemorySensingData[] newArray(int size) {
             return new MemorySensingData[size];
         }
@@ -54,7 +58,8 @@ public class MemorySensingData extends AbstractRbtCharacteristic implements Parc
          * {@inheritDoc}
          */
         @Override
-        public MemorySensingData createFromByteArray(byte[] values) {
+        @NonNull
+        public MemorySensingData createFromByteArray(@NonNull byte[] values) {
             BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(MEMORY_SENSING_DATA_CHARACTERISTIC, 0, 0);
             bluetoothGattCharacteristic.setValue(values);
             return new MemorySensingData(bluetoothGattCharacteristic);
@@ -107,7 +112,7 @@ public class MemorySensingData extends AbstractRbtCharacteristic implements Parc
      *
      * @param bluetoothGattCharacteristic Characteristics UUID: 0x500A
      */
-    public MemorySensingData(BluetoothGattCharacteristic bluetoothGattCharacteristic) {
+    public MemorySensingData(@NonNull BluetoothGattCharacteristic bluetoothGattCharacteristic) {
         mMemoryIndex = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT32, 0);
         mTemperature = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_SINT16, 4);
         mRelativeHumidity = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_SINT16, 6);
@@ -123,7 +128,7 @@ public class MemorySensingData extends AbstractRbtCharacteristic implements Parc
      *
      * @param in Parcel
      */
-    private MemorySensingData(Parcel in) {
+    private MemorySensingData(@NonNull Parcel in) {
         mMemoryIndex = in.readInt();
         mTemperature = in.readInt();
         mRelativeHumidity = in.readInt();
@@ -146,7 +151,7 @@ public class MemorySensingData extends AbstractRbtCharacteristic implements Parc
      * {@inheritDoc}
      */
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeInt(mMemoryIndex);
         dest.writeInt(mTemperature);
         dest.writeInt(mRelativeHumidity);
@@ -273,6 +278,7 @@ public class MemorySensingData extends AbstractRbtCharacteristic implements Parc
      * {@inheritDoc}
      */
     @Override
+    @NonNull
     public byte[] getBytes() {
         byte[] data = new byte[20];
         ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);

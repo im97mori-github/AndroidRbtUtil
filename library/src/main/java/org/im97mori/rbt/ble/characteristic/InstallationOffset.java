@@ -4,6 +4,8 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import org.im97mori.ble.ByteArrayCreater;
 
 import java.nio.ByteBuffer;
@@ -76,7 +78,8 @@ public class InstallationOffset extends AbstractRbtCharacteristic implements Par
          * {@inheritDoc}
          */
         @Override
-        public InstallationOffset createFromParcel(Parcel in) {
+        @NonNull
+        public InstallationOffset createFromParcel(@NonNull Parcel in) {
             return new InstallationOffset(in);
         }
 
@@ -84,6 +87,7 @@ public class InstallationOffset extends AbstractRbtCharacteristic implements Par
          * {@inheritDoc}
          */
         @Override
+        @NonNull
         public InstallationOffset[] newArray(int size) {
             return new InstallationOffset[size];
         }
@@ -92,7 +96,8 @@ public class InstallationOffset extends AbstractRbtCharacteristic implements Par
          * {@inheritDoc}
          */
         @Override
-        public InstallationOffset createFromByteArray(byte[] values) {
+        @NonNull
+        public InstallationOffset createFromByteArray(@NonNull byte[] values) {
             BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(INSTALLATION_OFFSET_CHARACTERISTIC, 0, 0);
             bluetoothGattCharacteristic.setValue(values);
             return new InstallationOffset(bluetoothGattCharacteristic);
@@ -135,7 +140,7 @@ public class InstallationOffset extends AbstractRbtCharacteristic implements Par
      *
      * @param bluetoothGattCharacteristic Characteristics UUID: 0x5114
      */
-    public InstallationOffset(BluetoothGattCharacteristic bluetoothGattCharacteristic) {
+    public InstallationOffset(@NonNull BluetoothGattCharacteristic bluetoothGattCharacteristic) {
         mInstallationOffsetEnableDisable = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 0);
         mTemperatureInstallationOffset = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_SINT16, 1);
         mRelativeHumidityInstallationOffset = bluetoothGattCharacteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_SINT16, 3);
@@ -172,7 +177,7 @@ public class InstallationOffset extends AbstractRbtCharacteristic implements Par
      *
      * @param in Parcel
      */
-    private InstallationOffset(Parcel in) {
+    private InstallationOffset(@NonNull Parcel in) {
         mInstallationOffsetEnableDisable = in.readInt();
         mTemperatureInstallationOffset = in.readInt();
         mRelativeHumidityInstallationOffset = in.readInt();
@@ -193,7 +198,7 @@ public class InstallationOffset extends AbstractRbtCharacteristic implements Par
      * {@inheritDoc}
      */
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeInt(mInstallationOffsetEnableDisable);
         dest.writeInt(mTemperatureInstallationOffset);
         dest.writeInt(mRelativeHumidityInstallationOffset);
@@ -328,6 +333,7 @@ public class InstallationOffset extends AbstractRbtCharacteristic implements Par
      * {@inheritDoc}
      */
     @Override
+    @NonNull
     public byte[] getBytes() {
         byte[] data = new byte[13];
         ByteBuffer byteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);

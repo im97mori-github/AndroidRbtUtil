@@ -8,11 +8,13 @@ import android.os.Bundle;
 import android.os.Message;
 import android.text.format.DateUtils;
 
+import androidx.annotation.NonNull;
+
 import org.im97mori.ble.TaskHandler;
 import org.im97mori.ble.task.WriteCharacteristicTask;
 import org.im97mori.ble.task.WriteDescriptorTask;
 import org.im97mori.rbt.RbtLogUtils;
-import org.im97mori.rbt.ble.RbtCallback;
+import org.im97mori.rbt.ble.RbtRequestAccelerationMemoryIndexCallback;
 import org.im97mori.rbt.ble.characteristic.AccelerationMemoryData;
 import org.im97mori.rbt.ble.characteristic.AccelerationMemoryData1;
 import org.im97mori.rbt.ble.characteristic.AccelerationMemoryData10;
@@ -47,7 +49,7 @@ import static org.im97mori.rbt.RbtConstants.ServiceUUID.ACCELERATION_SERVICE;
 /**
  * Request 0x5032 to notify 0x5032 batch task
  */
-public class RequestAccelerationMemoryIndexTask extends AbstractRbtTask {
+public class RbtRequestAccelerationMemoryIndexTask extends AbstractRbtTask {
 
     /**
      * header data count
@@ -90,10 +92,9 @@ public class RequestAccelerationMemoryIndexTask extends AbstractRbtTask {
      * @param values {@link BluetoothGattCharacteristic#getValue()}
      * @return notify Acceleration memory data [Header] / Acceleration memory data [Data] {@link Message} instance
      */
-    public static Message createBatchNotifyMessage(byte[] values) {
+    public static Message createBatchNotifyMessage(@NonNull byte[] values) {
         Bundle bundle = new Bundle();
         bundle.putByteArray(KEY_VALUES, values);
-        bundle.putSerializable(KEY_CHARACTERISTIC_UUID, ACCELERATION_MEMORY_DATA_CHARACTERISTIC);
         bundle.putInt(KEY_NEXT_PROGRESS, PROGRESS_BATCH_NOTIFY);
         Message message = new Message();
         message.setData(bundle);
@@ -116,13 +117,9 @@ public class RequestAccelerationMemoryIndexTask extends AbstractRbtTask {
     private final RequestAccelerationMemoryIndex mRequestAccelerationMemoryIndex;
 
     /**
-     * <p>
-     * {@link RbtCallback} instance
-     * <p>
-     * this task dont use {@link org.im97mori.ble.BLECallback}(bypass to RbtCallback)
-     * </p>
+     * {@link RbtRequestAccelerationMemoryIndexCallback} instance
      */
-    private final RbtCallback mRbtCallback;
+    private final RbtRequestAccelerationMemoryIndexCallback mRbtRequestAccelerationMemoryIndexCallback;
 
     /**
      * {@code true}:request with header, {@code false}:request with no header
@@ -160,16 +157,23 @@ public class RequestAccelerationMemoryIndexTask extends AbstractRbtTask {
     private long mTimeout;
 
     /**
-     * @param bluetoothGatt                  task target {@link BluetoothGatt} instance
-     * @param taskHandler                    task target {@link TaskHandler} instance
-     * @param requestAccelerationMemoryIndex task target data class
-     * @param rbtCallback                    {@link RbtCallback} instance
+     * callback argument
      */
-    public RequestAccelerationMemoryIndexTask(BluetoothGatt bluetoothGatt, TaskHandler taskHandler, RequestAccelerationMemoryIndex requestAccelerationMemoryIndex, RbtCallback rbtCallback) {
+    private final Bundle mArguemnt;
+
+    /**
+     * @param bluetoothGatt                             task target {@link BluetoothGatt} instance
+     * @param taskHandler                               task target {@link TaskHandler} instance
+     * @param requestAccelerationMemoryIndex            task target data class
+     * @param rbtRequestAccelerationMemoryIndexCallback {@link RbtRequestAccelerationMemoryIndexCallback} instance
+     * @param argument                                  callback argument
+     */
+    public RbtRequestAccelerationMemoryIndexTask(@NonNull BluetoothGatt bluetoothGatt, @NonNull TaskHandler taskHandler, @NonNull RequestAccelerationMemoryIndex requestAccelerationMemoryIndex, @NonNull RbtRequestAccelerationMemoryIndexCallback rbtRequestAccelerationMemoryIndexCallback, @NonNull Bundle argument) {
         mBluetoothGatt = bluetoothGatt;
         mTaskHandler = taskHandler;
         mRequestAccelerationMemoryIndex = requestAccelerationMemoryIndex;
-        mRbtCallback = rbtCallback;
+        mRbtRequestAccelerationMemoryIndexCallback = rbtRequestAccelerationMemoryIndexCallback;
+        mArguemnt = argument;
     }
 
     /**
@@ -178,7 +182,6 @@ public class RequestAccelerationMemoryIndexTask extends AbstractRbtTask {
     @Override
     public Message createInitialMessage() {
         Bundle bundle = new Bundle();
-        bundle.putSerializable(KEY_CHARACTERISTIC_UUID, REQUEST_ACCELERATION_MEMORY_INDEX_CHARACTERISTIC);
         bundle.putInt(KEY_NEXT_PROGRESS, PROGRESS_CHECK_REQUEST);
         Message message = new Message();
         message.setData(bundle);
@@ -190,99 +193,98 @@ public class RequestAccelerationMemoryIndexTask extends AbstractRbtTask {
      * {@inheritDoc}
      */
     @Override
-    public boolean doProcess(Message message) {
+    public boolean doProcess(@NonNull Message message) {
         Bundle bundle = message.getData();
+        UUID serviceUUID = (UUID) bundle.getSerializable(KEY_SERVICE_UUID);
         UUID characteristicUUID = (UUID) bundle.getSerializable(KEY_CHARACTERISTIC_UUID);
         int nextProgress = bundle.getInt(KEY_NEXT_PROGRESS);
 
         // timeout
         if (message.obj == this && PROGRESS_TIMEOUT == nextProgress) {
-            mRbtCallback.onRequestAccelerationMemoryIndexWriteTimeout(mBluetoothGatt.getDevice(), mTimeout);
+            mRbtRequestAccelerationMemoryIndexCallback.onRequestAccelerationMemoryIndexWriteTimeout(getTaskId(), mBluetoothGatt.getDevice(), mTimeout, mArguemnt);
             mCurrentProgress = nextProgress;
         } else if (PROGRESS_INIT == mCurrentProgress) {
             // current:init, next:check request
-            if (REQUEST_ACCELERATION_MEMORY_INDEX_CHARACTERISTIC.equals(characteristicUUID)) {
-                if (message.obj == this && PROGRESS_CHECK_REQUEST == nextProgress) {
-                    int dataType = mRequestAccelerationMemoryIndex.getAccelerationDataType();
-                    int start = mRequestAccelerationMemoryIndex.getRequestPageStart();
-                    int end = mRequestAccelerationMemoryIndex.getRequestPageEnd();
+            if (message.obj == this && PROGRESS_CHECK_REQUEST == nextProgress) {
+                int dataType = mRequestAccelerationMemoryIndex.getAccelerationDataType();
+                int start = mRequestAccelerationMemoryIndex.getRequestPageStart();
+                int end = mRequestAccelerationMemoryIndex.getRequestPageEnd();
 
-                    // earthquake or vibration data
-                    if (RequestAccelerationMemoryIndex.ACCELERATION_DATA_TYPE_EARTHQUAKE_DATA == dataType || RequestAccelerationMemoryIndex.ACCELERATION_DATA_TYPE_VIBRATION_DATA == dataType) {
-                        if (start >= HEADER_PAGE && end <= MAXIMUM_DATA_PAGE_NORMAL_MODE && start <= end) {
+                // earthquake or vibration data
+                if (RequestAccelerationMemoryIndex.ACCELERATION_DATA_TYPE_EARTHQUAKE_DATA == dataType || RequestAccelerationMemoryIndex.ACCELERATION_DATA_TYPE_VIBRATION_DATA == dataType) {
+                    if (start >= HEADER_PAGE && end <= MAXIMUM_DATA_PAGE_NORMAL_MODE && start <= end) {
 
-                            mTotalTransferCount = (end - start) * DATA_TRANSFER_COUNT;
+                        mTotalTransferCount = (end - start) * DATA_TRANSFER_COUNT;
 
-                            // with header
-                            if (start == HEADER_PAGE) {
-                                mHasHeader = true;
-                                mAccelerationMemoryDataHeader = new AccelerationMemoryDataHeader();
-                                mTotalTransferCount += HEADER_TRANSFER_COUNT;
-                            } else {
-                                // no header
-                                mTotalTransferCount += DATA_TRANSFER_COUNT;
-                            }
+                        // with header
+                        if (start == HEADER_PAGE) {
+                            mHasHeader = true;
+                            mAccelerationMemoryDataHeader = new AccelerationMemoryDataHeader();
+                            mTotalTransferCount += HEADER_TRANSFER_COUNT;
                         } else {
-                            // wrong request
-
-                            mRbtCallback.onRequestAccelerationMemoryIndexWriteFailed(mBluetoothGatt.getDevice(), UNKNOWN);
-                            nextProgress = PROGRESS_FINISHED;
+                            // no header
+                            mTotalTransferCount += DATA_TRANSFER_COUNT;
                         }
                     } else {
-                        // logger data
+                        // wrong request
 
-                        if (start >= MINIMUM_DATA_PAGE && end <= MAXIMUM_DATA_PAGE_ACCELERATION_LOGGER_MODE && end - start <= MAXIMUM_DATA_PAGE_LENGTH_ACCELERATION_LOGGER_MODE) {
-                            mTotalTransferCount = (end - start + 1) * DATA_TRANSFER_COUNT;
-                        } else {
-                            // wrong request
-
-                            mRbtCallback.onRequestAccelerationMemoryIndexWriteFailed(mBluetoothGatt.getDevice(), UNKNOWN);
-                            nextProgress = PROGRESS_FINISHED;
-                        }
+                        mRbtRequestAccelerationMemoryIndexCallback.onRequestAccelerationMemoryIndexWriteFailed(getTaskId(), mBluetoothGatt.getDevice(), UNKNOWN, mArguemnt);
+                        nextProgress = PROGRESS_FINISHED;
                     }
+                } else {
+                    // logger data
 
-                    if (PROGRESS_CHECK_REQUEST == nextProgress) {
-                        mTimeout = WriteDescriptorTask.TIMEOUT_MILLIS + WriteCharacteristicTask.TIMEOUT_MILLIS + DateUtils.SECOND_IN_MILLIS * mTotalTransferCount;
+                    if (start >= MINIMUM_DATA_PAGE && end <= MAXIMUM_DATA_PAGE_ACCELERATION_LOGGER_MODE && end - start <= MAXIMUM_DATA_PAGE_LENGTH_ACCELERATION_LOGGER_MODE) {
+                        mTotalTransferCount = (end - start + 1) * DATA_TRANSFER_COUNT;
+                    } else {
+                        // wrong request
 
-                        BluetoothGattDescriptor bluetoothGattDescriptor = null;
-                        boolean result = false;
-                        BluetoothGattService bluetoothGattService = mBluetoothGatt.getService(ACCELERATION_SERVICE);
-                        if (bluetoothGattService != null) {
-                            BluetoothGattCharacteristic bluetoothGattCharacteristic = bluetoothGattService.getCharacteristic(ACCELERATION_MEMORY_DATA_CHARACTERISTIC);
-                            if (bluetoothGattCharacteristic != null) {
-                                bluetoothGattDescriptor = bluetoothGattCharacteristic.getDescriptor(CLIENT_CHARACTERISTIC_CONFIGRATION_DESCRIPTOR);
-                                if (bluetoothGattDescriptor != null) {
-                                    bluetoothGattDescriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
+                        mRbtRequestAccelerationMemoryIndexCallback.onRequestAccelerationMemoryIndexWriteFailed(getTaskId(), mBluetoothGatt.getDevice(), UNKNOWN, mArguemnt);
+                        nextProgress = PROGRESS_FINISHED;
+                    }
+                }
 
-                                    // write descriptor
-                                    try {
-                                        result = mBluetoothGatt.writeDescriptor(bluetoothGattDescriptor);
-                                    } catch (Exception e) {
-                                        RbtLogUtils.stackLog(e);
-                                    }
+                if (PROGRESS_CHECK_REQUEST == nextProgress) {
+                    mTimeout = WriteDescriptorTask.TIMEOUT_MILLIS + WriteCharacteristicTask.TIMEOUT_MILLIS + DateUtils.SECOND_IN_MILLIS * mTotalTransferCount;
+
+                    BluetoothGattDescriptor bluetoothGattDescriptor = null;
+                    boolean result = false;
+                    BluetoothGattService bluetoothGattService = mBluetoothGatt.getService(ACCELERATION_SERVICE);
+                    if (bluetoothGattService != null) {
+                        BluetoothGattCharacteristic bluetoothGattCharacteristic = bluetoothGattService.getCharacteristic(ACCELERATION_MEMORY_DATA_CHARACTERISTIC);
+                        if (bluetoothGattCharacteristic != null) {
+                            bluetoothGattDescriptor = bluetoothGattCharacteristic.getDescriptor(CLIENT_CHARACTERISTIC_CONFIGRATION_DESCRIPTOR);
+                            if (bluetoothGattDescriptor != null) {
+                                bluetoothGattDescriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
+
+                                // write descriptor
+                                try {
+                                    result = mBluetoothGatt.writeDescriptor(bluetoothGattDescriptor);
+                                } catch (Exception e) {
+                                    RbtLogUtils.stackLog(e);
                                 }
                             }
                         }
-
-                        if (result) {
-                            // set timeout message
-                            mTaskHandler.sendProcessingMessage(createTimeoutMessage(REQUEST_ACCELERATION_MEMORY_INDEX_CHARACTERISTIC, this), mTimeout);
-                        } else {
-                            if (bluetoothGattDescriptor == null) {
-                                nextProgress = PROGRESS_FINISHED;
-                                mRbtCallback.onRequestAccelerationMemoryIndexWriteFailed(mBluetoothGatt.getDevice(), UNKNOWN);
-                            } else {
-                                nextProgress = PROGRESS_BUSY;
-                                mRbtCallback.onRequestAccelerationMemoryIndexWriteFailed(mBluetoothGatt.getDevice(), BUSY);
-                            }
-                        }
                     }
 
-                    mCurrentProgress = nextProgress;
+                    if (result) {
+                        // set timeout message
+                        mTaskHandler.sendProcessingMessage(createTimeoutMessage(REQUEST_ACCELERATION_MEMORY_INDEX_CHARACTERISTIC, this), mTimeout);
+                    } else {
+                        if (bluetoothGattDescriptor == null) {
+                            nextProgress = PROGRESS_FINISHED;
+                            mRbtRequestAccelerationMemoryIndexCallback.onRequestAccelerationMemoryIndexWriteFailed(getTaskId(), mBluetoothGatt.getDevice(), UNKNOWN, mArguemnt);
+                        } else {
+                            nextProgress = PROGRESS_BUSY;
+                            mRbtRequestAccelerationMemoryIndexCallback.onRequestAccelerationMemoryIndexWriteFailed(getTaskId(), mBluetoothGatt.getDevice(), BUSY, mArguemnt);
+                        }
+                    }
                 }
+
+                mCurrentProgress = nextProgress;
             }
         } else if (PROGRESS_CHECK_REQUEST == mCurrentProgress) {
-            if (ACCELERATION_MEMORY_DATA_CHARACTERISTIC.equals(characteristicUUID)) {
+            if (ACCELERATION_SERVICE.equals(serviceUUID) && ACCELERATION_MEMORY_DATA_CHARACTERISTIC.equals(characteristicUUID)) {
                 // current:check request, next:write descriptor success
                 if (PROGRESS_DESCRIPTOR_WRITE_SUCCESS == nextProgress) {
 
@@ -306,39 +308,40 @@ public class RequestAccelerationMemoryIndexTask extends AbstractRbtTask {
                     if (!result) {
                         if (bluetoothGattCharacteristic == null) {
                             nextProgress = PROGRESS_FINISHED;
-                            mRbtCallback.onRequestAccelerationMemoryIndexWriteFailed(mBluetoothGatt.getDevice(), UNKNOWN);
+                            mRbtRequestAccelerationMemoryIndexCallback.onRequestAccelerationMemoryIndexWriteFailed(getTaskId(), mBluetoothGatt.getDevice(), UNKNOWN, mArguemnt);
                         } else {
                             nextProgress = PROGRESS_BUSY;
-                            mRbtCallback.onRequestAccelerationMemoryIndexWriteFailed(mBluetoothGatt.getDevice(), BUSY);
+                            mRbtRequestAccelerationMemoryIndexCallback.onRequestAccelerationMemoryIndexWriteFailed(getTaskId(), mBluetoothGatt.getDevice(), BUSY, mArguemnt);
                         }
                         // remove timeout message
                         mTaskHandler.removeCallbacksAndMessages(this);
                     }
                 } else if (PROGRESS_DESCRIPTOR_WRITE_ERROR == nextProgress) {
                     // current:check request, next:write descriptor error
-                    mRbtCallback.onRequestAccelerationMemoryIndexWriteFailed(mBluetoothGatt.getDevice(), bundle.getInt(KEY_STATUS));
+                    mRbtRequestAccelerationMemoryIndexCallback.onRequestAccelerationMemoryIndexWriteFailed(getTaskId(), mBluetoothGatt.getDevice(), bundle.getInt(KEY_STATUS), mArguemnt);
                     nextProgress = PROGRESS_FINISHED;
                 }
 
                 mCurrentProgress = nextProgress;
             }
         } else if (PROGRESS_DESCRIPTOR_WRITE_SUCCESS == mCurrentProgress) {
-            if (REQUEST_ACCELERATION_MEMORY_INDEX_CHARACTERISTIC.equals(characteristicUUID)) {
+            if (ACCELERATION_SERVICE.equals(serviceUUID) && REQUEST_ACCELERATION_MEMORY_INDEX_CHARACTERISTIC.equals(characteristicUUID)) {
                 // current:write descriptor success, next:write characteristic success
                 if (PROGRESS_CHARACTERISTIC_WRITE_SUCCESS == nextProgress) {
+                    mRbtRequestAccelerationMemoryIndexCallback.onRequestAccelerationMemoryIndexWriteSuccess(getTaskId(), mBluetoothGatt.getDevice(), mRequestAccelerationMemoryIndex, mArguemnt);
                     mCurrentProgress = nextProgress;
                 } else if (PROGRESS_CHARACTERISTIC_WRITE_ERROR == nextProgress) {
                     // current:write descriptor success, next:write characteristic error
-                    mRbtCallback.onRequestAccelerationMemoryIndexWriteFailed(mBluetoothGatt.getDevice(), bundle.getInt(KEY_STATUS));
+                    mRbtRequestAccelerationMemoryIndexCallback.onRequestAccelerationMemoryIndexWriteFailed(getTaskId(), mBluetoothGatt.getDevice(), bundle.getInt(KEY_STATUS), mArguemnt);
                     mCurrentProgress = PROGRESS_FINISHED;
                 }
             }
         } else if (PROGRESS_CHARACTERISTIC_WRITE_SUCCESS == mCurrentProgress) {
-            if (ACCELERATION_MEMORY_DATA_CHARACTERISTIC.equals(characteristicUUID)) {
+            byte[] values = bundle.getByteArray(KEY_VALUES);
+            if (values != null) {
                 // current:write characteristic success, next:batch notify
                 if (PROGRESS_BATCH_NOTIFY == nextProgress) {
-                    byte[] values = bundle.getByteArray(KEY_VALUES);
-                    @SuppressWarnings("ConstantConditions") int totalTransferCount = ((values[0] | values[1] << 8) & 0b01111111);
+                    int totalTransferCount = ((values[0] | values[1] << 8) & 0b01111111);
 
                     mCurrentTransferCount++;
 
@@ -357,7 +360,7 @@ public class RequestAccelerationMemoryIndexTask extends AbstractRbtTask {
 
                         // notify header data
                         if (mCurrentTransferCount == HEADER_TRANSFER_COUNT) {
-                            mRbtCallback.onAccelerationMemoryDataHeaderNotified(mBluetoothGatt.getDevice(), mAccelerationMemoryDataHeader);
+                            mRbtRequestAccelerationMemoryIndexCallback.onAccelerationMemoryDataHeaderNotified(getTaskId(), mBluetoothGatt.getDevice(), mAccelerationMemoryDataHeader, mArguemnt);
 
                         }
 
@@ -382,7 +385,7 @@ public class RequestAccelerationMemoryIndexTask extends AbstractRbtTask {
                         // if page changed, notify data
                         if (mLastestPage != page) {
                             if (mLastestPage != -1) {
-                                mRbtCallback.onAccelerationMemoryDataNotified(mBluetoothGatt.getDevice(), mAccelerationMemoryData);
+                                mRbtRequestAccelerationMemoryIndexCallback.onAccelerationMemoryDataNotified(getTaskId(), mBluetoothGatt.getDevice(), mAccelerationMemoryData, mArguemnt);
                             }
                             mAccelerationMemoryData = new AccelerationMemoryData();
                             mLastestPage = page;
@@ -418,9 +421,8 @@ public class RequestAccelerationMemoryIndexTask extends AbstractRbtTask {
 
                         // all data notified
                         if (mTotalTransferCount == mCurrentTransferCount || mTotalTransferCount == totalTransferCount) {
-
                             // notiy last page data
-                            mRbtCallback.onAccelerationMemoryDataNotified(mBluetoothGatt.getDevice(), mAccelerationMemoryData);
+                            mRbtRequestAccelerationMemoryIndexCallback.onAccelerationMemoryDataNotified(getTaskId(), mBluetoothGatt.getDevice(), mAccelerationMemoryData, mArguemnt);
 
                             mCurrentProgress = PROGRESS_FINISHED;
                             // remove timeout message
@@ -449,7 +451,7 @@ public class RequestAccelerationMemoryIndexTask extends AbstractRbtTask {
     public void cancel() {
         mTaskHandler.removeCallbacksAndMessages(this);
         mCurrentProgress = PROGRESS_FINISHED;
-        mRbtCallback.onRequestAccelerationMemoryIndexWriteFailed(mBluetoothGatt.getDevice(), CANCEL);
+        mRbtRequestAccelerationMemoryIndexCallback.onRequestAccelerationMemoryIndexWriteFailed(getTaskId(), mBluetoothGatt.getDevice(), CANCEL, mArguemnt);
     }
 
 }
