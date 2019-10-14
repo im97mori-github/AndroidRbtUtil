@@ -17,7 +17,7 @@ project/build.gradle
 project/module/build.gradle
 
     dependencies {
-        implementation 'org.im97mori:rbt:0.2.3'
+        implementation 'org.im97mori:rbt:0.3.0'
     }
 
 ## How to use
@@ -46,6 +46,16 @@ project/module/build.gradle
             System.out.println(sensorData.getEtvocPpb());
             System.out.println(sensorData.getEco2Ppm());
         }
+
+FilteredRbtLeScanCallbackおよびFilteredRbtScanCallbackを使用することでAdvertising dataが特定の条件に一致する場合のみコールバックを行うが可能です
+
+ex) 受信した3.1. Sensor dataもしくは 3.3 Sensor data & Calculation dataの温度が30度を超えてるかつ湿度が70%を超えている場合のみコールバックする
+
+    BluetoothAdapter.getDefaultAdapter().getBluetoothLeScanner().startScan(new FilteredRbtScanCallback.Builder()
+            .addTemperatureFilter(TYPE_GREATER_THAN, 3000)
+            .addRelativeHumidityFilter(TYPE_GREATER_THAN, 7000)
+            .build());
+
 
 ### BLE GATT Services
 2JCIE-BU01に定義されている全てのServiceおよびCharacteristicに対応しています。
