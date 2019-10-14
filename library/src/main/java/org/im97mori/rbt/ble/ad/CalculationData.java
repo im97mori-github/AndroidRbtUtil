@@ -5,19 +5,19 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
+import org.im97mori.ble.ByteArrayCreater;
 import org.im97mori.ble.ad.ManufacturerSpecificData;
 import org.im97mori.rbt.RbtConstants;
 
 /**
  * 3.2 Calculation data
  */
-@SuppressWarnings("WeakerAccess")
 public class CalculationData extends AbstractRbtPacket implements Parcelable {
 
     /**
-     * @see android.os.Parcelable.Creator
+     * @see ByteArrayCreater
      */
-    public static final Creator<CalculationData> CREATOR = new Creator<CalculationData>() {
+    public static final ByteArrayCreater<CalculationData> CREATOR = new ByteArrayCreater<CalculationData>() {
 
         /**
          * {@inheritDoc}
@@ -35,6 +35,15 @@ public class CalculationData extends AbstractRbtPacket implements Parcelable {
         @NonNull
         public CalculationData[] newArray(int size) {
             return new CalculationData[size];
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @NonNull
+        @Override
+        public CalculationData createFromByteArray(@NonNull byte[] values) {
+            return new CalculationData(values);
         }
 
     };

@@ -148,7 +148,7 @@ public class RbtBLEConnection extends BLEConnection {
     private static final class DistributionRbtCallback extends BLECallbackDistributer implements RbtRequestAccelerationMemoryIndexCallback, RbtRequestMemoryIndexCallback {
 
         /**
-         * @param subscriberInterface {@link SubscriberInterface}
+         * @param subscriberInterface {@link org.im97mori.ble.BLECallbackDistributer.SubscriberInterface}
          */
         public DistributionRbtCallback(SubscriberInterface subscriberInterface) {
             super(subscriberInterface);

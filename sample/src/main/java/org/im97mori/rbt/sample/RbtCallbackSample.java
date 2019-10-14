@@ -81,6 +81,7 @@ import java.util.Locale;
 import static org.im97mori.ble.BLEConstants.APPEARANCE_DESCRIPTION_MAP;
 import static org.im97mori.ble.BLEConstants.APPEARANCE_VALUE_MAP;
 
+@SuppressWarnings("unused")
 public class RbtCallbackSample extends AbstractRbtBLECallback {
 
     private final SampleCallback mSampleCallback;

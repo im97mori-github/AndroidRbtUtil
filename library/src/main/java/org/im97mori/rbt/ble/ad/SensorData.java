@@ -5,6 +5,7 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
+import org.im97mori.ble.ByteArrayCreater;
 import org.im97mori.ble.ad.ManufacturerSpecificData;
 import org.im97mori.rbt.RbtConstants;
 
@@ -15,13 +16,12 @@ import static org.im97mori.rbt.RbtConstants.OutputRange.OUTPUT_RANGE_ETVOC_UNIT;
 /**
  * 3.1 Sensor data
  */
-@SuppressWarnings("WeakerAccess")
 public class SensorData extends AbstractRbtPacket implements Parcelable {
 
     /**
-     * @see android.os.Parcelable.Creator
+     * @see ByteArrayCreater
      */
-    public static final Creator<SensorData> CREATOR = new Creator<SensorData>() {
+    public static final ByteArrayCreater<SensorData> CREATOR = new ByteArrayCreater<SensorData>() {
 
         /**
          * {@inheritDoc}
@@ -39,6 +39,15 @@ public class SensorData extends AbstractRbtPacket implements Parcelable {
         @NonNull
         public SensorData[] newArray(int size) {
             return new SensorData[size];
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @NonNull
+        @Override
+        public SensorData createFromByteArray(@NonNull byte[] values) {
+            return new SensorData(values);
         }
 
     };

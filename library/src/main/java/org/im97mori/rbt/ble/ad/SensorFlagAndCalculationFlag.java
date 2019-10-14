@@ -5,8 +5,11 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
+import org.im97mori.ble.ByteArrayCreater;
 import org.im97mori.ble.ad.ManufacturerSpecificData;
 import org.im97mori.rbt.RbtConstants;
+
+import java.util.Arrays;
 
 /**
  * 3.4 Sensor flag & Calculation flag (Scan rsp)
@@ -14,9 +17,9 @@ import org.im97mori.rbt.RbtConstants;
 public class SensorFlagAndCalculationFlag extends AbstractRbtPacket implements Parcelable {
 
     /**
-     * @see android.os.Parcelable.Creator
+     * @see ByteArrayCreater
      */
-    public static final Creator<SensorFlagAndCalculationFlag> CREATOR = new Creator<SensorFlagAndCalculationFlag>() {
+    public static final ByteArrayCreater<SensorFlagAndCalculationFlag> CREATOR = new ByteArrayCreater<SensorFlagAndCalculationFlag>() {
 
         /**
          * {@inheritDoc}
@@ -34,6 +37,17 @@ public class SensorFlagAndCalculationFlag extends AbstractRbtPacket implements P
         @NonNull
         public SensorFlagAndCalculationFlag[] newArray(int size) {
             return new SensorFlagAndCalculationFlag[size];
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @NonNull
+        @Override
+        public SensorFlagAndCalculationFlag createFromByteArray(@NonNull byte[] values) {
+            byte[] data1 = Arrays.copyOfRange(values, 0, 19);
+            byte[] data2 = Arrays.copyOfRange(values, 19, 46);
+            return new SensorFlagAndCalculationFlag(data1, data2);
         }
 
     };

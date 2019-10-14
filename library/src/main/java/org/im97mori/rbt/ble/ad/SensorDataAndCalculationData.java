@@ -5,8 +5,11 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
+import org.im97mori.ble.ByteArrayCreater;
 import org.im97mori.ble.ad.ManufacturerSpecificData;
 import org.im97mori.rbt.RbtConstants;
+
+import java.util.Arrays;
 
 import static org.im97mori.rbt.RbtConstants.OutputRange.OUTPUT_RANGE_AMBIENT_LIGHT_UNIT;
 import static org.im97mori.rbt.RbtConstants.OutputRange.OUTPUT_RANGE_ECO2_UNIT;
@@ -15,13 +18,12 @@ import static org.im97mori.rbt.RbtConstants.OutputRange.OUTPUT_RANGE_ETVOC_UNIT;
 /**
  * 3.3 Sensor data & Calculation data (Scan rsp)
  */
-@SuppressWarnings("WeakerAccess")
 public class SensorDataAndCalculationData extends AbstractRbtPacket implements Parcelable {
 
     /**
-     * @see android.os.Parcelable.Creator
+     * @see ByteArrayCreater
      */
-    public static final Creator<SensorDataAndCalculationData> CREATOR = new Creator<SensorDataAndCalculationData>() {
+    public static final ByteArrayCreater<SensorDataAndCalculationData> CREATOR = new ByteArrayCreater<SensorDataAndCalculationData>() {
 
         /**
          * {@inheritDoc}
@@ -39,6 +41,17 @@ public class SensorDataAndCalculationData extends AbstractRbtPacket implements P
         @NonNull
         public SensorDataAndCalculationData[] newArray(int size) {
             return new SensorDataAndCalculationData[size];
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @NonNull
+        @Override
+        public SensorDataAndCalculationData createFromByteArray(@NonNull byte[] values) {
+            byte[] data1 = Arrays.copyOfRange(values, 0, 19);
+            byte[] data2 = Arrays.copyOfRange(values, 19, 39);
+            return new SensorDataAndCalculationData(data1, data2);
         }
 
     };

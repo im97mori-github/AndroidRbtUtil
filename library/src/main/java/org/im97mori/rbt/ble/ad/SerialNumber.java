@@ -5,19 +5,19 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
+import org.im97mori.ble.ByteArrayCreater;
 import org.im97mori.ble.ad.ManufacturerSpecificData;
 import org.im97mori.rbt.RbtConstants;
 
 /**
  * 3.5 Serial number
  */
-@SuppressWarnings("WeakerAccess")
 public class SerialNumber extends AbstractRbtPacket implements Parcelable {
 
     /**
-     * @see android.os.Parcelable.Creator
+     * @see ByteArrayCreater
      */
-    public static final Creator<SerialNumber> CREATOR = new Creator<SerialNumber>() {
+    public static final ByteArrayCreater<SerialNumber> CREATOR = new ByteArrayCreater<SerialNumber>() {
 
         /**
          * {@inheritDoc}
@@ -35,6 +35,15 @@ public class SerialNumber extends AbstractRbtPacket implements Parcelable {
         @NonNull
         public SerialNumber[] newArray(int size) {
             return new SerialNumber[size];
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @NonNull
+        @Override
+        public SerialNumber createFromByteArray(@NonNull byte[] values) {
+            return new SerialNumber(values);
         }
 
     };

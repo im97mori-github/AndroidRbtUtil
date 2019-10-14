@@ -41,7 +41,7 @@ public class RbtAdvertisingDataParserTest {
         data[5] = (byte) 0xd5; // AD 2
         data[6] = (byte) 0x02; // AD 2
         data[7] = (byte) 0x01; // AD 2
-        data[8] = (byte) 0x00; // Sequence numberuence number
+        data[8] = (byte) 0x00; // Sequence number
         data[9] = (byte) 0x60; // Temperature
         data[10] = (byte) 0xf0; // Temperature
         data[11] = (byte) 0x00; // Relative humidity
@@ -139,7 +139,7 @@ public class RbtAdvertisingDataParserTest {
         data[5] = (byte) 0xd5; // AD 2
         data[6] = (byte) 0x02; // AD 2
         data[7] = (byte) 0x03; // AD 2
-        data[8] = (byte) 0x00; // Sequence numberuence number
+        data[8] = (byte) 0x00; // Sequence number
         data[9] = (byte) 0x60; // Temperature
         data[10] = (byte) 0xf0; // Temperature
         data[11] = (byte) 0x00; // Relative humidity
@@ -181,7 +181,7 @@ public class RbtAdvertisingDataParserTest {
         data[47] = (byte) 0x00; // Seismic intensity
         data[48] = (byte) 0xe0; // Acceleration (X-axis)
         data[49] = (byte) 0xb1; // Acceleration (X-axis)
-        data[40] = (byte) 0xe0; // Acceleration (Y-axis)
+        data[50] = (byte) 0xe0; // Acceleration (Y-axis)
         data[51] = (byte) 0xb1; // Acceleration (Y-axis)
         data[52] = (byte) 0xe0; // Acceleration (Z-axis)
         data[53] = (byte) 0xb1; // Acceleration (Z-axis)
@@ -261,7 +261,7 @@ public class RbtAdvertisingDataParserTest {
         data[47] = (byte) 0xff; // Reserve for Future Use
         data[48] = (byte) 0xff; // Reserve for Future Use
         data[49] = (byte) 0xff; // Reserve for Future Use
-        data[40] = (byte) 0xff; // Reserve for Future Use
+        data[50] = (byte) 0xff; // Reserve for Future Use
         data[51] = (byte) 0xff; // Reserve for Future Use
         data[52] = (byte) 0xff; // Reserve for Future Use
         data[53] = (byte) 0xff; // Reserve for Future Use
@@ -348,7 +348,7 @@ public class RbtAdvertisingDataParserTest {
         data[5] = (byte) 0xd5; // AD 2
         data[6] = (byte) 0x02; // AD 2
         data[7] = (byte) 0x01; // AD 2
-        data[8] = (byte) 0x00; // Sequence numberuence number
+        data[8] = (byte) 0x00; // Sequence number
         data[9] = (byte) 0x60; // Temperature
         data[10] = (byte) 0xf0; // Temperature
         data[11] = (byte) 0x00; // Relative humidity
@@ -446,7 +446,7 @@ public class RbtAdvertisingDataParserTest {
         data[5] = (byte) 0xd5; // AD 2
         data[6] = (byte) 0x02; // AD 2
         data[7] = (byte) 0x03; // AD 2
-        data[8] = (byte) 0x00; // Sequence numberuence number
+        data[8] = (byte) 0x00; // Sequence number
         data[9] = (byte) 0x60; // Temperature
         data[10] = (byte) 0xf0; // Temperature
         data[11] = (byte) 0x00; // Relative humidity
@@ -488,7 +488,7 @@ public class RbtAdvertisingDataParserTest {
         data[47] = (byte) 0x00; // Seismic intensity
         data[48] = (byte) 0xe0; // Acceleration (X-axis)
         data[49] = (byte) 0xb1; // Acceleration (X-axis)
-        data[40] = (byte) 0xe0; // Acceleration (Y-axis)
+        data[50] = (byte) 0xe0; // Acceleration (Y-axis)
         data[51] = (byte) 0xb1; // Acceleration (Y-axis)
         data[52] = (byte) 0xe0; // Acceleration (Z-axis)
         data[53] = (byte) 0xb1; // Acceleration (Z-axis)
@@ -568,7 +568,7 @@ public class RbtAdvertisingDataParserTest {
         data[47] = (byte) 0xff; // Reserve for Future Use
         data[48] = (byte) 0xff; // Reserve for Future Use
         data[49] = (byte) 0xff; // Reserve for Future Use
-        data[40] = (byte) 0xff; // Reserve for Future Use
+        data[50] = (byte) 0xff; // Reserve for Future Use
         data[51] = (byte) 0xff; // Reserve for Future Use
         data[52] = (byte) 0xff; // Reserve for Future Use
         data[53] = (byte) 0xff; // Reserve for Future Use
@@ -655,7 +655,7 @@ public class RbtAdvertisingDataParserTest {
         data[5] = (byte) 0xd5; // AD 2
         data[6] = (byte) 0x02; // AD 2
         data[7] = (byte) 0x01; // AD 2
-        data[8] = (byte) 0x00; // Sequence numberuence number
+        data[8] = (byte) 0x00; // Sequence number
         data[9] = (byte) 0x60; // Temperature
         data[10] = (byte) 0xf0; // Temperature
         data[11] = (byte) 0x00; // Relative humidity
@@ -753,7 +753,7 @@ public class RbtAdvertisingDataParserTest {
         data[5] = (byte) 0xd5; // AD 2
         data[6] = (byte) 0x02; // AD 2
         data[7] = (byte) 0x03; // AD 2
-        data[8] = (byte) 0x00; // Sequence numberuence number
+        data[8] = (byte) 0x00; // Sequence number
         data[9] = (byte) 0x60; // Temperature
         data[10] = (byte) 0xf0; // Temperature
         data[11] = (byte) 0x00; // Relative humidity
@@ -795,7 +795,7 @@ public class RbtAdvertisingDataParserTest {
         data[47] = (byte) 0x00; // Seismic intensity
         data[48] = (byte) 0xe0; // Acceleration (X-axis)
         data[49] = (byte) 0xb1; // Acceleration (X-axis)
-        data[40] = (byte) 0xe0; // Acceleration (Y-axis)
+        data[50] = (byte) 0xe0; // Acceleration (Y-axis)
         data[51] = (byte) 0xb1; // Acceleration (Y-axis)
         data[52] = (byte) 0xe0; // Acceleration (Z-axis)
         data[53] = (byte) 0xb1; // Acceleration (Z-axis)
@@ -875,7 +875,7 @@ public class RbtAdvertisingDataParserTest {
         data[47] = (byte) 0xff; // Reserve for Future Use
         data[48] = (byte) 0xff; // Reserve for Future Use
         data[49] = (byte) 0xff; // Reserve for Future Use
-        data[40] = (byte) 0xff; // Reserve for Future Use
+        data[50] = (byte) 0xff; // Reserve for Future Use
         data[51] = (byte) 0xff; // Reserve for Future Use
         data[52] = (byte) 0xff; // Reserve for Future Use
         data[53] = (byte) 0xff; // Reserve for Future Use
@@ -962,7 +962,7 @@ public class RbtAdvertisingDataParserTest {
         data[5] = (byte) 0xd5; // AD 2
         data[6] = (byte) 0x02; // AD 2
         data[7] = (byte) 0x01; // AD 2
-        data[8] = (byte) 0x00; // Sequence numberuence number
+        data[8] = (byte) 0x00; // Sequence number
         data[9] = (byte) 0x60; // Temperature
         data[10] = (byte) 0xf0; // Temperature
         data[11] = (byte) 0x00; // Relative humidity
@@ -1060,7 +1060,7 @@ public class RbtAdvertisingDataParserTest {
         data[5] = (byte) 0xd5; // AD 2
         data[6] = (byte) 0x02; // AD 2
         data[7] = (byte) 0x03; // AD 2
-        data[8] = (byte) 0x00; // Sequence numberuence number
+        data[8] = (byte) 0x00; // Sequence number
         data[9] = (byte) 0x60; // Temperature
         data[10] = (byte) 0xf0; // Temperature
         data[11] = (byte) 0x00; // Relative humidity
@@ -1102,7 +1102,7 @@ public class RbtAdvertisingDataParserTest {
         data[47] = (byte) 0x00; // Seismic intensity
         data[48] = (byte) 0xe0; // Acceleration (X-axis)
         data[49] = (byte) 0xb1; // Acceleration (X-axis)
-        data[40] = (byte) 0xe0; // Acceleration (Y-axis)
+        data[50] = (byte) 0xe0; // Acceleration (Y-axis)
         data[51] = (byte) 0xb1; // Acceleration (Y-axis)
         data[52] = (byte) 0xe0; // Acceleration (Z-axis)
         data[53] = (byte) 0xb1; // Acceleration (Z-axis)
@@ -1182,7 +1182,7 @@ public class RbtAdvertisingDataParserTest {
         data[47] = (byte) 0xff; // Reserve for Future Use
         data[48] = (byte) 0xff; // Reserve for Future Use
         data[49] = (byte) 0xff; // Reserve for Future Use
-        data[40] = (byte) 0xff; // Reserve for Future Use
+        data[50] = (byte) 0xff; // Reserve for Future Use
         data[51] = (byte) 0xff; // Reserve for Future Use
         data[52] = (byte) 0xff; // Reserve for Future Use
         data[53] = (byte) 0xff; // Reserve for Future Use
@@ -1269,7 +1269,7 @@ public class RbtAdvertisingDataParserTest {
         data[5] = (byte) 0xd5; // AD 2
         data[6] = (byte) 0x02; // AD 2
         data[7] = (byte) 0x01; // AD 2
-        data[8] = (byte) 0x00; // Sequence numberuence number
+        data[8] = (byte) 0x00; // Sequence number
         data[9] = (byte) 0x60; // Temperature
         data[10] = (byte) 0xf0; // Temperature
         data[11] = (byte) 0x00; // Relative humidity
@@ -1367,7 +1367,7 @@ public class RbtAdvertisingDataParserTest {
         data[5] = (byte) 0xd5; // AD 2
         data[6] = (byte) 0x02; // AD 2
         data[7] = (byte) 0x03; // AD 2
-        data[8] = (byte) 0x00; // Sequence numberuence number
+        data[8] = (byte) 0x00; // Sequence number
         data[9] = (byte) 0x60; // Temperature
         data[10] = (byte) 0xf0; // Temperature
         data[11] = (byte) 0x00; // Relative humidity
@@ -1409,7 +1409,7 @@ public class RbtAdvertisingDataParserTest {
         data[47] = (byte) 0x00; // Seismic intensity
         data[48] = (byte) 0xe0; // Acceleration (X-axis)
         data[49] = (byte) 0xb1; // Acceleration (X-axis)
-        data[40] = (byte) 0xe0; // Acceleration (Y-axis)
+        data[50] = (byte) 0xe0; // Acceleration (Y-axis)
         data[51] = (byte) 0xb1; // Acceleration (Y-axis)
         data[52] = (byte) 0xe0; // Acceleration (Z-axis)
         data[53] = (byte) 0xb1; // Acceleration (Z-axis)
@@ -1489,7 +1489,7 @@ public class RbtAdvertisingDataParserTest {
         data[47] = (byte) 0xff; // Reserve for Future Use
         data[48] = (byte) 0xff; // Reserve for Future Use
         data[49] = (byte) 0xff; // Reserve for Future Use
-        data[40] = (byte) 0xff; // Reserve for Future Use
+        data[50] = (byte) 0xff; // Reserve for Future Use
         data[51] = (byte) 0xff; // Reserve for Future Use
         data[52] = (byte) 0xff; // Reserve for Future Use
         data[53] = (byte) 0xff; // Reserve for Future Use
@@ -1577,7 +1577,7 @@ public class RbtAdvertisingDataParserTest {
         data[5] = (byte) 0xd5; // AD 2
         data[6] = (byte) 0x02; // AD 2
         data[7] = (byte) 0x01; // AD 2
-        data[8] = (byte) 0x00; // Sequence numberuence number
+        data[8] = (byte) 0x00; // Sequence number
         data[9] = (byte) 0x60; // Temperature
         data[10] = (byte) 0xf0; // Temperature
         data[11] = (byte) 0x00; // Relative humidity
@@ -1677,7 +1677,7 @@ public class RbtAdvertisingDataParserTest {
         data[5] = (byte) 0xd5; // AD 2
         data[6] = (byte) 0x02; // AD 2
         data[7] = (byte) 0x03; // AD 2
-        data[8] = (byte) 0x00; // Sequence numberuence number
+        data[8] = (byte) 0x00; // Sequence number
         data[9] = (byte) 0x60; // Temperature
         data[10] = (byte) 0xf0; // Temperature
         data[11] = (byte) 0x00; // Relative humidity
@@ -1719,7 +1719,7 @@ public class RbtAdvertisingDataParserTest {
         data[47] = (byte) 0x00; // Seismic intensity
         data[48] = (byte) 0xe0; // Acceleration (X-axis)
         data[49] = (byte) 0xb1; // Acceleration (X-axis)
-        data[40] = (byte) 0xe0; // Acceleration (Y-axis)
+        data[50] = (byte) 0xe0; // Acceleration (Y-axis)
         data[51] = (byte) 0xb1; // Acceleration (Y-axis)
         data[52] = (byte) 0xe0; // Acceleration (Z-axis)
         data[53] = (byte) 0xb1; // Acceleration (Z-axis)
@@ -1800,7 +1800,7 @@ public class RbtAdvertisingDataParserTest {
         data[47] = (byte) 0xff; // Reserve for Future Use
         data[48] = (byte) 0xff; // Reserve for Future Use
         data[49] = (byte) 0xff; // Reserve for Future Use
-        data[40] = (byte) 0xff; // Reserve for Future Use
+        data[50] = (byte) 0xff; // Reserve for Future Use
         data[51] = (byte) 0xff; // Reserve for Future Use
         data[52] = (byte) 0xff; // Reserve for Future Use
         data[53] = (byte) 0xff; // Reserve for Future Use
@@ -1888,7 +1888,7 @@ public class RbtAdvertisingDataParserTest {
         data[5] = (byte) 0xd5; // AD 2
         data[6] = (byte) 0x02; // AD 2
         data[7] = (byte) 0x01; // AD 2
-        data[8] = (byte) 0x00; // Sequence numberuence number
+        data[8] = (byte) 0x00; // Sequence number
         data[9] = (byte) 0x60; // Temperature
         data[10] = (byte) 0xf0; // Temperature
         data[11] = (byte) 0x00; // Relative humidity
@@ -1986,7 +1986,7 @@ public class RbtAdvertisingDataParserTest {
         data[5] = (byte) 0xd5; // AD 2
         data[6] = (byte) 0x02; // AD 2
         data[7] = (byte) 0x03; // AD 2
-        data[8] = (byte) 0x00; // Sequence numberuence number
+        data[8] = (byte) 0x00; // Sequence number
         data[9] = (byte) 0x60; // Temperature
         data[10] = (byte) 0xf0; // Temperature
         data[11] = (byte) 0x00; // Relative humidity
@@ -2028,7 +2028,7 @@ public class RbtAdvertisingDataParserTest {
         data[47] = (byte) 0x00; // Seismic intensity
         data[48] = (byte) 0xe0; // Acceleration (X-axis)
         data[49] = (byte) 0xb1; // Acceleration (X-axis)
-        data[40] = (byte) 0xe0; // Acceleration (Y-axis)
+        data[50] = (byte) 0xe0; // Acceleration (Y-axis)
         data[51] = (byte) 0xb1; // Acceleration (Y-axis)
         data[52] = (byte) 0xe0; // Acceleration (Z-axis)
         data[53] = (byte) 0xb1; // Acceleration (Z-axis)
@@ -2108,7 +2108,7 @@ public class RbtAdvertisingDataParserTest {
         data[47] = (byte) 0xff; // Reserve for Future Use
         data[48] = (byte) 0xff; // Reserve for Future Use
         data[49] = (byte) 0xff; // Reserve for Future Use
-        data[40] = (byte) 0xff; // Reserve for Future Use
+        data[50] = (byte) 0xff; // Reserve for Future Use
         data[51] = (byte) 0xff; // Reserve for Future Use
         data[52] = (byte) 0xff; // Reserve for Future Use
         data[53] = (byte) 0xff; // Reserve for Future Use
@@ -2195,7 +2195,7 @@ public class RbtAdvertisingDataParserTest {
         data[5] = (byte) 0xd5; // AD 2
         data[6] = (byte) 0x02; // AD 2
         data[7] = (byte) 0x01; // AD 2
-        data[8] = (byte) 0x00; // Sequence numberuence number
+        data[8] = (byte) 0x00; // Sequence number
         data[9] = (byte) 0x60; // Temperature
         data[10] = (byte) 0xf0; // Temperature
         data[11] = (byte) 0x00; // Relative humidity
@@ -2293,7 +2293,7 @@ public class RbtAdvertisingDataParserTest {
         data[5] = (byte) 0xd5; // AD 2
         data[6] = (byte) 0x02; // AD 2
         data[7] = (byte) 0x03; // AD 2
-        data[8] = (byte) 0x00; // Sequence numberuence number
+        data[8] = (byte) 0x00; // Sequence number
         data[9] = (byte) 0x60; // Temperature
         data[10] = (byte) 0xf0; // Temperature
         data[11] = (byte) 0x00; // Relative humidity
@@ -2335,7 +2335,7 @@ public class RbtAdvertisingDataParserTest {
         data[47] = (byte) 0x00; // Seismic intensity
         data[48] = (byte) 0xe0; // Acceleration (X-axis)
         data[49] = (byte) 0xb1; // Acceleration (X-axis)
-        data[40] = (byte) 0xe0; // Acceleration (Y-axis)
+        data[50] = (byte) 0xe0; // Acceleration (Y-axis)
         data[51] = (byte) 0xb1; // Acceleration (Y-axis)
         data[52] = (byte) 0xe0; // Acceleration (Z-axis)
         data[53] = (byte) 0xb1; // Acceleration (Z-axis)
@@ -2415,7 +2415,7 @@ public class RbtAdvertisingDataParserTest {
         data[47] = (byte) 0xff; // Reserve for Future Use
         data[48] = (byte) 0xff; // Reserve for Future Use
         data[49] = (byte) 0xff; // Reserve for Future Use
-        data[40] = (byte) 0xff; // Reserve for Future Use
+        data[50] = (byte) 0xff; // Reserve for Future Use
         data[51] = (byte) 0xff; // Reserve for Future Use
         data[52] = (byte) 0xff; // Reserve for Future Use
         data[53] = (byte) 0xff; // Reserve for Future Use

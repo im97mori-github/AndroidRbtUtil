@@ -6,7 +6,6 @@ import android.bluetooth.BluetoothManager;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.le.BluetoothLeScanner;
 import android.bluetooth.le.ScanCallback;
-import android.bluetooth.le.ScanRecord;
 import android.bluetooth.le.ScanResult;
 import android.os.Bundle;
 import android.util.Pair;
@@ -24,9 +23,11 @@ import androidx.annotation.Nullable;
 
 import org.im97mori.ble.BLEConnectionHolder;
 import org.im97mori.ble.BLEConstants;
+import org.im97mori.ble.ad.filter.AdvertisingDataFilter;
 import org.im97mori.ble.task.ConnectTask;
 import org.im97mori.rbt.ble.RbtBLEConnection;
 import org.im97mori.rbt.ble.ad.RbtAdvertisingDataParser;
+import org.im97mori.rbt.ble.ad.filter.FilteredRbtScanCallback;
 import org.im97mori.rbt.ble.characteristic.AccelerationLoggerControl;
 import org.im97mori.rbt.ble.characteristic.AdvertiseSetting;
 import org.im97mori.rbt.ble.characteristic.InstallationOffset;
@@ -41,25 +42,38 @@ import java.util.List;
 
 public class ControlServiceSampleActivity extends BaseActivity implements View.OnClickListener, SampleCallback {
 
-    private static class TestScanCallback extends ScanCallback {
+    @SuppressWarnings("unused")
+    private static class TestScanCallback extends FilteredRbtScanCallback {
+
+        private static class Builder extends FilteredRbtScanCallback.Builder {
+
+            private final ControlServiceSampleActivity mActivity;
+
+            Builder(@NonNull ControlServiceSampleActivity activity) {
+                mActivity = activity;
+            }
+
+            @NonNull
+            @Override
+            public TestScanCallback build() {
+                return new TestScanCallback(mFilterList, mRbtAdvertisingDataParser, mScanCallback, mActivity);
+            }
+        }
 
         final ControlServiceSampleActivity mActivity;
-        final RbtAdvertisingDataParser mRbtAdvertisingDataParser;
 
-        private TestScanCallback(ControlServiceSampleActivity activity) {
+        private TestScanCallback(@NonNull List<AdvertisingDataFilter<RbtAdvertisingDataParser.RbtAdvertisingDataParseResult>> filterList, @Nullable RbtAdvertisingDataParser parser, @Nullable ScanCallback scanCallback, @NonNull ControlServiceSampleActivity activity) {
+            super(filterList, parser, scanCallback);
             mActivity = activity;
-            RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(true);
-            mRbtAdvertisingDataParser = builder.build();
         }
 
         @Override
-        public void onScanResult(int callbackType, ScanResult result) {
+        public void onFilteredScanResult(int callbackType, @NonNull ScanResult result, @NonNull RbtAdvertisingDataParser.RbtAdvertisingDataParseResult parseResult) {
             parse(result);
         }
 
         @Override
-        public void onBatchScanResults(List<ScanResult> results) {
-
+        public void onFilteredBatchScanResults(@NonNull List<ScanResult> results, @NonNull List<RbtAdvertisingDataParser.RbtAdvertisingDataParseResult> parseResults) {
             for (ScanResult result : results) {
                 parse(result);
             }
@@ -70,34 +84,25 @@ public class ControlServiceSampleActivity extends BaseActivity implements View.O
         }
 
         private void parse(final ScanResult result) {
-            ScanRecord record = result.getScanRecord();
-            if (record != null) {
-                byte[] data = record.getBytes();
-
-                RbtAdvertisingDataParser.RbtAdvertisingDataParseResult rbtAdvertisingDataParseResult = mRbtAdvertisingDataParser.parse(data);
-                if (rbtAdvertisingDataParseResult != null && rbtAdvertisingDataParseResult.isRbt()) {
-
-                    mActivity.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                mActivity.mRbtBLEConnection = BLEConnectionHolder.getInstance(result.getDevice());
-                                if (mActivity.mRbtBLEConnection == null) {
-                                    mActivity.mRbtBLEConnection = new RbtBLEConnection(mActivity, result.getDevice());
-                                    BLEConnectionHolder.addInstance(mActivity.mRbtBLEConnection, true);
-                                }
-                                mActivity.mRbtBLEConnection.attach(mActivity.mRbtBleCallbackSample);
-                                mActivity.mBluetoothLeScanner.stopScan(ControlServiceSampleActivity.TestScanCallback.this);
-                                mActivity.mTestScanCallback = null;
-
-                                mActivity.mRbtBLEConnection.connect(ConnectTask.TIMEOUT_MILLIS);
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
+            mActivity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        mActivity.mRbtBLEConnection = BLEConnectionHolder.getInstance(result.getDevice());
+                        if (mActivity.mRbtBLEConnection == null) {
+                            mActivity.mRbtBLEConnection = new RbtBLEConnection(mActivity, result.getDevice());
+                            BLEConnectionHolder.addInstance(mActivity.mRbtBLEConnection, true);
                         }
-                    });
+                        mActivity.mRbtBLEConnection.attach(mActivity.mRbtBleCallbackSample);
+                        mActivity.mBluetoothLeScanner.stopScan(TestScanCallback.this);
+                        mActivity.mTestScanCallback = null;
+
+                        mActivity.mRbtBLEConnection.connect(ConnectTask.TIMEOUT_MILLIS);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
-            }
+            });
         }
     }
 
@@ -270,7 +275,7 @@ public class ControlServiceSampleActivity extends BaseActivity implements View.O
                                     mRbtBLEConnection.quit();
                                     mRbtBLEConnection = null;
                                 }
-                                mTestScanCallback = new TestScanCallback(this);
+                                mTestScanCallback = new TestScanCallback.Builder(this).build();
                                 mBluetoothLeScanner.startScan(mTestScanCallback);
                             }
                         } else {

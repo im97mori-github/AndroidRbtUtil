@@ -257,8 +257,25 @@ public class RbtAdvertisingDataParser {
 
         try {
             AdvertisingDataParser.AdvertisingDataParseResult advertisingDataParseResult = mAdvertisingDataParser.parse(data, offset, totalLength);
+            result = parse(advertisingDataParseResult);
+        } catch (Exception e) {
+            RbtLogUtils.stackLog(e);
+        }
+        return result;
+    }
 
-            // Rbt is flag=0x06 and shortened name=Rbt
+    /**
+     * parse Advertising Data
+     *
+     * @param advertisingDataParseResult {@link org.im97mori.ble.ad.AdvertisingDataParser.AdvertisingDataParseResult} instance for parse
+     * @return {@link RbtAdvertisingDataParseResult} instance, null:non-Rbt Advertising data
+     */
+    @Nullable
+    public RbtAdvertisingDataParseResult parse(@NonNull AdvertisingDataParser.AdvertisingDataParseResult advertisingDataParseResult) {
+        RbtAdvertisingDataParseResult result = null;
+
+        try {
+            // Rbt device has flag=0x06 and shortened name=Rbt
             if (advertisingDataParseResult.getFlags() != null
                     && advertisingDataParseResult.getFlags().isLeGeneralDiscoverableMode() && advertisingDataParseResult.getFlags().isBrEdrNotSupported()
                     && advertisingDataParseResult.getShortenedLocalName() != null
@@ -315,6 +332,7 @@ public class RbtAdvertisingDataParser {
         } catch (Exception e) {
             RbtLogUtils.stackLog(e);
         }
+
         return result;
     }
 }

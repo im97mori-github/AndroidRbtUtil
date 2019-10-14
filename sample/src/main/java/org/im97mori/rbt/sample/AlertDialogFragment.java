@@ -10,7 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
-class AlertDialogFragment extends DialogFragment implements DialogInterface.OnClickListener {
+@SuppressWarnings("WeakerAccess")
+public class AlertDialogFragment extends DialogFragment implements DialogInterface.OnClickListener {
 
     public interface AlertDialogFragmentCallback {
         void onOk();

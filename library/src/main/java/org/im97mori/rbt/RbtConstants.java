@@ -605,7 +605,6 @@ public class RbtConstants {
      */
     public static final class EventFlagSensor {
 
-
         /**
          * Simple threshold [upper limit] 1
          */
@@ -699,7 +698,7 @@ public class RbtConstants {
         public static final int SIMPLE_THRESHOLD_UPPER_LIMIT_1 = 0b00000001;
 
         /**
-         * Simple threshold [ upper limit] 2
+         * Simple threshold [upper limit] 2
          */
         public static final int SIMPLE_THRESHOLD_UPPER_LIMIT_2 = 0b00000010;
 
