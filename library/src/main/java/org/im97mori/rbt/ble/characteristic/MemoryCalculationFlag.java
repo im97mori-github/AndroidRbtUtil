@@ -17,6 +17,7 @@ import static org.im97mori.rbt.RbtConstants.CharacteristicUUID.MEMORY_CALCULATIO
 /**
  * 2.1.7 Memory c alculation flag (Characteristics UUID: 0x500D)
  */
+@SuppressWarnings({"WeakerAccess", "RedundantSuppression"})
 public class MemoryCalculationFlag extends AbstractRbtCharacteristic implements Parcelable {
 
     /**

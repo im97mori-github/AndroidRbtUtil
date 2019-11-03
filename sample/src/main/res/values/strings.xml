@@ -19,6 +19,11 @@
     <string name="label_generic_access">Generic Access sample</string>
     <string name="label_device_information">Device Information sample</string>
 
+    <string name="menu_discover_service">Discover Service</string>
+    <string name="menu_request_mtu">Request MTU</string>
+    <string name="menu_read_phy">Read Phy</string>
+    <string name="menu_set_preferred_phy">Set Preferred Phy</string>
+    <string name="menu_read_remote_rssi">Read Remote Rssi</string>
     <string name="menu_read_5004">Read Memory index information</string>
     <string name="menu_write_5005">Write Request memory index</string>
     <string name="menu_read_5006">Read Memory status</string>

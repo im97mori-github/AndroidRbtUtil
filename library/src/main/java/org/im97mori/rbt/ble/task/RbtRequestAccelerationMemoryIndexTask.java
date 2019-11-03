@@ -179,6 +179,7 @@ public class RbtRequestAccelerationMemoryIndexTask extends AbstractRbtTask {
     /**
      * {@inheritDoc}
      */
+    @NonNull
     @Override
     public Message createInitialMessage() {
         Bundle bundle = new Bundle();
@@ -269,7 +270,7 @@ public class RbtRequestAccelerationMemoryIndexTask extends AbstractRbtTask {
 
                     if (result) {
                         // set timeout message
-                        mTaskHandler.sendProcessingMessage(createTimeoutMessage(REQUEST_ACCELERATION_MEMORY_INDEX_CHARACTERISTIC, this), mTimeout);
+                        mTaskHandler.sendProcessingMessage(createTimeoutMessage(this), mTimeout);
                     } else {
                         if (bluetoothGattDescriptor == null) {
                             nextProgress = PROGRESS_FINISHED;

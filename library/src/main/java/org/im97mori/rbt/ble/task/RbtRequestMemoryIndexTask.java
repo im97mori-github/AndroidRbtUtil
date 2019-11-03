@@ -47,7 +47,7 @@ public class RbtRequestMemoryIndexTask extends AbstractRbtTask {
     /**
      * create notify Memory sensing data / Memory calculation data / Memory sensing flag / Memory calculation flag message
      *
-     * @param values             {@link BluetoothGattCharacteristic#getValue()}
+     * @param values {@link BluetoothGattCharacteristic#getValue()}
      * @return notify Memory sensing data / Memory calculation data / Memory sensing flag / Memory calculation flag {@link Message} instance
      */
     public static Message createBatchNotifyMessage(@NonNull byte[] values) {
@@ -122,6 +122,7 @@ public class RbtRequestMemoryIndexTask extends AbstractRbtTask {
     /**
      * {@inheritDoc}
      */
+    @NonNull
     @Override
     public Message createInitialMessage() {
         Bundle bundle = new Bundle();
@@ -203,7 +204,7 @@ public class RbtRequestMemoryIndexTask extends AbstractRbtTask {
 
                     if (result) {
                         // set timeout message
-                        mTaskHandler.sendProcessingMessage(createTimeoutMessage(REQUEST_MEMORY_INDEX_CHARACTERISTIC, this), mTimeout);
+                        mTaskHandler.sendProcessingMessage(createTimeoutMessage(this), mTimeout);
                     } else {
                         if (bluetoothGattDescriptor == null) {
                             nextProgress = PROGRESS_FINISHED;

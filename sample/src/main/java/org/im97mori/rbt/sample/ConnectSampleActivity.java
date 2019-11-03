@@ -7,8 +7,11 @@ import android.bluetooth.BluetoothProfile;
 import android.bluetooth.le.BluetoothLeScanner;
 import android.bluetooth.le.ScanCallback;
 import android.bluetooth.le.ScanResult;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Pair;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -23,6 +26,10 @@ import org.im97mori.ble.BLEConnectionHolder;
 import org.im97mori.ble.BLEConstants;
 import org.im97mori.ble.ad.filter.AdvertisingDataFilter;
 import org.im97mori.ble.task.ConnectTask;
+import org.im97mori.ble.task.DiscoverServiceTask;
+import org.im97mori.ble.task.ReadPhyTask;
+import org.im97mori.ble.task.ReadRemoteRssiTask;
+import org.im97mori.ble.task.SetPreferredPhyTask;
 import org.im97mori.rbt.ble.RbtBLEConnection;
 import org.im97mori.rbt.ble.ad.RbtAdvertisingDataParser;
 import org.im97mori.rbt.ble.ad.filter.FilteredRbtScanCallback;
@@ -194,6 +201,42 @@ public class ConnectSampleActivity extends BaseActivity implements View.OnClickL
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.connect, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        for (int i = 0; i < menu.size(); i++) {
+            menu.getItem(i).setEnabled(mRbtBLEConnection != null && mRbtBLEConnection.isConnected());
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (R.id.discover_service == item.getItemId()) {
+            mRbtBLEConnection.createDiscoverServiceTask(DiscoverServiceTask.TIMEOUT_MILLIS, null, null);
+        } else if (R.id.request_mtu == item.getItemId()) {
+            mRbtBLEConnection.createRequestMtuTask(BLEConstants.MAXIMUM_MTU, DiscoverServiceTask.TIMEOUT_MILLIS, null, null);
+        } else if (R.id.read_phy == item.getItemId()) {
+            mRbtBLEConnection.createReadPhyTask(ReadPhyTask.TIMEOUT_MILLIS, null, null);
+        } else if (R.id.set_preferred_phy == item.getItemId()) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                mRbtBLEConnection.createSetPreferredPhyTask(
+                        BluetoothDevice.PHY_LE_1M_MASK | BluetoothDevice.PHY_LE_2M_MASK | BluetoothDevice.PHY_LE_CODED_MASK
+                        , BluetoothDevice.PHY_LE_1M_MASK | BluetoothDevice.PHY_LE_2M_MASK | BluetoothDevice.PHY_LE_CODED_MASK
+                        , BluetoothDevice.PHY_OPTION_NO_PREFERRED
+                        , SetPreferredPhyTask.TIMEOUT_MILLIS, null, null);
+            }
+        } else if (R.id.read_remote_rssi == item.getItemId()) {
+            mRbtBLEConnection.createReadRemoteRssiTask(ReadRemoteRssiTask.TIMEOUT_MILLIS, null, null);
+        }
+        return true;
+    }
+
+    @Override
     public void onClick(View v) {
         if (R.id.connectDisconnectButton == v.getId()) {
             if (mRbtBLEConnection == null) {
@@ -239,10 +282,9 @@ public class ConnectSampleActivity extends BaseActivity implements View.OnClickL
                 } else {
                     if (mRbtBLEConnection.isAttached(mRbtBleCallbackSample)) {
                         mRbtBLEConnection.detach(mRbtBleCallbackSample);
-                    } else {
-                        mRbtBLEConnection.attach(mRbtBleCallbackSample);
-                        mRbtBLEConnection.connect(ConnectTask.TIMEOUT_MILLIS);
                     }
+                    mRbtBLEConnection.attach(mRbtBleCallbackSample);
+                    mRbtBLEConnection.connect(ConnectTask.TIMEOUT_MILLIS);
                 }
             }
 

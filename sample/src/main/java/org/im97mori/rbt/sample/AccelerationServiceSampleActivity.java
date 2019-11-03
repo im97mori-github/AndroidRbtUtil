@@ -305,10 +305,9 @@ public class AccelerationServiceSampleActivity extends BaseActivity implements V
                 } else {
                     if (mRbtBLEConnection.isAttached(mRbtBleCallbackSample)) {
                         mRbtBLEConnection.detach(mRbtBleCallbackSample);
-                    } else {
-                        mRbtBLEConnection.attach(mRbtBleCallbackSample);
-                        mRbtBLEConnection.connect(ConnectTask.TIMEOUT_MILLIS);
                     }
+                    mRbtBLEConnection.attach(mRbtBleCallbackSample);
+                    mRbtBLEConnection.connect(ConnectTask.TIMEOUT_MILLIS);
                 }
             }
 

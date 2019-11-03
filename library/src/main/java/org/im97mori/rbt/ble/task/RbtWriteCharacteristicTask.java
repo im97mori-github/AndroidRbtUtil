@@ -108,6 +108,7 @@ public class RbtWriteCharacteristicTask extends AbstractRbtTask {
     /**
      * {@inheritDoc}
      */
+    @NonNull
     @Override
     public Message createInitialMessage() {
         Bundle bundle = new Bundle();
@@ -157,7 +158,7 @@ public class RbtWriteCharacteristicTask extends AbstractRbtTask {
 
                 if (result) {
                     // set timeout message
-                    mTaskHandler.sendProcessingMessage(createTimeoutMessage(mCharacteristicUUID, this), mTimeout);
+                    mTaskHandler.sendProcessingMessage(createTimeoutMessage(this), mTimeout);
                 } else {
                     if (bluetoothGattCharacteristic == null) {
                         nextProgress = PROGRESS_FINISHED;
@@ -225,7 +226,7 @@ public class RbtWriteCharacteristicTask extends AbstractRbtTask {
                         // retry read
 
                         mCurrentProgress = PROGRESS_CHARACTERISTIC_WRITE_START;
-                        mTaskHandler.sendProcessingMessage(WriteCharacteristicTask.createWriteCharacteristicFinishedMessage(mServiceUUID, mCharacteristicUUID, mAbstractRbtCharacteristic.getBytes()), DateUtils.SECOND_IN_MILLIS * 5);
+                        mTaskHandler.sendProcessingMessage(WriteCharacteristicTask.createWriteCharacteristicSuccessMessage(mServiceUUID, mCharacteristicUUID, mAbstractRbtCharacteristic.getBytes()), DateUtils.SECOND_IN_MILLIS * 5);
                     } else if ((mWaitTarget == FLASH_MEMORY_STATUS_WRITING && FLASH_MEMORY_STATUS_WRITE_SUCCESS == flashMemoryStatus)
                             || (mWaitTarget == FLASH_MEMORY_STATUS_FLASH_MEMORY_ERASING && FLASH_MEMORY_STATUS_NONE == flashMemoryStatus)) {
                         // write success

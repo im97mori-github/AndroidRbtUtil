@@ -269,10 +269,9 @@ public class GenericAccessSampleActivity extends BaseActivity implements View.On
                 } else {
                     if (mRbtBLEConnection.isAttached(mRbtBleCallbackSample)) {
                         mRbtBLEConnection.detach(mRbtBleCallbackSample);
-                    } else {
-                        mRbtBLEConnection.attach(mRbtBleCallbackSample);
-                        mRbtBLEConnection.connect(ConnectTask.TIMEOUT_MILLIS);
                     }
+                    mRbtBLEConnection.attach(mRbtBleCallbackSample);
+                    mRbtBLEConnection.connect(ConnectTask.TIMEOUT_MILLIS);
                 }
             }
 

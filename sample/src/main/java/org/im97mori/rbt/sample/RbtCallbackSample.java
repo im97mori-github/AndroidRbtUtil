@@ -1,6 +1,9 @@
 package org.im97mori.rbt.sample;
 
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothGattCharacteristic;
+import android.bluetooth.BluetoothGattDescriptor;
+import android.bluetooth.BluetoothGattService;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Pair;
@@ -76,7 +79,9 @@ import org.im97mori.rbt.ble.characteristic.VibrationCount;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
+import java.util.UUID;
 
 import static org.im97mori.ble.BLEConstants.APPEARANCE_DESCRIPTION_MAP;
 import static org.im97mori.ble.BLEConstants.APPEARANCE_VALUE_MAP;
@@ -2540,16 +2545,176 @@ public class RbtCallbackSample extends AbstractRbtBLECallback {
 
     @Override
     public void onBLEConnectFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
-        callback(status, argument);
+        callback(status);
     }
 
     @Override
     public void onBLEConnectTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @Nullable Bundle argument) {
-        callback(argument);
+        callback();
     }
 
     @Override
     public void onBLEDisconnected(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
+        callback(status);
+    }
+
+    @Override
+    public void onDiscoverServiceSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull List<BluetoothGattService> serviceList, @Nullable Bundle argument) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < serviceList.size(); i++) {
+            BluetoothGattService service = serviceList.get(i);
+            List<BluetoothGattCharacteristic> characteristicList = service.getCharacteristics();
+            if (characteristicList.isEmpty()) {
+                writeServiceList(service.getUuid(), 0, null, 0, null, sb);
+            } else {
+                for (int j = 0; j < characteristicList.size(); j++) {
+                    BluetoothGattCharacteristic characteristic = characteristicList.get(j);
+                    List<BluetoothGattDescriptor> descriptorList = characteristic.getDescriptors();
+                    if (descriptorList.isEmpty()) {
+                        writeServiceList(service.getUuid(), j, characteristic.getUuid(), 0, null, sb);
+                    } else {
+                        for (int k = 0; k < descriptorList.size(); k++) {
+                            BluetoothGattDescriptor descriptor = descriptorList.get(k);
+                            writeServiceList(service.getUuid(), j, characteristic.getUuid(), k, descriptor.getUuid(), sb);
+                        }
+                    }
+                }
+            }
+        }
+        callback(sb);
+    }
+
+    private void writeServiceList(@NonNull UUID serviceUUID, int characteristicLineNumber, @Nullable UUID characteristicUUID, int descriptorLineNumber, @Nullable UUID descriptorUUID, @NonNull StringBuilder sb) {
+        if (characteristicLineNumber == 0) {
+            sb.append(serviceUUID.toString().substring(4, 8));
+        } else {
+            sb.append(serviceUUID.toString().substring(4, 8));
+        }
+        sb.append('\t');
+
+        if (characteristicUUID != null) {
+            if (descriptorLineNumber == 0) {
+                sb.append(characteristicUUID.toString().substring(4, 8));
+            } else {
+                sb.append(characteristicUUID.toString().substring(4, 8));
+            }
+            sb.append('\t');
+
+            if (descriptorUUID != null) {
+                sb.append(descriptorUUID.toString().substring(4, 8));
+            }
+        }
+        sb.append('\n');
+    }
+
+    @Override
+    public void onDiscoverServiceFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
+        callback(status);
+    }
+
+    @Override
+    public void onDiscoverServiceTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
+        callback(timeout);
+    }
+
+    @Override
+    public void onRequestMtuSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int mtu, @Nullable Bundle argument) {
+        callback(mtu);
+    }
+
+    @Override
+    public void onRequestMtuFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
+        callback(status);
+    }
+
+    @Override
+    public void onRequestMtuTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
+        callback(timeout);
+    }
+
+    @Override
+    public void onReadPhySuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int txPhy, int rxPhy, @Nullable Bundle argument) {
+        callback(txPhy, rxPhy);
+    }
+
+    @Override
+    public void onReadPhyFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
+        callback(status);
+    }
+
+    @Override
+    public void onReadPhyTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
+        callback(timeout);
+    }
+
+    @Override
+    public void onSetPreferredPhySuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int txPhy, int rxPhy, int phyOptions, @Nullable Bundle argument) {
+        callback(txPhy, rxPhy, phyOptions);
+    }
+
+    @Override
+    public void onSetPreferredPhyFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
+        callback(status);
+    }
+
+    @Override
+    public void onSetPreferredPhyTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
+        callback(timeout);
+    }
+
+    @Override
+    public void onReadRemoteRssiSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int rssi, @Nullable Bundle argument) {
+        callback(rssi);
+    }
+
+    @Override
+    public void onReadRemoteRssiFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
+        callback(status);
+    }
+
+    @Override
+    public void onReadRemoteRssiTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
+        callback(timeout);
+    }
+
+    @Override
+    public void onBeginReliableWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @Nullable Bundle argument) {
+        callback(argument);
+    }
+
+    @Override
+    public void onBeginReliableWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
         callback(status, argument);
     }
+
+    @Override
+    public void onExecuteReliableWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @Nullable Bundle argument) {
+        callback(argument);
+    }
+
+    @Override
+    public void onExecuteReliableWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
+        callback(status, argument);
+    }
+
+    @Override
+    public void onExecuteReliableWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
+        callback(timeout, argument);
+    }
+
+    @Override
+    public void onAbortReliableWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @Nullable Bundle argument) {
+        callback(argument);
+    }
+
+    @Override
+    public void onAbortReliableWriteFailed(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, int status, @Nullable Bundle argument) {
+        callback(status, argument);
+    }
+
+    @Override
+    public void onAbortReliableWriteTimeout(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, long timeout, @Nullable Bundle argument) {
+        callback(timeout, argument);
+    }
+
 }
