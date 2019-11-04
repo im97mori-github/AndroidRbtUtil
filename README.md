@@ -17,7 +17,7 @@ project/build.gradle
 project/module/build.gradle
 
     dependencies {
-        implementation 'org.im97mori:rbt:0.3.2'
+        implementation 'org.im97mori:rbt:0.3.3'
     }
 
 ## How to use
