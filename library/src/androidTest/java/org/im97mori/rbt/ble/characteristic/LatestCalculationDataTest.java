@@ -3,9 +3,9 @@ package org.im97mori.rbt.ble.characteristic;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 
-import org.im97mori.ble.ad.AdvertisingDataConstants;
 import org.junit.Test;
 
+import static org.im97mori.ble.BLEConstants.BASE_UUID;
 import static org.im97mori.rbt.RbtConstants.OutputRange.VIBRATION_INFORMATION_DURING_EARTH_QUAKE_BIT;
 import static org.im97mori.rbt.RbtConstants.OutputRange.VIBRATION_INFORMATION_NONE_BIT;
 import static org.junit.Assert.assertArrayEquals;
@@ -35,7 +35,7 @@ public class LatestCalculationDataTest {
         data[16] = (byte) 0xe0; // Acceleration (Z-axis)
         data[17] = (byte) 0xb1; // Acceleration (Z-axis)
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         LatestCalculationData result = new LatestCalculationData(bluetoothGattCharacteristic);
@@ -81,7 +81,7 @@ public class LatestCalculationDataTest {
         data[16] = (byte) 0x20; // Acceleration (Z-axis)
         data[17] = (byte) 0x4e; // Acceleration (Z-axis)
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         LatestCalculationData result = new LatestCalculationData(bluetoothGattCharacteristic);
@@ -127,7 +127,7 @@ public class LatestCalculationDataTest {
         data[16] = (byte) 0x25; // Acceleration (Z-axis)
         data[17] = (byte) 0x46; // Acceleration (Z-axis)
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         LatestCalculationData result1 = new LatestCalculationData(bluetoothGattCharacteristic);
@@ -170,7 +170,7 @@ public class LatestCalculationDataTest {
         data[16] = (byte) 0x25; // Acceleration (Z-axis)
         data[17] = (byte) 0x46; // Acceleration (Z-axis)
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         LatestCalculationData result1 = new LatestCalculationData(bluetoothGattCharacteristic);
@@ -200,7 +200,7 @@ public class LatestCalculationDataTest {
         data[16] = (byte) 0x25; // Acceleration (Z-axis)
         data[17] = (byte) 0x46; // Acceleration (Z-axis)
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         LatestCalculationData result1 = new LatestCalculationData(bluetoothGattCharacteristic);

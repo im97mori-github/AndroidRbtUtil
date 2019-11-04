@@ -3,9 +3,9 @@ package org.im97mori.rbt.ble.characteristic;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 
-import org.im97mori.ble.ad.AdvertisingDataConstants;
 import org.junit.Test;
 
+import static org.im97mori.ble.BLEConstants.BASE_UUID;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
@@ -35,7 +35,7 @@ public class RelativeHumiditySensor2Test extends AbstractEventEnableDisableTest 
         data[18] = (byte) ((0x01) & 0xff); // Interval difference count
         data[19] = (byte) ((0x01) & 0xff); // Base differencecount
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         RelativeHumiditySensor2 result = new RelativeHumiditySensor2(bluetoothGattCharacteristic);
@@ -85,7 +85,7 @@ public class RelativeHumiditySensor2Test extends AbstractEventEnableDisableTest 
         data[18] = (byte) ((0x08) & 0xff); // Interval difference count
         data[19] = (byte) ((0x08) & 0xff); // Base differencecount
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         RelativeHumiditySensor2 result = new RelativeHumiditySensor2(bluetoothGattCharacteristic);
@@ -135,7 +135,7 @@ public class RelativeHumiditySensor2Test extends AbstractEventEnableDisableTest 
         data[18] = (byte) ((0x03) & 0xff); // Interval difference count
         data[19] = (byte) ((0x04) & 0xff); // Base differencecount
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         RelativeHumiditySensor2 result1 = new RelativeHumiditySensor2(bluetoothGattCharacteristic);
@@ -182,7 +182,7 @@ public class RelativeHumiditySensor2Test extends AbstractEventEnableDisableTest 
         data[18] = (byte) ((0x03) & 0xff); // Interval difference count
         data[19] = (byte) ((0x04) & 0xff); // Base differencecount
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         RelativeHumiditySensor2 result1 = new RelativeHumiditySensor2(bluetoothGattCharacteristic);
@@ -244,7 +244,7 @@ public class RelativeHumiditySensor2Test extends AbstractEventEnableDisableTest 
         data[18] = (byte) ((0x03) & 0xff); // Interval difference count
         data[19] = (byte) ((0x04) & 0xff); // Base differencecount
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         RelativeHumiditySensor2 result1 = new RelativeHumiditySensor2(bluetoothGattCharacteristic);

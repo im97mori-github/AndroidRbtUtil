@@ -2,10 +2,10 @@ package org.im97mori.rbt.ble.characteristic;
 
 import android.bluetooth.BluetoothGattCharacteristic;
 
-import org.im97mori.ble.ad.AdvertisingDataConstants;
 import org.im97mori.rbt.RbtConstants;
 import org.junit.Test;
 
+import static org.im97mori.ble.BLEConstants.BASE_UUID;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -27,7 +27,7 @@ public class MemoryCalculationFlagSiValueTest extends AbstractSensingFlagTest {
         data2[ 9] = (byte) 0x00; // PGA flag
         data2[10] = (byte) 0x00; // Seismic intensity flag
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
 
         MemoryCalculationFlag result = new MemoryCalculationFlag(bluetoothGattCharacteristic);
@@ -103,7 +103,7 @@ public class MemoryCalculationFlagSiValueTest extends AbstractSensingFlagTest {
         data2[ 9] = (byte) 0x00; // PGA flag
         data2[10] = (byte) 0x00; // Seismic intensity flag
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
 
         MemoryCalculationFlag result = new MemoryCalculationFlag(bluetoothGattCharacteristic);
@@ -179,7 +179,7 @@ public class MemoryCalculationFlagSiValueTest extends AbstractSensingFlagTest {
         data2[ 9] = (byte) 0x00; // PGA flag
         data2[10] = (byte) 0x00; // Seismic intensity flag
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
 
         MemoryCalculationFlag result = new MemoryCalculationFlag(bluetoothGattCharacteristic);
@@ -255,7 +255,7 @@ public class MemoryCalculationFlagSiValueTest extends AbstractSensingFlagTest {
         data2[ 9] = (byte) 0x00; // PGA flag
         data2[10] = (byte) 0x00; // Seismic intensity flag
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
 
         MemoryCalculationFlag result = new MemoryCalculationFlag(bluetoothGattCharacteristic);
@@ -331,7 +331,7 @@ public class MemoryCalculationFlagSiValueTest extends AbstractSensingFlagTest {
         data2[ 9] = (byte) 0x00; // PGA flag
         data2[10] = (byte) 0x00; // Seismic intensity flag
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
 
         MemoryCalculationFlag result = new MemoryCalculationFlag(bluetoothGattCharacteristic);

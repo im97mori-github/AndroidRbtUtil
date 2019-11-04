@@ -2,8 +2,8 @@ package org.im97mori.rbt.ble.ad.filter;
 
 import androidx.annotation.NonNull;
 
-import org.im97mori.ble.ad.filter.AdvertisingDataFilter;
-import org.im97mori.ble.ad.filter.OrFilter;
+import org.im97mori.ble.advertising.filter.AdvertisingDataFilter;
+import org.im97mori.ble.advertising.filter.OrFilter;
 import org.im97mori.rbt.RbtConstants;
 import org.im97mori.rbt.ble.ad.CalculationData;
 import org.im97mori.rbt.ble.ad.RbtAdvertisingDataParser;

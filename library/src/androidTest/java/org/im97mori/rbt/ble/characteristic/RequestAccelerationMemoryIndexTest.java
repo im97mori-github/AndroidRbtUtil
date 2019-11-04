@@ -3,9 +3,9 @@ package org.im97mori.rbt.ble.characteristic;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 
-import org.im97mori.ble.ad.AdvertisingDataConstants;
 import org.junit.Test;
 
+import static org.im97mori.ble.BLEConstants.BASE_UUID;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
@@ -21,7 +21,7 @@ public class RequestAccelerationMemoryIndexTest {
         data[ 4] = (byte) ((0x00) & 0xff);
         data[ 5] = (byte) ((0x00) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         RequestAccelerationMemoryIndex result = new RequestAccelerationMemoryIndex(bluetoothGattCharacteristic);
@@ -41,7 +41,7 @@ public class RequestAccelerationMemoryIndexTest {
         data[ 4] = (byte) ((0xff) & 0xff);
         data[ 5] = (byte) ((0x01) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         RequestAccelerationMemoryIndex result = new RequestAccelerationMemoryIndex(bluetoothGattCharacteristic);
@@ -61,7 +61,7 @@ public class RequestAccelerationMemoryIndexTest {
         data[ 4] = (byte) ((0xff) & 0xff);
         data[ 5] = (byte) ((0x01) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         RequestAccelerationMemoryIndex result1 = new RequestAccelerationMemoryIndex(bluetoothGattCharacteristic);
@@ -86,7 +86,7 @@ public class RequestAccelerationMemoryIndexTest {
         data[ 4] = (byte) ((0xff) & 0xff);
         data[ 5] = (byte) ((0x01) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         RequestAccelerationMemoryIndex result1 = new RequestAccelerationMemoryIndex(bluetoothGattCharacteristic);
@@ -118,7 +118,7 @@ public class RequestAccelerationMemoryIndexTest {
         data[ 4] = (byte) ((0xff) & 0xff);
         data[ 5] = (byte) ((0x01) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         RequestAccelerationMemoryIndex result1 = new RequestAccelerationMemoryIndex(bluetoothGattCharacteristic);

@@ -3,9 +3,9 @@ package org.im97mori.rbt.ble.characteristic;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 
-import org.im97mori.ble.ad.AdvertisingDataConstants;
 import org.junit.Test;
 
+import static org.im97mori.ble.BLEConstants.BASE_UUID;
 import static org.im97mori.rbt.RbtConstants.OutputRange.SI_VALUE_CALCULATION_AXIS_XY_AXIS_BIT;
 import static org.im97mori.rbt.RbtConstants.OutputRange.SI_VALUE_CALCULATION_AXIS_XZ_AXIS_BIT;
 import static org.im97mori.rbt.RbtConstants.OutputRange.SI_VALUE_CALCULATION_AXIS_YZ_AXIS_BIT;
@@ -36,7 +36,7 @@ public class LatestAccelerationStatusTest {
         data[13] = (byte) ((0x30) & 0xff);
         data[14] = (byte) ((0xf8) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         LatestAccelerationStatus result = new LatestAccelerationStatus(bluetoothGattCharacteristic);
@@ -76,7 +76,7 @@ public class LatestAccelerationStatusTest {
         data[13] = (byte) ((0xd0) & 0xff);
         data[14] = (byte) ((0x07) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         LatestAccelerationStatus result = new LatestAccelerationStatus(bluetoothGattCharacteristic);
@@ -116,7 +116,7 @@ public class LatestAccelerationStatusTest {
         data[13] = (byte) ((0xd0) & 0xff);
         data[14] = (byte) ((0x07) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         LatestAccelerationStatus result = new LatestAccelerationStatus(bluetoothGattCharacteristic);
@@ -156,7 +156,7 @@ public class LatestAccelerationStatusTest {
         data[13] = (byte) ((0x06) & 0xff);
         data[14] = (byte) ((0x07) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         LatestAccelerationStatus result1 = new LatestAccelerationStatus(bluetoothGattCharacteristic);
@@ -194,7 +194,7 @@ public class LatestAccelerationStatusTest {
         data[13] = (byte) ((0x06) & 0xff);
         data[14] = (byte) ((0x07) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         LatestAccelerationStatus result1 = new LatestAccelerationStatus(bluetoothGattCharacteristic);

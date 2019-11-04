@@ -3,9 +3,10 @@ package org.im97mori.rbt.ble.characteristic;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 
-import org.im97mori.ble.ad.AdvertisingDataConstants;
+import org.im97mori.ble.BLEConstants;
 import org.junit.Test;
 
+import static org.im97mori.ble.BLEConstants.BASE_UUID;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
@@ -16,7 +17,7 @@ public class FlashMemoryStatusTest {
         byte[] data = new byte[1];
         data[0] = FlashMemoryStatus.FLASH_MEMORY_STATUS_NONE;
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         FlashMemoryStatus flashMemoryStatus = new FlashMemoryStatus(bluetoothGattCharacteristic);
@@ -28,7 +29,7 @@ public class FlashMemoryStatusTest {
         byte[] data = new byte[1];
         data[0] = FlashMemoryStatus.FLASH_MEMORY_STATUS_WRITING;
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         FlashMemoryStatus flashMemoryStatus = new FlashMemoryStatus(bluetoothGattCharacteristic);
@@ -40,7 +41,7 @@ public class FlashMemoryStatusTest {
         byte[] data = new byte[1];
         data[0] = FlashMemoryStatus.FLASH_MEMORY_STATUS_WRITE_SUCCESS;
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         FlashMemoryStatus flashMemoryStatus = new FlashMemoryStatus(bluetoothGattCharacteristic);
@@ -52,7 +53,7 @@ public class FlashMemoryStatusTest {
         byte[] data = new byte[1];
         data[0] = FlashMemoryStatus.FLASH_MEMORY_STATUS_WRITE_FAILURE;
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         FlashMemoryStatus flashMemoryStatus = new FlashMemoryStatus(bluetoothGattCharacteristic);
@@ -64,7 +65,7 @@ public class FlashMemoryStatusTest {
         byte[] data = new byte[1];
         data[0] = FlashMemoryStatus.FLASH_MEMORY_STATUS_FLASH_MEMORY_ERASING;
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         FlashMemoryStatus flashMemoryStatus = new FlashMemoryStatus(bluetoothGattCharacteristic);
@@ -76,7 +77,7 @@ public class FlashMemoryStatusTest {
         byte[] data = new byte[1];
         data[0] = FlashMemoryStatus.FLASH_MEMORY_STATUS_FLASH_MEMORY_ERASING;
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         FlashMemoryStatus result1 = new FlashMemoryStatus(bluetoothGattCharacteristic);
@@ -93,7 +94,7 @@ public class FlashMemoryStatusTest {
         byte[] data = new byte[1];
         data[0] = FlashMemoryStatus.FLASH_MEMORY_STATUS_FLASH_MEMORY_ERASING;
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         FlashMemoryStatus result1 = new FlashMemoryStatus(bluetoothGattCharacteristic);
@@ -106,7 +107,7 @@ public class FlashMemoryStatusTest {
         byte[] data = new byte[1];
         data[0] = FlashMemoryStatus.FLASH_MEMORY_STATUS_FLASH_MEMORY_ERASING;
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         FlashMemoryStatus result1 = new FlashMemoryStatus(bluetoothGattCharacteristic);

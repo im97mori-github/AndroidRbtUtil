@@ -16,7 +16,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.im97mori.ble.ad.filter.AdvertisingDataFilter;
+import org.im97mori.ble.advertising.filter.AdvertisingDataFilter;
 import org.im97mori.rbt.ble.ad.CalculationData;
 import org.im97mori.rbt.ble.ad.RbtAdvertisingDataParser;
 import org.im97mori.rbt.ble.ad.SensorData;

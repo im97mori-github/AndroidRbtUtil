@@ -3,9 +3,9 @@ package org.im97mori.rbt.ble.characteristic;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 
-import org.im97mori.ble.ad.AdvertisingDataConstants;
 import org.junit.Test;
 
+import static org.im97mori.ble.BLEConstants.BASE_UUID;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
@@ -18,7 +18,7 @@ public class LedStateOperationTest {
         data[1] = (byte) ((LedStateOperation.ERROR_NONE) & 0xff);
         data[2] = (byte) ((LedStateOperation.CONNECTION_NONE) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         LedStateOperation ledStateOperation = new LedStateOperation(bluetoothGattCharacteristic);
@@ -34,7 +34,7 @@ public class LedStateOperationTest {
         data[1] = (byte) ((LedStateOperation.ERROR_RED) & 0xff);
         data[2] = (byte) ((LedStateOperation.CONNECTION_GREEN) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         LedStateOperation ledStateOperation = new LedStateOperation(bluetoothGattCharacteristic);
@@ -50,7 +50,7 @@ public class LedStateOperationTest {
         data[1] = (byte) ((LedStateOperation.ERROR_NONE) & 0xff);
         data[2] = (byte) ((LedStateOperation.CONNECTION_GREEN) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         LedStateOperation result1 = new LedStateOperation(bluetoothGattCharacteristic);
@@ -71,7 +71,7 @@ public class LedStateOperationTest {
         data[1] = (byte) ((LedStateOperation.ERROR_NONE) & 0xff);
         data[2] = (byte) ((LedStateOperation.CONNECTION_GREEN) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         LedStateOperation result1 = new LedStateOperation(bluetoothGattCharacteristic);
@@ -99,7 +99,7 @@ public class LedStateOperationTest {
         data[1] = (byte) ((LedStateOperation.ERROR_NONE) & 0xff);
         data[2] = (byte) ((LedStateOperation.CONNECTION_GREEN) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         LedStateOperation result1 = new LedStateOperation(bluetoothGattCharacteristic);

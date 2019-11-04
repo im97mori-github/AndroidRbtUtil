@@ -9,10 +9,10 @@ import androidx.annotation.Nullable;
 
 import org.im97mori.ble.BLECallbackDistributer;
 import org.im97mori.ble.BLEConstants;
-import org.im97mori.ble.characteristic.Appearance;
-import org.im97mori.ble.characteristic.CentralAddressResolution;
-import org.im97mori.ble.characteristic.DeviceName;
-import org.im97mori.ble.characteristic.PeripheralPreferredConnectionParameters;
+import org.im97mori.ble.characteristic.dis.Appearance;
+import org.im97mori.ble.characteristic.dis.CentralAddressResolution;
+import org.im97mori.ble.characteristic.dis.DeviceName;
+import org.im97mori.ble.characteristic.dis.PeripheralPreferredConnectionParameters;
 import org.junit.Test;
 
 import java.util.UUID;

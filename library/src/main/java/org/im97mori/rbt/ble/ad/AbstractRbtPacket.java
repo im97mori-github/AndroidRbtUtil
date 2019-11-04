@@ -2,7 +2,7 @@ package org.im97mori.rbt.ble.ad;
 
 import androidx.annotation.NonNull;
 
-import org.im97mori.ble.ad.ManufacturerSpecificData;
+import org.im97mori.ble.advertising.ManufacturerSpecificData;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;

@@ -3,9 +3,9 @@ package org.im97mori.rbt.ble.characteristic;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 
-import org.im97mori.ble.ad.AdvertisingDataConstants;
 import org.junit.Test;
 
+import static org.im97mori.ble.BLEConstants.BASE_UUID;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -37,7 +37,7 @@ public class MemorySensingDataTest {
         data[18] = (byte) 0x90; // eCO2
         data[19] = (byte) 0x01; // eCO2
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         MemorySensingData result = new MemorySensingData(bluetoothGattCharacteristic);
@@ -83,7 +83,7 @@ public class MemorySensingDataTest {
         data[18] = (byte) 0xff; // eCO2
         data[19] = (byte) 0x7f; // eCO2
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         MemorySensingData result = new MemorySensingData(bluetoothGattCharacteristic);
@@ -129,7 +129,7 @@ public class MemorySensingDataTest {
         data[18] = (byte) 0xff; // eCO2
         data[19] = (byte) 0x7f; // eCO2
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         MemorySensingData result = new MemorySensingData(bluetoothGattCharacteristic);
@@ -175,7 +175,7 @@ public class MemorySensingDataTest {
         data[18] = (byte) 0xff; // eCO2
         data[19] = (byte) 0x7f; // eCO2
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         MemorySensingData result1 = new MemorySensingData(bluetoothGattCharacteristic);
@@ -218,7 +218,7 @@ public class MemorySensingDataTest {
         data[18] = (byte) 0xff; // eCO2
         data[19] = (byte) 0x7f; // eCO2
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         MemorySensingData result1 = new MemorySensingData(bluetoothGattCharacteristic);
@@ -250,7 +250,7 @@ public class MemorySensingDataTest {
         data[18] = (byte) 0xff; // eCO2
         data[19] = (byte) 0x7f; // eCO2
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         MemorySensingData result1 = new MemorySensingData(bluetoothGattCharacteristic);

@@ -6,8 +6,8 @@ import android.bluetooth.BluetoothDevice;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.im97mori.ble.ad.filter.AdvertisingDataFilter;
-import org.im97mori.ble.ad.filter.AndFilter;
+import org.im97mori.ble.advertising.filter.AdvertisingDataFilter;
+import org.im97mori.ble.advertising.filter.AndFilter;
 import org.im97mori.rbt.RbtLogUtils;
 import org.im97mori.rbt.ble.ad.RbtAdvertisingDataParser;
 

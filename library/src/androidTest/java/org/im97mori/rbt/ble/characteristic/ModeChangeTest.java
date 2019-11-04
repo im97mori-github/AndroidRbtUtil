@@ -3,9 +3,9 @@ package org.im97mori.rbt.ble.characteristic;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 
-import org.im97mori.ble.ad.AdvertisingDataConstants;
 import org.junit.Test;
 
+import static org.im97mori.ble.BLEConstants.BASE_UUID;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
@@ -16,7 +16,7 @@ public class ModeChangeTest {
         byte[] data = new byte[1];
         data[ 0] = (byte) ((ModeChange.MODE_CHANGE_NORMAL_MODE) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ModeChange result = new ModeChange(bluetoothGattCharacteristic);
@@ -28,7 +28,7 @@ public class ModeChangeTest {
         byte[] data = new byte[1];
         data[ 0] = (byte) ((ModeChange.MODE_CHANGE_ACCELERATION_LOGGER_MODE) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ModeChange result = new ModeChange(bluetoothGattCharacteristic);
@@ -40,7 +40,7 @@ public class ModeChangeTest {
         byte[] data = new byte[1];
         data[ 0] = (byte) ((ModeChange.MODE_CHANGE_ACCELERATION_LOGGER_MODE) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ModeChange result1 = new ModeChange(bluetoothGattCharacteristic);
@@ -57,7 +57,7 @@ public class ModeChangeTest {
         byte[] data = new byte[1];
         data[ 0] = (byte) ((ModeChange.MODE_CHANGE_ACCELERATION_LOGGER_MODE) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ModeChange result1 = new ModeChange(bluetoothGattCharacteristic);
@@ -78,7 +78,7 @@ public class ModeChangeTest {
         byte[] data = new byte[1];
         data[ 0] = (byte) ((ModeChange.MODE_CHANGE_ACCELERATION_LOGGER_MODE) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ModeChange result1 = new ModeChange(bluetoothGattCharacteristic);

@@ -3,9 +3,9 @@ package org.im97mori.rbt.ble.characteristic;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 
-import org.im97mori.ble.ad.AdvertisingDataConstants;
 import org.junit.Test;
 
+import static org.im97mori.ble.BLEConstants.BASE_UUID;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
@@ -16,7 +16,7 @@ public class MemoryResetTest {
         byte[] data = new byte[1];
         data[ 0] = (byte) ((MemoryReset.MEMORY_RESET_SENSING_DATA_AREA) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         MemoryReset memoryReset = new MemoryReset(bluetoothGattCharacteristic);
@@ -28,7 +28,7 @@ public class MemoryResetTest {
         byte[] data = new byte[1];
         data[ 0] = (byte) ((MemoryReset.MEMORY_RESET_ACCELERATION_DATA_AREA) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         MemoryReset memoryReset = new MemoryReset(bluetoothGattCharacteristic);
@@ -40,7 +40,7 @@ public class MemoryResetTest {
         byte[] data = new byte[1];
         data[ 0] = (byte) ((MemoryReset.MEMORY_RESET_ACCELERATION_DATA_AREA) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         MemoryReset result1 = new MemoryReset(bluetoothGattCharacteristic);
@@ -57,7 +57,7 @@ public class MemoryResetTest {
         byte[] data = new byte[1];
         data[ 0] = (byte) ((MemoryReset.MEMORY_RESET_ACCELERATION_DATA_AREA) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         MemoryReset result1 = new MemoryReset(bluetoothGattCharacteristic);
@@ -79,7 +79,7 @@ public class MemoryResetTest {
         byte[] data = new byte[1];
         data[ 0] = (byte) ((MemoryReset.MEMORY_RESET_ACCELERATION_DATA_AREA) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         MemoryReset result1 = new MemoryReset(bluetoothGattCharacteristic);

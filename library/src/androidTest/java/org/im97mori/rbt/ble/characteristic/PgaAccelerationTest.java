@@ -3,10 +3,10 @@ package org.im97mori.rbt.ble.characteristic;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 
-import org.im97mori.ble.ad.AdvertisingDataConstants;
 import org.im97mori.rbt.RbtConstants;
 import org.junit.Test;
 
+import static org.im97mori.ble.BLEConstants.BASE_UUID;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -27,7 +27,7 @@ public class PgaAccelerationTest extends AbstractEventEnableDisableTest {
         data[ 7] = (byte) ((0x00) & 0xff); // Change threshold[rise]2
         data[ 8] = (byte) ((0x00) & 0xff); // Change threshold[rise]2
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         PgaAcceleration result = new PgaAcceleration(bluetoothGattCharacteristic);
@@ -59,7 +59,7 @@ public class PgaAccelerationTest extends AbstractEventEnableDisableTest {
         data[ 7] = (byte) ((0x10) & 0xff); // Change threshold[rise]2
         data[ 8] = (byte) ((0x27) & 0xff); // Change threshold[rise]2
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         PgaAcceleration result = new PgaAcceleration(bluetoothGattCharacteristic);
@@ -91,7 +91,7 @@ public class PgaAccelerationTest extends AbstractEventEnableDisableTest {
         data[ 7] = (byte) ((0x10) & 0xff); // Change threshold[rise]2
         data[ 8] = (byte) ((0x27) & 0xff); // Change threshold[rise]2
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         PgaAcceleration result = new PgaAcceleration(bluetoothGattCharacteristic);
@@ -123,7 +123,7 @@ public class PgaAccelerationTest extends AbstractEventEnableDisableTest {
         data[ 7] = (byte) ((0x10) & 0xff); // Change threshold[rise]2
         data[ 8] = (byte) ((0x27) & 0xff); // Change threshold[rise]2
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         PgaAcceleration result = new PgaAcceleration(bluetoothGattCharacteristic);
@@ -155,7 +155,7 @@ public class PgaAccelerationTest extends AbstractEventEnableDisableTest {
         data[ 7] = (byte) ((0x10) & 0xff); // Change threshold[rise]2
         data[ 8] = (byte) ((0x27) & 0xff); // Change threshold[rise]2
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         PgaAcceleration result = new PgaAcceleration(bluetoothGattCharacteristic);
@@ -187,7 +187,7 @@ public class PgaAccelerationTest extends AbstractEventEnableDisableTest {
         data[ 7] = (byte) ((0x10) & 0xff); // Change threshold[rise]2
         data[ 8] = (byte) ((0x27) & 0xff); // Change threshold[rise]2
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         PgaAcceleration result = new PgaAcceleration(bluetoothGattCharacteristic);
@@ -219,7 +219,7 @@ public class PgaAccelerationTest extends AbstractEventEnableDisableTest {
         data[ 7] = (byte) ((0x04) & 0xff); // Change threshold[rise]2
         data[ 8] = (byte) ((0x00) & 0xff); // Change threshold[rise]2
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         PgaAcceleration result1 = new PgaAcceleration(bluetoothGattCharacteristic);
@@ -248,7 +248,7 @@ public class PgaAccelerationTest extends AbstractEventEnableDisableTest {
         data[ 7] = (byte) ((0x04) & 0xff); // Change threshold[rise]2
         data[ 8] = (byte) ((0x00) & 0xff); // Change threshold[rise]2
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         PgaAcceleration result1 = new PgaAcceleration(bluetoothGattCharacteristic);
@@ -285,7 +285,7 @@ public class PgaAccelerationTest extends AbstractEventEnableDisableTest {
         data[ 7] = (byte) ((0x04) & 0xff); // Change threshold[rise]2
         data[ 8] = (byte) ((0x00) & 0xff); // Change threshold[rise]2
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         PgaAcceleration result1 = new PgaAcceleration(bluetoothGattCharacteristic);

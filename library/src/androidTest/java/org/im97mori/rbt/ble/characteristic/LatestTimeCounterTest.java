@@ -3,11 +3,11 @@ package org.im97mori.rbt.ble.characteristic;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 
-import org.im97mori.ble.ad.AdvertisingDataConstants;
 import org.junit.Test;
 
 import java.math.BigInteger;
 
+import static org.im97mori.ble.BLEConstants.BASE_UUID;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
@@ -25,7 +25,7 @@ public class LatestTimeCounterTest {
         data[6] = (byte) (0x00 & 0xff);
         data[7] = (byte) (0x00 & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         LatestTimeCounter latestTimeCounter = new LatestTimeCounter(bluetoothGattCharacteristic);
@@ -44,7 +44,7 @@ public class LatestTimeCounterTest {
         data[6] = (byte) (0xff & 0xff);
         data[7] = (byte) (0xff & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         LatestTimeCounter latestTimeCounter = new LatestTimeCounter(bluetoothGattCharacteristic);
@@ -63,7 +63,7 @@ public class LatestTimeCounterTest {
         data[6] = (byte) (0x07 & 0xff);
         data[7] = (byte) (0x08 & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         LatestTimeCounter result1 = new LatestTimeCounter(bluetoothGattCharacteristic);
@@ -87,7 +87,7 @@ public class LatestTimeCounterTest {
         data[6] = (byte) (0x07 & 0xff);
         data[7] = (byte) (0x08 & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         LatestTimeCounter result1 = new LatestTimeCounter(bluetoothGattCharacteristic);
@@ -107,7 +107,7 @@ public class LatestTimeCounterTest {
         data[6] = (byte) (0x07 & 0xff);
         data[7] = (byte) (0x08 & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         LatestTimeCounter result1 = new LatestTimeCounter(bluetoothGattCharacteristic);
@@ -121,7 +121,7 @@ public class LatestTimeCounterTest {
         data[0] = (byte) (0x08 & 0xff);
         BigInteger bigInteger = new BigInteger(data);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         LatestTimeCounter result1 = new LatestTimeCounter(bluetoothGattCharacteristic);
@@ -134,7 +134,7 @@ public class LatestTimeCounterTest {
         data[7] = (byte) (0x08 & 0xff);
         BigInteger bigInteger = new BigInteger(data);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         LatestTimeCounter result1 = new LatestTimeCounter(bluetoothGattCharacteristic);

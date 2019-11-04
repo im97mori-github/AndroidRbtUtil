@@ -3,9 +3,9 @@ package org.im97mori.rbt.ble.characteristic;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 
-import org.im97mori.ble.ad.AdvertisingDataConstants;
 import org.junit.Test;
 
+import static org.im97mori.ble.BLEConstants.BASE_UUID;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
@@ -16,7 +16,7 @@ public class MountingOrientationTest {
         byte[] data = new byte[1];
         data[0] = MountingOrientation.MOUNTING_ORIENTATION_POSITION_1;
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         MountingOrientation mountingOrientation = new MountingOrientation(bluetoothGattCharacteristic);
@@ -28,7 +28,7 @@ public class MountingOrientationTest {
         byte[] data = new byte[1];
         data[0] = MountingOrientation.MOUNTING_ORIENTATION_POSITION_2;
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         MountingOrientation mountingOrientation = new MountingOrientation(bluetoothGattCharacteristic);
@@ -40,7 +40,7 @@ public class MountingOrientationTest {
         byte[] data = new byte[1];
         data[0] = MountingOrientation.MOUNTING_ORIENTATION_POSITION_3;
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         MountingOrientation mountingOrientation = new MountingOrientation(bluetoothGattCharacteristic);
@@ -52,7 +52,7 @@ public class MountingOrientationTest {
         byte[] data = new byte[1];
         data[0] = MountingOrientation.MOUNTING_ORIENTATION_POSITION_4;
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         MountingOrientation mountingOrientation = new MountingOrientation(bluetoothGattCharacteristic);
@@ -64,7 +64,7 @@ public class MountingOrientationTest {
         byte[] data = new byte[1];
         data[0] = MountingOrientation.MOUNTING_ORIENTATION_POSITION_5;
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         MountingOrientation mountingOrientation = new MountingOrientation(bluetoothGattCharacteristic);
@@ -76,7 +76,7 @@ public class MountingOrientationTest {
         byte[] data = new byte[1];
         data[0] = MountingOrientation.MOUNTING_ORIENTATION_POSITION_6;
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         MountingOrientation mountingOrientation = new MountingOrientation(bluetoothGattCharacteristic);
@@ -88,7 +88,7 @@ public class MountingOrientationTest {
         byte[] data = new byte[1];
         data[0] = MountingOrientation.MOUNTING_ORIENTATION_POSITION_6;
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         MountingOrientation result1 = new MountingOrientation(bluetoothGattCharacteristic);
@@ -105,7 +105,7 @@ public class MountingOrientationTest {
         byte[] data = new byte[1];
         data[0] = MountingOrientation.MOUNTING_ORIENTATION_POSITION_6;
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         MountingOrientation result1 = new MountingOrientation(bluetoothGattCharacteristic);
@@ -118,7 +118,7 @@ public class MountingOrientationTest {
         byte[] data = new byte[1];
         data[0] = MountingOrientation.MOUNTING_ORIENTATION_POSITION_6;
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         MountingOrientation result1 = new MountingOrientation(bluetoothGattCharacteristic);

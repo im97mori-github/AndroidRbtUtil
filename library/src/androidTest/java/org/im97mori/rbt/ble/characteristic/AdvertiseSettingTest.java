@@ -1,12 +1,12 @@
 package org.im97mori.rbt.ble.characteristic;
 
 import android.bluetooth.BluetoothGattCharacteristic;
-import android.bluetooth.le.AdvertiseSettings;
 import android.os.Parcel;
 
-import org.im97mori.ble.ad.AdvertisingDataConstants;
+import org.im97mori.ble.BLEConstants;
 import org.junit.Test;
 
+import static org.im97mori.ble.BLEConstants.BASE_UUID;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
@@ -19,7 +19,7 @@ public class AdvertiseSettingTest {
         data[1] = (byte) ((0x00) & 0xff);
         data[2] = (byte) ((AdvertiseSetting.ADVERTISING_MODE_SENSOR_DATA) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         AdvertiseSetting advertiseSetting = new AdvertiseSetting(bluetoothGattCharacteristic);
@@ -35,7 +35,7 @@ public class AdvertiseSettingTest {
         data[1] = (byte) ((0x40) & 0xff);
         data[2] = (byte) ((AdvertiseSetting.ADVERTISING_MODE_CALCULATION_DATA) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         AdvertiseSetting advertiseSetting = new AdvertiseSetting(bluetoothGattCharacteristic);
@@ -51,7 +51,7 @@ public class AdvertiseSettingTest {
         data[1] = (byte) ((0x40) & 0xff);
         data[2] = (byte) ((AdvertiseSetting.ADVERTISING_MODE_SENSOR_DATA_AND_CALCULATION_DATA) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         AdvertiseSetting advertiseSetting = new AdvertiseSetting(bluetoothGattCharacteristic);
@@ -67,7 +67,7 @@ public class AdvertiseSettingTest {
         data[1] = (byte) ((0x40) & 0xff);
         data[2] = (byte) ((AdvertiseSetting.ADVERTISING_MODE_SENSOR_FLAG_AND_CALCULATION_FLAG) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         AdvertiseSetting advertiseSetting = new AdvertiseSetting(bluetoothGattCharacteristic);
@@ -83,7 +83,7 @@ public class AdvertiseSettingTest {
         data[1] = (byte) ((0x40) & 0xff);
         data[2] = (byte) ((AdvertiseSetting.ADVERTISING_MODE_SERIAL_NUMBER) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         AdvertiseSetting advertiseSetting = new AdvertiseSetting(bluetoothGattCharacteristic);
@@ -99,7 +99,7 @@ public class AdvertiseSettingTest {
         data[1] = (byte) ((0x40) & 0xff);
         data[2] = (byte) ((AdvertiseSetting.ADVERTISING_MODE_SERIAL_NUMBER) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         AdvertiseSetting result1 = new AdvertiseSetting(bluetoothGattCharacteristic);
@@ -119,7 +119,7 @@ public class AdvertiseSettingTest {
         data[1] = (byte) ((0x40) & 0xff);
         data[2] = (byte) ((AdvertiseSetting.ADVERTISING_MODE_SERIAL_NUMBER) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         AdvertiseSetting result1 = new AdvertiseSetting(bluetoothGattCharacteristic);
@@ -144,7 +144,7 @@ public class AdvertiseSettingTest {
         data[1] = (byte) ((0x40) & 0xff);
         data[2] = (byte) ((AdvertiseSetting.ADVERTISING_MODE_SERIAL_NUMBER) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         AdvertiseSetting result1 = new AdvertiseSetting(bluetoothGattCharacteristic);

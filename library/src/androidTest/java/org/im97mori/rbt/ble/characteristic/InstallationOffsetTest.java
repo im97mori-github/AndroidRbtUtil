@@ -3,9 +3,9 @@ package org.im97mori.rbt.ble.characteristic;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 
-import org.im97mori.ble.ad.AdvertisingDataConstants;
 import org.junit.Test;
 
+import static org.im97mori.ble.BLEConstants.BASE_UUID;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -37,7 +37,7 @@ public class InstallationOffsetTest {
         data[11] = (byte) ((0xf0) & 0xff);
         data[12] = (byte) ((0xd8) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         InstallationOffset installationOffset = new InstallationOffset(bluetoothGattCharacteristic);
@@ -76,7 +76,7 @@ public class InstallationOffsetTest {
         data[11] = (byte) ((0x10) & 0xff);
         data[12] = (byte) ((0x27) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         InstallationOffset installationOffset = new InstallationOffset(bluetoothGattCharacteristic);
@@ -115,7 +115,7 @@ public class InstallationOffsetTest {
         data[11] = (byte) ((0x10) & 0xff);
         data[12] = (byte) ((0x27) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         InstallationOffset installationOffset = new InstallationOffset(bluetoothGattCharacteristic);
@@ -154,7 +154,7 @@ public class InstallationOffsetTest {
         data[11] = (byte) ((0x10) & 0xff);
         data[12] = (byte) ((0x27) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         InstallationOffset installationOffset = new InstallationOffset(bluetoothGattCharacteristic);
@@ -193,7 +193,7 @@ public class InstallationOffsetTest {
         data[11] = (byte) ((0x10) & 0xff);
         data[12] = (byte) ((0x27) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         InstallationOffset installationOffset = new InstallationOffset(bluetoothGattCharacteristic);
@@ -232,7 +232,7 @@ public class InstallationOffsetTest {
         data[11] = (byte) ((0x10) & 0xff);
         data[12] = (byte) ((0x27) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         InstallationOffset installationOffset = new InstallationOffset(bluetoothGattCharacteristic);
@@ -271,7 +271,7 @@ public class InstallationOffsetTest {
         data[11] = (byte) ((0x10) & 0xff);
         data[12] = (byte) ((0x27) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         InstallationOffset installationOffset = new InstallationOffset(bluetoothGattCharacteristic);
@@ -310,7 +310,7 @@ public class InstallationOffsetTest {
         data[11] = (byte) ((0x08) & 0xff);
         data[12] = (byte) ((0x25) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         InstallationOffset result1 = new InstallationOffset(bluetoothGattCharacteristic);
@@ -344,7 +344,7 @@ public class InstallationOffsetTest {
         data[11] = (byte) ((0x08) & 0xff);
         data[12] = (byte) ((0x25) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         InstallationOffset result1 = new InstallationOffset(bluetoothGattCharacteristic);
@@ -387,7 +387,7 @@ public class InstallationOffsetTest {
         data[11] = (byte) ((0x08) & 0xff);
         data[12] = (byte) ((0x25) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         InstallationOffset result1 = new InstallationOffset(bluetoothGattCharacteristic);

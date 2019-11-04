@@ -3,9 +3,9 @@ package org.im97mori.rbt.ble.characteristic;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 
-import org.im97mori.ble.ad.AdvertisingDataConstants;
 import org.junit.Test;
 
+import static org.im97mori.ble.BLEConstants.BASE_UUID;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -31,7 +31,7 @@ public class LatestSensingFlagTest extends AbstractSensingFlagTest {
         data1[13] = (byte) 0x00; // eCO2 flag
         data1[14] = (byte) 0x00; // eCO2 flag
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
 
         LatestSensingFlag result = new LatestSensingFlag(bluetoothGattCharacteristic);
@@ -183,7 +183,7 @@ public class LatestSensingFlagTest extends AbstractSensingFlagTest {
         data1[13] = (byte) 0x00; // eCO2 flag
         data1[14] = (byte) 0x00; // eCO2 flag
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
 
         LatestSensingFlag result = new LatestSensingFlag(bluetoothGattCharacteristic);
@@ -334,7 +334,7 @@ public class LatestSensingFlagTest extends AbstractSensingFlagTest {
         data1[13] =  (byte) 0x00; // eCO2 flag
         data1[14] =  (byte) 0x00; // eCO2 flag
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
 
         LatestSensingFlag result = new LatestSensingFlag(bluetoothGattCharacteristic);
@@ -486,7 +486,7 @@ public class LatestSensingFlagTest extends AbstractSensingFlagTest {
         data1[13] = (byte) 0x08; // eCO2 flag
         data1[14] = (byte) 0x00; // eCO2 flag
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
 
         LatestSensingFlag result1 = new LatestSensingFlag(bluetoothGattCharacteristic);
@@ -524,7 +524,7 @@ public class LatestSensingFlagTest extends AbstractSensingFlagTest {
         data1[13] = (byte) 0x08; // eCO2 flag
         data1[14] = (byte) 0x00; // eCO2 flag
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
 
         LatestSensingFlag result1 = new LatestSensingFlag(bluetoothGattCharacteristic);
@@ -551,7 +551,7 @@ public class LatestSensingFlagTest extends AbstractSensingFlagTest {
         data1[13] = (byte) 0x08; // eCO2 flag
         data1[14] = (byte) 0x00; // eCO2 flag
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
 
         LatestSensingFlag result1 = new LatestSensingFlag(bluetoothGattCharacteristic);

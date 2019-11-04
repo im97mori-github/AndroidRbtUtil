@@ -3,11 +3,11 @@ package org.im97mori.rbt.ble.characteristic;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 
-import org.im97mori.ble.ad.AdvertisingDataConstants;
 import org.junit.Test;
 
 import java.math.BigInteger;
 
+import static org.im97mori.ble.BLEConstants.BASE_UUID;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
@@ -25,7 +25,7 @@ public class VibrationCountTest {
         data[ 6] = (byte) ((0x00) & 0xff);
         data[ 7] = (byte) ((0x00) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         VibrationCount result = new VibrationCount(bluetoothGattCharacteristic);
@@ -45,7 +45,7 @@ public class VibrationCountTest {
         data[ 6] = (byte) ((0xff) & 0xff);
         data[ 7] = (byte) ((0xff) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         VibrationCount result = new VibrationCount(bluetoothGattCharacteristic);
@@ -65,7 +65,7 @@ public class VibrationCountTest {
         data[ 6] = (byte) ((0x07) & 0xff);
         data[ 7] = (byte) ((0x08) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         VibrationCount result1 = new VibrationCount(bluetoothGattCharacteristic);
@@ -90,7 +90,7 @@ public class VibrationCountTest {
         data[ 6] = (byte) ((0x07) & 0xff);
         data[ 7] = (byte) ((0x08) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         VibrationCount result1 = new VibrationCount(bluetoothGattCharacteristic);
@@ -110,7 +110,7 @@ public class VibrationCountTest {
         data[ 6] = (byte) ((0x07) & 0xff);
         data[ 7] = (byte) ((0x08) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         VibrationCount result1 = new VibrationCount(bluetoothGattCharacteristic);
@@ -124,7 +124,7 @@ public class VibrationCountTest {
         data[ 3] = (byte) ((0x04) & 0xff);
         data[ 7] = (byte) ((0x08) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         VibrationCount result1 = new VibrationCount(bluetoothGattCharacteristic);
@@ -137,7 +137,7 @@ public class VibrationCountTest {
         data[ 0] = (byte) ((0x01) & 0xff);
         data[ 4] = (byte) ((0x05) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         VibrationCount result1 = new VibrationCount(bluetoothGattCharacteristic);

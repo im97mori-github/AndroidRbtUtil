@@ -9,7 +9,7 @@ import java.util.UUID;
 public class RbtConstants {
 
     /**
-     * @see org.im97mori.ble.ad.AdvertisingDataConstants.AdvertisingDataTypes#DATA_TYPE_SHORTENED_LOCAL_NAME
+     * @see org.im97mori.ble.advertising.AdvertisingDataConstants.AdvertisingDataTypes#DATA_TYPE_SHORTENED_LOCAL_NAME
      */
     public static final String SHORTENED_NAME_RBT = "Rbt";
 

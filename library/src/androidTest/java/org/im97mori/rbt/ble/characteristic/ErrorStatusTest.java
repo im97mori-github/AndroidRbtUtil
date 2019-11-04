@@ -3,9 +3,10 @@ package org.im97mori.rbt.ble.characteristic;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 
-import org.im97mori.ble.ad.AdvertisingDataConstants;
+import org.im97mori.ble.BLEConstants;
 import org.junit.Test;
 
+import static org.im97mori.ble.BLEConstants.BASE_UUID;
 import static org.im97mori.rbt.ble.characteristic.ErrorStatus.ERROR_STATUS_COMMUNICATION_ERROR;
 import static org.im97mori.rbt.ble.characteristic.ErrorStatus.ERROR_STATUS_FLASH_MEMORY_ERASE_ERROR;
 import static org.im97mori.rbt.ble.characteristic.ErrorStatus.ERROR_STATUS_FLASH_MEMORY_INITIALIZATION_ERROR;
@@ -46,7 +47,7 @@ public class ErrorStatusTest {
         data[ 9] = (byte) (0xff);
         data[10] = (byte) (0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ErrorStatus errorStatus = new ErrorStatus(bluetoothGattCharacteristic);
@@ -120,7 +121,7 @@ public class ErrorStatusTest {
         data[ 9] = (byte) (0xff);
         data[10] = (byte) (0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ErrorStatus errorStatus = new ErrorStatus(bluetoothGattCharacteristic);
@@ -194,7 +195,7 @@ public class ErrorStatusTest {
         data[ 9] = (byte) (0xff);
         data[10] = (byte) (0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ErrorStatus errorStatus = new ErrorStatus(bluetoothGattCharacteristic);
@@ -268,7 +269,7 @@ public class ErrorStatusTest {
         data[ 9] = (byte) (0xff);
         data[10] = (byte) (0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ErrorStatus errorStatus = new ErrorStatus(bluetoothGattCharacteristic);
@@ -342,7 +343,7 @@ public class ErrorStatusTest {
         data[ 9] = (byte) (0xff);
         data[10] = (byte) (0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ErrorStatus errorStatus = new ErrorStatus(bluetoothGattCharacteristic);
@@ -416,7 +417,7 @@ public class ErrorStatusTest {
         data[ 9] = (byte) (0xff);
         data[10] = (byte) (0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ErrorStatus errorStatus = new ErrorStatus(bluetoothGattCharacteristic);
@@ -490,7 +491,7 @@ public class ErrorStatusTest {
         data[ 9] = (byte) (0xff);
         data[10] = (byte) (0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ErrorStatus errorStatus = new ErrorStatus(bluetoothGattCharacteristic);
@@ -564,7 +565,7 @@ public class ErrorStatusTest {
         data[ 9] = (byte) (0xff);
         data[10] = (byte) (0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ErrorStatus errorStatus = new ErrorStatus(bluetoothGattCharacteristic);
@@ -638,7 +639,7 @@ public class ErrorStatusTest {
         data[ 9] = (byte) (0xff);
         data[10] = (byte) (0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ErrorStatus errorStatus = new ErrorStatus(bluetoothGattCharacteristic);
@@ -712,7 +713,7 @@ public class ErrorStatusTest {
         data[ 9] = (byte) (0xff);
         data[10] = (byte) (0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ErrorStatus errorStatus = new ErrorStatus(bluetoothGattCharacteristic);
@@ -786,7 +787,7 @@ public class ErrorStatusTest {
         data[ 9] = (byte) (0xff);
         data[10] = (byte) (0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ErrorStatus errorStatus = new ErrorStatus(bluetoothGattCharacteristic);
@@ -860,7 +861,7 @@ public class ErrorStatusTest {
         data[ 9] = (byte) (0xff);
         data[10] = (byte) (0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ErrorStatus errorStatus = new ErrorStatus(bluetoothGattCharacteristic);
@@ -934,7 +935,7 @@ public class ErrorStatusTest {
         data[ 9] = (byte) (0xff);
         data[10] = (byte) (0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ErrorStatus errorStatus = new ErrorStatus(bluetoothGattCharacteristic);
@@ -1008,7 +1009,7 @@ public class ErrorStatusTest {
         data[ 9] = (byte) (0xff);
         data[10] = (byte) (0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ErrorStatus errorStatus = new ErrorStatus(bluetoothGattCharacteristic);
@@ -1082,7 +1083,7 @@ public class ErrorStatusTest {
         data[ 9] = (byte) (0xff);
         data[10] = (byte) (0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ErrorStatus errorStatus = new ErrorStatus(bluetoothGattCharacteristic);
@@ -1156,7 +1157,7 @@ public class ErrorStatusTest {
         data[ 9] = (byte) (0xff);
         data[10] = (byte) (0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ErrorStatus errorStatus = new ErrorStatus(bluetoothGattCharacteristic);
@@ -1230,7 +1231,7 @@ public class ErrorStatusTest {
         data[ 9] = (byte) (0xff);
         data[10] = (byte) (0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ErrorStatus errorStatus = new ErrorStatus(bluetoothGattCharacteristic);
@@ -1304,7 +1305,7 @@ public class ErrorStatusTest {
         data[ 9] = (byte) (0xff);
         data[10] = (byte) (0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ErrorStatus errorStatus = new ErrorStatus(bluetoothGattCharacteristic);
@@ -1378,7 +1379,7 @@ public class ErrorStatusTest {
         data[ 9] = (byte) (0xff);
         data[10] = (byte) (0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ErrorStatus errorStatus = new ErrorStatus(bluetoothGattCharacteristic);
@@ -1452,7 +1453,7 @@ public class ErrorStatusTest {
         data[ 9] = (byte) (0xff);
         data[10] = (byte) (0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ErrorStatus errorStatus = new ErrorStatus(bluetoothGattCharacteristic);
@@ -1526,7 +1527,7 @@ public class ErrorStatusTest {
         data[ 9] = (byte) (0xff);
         data[10] = (byte) (0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ErrorStatus errorStatus = new ErrorStatus(bluetoothGattCharacteristic);
@@ -1600,7 +1601,7 @@ public class ErrorStatusTest {
         data[ 9] = (byte) (0xff);
         data[10] = (byte) (0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ErrorStatus errorStatus = new ErrorStatus(bluetoothGattCharacteristic);
@@ -1674,7 +1675,7 @@ public class ErrorStatusTest {
         data[ 9] = (byte) (0xff);
         data[10] = (byte) (0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ErrorStatus errorStatus = new ErrorStatus(bluetoothGattCharacteristic);
@@ -1748,7 +1749,7 @@ public class ErrorStatusTest {
         data[ 9] = (byte) (0xff);
         data[10] = (byte) (0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ErrorStatus errorStatus = new ErrorStatus(bluetoothGattCharacteristic);
@@ -1822,7 +1823,7 @@ public class ErrorStatusTest {
         data[ 9] = (byte) (0xff);
         data[10] = (byte) (0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ErrorStatus errorStatus = new ErrorStatus(bluetoothGattCharacteristic);
@@ -1896,7 +1897,7 @@ public class ErrorStatusTest {
         data[ 9] = (byte) (0xff);
         data[10] = (byte) (0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ErrorStatus errorStatus = new ErrorStatus(bluetoothGattCharacteristic);
@@ -1970,7 +1971,7 @@ public class ErrorStatusTest {
         data[ 9] = (byte) (0xff);
         data[10] = (byte) (0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ErrorStatus errorStatus = new ErrorStatus(bluetoothGattCharacteristic);
@@ -2044,7 +2045,7 @@ public class ErrorStatusTest {
         data[ 9] = (byte) (0xff);
         data[10] = (byte) (0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ErrorStatus errorStatus = new ErrorStatus(bluetoothGattCharacteristic);
@@ -2118,7 +2119,7 @@ public class ErrorStatusTest {
         data[ 9] = (byte) (0xff);
         data[10] = (byte) (0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ErrorStatus errorStatus = new ErrorStatus(bluetoothGattCharacteristic);
@@ -2192,7 +2193,7 @@ public class ErrorStatusTest {
         data[ 9] = (byte) (0xff);
         data[10] = (byte) (0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ErrorStatus errorStatus = new ErrorStatus(bluetoothGattCharacteristic);
@@ -2266,7 +2267,7 @@ public class ErrorStatusTest {
         data[ 9] = (byte) (0xff);
         data[10] = (byte) (0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ErrorStatus errorStatus = new ErrorStatus(bluetoothGattCharacteristic);
@@ -2340,7 +2341,7 @@ public class ErrorStatusTest {
         data[ 9] = (byte) (0xff);
         data[10] = (byte) (0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ErrorStatus errorStatus = new ErrorStatus(bluetoothGattCharacteristic);
@@ -2414,7 +2415,7 @@ public class ErrorStatusTest {
         data[ 9] = (byte) (0xff);
         data[10] = (byte) (0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ErrorStatus errorStatus = new ErrorStatus(bluetoothGattCharacteristic);
@@ -2488,7 +2489,7 @@ public class ErrorStatusTest {
         data[ 9] = (byte) (0xff);
         data[10] = (byte) (0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ErrorStatus errorStatus = new ErrorStatus(bluetoothGattCharacteristic);
@@ -2562,7 +2563,7 @@ public class ErrorStatusTest {
         data[ 9] = (byte) (0xff);
         data[10] = (byte) (0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ErrorStatus errorStatus = new ErrorStatus(bluetoothGattCharacteristic);
@@ -2636,7 +2637,7 @@ public class ErrorStatusTest {
         data[ 9] = (byte) (0xff);
         data[10] = (byte) (0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ErrorStatus errorStatus = new ErrorStatus(bluetoothGattCharacteristic);
@@ -2710,7 +2711,7 @@ public class ErrorStatusTest {
         data[ 9] = (byte) (0xff);
         data[10] = (byte) (0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ErrorStatus errorStatus = new ErrorStatus(bluetoothGattCharacteristic);
@@ -2784,7 +2785,7 @@ public class ErrorStatusTest {
         data[ 9] = (byte) (0xff);
         data[10] = (byte) (0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ErrorStatus errorStatus = new ErrorStatus(bluetoothGattCharacteristic);
@@ -2858,7 +2859,7 @@ public class ErrorStatusTest {
         data[ 9] = (byte) (0xff);
         data[10] = (byte) (0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ErrorStatus errorStatus = new ErrorStatus(bluetoothGattCharacteristic);
@@ -2932,7 +2933,7 @@ public class ErrorStatusTest {
         data[ 9] = (byte) (0xff);
         data[10] = (byte) (0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ErrorStatus errorStatus = new ErrorStatus(bluetoothGattCharacteristic);
@@ -3006,7 +3007,7 @@ public class ErrorStatusTest {
         data[ 9] = (byte) (0xff);
         data[10] = (byte) (0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ErrorStatus errorStatus = new ErrorStatus(bluetoothGattCharacteristic);
@@ -3080,7 +3081,7 @@ public class ErrorStatusTest {
         data[ 9] = (byte) (0xff);
         data[10] = (byte) (0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ErrorStatus errorStatus = new ErrorStatus(bluetoothGattCharacteristic);
@@ -3154,7 +3155,7 @@ public class ErrorStatusTest {
         data[ 9] = (byte) (0xff);
         data[10] = (byte) (0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ErrorStatus errorStatus = new ErrorStatus(bluetoothGattCharacteristic);
@@ -3228,7 +3229,7 @@ public class ErrorStatusTest {
         data[ 9] = (byte) (0xff);
         data[10] = (byte) (0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ErrorStatus errorStatus = new ErrorStatus(bluetoothGattCharacteristic);
@@ -3302,7 +3303,7 @@ public class ErrorStatusTest {
         data[ 9] = (byte) (0xff);
         data[10] = (byte) (0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ErrorStatus result1 = new ErrorStatus(bluetoothGattCharacteristic);
@@ -3337,7 +3338,7 @@ public class ErrorStatusTest {
         data[ 9] = (byte) (0xff);
         data[10] = (byte) (0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ErrorStatus result1 = new ErrorStatus(bluetoothGattCharacteristic);
@@ -3360,7 +3361,7 @@ public class ErrorStatusTest {
         data[ 9] = (byte) (0xff);
         data[10] = (byte) (0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         ErrorStatus result1 = new ErrorStatus(bluetoothGattCharacteristic);

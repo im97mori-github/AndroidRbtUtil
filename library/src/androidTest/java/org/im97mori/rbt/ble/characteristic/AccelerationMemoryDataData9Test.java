@@ -3,9 +3,10 @@ package org.im97mori.rbt.ble.characteristic;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 
-import org.im97mori.ble.ad.AdvertisingDataConstants;
+import org.im97mori.ble.BLEConstants;
 import org.junit.Test;
 
+import static org.im97mori.ble.BLEConstants.BASE_UUID;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -37,7 +38,7 @@ public class AccelerationMemoryDataData9Test {
         data[18] = (byte) ((0xe0) & 0xff);
         data[19] = (byte) ((0xb1) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         AccelerationMemoryData9 result = new AccelerationMemoryData9(bluetoothGattCharacteristic);
@@ -87,7 +88,7 @@ public class AccelerationMemoryDataData9Test {
         data[18] = (byte) ((0x20) & 0xff);
         data[19] = (byte) ((0x4e) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         AccelerationMemoryData9 result = new AccelerationMemoryData9(bluetoothGattCharacteristic);
@@ -137,7 +138,7 @@ public class AccelerationMemoryDataData9Test {
         data[18] = (byte) ((0x20) & 0xff);
         data[19] = (byte) ((0x4e) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         AccelerationMemoryData9 result = new AccelerationMemoryData9(bluetoothGattCharacteristic);
@@ -187,7 +188,7 @@ public class AccelerationMemoryDataData9Test {
         data[18] = (byte) ((0x09) & 0xff);
         data[19] = (byte) ((0x00) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         AccelerationMemoryData9 result1 = new AccelerationMemoryData9(bluetoothGattCharacteristic);
@@ -232,7 +233,7 @@ public class AccelerationMemoryDataData9Test {
         data[18] = (byte) ((0x09) & 0xff);
         data[19] = (byte) ((0x00) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         AccelerationMemoryData9 result1 = new AccelerationMemoryData9(bluetoothGattCharacteristic);
@@ -264,7 +265,7 @@ public class AccelerationMemoryDataData9Test {
         data[18] = (byte) ((0x09) & 0xff);
         data[19] = (byte) ((0x00) & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         AccelerationMemoryData9 result1 = new AccelerationMemoryData9(bluetoothGattCharacteristic);

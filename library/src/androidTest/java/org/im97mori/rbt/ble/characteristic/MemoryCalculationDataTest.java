@@ -3,9 +3,9 @@ package org.im97mori.rbt.ble.characteristic;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 
-import org.im97mori.ble.ad.AdvertisingDataConstants;
 import org.junit.Test;
 
+import static org.im97mori.ble.BLEConstants.BASE_UUID;
 import static org.im97mori.rbt.RbtConstants.OutputRange.VIBRATION_INFORMATION_DURING_EARTH_QUAKE_BIT;
 import static org.im97mori.rbt.RbtConstants.OutputRange.VIBRATION_INFORMATION_DURING_VIBRATION_BIT;
 import static org.im97mori.rbt.RbtConstants.OutputRange.VIBRATION_INFORMATION_NONE_BIT;
@@ -35,7 +35,7 @@ public class MemoryCalculationDataTest {
         data[13] =(byte) 0x00; // Seismic intensity
         data[14] =(byte) 0x00; // Seismic intensity
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         MemoryCalculationData result = new MemoryCalculationData(bluetoothGattCharacteristic);
@@ -73,7 +73,7 @@ public class MemoryCalculationDataTest {
         data[13] =(byte) 0xff; // Seismic intensity
         data[14] =(byte) 0xff; // Seismic intensity
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         MemoryCalculationData result = new MemoryCalculationData(bluetoothGattCharacteristic);
@@ -111,7 +111,7 @@ public class MemoryCalculationDataTest {
         data[13] =(byte) 0xff; // Seismic intensity
         data[14] =(byte) 0xff; // Seismic intensity
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         MemoryCalculationData result = new MemoryCalculationData(bluetoothGattCharacteristic);
@@ -149,7 +149,7 @@ public class MemoryCalculationDataTest {
         data[13] =(byte) 0x3f; // Seismic intensity
         data[14] =(byte) 0xff; // Seismic intensity
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         MemoryCalculationData result1 = new MemoryCalculationData(bluetoothGattCharacteristic);
@@ -186,7 +186,7 @@ public class MemoryCalculationDataTest {
         data[13] =(byte) 0x3f; // Seismic intensity
         data[14] =(byte) 0xff; // Seismic intensity
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         MemoryCalculationData result1 = new MemoryCalculationData(bluetoothGattCharacteristic);
@@ -213,7 +213,7 @@ public class MemoryCalculationDataTest {
         data[13] =(byte) 0x3f; // Seismic intensity
         data[14] =(byte) 0xff; // Seismic intensity
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         MemoryCalculationData result1 = new MemoryCalculationData(bluetoothGattCharacteristic);

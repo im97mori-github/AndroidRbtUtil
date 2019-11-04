@@ -5,8 +5,8 @@ import android.bluetooth.le.ScanRecord;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.im97mori.ble.ad.AdvertisingDataParser;
-import org.im97mori.ble.ad.ManufacturerSpecificData;
+import org.im97mori.ble.advertising.AdvertisingDataParser;
+import org.im97mori.ble.advertising.ManufacturerSpecificData;
 import org.im97mori.rbt.RbtLogUtils;
 
 import java.util.Collections;
@@ -14,10 +14,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static org.im97mori.ble.BLEConstants.ServiceUUID.DEVICE_INFORMATION_SERVICE;
-import static org.im97mori.ble.ad.AdvertisingDataConstants.AdvertisingDataTypes.DATA_TYPE_FLAGS;
-import static org.im97mori.ble.ad.AdvertisingDataConstants.AdvertisingDataTypes.DATA_TYPE_INCOMPLETE_LIST_OF_16_BIT_SERVICE_UUIDS;
-import static org.im97mori.ble.ad.AdvertisingDataConstants.AdvertisingDataTypes.DATA_TYPE_MANUFACTURER_SPECIFIC_DATA;
-import static org.im97mori.ble.ad.AdvertisingDataConstants.AdvertisingDataTypes.DATA_TYPE_SHORTENED_LOCAL_NAME;
+import static org.im97mori.ble.advertising.AdvertisingDataConstants.AdvertisingDataTypes.DATA_TYPE_FLAGS;
+import static org.im97mori.ble.advertising.AdvertisingDataConstants.AdvertisingDataTypes.DATA_TYPE_INCOMPLETE_LIST_OF_16_BIT_SERVICE_UUIDS;
+import static org.im97mori.ble.advertising.AdvertisingDataConstants.AdvertisingDataTypes.DATA_TYPE_MANUFACTURER_SPECIFIC_DATA;
+import static org.im97mori.ble.advertising.AdvertisingDataConstants.AdvertisingDataTypes.DATA_TYPE_SHORTENED_LOCAL_NAME;
 import static org.im97mori.rbt.RbtConstants.RbtAdvertisingDataType.DATA_TYPE_CALCULATION_DATA;
 import static org.im97mori.rbt.RbtConstants.RbtAdvertisingDataType.DATA_TYPE_SENSOR_DATA;
 import static org.im97mori.rbt.RbtConstants.RbtAdvertisingDataType.DATA_TYPE_SENSOR_DATA_AND_CALCULATION_DATA;
@@ -267,7 +267,7 @@ public class RbtAdvertisingDataParser {
     /**
      * parse Advertising Data
      *
-     * @param advertisingDataParseResult {@link org.im97mori.ble.ad.AdvertisingDataParser.AdvertisingDataParseResult} instance for parse
+     * @param advertisingDataParseResult {@link org.im97mori.ble.advertising.AdvertisingDataParser.AdvertisingDataParseResult} instance for parse
      * @return {@link RbtAdvertisingDataParseResult} instance, null:non-Rbt Advertising data
      */
     @Nullable

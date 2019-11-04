@@ -3,10 +3,11 @@ package org.im97mori.rbt.ble.characteristic;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 
-import org.im97mori.ble.ad.AdvertisingDataConstants;
+import org.im97mori.ble.BLEConstants;
 import org.im97mori.rbt.RbtConstants;
 import org.junit.Test;
 
+import static org.im97mori.ble.BLEConstants.BASE_UUID;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -38,7 +39,7 @@ public class BarometricPressureSensor1Test extends AbstractEventEnableDisableTes
         data[18] = (byte) ((0xff) & 0xff); // Reserve for Future Use
         data[19] = (byte) ((0xff) & 0xff); // Reserve for Future Use
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         BarometricPressureSensor1 result = new BarometricPressureSensor1(bluetoothGattCharacteristic);
@@ -101,7 +102,7 @@ public class BarometricPressureSensor1Test extends AbstractEventEnableDisableTes
         data[18] = (byte) ((0xff) & 0xff); // Reserve for Future Use
         data[19] = (byte) ((0xff) & 0xff); // Reserve for Future Use
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         BarometricPressureSensor1 result = new BarometricPressureSensor1(bluetoothGattCharacteristic);
@@ -164,7 +165,7 @@ public class BarometricPressureSensor1Test extends AbstractEventEnableDisableTes
         data[18] = (byte) ((0xff) & 0xff); // Reserve for Future Use
         data[19] = (byte) ((0xff) & 0xff); // Reserve for Future Use
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         BarometricPressureSensor1 result = new BarometricPressureSensor1(bluetoothGattCharacteristic);
@@ -227,7 +228,7 @@ public class BarometricPressureSensor1Test extends AbstractEventEnableDisableTes
         data[18] = (byte) ((0xff) & 0xff); // Reserve for Future Use
         data[19] = (byte) ((0xff) & 0xff); // Reserve for Future Use
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         BarometricPressureSensor1 result = new BarometricPressureSensor1(bluetoothGattCharacteristic);
@@ -290,7 +291,7 @@ public class BarometricPressureSensor1Test extends AbstractEventEnableDisableTes
         data[18] = (byte) ((0xff) & 0xff); // Reserve for Future Use
         data[19] = (byte) ((0xff) & 0xff); // Reserve for Future Use
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         BarometricPressureSensor1 result = new BarometricPressureSensor1(bluetoothGattCharacteristic);
@@ -353,7 +354,7 @@ public class BarometricPressureSensor1Test extends AbstractEventEnableDisableTes
         data[18] = (byte) ((0xff) & 0xff); // Reserve for Future Use
         data[19] = (byte) ((0xff) & 0xff); // Reserve for Future Use
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         BarometricPressureSensor1 result = new BarometricPressureSensor1(bluetoothGattCharacteristic);
@@ -416,7 +417,7 @@ public class BarometricPressureSensor1Test extends AbstractEventEnableDisableTes
         data[18] = (byte) ((0xff) & 0xff); // Reserve for Future Use
         data[19] = (byte) ((0xff) & 0xff); // Reserve for Future Use
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         BarometricPressureSensor1 result = new BarometricPressureSensor1(bluetoothGattCharacteristic);
@@ -479,7 +480,7 @@ public class BarometricPressureSensor1Test extends AbstractEventEnableDisableTes
         data[18] = (byte) ((0xff) & 0xff); // Reserve for Future Use
         data[19] = (byte) ((0xff) & 0xff); // Reserve for Future Use
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         BarometricPressureSensor1 result = new BarometricPressureSensor1(bluetoothGattCharacteristic);
@@ -542,7 +543,7 @@ public class BarometricPressureSensor1Test extends AbstractEventEnableDisableTes
         data[18] = (byte) ((0xff) & 0xff); // Reserve for Future Use
         data[19] = (byte) ((0xff) & 0xff); // Reserve for Future Use
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         BarometricPressureSensor1 result = new BarometricPressureSensor1(bluetoothGattCharacteristic);
@@ -605,7 +606,7 @@ public class BarometricPressureSensor1Test extends AbstractEventEnableDisableTes
         data[18] = (byte) ((0xff) & 0xff); // Reserve for Future Use
         data[19] = (byte) ((0xff) & 0xff); // Reserve for Future Use
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         BarometricPressureSensor1 result = new BarometricPressureSensor1(bluetoothGattCharacteristic);
@@ -668,7 +669,7 @@ public class BarometricPressureSensor1Test extends AbstractEventEnableDisableTes
         data[18] = (byte) ((0xff) & 0xff); // Reserve for Future Use
         data[19] = (byte) ((0xff) & 0xff); // Reserve for Future Use
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         BarometricPressureSensor1 result = new BarometricPressureSensor1(bluetoothGattCharacteristic);
@@ -731,7 +732,7 @@ public class BarometricPressureSensor1Test extends AbstractEventEnableDisableTes
         data[18] = (byte) ((0xff) & 0xff); // Reserve for Future Use
         data[19] = (byte) ((0xff) & 0xff); // Reserve for Future Use
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         BarometricPressureSensor1 result = new BarometricPressureSensor1(bluetoothGattCharacteristic);
@@ -794,7 +795,7 @@ public class BarometricPressureSensor1Test extends AbstractEventEnableDisableTes
         data[18] = (byte) ((0xff) & 0xff); // Reserve for Future Use
         data[19] = (byte) ((0xff) & 0xff); // Reserve for Future Use
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         BarometricPressureSensor1 result = new BarometricPressureSensor1(bluetoothGattCharacteristic);
@@ -857,7 +858,7 @@ public class BarometricPressureSensor1Test extends AbstractEventEnableDisableTes
         data[18] = (byte) ((0xff) & 0xff); // Reserve for Future Use
         data[19] = (byte) ((0xff) & 0xff); // Reserve for Future Use
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         BarometricPressureSensor1 result = new BarometricPressureSensor1(bluetoothGattCharacteristic);
@@ -920,7 +921,7 @@ public class BarometricPressureSensor1Test extends AbstractEventEnableDisableTes
         data[18] = (byte) ((0xff) & 0xff); // Reserve for Future Use
         data[19] = (byte) ((0xff) & 0xff); // Reserve for Future Use
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         BarometricPressureSensor1 result = new BarometricPressureSensor1(bluetoothGattCharacteristic);
@@ -983,7 +984,7 @@ public class BarometricPressureSensor1Test extends AbstractEventEnableDisableTes
         data[18] = (byte) ((0xff) & 0xff); // Reserve for Future Use
         data[19] = (byte) ((0xff) & 0xff); // Reserve for Future Use
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         BarometricPressureSensor1 result = new BarometricPressureSensor1(bluetoothGattCharacteristic);
@@ -1046,7 +1047,7 @@ public class BarometricPressureSensor1Test extends AbstractEventEnableDisableTes
         data[18] = (byte) ((0xff) & 0xff); // Reserve for Future Use
         data[19] = (byte) ((0xff) & 0xff); // Reserve for Future Use
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         BarometricPressureSensor1 result = new BarometricPressureSensor1(bluetoothGattCharacteristic);
@@ -1109,7 +1110,7 @@ public class BarometricPressureSensor1Test extends AbstractEventEnableDisableTes
         data[18] = (byte) ((0xff) & 0xff); // Reserve for Future Use
         data[19] = (byte) ((0xff) & 0xff); // Reserve for Future Use
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         BarometricPressureSensor1 result = new BarometricPressureSensor1(bluetoothGattCharacteristic);
@@ -1172,7 +1173,7 @@ public class BarometricPressureSensor1Test extends AbstractEventEnableDisableTes
         data[18] = (byte) ((0xff) & 0xff); // Reserve for Future Use
         data[19] = (byte) ((0xff) & 0xff); // Reserve for Future Use
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         BarometricPressureSensor1 result1 = new BarometricPressureSensor1(bluetoothGattCharacteristic);
@@ -1216,7 +1217,7 @@ public class BarometricPressureSensor1Test extends AbstractEventEnableDisableTes
         data[18] = (byte) ((0xff) & 0xff); // Reserve for Future Use
         data[19] = (byte) ((0xff) & 0xff); // Reserve for Future Use
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         BarometricPressureSensor1 result1 = new BarometricPressureSensor1(bluetoothGattCharacteristic);
@@ -1272,7 +1273,7 @@ public class BarometricPressureSensor1Test extends AbstractEventEnableDisableTes
         data[18] = (byte) ((0xff) & 0xff); // Reserve for Future Use
         data[19] = (byte) ((0xff) & 0xff); // Reserve for Future Use
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         BarometricPressureSensor1 result1 = new BarometricPressureSensor1(bluetoothGattCharacteristic);

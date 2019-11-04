@@ -3,9 +3,9 @@ package org.im97mori.rbt.ble.characteristic;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 
-import org.im97mori.ble.ad.AdvertisingDataConstants;
 import org.junit.Test;
 
+import static org.im97mori.ble.BLEConstants.BASE_UUID;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
@@ -17,7 +17,7 @@ public class MemoryStorageIntervalTest {
         data[0] = (byte) (0x01 & 0xff);
         data[1] = (byte) (0x00 & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         MemoryStorageInterval memoryStorageInterval = new MemoryStorageInterval(bluetoothGattCharacteristic);
@@ -31,7 +31,7 @@ public class MemoryStorageIntervalTest {
         data[0] = (byte) (0x10 & 0xff);
         data[1] = (byte) (0x0e & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         MemoryStorageInterval memoryStorageInterval = new MemoryStorageInterval(bluetoothGattCharacteristic);
@@ -45,7 +45,7 @@ public class MemoryStorageIntervalTest {
         data[0] = (byte) (0x10 & 0xff);
         data[1] = (byte) (0x0e & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         MemoryStorageInterval result1 = new MemoryStorageInterval(bluetoothGattCharacteristic);
@@ -63,7 +63,7 @@ public class MemoryStorageIntervalTest {
         data[0] = (byte) (0x10 & 0xff);
         data[1] = (byte) (0x0e & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         MemoryStorageInterval result1 = new MemoryStorageInterval(bluetoothGattCharacteristic);
@@ -85,7 +85,7 @@ public class MemoryStorageIntervalTest {
         data[0] = (byte) (0x10 & 0xff);
         data[1] = (byte) (0x0e & 0xff);
 
-        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(AdvertisingDataConstants.BASE_UUID, 0, 0);
+        BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
 
         MemoryStorageInterval result1 = new MemoryStorageInterval(bluetoothGattCharacteristic);
