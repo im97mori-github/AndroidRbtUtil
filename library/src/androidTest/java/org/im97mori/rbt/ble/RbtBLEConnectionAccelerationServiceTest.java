@@ -19,7 +19,7 @@ import org.junit.Test;
 
 import java.util.UUID;
 
-import static org.im97mori.ble.BLEConstants.DescriptorUUID.CLIENT_CHARACTERISTIC_CONFIGRATION_DESCRIPTOR;
+import static org.im97mori.ble.BLEConstants.DescriptorUUID.CLIENT_CHARACTERISTIC_CONFIGURATION_DESCRIPTOR;
 import static org.im97mori.rbt.RbtConstants.CharacteristicUUID.ACCELERATION_MEMORY_DATA_CHARACTERISTIC;
 import static org.im97mori.rbt.RbtConstants.CharacteristicUUID.ACCELERATION_MEMORY_STATUS_CHARACTERISTIC;
 import static org.im97mori.rbt.RbtConstants.CharacteristicUUID.VIBRATION_COUNT_CHARACTERISTIC;
@@ -726,7 +726,7 @@ public class RbtBLEConnectionAccelerationServiceTest extends AbstractRbtBLEConne
         MockBLETask task = new MockBLETask() {
             @Override
             public boolean doProcess(@NonNull Message message) {
-                MOCK_BLE_CONNECTION.getBLECallback().onDescriptorReadSuccess(getTaskId(), MOCK_DEVICE, SERVICE_UUID, ACCELERATION_MEMORY_DATA_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGRATION_DESCRIPTOR, new byte[2], argument);
+                MOCK_BLE_CONNECTION.getBLECallback().onDescriptorReadSuccess(getTaskId(), MOCK_DEVICE, SERVICE_UUID, ACCELERATION_MEMORY_DATA_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGURATION_DESCRIPTOR, new byte[2], argument);
                 isProccesing.set(false);
                 return true;
             }
@@ -756,7 +756,7 @@ public class RbtBLEConnectionAccelerationServiceTest extends AbstractRbtBLEConne
         MockBLETask task = new MockBLETask() {
             @Override
             public boolean doProcess(@NonNull Message message) {
-                MOCK_BLE_CONNECTION.getBLECallback().onDescriptorReadSuccess(getTaskId(), MOCK_DEVICE, SERVICE_UUID, ACCELERATION_MEMORY_DATA_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGRATION_DESCRIPTOR, new byte[2], argument);
+                MOCK_BLE_CONNECTION.getBLECallback().onDescriptorReadSuccess(getTaskId(), MOCK_DEVICE, SERVICE_UUID, ACCELERATION_MEMORY_DATA_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGURATION_DESCRIPTOR, new byte[2], argument);
                 isProccesing.set(false);
                 return true;
             }
@@ -787,7 +787,7 @@ public class RbtBLEConnectionAccelerationServiceTest extends AbstractRbtBLEConne
         MockBLETask task = new MockBLETask() {
             @Override
             public boolean doProcess(@NonNull Message message) {
-                MOCK_BLE_CONNECTION.getBLECallback().onDescriptorReadFailed(getTaskId(), MOCK_DEVICE, SERVICE_UUID, ACCELERATION_MEMORY_DATA_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGRATION_DESCRIPTOR, BLEConstants.ErrorCodes.UNKNOWN, argument);
+                MOCK_BLE_CONNECTION.getBLECallback().onDescriptorReadFailed(getTaskId(), MOCK_DEVICE, SERVICE_UUID, ACCELERATION_MEMORY_DATA_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGURATION_DESCRIPTOR, BLEConstants.ErrorCodes.UNKNOWN, argument);
                 isProccesing.set(false);
                 return true;
             }
@@ -817,7 +817,7 @@ public class RbtBLEConnectionAccelerationServiceTest extends AbstractRbtBLEConne
         MockBLETask task = new MockBLETask() {
             @Override
             public boolean doProcess(@NonNull Message message) {
-                MOCK_BLE_CONNECTION.getBLECallback().onDescriptorReadFailed(getTaskId(), MOCK_DEVICE, SERVICE_UUID, ACCELERATION_MEMORY_DATA_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGRATION_DESCRIPTOR, BLEConstants.ErrorCodes.UNKNOWN, argument);
+                MOCK_BLE_CONNECTION.getBLECallback().onDescriptorReadFailed(getTaskId(), MOCK_DEVICE, SERVICE_UUID, ACCELERATION_MEMORY_DATA_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGURATION_DESCRIPTOR, BLEConstants.ErrorCodes.UNKNOWN, argument);
                 isProccesing.set(false);
                 return true;
             }
@@ -848,7 +848,7 @@ public class RbtBLEConnectionAccelerationServiceTest extends AbstractRbtBLEConne
         MockBLETask task = new MockBLETask() {
             @Override
             public boolean doProcess(@NonNull Message message) {
-                MOCK_BLE_CONNECTION.getBLECallback().onDescriptorReadTimeout(getTaskId(), MOCK_DEVICE, SERVICE_UUID, ACCELERATION_MEMORY_DATA_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGRATION_DESCRIPTOR, 0, argument);
+                MOCK_BLE_CONNECTION.getBLECallback().onDescriptorReadTimeout(getTaskId(), MOCK_DEVICE, SERVICE_UUID, ACCELERATION_MEMORY_DATA_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGURATION_DESCRIPTOR, 0, argument);
                 isProccesing.set(false);
                 return true;
             }
@@ -879,7 +879,7 @@ public class RbtBLEConnectionAccelerationServiceTest extends AbstractRbtBLEConne
         MockBLETask task = new MockBLETask() {
             @Override
             public boolean doProcess(@NonNull Message message) {
-                MOCK_BLE_CONNECTION.getBLECallback().onDescriptorReadTimeout(getTaskId(), MOCK_DEVICE, SERVICE_UUID, ACCELERATION_MEMORY_DATA_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGRATION_DESCRIPTOR, 0, argument);
+                MOCK_BLE_CONNECTION.getBLECallback().onDescriptorReadTimeout(getTaskId(), MOCK_DEVICE, SERVICE_UUID, ACCELERATION_MEMORY_DATA_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGURATION_DESCRIPTOR, 0, argument);
                 isProccesing.set(false);
                 return true;
             }
@@ -909,7 +909,7 @@ public class RbtBLEConnectionAccelerationServiceTest extends AbstractRbtBLEConne
         MockBLETask task = new MockBLETask() {
             @Override
             public boolean doProcess(@NonNull Message message) {
-                MOCK_BLE_CONNECTION.getBLECallback().onDescriptorWriteSuccess(getTaskId(), MOCK_DEVICE, SERVICE_UUID, ACCELERATION_MEMORY_DATA_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGRATION_DESCRIPTOR, new byte[2], argument);
+                MOCK_BLE_CONNECTION.getBLECallback().onDescriptorWriteSuccess(getTaskId(), MOCK_DEVICE, SERVICE_UUID, ACCELERATION_MEMORY_DATA_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGURATION_DESCRIPTOR, new byte[2], argument);
                 isProccesing.set(false);
                 return true;
             }
@@ -939,7 +939,7 @@ public class RbtBLEConnectionAccelerationServiceTest extends AbstractRbtBLEConne
         MockBLETask task = new MockBLETask() {
             @Override
             public boolean doProcess(@NonNull Message message) {
-                MOCK_BLE_CONNECTION.getBLECallback().onDescriptorWriteSuccess(getTaskId(), MOCK_DEVICE, SERVICE_UUID, ACCELERATION_MEMORY_DATA_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGRATION_DESCRIPTOR, new byte[2], argument);
+                MOCK_BLE_CONNECTION.getBLECallback().onDescriptorWriteSuccess(getTaskId(), MOCK_DEVICE, SERVICE_UUID, ACCELERATION_MEMORY_DATA_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGURATION_DESCRIPTOR, new byte[2], argument);
                 isProccesing.set(false);
                 return true;
             }
@@ -970,7 +970,7 @@ public class RbtBLEConnectionAccelerationServiceTest extends AbstractRbtBLEConne
         MockBLETask task = new MockBLETask() {
             @Override
             public boolean doProcess(@NonNull Message message) {
-                MOCK_BLE_CONNECTION.getBLECallback().onDescriptorWriteFailed(getTaskId(), MOCK_DEVICE, SERVICE_UUID, ACCELERATION_MEMORY_DATA_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGRATION_DESCRIPTOR, BLEConstants.ErrorCodes.UNKNOWN, argument);
+                MOCK_BLE_CONNECTION.getBLECallback().onDescriptorWriteFailed(getTaskId(), MOCK_DEVICE, SERVICE_UUID, ACCELERATION_MEMORY_DATA_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGURATION_DESCRIPTOR, BLEConstants.ErrorCodes.UNKNOWN, argument);
                 isProccesing.set(false);
                 return true;
             }
@@ -1000,7 +1000,7 @@ public class RbtBLEConnectionAccelerationServiceTest extends AbstractRbtBLEConne
         MockBLETask task = new MockBLETask() {
             @Override
             public boolean doProcess(@NonNull Message message) {
-                MOCK_BLE_CONNECTION.getBLECallback().onDescriptorWriteFailed(getTaskId(), MOCK_DEVICE, SERVICE_UUID, ACCELERATION_MEMORY_DATA_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGRATION_DESCRIPTOR, BLEConstants.ErrorCodes.UNKNOWN, argument);
+                MOCK_BLE_CONNECTION.getBLECallback().onDescriptorWriteFailed(getTaskId(), MOCK_DEVICE, SERVICE_UUID, ACCELERATION_MEMORY_DATA_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGURATION_DESCRIPTOR, BLEConstants.ErrorCodes.UNKNOWN, argument);
                 isProccesing.set(false);
                 return true;
             }
@@ -1031,7 +1031,7 @@ public class RbtBLEConnectionAccelerationServiceTest extends AbstractRbtBLEConne
         MockBLETask task = new MockBLETask() {
             @Override
             public boolean doProcess(@NonNull Message message) {
-                MOCK_BLE_CONNECTION.getBLECallback().onDescriptorWriteTimeout(getTaskId(), MOCK_DEVICE, SERVICE_UUID, ACCELERATION_MEMORY_DATA_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGRATION_DESCRIPTOR, 0, argument);
+                MOCK_BLE_CONNECTION.getBLECallback().onDescriptorWriteTimeout(getTaskId(), MOCK_DEVICE, SERVICE_UUID, ACCELERATION_MEMORY_DATA_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGURATION_DESCRIPTOR, 0, argument);
                 isProccesing.set(false);
                 return true;
             }
@@ -1062,7 +1062,7 @@ public class RbtBLEConnectionAccelerationServiceTest extends AbstractRbtBLEConne
         MockBLETask task = new MockBLETask() {
             @Override
             public boolean doProcess(@NonNull Message message) {
-                MOCK_BLE_CONNECTION.getBLECallback().onDescriptorWriteTimeout(getTaskId(), MOCK_DEVICE, SERVICE_UUID, ACCELERATION_MEMORY_DATA_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGRATION_DESCRIPTOR, 0, argument);
+                MOCK_BLE_CONNECTION.getBLECallback().onDescriptorWriteTimeout(getTaskId(), MOCK_DEVICE, SERVICE_UUID, ACCELERATION_MEMORY_DATA_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGURATION_DESCRIPTOR, 0, argument);
                 isProccesing.set(false);
                 return true;
             }

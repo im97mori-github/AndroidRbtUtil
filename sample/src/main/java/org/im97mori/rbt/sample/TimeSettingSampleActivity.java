@@ -35,7 +35,7 @@ import java.math.BigInteger;
 import java.util.LinkedList;
 import java.util.List;
 
-public class TimeSettingSampleActivity extends BaseActivity implements View.OnClickListener, SampleCallback{
+public class TimeSettingSampleActivity extends BaseActivity implements View.OnClickListener, SampleCallback {
 
     @SuppressWarnings("unused")
     private static class TestScanCallback extends FilteredRbtScanCallback {

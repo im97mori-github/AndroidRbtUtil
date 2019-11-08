@@ -23,7 +23,7 @@ import org.im97mori.rbt.ble.characteristic.RequestMemoryIndex;
 
 import java.util.UUID;
 
-import static org.im97mori.ble.BLEConstants.DescriptorUUID.CLIENT_CHARACTERISTIC_CONFIGRATION_DESCRIPTOR;
+import static org.im97mori.ble.BLEConstants.DescriptorUUID.CLIENT_CHARACTERISTIC_CONFIGURATION_DESCRIPTOR;
 import static org.im97mori.ble.BLEConstants.ErrorCodes.BUSY;
 import static org.im97mori.ble.BLEConstants.ErrorCodes.CANCEL;
 import static org.im97mori.ble.BLEConstants.ErrorCodes.UNKNOWN;
@@ -188,7 +188,7 @@ public class RbtRequestMemoryIndexTask extends AbstractRbtTask {
                     if (bluetoothGattService != null) {
                         BluetoothGattCharacteristic bluetoothGattCharacteristic = bluetoothGattService.getCharacteristic(mNotifyTargetUUID);
                         if (bluetoothGattCharacteristic != null) {
-                            bluetoothGattDescriptor = bluetoothGattCharacteristic.getDescriptor(CLIENT_CHARACTERISTIC_CONFIGRATION_DESCRIPTOR);
+                            bluetoothGattDescriptor = bluetoothGattCharacteristic.getDescriptor(CLIENT_CHARACTERISTIC_CONFIGURATION_DESCRIPTOR);
                             if (bluetoothGattDescriptor != null) {
                                 bluetoothGattDescriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
 

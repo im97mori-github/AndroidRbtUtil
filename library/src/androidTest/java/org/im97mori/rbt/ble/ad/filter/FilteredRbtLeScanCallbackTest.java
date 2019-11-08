@@ -124,7 +124,7 @@ public class FilteredRbtLeScanCallbackTest {
                 list3.add(scanRecord);
             }
         };
-        FilteredRbtLeScanCallback callback = new FilteredRbtLeScanCallback.Builder().setScanCallback(leScanCallback).addFilter(new RbtDataFilter(){
+        FilteredRbtLeScanCallback callback = new FilteredRbtLeScanCallback.Builder().setScanCallback(leScanCallback).addFilter(new RbtDataFilter() {
             @Override
             public boolean isMatched(RbtAdvertisingDataParser.RbtAdvertisingDataParseResult advertisingDataParseResult) {
                 return false;

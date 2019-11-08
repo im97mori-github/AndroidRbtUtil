@@ -21,10 +21,10 @@ public interface RbtRequestMemoryIndexCallback extends BLECallback {
     /**
      * Write success callback Request memory index  (Characteristics UUID: 0x5005)
      *
-     * @param taskId                         task id
-     * @param bluetoothDevice                Rbt device
+     * @param taskId             task id
+     * @param bluetoothDevice    Rbt device
      * @param requestMemoryIndex write data
-     * @param argument                       callback argument
+     * @param argument           callback argument
      */
     void onRequestMemoryIndexWriteWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull RequestMemoryIndex requestMemoryIndex, @Nullable Bundle argument);
 

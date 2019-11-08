@@ -34,8 +34,9 @@ public abstract class AbstractRbtCharacteristic implements ByteArrayInterface {
 
     /**
      * Create little-endian byte array from {@link BigInteger}
+     *
      * @param bigInteger original BigInteger instance
-     * @param length byte array length
+     * @param length     byte array length
      * @return little-endian byte array
      */
     protected byte[] createLittleEndianByteArrayFromBigInteger(@NonNull BigInteger bigInteger, int length) {

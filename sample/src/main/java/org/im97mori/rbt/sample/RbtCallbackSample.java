@@ -169,7 +169,7 @@ public class RbtCallbackSample extends AbstractRbtBLECallback {
 
     @Override
     public void onMemorySensingDataClientCharactericsticConfigurationReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument) {
-        callback(Arrays.toString(clientCharacteristicConfiguration.getConfiguration()));
+        callback(Arrays.toString(clientCharacteristicConfiguration.getProperties()));
     }
 
     @Override
@@ -184,7 +184,7 @@ public class RbtCallbackSample extends AbstractRbtBLECallback {
 
     @Override
     public void onMemorySensingDataClientCharactericsticConfigurationWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument) {
-        callback(Arrays.toString(clientCharacteristicConfiguration.getConfiguration()));
+        callback(Arrays.toString(clientCharacteristicConfiguration.getProperties()));
     }
 
     @Override
@@ -199,7 +199,7 @@ public class RbtCallbackSample extends AbstractRbtBLECallback {
 
     @Override
     public void onMemoryCalculationDataClientCharactericsticConfigurationReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument) {
-        callback(Arrays.toString(clientCharacteristicConfiguration.getConfiguration()));
+        callback(Arrays.toString(clientCharacteristicConfiguration.getProperties()));
     }
 
     @Override
@@ -226,7 +226,7 @@ public class RbtCallbackSample extends AbstractRbtBLECallback {
 
     @Override
     public void onMemoryCalculationDataClientCharactericsticConfigurationWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument) {
-        callback(Arrays.toString(clientCharacteristicConfiguration.getConfiguration()));
+        callback(Arrays.toString(clientCharacteristicConfiguration.getProperties()));
     }
 
     @Override
@@ -241,7 +241,7 @@ public class RbtCallbackSample extends AbstractRbtBLECallback {
 
     @Override
     public void onMemorySensingFlagClientCharactericsticConfigurationReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument) {
-        callback(Arrays.toString(clientCharacteristicConfiguration.getConfiguration()));
+        callback(Arrays.toString(clientCharacteristicConfiguration.getProperties()));
     }
 
     @Override
@@ -267,7 +267,7 @@ public class RbtCallbackSample extends AbstractRbtBLECallback {
 
     @Override
     public void onMemorySensingFlagClientCharactericsticConfigurationWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument) {
-        callback(Arrays.toString(clientCharacteristicConfiguration.getConfiguration()));
+        callback(Arrays.toString(clientCharacteristicConfiguration.getProperties()));
     }
 
     @Override
@@ -282,7 +282,7 @@ public class RbtCallbackSample extends AbstractRbtBLECallback {
 
     @Override
     public void onMemoryCalculationFlagClientCharactericsticConfigurationReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument) {
-        callback(Arrays.toString(clientCharacteristicConfiguration.getConfiguration()));
+        callback(Arrays.toString(clientCharacteristicConfiguration.getProperties()));
     }
 
     @Override
@@ -309,7 +309,7 @@ public class RbtCallbackSample extends AbstractRbtBLECallback {
 
     @Override
     public void onMemoryCalculationFlagClientCharactericsticConfigurationWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument) {
-        callback(Arrays.toString(clientCharacteristicConfiguration.getConfiguration()));
+        callback(Arrays.toString(clientCharacteristicConfiguration.getProperties()));
     }
 
     @Override
@@ -357,7 +357,7 @@ public class RbtCallbackSample extends AbstractRbtBLECallback {
 
     @Override
     public void onLatestSensingDataClientCharactericsticConfigurationReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument) {
-        callback(Arrays.toString(clientCharacteristicConfiguration.getConfiguration()));
+        callback(Arrays.toString(clientCharacteristicConfiguration.getProperties()));
     }
 
     @Override
@@ -372,7 +372,7 @@ public class RbtCallbackSample extends AbstractRbtBLECallback {
 
     @Override
     public void onLatestSensingDataClientCharactericsticConfigurationWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument) {
-        callback(Arrays.toString(clientCharacteristicConfiguration.getConfiguration()));
+        callback(Arrays.toString(clientCharacteristicConfiguration.getProperties()));
     }
 
     @Override
@@ -425,7 +425,7 @@ public class RbtCallbackSample extends AbstractRbtBLECallback {
 
     @Override
     public void onLatestCalculationDataClientCharactericsticConfigurationReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument) {
-        callback(Arrays.toString(clientCharacteristicConfiguration.getConfiguration()));
+        callback(Arrays.toString(clientCharacteristicConfiguration.getProperties()));
     }
 
     @Override
@@ -440,7 +440,7 @@ public class RbtCallbackSample extends AbstractRbtBLECallback {
 
     @Override
     public void onLatestCalculationDataClientCharactericsticConfigurationWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument) {
-        callback(Arrays.toString(clientCharacteristicConfiguration.getConfiguration()));
+        callback(Arrays.toString(clientCharacteristicConfiguration.getProperties()));
     }
 
     @Override
@@ -493,7 +493,7 @@ public class RbtCallbackSample extends AbstractRbtBLECallback {
 
     @Override
     public void onLatestSensingFlagClientCharactericsticConfigurationReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument) {
-        callback(Arrays.toString(clientCharacteristicConfiguration.getConfiguration()));
+        callback(Arrays.toString(clientCharacteristicConfiguration.getProperties()));
     }
 
     @Override
@@ -508,7 +508,7 @@ public class RbtCallbackSample extends AbstractRbtBLECallback {
 
     @Override
     public void onLatestSensingFlagClientCharactericsticConfigurationWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument) {
-        callback(Arrays.toString(clientCharacteristicConfiguration.getConfiguration()));
+        callback(Arrays.toString(clientCharacteristicConfiguration.getProperties()));
     }
 
     @Override
@@ -557,7 +557,7 @@ public class RbtCallbackSample extends AbstractRbtBLECallback {
 
     @Override
     public void onLatestCalculationFlagClientCharactericsticConfigurationReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument) {
-        callback(Arrays.toString(clientCharacteristicConfiguration.getConfiguration()));
+        callback(Arrays.toString(clientCharacteristicConfiguration.getProperties()));
     }
 
     @Override
@@ -572,7 +572,7 @@ public class RbtCallbackSample extends AbstractRbtBLECallback {
 
     @Override
     public void onLatestCalculationFlagClientCharactericsticConfigurationWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument) {
-        callback(Arrays.toString(clientCharacteristicConfiguration.getConfiguration()));
+        callback(Arrays.toString(clientCharacteristicConfiguration.getProperties()));
     }
 
     @Override
@@ -622,7 +622,7 @@ public class RbtCallbackSample extends AbstractRbtBLECallback {
 
     @Override
     public void onLatestAccelerationStatusClientCharactericsticConfigurationReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument) {
-        callback(Arrays.toString(clientCharacteristicConfiguration.getConfiguration()));
+        callback(Arrays.toString(clientCharacteristicConfiguration.getProperties()));
     }
 
     @Override
@@ -637,7 +637,7 @@ public class RbtCallbackSample extends AbstractRbtBLECallback {
 
     @Override
     public void onLatestAccelerationStatusClientCharactericsticConfigurationWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument) {
-        callback(Arrays.toString(clientCharacteristicConfiguration.getConfiguration()));
+        callback(Arrays.toString(clientCharacteristicConfiguration.getProperties()));
     }
 
     @Override
@@ -722,7 +722,7 @@ public class RbtCallbackSample extends AbstractRbtBLECallback {
 
     @Override
     public void onAccelerationMemoryDataClientCharactericsticConfigurationReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument) {
-        callback(Arrays.toString(clientCharacteristicConfiguration.getConfiguration()));
+        callback(Arrays.toString(clientCharacteristicConfiguration.getProperties()));
     }
 
     @Override
@@ -737,7 +737,7 @@ public class RbtCallbackSample extends AbstractRbtBLECallback {
 
     @Override
     public void onAccelerationMemoryDataClientCharactericsticConfigurationWriteSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument) {
-        callback(Arrays.toString(clientCharacteristicConfiguration.getConfiguration()));
+        callback(Arrays.toString(clientCharacteristicConfiguration.getProperties()));
     }
 
     @Override

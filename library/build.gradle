@@ -4,7 +4,7 @@ apply plugin: 'maven'
 
 def GROUP_ID = 'org.im97mori'
 def ARTIFACT_ID = 'rbt'
-def VERSION_NAME = '0.3.3'
+def VERSION_NAME = '0.3.4'
 
 android {
     compileSdkVersion 29
@@ -12,7 +12,7 @@ android {
     defaultConfig {
         minSdkVersion 18
         targetSdkVersion 29
-        versionCode 9
+        versionCode 10
         versionName VERSION_NAME
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -25,7 +25,7 @@ android {
 }
 
 dependencies {
-    api 'org.im97mori:ble-central:0.4.1' // central feature
+    api 'org.im97mori:ble-central:0.4.2' // central feature
     api 'org.im97mori:ble-advertising:0.1.0'
     api 'org.im97mori:ble-characteristic-dis:0.1.0'
     api 'org.im97mori:ble-characteristic-gas:0.1.0'

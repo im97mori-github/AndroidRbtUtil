@@ -37,6 +37,7 @@ public class IndexActivity extends Activity implements AdapterView.OnItemClickLi
             super(context, 0, list);
             mLayoutInflater = LayoutInflater.from(context);
         }
+
         @NonNull
         @Override
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {

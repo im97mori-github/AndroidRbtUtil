@@ -75,7 +75,7 @@ import static org.im97mori.ble.BLEConstants.CharacteristicUUID.MANUFACTURER_NAME
 import static org.im97mori.ble.BLEConstants.CharacteristicUUID.MODEL_NUMBER_STRING_CHARACTERISTIC;
 import static org.im97mori.ble.BLEConstants.CharacteristicUUID.PERIPHERAL_PREFERRED_CONNECTION_PARAMATERS_CHARACTERISTIC;
 import static org.im97mori.ble.BLEConstants.CharacteristicUUID.SERIAL_NUMBER_STRING_CHARACTERISTIC;
-import static org.im97mori.ble.BLEConstants.DescriptorUUID.CLIENT_CHARACTERISTIC_CONFIGRATION_DESCRIPTOR;
+import static org.im97mori.ble.BLEConstants.DescriptorUUID.CLIENT_CHARACTERISTIC_CONFIGURATION_DESCRIPTOR;
 import static org.im97mori.ble.BLEConstants.ServiceUUID.DEVICE_INFORMATION_SERVICE;
 import static org.im97mori.ble.BLEConstants.ServiceUUID.GENERIC_ACCESS_SERVICE;
 import static org.im97mori.rbt.RbtConstants.CharacteristicUUID.ACCELERATION_LOGGER_CONTROL_CHARACTERISTIC;
@@ -2121,7 +2121,7 @@ public class RbtBLEConnection extends BLEConnection {
      * @return task id. if {@code null} returned, task was not registed
      */
     public Integer readNotificationSettingMemorySensingData(@Nullable Bundle argument, @Nullable RbtCallback rbtCallback) {
-        return createReadDescriptorTask(MEMORY_DATA_SERVICE, MEMORY_SENSING_DATA_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGRATION_DESCRIPTOR, ReadDescriptorTask.TIMEOUT_MILLIS, argument, rbtCallback);
+        return createReadDescriptorTask(MEMORY_DATA_SERVICE, MEMORY_SENSING_DATA_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGURATION_DESCRIPTOR, ReadDescriptorTask.TIMEOUT_MILLIS, argument, rbtCallback);
     }
 
     /**
@@ -2139,7 +2139,7 @@ public class RbtBLEConnection extends BLEConnection {
      * @return task id. if {@code null} returned, task was not registed
      */
     public Integer readNotificationSettingMemoryCalculationData(@Nullable Bundle argument, @Nullable RbtCallback rbtCallback) {
-        return createReadDescriptorTask(MEMORY_DATA_SERVICE, MEMORY_CALCULATION_DATA_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGRATION_DESCRIPTOR, ReadDescriptorTask.TIMEOUT_MILLIS, argument, rbtCallback);
+        return createReadDescriptorTask(MEMORY_DATA_SERVICE, MEMORY_CALCULATION_DATA_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGURATION_DESCRIPTOR, ReadDescriptorTask.TIMEOUT_MILLIS, argument, rbtCallback);
     }
 
     /**
@@ -2157,7 +2157,7 @@ public class RbtBLEConnection extends BLEConnection {
      * @return task id. if {@code null} returned, task was not registed
      */
     public Integer readNotificationSettingMemorySensingFlag(@Nullable Bundle argument, @Nullable RbtCallback rbtCallback) {
-        return createReadDescriptorTask(MEMORY_DATA_SERVICE, MEMORY_SENSING_FLAG_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGRATION_DESCRIPTOR, ReadDescriptorTask.TIMEOUT_MILLIS, argument, rbtCallback);
+        return createReadDescriptorTask(MEMORY_DATA_SERVICE, MEMORY_SENSING_FLAG_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGURATION_DESCRIPTOR, ReadDescriptorTask.TIMEOUT_MILLIS, argument, rbtCallback);
     }
 
     /**
@@ -2175,7 +2175,7 @@ public class RbtBLEConnection extends BLEConnection {
      * @return task id. if {@code null} returned, task was not registed
      */
     public Integer readNotificationSettingMemoryCalculationFlag(@Nullable Bundle argument, @Nullable RbtCallback rbtCallback) {
-        return createReadDescriptorTask(MEMORY_DATA_SERVICE, MEMORY_CALCULATION_FLAG_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGRATION_DESCRIPTOR, ReadDescriptorTask.TIMEOUT_MILLIS, argument, rbtCallback);
+        return createReadDescriptorTask(MEMORY_DATA_SERVICE, MEMORY_CALCULATION_FLAG_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGURATION_DESCRIPTOR, ReadDescriptorTask.TIMEOUT_MILLIS, argument, rbtCallback);
     }
 
     /**
@@ -2193,7 +2193,7 @@ public class RbtBLEConnection extends BLEConnection {
      * @return task id. if {@code null} returned, task was not registed
      */
     public Integer readNotificationSettingLatestSensingData(@Nullable Bundle argument, @Nullable RbtCallback rbtCallback) {
-        return createReadDescriptorTask(LATEST_DATA_SERVICE, LATEST_SENSING_DATA_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGRATION_DESCRIPTOR, ReadDescriptorTask.TIMEOUT_MILLIS, argument, rbtCallback);
+        return createReadDescriptorTask(LATEST_DATA_SERVICE, LATEST_SENSING_DATA_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGURATION_DESCRIPTOR, ReadDescriptorTask.TIMEOUT_MILLIS, argument, rbtCallback);
     }
 
     /**
@@ -2211,7 +2211,7 @@ public class RbtBLEConnection extends BLEConnection {
      * @return task id. if {@code null} returned, task was not registed
      */
     public Integer readNotificationSettingLatestCalculationData(@Nullable Bundle argument, @Nullable RbtCallback rbtCallback) {
-        return createReadDescriptorTask(LATEST_DATA_SERVICE, LATEST_CALCULATION_DATA_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGRATION_DESCRIPTOR, ReadDescriptorTask.TIMEOUT_MILLIS, argument, rbtCallback);
+        return createReadDescriptorTask(LATEST_DATA_SERVICE, LATEST_CALCULATION_DATA_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGURATION_DESCRIPTOR, ReadDescriptorTask.TIMEOUT_MILLIS, argument, rbtCallback);
     }
 
     /**
@@ -2229,7 +2229,7 @@ public class RbtBLEConnection extends BLEConnection {
      * @return task id. if {@code null} returned, task was not registed
      */
     public Integer readNotificationSettingLatestSensingFlag(@Nullable Bundle argument, @Nullable RbtCallback rbtCallback) {
-        return createReadDescriptorTask(LATEST_DATA_SERVICE, LATEST_SENSING_FLAG_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGRATION_DESCRIPTOR, ReadDescriptorTask.TIMEOUT_MILLIS, argument, rbtCallback);
+        return createReadDescriptorTask(LATEST_DATA_SERVICE, LATEST_SENSING_FLAG_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGURATION_DESCRIPTOR, ReadDescriptorTask.TIMEOUT_MILLIS, argument, rbtCallback);
     }
 
     /**
@@ -2247,7 +2247,7 @@ public class RbtBLEConnection extends BLEConnection {
      * @return task id. if {@code null} returned, task was not registed
      */
     public Integer readNotificationSettingLatestCalculationFlag(@Nullable Bundle argument, @Nullable RbtCallback rbtCallback) {
-        return createReadDescriptorTask(LATEST_DATA_SERVICE, LATEST_CALCULATION_FLAG_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGRATION_DESCRIPTOR, ReadDescriptorTask.TIMEOUT_MILLIS, argument, rbtCallback);
+        return createReadDescriptorTask(LATEST_DATA_SERVICE, LATEST_CALCULATION_FLAG_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGURATION_DESCRIPTOR, ReadDescriptorTask.TIMEOUT_MILLIS, argument, rbtCallback);
     }
 
     /**
@@ -2265,7 +2265,7 @@ public class RbtBLEConnection extends BLEConnection {
      * @return task id. if {@code null} returned, task was not registed
      */
     public Integer readNotificationSettingLatestAccelerationSetting(@Nullable Bundle argument, @Nullable RbtCallback rbtCallback) {
-        return createReadDescriptorTask(LATEST_DATA_SERVICE, LATEST_ACCELERATION_STATUS_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGRATION_DESCRIPTOR, ReadDescriptorTask.TIMEOUT_MILLIS, argument, rbtCallback);
+        return createReadDescriptorTask(LATEST_DATA_SERVICE, LATEST_ACCELERATION_STATUS_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGURATION_DESCRIPTOR, ReadDescriptorTask.TIMEOUT_MILLIS, argument, rbtCallback);
     }
 
     /**
@@ -2283,7 +2283,7 @@ public class RbtBLEConnection extends BLEConnection {
      * @return task id. if {@code null} returned, task was not registed
      */
     public Integer readNotificationSettingAccelerationMemoryData(@Nullable Bundle argument, @Nullable RbtCallback rbtCallback) {
-        return createReadDescriptorTask(ACCELERATION_SERVICE, ACCELERATION_MEMORY_DATA_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGRATION_DESCRIPTOR, ReadDescriptorTask.TIMEOUT_MILLIS, argument, rbtCallback);
+        return createReadDescriptorTask(ACCELERATION_SERVICE, ACCELERATION_MEMORY_DATA_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGURATION_DESCRIPTOR, ReadDescriptorTask.TIMEOUT_MILLIS, argument, rbtCallback);
     }
 
     /**
@@ -2302,7 +2302,7 @@ public class RbtBLEConnection extends BLEConnection {
      * @return task id. if {@code null} returned, task was not registed
      */
     public Integer writeNotificationSettingMemorySensingData(@NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument, @Nullable RbtCallback rbtCallback) {
-        return createWriteDescriptorTask(MEMORY_DATA_SERVICE, MEMORY_SENSING_DATA_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGRATION_DESCRIPTOR, clientCharacteristicConfiguration, WriteDescriptorTask.TIMEOUT_MILLIS, argument, rbtCallback);
+        return createWriteDescriptorTask(MEMORY_DATA_SERVICE, MEMORY_SENSING_DATA_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGURATION_DESCRIPTOR, clientCharacteristicConfiguration, WriteDescriptorTask.TIMEOUT_MILLIS, argument, rbtCallback);
     }
 
     /**
@@ -2321,7 +2321,7 @@ public class RbtBLEConnection extends BLEConnection {
      * @return task id. if {@code null} returned, task was not registed
      */
     public Integer writeNotificationSettingMemoryCalculationData(@NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument, @Nullable RbtCallback rbtCallback) {
-        return createWriteDescriptorTask(MEMORY_DATA_SERVICE, MEMORY_CALCULATION_DATA_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGRATION_DESCRIPTOR, clientCharacteristicConfiguration, WriteDescriptorTask.TIMEOUT_MILLIS, argument, rbtCallback);
+        return createWriteDescriptorTask(MEMORY_DATA_SERVICE, MEMORY_CALCULATION_DATA_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGURATION_DESCRIPTOR, clientCharacteristicConfiguration, WriteDescriptorTask.TIMEOUT_MILLIS, argument, rbtCallback);
     }
 
     /**
@@ -2340,7 +2340,7 @@ public class RbtBLEConnection extends BLEConnection {
      * @return task id. if {@code null} returned, task was not registed
      */
     public Integer writeNotificationSettingMemorySensingFlag(@NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument, @Nullable RbtCallback rbtCallback) {
-        return createWriteDescriptorTask(MEMORY_DATA_SERVICE, MEMORY_SENSING_FLAG_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGRATION_DESCRIPTOR, clientCharacteristicConfiguration, WriteDescriptorTask.TIMEOUT_MILLIS, argument, rbtCallback);
+        return createWriteDescriptorTask(MEMORY_DATA_SERVICE, MEMORY_SENSING_FLAG_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGURATION_DESCRIPTOR, clientCharacteristicConfiguration, WriteDescriptorTask.TIMEOUT_MILLIS, argument, rbtCallback);
     }
 
     /**
@@ -2359,7 +2359,7 @@ public class RbtBLEConnection extends BLEConnection {
      * @return task id. if {@code null} returned, task was not registed
      */
     public Integer writeNotificationSettingMemoryCalculationFlag(@NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument, @Nullable RbtCallback rbtCallback) {
-        return createWriteDescriptorTask(MEMORY_DATA_SERVICE, MEMORY_CALCULATION_FLAG_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGRATION_DESCRIPTOR, clientCharacteristicConfiguration, WriteDescriptorTask.TIMEOUT_MILLIS, argument, rbtCallback);
+        return createWriteDescriptorTask(MEMORY_DATA_SERVICE, MEMORY_CALCULATION_FLAG_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGURATION_DESCRIPTOR, clientCharacteristicConfiguration, WriteDescriptorTask.TIMEOUT_MILLIS, argument, rbtCallback);
     }
 
     /**
@@ -2378,7 +2378,7 @@ public class RbtBLEConnection extends BLEConnection {
      * @return task id. if {@code null} returned, task was not registed
      */
     public Integer writeNotificationSettingLatestSensingData(@NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument, @Nullable RbtCallback rbtCallback) {
-        return createWriteDescriptorTask(LATEST_DATA_SERVICE, LATEST_SENSING_DATA_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGRATION_DESCRIPTOR, clientCharacteristicConfiguration, WriteDescriptorTask.TIMEOUT_MILLIS, argument, rbtCallback);
+        return createWriteDescriptorTask(LATEST_DATA_SERVICE, LATEST_SENSING_DATA_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGURATION_DESCRIPTOR, clientCharacteristicConfiguration, WriteDescriptorTask.TIMEOUT_MILLIS, argument, rbtCallback);
     }
 
     /**
@@ -2397,7 +2397,7 @@ public class RbtBLEConnection extends BLEConnection {
      * @return task id. if {@code null} returned, task was not registed
      */
     public Integer writeNotificationSettingLatestCalculationData(@NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument, @Nullable RbtCallback rbtCallback) {
-        return createWriteDescriptorTask(LATEST_DATA_SERVICE, LATEST_CALCULATION_DATA_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGRATION_DESCRIPTOR, clientCharacteristicConfiguration, WriteDescriptorTask.TIMEOUT_MILLIS, argument, rbtCallback);
+        return createWriteDescriptorTask(LATEST_DATA_SERVICE, LATEST_CALCULATION_DATA_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGURATION_DESCRIPTOR, clientCharacteristicConfiguration, WriteDescriptorTask.TIMEOUT_MILLIS, argument, rbtCallback);
     }
 
     /**
@@ -2416,7 +2416,7 @@ public class RbtBLEConnection extends BLEConnection {
      * @return task id. if {@code null} returned, task was not registed
      */
     public Integer writeNotificationSettingLatestSensingFlag(@NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument, @Nullable RbtCallback rbtCallback) {
-        return createWriteDescriptorTask(LATEST_DATA_SERVICE, LATEST_SENSING_FLAG_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGRATION_DESCRIPTOR, clientCharacteristicConfiguration, WriteDescriptorTask.TIMEOUT_MILLIS, argument, rbtCallback);
+        return createWriteDescriptorTask(LATEST_DATA_SERVICE, LATEST_SENSING_FLAG_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGURATION_DESCRIPTOR, clientCharacteristicConfiguration, WriteDescriptorTask.TIMEOUT_MILLIS, argument, rbtCallback);
     }
 
     /**
@@ -2435,7 +2435,7 @@ public class RbtBLEConnection extends BLEConnection {
      * @return task id. if {@code null} returned, task was not registed
      */
     public Integer writeNotificationSettingLatestCalculationFlag(@NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument, @Nullable RbtCallback rbtCallback) {
-        return createWriteDescriptorTask(LATEST_DATA_SERVICE, LATEST_CALCULATION_FLAG_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGRATION_DESCRIPTOR, clientCharacteristicConfiguration, WriteDescriptorTask.TIMEOUT_MILLIS, argument, rbtCallback);
+        return createWriteDescriptorTask(LATEST_DATA_SERVICE, LATEST_CALCULATION_FLAG_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGURATION_DESCRIPTOR, clientCharacteristicConfiguration, WriteDescriptorTask.TIMEOUT_MILLIS, argument, rbtCallback);
     }
 
     /**
@@ -2454,7 +2454,7 @@ public class RbtBLEConnection extends BLEConnection {
      * @return task id. if {@code null} returned, task was not registed
      */
     public Integer writeNotificationSettingLatestAccelerationSetting(@NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument, @Nullable RbtCallback rbtCallback) {
-        return createWriteDescriptorTask(LATEST_DATA_SERVICE, LATEST_ACCELERATION_STATUS_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGRATION_DESCRIPTOR, clientCharacteristicConfiguration, WriteDescriptorTask.TIMEOUT_MILLIS, argument, rbtCallback);
+        return createWriteDescriptorTask(LATEST_DATA_SERVICE, LATEST_ACCELERATION_STATUS_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGURATION_DESCRIPTOR, clientCharacteristicConfiguration, WriteDescriptorTask.TIMEOUT_MILLIS, argument, rbtCallback);
     }
 
     /**
@@ -2473,7 +2473,7 @@ public class RbtBLEConnection extends BLEConnection {
      * @return task id. if {@code null} returned, task was not registed
      */
     public Integer writeNotificationSettingAccelerationMemoryData(@NonNull ClientCharacteristicConfiguration clientCharacteristicConfiguration, @Nullable Bundle argument, @Nullable RbtCallback rbtCallback) {
-        return createWriteDescriptorTask(ACCELERATION_SERVICE, ACCELERATION_MEMORY_DATA_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGRATION_DESCRIPTOR, clientCharacteristicConfiguration, WriteDescriptorTask.TIMEOUT_MILLIS, argument, rbtCallback);
+        return createWriteDescriptorTask(ACCELERATION_SERVICE, ACCELERATION_MEMORY_DATA_CHARACTERISTIC, CLIENT_CHARACTERISTIC_CONFIGURATION_DESCRIPTOR, clientCharacteristicConfiguration, WriteDescriptorTask.TIMEOUT_MILLIS, argument, rbtCallback);
     }
 
     /**

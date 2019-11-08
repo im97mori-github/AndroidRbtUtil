@@ -4841,6 +4841,7 @@ public class SensorDataAndCalculationDataFilterTest {
         assertNotNull(result);
         assertTrue(filter.isMatched(result));
     }
+
     @Test
     public void siValueTest_001() {
         byte[] actualData = new byte[62];
