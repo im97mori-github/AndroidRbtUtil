@@ -13,9 +13,11 @@ public class MemoryStorageIntervalTest {
 
     @Test
     public void test1() {
+        //@formatter:off
         byte[] data = new byte[2];
-        data[0] = (byte) (0x01 & 0xff);
-        data[1] = (byte) (0x00 & 0xff);
+        data[ 0] = (byte) (0x01 & 0xff);
+        data[ 1] = (byte) (0x00 & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -27,9 +29,11 @@ public class MemoryStorageIntervalTest {
 
     @Test
     public void test2() {
+        //@formatter:off
         byte[] data = new byte[2];
-        data[0] = (byte) (0x10 & 0xff);
-        data[1] = (byte) (0x0e & 0xff);
+        data[ 0] = (byte) (0x10 & 0xff);
+        data[ 1] = (byte) (0x0e & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -41,9 +45,11 @@ public class MemoryStorageIntervalTest {
 
     @Test
     public void test3() {
+        //@formatter:off
         byte[] data = new byte[2];
-        data[0] = (byte) (0x10 & 0xff);
-        data[1] = (byte) (0x0e & 0xff);
+        data[ 0] = (byte) (0x10 & 0xff);
+        data[ 1] = (byte) (0x0e & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -59,9 +65,11 @@ public class MemoryStorageIntervalTest {
 
     @Test
     public void test4() {
+        //@formatter:off
         byte[] data = new byte[2];
-        data[0] = (byte) (0x10 & 0xff);
-        data[1] = (byte) (0x0e & 0xff);
+        data[ 0] = (byte) (0x10 & 0xff);
+        data[ 1] = (byte) (0x0e & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -81,9 +89,11 @@ public class MemoryStorageIntervalTest {
 
     @Test
     public void test6() {
+        //@formatter:off
         byte[] data = new byte[2];
-        data[0] = (byte) (0x10 & 0xff);
-        data[1] = (byte) (0x0e & 0xff);
+        data[ 0] = (byte) (0x10 & 0xff);
+        data[ 1] = (byte) (0x0e & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);

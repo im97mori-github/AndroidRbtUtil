@@ -14,6 +14,7 @@ public class MemoryCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
 
     @Test
     public void test_discomfortIndex001() {
+        //@formatter:off
         byte[] data2 = new byte[11];
         data2[ 0] = (byte) ((0x01) & 0xff); // Memory index
         data2[ 1] = (byte) ((0x00) & 0xff); // Memory index
@@ -26,6 +27,7 @@ public class MemoryCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
         data2[ 8] = (byte) 0x00; // SI value flag
         data2[ 9] = (byte) 0x00; // PGA flag
         data2[10] = (byte) 0x00; // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
@@ -90,6 +92,7 @@ public class MemoryCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
 
     @Test
     public void test_discomfortIndex002() {
+        //@formatter:off
         byte[] data2 = new byte[11];
         data2[ 0] = (byte) ((0x01) & 0xff); // Memory index
         data2[ 1] = (byte) ((0x00) & 0xff); // Memory index
@@ -102,6 +105,7 @@ public class MemoryCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
         data2[ 8] = (byte) 0x00; // SI value flag
         data2[ 9] = (byte) 0x00; // PGA flag
         data2[10] = (byte) 0x00; // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
@@ -166,6 +170,7 @@ public class MemoryCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
 
     @Test
     public void test_discomfortIndex003() {
+        //@formatter:off
         byte[] data2 = new byte[11];
         data2[ 0] = (byte) ((0x01) & 0xff); // Memory index
         data2[ 1] = (byte) ((0x00) & 0xff); // Memory index
@@ -178,6 +183,7 @@ public class MemoryCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
         data2[ 8] = (byte) 0x00; // SI value flag
         data2[ 9] = (byte) 0x00; // PGA flag
         data2[10] = (byte) 0x00; // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
@@ -242,6 +248,7 @@ public class MemoryCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
 
     @Test
     public void test_discomfortIndex004() {
+        //@formatter:off
         byte[] data2 = new byte[11];
         data2[ 0] = (byte) ((0x01) & 0xff); // Memory index
         data2[ 1] = (byte) ((0x00) & 0xff); // Memory index
@@ -254,6 +261,7 @@ public class MemoryCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
         data2[ 8] = (byte) 0x00; // SI value flag
         data2[ 9] = (byte) 0x00; // PGA flag
         data2[10] = (byte) 0x00; // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
@@ -318,6 +326,7 @@ public class MemoryCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
 
     @Test
     public void test_discomfortIndex005() {
+        //@formatter:off
         byte[] data2 = new byte[11];
         data2[ 0] = (byte) ((0x01) & 0xff); // Memory index
         data2[ 1] = (byte) ((0x00) & 0xff); // Memory index
@@ -330,6 +339,7 @@ public class MemoryCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
         data2[ 8] = (byte) 0x00; // SI value flag
         data2[ 9] = (byte) 0x00; // PGA flag
         data2[10] = (byte) 0x00; // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
@@ -394,6 +404,7 @@ public class MemoryCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
 
     @Test
     public void test_discomfortIndex006() {
+        //@formatter:off
         byte[] data2 = new byte[11];
         data2[ 0] = (byte) ((0x01) & 0xff); // Memory index
         data2[ 1] = (byte) ((0x00) & 0xff); // Memory index
@@ -406,6 +417,7 @@ public class MemoryCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
         data2[ 8] = (byte) 0x00; // SI value flag
         data2[ 9] = (byte) 0x00; // PGA flag
         data2[10] = (byte) 0x00; // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
@@ -470,6 +482,7 @@ public class MemoryCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
 
     @Test
     public void test_discomfortIndex007() {
+        //@formatter:off
         byte[] data2 = new byte[11];
         data2[ 0] = (byte) ((0x01) & 0xff); // Memory index
         data2[ 1] = (byte) ((0x00) & 0xff); // Memory index
@@ -482,6 +495,7 @@ public class MemoryCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
         data2[ 8] = (byte) 0x00; // SI value flag
         data2[ 9] = (byte) 0x00; // PGA flag
         data2[10] = (byte) 0x00; // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
@@ -546,6 +560,7 @@ public class MemoryCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
 
     @Test
     public void test_discomfortIndex008() {
+        //@formatter:off
         byte[] data2 = new byte[11];
         data2[ 0] = (byte) ((0x01) & 0xff); // Memory index
         data2[ 1] = (byte) ((0x00) & 0xff); // Memory index
@@ -558,6 +573,7 @@ public class MemoryCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
         data2[ 8] = (byte) 0x00; // SI value flag
         data2[ 9] = (byte) 0x00; // PGA flag
         data2[10] = (byte) 0x00; // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
@@ -622,6 +638,7 @@ public class MemoryCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
 
     @Test
     public void test_discomfortIndex009() {
+        //@formatter:off
         byte[] data2 = new byte[11];
         data2[ 0] = (byte) ((0x01) & 0xff); // Memory index
         data2[ 1] = (byte) ((0x00) & 0xff); // Memory index
@@ -634,6 +651,7 @@ public class MemoryCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
         data2[ 8] = (byte) 0x00; // SI value flag
         data2[ 9] = (byte) 0x00; // PGA flag
         data2[10] = (byte) 0x00; // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
@@ -698,6 +716,7 @@ public class MemoryCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
 
     @Test
     public void test_discomfortIndex010() {
+        //@formatter:off
         byte[] data2 = new byte[11];
         data2[ 0] = (byte) ((0x01) & 0xff); // Memory index
         data2[ 1] = (byte) ((0x00) & 0xff); // Memory index
@@ -710,6 +729,7 @@ public class MemoryCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
         data2[ 8] = (byte) 0x00; // SI value flag
         data2[ 9] = (byte) 0x00; // PGA flag
         data2[10] = (byte) 0x00; // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
@@ -774,6 +794,7 @@ public class MemoryCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
 
     @Test
     public void test_discomfortIndex011() {
+        //@formatter:off
         byte[] data2 = new byte[11];
         data2[ 0] = (byte) ((0x01) & 0xff); // Memory index
         data2[ 1] = (byte) ((0x00) & 0xff); // Memory index
@@ -786,6 +807,7 @@ public class MemoryCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
         data2[ 8] = (byte) 0x00; // SI value flag
         data2[ 9] = (byte) 0x00; // PGA flag
         data2[10] = (byte) 0x00; // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
@@ -850,6 +872,7 @@ public class MemoryCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
 
     @Test
     public void test_discomfortIndex012() {
+        //@formatter:off
         byte[] data2 = new byte[11];
         data2[ 0] = (byte) ((0x01) & 0xff); // Memory index
         data2[ 1] = (byte) ((0x00) & 0xff); // Memory index
@@ -862,6 +885,7 @@ public class MemoryCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
         data2[ 8] = (byte) 0x00; // SI value flag
         data2[ 9] = (byte) 0x00; // PGA flag
         data2[10] = (byte) 0x00; // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
@@ -926,6 +950,7 @@ public class MemoryCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
 
     @Test
     public void test_discomfortIndex013() {
+        //@formatter:off
         byte[] data2 = new byte[11];
         data2[ 0] = (byte) ((0x01) & 0xff); // Memory index
         data2[ 1] = (byte) ((0x00) & 0xff); // Memory index
@@ -938,6 +963,7 @@ public class MemoryCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
         data2[ 8] = (byte) 0x00; // SI value flag
         data2[ 9] = (byte) 0x00; // PGA flag
         data2[10] = (byte) 0x00; // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
@@ -1002,6 +1028,7 @@ public class MemoryCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
 
     @Test
     public void test_discomfortIndex014() {
+        //@formatter:off
         byte[] data2 = new byte[11];
         data2[ 0] = (byte) ((0x01) & 0xff); // Memory index
         data2[ 1] = (byte) ((0x00) & 0xff); // Memory index
@@ -1014,6 +1041,7 @@ public class MemoryCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
         data2[ 8] = (byte) 0x00; // SI value flag
         data2[ 9] = (byte) 0x00; // PGA flag
         data2[10] = (byte) 0x00; // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
@@ -1078,6 +1106,7 @@ public class MemoryCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
 
     @Test
     public void test_discomfortIndex015() {
+        //@formatter:off
         byte[] data2 = new byte[11];
         data2[ 0] = (byte) ((0x01) & 0xff); // Memory index
         data2[ 1] = (byte) ((0x00) & 0xff); // Memory index
@@ -1090,6 +1119,7 @@ public class MemoryCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
         data2[ 8] = (byte) 0x00; // SI value flag
         data2[ 9] = (byte) 0x00; // PGA flag
         data2[10] = (byte) 0x00; // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
@@ -1154,6 +1184,7 @@ public class MemoryCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
 
     @Test
     public void test_discomfortIndex016() {
+        //@formatter:off
         byte[] data2 = new byte[11];
         data2[ 0] = (byte) ((0x01) & 0xff); // Memory index
         data2[ 1] = (byte) ((0x00) & 0xff); // Memory index
@@ -1166,6 +1197,7 @@ public class MemoryCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
         data2[ 8] = (byte) 0x00; // SI value flag
         data2[ 9] = (byte) 0x00; // PGA flag
         data2[10] = (byte) 0x00; // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
@@ -1230,6 +1262,7 @@ public class MemoryCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
 
     @Test
     public void test_discomfortIndex017() {
+        //@formatter:off
         byte[] data2 = new byte[11];
         data2[ 0] = (byte) ((0x01) & 0xff); // Memory index
         data2[ 1] = (byte) ((0x00) & 0xff); // Memory index
@@ -1242,6 +1275,7 @@ public class MemoryCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
         data2[ 8] = (byte) 0x00; // SI value flag
         data2[ 9] = (byte) 0x00; // PGA flag
         data2[10] = (byte) 0x00; // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);

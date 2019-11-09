@@ -14,15 +14,17 @@ public class LatestCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
 
     @Test
     public void test_discomfortIndex001() {
+        //@formatter:off
         byte[] data2 = new byte[8];
-        data2[0] = (byte) 0x00; // Sequence number
-        data2[1] = (byte) ALL_EVENT_FLAG_SENSOR_LSB; // Discomfort index flag
-        data2[2] = (byte) ALL_EVENT_FLAG_SENSOR_MSB; // Discomfort index flag
-        data2[3] = (byte) 0x00; // Heat stroke flag
-        data2[4] = (byte) 0x00; // Heat stroke flag
-        data2[5] = (byte) 0x00; // SI value flag
-        data2[6] = (byte) 0x00; // PGA flag
-        data2[7] = (byte) 0x00; // Seismic intensity flag
+        data2[ 0] = (byte) 0x00; // Sequence number
+        data2[ 1] = (byte) ALL_EVENT_FLAG_SENSOR_LSB; // Discomfort index flag
+        data2[ 2] = (byte) ALL_EVENT_FLAG_SENSOR_MSB; // Discomfort index flag
+        data2[ 3] = (byte) 0x00; // Heat stroke flag
+        data2[ 4] = (byte) 0x00; // Heat stroke flag
+        data2[ 5] = (byte) 0x00; // SI value flag
+        data2[ 6] = (byte) 0x00; // PGA flag
+        data2[ 7] = (byte) 0x00; // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
@@ -86,16 +88,18 @@ public class LatestCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
 
     @Test
     public void test_discomfortIndex002() {
+        //@formatter:off
         byte[] data2 = new byte[8];
-        data2[0] = (byte) 0x00; // Sequence number
-        data2[1] = (byte) (RbtConstants.EventFlagSensor.SIMPLE_THRESHOLD_UPPER_LIMIT_1 & 0xff); // Discomfort index flag
-        data2[2] = (byte) ((RbtConstants.EventFlagSensor.SIMPLE_THRESHOLD_UPPER_LIMIT_1 >> 8) & 0xff); // Discomfort index flag
-        data2[3] = (byte) 0x00; // Heat stroke flag
-        data2[4] = (byte) 0x00; // Heat stroke flag
-        data2[5] = (byte) 0x00; // SI value flag
-        data2[6] = (byte) 0x00; // PGA flag
-        data2[7] = (byte) 0x00; // Seismic intensity flag
+        data2[ 0] = (byte) 0x00; // Sequence number
+        data2[ 1] = (byte) (RbtConstants.EventFlagSensor.SIMPLE_THRESHOLD_UPPER_LIMIT_1 & 0xff); // Discomfort index flag
+        data2[ 2] = (byte) ((RbtConstants.EventFlagSensor.SIMPLE_THRESHOLD_UPPER_LIMIT_1 >> 8) & 0xff); // Discomfort index flag
+        data2[ 3] = (byte) 0x00; // Heat stroke flag
+        data2[ 4] = (byte) 0x00; // Heat stroke flag
+        data2[ 5] = (byte) 0x00; // SI value flag
+        data2[ 6] = (byte) 0x00; // PGA flag
+        data2[ 7] = (byte) 0x00; // Seismic intensity flag
 
+        //@formatter:on
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
 
@@ -158,15 +162,17 @@ public class LatestCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
 
     @Test
     public void test_discomfortIndex003() {
+        //@formatter:off
         byte[] data2 = new byte[8];
-        data2[0] = (byte) 0x00; // Sequence number
-        data2[1] = (byte) (RbtConstants.EventFlagSensor.SIMPLE_THRESHOLD_UPPER_LIMIT_2 & 0xff); // Discomfort index flag
-        data2[2] = (byte) ((RbtConstants.EventFlagSensor.SIMPLE_THRESHOLD_UPPER_LIMIT_2 >> 8) & 0xff); // Discomfort index flag
-        data2[3] = (byte) 0x00; // Heat stroke flag
-        data2[4] = (byte) 0x00; // Heat stroke flag
-        data2[5] = (byte) 0x00; // SI value flag
-        data2[6] = (byte) 0x00; // PGA flag
-        data2[7] = (byte) 0x00; // Seismic intensity flag
+        data2[ 0] = (byte) 0x00; // Sequence number
+        data2[ 1] = (byte) (RbtConstants.EventFlagSensor.SIMPLE_THRESHOLD_UPPER_LIMIT_2 & 0xff); // Discomfort index flag
+        data2[ 2] = (byte) ((RbtConstants.EventFlagSensor.SIMPLE_THRESHOLD_UPPER_LIMIT_2 >> 8) & 0xff); // Discomfort index flag
+        data2[ 3] = (byte) 0x00; // Heat stroke flag
+        data2[ 4] = (byte) 0x00; // Heat stroke flag
+        data2[ 5] = (byte) 0x00; // SI value flag
+        data2[ 6] = (byte) 0x00; // PGA flag
+        data2[ 7] = (byte) 0x00; // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
@@ -230,15 +236,17 @@ public class LatestCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
 
     @Test
     public void test_discomfortIndex004() {
+        //@formatter:off
         byte[] data2 = new byte[8];
-        data2[0] = (byte) 0x00; // Sequence number
-        data2[1] = (byte) (RbtConstants.EventFlagSensor.SIMPLE_THRESHOLD_LOWER_LIMIT_1 & 0xff); // Discomfort index flag
-        data2[2] = (byte) ((RbtConstants.EventFlagSensor.SIMPLE_THRESHOLD_LOWER_LIMIT_1 >> 8) & 0xff); // Discomfort index flag
-        data2[3] = (byte) 0x00; // Heat stroke flag
-        data2[4] = (byte) 0x00; // Heat stroke flag
-        data2[5] = (byte) 0x00; // SI value flag
-        data2[6] = (byte) 0x00; // PGA flag
-        data2[7] = (byte) 0x00; // Seismic intensity flag
+        data2[ 0] = (byte) 0x00; // Sequence number
+        data2[ 1] = (byte) (RbtConstants.EventFlagSensor.SIMPLE_THRESHOLD_LOWER_LIMIT_1 & 0xff); // Discomfort index flag
+        data2[ 2] = (byte) ((RbtConstants.EventFlagSensor.SIMPLE_THRESHOLD_LOWER_LIMIT_1 >> 8) & 0xff); // Discomfort index flag
+        data2[ 3] = (byte) 0x00; // Heat stroke flag
+        data2[ 4] = (byte) 0x00; // Heat stroke flag
+        data2[ 5] = (byte) 0x00; // SI value flag
+        data2[ 6] = (byte) 0x00; // PGA flag
+        data2[ 7] = (byte) 0x00; // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
@@ -302,15 +310,17 @@ public class LatestCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
 
     @Test
     public void test_discomfortIndex005() {
+        //@formatter:off
         byte[] data2 = new byte[8];
-        data2[0] = (byte) 0x00; // Sequence number
-        data2[1] = (byte) (RbtConstants.EventFlagSensor.SIMPLE_THRESHOLD_LOWER_LIMIT_2 & 0xff); // Discomfort index flag
-        data2[2] = (byte) ((RbtConstants.EventFlagSensor.SIMPLE_THRESHOLD_LOWER_LIMIT_2 >> 8) & 0xff); // Discomfort index flag
-        data2[3] = (byte) 0x00; // Heat stroke flag
-        data2[4] = (byte) 0x00; // Heat stroke flag
-        data2[5] = (byte) 0x00; // SI value flag
-        data2[6] = (byte) 0x00; // PGA flag
-        data2[7] = (byte) 0x00; // Seismic intensity flag
+        data2[ 0] = (byte) 0x00; // Sequence number
+        data2[ 1] = (byte) (RbtConstants.EventFlagSensor.SIMPLE_THRESHOLD_LOWER_LIMIT_2 & 0xff); // Discomfort index flag
+        data2[ 2] = (byte) ((RbtConstants.EventFlagSensor.SIMPLE_THRESHOLD_LOWER_LIMIT_2 >> 8) & 0xff); // Discomfort index flag
+        data2[ 3] = (byte) 0x00; // Heat stroke flag
+        data2[ 4] = (byte) 0x00; // Heat stroke flag
+        data2[ 5] = (byte) 0x00; // SI value flag
+        data2[ 6] = (byte) 0x00; // PGA flag
+        data2[ 7] = (byte) 0x00; // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
@@ -374,15 +384,17 @@ public class LatestCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
 
     @Test
     public void test_discomfortIndex006() {
+        //@formatter:off
         byte[] data2 = new byte[8];
-        data2[0] = (byte) 0x00; // Sequence number
-        data2[1] = (byte) (RbtConstants.EventFlagSensor.CHANGE_THRESHOLD_RISE_1 & 0xff); // Discomfort index flag
-        data2[2] = (byte) ((RbtConstants.EventFlagSensor.CHANGE_THRESHOLD_RISE_1 >> 8) & 0xff); // Discomfort index flag
-        data2[3] = (byte) 0x00; // Heat stroke flag
-        data2[4] = (byte) 0x00; // Heat stroke flag
-        data2[5] = (byte) 0x00; // SI value flag
-        data2[6] = (byte) 0x00; // PGA flag
-        data2[7] = (byte) 0x00; // Seismic intensity flag
+        data2[ 0] = (byte) 0x00; // Sequence number
+        data2[ 1] = (byte) (RbtConstants.EventFlagSensor.CHANGE_THRESHOLD_RISE_1 & 0xff); // Discomfort index flag
+        data2[ 2] = (byte) ((RbtConstants.EventFlagSensor.CHANGE_THRESHOLD_RISE_1 >> 8) & 0xff); // Discomfort index flag
+        data2[ 3] = (byte) 0x00; // Heat stroke flag
+        data2[ 4] = (byte) 0x00; // Heat stroke flag
+        data2[ 5] = (byte) 0x00; // SI value flag
+        data2[ 6] = (byte) 0x00; // PGA flag
+        data2[ 7] = (byte) 0x00; // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
@@ -446,15 +458,17 @@ public class LatestCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
 
     @Test
     public void test_discomfortIndex007() {
+        //@formatter:off
         byte[] data2 = new byte[8];
-        data2[0] = (byte) 0x00; // Sequence number
-        data2[1] = (byte) (RbtConstants.EventFlagSensor.CHANGE_THRESHOLD_RISE_2 & 0xff); // Discomfort index flag
-        data2[2] = (byte) ((RbtConstants.EventFlagSensor.CHANGE_THRESHOLD_RISE_2 >> 8) & 0xff); // Discomfort index flag
-        data2[3] = (byte) 0x00; // Heat stroke flag
-        data2[4] = (byte) 0x00; // Heat stroke flag
-        data2[5] = (byte) 0x00; // SI value flag
-        data2[6] = (byte) 0x00; // PGA flag
-        data2[7] = (byte) 0x00; // Seismic intensity flag
+        data2[ 0] = (byte) 0x00; // Sequence number
+        data2[ 1] = (byte) (RbtConstants.EventFlagSensor.CHANGE_THRESHOLD_RISE_2 & 0xff); // Discomfort index flag
+        data2[ 2] = (byte) ((RbtConstants.EventFlagSensor.CHANGE_THRESHOLD_RISE_2 >> 8) & 0xff); // Discomfort index flag
+        data2[ 3] = (byte) 0x00; // Heat stroke flag
+        data2[ 4] = (byte) 0x00; // Heat stroke flag
+        data2[ 5] = (byte) 0x00; // SI value flag
+        data2[ 6] = (byte) 0x00; // PGA flag
+        data2[ 7] = (byte) 0x00; // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
@@ -518,15 +532,17 @@ public class LatestCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
 
     @Test
     public void test_discomfortIndex008() {
+        //@formatter:off
         byte[] data2 = new byte[8];
-        data2[0] = (byte) 0x00; // Sequence number
-        data2[1] = (byte) (RbtConstants.EventFlagSensor.CHANGE_THRESHOLD_DECLINE_1 & 0xff); // Discomfort index flag
-        data2[2] = (byte) ((RbtConstants.EventFlagSensor.CHANGE_THRESHOLD_DECLINE_1 >> 8) & 0xff); // Discomfort index flag
-        data2[3] = (byte) 0x00; // Heat stroke flag
-        data2[4] = (byte) 0x00; // Heat stroke flag
-        data2[5] = (byte) 0x00; // SI value flag
-        data2[6] = (byte) 0x00; // PGA flag
-        data2[7] = (byte) 0x00; // Seismic intensity flag
+        data2[ 0] = (byte) 0x00; // Sequence number
+        data2[ 1] = (byte) (RbtConstants.EventFlagSensor.CHANGE_THRESHOLD_DECLINE_1 & 0xff); // Discomfort index flag
+        data2[ 2] = (byte) ((RbtConstants.EventFlagSensor.CHANGE_THRESHOLD_DECLINE_1 >> 8) & 0xff); // Discomfort index flag
+        data2[ 3] = (byte) 0x00; // Heat stroke flag
+        data2[ 4] = (byte) 0x00; // Heat stroke flag
+        data2[ 5] = (byte) 0x00; // SI value flag
+        data2[ 6] = (byte) 0x00; // PGA flag
+        data2[ 7] = (byte) 0x00; // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
@@ -590,15 +606,17 @@ public class LatestCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
 
     @Test
     public void test_discomfortIndex009() {
+        //@formatter:off
         byte[] data2 = new byte[8];
-        data2[0] = (byte) 0x00; // Sequence number
-        data2[1] = (byte) (RbtConstants.EventFlagSensor.CHANGE_THRESHOLD_DECLINE_2 & 0xff); // Discomfort index flag
-        data2[2] = (byte) ((RbtConstants.EventFlagSensor.CHANGE_THRESHOLD_DECLINE_2 >> 8) & 0xff); // Discomfort index flag
-        data2[3] = (byte) 0x00; // Heat stroke flag
-        data2[4] = (byte) 0x00; // Heat stroke flag
-        data2[5] = (byte) 0x00; // SI value flag
-        data2[6] = (byte) 0x00; // PGA flag
-        data2[7] = (byte) 0x00; // Seismic intensity flag
+        data2[ 0] = (byte) 0x00; // Sequence number
+        data2[ 1] = (byte) (RbtConstants.EventFlagSensor.CHANGE_THRESHOLD_DECLINE_2 & 0xff); // Discomfort index flag
+        data2[ 2] = (byte) ((RbtConstants.EventFlagSensor.CHANGE_THRESHOLD_DECLINE_2 >> 8) & 0xff); // Discomfort index flag
+        data2[ 3] = (byte) 0x00; // Heat stroke flag
+        data2[ 4] = (byte) 0x00; // Heat stroke flag
+        data2[ 5] = (byte) 0x00; // SI value flag
+        data2[ 6] = (byte) 0x00; // PGA flag
+        data2[ 7] = (byte) 0x00; // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
@@ -662,15 +680,17 @@ public class LatestCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
 
     @Test
     public void test_discomfortIndex010() {
+        //@formatter:off
         byte[] data2 = new byte[8];
-        data2[0] = (byte) 0x00; // Sequence number
-        data2[1] = (byte) (RbtConstants.EventFlagSensor.AVERAGE_VALUE_THRESHOLD_UPPER & 0xff); // Discomfort index flag
-        data2[2] = (byte) ((RbtConstants.EventFlagSensor.AVERAGE_VALUE_THRESHOLD_UPPER >> 8) & 0xff); // Discomfort index flag
-        data2[3] = (byte) 0x00; // Heat stroke flag
-        data2[4] = (byte) 0x00; // Heat stroke flag
-        data2[5] = (byte) 0x00; // SI value flag
-        data2[6] = (byte) 0x00; // PGA flag
-        data2[7] = (byte) 0x00; // Seismic intensity flag
+        data2[ 0] = (byte) 0x00; // Sequence number
+        data2[ 1] = (byte) (RbtConstants.EventFlagSensor.AVERAGE_VALUE_THRESHOLD_UPPER & 0xff); // Discomfort index flag
+        data2[ 2] = (byte) ((RbtConstants.EventFlagSensor.AVERAGE_VALUE_THRESHOLD_UPPER >> 8) & 0xff); // Discomfort index flag
+        data2[ 3] = (byte) 0x00; // Heat stroke flag
+        data2[ 4] = (byte) 0x00; // Heat stroke flag
+        data2[ 5] = (byte) 0x00; // SI value flag
+        data2[ 6] = (byte) 0x00; // PGA flag
+        data2[ 7] = (byte) 0x00; // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
@@ -734,15 +754,17 @@ public class LatestCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
 
     @Test
     public void test_discomfortIndex011() {
+        //@formatter:off
         byte[] data2 = new byte[8];
-        data2[0] = (byte) 0x00; // Sequence number
-        data2[1] = (byte) (RbtConstants.EventFlagSensor.AVERAGE_VALUE_THRESHOLD_LOWER & 0xff); // Discomfort index flag
-        data2[2] = (byte) ((RbtConstants.EventFlagSensor.AVERAGE_VALUE_THRESHOLD_LOWER >> 8) & 0xff); // Discomfort index flag
-        data2[3] = (byte) 0x00; // Heat stroke flag
-        data2[4] = (byte) 0x00; // Heat stroke flag
-        data2[5] = (byte) 0x00; // SI value flag
-        data2[6] = (byte) 0x00; // PGA flag
-        data2[7] = (byte) 0x00; // Seismic intensity flag
+        data2[ 0] = (byte) 0x00; // Sequence number
+        data2[ 1] = (byte) (RbtConstants.EventFlagSensor.AVERAGE_VALUE_THRESHOLD_LOWER & 0xff); // Discomfort index flag
+        data2[ 2] = (byte) ((RbtConstants.EventFlagSensor.AVERAGE_VALUE_THRESHOLD_LOWER >> 8) & 0xff); // Discomfort index flag
+        data2[ 3] = (byte) 0x00; // Heat stroke flag
+        data2[ 4] = (byte) 0x00; // Heat stroke flag
+        data2[ 5] = (byte) 0x00; // SI value flag
+        data2[ 6] = (byte) 0x00; // PGA flag
+        data2[ 7] = (byte) 0x00; // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
@@ -806,15 +828,17 @@ public class LatestCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
 
     @Test
     public void test_discomfortIndex012() {
+        //@formatter:off
         byte[] data2 = new byte[8];
-        data2[0] = (byte) 0x00; // Sequence number
-        data2[1] = (byte) (RbtConstants.EventFlagSensor.PEAK_TO_PEAK_THRESHOLD_UPPER & 0xff); // Discomfort index flag
-        data2[2] = (byte) ((RbtConstants.EventFlagSensor.PEAK_TO_PEAK_THRESHOLD_UPPER >> 8) & 0xff); // Discomfort index flag
-        data2[3] = (byte) 0x00; // Heat stroke flag
-        data2[4] = (byte) 0x00; // Heat stroke flag
-        data2[5] = (byte) 0x00; // SI value flag
-        data2[6] = (byte) 0x00; // PGA flag
-        data2[7] = (byte) 0x00; // Seismic intensity flag
+        data2[ 0] = (byte) 0x00; // Sequence number
+        data2[ 1] = (byte) (RbtConstants.EventFlagSensor.PEAK_TO_PEAK_THRESHOLD_UPPER & 0xff); // Discomfort index flag
+        data2[ 2] = (byte) ((RbtConstants.EventFlagSensor.PEAK_TO_PEAK_THRESHOLD_UPPER >> 8) & 0xff); // Discomfort index flag
+        data2[ 3] = (byte) 0x00; // Heat stroke flag
+        data2[ 4] = (byte) 0x00; // Heat stroke flag
+        data2[ 5] = (byte) 0x00; // SI value flag
+        data2[ 6] = (byte) 0x00; // PGA flag
+        data2[ 7] = (byte) 0x00; // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
@@ -878,15 +902,17 @@ public class LatestCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
 
     @Test
     public void test_discomfortIndex013() {
+        //@formatter:off
         byte[] data2 = new byte[8];
-        data2[0] = (byte) 0x00; // Sequence number
-        data2[1] = (byte) (RbtConstants.EventFlagSensor.PEAK_TO_PEAK_THRESHOLD_LOWER & 0xff); // Discomfort index flag
-        data2[2] = (byte) ((RbtConstants.EventFlagSensor.PEAK_TO_PEAK_THRESHOLD_LOWER >> 8) & 0xff); // Discomfort index flag
-        data2[3] = (byte) 0x00; // Heat stroke flag
-        data2[4] = (byte) 0x00; // Heat stroke flag
-        data2[5] = (byte) 0x00; // SI value flag
-        data2[6] = (byte) 0x00; // PGA flag
-        data2[7] = (byte) 0x00; // Seismic intensity flag
+        data2[ 0] = (byte) 0x00; // Sequence number
+        data2[ 1] = (byte) (RbtConstants.EventFlagSensor.PEAK_TO_PEAK_THRESHOLD_LOWER & 0xff); // Discomfort index flag
+        data2[ 2] = (byte) ((RbtConstants.EventFlagSensor.PEAK_TO_PEAK_THRESHOLD_LOWER >> 8) & 0xff); // Discomfort index flag
+        data2[ 3] = (byte) 0x00; // Heat stroke flag
+        data2[ 4] = (byte) 0x00; // Heat stroke flag
+        data2[ 5] = (byte) 0x00; // SI value flag
+        data2[ 6] = (byte) 0x00; // PGA flag
+        data2[ 7] = (byte) 0x00; // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
@@ -950,15 +976,17 @@ public class LatestCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
 
     @Test
     public void test_discomfortIndex014() {
+        //@formatter:off
         byte[] data2 = new byte[8];
-        data2[0] = (byte) 0x00; // Sequence number
-        data2[1] = (byte) (RbtConstants.EventFlagSensor.INTERVAL_DIFFERENCE_THRESHOLD_RISE & 0xff); // Discomfort index flag
-        data2[2] = (byte) ((RbtConstants.EventFlagSensor.INTERVAL_DIFFERENCE_THRESHOLD_RISE >> 8) & 0xff); // Discomfort index flag
-        data2[3] = (byte) 0x00; // Heat stroke flag
-        data2[4] = (byte) 0x00; // Heat stroke flag
-        data2[5] = (byte) 0x00; // SI value flag
-        data2[6] = (byte) 0x00; // PGA flag
-        data2[7] = (byte) 0x00; // Seismic intensity flag
+        data2[ 0] = (byte) 0x00; // Sequence number
+        data2[ 1] = (byte) (RbtConstants.EventFlagSensor.INTERVAL_DIFFERENCE_THRESHOLD_RISE & 0xff); // Discomfort index flag
+        data2[ 2] = (byte) ((RbtConstants.EventFlagSensor.INTERVAL_DIFFERENCE_THRESHOLD_RISE >> 8) & 0xff); // Discomfort index flag
+        data2[ 3] = (byte) 0x00; // Heat stroke flag
+        data2[ 4] = (byte) 0x00; // Heat stroke flag
+        data2[ 5] = (byte) 0x00; // SI value flag
+        data2[ 6] = (byte) 0x00; // PGA flag
+        data2[ 7] = (byte) 0x00; // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
@@ -1022,15 +1050,17 @@ public class LatestCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
 
     @Test
     public void test_discomfortIndex015() {
+        //@formatter:off
         byte[] data2 = new byte[8];
-        data2[0] = (byte) 0x00; // Sequence number
-        data2[1] = (byte) (RbtConstants.EventFlagSensor.INTERVAL_DIFFERENCE_THRESHOLD_DECLINE & 0xff); // Discomfort index flag
-        data2[2] = (byte) ((RbtConstants.EventFlagSensor.INTERVAL_DIFFERENCE_THRESHOLD_DECLINE >> 8) & 0xff); // Discomfort index flag
-        data2[3] = (byte) 0x00; // Heat stroke flag
-        data2[4] = (byte) 0x00; // Heat stroke flag
-        data2[5] = (byte) 0x00; // SI value flag
-        data2[6] = (byte) 0x00; // PGA flag
-        data2[7] = (byte) 0x00; // Seismic intensity flag
+        data2[ 0] = (byte) 0x00; // Sequence number
+        data2[ 1] = (byte) (RbtConstants.EventFlagSensor.INTERVAL_DIFFERENCE_THRESHOLD_DECLINE & 0xff); // Discomfort index flag
+        data2[ 2] = (byte) ((RbtConstants.EventFlagSensor.INTERVAL_DIFFERENCE_THRESHOLD_DECLINE >> 8) & 0xff); // Discomfort index flag
+        data2[ 3] = (byte) 0x00; // Heat stroke flag
+        data2[ 4] = (byte) 0x00; // Heat stroke flag
+        data2[ 5] = (byte) 0x00; // SI value flag
+        data2[ 6] = (byte) 0x00; // PGA flag
+        data2[ 7] = (byte) 0x00; // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
@@ -1094,15 +1124,17 @@ public class LatestCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
 
     @Test
     public void test_discomfortIndex016() {
+        //@formatter:off
         byte[] data2 = new byte[8];
-        data2[0] = (byte) 0x00; // Sequence number
-        data2[1] = (byte) (RbtConstants.EventFlagSensor.BASE_DIFFERENCE_THRESHOLD_UPPER & 0xff); // Discomfort index flag
-        data2[2] = (byte) ((RbtConstants.EventFlagSensor.BASE_DIFFERENCE_THRESHOLD_UPPER >> 8) & 0xff); // Discomfort index flag
-        data2[3] = (byte) 0x00; // Heat stroke flag
-        data2[4] = (byte) 0x00; // Heat stroke flag
-        data2[5] = (byte) 0x00; // SI value flag
-        data2[6] = (byte) 0x00; // PGA flag
-        data2[7] = (byte) 0x00; // Seismic intensity flag
+        data2[ 0] = (byte) 0x00; // Sequence number
+        data2[ 1] = (byte) (RbtConstants.EventFlagSensor.BASE_DIFFERENCE_THRESHOLD_UPPER & 0xff); // Discomfort index flag
+        data2[ 2] = (byte) ((RbtConstants.EventFlagSensor.BASE_DIFFERENCE_THRESHOLD_UPPER >> 8) & 0xff); // Discomfort index flag
+        data2[ 3] = (byte) 0x00; // Heat stroke flag
+        data2[ 4] = (byte) 0x00; // Heat stroke flag
+        data2[ 5] = (byte) 0x00; // SI value flag
+        data2[ 6] = (byte) 0x00; // PGA flag
+        data2[ 7] = (byte) 0x00; // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
@@ -1166,15 +1198,17 @@ public class LatestCalculationFlagDiscomfortIndexTest extends AbstractSensingFla
 
     @Test
     public void test_discomfortIndex017() {
+        //@formatter:off
         byte[] data2 = new byte[8];
-        data2[0] = (byte) 0x00; // Sequence number
-        data2[1] = (byte) (RbtConstants.EventFlagSensor.BASE_DIFFERENCE_THRESHOLD_LOWER & 0xff); // Discomfort index flag
-        data2[2] = (byte) ((RbtConstants.EventFlagSensor.BASE_DIFFERENCE_THRESHOLD_LOWER >> 8) & 0xff); // Discomfort index flag
-        data2[3] = (byte) 0x00; // Heat stroke flag
-        data2[4] = (byte) 0x00; // Heat stroke flag
-        data2[5] = (byte) 0x00; // SI value flag
-        data2[6] = (byte) 0x00; // PGA flag
-        data2[7] = (byte) 0x00; // Seismic intensity flag
+        data2[ 0] = (byte) 0x00; // Sequence number
+        data2[ 1] = (byte) (RbtConstants.EventFlagSensor.BASE_DIFFERENCE_THRESHOLD_LOWER & 0xff); // Discomfort index flag
+        data2[ 2] = (byte) ((RbtConstants.EventFlagSensor.BASE_DIFFERENCE_THRESHOLD_LOWER >> 8) & 0xff); // Discomfort index flag
+        data2[ 3] = (byte) 0x00; // Heat stroke flag
+        data2[ 4] = (byte) 0x00; // Heat stroke flag
+        data2[ 5] = (byte) 0x00; // SI value flag
+        data2[ 6] = (byte) 0x00; // PGA flag
+        data2[ 7] = (byte) 0x00; // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);

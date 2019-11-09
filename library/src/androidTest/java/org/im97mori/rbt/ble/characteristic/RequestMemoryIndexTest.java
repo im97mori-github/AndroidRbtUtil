@@ -13,6 +13,7 @@ public class RequestMemoryIndexTest {
 
     @Test
     public void test001() {
+        //@formatter:off
         byte[] data = new byte[9];
         data[ 0] = (byte) ((0x00) & 0xff);
         data[ 1] = (byte) ((0x00) & 0xff);
@@ -23,6 +24,7 @@ public class RequestMemoryIndexTest {
         data[ 6] = (byte) ((0x00) & 0xff);
         data[ 7] = (byte) ((0x00) & 0xff);
         data[ 8] = (byte) ((RequestMemoryIndex.DATA_TYPE_SENSING_DATA) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -35,6 +37,7 @@ public class RequestMemoryIndexTest {
 
     @Test
     public void test002() {
+        //@formatter:off
         byte[] data = new byte[9];
         data[ 0] = (byte) ((0xff) & 0xff);
         data[ 1] = (byte) ((0xff) & 0xff);
@@ -45,6 +48,7 @@ public class RequestMemoryIndexTest {
         data[ 6] = (byte) ((0xff) & 0xff);
         data[ 7] = (byte) ((0x7f) & 0xff);
         data[ 8] = (byte) ((RequestMemoryIndex.DATA_TYPE_CALCULATION_DATA) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -57,6 +61,7 @@ public class RequestMemoryIndexTest {
 
     @Test
     public void test003() {
+        //@formatter:off
         byte[] data = new byte[9];
         data[ 0] = (byte) ((0x00) & 0xff);
         data[ 1] = (byte) ((0xff) & 0xff);
@@ -67,6 +72,7 @@ public class RequestMemoryIndexTest {
         data[ 6] = (byte) ((0xff) & 0xff);
         data[ 7] = (byte) ((0x7f) & 0xff);
         data[ 8] = (byte) ((RequestMemoryIndex.DATA_TYPE_SENSING_FLAG) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -79,6 +85,7 @@ public class RequestMemoryIndexTest {
 
     @Test
     public void test004() {
+        //@formatter:off
         byte[] data = new byte[9];
         data[ 0] = (byte) ((0xff) & 0xff);
         data[ 1] = (byte) ((0xff) & 0xff);
@@ -89,6 +96,7 @@ public class RequestMemoryIndexTest {
         data[ 6] = (byte) ((0xff) & 0xff);
         data[ 7] = (byte) ((0x7f) & 0xff);
         data[ 8] = (byte) ((RequestMemoryIndex.DATA_TYPE_CALCULATION_FLAG) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -101,6 +109,7 @@ public class RequestMemoryIndexTest {
 
     @Test
     public void test005() {
+        //@formatter:off
         byte[] data = new byte[9];
         data[ 0] = (byte) ((0x1f) & 0xff);
         data[ 1] = (byte) ((0xff) & 0xff);
@@ -111,6 +120,7 @@ public class RequestMemoryIndexTest {
         data[ 6] = (byte) ((0xff) & 0xff);
         data[ 7] = (byte) ((0x7f) & 0xff);
         data[ 8] = (byte) ((RequestMemoryIndex.DATA_TYPE_CALCULATION_FLAG) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -128,6 +138,7 @@ public class RequestMemoryIndexTest {
 
     @Test
     public void test006() {
+        //@formatter:off
         byte[] data = new byte[9];
         data[ 0] = (byte) ((0x1f) & 0xff);
         data[ 1] = (byte) ((0xff) & 0xff);
@@ -138,6 +149,7 @@ public class RequestMemoryIndexTest {
         data[ 6] = (byte) ((0xff) & 0xff);
         data[ 7] = (byte) ((0x7f) & 0xff);
         data[ 8] = (byte) ((RequestMemoryIndex.DATA_TYPE_CALCULATION_FLAG) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -162,6 +174,7 @@ public class RequestMemoryIndexTest {
 
     @Test
     public void test008() {
+        //@formatter:off
         byte[] data = new byte[9];
         data[ 0] = (byte) ((0x1f) & 0xff);
         data[ 1] = (byte) ((0xff) & 0xff);
@@ -172,6 +185,7 @@ public class RequestMemoryIndexTest {
         data[ 6] = (byte) ((0xff) & 0xff);
         data[ 7] = (byte) ((0x7f) & 0xff);
         data[ 8] = (byte) ((RequestMemoryIndex.DATA_TYPE_CALCULATION_FLAG) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);

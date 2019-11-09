@@ -19,6 +19,7 @@ public class LatestAccelerationStatusTest {
 
     @Test
     public void test001() {
+        //@formatter:off
         byte[] data = new byte[15];
         data[ 0] = (byte) ((0x00) & 0xff);
         data[ 1] = (byte) ((VIBRATION_INFORMATION_NONE_BIT) & 0xff);
@@ -35,6 +36,7 @@ public class LatestAccelerationStatusTest {
         data[12] = (byte) ((0xf8) & 0xff);
         data[13] = (byte) ((0x30) & 0xff);
         data[14] = (byte) ((0xf8) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -59,6 +61,7 @@ public class LatestAccelerationStatusTest {
 
     @Test
     public void test002() {
+        //@formatter:off
         byte[] data = new byte[15];
         data[ 0] = (byte) ((0xff) & 0xff);
         data[ 1] = (byte) ((VIBRATION_INFORMATION_DURING_VIBRATION_BIT) & 0xff);
@@ -75,6 +78,7 @@ public class LatestAccelerationStatusTest {
         data[12] = (byte) ((0x07) & 0xff);
         data[13] = (byte) ((0xd0) & 0xff);
         data[14] = (byte) ((0x07) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -99,6 +103,7 @@ public class LatestAccelerationStatusTest {
 
     @Test
     public void test003() {
+        //@formatter:off
         byte[] data = new byte[15];
         data[ 0] = (byte) ((0xff) & 0xff);
         data[ 1] = (byte) ((VIBRATION_INFORMATION_DURING_EARTH_QUAKE_BIT) & 0xff);
@@ -115,6 +120,7 @@ public class LatestAccelerationStatusTest {
         data[12] = (byte) ((0x07) & 0xff);
         data[13] = (byte) ((0xd0) & 0xff);
         data[14] = (byte) ((0x07) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -139,6 +145,7 @@ public class LatestAccelerationStatusTest {
 
     @Test
     public void test004() {
+        //@formatter:off
         byte[] data = new byte[15];
         data[ 0] = (byte) ((0xff) & 0xff);
         data[ 1] = (byte) ((VIBRATION_INFORMATION_DURING_EARTH_QUAKE_BIT) & 0xff);
@@ -155,6 +162,7 @@ public class LatestAccelerationStatusTest {
         data[12] = (byte) ((0x07) & 0xff);
         data[13] = (byte) ((0x06) & 0xff);
         data[14] = (byte) ((0x07) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -177,6 +185,7 @@ public class LatestAccelerationStatusTest {
 
     @Test
     public void test005() {
+        //@formatter:off
         byte[] data = new byte[15];
         data[ 0] = (byte) ((0xff) & 0xff);
         data[ 1] = (byte) ((VIBRATION_INFORMATION_DURING_EARTH_QUAKE_BIT) & 0xff);
@@ -193,6 +202,7 @@ public class LatestAccelerationStatusTest {
         data[12] = (byte) ((0x07) & 0xff);
         data[13] = (byte) ((0x06) & 0xff);
         data[14] = (byte) ((0x07) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);

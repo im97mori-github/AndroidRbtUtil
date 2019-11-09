@@ -14,6 +14,7 @@ public class LatestSensingFlagAmbientLightTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_ambientLight001() {
+        //@formatter:off
         byte[] data1 = new byte[15];
         data1[ 0] = (byte) 0x00; // Sequence number
         data1[ 1] = (byte) 0x00; // Temperature flag
@@ -30,6 +31,7 @@ public class LatestSensingFlagAmbientLightTest extends AbstractSensingFlagTest {
         data1[12] = (byte) 0x00; // eTVOC flag
         data1[13] = (byte) 0x00; // eCO2 flag
         data1[14] = (byte) 0x00; // eCO2 flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -165,6 +167,7 @@ public class LatestSensingFlagAmbientLightTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_ambientLight002() {
+        //@formatter:off
         byte[] data1 = new byte[15];
         data1[ 0] = (byte) 0x00; // Sequence number
         data1[ 1] = (byte) 0x00; // Temperature flag
@@ -181,6 +184,7 @@ public class LatestSensingFlagAmbientLightTest extends AbstractSensingFlagTest {
         data1[12] = (byte) 0x00; // eTVOC flag
         data1[13] = (byte) 0x00; // eCO2 flag
         data1[14] = (byte) 0x00; // eCO2 flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -316,6 +320,7 @@ public class LatestSensingFlagAmbientLightTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_ambientLight003() {
+        //@formatter:off
         byte[] data1 = new byte[15];
         data1[ 0] = (byte) 0x00; // Sequence number
         data1[ 1] = (byte) 0x00; // Temperature flag
@@ -332,6 +337,7 @@ public class LatestSensingFlagAmbientLightTest extends AbstractSensingFlagTest {
         data1[12] = (byte) 0x00; // eTVOC flag
         data1[13] = (byte) 0x00; // eCO2 flag
         data1[14] = (byte) 0x00; // eCO2 flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -467,6 +473,7 @@ public class LatestSensingFlagAmbientLightTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_ambientLight004() {
+        //@formatter:off
         byte[] data1 = new byte[15];
         data1[ 0] = (byte) 0x00; // Sequence number
         data1[ 1] = (byte) 0x00; // Temperature flag
@@ -483,6 +490,7 @@ public class LatestSensingFlagAmbientLightTest extends AbstractSensingFlagTest {
         data1[12] = (byte) 0x00; // eTVOC flag
         data1[13] = (byte) 0x00; // eCO2 flag
         data1[14] = (byte) 0x00; // eCO2 flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -618,6 +626,7 @@ public class LatestSensingFlagAmbientLightTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_ambientLight005() {
+        //@formatter:off
         byte[] data1 = new byte[15];
         data1[ 0] = (byte) 0x00; // Sequence number
         data1[ 1] = (byte) 0x00; // Temperature flag
@@ -634,6 +643,7 @@ public class LatestSensingFlagAmbientLightTest extends AbstractSensingFlagTest {
         data1[12] = (byte) 0x00; // eTVOC flag
         data1[13] = (byte) 0x00; // eCO2 flag
         data1[14] = (byte) 0x00; // eCO2 flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -769,6 +779,7 @@ public class LatestSensingFlagAmbientLightTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_ambientLight006() {
+        //@formatter:off
         byte[] data1 = new byte[15];
         data1[ 0] = (byte) 0x00; // Sequence number
         data1[ 1] = (byte) 0x00; // Temperature flag
@@ -785,6 +796,7 @@ public class LatestSensingFlagAmbientLightTest extends AbstractSensingFlagTest {
         data1[12] = (byte) 0x00; // eTVOC flag
         data1[13] = (byte) 0x00; // eCO2 flag
         data1[14] = (byte) 0x00; // eCO2 flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -920,6 +932,7 @@ public class LatestSensingFlagAmbientLightTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_ambientLight007() {
+        //@formatter:off
         byte[] data1 = new byte[15];
         data1[ 0] = (byte) 0x00; // Sequence number
         data1[ 1] = (byte) 0x00; // Temperature flag
@@ -936,6 +949,7 @@ public class LatestSensingFlagAmbientLightTest extends AbstractSensingFlagTest {
         data1[12] = (byte) 0x00; // eTVOC flag
         data1[13] = (byte) 0x00; // eCO2 flag
         data1[14] = (byte) 0x00; // eCO2 flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -1071,6 +1085,7 @@ public class LatestSensingFlagAmbientLightTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_ambientLight008() {
+        //@formatter:off
         byte[] data1 = new byte[15];
         data1[ 0] = (byte) 0x00; // Sequence number
         data1[ 1] = (byte) 0x00; // Temperature flag
@@ -1087,6 +1102,7 @@ public class LatestSensingFlagAmbientLightTest extends AbstractSensingFlagTest {
         data1[12] = (byte) 0x00; // eTVOC flag
         data1[13] = (byte) 0x00; // eCO2 flag
         data1[14] = (byte) 0x00; // eCO2 flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -1222,6 +1238,7 @@ public class LatestSensingFlagAmbientLightTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_ambientLight009() {
+        //@formatter:off
         byte[] data1 = new byte[15];
         data1[ 0] = (byte) 0x00; // Sequence number
         data1[ 1] = (byte) 0x00; // Temperature flag
@@ -1238,6 +1255,7 @@ public class LatestSensingFlagAmbientLightTest extends AbstractSensingFlagTest {
         data1[12] = (byte) 0x00; // eTVOC flag
         data1[13] = (byte) 0x00; // eCO2 flag
         data1[14] = (byte) 0x00; // eCO2 flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -1373,6 +1391,7 @@ public class LatestSensingFlagAmbientLightTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_ambientLight010() {
+        //@formatter:off
         byte[] data1 = new byte[15];
         data1[ 0] = (byte) 0x00; // Sequence number
         data1[ 1] = (byte) 0x00; // Temperature flag
@@ -1389,6 +1408,7 @@ public class LatestSensingFlagAmbientLightTest extends AbstractSensingFlagTest {
         data1[12] = (byte) 0x00; // eTVOC flag
         data1[13] = (byte) 0x00; // eCO2 flag
         data1[14] = (byte) 0x00; // eCO2 flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -1524,6 +1544,7 @@ public class LatestSensingFlagAmbientLightTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_ambientLight011() {
+        //@formatter:off
         byte[] data1 = new byte[15];
         data1[ 0] = (byte) 0x00; // Sequence number
         data1[ 1] = (byte) 0x00; // Temperature flag
@@ -1540,6 +1561,7 @@ public class LatestSensingFlagAmbientLightTest extends AbstractSensingFlagTest {
         data1[12] = (byte) 0x00; // eTVOC flag
         data1[13] = (byte) 0x00; // eCO2 flag
         data1[14] = (byte) 0x00; // eCO2 flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -1675,6 +1697,7 @@ public class LatestSensingFlagAmbientLightTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_ambientLight012() {
+        //@formatter:off
         byte[] data1 = new byte[15];
         data1[ 0] = (byte) 0x00; // Sequence number
         data1[ 1] = (byte) 0x00; // Temperature flag
@@ -1691,6 +1714,7 @@ public class LatestSensingFlagAmbientLightTest extends AbstractSensingFlagTest {
         data1[12] = (byte) 0x00; // eTVOC flag
         data1[13] = (byte) 0x00; // eCO2 flag
         data1[14] = (byte) 0x00; // eCO2 flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -1826,6 +1850,7 @@ public class LatestSensingFlagAmbientLightTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_ambientLight013() {
+        //@formatter:off
         byte[] data1 = new byte[15];
         data1[ 0] = (byte) 0x00; // Sequence number
         data1[ 1] = (byte) 0x00; // Temperature flag
@@ -1842,6 +1867,7 @@ public class LatestSensingFlagAmbientLightTest extends AbstractSensingFlagTest {
         data1[12] = (byte) 0x00; // eTVOC flag
         data1[13] = (byte) 0x00; // eCO2 flag
         data1[14] = (byte) 0x00; // eCO2 flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -1977,6 +2003,7 @@ public class LatestSensingFlagAmbientLightTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_ambientLight014() {
+        //@formatter:off
         byte[] data1 = new byte[15];
         data1[ 0] = (byte) 0x00; // Sequence number
         data1[ 1] = (byte) 0x00; // Temperature flag
@@ -1993,6 +2020,7 @@ public class LatestSensingFlagAmbientLightTest extends AbstractSensingFlagTest {
         data1[12] = (byte) 0x00; // eTVOC flag
         data1[13] = (byte) 0x00; // eCO2 flag
         data1[14] = (byte) 0x00; // eCO2 flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -2128,6 +2156,7 @@ public class LatestSensingFlagAmbientLightTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_ambientLight015() {
+        //@formatter:off
         byte[] data1 = new byte[15];
         data1[ 0] = (byte) 0x00; // Sequence number
         data1[ 1] = (byte) 0x00; // Temperature flag
@@ -2144,6 +2173,7 @@ public class LatestSensingFlagAmbientLightTest extends AbstractSensingFlagTest {
         data1[12] = (byte) 0x00; // eTVOC flag
         data1[13] = (byte) 0x00; // eCO2 flag
         data1[14] = (byte) 0x00; // eCO2 flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -2279,6 +2309,7 @@ public class LatestSensingFlagAmbientLightTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_ambientLight016() {
+        //@formatter:off
         byte[] data1 = new byte[15];
         data1[ 0] = (byte) 0x00; // Sequence number
         data1[ 1] = (byte) 0x00; // Temperature flag
@@ -2295,6 +2326,7 @@ public class LatestSensingFlagAmbientLightTest extends AbstractSensingFlagTest {
         data1[12] = (byte) 0x00; // eTVOC flag
         data1[13] = (byte) 0x00; // eCO2 flag
         data1[14] = (byte) 0x00; // eCO2 flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -2430,6 +2462,7 @@ public class LatestSensingFlagAmbientLightTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_ambientLight017() {
+        //@formatter:off
         byte[] data1 = new byte[15];
         data1[ 0] = (byte) 0x00; // Sequence number
         data1[ 1] = (byte) 0x00; // Temperature flag
@@ -2446,6 +2479,7 @@ public class LatestSensingFlagAmbientLightTest extends AbstractSensingFlagTest {
         data1[12] = (byte) 0x00; // eTVOC flag
         data1[13] = (byte) 0x00; // eCO2 flag
         data1[14] = (byte) 0x00; // eCO2 flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);

@@ -3,7 +3,6 @@ package org.im97mori.rbt.ble.characteristic;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 
-import org.im97mori.ble.BLEConstants;
 import org.junit.Test;
 
 import static org.im97mori.ble.BLEConstants.BASE_UUID;
@@ -16,6 +15,7 @@ public class AccelerationMemoryDataData2Test {
 
     @Test
     public void test001() {
+        //@formatter:off
         byte[] data = new byte[20];
         data[ 0] = (byte) ((0x01) & 0xff);
         data[ 1] = (byte) ((0x00) & 0xff);
@@ -37,6 +37,7 @@ public class AccelerationMemoryDataData2Test {
         data[17] = (byte) ((0xf0) & 0xff);
         data[18] = (byte) ((0xff) & 0xff);
         data[19] = (byte) ((0xff) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -62,6 +63,7 @@ public class AccelerationMemoryDataData2Test {
 
     @Test
     public void test002() {
+        //@formatter:off
         byte[] data = new byte[20];
         data[ 0] = (byte) ((0xff) & 0xff);
         data[ 1] = (byte) ((0x7f) & 0xff);
@@ -83,6 +85,7 @@ public class AccelerationMemoryDataData2Test {
         data[17] = (byte) ((0x30) & 0xff);
         data[18] = (byte) ((0xff) & 0xff);
         data[19] = (byte) ((0xff) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -108,9 +111,10 @@ public class AccelerationMemoryDataData2Test {
 
     @Test
     public void test003() {
+        //@formatter:off
         byte[] data = new byte[20];
-        data[0] = (byte) ((AccelerationMemoryData2.DATA_ERROR_BIT) & 0xff);
-        data[1] = (byte) ((AccelerationMemoryData2.DATA_ERROR_BIT >> 8) & 0xff);
+        data[ 0] = (byte) ((AccelerationMemoryData2.DATA_ERROR_BIT) & 0xff);
+        data[ 1] = (byte) ((AccelerationMemoryData2.DATA_ERROR_BIT >> 8) & 0xff);
         data[ 2] = (byte) ((0x30) & 0xff);
         data[ 3] = (byte) ((0x75) & 0xff);
         data[ 4] = (byte) ((0xe0) & 0xff);
@@ -129,6 +133,7 @@ public class AccelerationMemoryDataData2Test {
         data[17] = (byte) ((0x30) & 0xff);
         data[18] = (byte) ((0xff) & 0xff);
         data[19] = (byte) ((0xff) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -154,6 +159,7 @@ public class AccelerationMemoryDataData2Test {
 
     @Test
     public void test004() {
+        //@formatter:off
         byte[] data = new byte[20];
         data[ 0] = (byte) ((AccelerationMemoryData2.DATA_ERROR_BIT) & 0xff);
         data[ 1] = (byte) ((AccelerationMemoryData2.DATA_ERROR_BIT >> 8) & 0xff);
@@ -175,6 +181,7 @@ public class AccelerationMemoryDataData2Test {
         data[17] = (byte) ((0x30) & 0xff);
         data[18] = (byte) ((0xff) & 0xff);
         data[19] = (byte) ((0xff) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -197,6 +204,7 @@ public class AccelerationMemoryDataData2Test {
 
     @Test
     public void test005() {
+        //@formatter:off
         byte[] data = new byte[20];
         data[ 0] = (byte) ((AccelerationMemoryData2.DATA_ERROR_BIT) & 0xff);
         data[ 1] = (byte) ((AccelerationMemoryData2.DATA_ERROR_BIT >> 8) & 0xff);
@@ -218,6 +226,7 @@ public class AccelerationMemoryDataData2Test {
         data[17] = (byte) ((0x30) & 0xff);
         data[18] = (byte) ((0xff) & 0xff);
         data[19] = (byte) ((0xff) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -229,6 +238,7 @@ public class AccelerationMemoryDataData2Test {
 
     @Test
     public void test006() {
+        //@formatter:off
         byte[] data = new byte[20];
         data[ 0] = (byte) ((AccelerationMemoryData2.DATA_ERROR_BIT) & 0xff);
         data[ 1] = (byte) ((AccelerationMemoryData2.DATA_ERROR_BIT >> 8) & 0xff);
@@ -250,6 +260,7 @@ public class AccelerationMemoryDataData2Test {
         data[17] = (byte) ((0x30) & 0xff);
         data[18] = (byte) ((0xff) & 0xff);
         data[19] = (byte) ((0xff) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);

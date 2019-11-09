@@ -12,17 +12,18 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
 
     @Test
     public void test_heatStroke001() {
+        //@formatter:off
         byte[] data1 = new byte[19];
-        data1[0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
-        data1[1] = (byte) 0x00; // Sequence number
-        data1[2] = (byte) 0x00; // Temperature flag
-        data1[3] = (byte) 0x00; // Temperature flag
-        data1[4] = (byte) 0x00; // Relative humidity flag
-        data1[5] = (byte) 0x00; // Relative humidity flag
-        data1[6] = (byte) 0x00; // Ambient light flag
-        data1[7] = (byte) 0x00; // Ambient light flag
-        data1[8] = (byte) 0x00; // Barometric pressure flag
-        data1[9] = (byte) 0x00; // Barometric pressure flag
+        data1[ 0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
+        data1[ 1] = (byte) 0x00; // Sequence number
+        data1[ 2] = (byte) 0x00; // Temperature flag
+        data1[ 3] = (byte) 0x00; // Temperature flag
+        data1[ 4] = (byte) 0x00; // Relative humidity flag
+        data1[ 5] = (byte) 0x00; // Relative humidity flag
+        data1[ 6] = (byte) 0x00; // Ambient light flag
+        data1[ 7] = (byte) 0x00; // Ambient light flag
+        data1[ 8] = (byte) 0x00; // Barometric pressure flag
+        data1[ 9] = (byte) 0x00; // Barometric pressure flag
         data1[10] = (byte) 0x00; // Sound noise flag
         data1[11] = (byte) 0x00; // Sound noise flag
         data1[12] = (byte) 0x00; // eTVOC flag
@@ -34,16 +35,16 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
         data1[18] = (byte) 0xFF; // Reserve for Future Use
 
         byte[] data2 = new byte[27];
-        data2[0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
-        data2[1] = (byte) 0x00; // Sequence number
-        data2[2] = (byte) 0x00; // Discomfort index flag
-        data2[3] = (byte) 0x00; // Discomfort index flag
-        data2[4] = (byte) ALL_EVENT_FLAG_SENSOR_LSB; // Heat stroke flag
-        data2[5] = (byte) ALL_EVENT_FLAG_SENSOR_MSB; // Heat stroke flag
-        data2[6] = (byte) 0x00; // SI value flag
-        data2[7] = (byte) 0x00; // PGA flag
-        data2[8] = (byte) 0x00; // Seismic intensity flag
-        data2[9] = (byte) 0xff; // Reserve for Future Use
+        data2[ 0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
+        data2[ 1] = (byte) 0x00; // Sequence number
+        data2[ 2] = (byte) 0x00; // Discomfort index flag
+        data2[ 3] = (byte) 0x00; // Discomfort index flag
+        data2[ 4] = (byte) ALL_EVENT_FLAG_SENSOR_LSB; // Heat stroke flag
+        data2[ 5] = (byte) ALL_EVENT_FLAG_SENSOR_MSB; // Heat stroke flag
+        data2[ 6] = (byte) 0x00; // SI value flag
+        data2[ 7] = (byte) 0x00; // PGA flag
+        data2[ 8] = (byte) 0x00; // Seismic intensity flag
+        data2[ 9] = (byte) 0xff; // Reserve for Future Use
         data2[10] = (byte) 0xff; // Reserve for Future Use
         data2[11] = (byte) 0xff; // Reserve for Future Use
         data2[12] = (byte) 0xff; // Reserve for Future Use
@@ -61,6 +62,7 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
         data2[24] = (byte) 0xff; // Reserve for Future Use
         data2[25] = (byte) 0xff; // Reserve for Future Use
         data2[26] = (byte) 0xff; // Reserve for Future Use
+        //@formatter:on
 
         SensorFlagAndCalculationFlag result = new SensorFlagAndCalculationFlag(data1, data2);
         assertEquals(DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG, result.getDataType());
@@ -248,17 +250,18 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
 
     @Test
     public void test_heatStroke002() {
+        //@formatter:off
         byte[] data1 = new byte[19];
-        data1[0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
-        data1[1] = (byte) 0x00; // Sequence number
-        data1[2] = (byte) 0x00; // Temperature flag
-        data1[3] = (byte) 0x00; // Temperature flag
-        data1[4] = (byte) 0x00; // Relative humidity flag
-        data1[5] = (byte) 0x00; // Relative humidity flag
-        data1[6] = (byte) 0x00; // Ambient light flag
-        data1[7] = (byte) 0x00; // Ambient light flag
-        data1[8] = (byte) 0x00; // Barometric pressure flag
-        data1[9] = (byte) 0x00; // Barometric pressure flag
+        data1[ 0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
+        data1[ 1] = (byte) 0x00; // Sequence number
+        data1[ 2] = (byte) 0x00; // Temperature flag
+        data1[ 3] = (byte) 0x00; // Temperature flag
+        data1[ 4] = (byte) 0x00; // Relative humidity flag
+        data1[ 5] = (byte) 0x00; // Relative humidity flag
+        data1[ 6] = (byte) 0x00; // Ambient light flag
+        data1[ 7] = (byte) 0x00; // Ambient light flag
+        data1[ 8] = (byte) 0x00; // Barometric pressure flag
+        data1[ 9] = (byte) 0x00; // Barometric pressure flag
         data1[10] = (byte) 0x00; // Sound noise flag
         data1[11] = (byte) 0x00; // Sound noise flag
         data1[12] = (byte) 0x00; // eTVOC flag
@@ -270,16 +273,16 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
         data1[18] = (byte) 0xFF; // Reserve for Future Use
 
         byte[] data2 = new byte[27];
-        data2[0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
-        data2[1] = (byte) 0x00; // Sequence number
-        data2[2] = (byte) 0x00; // Discomfort index flag
-        data2[3] = (byte) 0x00; // Discomfort index flag
-        data2[4] = (byte) (RbtConstants.EventFlagSensor.SIMPLE_THRESHOLD_UPPER_LIMIT_1 & 0xff); // Heat stroke flag
-        data2[5] = (byte) ((RbtConstants.EventFlagSensor.SIMPLE_THRESHOLD_UPPER_LIMIT_1 >> 8) & 0xff); // Heat stroke flag
-        data2[6] = (byte) 0x00; // SI value flag
-        data2[7] = (byte) 0x00; // PGA flag
-        data2[8] = (byte) 0x00; // Seismic intensity flag
-        data2[9] = (byte) 0xff; // Reserve for Future Use
+        data2[ 0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
+        data2[ 1] = (byte) 0x00; // Sequence number
+        data2[ 2] = (byte) 0x00; // Discomfort index flag
+        data2[ 3] = (byte) 0x00; // Discomfort index flag
+        data2[ 4] = (byte) (RbtConstants.EventFlagSensor.SIMPLE_THRESHOLD_UPPER_LIMIT_1 & 0xff); // Heat stroke flag
+        data2[ 5] = (byte) ((RbtConstants.EventFlagSensor.SIMPLE_THRESHOLD_UPPER_LIMIT_1 >> 8) & 0xff); // Heat stroke flag
+        data2[ 6] = (byte) 0x00; // SI value flag
+        data2[ 7] = (byte) 0x00; // PGA flag
+        data2[ 8] = (byte) 0x00; // Seismic intensity flag
+        data2[ 9] = (byte) 0xff; // Reserve for Future Use
         data2[10] = (byte) 0xff; // Reserve for Future Use
         data2[11] = (byte) 0xff; // Reserve for Future Use
         data2[12] = (byte) 0xff; // Reserve for Future Use
@@ -297,6 +300,7 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
         data2[24] = (byte) 0xff; // Reserve for Future Use
         data2[25] = (byte) 0xff; // Reserve for Future Use
         data2[26] = (byte) 0xff; // Reserve for Future Use
+        //@formatter:on
 
         SensorFlagAndCalculationFlag result = new SensorFlagAndCalculationFlag(data1, data2);
         assertEquals(DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG, result.getDataType());
@@ -484,17 +488,18 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
 
     @Test
     public void test_heatStroke003() {
+        //@formatter:off
         byte[] data1 = new byte[19];
-        data1[0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
-        data1[1] = (byte) 0x00; // Sequence number
-        data1[2] = (byte) 0x00; // Temperature flag
-        data1[3] = (byte) 0x00; // Temperature flag
-        data1[4] = (byte) 0x00; // Relative humidity flag
-        data1[5] = (byte) 0x00; // Relative humidity flag
-        data1[6] = (byte) 0x00; // Ambient light flag
-        data1[7] = (byte) 0x00; // Ambient light flag
-        data1[8] = (byte) 0x00; // Barometric pressure flag
-        data1[9] = (byte) 0x00; // Barometric pressure flag
+        data1[ 0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
+        data1[ 1] = (byte) 0x00; // Sequence number
+        data1[ 2] = (byte) 0x00; // Temperature flag
+        data1[ 3] = (byte) 0x00; // Temperature flag
+        data1[ 4] = (byte) 0x00; // Relative humidity flag
+        data1[ 5] = (byte) 0x00; // Relative humidity flag
+        data1[ 6] = (byte) 0x00; // Ambient light flag
+        data1[ 7] = (byte) 0x00; // Ambient light flag
+        data1[ 8] = (byte) 0x00; // Barometric pressure flag
+        data1[ 9] = (byte) 0x00; // Barometric pressure flag
         data1[10] = (byte) 0x00; // Sound noise flag
         data1[11] = (byte) 0x00; // Sound noise flag
         data1[12] = (byte) 0x00; // eTVOC flag
@@ -506,16 +511,16 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
         data1[18] = (byte) 0xFF; // Reserve for Future Use
 
         byte[] data2 = new byte[27];
-        data2[0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
-        data2[1] = (byte) 0x00; // Sequence number
-        data2[2] = (byte) 0x00; // Discomfort index flag
-        data2[3] = (byte) 0x00; // Discomfort index flag
-        data2[4] = (byte) (RbtConstants.EventFlagSensor.SIMPLE_THRESHOLD_UPPER_LIMIT_2 & 0xff); // Heat stroke flag
-        data2[5] = (byte) ((RbtConstants.EventFlagSensor.SIMPLE_THRESHOLD_UPPER_LIMIT_2 >> 8) & 0xff); // Heat stroke flag
-        data2[6] = (byte) 0x00; // SI value flag
-        data2[7] = (byte) 0x00; // PGA flag
-        data2[8] = (byte) 0x00; // Seismic intensity flag
-        data2[9] = (byte) 0xff; // Reserve for Future Use
+        data2[ 0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
+        data2[ 1] = (byte) 0x00; // Sequence number
+        data2[ 2] = (byte) 0x00; // Discomfort index flag
+        data2[ 3] = (byte) 0x00; // Discomfort index flag
+        data2[ 4] = (byte) (RbtConstants.EventFlagSensor.SIMPLE_THRESHOLD_UPPER_LIMIT_2 & 0xff); // Heat stroke flag
+        data2[ 5] = (byte) ((RbtConstants.EventFlagSensor.SIMPLE_THRESHOLD_UPPER_LIMIT_2 >> 8) & 0xff); // Heat stroke flag
+        data2[ 6] = (byte) 0x00; // SI value flag
+        data2[ 7] = (byte) 0x00; // PGA flag
+        data2[ 8] = (byte) 0x00; // Seismic intensity flag
+        data2[ 9] = (byte) 0xff; // Reserve for Future Use
         data2[10] = (byte) 0xff; // Reserve for Future Use
         data2[11] = (byte) 0xff; // Reserve for Future Use
         data2[12] = (byte) 0xff; // Reserve for Future Use
@@ -533,6 +538,7 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
         data2[24] = (byte) 0xff; // Reserve for Future Use
         data2[25] = (byte) 0xff; // Reserve for Future Use
         data2[26] = (byte) 0xff; // Reserve for Future Use
+        //@formatter:on
 
         SensorFlagAndCalculationFlag result = new SensorFlagAndCalculationFlag(data1, data2);
         assertEquals(DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG, result.getDataType());
@@ -720,17 +726,18 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
 
     @Test
     public void test_heatStroke004() {
+        //@formatter:off
         byte[] data1 = new byte[19];
-        data1[0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
-        data1[1] = (byte) 0x00; // Sequence number
-        data1[2] = (byte) 0x00; // Temperature flag
-        data1[3] = (byte) 0x00; // Temperature flag
-        data1[4] = (byte) 0x00; // Relative humidity flag
-        data1[5] = (byte) 0x00; // Relative humidity flag
-        data1[6] = (byte) 0x00; // Ambient light flag
-        data1[7] = (byte) 0x00; // Ambient light flag
-        data1[8] = (byte) 0x00; // Barometric pressure flag
-        data1[9] = (byte) 0x00; // Barometric pressure flag
+        data1[ 0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
+        data1[ 1] = (byte) 0x00; // Sequence number
+        data1[ 2] = (byte) 0x00; // Temperature flag
+        data1[ 3] = (byte) 0x00; // Temperature flag
+        data1[ 4] = (byte) 0x00; // Relative humidity flag
+        data1[ 5] = (byte) 0x00; // Relative humidity flag
+        data1[ 6] = (byte) 0x00; // Ambient light flag
+        data1[ 7] = (byte) 0x00; // Ambient light flag
+        data1[ 8] = (byte) 0x00; // Barometric pressure flag
+        data1[ 9] = (byte) 0x00; // Barometric pressure flag
         data1[10] = (byte) 0x00; // Sound noise flag
         data1[11] = (byte) 0x00; // Sound noise flag
         data1[12] = (byte) 0x00; // eTVOC flag
@@ -742,16 +749,16 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
         data1[18] = (byte) 0xFF; // Reserve for Future Use
 
         byte[] data2 = new byte[27];
-        data2[0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
-        data2[1] = (byte) 0x00; // Sequence number
-        data2[2] = (byte) 0x00; // Discomfort index flag
-        data2[3] = (byte) 0x00; // Discomfort index flag
-        data2[4] = (byte) (RbtConstants.EventFlagSensor.SIMPLE_THRESHOLD_LOWER_LIMIT_1 & 0xff); // Heat stroke flag
-        data2[5] = (byte) ((RbtConstants.EventFlagSensor.SIMPLE_THRESHOLD_LOWER_LIMIT_1 >> 8) & 0xff); // Heat stroke flag
-        data2[6] = (byte) 0x00; // SI value flag
-        data2[7] = (byte) 0x00; // PGA flag
-        data2[8] = (byte) 0x00; // Seismic intensity flag
-        data2[9] = (byte) 0xff; // Reserve for Future Use
+        data2[ 0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
+        data2[ 1] = (byte) 0x00; // Sequence number
+        data2[ 2] = (byte) 0x00; // Discomfort index flag
+        data2[ 3] = (byte) 0x00; // Discomfort index flag
+        data2[ 4] = (byte) (RbtConstants.EventFlagSensor.SIMPLE_THRESHOLD_LOWER_LIMIT_1 & 0xff); // Heat stroke flag
+        data2[ 5] = (byte) ((RbtConstants.EventFlagSensor.SIMPLE_THRESHOLD_LOWER_LIMIT_1 >> 8) & 0xff); // Heat stroke flag
+        data2[ 6] = (byte) 0x00; // SI value flag
+        data2[ 7] = (byte) 0x00; // PGA flag
+        data2[ 8] = (byte) 0x00; // Seismic intensity flag
+        data2[ 9] = (byte) 0xff; // Reserve for Future Use
         data2[10] = (byte) 0xff; // Reserve for Future Use
         data2[11] = (byte) 0xff; // Reserve for Future Use
         data2[12] = (byte) 0xff; // Reserve for Future Use
@@ -769,6 +776,7 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
         data2[24] = (byte) 0xff; // Reserve for Future Use
         data2[25] = (byte) 0xff; // Reserve for Future Use
         data2[26] = (byte) 0xff; // Reserve for Future Use
+        //@formatter:on
 
         SensorFlagAndCalculationFlag result = new SensorFlagAndCalculationFlag(data1, data2);
         assertEquals(DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG, result.getDataType());
@@ -956,17 +964,18 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
 
     @Test
     public void test_heatStroke005() {
+        //@formatter:off
         byte[] data1 = new byte[19];
-        data1[0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
-        data1[1] = (byte) 0x00; // Sequence number
-        data1[2] = (byte) 0x00; // Temperature flag
-        data1[3] = (byte) 0x00; // Temperature flag
-        data1[4] = (byte) 0x00; // Relative humidity flag
-        data1[5] = (byte) 0x00; // Relative humidity flag
-        data1[6] = (byte) 0x00; // Ambient light flag
-        data1[7] = (byte) 0x00; // Ambient light flag
-        data1[8] = (byte) 0x00; // Barometric pressure flag
-        data1[9] = (byte) 0x00; // Barometric pressure flag
+        data1[ 0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
+        data1[ 1] = (byte) 0x00; // Sequence number
+        data1[ 2] = (byte) 0x00; // Temperature flag
+        data1[ 3] = (byte) 0x00; // Temperature flag
+        data1[ 4] = (byte) 0x00; // Relative humidity flag
+        data1[ 5] = (byte) 0x00; // Relative humidity flag
+        data1[ 6] = (byte) 0x00; // Ambient light flag
+        data1[ 7] = (byte) 0x00; // Ambient light flag
+        data1[ 8] = (byte) 0x00; // Barometric pressure flag
+        data1[ 9] = (byte) 0x00; // Barometric pressure flag
         data1[10] = (byte) 0x00; // Sound noise flag
         data1[11] = (byte) 0x00; // Sound noise flag
         data1[12] = (byte) 0x00; // eTVOC flag
@@ -978,16 +987,16 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
         data1[18] = (byte) 0xFF; // Reserve for Future Use
 
         byte[] data2 = new byte[27];
-        data2[0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
-        data2[1] = (byte) 0x00; // Sequence number
-        data2[2] = (byte) 0x00; // Discomfort index flag
-        data2[3] = (byte) 0x00; // Discomfort index flag
-        data2[4] = (byte) (RbtConstants.EventFlagSensor.SIMPLE_THRESHOLD_LOWER_LIMIT_2 & 0xff); // Heat stroke flag
-        data2[5] = (byte) ((RbtConstants.EventFlagSensor.SIMPLE_THRESHOLD_LOWER_LIMIT_2 >> 8) & 0xff); // Heat stroke flag
-        data2[6] = (byte) 0x00; // SI value flag
-        data2[7] = (byte) 0x00; // PGA flag
-        data2[8] = (byte) 0x00; // Seismic intensity flag
-        data2[9] = (byte) 0xff; // Reserve for Future Use
+        data2[ 0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
+        data2[ 1] = (byte) 0x00; // Sequence number
+        data2[ 2] = (byte) 0x00; // Discomfort index flag
+        data2[ 3] = (byte) 0x00; // Discomfort index flag
+        data2[ 4] = (byte) (RbtConstants.EventFlagSensor.SIMPLE_THRESHOLD_LOWER_LIMIT_2 & 0xff); // Heat stroke flag
+        data2[ 5] = (byte) ((RbtConstants.EventFlagSensor.SIMPLE_THRESHOLD_LOWER_LIMIT_2 >> 8) & 0xff); // Heat stroke flag
+        data2[ 6] = (byte) 0x00; // SI value flag
+        data2[ 7] = (byte) 0x00; // PGA flag
+        data2[ 8] = (byte) 0x00; // Seismic intensity flag
+        data2[ 9] = (byte) 0xff; // Reserve for Future Use
         data2[10] = (byte) 0xff; // Reserve for Future Use
         data2[11] = (byte) 0xff; // Reserve for Future Use
         data2[12] = (byte) 0xff; // Reserve for Future Use
@@ -1005,6 +1014,7 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
         data2[24] = (byte) 0xff; // Reserve for Future Use
         data2[25] = (byte) 0xff; // Reserve for Future Use
         data2[26] = (byte) 0xff; // Reserve for Future Use
+        //@formatter:on
 
         SensorFlagAndCalculationFlag result = new SensorFlagAndCalculationFlag(data1, data2);
         assertEquals(DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG, result.getDataType());
@@ -1192,17 +1202,18 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
 
     @Test
     public void test_heatStroke006() {
+        //@formatter:off
         byte[] data1 = new byte[19];
-        data1[0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
-        data1[1] = (byte) 0x00; // Sequence number
-        data1[2] = (byte) 0x00; // Temperature flag
-        data1[3] = (byte) 0x00; // Temperature flag
-        data1[4] = (byte) 0x00; // Relative humidity flag
-        data1[5] = (byte) 0x00; // Relative humidity flag
-        data1[6] = (byte) 0x00; // Ambient light flag
-        data1[7] = (byte) 0x00; // Ambient light flag
-        data1[8] = (byte) 0x00; // Barometric pressure flag
-        data1[9] = (byte) 0x00; // Barometric pressure flag
+        data1[ 0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
+        data1[ 1] = (byte) 0x00; // Sequence number
+        data1[ 2] = (byte) 0x00; // Temperature flag
+        data1[ 3] = (byte) 0x00; // Temperature flag
+        data1[ 4] = (byte) 0x00; // Relative humidity flag
+        data1[ 5] = (byte) 0x00; // Relative humidity flag
+        data1[ 6] = (byte) 0x00; // Ambient light flag
+        data1[ 7] = (byte) 0x00; // Ambient light flag
+        data1[ 8] = (byte) 0x00; // Barometric pressure flag
+        data1[ 9] = (byte) 0x00; // Barometric pressure flag
         data1[10] = (byte) 0x00; // Sound noise flag
         data1[11] = (byte) 0x00; // Sound noise flag
         data1[12] = (byte) 0x00; // eTVOC flag
@@ -1214,16 +1225,16 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
         data1[18] = (byte) 0xFF; // Reserve for Future Use
 
         byte[] data2 = new byte[27];
-        data2[0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
-        data2[1] = (byte) 0x00; // Sequence number
-        data2[2] = (byte) 0x00; // Discomfort index flag
-        data2[3] = (byte) 0x00; // Discomfort index flag
-        data2[4] = (byte) (RbtConstants.EventFlagSensor.CHANGE_THRESHOLD_RISE_1 & 0xff); // Heat stroke flag
-        data2[5] = (byte) ((RbtConstants.EventFlagSensor.CHANGE_THRESHOLD_RISE_1 >> 8) & 0xff); // Heat stroke flag
-        data2[6] = (byte) 0x00; // SI value flag
-        data2[7] = (byte) 0x00; // PGA flag
-        data2[8] = (byte) 0x00; // Seismic intensity flag
-        data2[9] = (byte) 0xff; // Reserve for Future Use
+        data2[ 0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
+        data2[ 1] = (byte) 0x00; // Sequence number
+        data2[ 2] = (byte) 0x00; // Discomfort index flag
+        data2[ 3] = (byte) 0x00; // Discomfort index flag
+        data2[ 4] = (byte) (RbtConstants.EventFlagSensor.CHANGE_THRESHOLD_RISE_1 & 0xff); // Heat stroke flag
+        data2[ 5] = (byte) ((RbtConstants.EventFlagSensor.CHANGE_THRESHOLD_RISE_1 >> 8) & 0xff); // Heat stroke flag
+        data2[ 6] = (byte) 0x00; // SI value flag
+        data2[ 7] = (byte) 0x00; // PGA flag
+        data2[ 8] = (byte) 0x00; // Seismic intensity flag
+        data2[ 9] = (byte) 0xff; // Reserve for Future Use
         data2[10] = (byte) 0xff; // Reserve for Future Use
         data2[11] = (byte) 0xff; // Reserve for Future Use
         data2[12] = (byte) 0xff; // Reserve for Future Use
@@ -1241,6 +1252,7 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
         data2[24] = (byte) 0xff; // Reserve for Future Use
         data2[25] = (byte) 0xff; // Reserve for Future Use
         data2[26] = (byte) 0xff; // Reserve for Future Use
+        //@formatter:on
 
         SensorFlagAndCalculationFlag result = new SensorFlagAndCalculationFlag(data1, data2);
         assertEquals(DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG, result.getDataType());
@@ -1428,17 +1440,18 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
 
     @Test
     public void test_heatStroke007() {
+        //@formatter:off
         byte[] data1 = new byte[19];
-        data1[0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
-        data1[1] = (byte) 0x00; // Sequence number
-        data1[2] = (byte) 0x00; // Temperature flag
-        data1[3] = (byte) 0x00; // Temperature flag
-        data1[4] = (byte) 0x00; // Relative humidity flag
-        data1[5] = (byte) 0x00; // Relative humidity flag
-        data1[6] = (byte) 0x00; // Ambient light flag
-        data1[7] = (byte) 0x00; // Ambient light flag
-        data1[8] = (byte) 0x00; // Barometric pressure flag
-        data1[9] = (byte) 0x00; // Barometric pressure flag
+        data1[ 0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
+        data1[ 1] = (byte) 0x00; // Sequence number
+        data1[ 2] = (byte) 0x00; // Temperature flag
+        data1[ 3] = (byte) 0x00; // Temperature flag
+        data1[ 4] = (byte) 0x00; // Relative humidity flag
+        data1[ 5] = (byte) 0x00; // Relative humidity flag
+        data1[ 6] = (byte) 0x00; // Ambient light flag
+        data1[ 7] = (byte) 0x00; // Ambient light flag
+        data1[ 8] = (byte) 0x00; // Barometric pressure flag
+        data1[ 9] = (byte) 0x00; // Barometric pressure flag
         data1[10] = (byte) 0x00; // Sound noise flag
         data1[11] = (byte) 0x00; // Sound noise flag
         data1[12] = (byte) 0x00; // eTVOC flag
@@ -1450,16 +1463,16 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
         data1[18] = (byte) 0xFF; // Reserve for Future Use
 
         byte[] data2 = new byte[27];
-        data2[0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
-        data2[1] = (byte) 0x00; // Sequence number
-        data2[2] = (byte) 0x00; // Discomfort index flag
-        data2[3] = (byte) 0x00; // Discomfort index flag
-        data2[4] = (byte) (RbtConstants.EventFlagSensor.CHANGE_THRESHOLD_RISE_2 & 0xff); // Heat stroke flag
-        data2[5] = (byte) ((RbtConstants.EventFlagSensor.CHANGE_THRESHOLD_RISE_2 >> 8) & 0xff); // Heat stroke flag
-        data2[6] = (byte) 0x00; // SI value flag
-        data2[7] = (byte) 0x00; // PGA flag
-        data2[8] = (byte) 0x00; // Seismic intensity flag
-        data2[9] = (byte) 0xff; // Reserve for Future Use
+        data2[ 0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
+        data2[ 1] = (byte) 0x00; // Sequence number
+        data2[ 2] = (byte) 0x00; // Discomfort index flag
+        data2[ 3] = (byte) 0x00; // Discomfort index flag
+        data2[ 4] = (byte) (RbtConstants.EventFlagSensor.CHANGE_THRESHOLD_RISE_2 & 0xff); // Heat stroke flag
+        data2[ 5] = (byte) ((RbtConstants.EventFlagSensor.CHANGE_THRESHOLD_RISE_2 >> 8) & 0xff); // Heat stroke flag
+        data2[ 6] = (byte) 0x00; // SI value flag
+        data2[ 7] = (byte) 0x00; // PGA flag
+        data2[ 8] = (byte) 0x00; // Seismic intensity flag
+        data2[ 9] = (byte) 0xff; // Reserve for Future Use
         data2[10] = (byte) 0xff; // Reserve for Future Use
         data2[11] = (byte) 0xff; // Reserve for Future Use
         data2[12] = (byte) 0xff; // Reserve for Future Use
@@ -1477,6 +1490,7 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
         data2[24] = (byte) 0xff; // Reserve for Future Use
         data2[25] = (byte) 0xff; // Reserve for Future Use
         data2[26] = (byte) 0xff; // Reserve for Future Use
+        //@formatter:on
 
         SensorFlagAndCalculationFlag result = new SensorFlagAndCalculationFlag(data1, data2);
         assertEquals(DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG, result.getDataType());
@@ -1664,17 +1678,18 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
 
     @Test
     public void test_heatStroke008() {
+        //@formatter:off
         byte[] data1 = new byte[19];
-        data1[0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
-        data1[1] = (byte) 0x00; // Sequence number
-        data1[2] = (byte) 0x00; // Temperature flag
-        data1[3] = (byte) 0x00; // Temperature flag
-        data1[4] = (byte) 0x00; // Relative humidity flag
-        data1[5] = (byte) 0x00; // Relative humidity flag
-        data1[6] = (byte) 0x00; // Ambient light flag
-        data1[7] = (byte) 0x00; // Ambient light flag
-        data1[8] = (byte) 0x00; // Barometric pressure flag
-        data1[9] = (byte) 0x00; // Barometric pressure flag
+        data1[ 0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
+        data1[ 1] = (byte) 0x00; // Sequence number
+        data1[ 2] = (byte) 0x00; // Temperature flag
+        data1[ 3] = (byte) 0x00; // Temperature flag
+        data1[ 4] = (byte) 0x00; // Relative humidity flag
+        data1[ 5] = (byte) 0x00; // Relative humidity flag
+        data1[ 6] = (byte) 0x00; // Ambient light flag
+        data1[ 7] = (byte) 0x00; // Ambient light flag
+        data1[ 8] = (byte) 0x00; // Barometric pressure flag
+        data1[ 9] = (byte) 0x00; // Barometric pressure flag
         data1[10] = (byte) 0x00; // Sound noise flag
         data1[11] = (byte) 0x00; // Sound noise flag
         data1[12] = (byte) 0x00; // eTVOC flag
@@ -1686,16 +1701,16 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
         data1[18] = (byte) 0xFF; // Reserve for Future Use
 
         byte[] data2 = new byte[27];
-        data2[0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
-        data2[1] = (byte) 0x00; // Sequence number
-        data2[2] = (byte) 0x00; // Discomfort index flag
-        data2[3] = (byte) 0x00; // Discomfort index flag
-        data2[4] = (byte) (RbtConstants.EventFlagSensor.CHANGE_THRESHOLD_DECLINE_1 & 0xff); // Heat stroke flag
-        data2[5] = (byte) ((RbtConstants.EventFlagSensor.CHANGE_THRESHOLD_DECLINE_1 >> 8) & 0xff); // Heat stroke flag
-        data2[6] = (byte) 0x00; // SI value flag
-        data2[7] = (byte) 0x00; // PGA flag
-        data2[8] = (byte) 0x00; // Seismic intensity flag
-        data2[9] = (byte) 0xff; // Reserve for Future Use
+        data2[ 0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
+        data2[ 1] = (byte) 0x00; // Sequence number
+        data2[ 2] = (byte) 0x00; // Discomfort index flag
+        data2[ 3] = (byte) 0x00; // Discomfort index flag
+        data2[ 4] = (byte) (RbtConstants.EventFlagSensor.CHANGE_THRESHOLD_DECLINE_1 & 0xff); // Heat stroke flag
+        data2[ 5] = (byte) ((RbtConstants.EventFlagSensor.CHANGE_THRESHOLD_DECLINE_1 >> 8) & 0xff); // Heat stroke flag
+        data2[ 6] = (byte) 0x00; // SI value flag
+        data2[ 7] = (byte) 0x00; // PGA flag
+        data2[ 8] = (byte) 0x00; // Seismic intensity flag
+        data2[ 9] = (byte) 0xff; // Reserve for Future Use
         data2[10] = (byte) 0xff; // Reserve for Future Use
         data2[11] = (byte) 0xff; // Reserve for Future Use
         data2[12] = (byte) 0xff; // Reserve for Future Use
@@ -1713,6 +1728,7 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
         data2[24] = (byte) 0xff; // Reserve for Future Use
         data2[25] = (byte) 0xff; // Reserve for Future Use
         data2[26] = (byte) 0xff; // Reserve for Future Use
+        //@formatter:on
 
         SensorFlagAndCalculationFlag result = new SensorFlagAndCalculationFlag(data1, data2);
         assertEquals(DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG, result.getDataType());
@@ -1900,17 +1916,18 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
 
     @Test
     public void test_heatStroke009() {
+        //@formatter:off
         byte[] data1 = new byte[19];
-        data1[0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
-        data1[1] = (byte) 0x00; // Sequence number
-        data1[2] = (byte) 0x00; // Temperature flag
-        data1[3] = (byte) 0x00; // Temperature flag
-        data1[4] = (byte) 0x00; // Relative humidity flag
-        data1[5] = (byte) 0x00; // Relative humidity flag
-        data1[6] = (byte) 0x00; // Ambient light flag
-        data1[7] = (byte) 0x00; // Ambient light flag
-        data1[8] = (byte) 0x00; // Barometric pressure flag
-        data1[9] = (byte) 0x00; // Barometric pressure flag
+        data1[ 0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
+        data1[ 1] = (byte) 0x00; // Sequence number
+        data1[ 2] = (byte) 0x00; // Temperature flag
+        data1[ 3] = (byte) 0x00; // Temperature flag
+        data1[ 4] = (byte) 0x00; // Relative humidity flag
+        data1[ 5] = (byte) 0x00; // Relative humidity flag
+        data1[ 6] = (byte) 0x00; // Ambient light flag
+        data1[ 7] = (byte) 0x00; // Ambient light flag
+        data1[ 8] = (byte) 0x00; // Barometric pressure flag
+        data1[ 9] = (byte) 0x00; // Barometric pressure flag
         data1[10] = (byte) 0x00; // Sound noise flag
         data1[11] = (byte) 0x00; // Sound noise flag
         data1[12] = (byte) 0x00; // eTVOC flag
@@ -1922,16 +1939,16 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
         data1[18] = (byte) 0xFF; // Reserve for Future Use
 
         byte[] data2 = new byte[27];
-        data2[0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
-        data2[1] = (byte) 0x00; // Sequence number
-        data2[2] = (byte) 0x00; // Discomfort index flag
-        data2[3] = (byte) 0x00; // Discomfort index flag
-        data2[4] = (byte) (RbtConstants.EventFlagSensor.CHANGE_THRESHOLD_DECLINE_2 & 0xff); // Heat stroke flag
-        data2[5] = (byte) ((RbtConstants.EventFlagSensor.CHANGE_THRESHOLD_DECLINE_2 >> 8) & 0xff); // Heat stroke flag
-        data2[6] = (byte) 0x00; // SI value flag
-        data2[7] = (byte) 0x00; // PGA flag
-        data2[8] = (byte) 0x00; // Seismic intensity flag
-        data2[9] = (byte) 0xff; // Reserve for Future Use
+        data2[ 0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
+        data2[ 1] = (byte) 0x00; // Sequence number
+        data2[ 2] = (byte) 0x00; // Discomfort index flag
+        data2[ 3] = (byte) 0x00; // Discomfort index flag
+        data2[ 4] = (byte) (RbtConstants.EventFlagSensor.CHANGE_THRESHOLD_DECLINE_2 & 0xff); // Heat stroke flag
+        data2[ 5] = (byte) ((RbtConstants.EventFlagSensor.CHANGE_THRESHOLD_DECLINE_2 >> 8) & 0xff); // Heat stroke flag
+        data2[ 6] = (byte) 0x00; // SI value flag
+        data2[ 7] = (byte) 0x00; // PGA flag
+        data2[ 8] = (byte) 0x00; // Seismic intensity flag
+        data2[ 9] = (byte) 0xff; // Reserve for Future Use
         data2[10] = (byte) 0xff; // Reserve for Future Use
         data2[11] = (byte) 0xff; // Reserve for Future Use
         data2[12] = (byte) 0xff; // Reserve for Future Use
@@ -1949,6 +1966,7 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
         data2[24] = (byte) 0xff; // Reserve for Future Use
         data2[25] = (byte) 0xff; // Reserve for Future Use
         data2[26] = (byte) 0xff; // Reserve for Future Use
+        //@formatter:on
 
         SensorFlagAndCalculationFlag result = new SensorFlagAndCalculationFlag(data1, data2);
         assertEquals(DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG, result.getDataType());
@@ -2136,17 +2154,18 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
 
     @Test
     public void test_heatStroke010() {
+        //@formatter:off
         byte[] data1 = new byte[19];
-        data1[0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
-        data1[1] = (byte) 0x00; // Sequence number
-        data1[2] = (byte) 0x00; // Temperature flag
-        data1[3] = (byte) 0x00; // Temperature flag
-        data1[4] = (byte) 0x00; // Relative humidity flag
-        data1[5] = (byte) 0x00; // Relative humidity flag
-        data1[6] = (byte) 0x00; // Ambient light flag
-        data1[7] = (byte) 0x00; // Ambient light flag
-        data1[8] = (byte) 0x00; // Barometric pressure flag
-        data1[9] = (byte) 0x00; // Barometric pressure flag
+        data1[ 0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
+        data1[ 1] = (byte) 0x00; // Sequence number
+        data1[ 2] = (byte) 0x00; // Temperature flag
+        data1[ 3] = (byte) 0x00; // Temperature flag
+        data1[ 4] = (byte) 0x00; // Relative humidity flag
+        data1[ 5] = (byte) 0x00; // Relative humidity flag
+        data1[ 6] = (byte) 0x00; // Ambient light flag
+        data1[ 7] = (byte) 0x00; // Ambient light flag
+        data1[ 8] = (byte) 0x00; // Barometric pressure flag
+        data1[ 9] = (byte) 0x00; // Barometric pressure flag
         data1[10] = (byte) 0x00; // Sound noise flag
         data1[11] = (byte) 0x00; // Sound noise flag
         data1[12] = (byte) 0x00; // eTVOC flag
@@ -2158,16 +2177,16 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
         data1[18] = (byte) 0xFF; // Reserve for Future Use
 
         byte[] data2 = new byte[27];
-        data2[0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
-        data2[1] = (byte) 0x00; // Sequence number
-        data2[2] = (byte) 0x00; // Discomfort index flag
-        data2[3] = (byte) 0x00; // Discomfort index flag
-        data2[4] = (byte) (RbtConstants.EventFlagSensor.AVERAGE_VALUE_THRESHOLD_UPPER & 0xff); // Heat stroke flag
-        data2[5] = (byte) ((RbtConstants.EventFlagSensor.AVERAGE_VALUE_THRESHOLD_UPPER >> 8) & 0xff); // Heat stroke flag
-        data2[6] = (byte) 0x00; // SI value flag
-        data2[7] = (byte) 0x00; // PGA flag
-        data2[8] = (byte) 0x00; // Seismic intensity flag
-        data2[9] = (byte) 0xff; // Reserve for Future Use
+        data2[ 0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
+        data2[ 1] = (byte) 0x00; // Sequence number
+        data2[ 2] = (byte) 0x00; // Discomfort index flag
+        data2[ 3] = (byte) 0x00; // Discomfort index flag
+        data2[ 4] = (byte) (RbtConstants.EventFlagSensor.AVERAGE_VALUE_THRESHOLD_UPPER & 0xff); // Heat stroke flag
+        data2[ 5] = (byte) ((RbtConstants.EventFlagSensor.AVERAGE_VALUE_THRESHOLD_UPPER >> 8) & 0xff); // Heat stroke flag
+        data2[ 6] = (byte) 0x00; // SI value flag
+        data2[ 7] = (byte) 0x00; // PGA flag
+        data2[ 8] = (byte) 0x00; // Seismic intensity flag
+        data2[ 9] = (byte) 0xff; // Reserve for Future Use
         data2[10] = (byte) 0xff; // Reserve for Future Use
         data2[11] = (byte) 0xff; // Reserve for Future Use
         data2[12] = (byte) 0xff; // Reserve for Future Use
@@ -2185,6 +2204,7 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
         data2[24] = (byte) 0xff; // Reserve for Future Use
         data2[25] = (byte) 0xff; // Reserve for Future Use
         data2[26] = (byte) 0xff; // Reserve for Future Use
+        //@formatter:on
 
         SensorFlagAndCalculationFlag result = new SensorFlagAndCalculationFlag(data1, data2);
         assertEquals(DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG, result.getDataType());
@@ -2372,17 +2392,18 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
 
     @Test
     public void test_heatStroke011() {
+        //@formatter:off
         byte[] data1 = new byte[19];
-        data1[0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
-        data1[1] = (byte) 0x00; // Sequence number
-        data1[2] = (byte) 0x00; // Temperature flag
-        data1[3] = (byte) 0x00; // Temperature flag
-        data1[4] = (byte) 0x00; // Relative humidity flag
-        data1[5] = (byte) 0x00; // Relative humidity flag
-        data1[6] = (byte) 0x00; // Ambient light flag
-        data1[7] = (byte) 0x00; // Ambient light flag
-        data1[8] = (byte) 0x00; // Barometric pressure flag
-        data1[9] = (byte) 0x00; // Barometric pressure flag
+        data1[ 0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
+        data1[ 1] = (byte) 0x00; // Sequence number
+        data1[ 2] = (byte) 0x00; // Temperature flag
+        data1[ 3] = (byte) 0x00; // Temperature flag
+        data1[ 4] = (byte) 0x00; // Relative humidity flag
+        data1[ 5] = (byte) 0x00; // Relative humidity flag
+        data1[ 6] = (byte) 0x00; // Ambient light flag
+        data1[ 7] = (byte) 0x00; // Ambient light flag
+        data1[ 8] = (byte) 0x00; // Barometric pressure flag
+        data1[ 9] = (byte) 0x00; // Barometric pressure flag
         data1[10] = (byte) 0x00; // Sound noise flag
         data1[11] = (byte) 0x00; // Sound noise flag
         data1[12] = (byte) 0x00; // eTVOC flag
@@ -2394,16 +2415,16 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
         data1[18] = (byte) 0xFF; // Reserve for Future Use
 
         byte[] data2 = new byte[27];
-        data2[0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
-        data2[1] = (byte) 0x00; // Sequence number
-        data2[2] = (byte) 0x00; // Discomfort index flag
-        data2[3] = (byte) 0x00; // Discomfort index flag
-        data2[4] = (byte) (RbtConstants.EventFlagSensor.AVERAGE_VALUE_THRESHOLD_LOWER & 0xff); // Heat stroke flag
-        data2[5] = (byte) ((RbtConstants.EventFlagSensor.AVERAGE_VALUE_THRESHOLD_LOWER >> 8) & 0xff); // Heat stroke flag
-        data2[6] = (byte) 0x00; // SI value flag
-        data2[7] = (byte) 0x00; // PGA flag
-        data2[8] = (byte) 0x00; // Seismic intensity flag
-        data2[9] = (byte) 0xff; // Reserve for Future Use
+        data2[ 0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
+        data2[ 1] = (byte) 0x00; // Sequence number
+        data2[ 2] = (byte) 0x00; // Discomfort index flag
+        data2[ 3] = (byte) 0x00; // Discomfort index flag
+        data2[ 4] = (byte) (RbtConstants.EventFlagSensor.AVERAGE_VALUE_THRESHOLD_LOWER & 0xff); // Heat stroke flag
+        data2[ 5] = (byte) ((RbtConstants.EventFlagSensor.AVERAGE_VALUE_THRESHOLD_LOWER >> 8) & 0xff); // Heat stroke flag
+        data2[ 6] = (byte) 0x00; // SI value flag
+        data2[ 7] = (byte) 0x00; // PGA flag
+        data2[ 8] = (byte) 0x00; // Seismic intensity flag
+        data2[ 9] = (byte) 0xff; // Reserve for Future Use
         data2[10] = (byte) 0xff; // Reserve for Future Use
         data2[11] = (byte) 0xff; // Reserve for Future Use
         data2[12] = (byte) 0xff; // Reserve for Future Use
@@ -2421,6 +2442,7 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
         data2[24] = (byte) 0xff; // Reserve for Future Use
         data2[25] = (byte) 0xff; // Reserve for Future Use
         data2[26] = (byte) 0xff; // Reserve for Future Use
+        //@formatter:on
 
         SensorFlagAndCalculationFlag result = new SensorFlagAndCalculationFlag(data1, data2);
         assertEquals(DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG, result.getDataType());
@@ -2608,17 +2630,18 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
 
     @Test
     public void test_heatStroke012() {
+        //@formatter:off
         byte[] data1 = new byte[19];
-        data1[0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
-        data1[1] = (byte) 0x00; // Sequence number
-        data1[2] = (byte) 0x00; // Temperature flag
-        data1[3] = (byte) 0x00; // Temperature flag
-        data1[4] = (byte) 0x00; // Relative humidity flag
-        data1[5] = (byte) 0x00; // Relative humidity flag
-        data1[6] = (byte) 0x00; // Ambient light flag
-        data1[7] = (byte) 0x00; // Ambient light flag
-        data1[8] = (byte) 0x00; // Barometric pressure flag
-        data1[9] = (byte) 0x00; // Barometric pressure flag
+        data1[ 0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
+        data1[ 1] = (byte) 0x00; // Sequence number
+        data1[ 2] = (byte) 0x00; // Temperature flag
+        data1[ 3] = (byte) 0x00; // Temperature flag
+        data1[ 4] = (byte) 0x00; // Relative humidity flag
+        data1[ 5] = (byte) 0x00; // Relative humidity flag
+        data1[ 6] = (byte) 0x00; // Ambient light flag
+        data1[ 7] = (byte) 0x00; // Ambient light flag
+        data1[ 8] = (byte) 0x00; // Barometric pressure flag
+        data1[ 9] = (byte) 0x00; // Barometric pressure flag
         data1[10] = (byte) 0x00; // Sound noise flag
         data1[11] = (byte) 0x00; // Sound noise flag
         data1[12] = (byte) 0x00; // eTVOC flag
@@ -2630,16 +2653,16 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
         data1[18] = (byte) 0xFF; // Reserve for Future Use
 
         byte[] data2 = new byte[27];
-        data2[0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
-        data2[1] = (byte) 0x00; // Sequence number
-        data2[2] = (byte) 0x00; // Discomfort index flag
-        data2[3] = (byte) 0x00; // Discomfort index flag
-        data2[4] = (byte) (RbtConstants.EventFlagSensor.PEAK_TO_PEAK_THRESHOLD_UPPER & 0xff); // Heat stroke flag
-        data2[5] = (byte) ((RbtConstants.EventFlagSensor.PEAK_TO_PEAK_THRESHOLD_UPPER >> 8) & 0xff); // Heat stroke flag
-        data2[6] = (byte) 0x00; // SI value flag
-        data2[7] = (byte) 0x00; // PGA flag
-        data2[8] = (byte) 0x00; // Seismic intensity flag
-        data2[9] = (byte) 0xff; // Reserve for Future Use
+        data2[ 0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
+        data2[ 1] = (byte) 0x00; // Sequence number
+        data2[ 2] = (byte) 0x00; // Discomfort index flag
+        data2[ 3] = (byte) 0x00; // Discomfort index flag
+        data2[ 4] = (byte) (RbtConstants.EventFlagSensor.PEAK_TO_PEAK_THRESHOLD_UPPER & 0xff); // Heat stroke flag
+        data2[ 5] = (byte) ((RbtConstants.EventFlagSensor.PEAK_TO_PEAK_THRESHOLD_UPPER >> 8) & 0xff); // Heat stroke flag
+        data2[ 6] = (byte) 0x00; // SI value flag
+        data2[ 7] = (byte) 0x00; // PGA flag
+        data2[ 8] = (byte) 0x00; // Seismic intensity flag
+        data2[ 9] = (byte) 0xff; // Reserve for Future Use
         data2[10] = (byte) 0xff; // Reserve for Future Use
         data2[11] = (byte) 0xff; // Reserve for Future Use
         data2[12] = (byte) 0xff; // Reserve for Future Use
@@ -2657,6 +2680,7 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
         data2[24] = (byte) 0xff; // Reserve for Future Use
         data2[25] = (byte) 0xff; // Reserve for Future Use
         data2[26] = (byte) 0xff; // Reserve for Future Use
+        //@formatter:on
 
         SensorFlagAndCalculationFlag result = new SensorFlagAndCalculationFlag(data1, data2);
         assertEquals(DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG, result.getDataType());
@@ -2844,17 +2868,18 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
 
     @Test
     public void test_heatStroke013() {
+        //@formatter:off
         byte[] data1 = new byte[19];
-        data1[0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
-        data1[1] = (byte) 0x00; // Sequence number
-        data1[2] = (byte) 0x00; // Temperature flag
-        data1[3] = (byte) 0x00; // Temperature flag
-        data1[4] = (byte) 0x00; // Relative humidity flag
-        data1[5] = (byte) 0x00; // Relative humidity flag
-        data1[6] = (byte) 0x00; // Ambient light flag
-        data1[7] = (byte) 0x00; // Ambient light flag
-        data1[8] = (byte) 0x00; // Barometric pressure flag
-        data1[9] = (byte) 0x00; // Barometric pressure flag
+        data1[ 0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
+        data1[ 1] = (byte) 0x00; // Sequence number
+        data1[ 2] = (byte) 0x00; // Temperature flag
+        data1[ 3] = (byte) 0x00; // Temperature flag
+        data1[ 4] = (byte) 0x00; // Relative humidity flag
+        data1[ 5] = (byte) 0x00; // Relative humidity flag
+        data1[ 6] = (byte) 0x00; // Ambient light flag
+        data1[ 7] = (byte) 0x00; // Ambient light flag
+        data1[ 8] = (byte) 0x00; // Barometric pressure flag
+        data1[ 9] = (byte) 0x00; // Barometric pressure flag
         data1[10] = (byte) 0x00; // Sound noise flag
         data1[11] = (byte) 0x00; // Sound noise flag
         data1[12] = (byte) 0x00; // eTVOC flag
@@ -2866,16 +2891,16 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
         data1[18] = (byte) 0xFF; // Reserve for Future Use
 
         byte[] data2 = new byte[27];
-        data2[0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
-        data2[1] = (byte) 0x00; // Sequence number
-        data2[2] = (byte) 0x00; // Discomfort index flag
-        data2[3] = (byte) 0x00; // Discomfort index flag
-        data2[4] = (byte) (RbtConstants.EventFlagSensor.PEAK_TO_PEAK_THRESHOLD_LOWER & 0xff); // Heat stroke flag
-        data2[5] = (byte) ((RbtConstants.EventFlagSensor.PEAK_TO_PEAK_THRESHOLD_LOWER >> 8) & 0xff); // Heat stroke flag
-        data2[6] = (byte) 0x00; // SI value flag
-        data2[7] = (byte) 0x00; // PGA flag
-        data2[8] = (byte) 0x00; // Seismic intensity flag
-        data2[9] = (byte) 0xff; // Reserve for Future Use
+        data2[ 0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
+        data2[ 1] = (byte) 0x00; // Sequence number
+        data2[ 2] = (byte) 0x00; // Discomfort index flag
+        data2[ 3] = (byte) 0x00; // Discomfort index flag
+        data2[ 4] = (byte) (RbtConstants.EventFlagSensor.PEAK_TO_PEAK_THRESHOLD_LOWER & 0xff); // Heat stroke flag
+        data2[ 5] = (byte) ((RbtConstants.EventFlagSensor.PEAK_TO_PEAK_THRESHOLD_LOWER >> 8) & 0xff); // Heat stroke flag
+        data2[ 6] = (byte) 0x00; // SI value flag
+        data2[ 7] = (byte) 0x00; // PGA flag
+        data2[ 8] = (byte) 0x00; // Seismic intensity flag
+        data2[ 9] = (byte) 0xff; // Reserve for Future Use
         data2[10] = (byte) 0xff; // Reserve for Future Use
         data2[11] = (byte) 0xff; // Reserve for Future Use
         data2[12] = (byte) 0xff; // Reserve for Future Use
@@ -2893,6 +2918,7 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
         data2[24] = (byte) 0xff; // Reserve for Future Use
         data2[25] = (byte) 0xff; // Reserve for Future Use
         data2[26] = (byte) 0xff; // Reserve for Future Use
+        //@formatter:on
 
         SensorFlagAndCalculationFlag result = new SensorFlagAndCalculationFlag(data1, data2);
         assertEquals(DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG, result.getDataType());
@@ -3080,17 +3106,18 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
 
     @Test
     public void test_heatStroke014() {
+        //@formatter:off
         byte[] data1 = new byte[19];
-        data1[0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
-        data1[1] = (byte) 0x00; // Sequence number
-        data1[2] = (byte) 0x00; // Temperature flag
-        data1[3] = (byte) 0x00; // Temperature flag
-        data1[4] = (byte) 0x00; // Relative humidity flag
-        data1[5] = (byte) 0x00; // Relative humidity flag
-        data1[6] = (byte) 0x00; // Ambient light flag
-        data1[7] = (byte) 0x00; // Ambient light flag
-        data1[8] = (byte) 0x00; // Barometric pressure flag
-        data1[9] = (byte) 0x00; // Barometric pressure flag
+        data1[ 0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
+        data1[ 1] = (byte) 0x00; // Sequence number
+        data1[ 2] = (byte) 0x00; // Temperature flag
+        data1[ 3] = (byte) 0x00; // Temperature flag
+        data1[ 4] = (byte) 0x00; // Relative humidity flag
+        data1[ 5] = (byte) 0x00; // Relative humidity flag
+        data1[ 6] = (byte) 0x00; // Ambient light flag
+        data1[ 7] = (byte) 0x00; // Ambient light flag
+        data1[ 8] = (byte) 0x00; // Barometric pressure flag
+        data1[ 9] = (byte) 0x00; // Barometric pressure flag
         data1[10] = (byte) 0x00; // Sound noise flag
         data1[11] = (byte) 0x00; // Sound noise flag
         data1[12] = (byte) 0x00; // eTVOC flag
@@ -3102,16 +3129,16 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
         data1[18] = (byte) 0xFF; // Reserve for Future Use
 
         byte[] data2 = new byte[27];
-        data2[0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
-        data2[1] = (byte) 0x00; // Sequence number
-        data2[2] = (byte) 0x00; // Discomfort index flag
-        data2[3] = (byte) 0x00; // Discomfort index flag
-        data2[4] = (byte) (RbtConstants.EventFlagSensor.INTERVAL_DIFFERENCE_THRESHOLD_RISE & 0xff); // Heat stroke flag
-        data2[5] = (byte) ((RbtConstants.EventFlagSensor.INTERVAL_DIFFERENCE_THRESHOLD_RISE >> 8) & 0xff); // Heat stroke flag
-        data2[6] = (byte) 0x00; // SI value flag
-        data2[7] = (byte) 0x00; // PGA flag
-        data2[8] = (byte) 0x00; // Seismic intensity flag
-        data2[9] = (byte) 0xff; // Reserve for Future Use
+        data2[ 0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
+        data2[ 1] = (byte) 0x00; // Sequence number
+        data2[ 2] = (byte) 0x00; // Discomfort index flag
+        data2[ 3] = (byte) 0x00; // Discomfort index flag
+        data2[ 4] = (byte) (RbtConstants.EventFlagSensor.INTERVAL_DIFFERENCE_THRESHOLD_RISE & 0xff); // Heat stroke flag
+        data2[ 5] = (byte) ((RbtConstants.EventFlagSensor.INTERVAL_DIFFERENCE_THRESHOLD_RISE >> 8) & 0xff); // Heat stroke flag
+        data2[ 6] = (byte) 0x00; // SI value flag
+        data2[ 7] = (byte) 0x00; // PGA flag
+        data2[ 8] = (byte) 0x00; // Seismic intensity flag
+        data2[ 9] = (byte) 0xff; // Reserve for Future Use
         data2[10] = (byte) 0xff; // Reserve for Future Use
         data2[11] = (byte) 0xff; // Reserve for Future Use
         data2[12] = (byte) 0xff; // Reserve for Future Use
@@ -3129,6 +3156,7 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
         data2[24] = (byte) 0xff; // Reserve for Future Use
         data2[25] = (byte) 0xff; // Reserve for Future Use
         data2[26] = (byte) 0xff; // Reserve for Future Use
+        //@formatter:on
 
         SensorFlagAndCalculationFlag result = new SensorFlagAndCalculationFlag(data1, data2);
         assertEquals(DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG, result.getDataType());
@@ -3316,17 +3344,18 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
 
     @Test
     public void test_heatStroke015() {
+        //@formatter:off
         byte[] data1 = new byte[19];
-        data1[0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
-        data1[1] = (byte) 0x00; // Sequence number
-        data1[2] = (byte) 0x00; // Temperature flag
-        data1[3] = (byte) 0x00; // Temperature flag
-        data1[4] = (byte) 0x00; // Relative humidity flag
-        data1[5] = (byte) 0x00; // Relative humidity flag
-        data1[6] = (byte) 0x00; // Ambient light flag
-        data1[7] = (byte) 0x00; // Ambient light flag
-        data1[8] = (byte) 0x00; // Barometric pressure flag
-        data1[9] = (byte) 0x00; // Barometric pressure flag
+        data1[ 0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
+        data1[ 1] = (byte) 0x00; // Sequence number
+        data1[ 2] = (byte) 0x00; // Temperature flag
+        data1[ 3] = (byte) 0x00; // Temperature flag
+        data1[ 4] = (byte) 0x00; // Relative humidity flag
+        data1[ 5] = (byte) 0x00; // Relative humidity flag
+        data1[ 6] = (byte) 0x00; // Ambient light flag
+        data1[ 7] = (byte) 0x00; // Ambient light flag
+        data1[ 8] = (byte) 0x00; // Barometric pressure flag
+        data1[ 9] = (byte) 0x00; // Barometric pressure flag
         data1[10] = (byte) 0x00; // Sound noise flag
         data1[11] = (byte) 0x00; // Sound noise flag
         data1[12] = (byte) 0x00; // eTVOC flag
@@ -3338,16 +3367,16 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
         data1[18] = (byte) 0xFF; // Reserve for Future Use
 
         byte[] data2 = new byte[27];
-        data2[0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
-        data2[1] = (byte) 0x00; // Sequence number
-        data2[2] = (byte) 0x00; // Discomfort index flag
-        data2[3] = (byte) 0x00; // Discomfort index flag
-        data2[4] = (byte) (RbtConstants.EventFlagSensor.INTERVAL_DIFFERENCE_THRESHOLD_DECLINE & 0xff); // Heat stroke flag
-        data2[5] = (byte) ((RbtConstants.EventFlagSensor.INTERVAL_DIFFERENCE_THRESHOLD_DECLINE >> 8) & 0xff); // Heat stroke flag
-        data2[6] = (byte) 0x00; // SI value flag
-        data2[7] = (byte) 0x00; // PGA flag
-        data2[8] = (byte) 0x00; // Seismic intensity flag
-        data2[9] = (byte) 0xff; // Reserve for Future Use
+        data2[ 0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
+        data2[ 1] = (byte) 0x00; // Sequence number
+        data2[ 2] = (byte) 0x00; // Discomfort index flag
+        data2[ 3] = (byte) 0x00; // Discomfort index flag
+        data2[ 4] = (byte) (RbtConstants.EventFlagSensor.INTERVAL_DIFFERENCE_THRESHOLD_DECLINE & 0xff); // Heat stroke flag
+        data2[ 5] = (byte) ((RbtConstants.EventFlagSensor.INTERVAL_DIFFERENCE_THRESHOLD_DECLINE >> 8) & 0xff); // Heat stroke flag
+        data2[ 6] = (byte) 0x00; // SI value flag
+        data2[ 7] = (byte) 0x00; // PGA flag
+        data2[ 8] = (byte) 0x00; // Seismic intensity flag
+        data2[ 9] = (byte) 0xff; // Reserve for Future Use
         data2[10] = (byte) 0xff; // Reserve for Future Use
         data2[11] = (byte) 0xff; // Reserve for Future Use
         data2[12] = (byte) 0xff; // Reserve for Future Use
@@ -3365,6 +3394,7 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
         data2[24] = (byte) 0xff; // Reserve for Future Use
         data2[25] = (byte) 0xff; // Reserve for Future Use
         data2[26] = (byte) 0xff; // Reserve for Future Use
+        //@formatter:on
 
         SensorFlagAndCalculationFlag result = new SensorFlagAndCalculationFlag(data1, data2);
         assertEquals(DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG, result.getDataType());
@@ -3552,17 +3582,18 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
 
     @Test
     public void test_heatStroke016() {
+        //@formatter:off
         byte[] data1 = new byte[19];
-        data1[0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
-        data1[1] = (byte) 0x00; // Sequence number
-        data1[2] = (byte) 0x00; // Temperature flag
-        data1[3] = (byte) 0x00; // Temperature flag
-        data1[4] = (byte) 0x00; // Relative humidity flag
-        data1[5] = (byte) 0x00; // Relative humidity flag
-        data1[6] = (byte) 0x00; // Ambient light flag
-        data1[7] = (byte) 0x00; // Ambient light flag
-        data1[8] = (byte) 0x00; // Barometric pressure flag
-        data1[9] = (byte) 0x00; // Barometric pressure flag
+        data1[ 0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
+        data1[ 1] = (byte) 0x00; // Sequence number
+        data1[ 2] = (byte) 0x00; // Temperature flag
+        data1[ 3] = (byte) 0x00; // Temperature flag
+        data1[ 4] = (byte) 0x00; // Relative humidity flag
+        data1[ 5] = (byte) 0x00; // Relative humidity flag
+        data1[ 6] = (byte) 0x00; // Ambient light flag
+        data1[ 7] = (byte) 0x00; // Ambient light flag
+        data1[ 8] = (byte) 0x00; // Barometric pressure flag
+        data1[ 9] = (byte) 0x00; // Barometric pressure flag
         data1[10] = (byte) 0x00; // Sound noise flag
         data1[11] = (byte) 0x00; // Sound noise flag
         data1[12] = (byte) 0x00; // eTVOC flag
@@ -3574,16 +3605,16 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
         data1[18] = (byte) 0xFF; // Reserve for Future Use
 
         byte[] data2 = new byte[27];
-        data2[0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
-        data2[1] = (byte) 0x00; // Sequence number
-        data2[2] = (byte) 0x00; // Discomfort index flag
-        data2[3] = (byte) 0x00; // Discomfort index flag
-        data2[4] = (byte) (RbtConstants.EventFlagSensor.BASE_DIFFERENCE_THRESHOLD_UPPER & 0xff); // Heat stroke flag
-        data2[5] = (byte) ((RbtConstants.EventFlagSensor.BASE_DIFFERENCE_THRESHOLD_UPPER >> 8) & 0xff); // Heat stroke flag
-        data2[6] = (byte) 0x00; // SI value flag
-        data2[7] = (byte) 0x00; // PGA flag
-        data2[8] = (byte) 0x00; // Seismic intensity flag
-        data2[9] = (byte) 0xff; // Reserve for Future Use
+        data2[ 0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
+        data2[ 1] = (byte) 0x00; // Sequence number
+        data2[ 2] = (byte) 0x00; // Discomfort index flag
+        data2[ 3] = (byte) 0x00; // Discomfort index flag
+        data2[ 4] = (byte) (RbtConstants.EventFlagSensor.BASE_DIFFERENCE_THRESHOLD_UPPER & 0xff); // Heat stroke flag
+        data2[ 5] = (byte) ((RbtConstants.EventFlagSensor.BASE_DIFFERENCE_THRESHOLD_UPPER >> 8) & 0xff); // Heat stroke flag
+        data2[ 6] = (byte) 0x00; // SI value flag
+        data2[ 7] = (byte) 0x00; // PGA flag
+        data2[ 8] = (byte) 0x00; // Seismic intensity flag
+        data2[ 9] = (byte) 0xff; // Reserve for Future Use
         data2[10] = (byte) 0xff; // Reserve for Future Use
         data2[11] = (byte) 0xff; // Reserve for Future Use
         data2[12] = (byte) 0xff; // Reserve for Future Use
@@ -3601,6 +3632,7 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
         data2[24] = (byte) 0xff; // Reserve for Future Use
         data2[25] = (byte) 0xff; // Reserve for Future Use
         data2[26] = (byte) 0xff; // Reserve for Future Use
+        //@formatter:on
 
         SensorFlagAndCalculationFlag result = new SensorFlagAndCalculationFlag(data1, data2);
         assertEquals(DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG, result.getDataType());
@@ -3788,17 +3820,18 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
 
     @Test
     public void test_heatStroke017() {
+        //@formatter:off
         byte[] data1 = new byte[19];
-        data1[0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
-        data1[1] = (byte) 0x00; // Sequence number
-        data1[2] = (byte) 0x00; // Temperature flag
-        data1[3] = (byte) 0x00; // Temperature flag
-        data1[4] = (byte) 0x00; // Relative humidity flag
-        data1[5] = (byte) 0x00; // Relative humidity flag
-        data1[6] = (byte) 0x00; // Ambient light flag
-        data1[7] = (byte) 0x00; // Ambient light flag
-        data1[8] = (byte) 0x00; // Barometric pressure flag
-        data1[9] = (byte) 0x00; // Barometric pressure flag
+        data1[ 0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
+        data1[ 1] = (byte) 0x00; // Sequence number
+        data1[ 2] = (byte) 0x00; // Temperature flag
+        data1[ 3] = (byte) 0x00; // Temperature flag
+        data1[ 4] = (byte) 0x00; // Relative humidity flag
+        data1[ 5] = (byte) 0x00; // Relative humidity flag
+        data1[ 6] = (byte) 0x00; // Ambient light flag
+        data1[ 7] = (byte) 0x00; // Ambient light flag
+        data1[ 8] = (byte) 0x00; // Barometric pressure flag
+        data1[ 9] = (byte) 0x00; // Barometric pressure flag
         data1[10] = (byte) 0x00; // Sound noise flag
         data1[11] = (byte) 0x00; // Sound noise flag
         data1[12] = (byte) 0x00; // eTVOC flag
@@ -3810,16 +3843,16 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
         data1[18] = (byte) 0xFF; // Reserve for Future Use
 
         byte[] data2 = new byte[27];
-        data2[0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
-        data2[1] = (byte) 0x00; // Sequence number
-        data2[2] = (byte) 0x00; // Discomfort index flag
-        data2[3] = (byte) 0x00; // Discomfort index flag
-        data2[4] = (byte) (RbtConstants.EventFlagSensor.BASE_DIFFERENCE_THRESHOLD_LOWER & 0xff); // Heat stroke flag
-        data2[5] = (byte) ((RbtConstants.EventFlagSensor.BASE_DIFFERENCE_THRESHOLD_LOWER >> 8) & 0xff); // Heat stroke flag
-        data2[6] = (byte) 0x00; // SI value flag
-        data2[7] = (byte) 0x00; // PGA flag
-        data2[8] = (byte) 0x00; // Seismic intensity flag
-        data2[9] = (byte) 0xff; // Reserve for Future Use
+        data2[ 0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
+        data2[ 1] = (byte) 0x00; // Sequence number
+        data2[ 2] = (byte) 0x00; // Discomfort index flag
+        data2[ 3] = (byte) 0x00; // Discomfort index flag
+        data2[ 4] = (byte) (RbtConstants.EventFlagSensor.BASE_DIFFERENCE_THRESHOLD_LOWER & 0xff); // Heat stroke flag
+        data2[ 5] = (byte) ((RbtConstants.EventFlagSensor.BASE_DIFFERENCE_THRESHOLD_LOWER >> 8) & 0xff); // Heat stroke flag
+        data2[ 6] = (byte) 0x00; // SI value flag
+        data2[ 7] = (byte) 0x00; // PGA flag
+        data2[ 8] = (byte) 0x00; // Seismic intensity flag
+        data2[ 9] = (byte) 0xff; // Reserve for Future Use
         data2[10] = (byte) 0xff; // Reserve for Future Use
         data2[11] = (byte) 0xff; // Reserve for Future Use
         data2[12] = (byte) 0xff; // Reserve for Future Use
@@ -3837,6 +3870,7 @@ public class SensorFlagAndCalculationFlagHeatStrokeTest extends AbstractSensorFl
         data2[24] = (byte) 0xff; // Reserve for Future Use
         data2[25] = (byte) 0xff; // Reserve for Future Use
         data2[26] = (byte) 0xff; // Reserve for Future Use
+        //@formatter:on
 
         SensorFlagAndCalculationFlag result = new SensorFlagAndCalculationFlag(data1, data2);
         assertEquals(DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG, result.getDataType());

@@ -15,6 +15,7 @@ public class MemorySensingFlagTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_001() {
+        //@formatter:off
         byte[] data1 = new byte[18];
         data1[ 0] = (byte) ((0x01) & 0xff); // Memory index
         data1[ 1] = (byte) ((0x00) & 0xff); // Memory index
@@ -34,6 +35,7 @@ public class MemorySensingFlagTest extends AbstractSensingFlagTest {
         data1[15] = (byte) 0x00; // eTVOC flag
         data1[16] = (byte) 0x00; // eCO2 flag
         data1[17] = (byte) 0x00; // eCO2 flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -172,6 +174,7 @@ public class MemorySensingFlagTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_002() {
+        //@formatter:off
         byte[] data1 = new byte[18];
         data1[ 0] = (byte) ((0xff) & 0xff); // Memory index
         data1[ 1] = (byte) ((0xff) & 0xff); // Memory index
@@ -191,6 +194,7 @@ public class MemorySensingFlagTest extends AbstractSensingFlagTest {
         data1[15] = (byte) 0x00; // eTVOC flag
         data1[16] = (byte) 0x00; // eCO2 flag
         data1[17] = (byte) 0x00; // eCO2 flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -328,6 +332,7 @@ public class MemorySensingFlagTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_003() {
+        //@formatter:off
         byte[] data1 = new byte[18];
         data1[ 0] = (byte) ((MemorySensingFlag.DATA_ERROR_BIT) & 0xff); // Memory index
         data1[ 1] = (byte) ((MemorySensingFlag.DATA_ERROR_BIT >> 8) & 0xff); // Memory index
@@ -347,6 +352,7 @@ public class MemorySensingFlagTest extends AbstractSensingFlagTest {
         data1[15] = (byte) 0x00; // eTVOC flag
         data1[16] = (byte) 0x00; // eCO2 flag
         data1[17] = (byte) 0x00; // eCO2 flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -484,6 +490,7 @@ public class MemorySensingFlagTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_004() {
+        //@formatter:off
         byte[] data1 = new byte[18];
         data1[ 0] = (byte) ((0x10) & 0xff); // Memory index
         data1[ 1] = (byte) ((0x20) & 0xff); // Memory index
@@ -503,6 +510,7 @@ public class MemorySensingFlagTest extends AbstractSensingFlagTest {
         data1[15] = (byte) 0x00; // eTVOC flag
         data1[16] = (byte) 0xb0; // eCO2 flag
         data1[17] = (byte) 0x00; // eCO2 flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -525,6 +533,7 @@ public class MemorySensingFlagTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_005() {
+        //@formatter:off
         byte[] data1 = new byte[18];
         data1[ 0] = (byte) ((0x10) & 0xff); // Memory index
         data1[ 1] = (byte) ((0x20) & 0xff); // Memory index
@@ -544,6 +553,7 @@ public class MemorySensingFlagTest extends AbstractSensingFlagTest {
         data1[15] = (byte) 0x00; // eTVOC flag
         data1[16] = (byte) 0xb0; // eCO2 flag
         data1[17] = (byte) 0x00; // eCO2 flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -555,6 +565,7 @@ public class MemorySensingFlagTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_006() {
+        //@formatter:off
         byte[] data1 = new byte[18];
         data1[ 0] = (byte) ((0x10) & 0xff); // Memory index
         data1[ 1] = (byte) ((0x20) & 0xff); // Memory index
@@ -574,6 +585,7 @@ public class MemorySensingFlagTest extends AbstractSensingFlagTest {
         data1[15] = (byte) 0x00; // eTVOC flag
         data1[16] = (byte) 0xb0; // eCO2 flag
         data1[17] = (byte) 0x00; // eCO2 flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);

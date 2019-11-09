@@ -20,7 +20,9 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(true);
         RbtAdvertisingDataParser parser = builder.build();
 
-        byte[] data = new byte[0];
+        //@formatter:off
+        byte[] data = new byte[ 0];
+        //@formatter:on
 
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(data);
 
@@ -32,17 +34,18 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(true);
         RbtAdvertisingDataParser parser = builder.build();
 
+        //@formatter:off
         byte[] data = new byte[31];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x16; // AD 2
-        data[4] = (byte) 0xff; // AD 2
-        data[5] = (byte) 0xd5; // AD 2
-        data[6] = (byte) 0x02; // AD 2
-        data[7] = (byte) 0x01; // AD 2
-        data[8] = (byte) 0x00; // Sequence number
-        data[9] = (byte) 0x60; // Temperature
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x16; // AD 2
+        data[ 4] = (byte) 0xff; // AD 2
+        data[ 5] = (byte) 0xd5; // AD 2
+        data[ 6] = (byte) 0x02; // AD 2
+        data[ 7] = (byte) 0x01; // AD 2
+        data[ 8] = (byte) 0x00; // Sequence number
+        data[ 9] = (byte) 0x60; // Temperature
         data[10] = (byte) 0xf0; // Temperature
         data[11] = (byte) 0x00; // Relative humidity
         data[12] = (byte) 0x00; // Relative humidity
@@ -64,6 +67,7 @@ public class RbtAdvertisingDataParserTest {
         data[28] = (byte) 'R'; // AD 3
         data[29] = (byte) 'b'; // AD 3
         data[30] = (byte) 't'; // AD 3
+        //@formatter:on
 
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(data);
 
@@ -81,17 +85,18 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(true);
         RbtAdvertisingDataParser parser = builder.build();
 
+        //@formatter:off
         byte[] data = new byte[31];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x16; // AD 2
-        data[4] = (byte) 0xff; // AD 2
-        data[5] = (byte) 0xd5; // AD 2
-        data[6] = (byte) 0x02; // AD 2
-        data[7] = (byte) 0x02; // AD 2
-        data[8] = (byte) 0x00; // Sequence number
-        data[9] = (byte) 0x00; // Discomfort index
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x16; // AD 2
+        data[ 4] = (byte) 0xff; // AD 2
+        data[ 5] = (byte) 0xd5; // AD 2
+        data[ 6] = (byte) 0x02; // AD 2
+        data[ 7] = (byte) 0x02; // AD 2
+        data[ 8] = (byte) 0x00; // Sequence number
+        data[ 9] = (byte) 0x00; // Discomfort index
         data[10] = (byte) 0x00; // Discomfort index
         data[11] = (byte) 0x60; // Heat stroke
         data[12] = (byte) 0xf0; // Heat stroke
@@ -113,6 +118,7 @@ public class RbtAdvertisingDataParserTest {
         data[28] = (byte) 'R'; // AD 3
         data[29] = (byte) 'b'; // AD 3
         data[30] = (byte) 't'; // AD 3
+        //@formatter:on
 
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(data);
 
@@ -130,17 +136,18 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(true);
         RbtAdvertisingDataParser parser = builder.build();
 
+        //@formatter:off
         byte[] data = new byte[62];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x16; // AD 2
-        data[4] = (byte) 0xff; // AD 2
-        data[5] = (byte) 0xd5; // AD 2
-        data[6] = (byte) 0x02; // AD 2
-        data[7] = (byte) 0x03; // AD 2
-        data[8] = (byte) 0x00; // Sequence number
-        data[9] = (byte) 0x60; // Temperature
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x16; // AD 2
+        data[ 4] = (byte) 0xff; // AD 2
+        data[ 5] = (byte) 0xd5; // AD 2
+        data[ 6] = (byte) 0x02; // AD 2
+        data[ 7] = (byte) 0x03; // AD 2
+        data[ 8] = (byte) 0x00; // Sequence number
+        data[ 9] = (byte) 0x60; // Temperature
         data[10] = (byte) 0xf0; // Temperature
         data[11] = (byte) 0x00; // Relative humidity
         data[12] = (byte) 0x00; // Relative humidity
@@ -193,6 +200,7 @@ public class RbtAdvertisingDataParserTest {
         data[59] = (byte) 0xFF; // Reserve for Future Use
         data[60] = (byte) 0xFF; // Reserve for Future Use
         data[61] = (byte) 0xFF; // Reserve for Future Use
+        //@formatter:on
 
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(data);
 
@@ -210,17 +218,18 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(true);
         RbtAdvertisingDataParser parser = builder.build();
 
+        //@formatter:off
         byte[] data = new byte[62];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x16; // AD 2
-        data[4] = (byte) 0xff; // AD 2
-        data[5] = (byte) 0xd5; // AD 2
-        data[6] = (byte) 0x02; // AD 2
-        data[7] = (byte) 0x04; // AD 2
-        data[8] = (byte) 0x00; // Sequence number
-        data[9] = (byte) 0x00; // Temperature flag
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x16; // AD 2
+        data[ 4] = (byte) 0xff; // AD 2
+        data[ 5] = (byte) 0xd5; // AD 2
+        data[ 6] = (byte) 0x02; // AD 2
+        data[ 7] = (byte) 0x04; // AD 2
+        data[ 8] = (byte) 0x00; // Sequence number
+        data[ 9] = (byte) 0x00; // Temperature flag
         data[10] = (byte) 0x00; // Temperature flag
         data[11] = (byte) 0x00; // Relative humidity flag
         data[12] = (byte) 0x00; // Relative humidity flag
@@ -273,6 +282,7 @@ public class RbtAdvertisingDataParserTest {
         data[59] = (byte) 0xff; // Reserve for Future Use
         data[60] = (byte) 0xff; // Reserve for Future Use
         data[61] = (byte) 0xff; // Reserve for Future Use
+        //@formatter:on
 
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(data);
 
@@ -290,17 +300,18 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(true);
         RbtAdvertisingDataParser parser = builder.build();
 
+        //@formatter:off
         byte[] data = new byte[31];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x03; // AD 2
-        data[4] = (byte) 0x02; // AD 2
-        data[5] = (byte) 0x0a; // AD 2
-        data[6] = (byte) 0x18; // AD 2
-        data[7] = (byte) 0x12; // AD 3
-        data[8] = (byte) 0xff; // AD 3
-        data[9] = (byte) 0xd5; // AD 3
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x03; // AD 2
+        data[ 4] = (byte) 0x02; // AD 2
+        data[ 5] = (byte) 0x0a; // AD 2
+        data[ 6] = (byte) 0x18; // AD 2
+        data[ 7] = (byte) 0x12; // AD 3
+        data[ 8] = (byte) 0xff; // AD 3
+        data[ 9] = (byte) 0xd5; // AD 3
         data[10] = (byte) 0x02; // AD 3
         data[11] = (byte) 0x05; // AD 3
         data[12] = (byte) 0x00; // Serial number
@@ -322,6 +333,7 @@ public class RbtAdvertisingDataParserTest {
         data[28] = (byte) 'R'; // AD 4
         data[29] = (byte) 'b'; // AD 4
         data[30] = (byte) 't'; // AD 4
+        //@formatter:on
 
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(data);
 
@@ -339,17 +351,18 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(true);
         RbtAdvertisingDataParser parser = builder.exclude(DATA_TYPE_SENSOR_DATA).include(DATA_TYPE_SENSOR_DATA).build();
 
+        //@formatter:off
         byte[] data = new byte[31];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x16; // AD 2
-        data[4] = (byte) 0xff; // AD 2
-        data[5] = (byte) 0xd5; // AD 2
-        data[6] = (byte) 0x02; // AD 2
-        data[7] = (byte) 0x01; // AD 2
-        data[8] = (byte) 0x00; // Sequence number
-        data[9] = (byte) 0x60; // Temperature
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x16; // AD 2
+        data[ 4] = (byte) 0xff; // AD 2
+        data[ 5] = (byte) 0xd5; // AD 2
+        data[ 6] = (byte) 0x02; // AD 2
+        data[ 7] = (byte) 0x01; // AD 2
+        data[ 8] = (byte) 0x00; // Sequence number
+        data[ 9] = (byte) 0x60; // Temperature
         data[10] = (byte) 0xf0; // Temperature
         data[11] = (byte) 0x00; // Relative humidity
         data[12] = (byte) 0x00; // Relative humidity
@@ -371,6 +384,7 @@ public class RbtAdvertisingDataParserTest {
         data[28] = (byte) 'R'; // AD 3
         data[29] = (byte) 'b'; // AD 3
         data[30] = (byte) 't'; // AD 3
+        //@formatter:on
 
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(data);
 
@@ -388,17 +402,18 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(true);
         RbtAdvertisingDataParser parser = builder.exclude(DATA_TYPE_CALCULATION_DATA).include(DATA_TYPE_CALCULATION_DATA).build();
 
+        //@formatter:off
         byte[] data = new byte[31];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x16; // AD 2
-        data[4] = (byte) 0xff; // AD 2
-        data[5] = (byte) 0xd5; // AD 2
-        data[6] = (byte) 0x02; // AD 2
-        data[7] = (byte) 0x02; // AD 2
-        data[8] = (byte) 0x00; // Sequence number
-        data[9] = (byte) 0x00; // Discomfort index
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x16; // AD 2
+        data[ 4] = (byte) 0xff; // AD 2
+        data[ 5] = (byte) 0xd5; // AD 2
+        data[ 6] = (byte) 0x02; // AD 2
+        data[ 7] = (byte) 0x02; // AD 2
+        data[ 8] = (byte) 0x00; // Sequence number
+        data[ 9] = (byte) 0x00; // Discomfort index
         data[10] = (byte) 0x00; // Discomfort index
         data[11] = (byte) 0x60; // Heat stroke
         data[12] = (byte) 0xf0; // Heat stroke
@@ -420,6 +435,7 @@ public class RbtAdvertisingDataParserTest {
         data[28] = (byte) 'R'; // AD 3
         data[29] = (byte) 'b'; // AD 3
         data[30] = (byte) 't'; // AD 3
+        //@formatter:on
 
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(data);
 
@@ -437,17 +453,18 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(true);
         RbtAdvertisingDataParser parser = builder.exclude(DATA_TYPE_SENSOR_DATA_AND_CALCULATION_DATA).include(DATA_TYPE_SENSOR_DATA_AND_CALCULATION_DATA).build();
 
+        //@formatter:off
         byte[] data = new byte[62];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x16; // AD 2
-        data[4] = (byte) 0xff; // AD 2
-        data[5] = (byte) 0xd5; // AD 2
-        data[6] = (byte) 0x02; // AD 2
-        data[7] = (byte) 0x03; // AD 2
-        data[8] = (byte) 0x00; // Sequence number
-        data[9] = (byte) 0x60; // Temperature
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x16; // AD 2
+        data[ 4] = (byte) 0xff; // AD 2
+        data[ 5] = (byte) 0xd5; // AD 2
+        data[ 6] = (byte) 0x02; // AD 2
+        data[ 7] = (byte) 0x03; // AD 2
+        data[ 8] = (byte) 0x00; // Sequence number
+        data[ 9] = (byte) 0x60; // Temperature
         data[10] = (byte) 0xf0; // Temperature
         data[11] = (byte) 0x00; // Relative humidity
         data[12] = (byte) 0x00; // Relative humidity
@@ -500,6 +517,7 @@ public class RbtAdvertisingDataParserTest {
         data[59] = (byte) 0xFF; // Reserve for Future Use
         data[60] = (byte) 0xFF; // Reserve for Future Use
         data[61] = (byte) 0xFF; // Reserve for Future Use
+        //@formatter:on
 
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(data);
 
@@ -517,17 +535,18 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(true);
         RbtAdvertisingDataParser parser = builder.exclude(DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG).include(DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG).build();
 
+        //@formatter:off
         byte[] data = new byte[62];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x16; // AD 2
-        data[4] = (byte) 0xff; // AD 2
-        data[5] = (byte) 0xd5; // AD 2
-        data[6] = (byte) 0x02; // AD 2
-        data[7] = (byte) 0x04; // AD 2
-        data[8] = (byte) 0x00; // Sequence number
-        data[9] = (byte) 0x00; // Temperature flag
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x16; // AD 2
+        data[ 4] = (byte) 0xff; // AD 2
+        data[ 5] = (byte) 0xd5; // AD 2
+        data[ 6] = (byte) 0x02; // AD 2
+        data[ 7] = (byte) 0x04; // AD 2
+        data[ 8] = (byte) 0x00; // Sequence number
+        data[ 9] = (byte) 0x00; // Temperature flag
         data[10] = (byte) 0x00; // Temperature flag
         data[11] = (byte) 0x00; // Relative humidity flag
         data[12] = (byte) 0x00; // Relative humidity flag
@@ -580,6 +599,7 @@ public class RbtAdvertisingDataParserTest {
         data[59] = (byte) 0xff; // Reserve for Future Use
         data[60] = (byte) 0xff; // Reserve for Future Use
         data[61] = (byte) 0xff; // Reserve for Future Use
+        //@formatter:on
 
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(data);
 
@@ -597,17 +617,18 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(true);
         RbtAdvertisingDataParser parser = builder.exclude(DATA_TYPE_SERIAL_NUMBER).include(DATA_TYPE_SERIAL_NUMBER).build();
 
+        //@formatter:off
         byte[] data = new byte[31];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x03; // AD 2
-        data[4] = (byte) 0x02; // AD 2
-        data[5] = (byte) 0x0a; // AD 2
-        data[6] = (byte) 0x18; // AD 2
-        data[7] = (byte) 0x12; // AD 3
-        data[8] = (byte) 0xff; // AD 3
-        data[9] = (byte) 0xd5; // AD 3
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x03; // AD 2
+        data[ 4] = (byte) 0x02; // AD 2
+        data[ 5] = (byte) 0x0a; // AD 2
+        data[ 6] = (byte) 0x18; // AD 2
+        data[ 7] = (byte) 0x12; // AD 3
+        data[ 8] = (byte) 0xff; // AD 3
+        data[ 9] = (byte) 0xd5; // AD 3
         data[10] = (byte) 0x02; // AD 3
         data[11] = (byte) 0x05; // AD 3
         data[12] = (byte) 0x00; // Serial number
@@ -629,6 +650,7 @@ public class RbtAdvertisingDataParserTest {
         data[28] = (byte) 'R'; // AD 4
         data[29] = (byte) 'b'; // AD 4
         data[30] = (byte) 't'; // AD 4
+        //@formatter:on
 
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(data);
 
@@ -646,17 +668,18 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(true);
         RbtAdvertisingDataParser parser = builder.exclude(DATA_TYPE_SENSOR_DATA).build();
 
+        //@formatter:off
         byte[] data = new byte[31];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x16; // AD 2
-        data[4] = (byte) 0xff; // AD 2
-        data[5] = (byte) 0xd5; // AD 2
-        data[6] = (byte) 0x02; // AD 2
-        data[7] = (byte) 0x01; // AD 2
-        data[8] = (byte) 0x00; // Sequence number
-        data[9] = (byte) 0x60; // Temperature
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x16; // AD 2
+        data[ 4] = (byte) 0xff; // AD 2
+        data[ 5] = (byte) 0xd5; // AD 2
+        data[ 6] = (byte) 0x02; // AD 2
+        data[ 7] = (byte) 0x01; // AD 2
+        data[ 8] = (byte) 0x00; // Sequence number
+        data[ 9] = (byte) 0x60; // Temperature
         data[10] = (byte) 0xf0; // Temperature
         data[11] = (byte) 0x00; // Relative humidity
         data[12] = (byte) 0x00; // Relative humidity
@@ -678,6 +701,7 @@ public class RbtAdvertisingDataParserTest {
         data[28] = (byte) 'R'; // AD 3
         data[29] = (byte) 'b'; // AD 3
         data[30] = (byte) 't'; // AD 3
+        //@formatter:on
 
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(data);
 
@@ -695,17 +719,18 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(true);
         RbtAdvertisingDataParser parser = builder.exclude(DATA_TYPE_CALCULATION_DATA).build();
 
+        //@formatter:off
         byte[] data = new byte[31];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x16; // AD 2
-        data[4] = (byte) 0xff; // AD 2
-        data[5] = (byte) 0xd5; // AD 2
-        data[6] = (byte) 0x02; // AD 2
-        data[7] = (byte) 0x02; // AD 2
-        data[8] = (byte) 0x00; // Sequence number
-        data[9] = (byte) 0x00; // Discomfort index
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x16; // AD 2
+        data[ 4] = (byte) 0xff; // AD 2
+        data[ 5] = (byte) 0xd5; // AD 2
+        data[ 6] = (byte) 0x02; // AD 2
+        data[ 7] = (byte) 0x02; // AD 2
+        data[ 8] = (byte) 0x00; // Sequence number
+        data[ 9] = (byte) 0x00; // Discomfort index
         data[10] = (byte) 0x00; // Discomfort index
         data[11] = (byte) 0x60; // Heat stroke
         data[12] = (byte) 0xf0; // Heat stroke
@@ -727,6 +752,7 @@ public class RbtAdvertisingDataParserTest {
         data[28] = (byte) 'R'; // AD 3
         data[29] = (byte) 'b'; // AD 3
         data[30] = (byte) 't'; // AD 3
+        //@formatter:on
 
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(data);
 
@@ -744,17 +770,18 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(true);
         RbtAdvertisingDataParser parser = builder.exclude(DATA_TYPE_SENSOR_DATA_AND_CALCULATION_DATA).build();
 
+        //@formatter:off
         byte[] data = new byte[62];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x16; // AD 2
-        data[4] = (byte) 0xff; // AD 2
-        data[5] = (byte) 0xd5; // AD 2
-        data[6] = (byte) 0x02; // AD 2
-        data[7] = (byte) 0x03; // AD 2
-        data[8] = (byte) 0x00; // Sequence number
-        data[9] = (byte) 0x60; // Temperature
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x16; // AD 2
+        data[ 4] = (byte) 0xff; // AD 2
+        data[ 5] = (byte) 0xd5; // AD 2
+        data[ 6] = (byte) 0x02; // AD 2
+        data[ 7] = (byte) 0x03; // AD 2
+        data[ 8] = (byte) 0x00; // Sequence number
+        data[ 9] = (byte) 0x60; // Temperature
         data[10] = (byte) 0xf0; // Temperature
         data[11] = (byte) 0x00; // Relative humidity
         data[12] = (byte) 0x00; // Relative humidity
@@ -807,6 +834,7 @@ public class RbtAdvertisingDataParserTest {
         data[59] = (byte) 0xFF; // Reserve for Future Use
         data[60] = (byte) 0xFF; // Reserve for Future Use
         data[61] = (byte) 0xFF; // Reserve for Future Use
+        //@formatter:on
 
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(data);
 
@@ -824,17 +852,18 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(true);
         RbtAdvertisingDataParser parser = builder.exclude(DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG).build();
 
+        //@formatter:off
         byte[] data = new byte[62];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x16; // AD 2
-        data[4] = (byte) 0xff; // AD 2
-        data[5] = (byte) 0xd5; // AD 2
-        data[6] = (byte) 0x02; // AD 2
-        data[7] = (byte) 0x04; // AD 2
-        data[8] = (byte) 0x00; // Sequence number
-        data[9] = (byte) 0x00; // Temperature flag
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x16; // AD 2
+        data[ 4] = (byte) 0xff; // AD 2
+        data[ 5] = (byte) 0xd5; // AD 2
+        data[ 6] = (byte) 0x02; // AD 2
+        data[ 7] = (byte) 0x04; // AD 2
+        data[ 8] = (byte) 0x00; // Sequence number
+        data[ 9] = (byte) 0x00; // Temperature flag
         data[10] = (byte) 0x00; // Temperature flag
         data[11] = (byte) 0x00; // Relative humidity flag
         data[12] = (byte) 0x00; // Relative humidity flag
@@ -887,6 +916,7 @@ public class RbtAdvertisingDataParserTest {
         data[59] = (byte) 0xff; // Reserve for Future Use
         data[60] = (byte) 0xff; // Reserve for Future Use
         data[61] = (byte) 0xff; // Reserve for Future Use
+        //@formatter:on
 
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(data);
 
@@ -904,17 +934,18 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(true);
         RbtAdvertisingDataParser parser = builder.exclude(DATA_TYPE_SERIAL_NUMBER).build();
 
+        //@formatter:off
         byte[] data = new byte[31];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x03; // AD 2
-        data[4] = (byte) 0x02; // AD 2
-        data[5] = (byte) 0x0a; // AD 2
-        data[6] = (byte) 0x18; // AD 2
-        data[7] = (byte) 0x12; // AD 3
-        data[8] = (byte) 0xff; // AD 3
-        data[9] = (byte) 0xd5; // AD 3
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x03; // AD 2
+        data[ 4] = (byte) 0x02; // AD 2
+        data[ 5] = (byte) 0x0a; // AD 2
+        data[ 6] = (byte) 0x18; // AD 2
+        data[ 7] = (byte) 0x12; // AD 3
+        data[ 8] = (byte) 0xff; // AD 3
+        data[ 9] = (byte) 0xd5; // AD 3
         data[10] = (byte) 0x02; // AD 3
         data[11] = (byte) 0x05; // AD 3
         data[12] = (byte) 0x00; // Serial number
@@ -936,6 +967,7 @@ public class RbtAdvertisingDataParserTest {
         data[28] = (byte) 'R'; // AD 4
         data[29] = (byte) 'b'; // AD 4
         data[30] = (byte) 't'; // AD 4
+        //@formatter:on
 
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(data);
 
@@ -953,17 +985,18 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(false);
         RbtAdvertisingDataParser parser = builder.build();
 
+        //@formatter:off
         byte[] data = new byte[31];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x16; // AD 2
-        data[4] = (byte) 0xff; // AD 2
-        data[5] = (byte) 0xd5; // AD 2
-        data[6] = (byte) 0x02; // AD 2
-        data[7] = (byte) 0x01; // AD 2
-        data[8] = (byte) 0x00; // Sequence number
-        data[9] = (byte) 0x60; // Temperature
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x16; // AD 2
+        data[ 4] = (byte) 0xff; // AD 2
+        data[ 5] = (byte) 0xd5; // AD 2
+        data[ 6] = (byte) 0x02; // AD 2
+        data[ 7] = (byte) 0x01; // AD 2
+        data[ 8] = (byte) 0x00; // Sequence number
+        data[ 9] = (byte) 0x60; // Temperature
         data[10] = (byte) 0xf0; // Temperature
         data[11] = (byte) 0x00; // Relative humidity
         data[12] = (byte) 0x00; // Relative humidity
@@ -985,6 +1018,7 @@ public class RbtAdvertisingDataParserTest {
         data[28] = (byte) 'R'; // AD 3
         data[29] = (byte) 'b'; // AD 3
         data[30] = (byte) 't'; // AD 3
+        //@formatter:on
 
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(data);
 
@@ -1002,17 +1036,18 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(false);
         RbtAdvertisingDataParser parser = builder.build();
 
+        //@formatter:off
         byte[] data = new byte[31];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x16; // AD 2
-        data[4] = (byte) 0xff; // AD 2
-        data[5] = (byte) 0xd5; // AD 2
-        data[6] = (byte) 0x02; // AD 2
-        data[7] = (byte) 0x02; // AD 2
-        data[8] = (byte) 0x00; // Sequence number
-        data[9] = (byte) 0x00; // Discomfort index
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x16; // AD 2
+        data[ 4] = (byte) 0xff; // AD 2
+        data[ 5] = (byte) 0xd5; // AD 2
+        data[ 6] = (byte) 0x02; // AD 2
+        data[ 7] = (byte) 0x02; // AD 2
+        data[ 8] = (byte) 0x00; // Sequence number
+        data[ 9] = (byte) 0x00; // Discomfort index
         data[10] = (byte) 0x00; // Discomfort index
         data[11] = (byte) 0x60; // Heat stroke
         data[12] = (byte) 0xf0; // Heat stroke
@@ -1034,6 +1069,7 @@ public class RbtAdvertisingDataParserTest {
         data[28] = (byte) 'R'; // AD 3
         data[29] = (byte) 'b'; // AD 3
         data[30] = (byte) 't'; // AD 3
+        //@formatter:on
 
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(data);
 
@@ -1051,17 +1087,18 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(false);
         RbtAdvertisingDataParser parser = builder.build();
 
+        //@formatter:off
         byte[] data = new byte[62];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x16; // AD 2
-        data[4] = (byte) 0xff; // AD 2
-        data[5] = (byte) 0xd5; // AD 2
-        data[6] = (byte) 0x02; // AD 2
-        data[7] = (byte) 0x03; // AD 2
-        data[8] = (byte) 0x00; // Sequence number
-        data[9] = (byte) 0x60; // Temperature
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x16; // AD 2
+        data[ 4] = (byte) 0xff; // AD 2
+        data[ 5] = (byte) 0xd5; // AD 2
+        data[ 6] = (byte) 0x02; // AD 2
+        data[ 7] = (byte) 0x03; // AD 2
+        data[ 8] = (byte) 0x00; // Sequence number
+        data[ 9] = (byte) 0x60; // Temperature
         data[10] = (byte) 0xf0; // Temperature
         data[11] = (byte) 0x00; // Relative humidity
         data[12] = (byte) 0x00; // Relative humidity
@@ -1114,6 +1151,7 @@ public class RbtAdvertisingDataParserTest {
         data[59] = (byte) 0xFF; // Reserve for Future Use
         data[60] = (byte) 0xFF; // Reserve for Future Use
         data[61] = (byte) 0xFF; // Reserve for Future Use
+        //@formatter:on
 
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(data);
 
@@ -1131,17 +1169,18 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(false);
         RbtAdvertisingDataParser parser = builder.build();
 
+        //@formatter:off
         byte[] data = new byte[62];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x16; // AD 2
-        data[4] = (byte) 0xff; // AD 2
-        data[5] = (byte) 0xd5; // AD 2
-        data[6] = (byte) 0x02; // AD 2
-        data[7] = (byte) 0x04; // AD 2
-        data[8] = (byte) 0x00; // Sequence number
-        data[9] = (byte) 0x00; // Temperature flag
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x16; // AD 2
+        data[ 4] = (byte) 0xff; // AD 2
+        data[ 5] = (byte) 0xd5; // AD 2
+        data[ 6] = (byte) 0x02; // AD 2
+        data[ 7] = (byte) 0x04; // AD 2
+        data[ 8] = (byte) 0x00; // Sequence number
+        data[ 9] = (byte) 0x00; // Temperature flag
         data[10] = (byte) 0x00; // Temperature flag
         data[11] = (byte) 0x00; // Relative humidity flag
         data[12] = (byte) 0x00; // Relative humidity flag
@@ -1194,6 +1233,7 @@ public class RbtAdvertisingDataParserTest {
         data[59] = (byte) 0xff; // Reserve for Future Use
         data[60] = (byte) 0xff; // Reserve for Future Use
         data[61] = (byte) 0xff; // Reserve for Future Use
+        //@formatter:on
 
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(data);
 
@@ -1211,17 +1251,18 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(false);
         RbtAdvertisingDataParser parser = builder.build();
 
+        //@formatter:off
         byte[] data = new byte[31];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x03; // AD 2
-        data[4] = (byte) 0x02; // AD 2
-        data[5] = (byte) 0x0a; // AD 2
-        data[6] = (byte) 0x18; // AD 2
-        data[7] = (byte) 0x12; // AD 3
-        data[8] = (byte) 0xff; // AD 3
-        data[9] = (byte) 0xd5; // AD 3
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x03; // AD 2
+        data[ 4] = (byte) 0x02; // AD 2
+        data[ 5] = (byte) 0x0a; // AD 2
+        data[ 6] = (byte) 0x18; // AD 2
+        data[ 7] = (byte) 0x12; // AD 3
+        data[ 8] = (byte) 0xff; // AD 3
+        data[ 9] = (byte) 0xd5; // AD 3
         data[10] = (byte) 0x02; // AD 3
         data[11] = (byte) 0x05; // AD 3
         data[12] = (byte) 0x00; // Serial number
@@ -1243,6 +1284,7 @@ public class RbtAdvertisingDataParserTest {
         data[28] = (byte) 'R'; // AD 4
         data[29] = (byte) 'b'; // AD 4
         data[30] = (byte) 't'; // AD 4
+        //@formatter:on
 
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(data);
 
@@ -1260,17 +1302,18 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(false);
         RbtAdvertisingDataParser parser = builder.include(DATA_TYPE_SENSOR_DATA).exclude(DATA_TYPE_SENSOR_DATA).build();
 
+        //@formatter:off
         byte[] data = new byte[31];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x16; // AD 2
-        data[4] = (byte) 0xff; // AD 2
-        data[5] = (byte) 0xd5; // AD 2
-        data[6] = (byte) 0x02; // AD 2
-        data[7] = (byte) 0x01; // AD 2
-        data[8] = (byte) 0x00; // Sequence number
-        data[9] = (byte) 0x60; // Temperature
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x16; // AD 2
+        data[ 4] = (byte) 0xff; // AD 2
+        data[ 5] = (byte) 0xd5; // AD 2
+        data[ 6] = (byte) 0x02; // AD 2
+        data[ 7] = (byte) 0x01; // AD 2
+        data[ 8] = (byte) 0x00; // Sequence number
+        data[ 9] = (byte) 0x60; // Temperature
         data[10] = (byte) 0xf0; // Temperature
         data[11] = (byte) 0x00; // Relative humidity
         data[12] = (byte) 0x00; // Relative humidity
@@ -1292,6 +1335,7 @@ public class RbtAdvertisingDataParserTest {
         data[28] = (byte) 'R'; // AD 3
         data[29] = (byte) 'b'; // AD 3
         data[30] = (byte) 't'; // AD 3
+        //@formatter:on
 
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(data);
 
@@ -1309,17 +1353,18 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(false);
         RbtAdvertisingDataParser parser = builder.include(DATA_TYPE_CALCULATION_DATA).exclude(DATA_TYPE_CALCULATION_DATA).build();
 
+        //@formatter:off
         byte[] data = new byte[31];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x16; // AD 2
-        data[4] = (byte) 0xff; // AD 2
-        data[5] = (byte) 0xd5; // AD 2
-        data[6] = (byte) 0x02; // AD 2
-        data[7] = (byte) 0x02; // AD 2
-        data[8] = (byte) 0x00; // Sequence number
-        data[9] = (byte) 0x00; // Discomfort index
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x16; // AD 2
+        data[ 4] = (byte) 0xff; // AD 2
+        data[ 5] = (byte) 0xd5; // AD 2
+        data[ 6] = (byte) 0x02; // AD 2
+        data[ 7] = (byte) 0x02; // AD 2
+        data[ 8] = (byte) 0x00; // Sequence number
+        data[ 9] = (byte) 0x00; // Discomfort index
         data[10] = (byte) 0x00; // Discomfort index
         data[11] = (byte) 0x60; // Heat stroke
         data[12] = (byte) 0xf0; // Heat stroke
@@ -1341,6 +1386,7 @@ public class RbtAdvertisingDataParserTest {
         data[28] = (byte) 'R'; // AD 3
         data[29] = (byte) 'b'; // AD 3
         data[30] = (byte) 't'; // AD 3
+        //@formatter:on
 
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(data);
 
@@ -1358,17 +1404,18 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(false);
         RbtAdvertisingDataParser parser = builder.include(DATA_TYPE_SENSOR_DATA_AND_CALCULATION_DATA).exclude(DATA_TYPE_SENSOR_DATA_AND_CALCULATION_DATA).build();
 
+        //@formatter:off
         byte[] data = new byte[62];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x16; // AD 2
-        data[4] = (byte) 0xff; // AD 2
-        data[5] = (byte) 0xd5; // AD 2
-        data[6] = (byte) 0x02; // AD 2
-        data[7] = (byte) 0x03; // AD 2
-        data[8] = (byte) 0x00; // Sequence number
-        data[9] = (byte) 0x60; // Temperature
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x16; // AD 2
+        data[ 4] = (byte) 0xff; // AD 2
+        data[ 5] = (byte) 0xd5; // AD 2
+        data[ 6] = (byte) 0x02; // AD 2
+        data[ 7] = (byte) 0x03; // AD 2
+        data[ 8] = (byte) 0x00; // Sequence number
+        data[ 9] = (byte) 0x60; // Temperature
         data[10] = (byte) 0xf0; // Temperature
         data[11] = (byte) 0x00; // Relative humidity
         data[12] = (byte) 0x00; // Relative humidity
@@ -1421,6 +1468,7 @@ public class RbtAdvertisingDataParserTest {
         data[59] = (byte) 0xFF; // Reserve for Future Use
         data[60] = (byte) 0xFF; // Reserve for Future Use
         data[61] = (byte) 0xFF; // Reserve for Future Use
+        //@formatter:on
 
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(data);
 
@@ -1438,17 +1486,18 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(false);
         RbtAdvertisingDataParser parser = builder.include(DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG).exclude(DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG).build();
 
+        //@formatter:off
         byte[] data = new byte[62];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x16; // AD 2
-        data[4] = (byte) 0xff; // AD 2
-        data[5] = (byte) 0xd5; // AD 2
-        data[6] = (byte) 0x02; // AD 2
-        data[7] = (byte) 0x04; // AD 2
-        data[8] = (byte) 0x00; // Sequence number
-        data[9] = (byte) 0x00; // Temperature flag
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x16; // AD 2
+        data[ 4] = (byte) 0xff; // AD 2
+        data[ 5] = (byte) 0xd5; // AD 2
+        data[ 6] = (byte) 0x02; // AD 2
+        data[ 7] = (byte) 0x04; // AD 2
+        data[ 8] = (byte) 0x00; // Sequence number
+        data[ 9] = (byte) 0x00; // Temperature flag
         data[10] = (byte) 0x00; // Temperature flag
         data[11] = (byte) 0x00; // Relative humidity flag
         data[12] = (byte) 0x00; // Relative humidity flag
@@ -1501,6 +1550,7 @@ public class RbtAdvertisingDataParserTest {
         data[59] = (byte) 0xff; // Reserve for Future Use
         data[60] = (byte) 0xff; // Reserve for Future Use
         data[61] = (byte) 0xff; // Reserve for Future Use
+        //@formatter:on
 
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(data);
 
@@ -1518,17 +1568,18 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(false);
         RbtAdvertisingDataParser parser = builder.include(DATA_TYPE_SERIAL_NUMBER).exclude(DATA_TYPE_SERIAL_NUMBER).build();
 
+        //@formatter:off
         byte[] data = new byte[31];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x03; // AD 2
-        data[4] = (byte) 0x02; // AD 2
-        data[5] = (byte) 0x0a; // AD 2
-        data[6] = (byte) 0x18; // AD 2
-        data[7] = (byte) 0x12; // AD 3
-        data[8] = (byte) 0xff; // AD 3
-        data[9] = (byte) 0xd5; // AD 3
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x03; // AD 2
+        data[ 4] = (byte) 0x02; // AD 2
+        data[ 5] = (byte) 0x0a; // AD 2
+        data[ 6] = (byte) 0x18; // AD 2
+        data[ 7] = (byte) 0x12; // AD 3
+        data[ 8] = (byte) 0xff; // AD 3
+        data[ 9] = (byte) 0xd5; // AD 3
         data[10] = (byte) 0x02; // AD 3
         data[11] = (byte) 0x05; // AD 3
         data[12] = (byte) 0x00; // Serial number
@@ -1550,6 +1601,7 @@ public class RbtAdvertisingDataParserTest {
         data[28] = (byte) 'R'; // AD 4
         data[29] = (byte) 'b'; // AD 4
         data[30] = (byte) 't'; // AD 4
+        //@formatter:on
 
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(data);
 
@@ -1568,17 +1620,18 @@ public class RbtAdvertisingDataParserTest {
         builder.include(DATA_TYPE_SENSOR_DATA);
         RbtAdvertisingDataParser parser = builder.build();
 
+        //@formatter:off
         byte[] data = new byte[31];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x16; // AD 2
-        data[4] = (byte) 0xff; // AD 2
-        data[5] = (byte) 0xd5; // AD 2
-        data[6] = (byte) 0x02; // AD 2
-        data[7] = (byte) 0x01; // AD 2
-        data[8] = (byte) 0x00; // Sequence number
-        data[9] = (byte) 0x60; // Temperature
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x16; // AD 2
+        data[ 4] = (byte) 0xff; // AD 2
+        data[ 5] = (byte) 0xd5; // AD 2
+        data[ 6] = (byte) 0x02; // AD 2
+        data[ 7] = (byte) 0x01; // AD 2
+        data[ 8] = (byte) 0x00; // Sequence number
+        data[ 9] = (byte) 0x60; // Temperature
         data[10] = (byte) 0xf0; // Temperature
         data[11] = (byte) 0x00; // Relative humidity
         data[12] = (byte) 0x00; // Relative humidity
@@ -1600,6 +1653,7 @@ public class RbtAdvertisingDataParserTest {
         data[28] = (byte) 'R'; // AD 3
         data[29] = (byte) 'b'; // AD 3
         data[30] = (byte) 't'; // AD 3
+        //@formatter:on
 
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(data);
 
@@ -1618,17 +1672,18 @@ public class RbtAdvertisingDataParserTest {
         builder.include(DATA_TYPE_CALCULATION_DATA);
         RbtAdvertisingDataParser parser = builder.build();
 
+        //@formatter:off
         byte[] data = new byte[31];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x16; // AD 2
-        data[4] = (byte) 0xff; // AD 2
-        data[5] = (byte) 0xd5; // AD 2
-        data[6] = (byte) 0x02; // AD 2
-        data[7] = (byte) 0x02; // AD 2
-        data[8] = (byte) 0x00; // Sequence number
-        data[9] = (byte) 0x00; // Discomfort index
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x16; // AD 2
+        data[ 4] = (byte) 0xff; // AD 2
+        data[ 5] = (byte) 0xd5; // AD 2
+        data[ 6] = (byte) 0x02; // AD 2
+        data[ 7] = (byte) 0x02; // AD 2
+        data[ 8] = (byte) 0x00; // Sequence number
+        data[ 9] = (byte) 0x00; // Discomfort index
         data[10] = (byte) 0x00; // Discomfort index
         data[11] = (byte) 0x60; // Heat stroke
         data[12] = (byte) 0xf0; // Heat stroke
@@ -1650,6 +1705,7 @@ public class RbtAdvertisingDataParserTest {
         data[28] = (byte) 'R'; // AD 3
         data[29] = (byte) 'b'; // AD 3
         data[30] = (byte) 't'; // AD 3
+        //@formatter:on
 
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(data);
 
@@ -1668,17 +1724,18 @@ public class RbtAdvertisingDataParserTest {
         builder.include(DATA_TYPE_SENSOR_DATA_AND_CALCULATION_DATA);
         RbtAdvertisingDataParser parser = builder.build();
 
+        //@formatter:off
         byte[] data = new byte[62];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x16; // AD 2
-        data[4] = (byte) 0xff; // AD 2
-        data[5] = (byte) 0xd5; // AD 2
-        data[6] = (byte) 0x02; // AD 2
-        data[7] = (byte) 0x03; // AD 2
-        data[8] = (byte) 0x00; // Sequence number
-        data[9] = (byte) 0x60; // Temperature
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x16; // AD 2
+        data[ 4] = (byte) 0xff; // AD 2
+        data[ 5] = (byte) 0xd5; // AD 2
+        data[ 6] = (byte) 0x02; // AD 2
+        data[ 7] = (byte) 0x03; // AD 2
+        data[ 8] = (byte) 0x00; // Sequence number
+        data[ 9] = (byte) 0x60; // Temperature
         data[10] = (byte) 0xf0; // Temperature
         data[11] = (byte) 0x00; // Relative humidity
         data[12] = (byte) 0x00; // Relative humidity
@@ -1731,6 +1788,7 @@ public class RbtAdvertisingDataParserTest {
         data[59] = (byte) 0xFF; // Reserve for Future Use
         data[60] = (byte) 0xFF; // Reserve for Future Use
         data[61] = (byte) 0xFF; // Reserve for Future Use
+        //@formatter:on
 
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(data);
 
@@ -1749,17 +1807,18 @@ public class RbtAdvertisingDataParserTest {
         builder.include(DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG);
         RbtAdvertisingDataParser parser = builder.build();
 
+        //@formatter:off
         byte[] data = new byte[62];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x16; // AD 2
-        data[4] = (byte) 0xff; // AD 2
-        data[5] = (byte) 0xd5; // AD 2
-        data[6] = (byte) 0x02; // AD 2
-        data[7] = (byte) 0x04; // AD 2
-        data[8] = (byte) 0x00; // Sequence number
-        data[9] = (byte) 0x00; // Temperature flag
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x16; // AD 2
+        data[ 4] = (byte) 0xff; // AD 2
+        data[ 5] = (byte) 0xd5; // AD 2
+        data[ 6] = (byte) 0x02; // AD 2
+        data[ 7] = (byte) 0x04; // AD 2
+        data[ 8] = (byte) 0x00; // Sequence number
+        data[ 9] = (byte) 0x00; // Temperature flag
         data[10] = (byte) 0x00; // Temperature flag
         data[11] = (byte) 0x00; // Relative humidity flag
         data[12] = (byte) 0x00; // Relative humidity flag
@@ -1812,6 +1871,7 @@ public class RbtAdvertisingDataParserTest {
         data[59] = (byte) 0xff; // Reserve for Future Use
         data[60] = (byte) 0xff; // Reserve for Future Use
         data[61] = (byte) 0xff; // Reserve for Future Use
+        //@formatter:on
 
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(data);
 
@@ -1830,17 +1890,18 @@ public class RbtAdvertisingDataParserTest {
         builder.include(DATA_TYPE_SERIAL_NUMBER);
         RbtAdvertisingDataParser parser = builder.build();
 
+        //@formatter:off
         byte[] data = new byte[31];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x03; // AD 2
-        data[4] = (byte) 0x02; // AD 2
-        data[5] = (byte) 0x0a; // AD 2
-        data[6] = (byte) 0x18; // AD 2
-        data[7] = (byte) 0x12; // AD 3
-        data[8] = (byte) 0xff; // AD 3
-        data[9] = (byte) 0xd5; // AD 3
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x03; // AD 2
+        data[ 4] = (byte) 0x02; // AD 2
+        data[ 5] = (byte) 0x0a; // AD 2
+        data[ 6] = (byte) 0x18; // AD 2
+        data[ 7] = (byte) 0x12; // AD 3
+        data[ 8] = (byte) 0xff; // AD 3
+        data[ 9] = (byte) 0xd5; // AD 3
         data[10] = (byte) 0x02; // AD 3
         data[11] = (byte) 0x05; // AD 3
         data[12] = (byte) 0x00; // Serial number
@@ -1862,6 +1923,7 @@ public class RbtAdvertisingDataParserTest {
         data[28] = (byte) 'R'; // AD 4
         data[29] = (byte) 'b'; // AD 4
         data[30] = (byte) 't'; // AD 4
+        //@formatter:on
 
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(data);
 
@@ -1879,17 +1941,18 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(true);
         RbtAdvertisingDataParser parser = builder.excludeAll().includeAll().build();
 
+        //@formatter:off
         byte[] data = new byte[31];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x16; // AD 2
-        data[4] = (byte) 0xff; // AD 2
-        data[5] = (byte) 0xd5; // AD 2
-        data[6] = (byte) 0x02; // AD 2
-        data[7] = (byte) 0x01; // AD 2
-        data[8] = (byte) 0x00; // Sequence number
-        data[9] = (byte) 0x60; // Temperature
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x16; // AD 2
+        data[ 4] = (byte) 0xff; // AD 2
+        data[ 5] = (byte) 0xd5; // AD 2
+        data[ 6] = (byte) 0x02; // AD 2
+        data[ 7] = (byte) 0x01; // AD 2
+        data[ 8] = (byte) 0x00; // Sequence number
+        data[ 9] = (byte) 0x60; // Temperature
         data[10] = (byte) 0xf0; // Temperature
         data[11] = (byte) 0x00; // Relative humidity
         data[12] = (byte) 0x00; // Relative humidity
@@ -1911,6 +1974,7 @@ public class RbtAdvertisingDataParserTest {
         data[28] = (byte) 'R'; // AD 3
         data[29] = (byte) 'b'; // AD 3
         data[30] = (byte) 't'; // AD 3
+        //@formatter:on
 
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(data);
 
@@ -1928,17 +1992,18 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(true);
         RbtAdvertisingDataParser parser = builder.excludeAll().includeAll().build();
 
+        //@formatter:off
         byte[] data = new byte[31];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x16; // AD 2
-        data[4] = (byte) 0xff; // AD 2
-        data[5] = (byte) 0xd5; // AD 2
-        data[6] = (byte) 0x02; // AD 2
-        data[7] = (byte) 0x02; // AD 2
-        data[8] = (byte) 0x00; // Sequence number
-        data[9] = (byte) 0x00; // Discomfort index
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x16; // AD 2
+        data[ 4] = (byte) 0xff; // AD 2
+        data[ 5] = (byte) 0xd5; // AD 2
+        data[ 6] = (byte) 0x02; // AD 2
+        data[ 7] = (byte) 0x02; // AD 2
+        data[ 8] = (byte) 0x00; // Sequence number
+        data[ 9] = (byte) 0x00; // Discomfort index
         data[10] = (byte) 0x00; // Discomfort index
         data[11] = (byte) 0x60; // Heat stroke
         data[12] = (byte) 0xf0; // Heat stroke
@@ -1960,6 +2025,7 @@ public class RbtAdvertisingDataParserTest {
         data[28] = (byte) 'R'; // AD 3
         data[29] = (byte) 'b'; // AD 3
         data[30] = (byte) 't'; // AD 3
+        //@formatter:on
 
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(data);
 
@@ -1977,17 +2043,18 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(true);
         RbtAdvertisingDataParser parser = builder.excludeAll().includeAll().build();
 
+        //@formatter:off
         byte[] data = new byte[62];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x16; // AD 2
-        data[4] = (byte) 0xff; // AD 2
-        data[5] = (byte) 0xd5; // AD 2
-        data[6] = (byte) 0x02; // AD 2
-        data[7] = (byte) 0x03; // AD 2
-        data[8] = (byte) 0x00; // Sequence number
-        data[9] = (byte) 0x60; // Temperature
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x16; // AD 2
+        data[ 4] = (byte) 0xff; // AD 2
+        data[ 5] = (byte) 0xd5; // AD 2
+        data[ 6] = (byte) 0x02; // AD 2
+        data[ 7] = (byte) 0x03; // AD 2
+        data[ 8] = (byte) 0x00; // Sequence number
+        data[ 9] = (byte) 0x60; // Temperature
         data[10] = (byte) 0xf0; // Temperature
         data[11] = (byte) 0x00; // Relative humidity
         data[12] = (byte) 0x00; // Relative humidity
@@ -2040,6 +2107,7 @@ public class RbtAdvertisingDataParserTest {
         data[59] = (byte) 0xFF; // Reserve for Future Use
         data[60] = (byte) 0xFF; // Reserve for Future Use
         data[61] = (byte) 0xFF; // Reserve for Future Use
+        //@formatter:on
 
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(data);
 
@@ -2057,17 +2125,18 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(true);
         RbtAdvertisingDataParser parser = builder.excludeAll().includeAll().build();
 
+        //@formatter:off
         byte[] data = new byte[62];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x16; // AD 2
-        data[4] = (byte) 0xff; // AD 2
-        data[5] = (byte) 0xd5; // AD 2
-        data[6] = (byte) 0x02; // AD 2
-        data[7] = (byte) 0x04; // AD 2
-        data[8] = (byte) 0x00; // Sequence number
-        data[9] = (byte) 0x00; // Temperature flag
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x16; // AD 2
+        data[ 4] = (byte) 0xff; // AD 2
+        data[ 5] = (byte) 0xd5; // AD 2
+        data[ 6] = (byte) 0x02; // AD 2
+        data[ 7] = (byte) 0x04; // AD 2
+        data[ 8] = (byte) 0x00; // Sequence number
+        data[ 9] = (byte) 0x00; // Temperature flag
         data[10] = (byte) 0x00; // Temperature flag
         data[11] = (byte) 0x00; // Relative humidity flag
         data[12] = (byte) 0x00; // Relative humidity flag
@@ -2120,6 +2189,7 @@ public class RbtAdvertisingDataParserTest {
         data[59] = (byte) 0xff; // Reserve for Future Use
         data[60] = (byte) 0xff; // Reserve for Future Use
         data[61] = (byte) 0xff; // Reserve for Future Use
+        //@formatter:on
 
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(data);
 
@@ -2137,17 +2207,18 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(true);
         RbtAdvertisingDataParser parser = builder.excludeAll().includeAll().build();
 
+        //@formatter:off
         byte[] data = new byte[31];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x03; // AD 2
-        data[4] = (byte) 0x02; // AD 2
-        data[5] = (byte) 0x0a; // AD 2
-        data[6] = (byte) 0x18; // AD 2
-        data[7] = (byte) 0x12; // AD 3
-        data[8] = (byte) 0xff; // AD 3
-        data[9] = (byte) 0xd5; // AD 3
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x03; // AD 2
+        data[ 4] = (byte) 0x02; // AD 2
+        data[ 5] = (byte) 0x0a; // AD 2
+        data[ 6] = (byte) 0x18; // AD 2
+        data[ 7] = (byte) 0x12; // AD 3
+        data[ 8] = (byte) 0xff; // AD 3
+        data[ 9] = (byte) 0xd5; // AD 3
         data[10] = (byte) 0x02; // AD 3
         data[11] = (byte) 0x05; // AD 3
         data[12] = (byte) 0x00; // Serial number
@@ -2169,6 +2240,7 @@ public class RbtAdvertisingDataParserTest {
         data[28] = (byte) 'R'; // AD 4
         data[29] = (byte) 'b'; // AD 4
         data[30] = (byte) 't'; // AD 4
+        //@formatter:on
 
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(data);
 
@@ -2186,17 +2258,18 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(false);
         RbtAdvertisingDataParser parser = builder.includeAll().excludeAll().build();
 
+        //@formatter:off
         byte[] data = new byte[31];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x16; // AD 2
-        data[4] = (byte) 0xff; // AD 2
-        data[5] = (byte) 0xd5; // AD 2
-        data[6] = (byte) 0x02; // AD 2
-        data[7] = (byte) 0x01; // AD 2
-        data[8] = (byte) 0x00; // Sequence number
-        data[9] = (byte) 0x60; // Temperature
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x16; // AD 2
+        data[ 4] = (byte) 0xff; // AD 2
+        data[ 5] = (byte) 0xd5; // AD 2
+        data[ 6] = (byte) 0x02; // AD 2
+        data[ 7] = (byte) 0x01; // AD 2
+        data[ 8] = (byte) 0x00; // Sequence number
+        data[ 9] = (byte) 0x60; // Temperature
         data[10] = (byte) 0xf0; // Temperature
         data[11] = (byte) 0x00; // Relative humidity
         data[12] = (byte) 0x00; // Relative humidity
@@ -2218,6 +2291,7 @@ public class RbtAdvertisingDataParserTest {
         data[28] = (byte) 'R'; // AD 3
         data[29] = (byte) 'b'; // AD 3
         data[30] = (byte) 't'; // AD 3
+        //@formatter:on
 
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(data);
 
@@ -2235,17 +2309,18 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(false);
         RbtAdvertisingDataParser parser = builder.includeAll().excludeAll().build();
 
+        //@formatter:off
         byte[] data = new byte[31];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x16; // AD 2
-        data[4] = (byte) 0xff; // AD 2
-        data[5] = (byte) 0xd5; // AD 2
-        data[6] = (byte) 0x02; // AD 2
-        data[7] = (byte) 0x02; // AD 2
-        data[8] = (byte) 0x00; // Sequence number
-        data[9] = (byte) 0x00; // Discomfort index
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x16; // AD 2
+        data[ 4] = (byte) 0xff; // AD 2
+        data[ 5] = (byte) 0xd5; // AD 2
+        data[ 6] = (byte) 0x02; // AD 2
+        data[ 7] = (byte) 0x02; // AD 2
+        data[ 8] = (byte) 0x00; // Sequence number
+        data[ 9] = (byte) 0x00; // Discomfort index
         data[10] = (byte) 0x00; // Discomfort index
         data[11] = (byte) 0x60; // Heat stroke
         data[12] = (byte) 0xf0; // Heat stroke
@@ -2267,6 +2342,7 @@ public class RbtAdvertisingDataParserTest {
         data[28] = (byte) 'R'; // AD 3
         data[29] = (byte) 'b'; // AD 3
         data[30] = (byte) 't'; // AD 3
+        //@formatter:on
 
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(data);
 
@@ -2284,17 +2360,18 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(false);
         RbtAdvertisingDataParser parser = builder.includeAll().excludeAll().build();
 
+        //@formatter:off
         byte[] data = new byte[62];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x16; // AD 2
-        data[4] = (byte) 0xff; // AD 2
-        data[5] = (byte) 0xd5; // AD 2
-        data[6] = (byte) 0x02; // AD 2
-        data[7] = (byte) 0x03; // AD 2
-        data[8] = (byte) 0x00; // Sequence number
-        data[9] = (byte) 0x60; // Temperature
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x16; // AD 2
+        data[ 4] = (byte) 0xff; // AD 2
+        data[ 5] = (byte) 0xd5; // AD 2
+        data[ 6] = (byte) 0x02; // AD 2
+        data[ 7] = (byte) 0x03; // AD 2
+        data[ 8] = (byte) 0x00; // Sequence number
+        data[ 9] = (byte) 0x60; // Temperature
         data[10] = (byte) 0xf0; // Temperature
         data[11] = (byte) 0x00; // Relative humidity
         data[12] = (byte) 0x00; // Relative humidity
@@ -2347,6 +2424,7 @@ public class RbtAdvertisingDataParserTest {
         data[59] = (byte) 0xFF; // Reserve for Future Use
         data[60] = (byte) 0xFF; // Reserve for Future Use
         data[61] = (byte) 0xFF; // Reserve for Future Use
+        //@formatter:on
 
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(data);
 
@@ -2364,17 +2442,18 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(false);
         RbtAdvertisingDataParser parser = builder.includeAll().excludeAll().build();
 
+        //@formatter:off
         byte[] data = new byte[62];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x16; // AD 2
-        data[4] = (byte) 0xff; // AD 2
-        data[5] = (byte) 0xd5; // AD 2
-        data[6] = (byte) 0x02; // AD 2
-        data[7] = (byte) 0x04; // AD 2
-        data[8] = (byte) 0x00; // Sequence number
-        data[9] = (byte) 0x00; // Temperature flag
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x16; // AD 2
+        data[ 4] = (byte) 0xff; // AD 2
+        data[ 5] = (byte) 0xd5; // AD 2
+        data[ 6] = (byte) 0x02; // AD 2
+        data[ 7] = (byte) 0x04; // AD 2
+        data[ 8] = (byte) 0x00; // Sequence number
+        data[ 9] = (byte) 0x00; // Temperature flag
         data[10] = (byte) 0x00; // Temperature flag
         data[11] = (byte) 0x00; // Relative humidity flag
         data[12] = (byte) 0x00; // Relative humidity flag
@@ -2427,6 +2506,7 @@ public class RbtAdvertisingDataParserTest {
         data[59] = (byte) 0xff; // Reserve for Future Use
         data[60] = (byte) 0xff; // Reserve for Future Use
         data[61] = (byte) 0xff; // Reserve for Future Use
+        //@formatter:on
 
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(data);
 
@@ -2444,17 +2524,18 @@ public class RbtAdvertisingDataParserTest {
         RbtAdvertisingDataParser.Builder builder = new RbtAdvertisingDataParser.Builder(false);
         RbtAdvertisingDataParser parser = builder.includeAll().excludeAll().build();
 
+        //@formatter:off
         byte[] data = new byte[31];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x03; // AD 2
-        data[4] = (byte) 0x02; // AD 2
-        data[5] = (byte) 0x0a; // AD 2
-        data[6] = (byte) 0x18; // AD 2
-        data[7] = (byte) 0x12; // AD 3
-        data[8] = (byte) 0xff; // AD 3
-        data[9] = (byte) 0xd5; // AD 3
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x03; // AD 2
+        data[ 4] = (byte) 0x02; // AD 2
+        data[ 5] = (byte) 0x0a; // AD 2
+        data[ 6] = (byte) 0x18; // AD 2
+        data[ 7] = (byte) 0x12; // AD 3
+        data[ 8] = (byte) 0xff; // AD 3
+        data[ 9] = (byte) 0xd5; // AD 3
         data[10] = (byte) 0x02; // AD 3
         data[11] = (byte) 0x05; // AD 3
         data[12] = (byte) 0x00; // Serial number
@@ -2476,6 +2557,7 @@ public class RbtAdvertisingDataParserTest {
         data[28] = (byte) 'R'; // AD 4
         data[29] = (byte) 'b'; // AD 4
         data[30] = (byte) 't'; // AD 4
+        //@formatter:on
 
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(data);
 

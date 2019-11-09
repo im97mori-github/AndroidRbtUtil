@@ -16,6 +16,7 @@ public class PgaAccelerationTest extends AbstractEventEnableDisableTest {
 
     @Test
     public void test001() {
+        //@formatter:off
         byte[] data = new byte[9];
         data[ 0] = (byte) ((0x00) & 0xff); // Event enable/disable
         data[ 1] = (byte) ((0x00) & 0xff); // Simple threshold [upper limit] 1
@@ -26,6 +27,7 @@ public class PgaAccelerationTest extends AbstractEventEnableDisableTest {
         data[ 6] = (byte) ((0x00) & 0xff); // Change threshold [rise] 1
         data[ 7] = (byte) ((0x00) & 0xff); // Change threshold[rise]2
         data[ 8] = (byte) ((0x00) & 0xff); // Change threshold[rise]2
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -48,6 +50,7 @@ public class PgaAccelerationTest extends AbstractEventEnableDisableTest {
 
     @Test
     public void test002() {
+        //@formatter:off
         byte[] data = new byte[9];
         data[ 0] = (byte) ((ALL_EVENT_ENABLE_DISABLE_ACCELERATION) & 0xff); // Event enable/disable
         data[ 1] = (byte) ((0xff) & 0xff); // Simple threshold [upper limit] 1
@@ -58,6 +61,7 @@ public class PgaAccelerationTest extends AbstractEventEnableDisableTest {
         data[ 6] = (byte) ((0x27) & 0xff); // Change threshold [rise] 1
         data[ 7] = (byte) ((0x10) & 0xff); // Change threshold[rise]2
         data[ 8] = (byte) ((0x27) & 0xff); // Change threshold[rise]2
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -80,6 +84,7 @@ public class PgaAccelerationTest extends AbstractEventEnableDisableTest {
 
     @Test
     public void test003() {
+        //@formatter:off
         byte[] data = new byte[9];
         data[ 0] = (byte) ((RbtConstants.EventEnableDisableAcceleration.SIMPLE_THRESHOLD_UPPER_LIMIT_1) & 0xff); // Event enable/disable
         data[ 1] = (byte) ((0xff) & 0xff); // Simple threshold [upper limit] 1
@@ -90,6 +95,7 @@ public class PgaAccelerationTest extends AbstractEventEnableDisableTest {
         data[ 6] = (byte) ((0x27) & 0xff); // Change threshold [rise] 1
         data[ 7] = (byte) ((0x10) & 0xff); // Change threshold[rise]2
         data[ 8] = (byte) ((0x27) & 0xff); // Change threshold[rise]2
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -112,6 +118,7 @@ public class PgaAccelerationTest extends AbstractEventEnableDisableTest {
 
     @Test
     public void test004() {
+        //@formatter:off
         byte[] data = new byte[9];
         data[ 0] = (byte) ((RbtConstants.EventEnableDisableAcceleration.SIMPLE_THRESHOLD_UPPER_LIMIT_2) & 0xff); // Event enable/disable
         data[ 1] = (byte) ((0xff) & 0xff); // Simple threshold [upper limit] 1
@@ -122,6 +129,7 @@ public class PgaAccelerationTest extends AbstractEventEnableDisableTest {
         data[ 6] = (byte) ((0x27) & 0xff); // Change threshold [rise] 1
         data[ 7] = (byte) ((0x10) & 0xff); // Change threshold[rise]2
         data[ 8] = (byte) ((0x27) & 0xff); // Change threshold[rise]2
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -144,6 +152,7 @@ public class PgaAccelerationTest extends AbstractEventEnableDisableTest {
 
     @Test
     public void test005() {
+        //@formatter:off
         byte[] data = new byte[9];
         data[ 0] = (byte) ((RbtConstants.EventEnableDisableAcceleration.CHANGE_THRESHOLD_RISE_1) & 0xff); // Event enable/disable
         data[ 1] = (byte) ((0xff) & 0xff); // Simple threshold [upper limit] 1
@@ -154,6 +163,7 @@ public class PgaAccelerationTest extends AbstractEventEnableDisableTest {
         data[ 6] = (byte) ((0x27) & 0xff); // Change threshold [rise] 1
         data[ 7] = (byte) ((0x10) & 0xff); // Change threshold[rise]2
         data[ 8] = (byte) ((0x27) & 0xff); // Change threshold[rise]2
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -176,6 +186,7 @@ public class PgaAccelerationTest extends AbstractEventEnableDisableTest {
 
     @Test
     public void test006() {
+        //@formatter:off
         byte[] data = new byte[9];
         data[ 0] = (byte) ((RbtConstants.EventEnableDisableAcceleration.CHANGE_THRESHOLD_RISE_2) & 0xff); // Event enable/disable
         data[ 1] = (byte) ((0xff) & 0xff); // Simple threshold [upper limit] 1
@@ -186,6 +197,7 @@ public class PgaAccelerationTest extends AbstractEventEnableDisableTest {
         data[ 6] = (byte) ((0x27) & 0xff); // Change threshold [rise] 1
         data[ 7] = (byte) ((0x10) & 0xff); // Change threshold[rise]2
         data[ 8] = (byte) ((0x27) & 0xff); // Change threshold[rise]2
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -208,6 +220,7 @@ public class PgaAccelerationTest extends AbstractEventEnableDisableTest {
 
     @Test
     public void test101() {
+        //@formatter:off
         byte[] data = new byte[9];
         data[ 0] = (byte) ((RbtConstants.EventEnableDisableAcceleration.CHANGE_THRESHOLD_RISE_2) & 0xff); // Event enable/disable
         data[ 1] = (byte) ((0x01) & 0xff); // Simple threshold [upper limit] 1
@@ -218,6 +231,7 @@ public class PgaAccelerationTest extends AbstractEventEnableDisableTest {
         data[ 6] = (byte) ((0x00) & 0xff); // Change threshold [rise] 1
         data[ 7] = (byte) ((0x04) & 0xff); // Change threshold[rise]2
         data[ 8] = (byte) ((0x00) & 0xff); // Change threshold[rise]2
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -237,6 +251,7 @@ public class PgaAccelerationTest extends AbstractEventEnableDisableTest {
 
     @Test
     public void test102() {
+        //@formatter:off
         byte[] data = new byte[9];
         data[ 0] = (byte) ((RbtConstants.EventEnableDisableAcceleration.CHANGE_THRESHOLD_RISE_2) & 0xff); // Event enable/disable
         data[ 1] = (byte) ((0x01) & 0xff); // Simple threshold [upper limit] 1
@@ -247,6 +262,7 @@ public class PgaAccelerationTest extends AbstractEventEnableDisableTest {
         data[ 6] = (byte) ((0x00) & 0xff); // Change threshold [rise] 1
         data[ 7] = (byte) ((0x04) & 0xff); // Change threshold[rise]2
         data[ 8] = (byte) ((0x00) & 0xff); // Change threshold[rise]2
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -274,6 +290,7 @@ public class PgaAccelerationTest extends AbstractEventEnableDisableTest {
 
     @Test
     public void test104() {
+        //@formatter:off
         byte[] data = new byte[9];
         data[ 0] = (byte) ((RbtConstants.EventEnableDisableAcceleration.CHANGE_THRESHOLD_RISE_2) & 0xff); // Event enable/disable
         data[ 1] = (byte) ((0x01) & 0xff); // Simple threshold [upper limit] 1
@@ -284,6 +301,7 @@ public class PgaAccelerationTest extends AbstractEventEnableDisableTest {
         data[ 6] = (byte) ((0x00) & 0xff); // Change threshold [rise] 1
         data[ 7] = (byte) ((0x04) & 0xff); // Change threshold[rise]2
         data[ 8] = (byte) ((0x00) & 0xff); // Change threshold[rise]2
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);

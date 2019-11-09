@@ -3,7 +3,6 @@ package org.im97mori.rbt.ble.characteristic;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 
-import org.im97mori.ble.BLEConstants;
 import org.im97mori.rbt.RbtConstants;
 import org.junit.Test;
 
@@ -17,6 +16,7 @@ public class DiscomfortIndexSensor1Test extends AbstractEventEnableDisableTest {
 
     @Test
     public void test001() {
+        //@formatter:off
         byte[] data = new byte[20];
         data[ 0] = (byte) ((0x00) & 0xff); // Event enable/disable
         data[ 1] = (byte) ((0x00) & 0xff); // Event enable/disable
@@ -38,6 +38,7 @@ public class DiscomfortIndexSensor1Test extends AbstractEventEnableDisableTest {
         data[17] = (byte) ((0x00) & 0xff); // Change threshold [decline] 2
         data[18] = (byte) ((0xff) & 0xff); // Reserve for Future Use
         data[19] = (byte) ((0xff) & 0xff); // Reserve for Future Use
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -80,6 +81,7 @@ public class DiscomfortIndexSensor1Test extends AbstractEventEnableDisableTest {
 
     @Test
     public void test002() {
+        //@formatter:off
         byte[] data = new byte[20];
         data[ 0] = (byte) ((ALL_EVENT_ENABLE_DISABLE_SENSOR_LSB) & 0xff); // Event enable/disable
         data[ 1] = (byte) ((ALL_EVENT_ENABLE_DISABLE_SENSOR_MSB) & 0xff); // Event enable/disable
@@ -101,6 +103,7 @@ public class DiscomfortIndexSensor1Test extends AbstractEventEnableDisableTest {
         data[17] = (byte) ((0x27) & 0xff); // Change threshold [decline] 2
         data[18] = (byte) ((0xff) & 0xff); // Reserve for Future Use
         data[19] = (byte) ((0xff) & 0xff); // Reserve for Future Use
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -143,6 +146,7 @@ public class DiscomfortIndexSensor1Test extends AbstractEventEnableDisableTest {
 
     @Test
     public void test003() {
+        //@formatter:off
         byte[] data = new byte[20];
         data[ 0] = (byte) ((RbtConstants.EventEnableDisableSensor.SIMPLE_THRESHOLD_UPPER_LIMIT_1) & 0xff); // Event enable/disable
         data[ 1] = (byte) ((RbtConstants.EventEnableDisableSensor.SIMPLE_THRESHOLD_UPPER_LIMIT_1 >> 8) & 0xff); // Event enable/disable
@@ -164,6 +168,7 @@ public class DiscomfortIndexSensor1Test extends AbstractEventEnableDisableTest {
         data[17] = (byte) ((0x27) & 0xff); // Change threshold [decline] 2
         data[18] = (byte) ((0xff) & 0xff); // Reserve for Future Use
         data[19] = (byte) ((0xff) & 0xff); // Reserve for Future Use
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -206,6 +211,7 @@ public class DiscomfortIndexSensor1Test extends AbstractEventEnableDisableTest {
 
     @Test
     public void test004() {
+        //@formatter:off
         byte[] data = new byte[20];
         data[ 0] = (byte) ((RbtConstants.EventEnableDisableSensor.SIMPLE_THRESHOLD_UPPER_LIMIT_2) & 0xff); // Event enable/disable
         data[ 1] = (byte) ((RbtConstants.EventEnableDisableSensor.SIMPLE_THRESHOLD_UPPER_LIMIT_2 >> 8) & 0xff); // Event enable/disable
@@ -227,6 +233,7 @@ public class DiscomfortIndexSensor1Test extends AbstractEventEnableDisableTest {
         data[17] = (byte) ((0x27) & 0xff); // Change threshold [decline] 2
         data[18] = (byte) ((0xff) & 0xff); // Reserve for Future Use
         data[19] = (byte) ((0xff) & 0xff); // Reserve for Future Use
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -269,6 +276,7 @@ public class DiscomfortIndexSensor1Test extends AbstractEventEnableDisableTest {
 
     @Test
     public void test005() {
+        //@formatter:off
         byte[] data = new byte[20];
         data[ 0] = (byte) ((RbtConstants.EventEnableDisableSensor.SIMPLE_THRESHOLD_LOWER_LIMIT_1) & 0xff); // Event enable/disable
         data[ 1] = (byte) ((RbtConstants.EventEnableDisableSensor.SIMPLE_THRESHOLD_LOWER_LIMIT_1 >> 8) & 0xff); // Event enable/disable
@@ -290,6 +298,7 @@ public class DiscomfortIndexSensor1Test extends AbstractEventEnableDisableTest {
         data[17] = (byte) ((0x27) & 0xff); // Change threshold [decline] 2
         data[18] = (byte) ((0xff) & 0xff); // Reserve for Future Use
         data[19] = (byte) ((0xff) & 0xff); // Reserve for Future Use
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -332,6 +341,7 @@ public class DiscomfortIndexSensor1Test extends AbstractEventEnableDisableTest {
 
     @Test
     public void test006() {
+        //@formatter:off
         byte[] data = new byte[20];
         data[ 0] = (byte) ((RbtConstants.EventEnableDisableSensor.SIMPLE_THRESHOLD_LOWER_LIMIT_2) & 0xff); // Event enable/disable
         data[ 1] = (byte) ((RbtConstants.EventEnableDisableSensor.SIMPLE_THRESHOLD_LOWER_LIMIT_2 >> 8) & 0xff); // Event enable/disable
@@ -353,6 +363,7 @@ public class DiscomfortIndexSensor1Test extends AbstractEventEnableDisableTest {
         data[17] = (byte) ((0x27) & 0xff); // Change threshold [decline] 2
         data[18] = (byte) ((0xff) & 0xff); // Reserve for Future Use
         data[19] = (byte) ((0xff) & 0xff); // Reserve for Future Use
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -395,6 +406,7 @@ public class DiscomfortIndexSensor1Test extends AbstractEventEnableDisableTest {
 
     @Test
     public void test007() {
+        //@formatter:off
         byte[] data = new byte[20];
         data[ 0] = (byte) ((RbtConstants.EventEnableDisableSensor.CHANGE_THRESHOLD_RISE_1) & 0xff); // Event enable/disable
         data[ 1] = (byte) ((RbtConstants.EventEnableDisableSensor.CHANGE_THRESHOLD_RISE_1 >> 8) & 0xff); // Event enable/disable
@@ -416,6 +428,7 @@ public class DiscomfortIndexSensor1Test extends AbstractEventEnableDisableTest {
         data[17] = (byte) ((0x27) & 0xff); // Change threshold [decline] 2
         data[18] = (byte) ((0xff) & 0xff); // Reserve for Future Use
         data[19] = (byte) ((0xff) & 0xff); // Reserve for Future Use
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -458,6 +471,7 @@ public class DiscomfortIndexSensor1Test extends AbstractEventEnableDisableTest {
 
     @Test
     public void test008() {
+        //@formatter:off
         byte[] data = new byte[20];
         data[ 0] = (byte) ((RbtConstants.EventEnableDisableSensor.CHANGE_THRESHOLD_RISE_2) & 0xff); // Event enable/disable
         data[ 1] = (byte) ((RbtConstants.EventEnableDisableSensor.CHANGE_THRESHOLD_RISE_2 >> 8) & 0xff); // Event enable/disable
@@ -479,6 +493,7 @@ public class DiscomfortIndexSensor1Test extends AbstractEventEnableDisableTest {
         data[17] = (byte) ((0x27) & 0xff); // Change threshold [decline] 2
         data[18] = (byte) ((0xff) & 0xff); // Reserve for Future Use
         data[19] = (byte) ((0xff) & 0xff); // Reserve for Future Use
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -521,6 +536,7 @@ public class DiscomfortIndexSensor1Test extends AbstractEventEnableDisableTest {
 
     @Test
     public void test009() {
+        //@formatter:off
         byte[] data = new byte[20];
         data[ 0] = (byte) ((RbtConstants.EventEnableDisableSensor.CHANGE_THRESHOLD_DECLINE_1) & 0xff); // Event enable/disable
         data[ 1] = (byte) ((RbtConstants.EventEnableDisableSensor.CHANGE_THRESHOLD_DECLINE_1 >> 8) & 0xff); // Event enable/disable
@@ -542,6 +558,7 @@ public class DiscomfortIndexSensor1Test extends AbstractEventEnableDisableTest {
         data[17] = (byte) ((0x27) & 0xff); // Change threshold [decline] 2
         data[18] = (byte) ((0xff) & 0xff); // Reserve for Future Use
         data[19] = (byte) ((0xff) & 0xff); // Reserve for Future Use
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -584,6 +601,7 @@ public class DiscomfortIndexSensor1Test extends AbstractEventEnableDisableTest {
 
     @Test
     public void test010() {
+        //@formatter:off
         byte[] data = new byte[20];
         data[ 0] = (byte) ((RbtConstants.EventEnableDisableSensor.CHANGE_THRESHOLD_DECLINE_2) & 0xff); // Event enable/disable
         data[ 1] = (byte) ((RbtConstants.EventEnableDisableSensor.CHANGE_THRESHOLD_DECLINE_2 >> 8) & 0xff); // Event enable/disable
@@ -605,6 +623,7 @@ public class DiscomfortIndexSensor1Test extends AbstractEventEnableDisableTest {
         data[17] = (byte) ((0x27) & 0xff); // Change threshold [decline] 2
         data[18] = (byte) ((0xff) & 0xff); // Reserve for Future Use
         data[19] = (byte) ((0xff) & 0xff); // Reserve for Future Use
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -647,6 +666,7 @@ public class DiscomfortIndexSensor1Test extends AbstractEventEnableDisableTest {
 
     @Test
     public void test011() {
+        //@formatter:off
         byte[] data = new byte[20];
         data[ 0] = (byte) ((RbtConstants.EventEnableDisableSensor.AVERAGE_VALUE_THRESHOLD_UPPER) & 0xff); // Event enable/disable
         data[ 1] = (byte) ((RbtConstants.EventEnableDisableSensor.AVERAGE_VALUE_THRESHOLD_UPPER >> 8) & 0xff); // Event enable/disable
@@ -668,6 +688,7 @@ public class DiscomfortIndexSensor1Test extends AbstractEventEnableDisableTest {
         data[17] = (byte) ((0x27) & 0xff); // Change threshold [decline] 2
         data[18] = (byte) ((0xff) & 0xff); // Reserve for Future Use
         data[19] = (byte) ((0xff) & 0xff); // Reserve for Future Use
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -710,6 +731,7 @@ public class DiscomfortIndexSensor1Test extends AbstractEventEnableDisableTest {
 
     @Test
     public void test012() {
+        //@formatter:off
         byte[] data = new byte[20];
         data[ 0] = (byte) ((RbtConstants.EventEnableDisableSensor.AVERAGE_VALUE_THRESHOLD_LOWER) & 0xff); // Event enable/disable
         data[ 1] = (byte) ((RbtConstants.EventEnableDisableSensor.AVERAGE_VALUE_THRESHOLD_LOWER >> 8) & 0xff); // Event enable/disable
@@ -731,6 +753,7 @@ public class DiscomfortIndexSensor1Test extends AbstractEventEnableDisableTest {
         data[17] = (byte) ((0x27) & 0xff); // Change threshold [decline] 2
         data[18] = (byte) ((0xff) & 0xff); // Reserve for Future Use
         data[19] = (byte) ((0xff) & 0xff); // Reserve for Future Use
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -773,6 +796,7 @@ public class DiscomfortIndexSensor1Test extends AbstractEventEnableDisableTest {
 
     @Test
     public void test013() {
+        //@formatter:off
         byte[] data = new byte[20];
         data[ 0] = (byte) ((RbtConstants.EventEnableDisableSensor.PEAK_TO_PEAK_THRESHOLD_UPPER) & 0xff); // Event enable/disable
         data[ 1] = (byte) ((RbtConstants.EventEnableDisableSensor.PEAK_TO_PEAK_THRESHOLD_UPPER >> 8) & 0xff); // Event enable/disable
@@ -794,6 +818,7 @@ public class DiscomfortIndexSensor1Test extends AbstractEventEnableDisableTest {
         data[17] = (byte) ((0x27) & 0xff); // Change threshold [decline] 2
         data[18] = (byte) ((0xff) & 0xff); // Reserve for Future Use
         data[19] = (byte) ((0xff) & 0xff); // Reserve for Future Use
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -836,6 +861,7 @@ public class DiscomfortIndexSensor1Test extends AbstractEventEnableDisableTest {
 
     @Test
     public void test014() {
+        //@formatter:off
         byte[] data = new byte[20];
         data[ 0] = (byte) ((RbtConstants.EventEnableDisableSensor.PEAK_TO_PEAK_THRESHOLD_LOWER) & 0xff); // Event enable/disable
         data[ 1] = (byte) ((RbtConstants.EventEnableDisableSensor.PEAK_TO_PEAK_THRESHOLD_LOWER >> 8) & 0xff); // Event enable/disable
@@ -857,6 +883,7 @@ public class DiscomfortIndexSensor1Test extends AbstractEventEnableDisableTest {
         data[17] = (byte) ((0x27) & 0xff); // Change threshold [decline] 2
         data[18] = (byte) ((0xff) & 0xff); // Reserve for Future Use
         data[19] = (byte) ((0xff) & 0xff); // Reserve for Future Use
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -899,6 +926,7 @@ public class DiscomfortIndexSensor1Test extends AbstractEventEnableDisableTest {
 
     @Test
     public void test015() {
+        //@formatter:off
         byte[] data = new byte[20];
         data[ 0] = (byte) ((RbtConstants.EventEnableDisableSensor.INTERVAL_DIFFERENCE_THRESHOLD_RISE) & 0xff); // Event enable/disable
         data[ 1] = (byte) ((RbtConstants.EventEnableDisableSensor.INTERVAL_DIFFERENCE_THRESHOLD_RISE >> 8) & 0xff); // Event enable/disable
@@ -920,6 +948,7 @@ public class DiscomfortIndexSensor1Test extends AbstractEventEnableDisableTest {
         data[17] = (byte) ((0x27) & 0xff); // Change threshold [decline] 2
         data[18] = (byte) ((0xff) & 0xff); // Reserve for Future Use
         data[19] = (byte) ((0xff) & 0xff); // Reserve for Future Use
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -962,6 +991,7 @@ public class DiscomfortIndexSensor1Test extends AbstractEventEnableDisableTest {
 
     @Test
     public void test016() {
+        //@formatter:off
         byte[] data = new byte[20];
         data[ 0] = (byte) ((RbtConstants.EventEnableDisableSensor.INTERVAL_DIFFERENCE_THRESHOLD_DECLINE) & 0xff); // Event enable/disable
         data[ 1] = (byte) ((RbtConstants.EventEnableDisableSensor.INTERVAL_DIFFERENCE_THRESHOLD_DECLINE >> 8) & 0xff); // Event enable/disable
@@ -983,6 +1013,7 @@ public class DiscomfortIndexSensor1Test extends AbstractEventEnableDisableTest {
         data[17] = (byte) ((0x27) & 0xff); // Change threshold [decline] 2
         data[18] = (byte) ((0xff) & 0xff); // Reserve for Future Use
         data[19] = (byte) ((0xff) & 0xff); // Reserve for Future Use
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -1025,6 +1056,7 @@ public class DiscomfortIndexSensor1Test extends AbstractEventEnableDisableTest {
 
     @Test
     public void test017() {
+        //@formatter:off
         byte[] data = new byte[20];
         data[ 0] = (byte) ((RbtConstants.EventEnableDisableSensor.BASE_DIFFERENCE_THRESHOLD_UPPER) & 0xff); // Event enable/disable
         data[ 1] = (byte) ((RbtConstants.EventEnableDisableSensor.BASE_DIFFERENCE_THRESHOLD_UPPER >> 8) & 0xff); // Event enable/disable
@@ -1046,6 +1078,7 @@ public class DiscomfortIndexSensor1Test extends AbstractEventEnableDisableTest {
         data[17] = (byte) ((0x27) & 0xff); // Change threshold [decline] 2
         data[18] = (byte) ((0xff) & 0xff); // Reserve for Future Use
         data[19] = (byte) ((0xff) & 0xff); // Reserve for Future Use
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -1088,6 +1121,7 @@ public class DiscomfortIndexSensor1Test extends AbstractEventEnableDisableTest {
 
     @Test
     public void test018() {
+        //@formatter:off
         byte[] data = new byte[20];
         data[ 0] = (byte) ((RbtConstants.EventEnableDisableSensor.BASE_DIFFERENCE_THRESHOLD_LOWER) & 0xff); // Event enable/disable
         data[ 1] = (byte) ((RbtConstants.EventEnableDisableSensor.BASE_DIFFERENCE_THRESHOLD_LOWER >> 8) & 0xff); // Event enable/disable
@@ -1109,6 +1143,7 @@ public class DiscomfortIndexSensor1Test extends AbstractEventEnableDisableTest {
         data[17] = (byte) ((0x27) & 0xff); // Change threshold [decline] 2
         data[18] = (byte) ((0xff) & 0xff); // Reserve for Future Use
         data[19] = (byte) ((0xff) & 0xff); // Reserve for Future Use
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -1151,6 +1186,7 @@ public class DiscomfortIndexSensor1Test extends AbstractEventEnableDisableTest {
 
     @Test
     public void test101() {
+        //@formatter:off
         byte[] data = new byte[20];
         data[ 0] = (byte) ((RbtConstants.EventEnableDisableSensor.BASE_DIFFERENCE_THRESHOLD_LOWER) & 0xff); // Event enable/disable
         data[ 1] = (byte) ((RbtConstants.EventEnableDisableSensor.BASE_DIFFERENCE_THRESHOLD_LOWER >> 8) & 0xff); // Event enable/disable
@@ -1172,6 +1208,7 @@ public class DiscomfortIndexSensor1Test extends AbstractEventEnableDisableTest {
         data[17] = (byte) ((0x00) & 0xff); // Change threshold [decline] 2
         data[18] = (byte) ((0xff) & 0xff); // Reserve for Future Use
         data[19] = (byte) ((0xff) & 0xff); // Reserve for Future Use
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -1195,6 +1232,7 @@ public class DiscomfortIndexSensor1Test extends AbstractEventEnableDisableTest {
 
     @Test
     public void test102() {
+        //@formatter:off
         byte[] data = new byte[20];
         data[ 0] = (byte) ((RbtConstants.EventEnableDisableSensor.BASE_DIFFERENCE_THRESHOLD_LOWER) & 0xff); // Event enable/disable
         data[ 1] = (byte) ((RbtConstants.EventEnableDisableSensor.BASE_DIFFERENCE_THRESHOLD_LOWER >> 8) & 0xff); // Event enable/disable
@@ -1216,6 +1254,7 @@ public class DiscomfortIndexSensor1Test extends AbstractEventEnableDisableTest {
         data[17] = (byte) ((0x00) & 0xff); // Change threshold [decline] 2
         data[18] = (byte) ((0xff) & 0xff); // Reserve for Future Use
         data[19] = (byte) ((0xff) & 0xff); // Reserve for Future Use
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -1251,6 +1290,7 @@ public class DiscomfortIndexSensor1Test extends AbstractEventEnableDisableTest {
 
     @Test
     public void test104() {
+        //@formatter:off
         byte[] data = new byte[20];
         data[ 0] = (byte) ((RbtConstants.EventEnableDisableSensor.BASE_DIFFERENCE_THRESHOLD_LOWER) & 0xff); // Event enable/disable
         data[ 1] = (byte) ((RbtConstants.EventEnableDisableSensor.BASE_DIFFERENCE_THRESHOLD_LOWER >> 8) & 0xff); // Event enable/disable
@@ -1272,6 +1312,7 @@ public class DiscomfortIndexSensor1Test extends AbstractEventEnableDisableTest {
         data[17] = (byte) ((0x00) & 0xff); // Change threshold [decline] 2
         data[18] = (byte) ((0xff) & 0xff); // Reserve for Future Use
         data[19] = (byte) ((0xff) & 0xff); // Reserve for Future Use
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);

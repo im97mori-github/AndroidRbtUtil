@@ -21,17 +21,19 @@ public class FilteredRbtScanCallbackTest {
     public void test_001() {
         int callbackType = 1;
         BluetoothDevice bluetoothDevice = BluetoothAdapter.getDefaultAdapter().getRemoteDevice("00:11:22:33:AA:BB");
+
+        //@formatter:off
         byte[] scanRecord = new byte[31];
-        scanRecord[0] = (byte) 0x02; // AD 1
-        scanRecord[1] = (byte) 0x01; // AD 1
-        scanRecord[2] = (byte) 0x06; // AD 1
-        scanRecord[3] = (byte) 0x16; // AD 2
-        scanRecord[4] = (byte) 0xff; // AD 2
-        scanRecord[5] = (byte) 0xd5; // AD 2
-        scanRecord[6] = (byte) 0x02; // AD 2
-        scanRecord[7] = (byte) 0x01; // AD 2
-        scanRecord[8] = (byte) 0x00; // Sequence number
-        scanRecord[9] = (byte) 0x60; // Temperature
+        scanRecord[ 0] = (byte) 0x02; // AD 1
+        scanRecord[ 1] = (byte) 0x01; // AD 1
+        scanRecord[ 2] = (byte) 0x06; // AD 1
+        scanRecord[ 3] = (byte) 0x16; // AD 2
+        scanRecord[ 4] = (byte) 0xff; // AD 2
+        scanRecord[ 5] = (byte) 0xd5; // AD 2
+        scanRecord[ 6] = (byte) 0x02; // AD 2
+        scanRecord[ 7] = (byte) 0x01; // AD 2
+        scanRecord[ 8] = (byte) 0x00; // Sequence number
+        scanRecord[ 9] = (byte) 0x60; // Temperature
         scanRecord[10] = (byte) 0xf0; // Temperature
         scanRecord[11] = (byte) 0x00; // Relative humidity
         scanRecord[12] = (byte) 0x00; // Relative humidity
@@ -53,6 +55,8 @@ public class FilteredRbtScanCallbackTest {
         scanRecord[28] = (byte) 'R'; // AD 3
         scanRecord[29] = (byte) 'b'; // AD 3
         scanRecord[30] = (byte) 't'; // AD 3
+        //@formatter:on
+
         Parcel parcel = Parcel.obtain();
         parcel.writeInt(1);
         bluetoothDevice.writeToParcel(parcel, 0);
@@ -99,17 +103,19 @@ public class FilteredRbtScanCallbackTest {
     public void test_002() {
         int callbackType = 1;
         BluetoothDevice bluetoothDevice = BluetoothAdapter.getDefaultAdapter().getRemoteDevice("00:11:22:33:AA:BB");
+
+        //@formatter:off
         byte[] scanRecord = new byte[31];
-        scanRecord[0] = (byte) 0x02; // AD 1
-        scanRecord[1] = (byte) 0x01; // AD 1
-        scanRecord[2] = (byte) 0x06; // AD 1
-        scanRecord[3] = (byte) 0x16; // AD 2
-        scanRecord[4] = (byte) 0xff; // AD 2
-        scanRecord[5] = (byte) 0xd5; // AD 2
-        scanRecord[6] = (byte) 0x02; // AD 2
-        scanRecord[7] = (byte) 0x01; // AD 2
-        scanRecord[8] = (byte) 0x00; // Sequence number
-        scanRecord[9] = (byte) 0x60; // Temperature
+        scanRecord[ 0] = (byte) 0x02; // AD 1
+        scanRecord[ 1] = (byte) 0x01; // AD 1
+        scanRecord[ 2] = (byte) 0x06; // AD 1
+        scanRecord[ 3] = (byte) 0x16; // AD 2
+        scanRecord[ 4] = (byte) 0xff; // AD 2
+        scanRecord[ 5] = (byte) 0xd5; // AD 2
+        scanRecord[ 6] = (byte) 0x02; // AD 2
+        scanRecord[ 7] = (byte) 0x01; // AD 2
+        scanRecord[ 8] = (byte) 0x00; // Sequence number
+        scanRecord[ 9] = (byte) 0x60; // Temperature
         scanRecord[10] = (byte) 0xf0; // Temperature
         scanRecord[11] = (byte) 0x00; // Relative humidity
         scanRecord[12] = (byte) 0x00; // Relative humidity
@@ -131,6 +137,8 @@ public class FilteredRbtScanCallbackTest {
         scanRecord[28] = (byte) 'R'; // AD 3
         scanRecord[29] = (byte) 'b'; // AD 3
         scanRecord[30] = (byte) 't'; // AD 3
+        //@formatter:on
+
         Parcel parcel = Parcel.obtain();
         parcel.writeInt(1);
         bluetoothDevice.writeToParcel(parcel, 0);
@@ -179,17 +187,19 @@ public class FilteredRbtScanCallbackTest {
     @Test
     public void test_003() {
         BluetoothDevice bluetoothDevice = BluetoothAdapter.getDefaultAdapter().getRemoteDevice("00:11:22:33:AA:BB");
+
+        //@formatter:off
         byte[] scanRecord = new byte[31];
-        scanRecord[0] = (byte) 0x02; // AD 1
-        scanRecord[1] = (byte) 0x01; // AD 1
-        scanRecord[2] = (byte) 0x06; // AD 1
-        scanRecord[3] = (byte) 0x16; // AD 2
-        scanRecord[4] = (byte) 0xff; // AD 2
-        scanRecord[5] = (byte) 0xd5; // AD 2
-        scanRecord[6] = (byte) 0x02; // AD 2
-        scanRecord[7] = (byte) 0x01; // AD 2
-        scanRecord[8] = (byte) 0x00; // Sequence number
-        scanRecord[9] = (byte) 0x60; // Temperature
+        scanRecord[ 0] = (byte) 0x02; // AD 1
+        scanRecord[ 1] = (byte) 0x01; // AD 1
+        scanRecord[ 2] = (byte) 0x06; // AD 1
+        scanRecord[ 3] = (byte) 0x16; // AD 2
+        scanRecord[ 4] = (byte) 0xff; // AD 2
+        scanRecord[ 5] = (byte) 0xd5; // AD 2
+        scanRecord[ 6] = (byte) 0x02; // AD 2
+        scanRecord[ 7] = (byte) 0x01; // AD 2
+        scanRecord[ 8] = (byte) 0x00; // Sequence number
+        scanRecord[ 9] = (byte) 0x60; // Temperature
         scanRecord[10] = (byte) 0xf0; // Temperature
         scanRecord[11] = (byte) 0x00; // Relative humidity
         scanRecord[12] = (byte) 0x00; // Relative humidity
@@ -211,6 +221,8 @@ public class FilteredRbtScanCallbackTest {
         scanRecord[28] = (byte) 'R'; // AD 3
         scanRecord[29] = (byte) 'b'; // AD 3
         scanRecord[30] = (byte) 't'; // AD 3
+        //@formatter:on
+
         Parcel parcel = Parcel.obtain();
         parcel.writeInt(1);
         bluetoothDevice.writeToParcel(parcel, 0);
@@ -256,17 +268,19 @@ public class FilteredRbtScanCallbackTest {
     @Test
     public void test_004() {
         BluetoothDevice bluetoothDevice = BluetoothAdapter.getDefaultAdapter().getRemoteDevice("00:11:22:33:AA:BB");
+
+        //@formatter:off
         byte[] scanRecord = new byte[31];
-        scanRecord[0] = (byte) 0x02; // AD 1
-        scanRecord[1] = (byte) 0x01; // AD 1
-        scanRecord[2] = (byte) 0x06; // AD 1
-        scanRecord[3] = (byte) 0x16; // AD 2
-        scanRecord[4] = (byte) 0xff; // AD 2
-        scanRecord[5] = (byte) 0xd5; // AD 2
-        scanRecord[6] = (byte) 0x02; // AD 2
-        scanRecord[7] = (byte) 0x01; // AD 2
-        scanRecord[8] = (byte) 0x00; // Sequence number
-        scanRecord[9] = (byte) 0x60; // Temperature
+        scanRecord[ 0] = (byte) 0x02; // AD 1
+        scanRecord[ 1] = (byte) 0x01; // AD 1
+        scanRecord[ 2] = (byte) 0x06; // AD 1
+        scanRecord[ 3] = (byte) 0x16; // AD 2
+        scanRecord[ 4] = (byte) 0xff; // AD 2
+        scanRecord[ 5] = (byte) 0xd5; // AD 2
+        scanRecord[ 6] = (byte) 0x02; // AD 2
+        scanRecord[ 7] = (byte) 0x01; // AD 2
+        scanRecord[ 8] = (byte) 0x00; // Sequence number
+        scanRecord[ 9] = (byte) 0x60; // Temperature
         scanRecord[10] = (byte) 0xf0; // Temperature
         scanRecord[11] = (byte) 0x00; // Relative humidity
         scanRecord[12] = (byte) 0x00; // Relative humidity
@@ -288,6 +302,8 @@ public class FilteredRbtScanCallbackTest {
         scanRecord[28] = (byte) 'R'; // AD 3
         scanRecord[29] = (byte) 'b'; // AD 3
         scanRecord[30] = (byte) 't'; // AD 3
+        //@formatter:on
+
         Parcel parcel = Parcel.obtain();
         parcel.writeInt(1);
         bluetoothDevice.writeToParcel(parcel, 0);

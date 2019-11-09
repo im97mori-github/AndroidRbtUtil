@@ -14,6 +14,7 @@ public class MemoryCalculationFlagSeismicIntensityTest extends AbstractSensingFl
 
     @Test
     public void test_seismicIntensity001() {
+        //@formatter:off
         byte[] data2 = new byte[11];
         data2[ 0] = (byte) ((0x01) & 0xff); // Memory index
         data2[ 1] = (byte) ((0x00) & 0xff); // Memory index
@@ -26,6 +27,7 @@ public class MemoryCalculationFlagSeismicIntensityTest extends AbstractSensingFl
         data2[ 8] = (byte) ((0x00) & 0xff); // SI value flag
         data2[ 9] = (byte) ((0x00) & 0xff); // PGA flag
         data2[10] = (byte) ALL_EVENT_FLAG_ACCELERATION; // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
@@ -90,6 +92,7 @@ public class MemoryCalculationFlagSeismicIntensityTest extends AbstractSensingFl
 
     @Test
     public void test_seismicIntensity002() {
+        //@formatter:off
         byte[] data2 = new byte[11];
         data2[ 0] = (byte) ((0x01) & 0xff); // Memory index
         data2[ 1] = (byte) ((0x00) & 0xff); // Memory index
@@ -102,6 +105,7 @@ public class MemoryCalculationFlagSeismicIntensityTest extends AbstractSensingFl
         data2[ 8] = (byte) ((0x00) & 0xff); // SI value flag
         data2[ 9] = (byte) ((0x00) & 0xff); // PGA flag
         data2[10] = (byte) (RbtConstants.EventFlagAcceleration.SIMPLE_THRESHOLD_UPPER_LIMIT_1 & 0xff); // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
@@ -166,6 +170,7 @@ public class MemoryCalculationFlagSeismicIntensityTest extends AbstractSensingFl
 
     @Test
     public void test_seismicIntensity003() {
+        //@formatter:off
         byte[] data2 = new byte[11];
         data2[ 0] = (byte) ((0x01) & 0xff); // Memory index
         data2[ 1] = (byte) ((0x00) & 0xff); // Memory index
@@ -178,6 +183,7 @@ public class MemoryCalculationFlagSeismicIntensityTest extends AbstractSensingFl
         data2[ 8] = (byte) ((0x00) & 0xff); // SI value flag
         data2[ 9] = (byte) ((0x00) & 0xff); // PGA flag
         data2[10] = (byte) (RbtConstants.EventFlagAcceleration.SIMPLE_THRESHOLD_UPPER_LIMIT_2 & 0xff); // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
@@ -242,6 +248,7 @@ public class MemoryCalculationFlagSeismicIntensityTest extends AbstractSensingFl
 
     @Test
     public void test_seismicIntensity004() {
+        //@formatter:off
         byte[] data2 = new byte[11];
         data2[ 0] = (byte) ((0x01) & 0xff); // Memory index
         data2[ 1] = (byte) ((0x00) & 0xff); // Memory index
@@ -254,6 +261,7 @@ public class MemoryCalculationFlagSeismicIntensityTest extends AbstractSensingFl
         data2[ 8] = (byte) ((0x00) & 0xff); // SI value flag
         data2[ 9] = (byte) ((0x00) & 0xff); // PGA flag
         data2[10] = (byte) (RbtConstants.EventFlagAcceleration.CHANGE_THRESHOLD_RISE_1 & 0xff); // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
@@ -317,7 +325,9 @@ public class MemoryCalculationFlagSeismicIntensityTest extends AbstractSensingFl
     }
 
     @Test
-    public void test_seismicIntensity005() {byte[] data2 = new byte[11];
+    public void test_seismicIntensity005() {
+        //@formatter:off
+        byte[] data2 = new byte[11];
         data2[ 0] = (byte) ((0x01) & 0xff); // Memory index
         data2[ 1] = (byte) ((0x00) & 0xff); // Memory index
         data2[ 2] = (byte) ((0x00) & 0xff); // Memory index
@@ -329,6 +339,7 @@ public class MemoryCalculationFlagSeismicIntensityTest extends AbstractSensingFl
         data2[ 8] = (byte) ((0x00) & 0xff); // SI value flag
         data2[ 9] = (byte) ((0x00) & 0xff); // PGA flag
         data2[10] = (byte) (RbtConstants.EventFlagAcceleration.CHANGE_THRESHOLD_RISE_2 & 0xff); // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);

@@ -13,8 +13,10 @@ public class MemoryResetTest {
 
     @Test
     public void test001() {
+        //@formatter:off
         byte[] data = new byte[1];
         data[ 0] = (byte) ((MemoryReset.MEMORY_RESET_SENSING_DATA_AREA) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -25,8 +27,10 @@ public class MemoryResetTest {
 
     @Test
     public void test002() {
+        //@formatter:off
         byte[] data = new byte[1];
         data[ 0] = (byte) ((MemoryReset.MEMORY_RESET_ACCELERATION_DATA_AREA) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -37,8 +41,10 @@ public class MemoryResetTest {
 
     @Test
     public void test003() {
+        //@formatter:off
         byte[] data = new byte[1];
         data[ 0] = (byte) ((MemoryReset.MEMORY_RESET_ACCELERATION_DATA_AREA) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -54,8 +60,10 @@ public class MemoryResetTest {
 
     @Test
     public void test004() {
+        //@formatter:off
         byte[] data = new byte[1];
         data[ 0] = (byte) ((MemoryReset.MEMORY_RESET_ACCELERATION_DATA_AREA) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -76,8 +84,10 @@ public class MemoryResetTest {
 
     @Test
     public void test006() {
+        //@formatter:off
         byte[] data = new byte[1];
         data[ 0] = (byte) ((MemoryReset.MEMORY_RESET_ACCELERATION_DATA_AREA) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);

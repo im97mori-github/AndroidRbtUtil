@@ -15,6 +15,7 @@ public class LatestCalculationDataTest {
 
     @Test
     public void test001() {
+        //@formatter:off
         byte[] data = new byte[18];
         data[ 0] = (byte) 0x00; // Sequence number
         data[ 1] = (byte) 0x00; // Discomfort index
@@ -34,6 +35,7 @@ public class LatestCalculationDataTest {
         data[15] = (byte) 0xb1; // Acceleration (Y-axis)
         data[16] = (byte) 0xe0; // Acceleration (Z-axis)
         data[17] = (byte) 0xb1; // Acceleration (Z-axis)
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -61,6 +63,7 @@ public class LatestCalculationDataTest {
 
     @Test
     public void test002() {
+        //@formatter:off
         byte[] data = new byte[18];
         data[ 0] = (byte) 0xff; // Sequence number
         data[ 1] = (byte) 0x10; // Discomfort index
@@ -80,6 +83,7 @@ public class LatestCalculationDataTest {
         data[15] = (byte) 0x4e; // Acceleration (Y-axis)
         data[16] = (byte) 0x20; // Acceleration (Z-axis)
         data[17] = (byte) 0x4e; // Acceleration (Z-axis)
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -107,6 +111,7 @@ public class LatestCalculationDataTest {
 
     @Test
     public void test003() {
+        //@formatter:off
         byte[] data = new byte[18];
         data[ 0] = (byte) 0xff; // Sequence number
         data[ 1] = (byte) 0x10; // Discomfort index
@@ -126,6 +131,7 @@ public class LatestCalculationDataTest {
         data[15] = (byte) 0x44; // Acceleration (Y-axis)
         data[16] = (byte) 0x25; // Acceleration (Z-axis)
         data[17] = (byte) 0x46; // Acceleration (Z-axis)
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -150,6 +156,7 @@ public class LatestCalculationDataTest {
 
     @Test
     public void test004() {
+        //@formatter:off
         byte[] data = new byte[18];
         data[ 0] = (byte) 0xff; // Sequence number
         data[ 1] = (byte) 0x10; // Discomfort index
@@ -169,6 +176,7 @@ public class LatestCalculationDataTest {
         data[15] = (byte) 0x44; // Acceleration (Y-axis)
         data[16] = (byte) 0x25; // Acceleration (Z-axis)
         data[17] = (byte) 0x46; // Acceleration (Z-axis)
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -180,6 +188,7 @@ public class LatestCalculationDataTest {
 
     @Test
     public void test005() {
+        //@formatter:off
         byte[] data = new byte[18];
         data[ 0] = (byte) 0xff; // Sequence number
         data[ 1] = (byte) 0x10; // Discomfort index
@@ -199,6 +208,7 @@ public class LatestCalculationDataTest {
         data[15] = (byte) 0x44; // Acceleration (Y-axis)
         data[16] = (byte) 0x25; // Acceleration (Z-axis)
         data[17] = (byte) 0x46; // Acceleration (Z-axis)
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);

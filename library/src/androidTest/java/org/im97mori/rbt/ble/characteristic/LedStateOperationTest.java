@@ -13,10 +13,12 @@ public class LedStateOperationTest {
 
     @Test
     public void test001() {
+        //@formatter:off
         byte[] data = new byte[3];
-        data[0] = (byte) ((LedStateOperation.START_UP_RAINBOW) & 0xff);
-        data[1] = (byte) ((LedStateOperation.ERROR_NONE) & 0xff);
-        data[2] = (byte) ((LedStateOperation.CONNECTION_NONE) & 0xff);
+        data[ 0] = (byte) ((LedStateOperation.START_UP_RAINBOW) & 0xff);
+        data[ 1] = (byte) ((LedStateOperation.ERROR_NONE) & 0xff);
+        data[ 2] = (byte) ((LedStateOperation.CONNECTION_NONE) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -29,10 +31,12 @@ public class LedStateOperationTest {
 
     @Test
     public void test002() {
+        //@formatter:off
         byte[] data = new byte[3];
-        data[0] = (byte) ((LedStateOperation.START_UP_BLUE) & 0xff);
-        data[1] = (byte) ((LedStateOperation.ERROR_RED) & 0xff);
-        data[2] = (byte) ((LedStateOperation.CONNECTION_GREEN) & 0xff);
+        data[ 0] = (byte) ((LedStateOperation.START_UP_BLUE) & 0xff);
+        data[ 1] = (byte) ((LedStateOperation.ERROR_RED) & 0xff);
+        data[ 2] = (byte) ((LedStateOperation.CONNECTION_GREEN) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -45,10 +49,12 @@ public class LedStateOperationTest {
 
     @Test
     public void test003() {
+        //@formatter:off
         byte[] data = new byte[3];
-        data[0] = (byte) ((LedStateOperation.START_UP_BLUE) & 0xff);
-        data[1] = (byte) ((LedStateOperation.ERROR_NONE) & 0xff);
-        data[2] = (byte) ((LedStateOperation.CONNECTION_GREEN) & 0xff);
+        data[ 0] = (byte) ((LedStateOperation.START_UP_BLUE) & 0xff);
+        data[ 1] = (byte) ((LedStateOperation.ERROR_NONE) & 0xff);
+        data[ 2] = (byte) ((LedStateOperation.CONNECTION_GREEN) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -66,10 +72,12 @@ public class LedStateOperationTest {
 
     @Test
     public void test004() {
+        //@formatter:off
         byte[] data = new byte[3];
-        data[0] = (byte) ((LedStateOperation.START_UP_BLUE) & 0xff);
-        data[1] = (byte) ((LedStateOperation.ERROR_NONE) & 0xff);
-        data[2] = (byte) ((LedStateOperation.CONNECTION_GREEN) & 0xff);
+        data[ 0] = (byte) ((LedStateOperation.START_UP_BLUE) & 0xff);
+        data[ 1] = (byte) ((LedStateOperation.ERROR_NONE) & 0xff);
+        data[ 2] = (byte) ((LedStateOperation.CONNECTION_GREEN) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -94,10 +102,12 @@ public class LedStateOperationTest {
 
     @Test
     public void test006() {
+        //@formatter:off
         byte[] data = new byte[3];
-        data[0] = (byte) ((LedStateOperation.START_UP_BLUE) & 0xff);
-        data[1] = (byte) ((LedStateOperation.ERROR_NONE) & 0xff);
-        data[2] = (byte) ((LedStateOperation.CONNECTION_GREEN) & 0xff);
+        data[ 0] = (byte) ((LedStateOperation.START_UP_BLUE) & 0xff);
+        data[ 1] = (byte) ((LedStateOperation.ERROR_NONE) & 0xff);
+        data[ 2] = (byte) ((LedStateOperation.CONNECTION_GREEN) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);

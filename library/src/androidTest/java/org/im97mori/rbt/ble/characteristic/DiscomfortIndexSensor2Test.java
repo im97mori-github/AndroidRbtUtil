@@ -3,7 +3,6 @@ package org.im97mori.rbt.ble.characteristic;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 
-import org.im97mori.ble.BLEConstants;
 import org.junit.Test;
 
 import static org.im97mori.ble.BLEConstants.BASE_UUID;
@@ -14,6 +13,7 @@ public class DiscomfortIndexSensor2Test extends AbstractEventEnableDisableTest {
 
     @Test
     public void test001() {
+        //@formatter:off
         byte[] data = new byte[20];
         data[ 0] = (byte) ((0x00) & 0xff); // Average value threshold [upper]
         data[ 1] = (byte) ((0x00) & 0xff); // Average value threshold [upper]
@@ -35,6 +35,7 @@ public class DiscomfortIndexSensor2Test extends AbstractEventEnableDisableTest {
         data[17] = (byte) ((0x01) & 0xff); // Peak to Peak count
         data[18] = (byte) ((0x01) & 0xff); // Interval difference count
         data[19] = (byte) ((0x01) & 0xff); // Base differencecount
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -64,6 +65,7 @@ public class DiscomfortIndexSensor2Test extends AbstractEventEnableDisableTest {
 
     @Test
     public void test002() {
+        //@formatter:off
         byte[] data = new byte[20];
         data[ 0] = (byte) ((0x10) & 0xff); // Average value threshold [upper]
         data[ 1] = (byte) ((0x27) & 0xff); // Average value threshold [upper]
@@ -85,6 +87,7 @@ public class DiscomfortIndexSensor2Test extends AbstractEventEnableDisableTest {
         data[17] = (byte) ((0x08) & 0xff); // Peak to Peak count
         data[18] = (byte) ((0x08) & 0xff); // Interval difference count
         data[19] = (byte) ((0x08) & 0xff); // Base differencecount
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -114,6 +117,7 @@ public class DiscomfortIndexSensor2Test extends AbstractEventEnableDisableTest {
 
     @Test
     public void test101() {
+        //@formatter:off
         byte[] data = new byte[20];
         data[ 0] = (byte) ((0x01) & 0xff); // Average value threshold [upper]
         data[ 1] = (byte) ((0x00) & 0xff); // Average value threshold [upper]
@@ -135,6 +139,7 @@ public class DiscomfortIndexSensor2Test extends AbstractEventEnableDisableTest {
         data[17] = (byte) ((0x02) & 0xff); // Peak to Peak count
         data[18] = (byte) ((0x03) & 0xff); // Interval difference count
         data[19] = (byte) ((0x04) & 0xff); // Base differencecount
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -161,6 +166,7 @@ public class DiscomfortIndexSensor2Test extends AbstractEventEnableDisableTest {
 
     @Test
     public void test102() {
+        //@formatter:off
         byte[] data = new byte[20];
         data[ 0] = (byte) ((0x01) & 0xff); // Average value threshold [upper]
         data[ 1] = (byte) ((0x00) & 0xff); // Average value threshold [upper]
@@ -182,6 +188,7 @@ public class DiscomfortIndexSensor2Test extends AbstractEventEnableDisableTest {
         data[17] = (byte) ((0x02) & 0xff); // Peak to Peak count
         data[18] = (byte) ((0x03) & 0xff); // Interval difference count
         data[19] = (byte) ((0x04) & 0xff); // Base differencecount
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -223,6 +230,7 @@ public class DiscomfortIndexSensor2Test extends AbstractEventEnableDisableTest {
 
     @Test
     public void test104() {
+        //@formatter:off
         byte[] data = new byte[20];
         data[ 0] = (byte) ((0x01) & 0xff); // Average value threshold [upper]
         data[ 1] = (byte) ((0x00) & 0xff); // Average value threshold [upper]
@@ -244,6 +252,7 @@ public class DiscomfortIndexSensor2Test extends AbstractEventEnableDisableTest {
         data[17] = (byte) ((0x02) & 0xff); // Peak to Peak count
         data[18] = (byte) ((0x03) & 0xff); // Interval difference count
         data[19] = (byte) ((0x04) & 0xff); // Base differencecount
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);

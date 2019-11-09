@@ -161,17 +161,18 @@ public class AbstractRbtFilterBuilderTest {
 
     @Test
     public void addSensorDataFilterTest_001() {
+        //@formatter:off
         byte[] data = new byte[19];
-        data[0] = DATA_TYPE_SENSOR_DATA;
-        data[1] = (byte) 0x00; // Sequence number
-        data[2] = (byte) 0x60; // Temperature
-        data[3] = (byte) 0xf0; // Temperature
-        data[4] = (byte) 0x00; // Relative humidity
-        data[5] = (byte) 0x00; // Relative humidity
-        data[6] = (byte) 0x00; // Ambient light
-        data[7] = (byte) 0x00; // Ambient light
-        data[8] = (byte) 0xe0; // Barometric pressure
-        data[9] = (byte) 0x93; // Barometric pressure
+        data[ 0] = DATA_TYPE_SENSOR_DATA;
+        data[ 1] = (byte) 0x00; // Sequence number
+        data[ 2] = (byte) 0x60; // Temperature
+        data[ 3] = (byte) 0xf0; // Temperature
+        data[ 4] = (byte) 0x00; // Relative humidity
+        data[ 5] = (byte) 0x00; // Relative humidity
+        data[ 6] = (byte) 0x00; // Ambient light
+        data[ 7] = (byte) 0x00; // Ambient light
+        data[ 8] = (byte) 0xe0; // Barometric pressure
+        data[ 9] = (byte) 0x93; // Barometric pressure
         data[10] = (byte) 0x04; // Barometric pressure
         data[11] = (byte) 0x00; // Barometric pressure
         data[12] = (byte) 0xe4; // Sound noise
@@ -181,6 +182,7 @@ public class AbstractRbtFilterBuilderTest {
         data[16] = (byte) 0x90; // eCO2
         data[17] = (byte) 0x01; // eCO2
         data[18] = (byte) 0xFF; // Reserve for Future Use
+        //@formatter:on
 
         MockFilterBuilder builder = new MockFilterBuilder();
         List<AdvertisingDataFilter<RbtAdvertisingDataParser.RbtAdvertisingDataParseResult>> result = builder.addSensorDataFilter(data).build();
@@ -190,17 +192,18 @@ public class AbstractRbtFilterBuilderTest {
 
     @Test
     public void addSensorDataFilterTest_002() {
+        //@formatter:off
         byte[] data = new byte[19];
-        data[0] = DATA_TYPE_SENSOR_DATA;
-        data[1] = (byte) 0x00; // Sequence number
-        data[2] = (byte) 0x60; // Temperature
-        data[3] = (byte) 0xf0; // Temperature
-        data[4] = (byte) 0x00; // Relative humidity
-        data[5] = (byte) 0x00; // Relative humidity
-        data[6] = (byte) 0x00; // Ambient light
-        data[7] = (byte) 0x00; // Ambient light
-        data[8] = (byte) 0xe0; // Barometric pressure
-        data[9] = (byte) 0x93; // Barometric pressure
+        data[ 0] = DATA_TYPE_SENSOR_DATA;
+        data[ 1] = (byte) 0x00; // Sequence number
+        data[ 2] = (byte) 0x60; // Temperature
+        data[ 3] = (byte) 0xf0; // Temperature
+        data[ 4] = (byte) 0x00; // Relative humidity
+        data[ 5] = (byte) 0x00; // Relative humidity
+        data[ 6] = (byte) 0x00; // Ambient light
+        data[ 7] = (byte) 0x00; // Ambient light
+        data[ 8] = (byte) 0xe0; // Barometric pressure
+        data[ 9] = (byte) 0x93; // Barometric pressure
         data[10] = (byte) 0x04; // Barometric pressure
         data[11] = (byte) 0x00; // Barometric pressure
         data[12] = (byte) 0xe4; // Sound noise
@@ -210,6 +213,7 @@ public class AbstractRbtFilterBuilderTest {
         data[16] = (byte) 0x90; // eCO2
         data[17] = (byte) 0x01; // eCO2
         data[18] = (byte) 0xFF; // Reserve for Future Use
+        //@formatter:on
 
         MockFilterBuilder builder = new MockFilterBuilder();
         List<AdvertisingDataFilter<RbtAdvertisingDataParser.RbtAdvertisingDataParseResult>> result = builder.addSensorDataFilter(SensorData.CREATOR.createFromByteArray(data)).build();
@@ -219,17 +223,18 @@ public class AbstractRbtFilterBuilderTest {
 
     @Test
     public void addCalculationDataFilterTest_001() {
+        //@formatter:off
         byte[] data = new byte[27];
-        data[0] = DATA_TYPE_CALCULATION_DATA;
-        data[1] = (byte) 0x00; // Sequence number
-        data[2] = (byte) 0x00; // Discomfort index
-        data[3] = (byte) 0x00; // Discomfort index
-        data[4] = (byte) 0x60; // Heat stroke
-        data[5] = (byte) 0xf0; // Heat stroke
-        data[6] = (byte) VIBRATION_INFORMATION_NONE_BIT; // Vibration information
-        data[7] = (byte) 0x00; // SI value
-        data[8] = (byte) 0x00; // SI value
-        data[9] = (byte) 0x00; // PGA
+        data[ 0] = DATA_TYPE_CALCULATION_DATA;
+        data[ 1] = (byte) 0x00; // Sequence number
+        data[ 2] = (byte) 0x00; // Discomfort index
+        data[ 3] = (byte) 0x00; // Discomfort index
+        data[ 4] = (byte) 0x60; // Heat stroke
+        data[ 5] = (byte) 0xf0; // Heat stroke
+        data[ 6] = (byte) VIBRATION_INFORMATION_NONE_BIT; // Vibration information
+        data[ 7] = (byte) 0x00; // SI value
+        data[ 8] = (byte) 0x00; // SI value
+        data[ 9] = (byte) 0x00; // PGA
         data[10] = (byte) 0x00; // PGA
         data[11] = (byte) 0x00; // Seismic intensity
         data[12] = (byte) 0x00; // Seismic intensity
@@ -247,6 +252,7 @@ public class AbstractRbtFilterBuilderTest {
         data[24] = (byte) 0xff; // Reserve for Future Use
         data[25] = (byte) 0xff; // Reserve for Future Use
         data[26] = (byte) 0xff; // Reserve for Future Use
+        //@formatter:on
 
         MockFilterBuilder builder = new MockFilterBuilder();
         List<AdvertisingDataFilter<RbtAdvertisingDataParser.RbtAdvertisingDataParseResult>> result = builder.addCalculationDataFilter(data).build();
@@ -256,17 +262,18 @@ public class AbstractRbtFilterBuilderTest {
 
     @Test
     public void addCalculationDataFilterTest_002() {
+        //@formatter:off
         byte[] data = new byte[27];
-        data[0] = DATA_TYPE_CALCULATION_DATA;
-        data[1] = (byte) 0x00; // Sequence number
-        data[2] = (byte) 0x00; // Discomfort index
-        data[3] = (byte) 0x00; // Discomfort index
-        data[4] = (byte) 0x60; // Heat stroke
-        data[5] = (byte) 0xf0; // Heat stroke
-        data[6] = (byte) VIBRATION_INFORMATION_NONE_BIT; // Vibration information
-        data[7] = (byte) 0x00; // SI value
-        data[8] = (byte) 0x00; // SI value
-        data[9] = (byte) 0x00; // PGA
+        data[ 0] = DATA_TYPE_CALCULATION_DATA;
+        data[ 1] = (byte) 0x00; // Sequence number
+        data[ 2] = (byte) 0x00; // Discomfort index
+        data[ 3] = (byte) 0x00; // Discomfort index
+        data[ 4] = (byte) 0x60; // Heat stroke
+        data[ 5] = (byte) 0xf0; // Heat stroke
+        data[ 6] = (byte) VIBRATION_INFORMATION_NONE_BIT; // Vibration information
+        data[ 7] = (byte) 0x00; // SI value
+        data[ 8] = (byte) 0x00; // SI value
+        data[ 9] = (byte) 0x00; // PGA
         data[10] = (byte) 0x00; // PGA
         data[11] = (byte) 0x00; // Seismic intensity
         data[12] = (byte) 0x00; // Seismic intensity
@@ -284,6 +291,7 @@ public class AbstractRbtFilterBuilderTest {
         data[24] = (byte) 0xff; // Reserve for Future Use
         data[25] = (byte) 0xff; // Reserve for Future Use
         data[26] = (byte) 0xff; // Reserve for Future Use
+        //@formatter:off
 
         MockFilterBuilder builder = new MockFilterBuilder();
         List<AdvertisingDataFilter<RbtAdvertisingDataParser.RbtAdvertisingDataParseResult>> result = builder.addCalculationDataFilter(CalculationData.CREATOR.createFromByteArray(data)).build();
@@ -293,17 +301,18 @@ public class AbstractRbtFilterBuilderTest {
 
     @Test
     public void addSensorDataAndCalculationDataFilterTest_001() {
+        //@formatter:off
         byte[] data = new byte[38];
-        data[0] = DATA_TYPE_SENSOR_DATA_AND_CALCULATION_DATA;
-        data[1] = (byte) 0x00; // Sequence number
-        data[2] = (byte) 0x60; // Temperature
-        data[3] = (byte) 0xf0; // Temperature
-        data[4] = (byte) 0x00; // Relative humidity
-        data[5] = (byte) 0x00; // Relative humidity
-        data[6] = (byte) 0x00; // Ambient light
-        data[7] = (byte) 0x00; // Ambient light
-        data[8] = (byte) 0xe0; // Barometric pressure
-        data[9] = (byte) 0x93; // Barometric pressure
+        data[ 0] = DATA_TYPE_SENSOR_DATA_AND_CALCULATION_DATA;
+        data[ 1] = (byte) 0x00; // Sequence number
+        data[ 2] = (byte) 0x60; // Temperature
+        data[ 3] = (byte) 0xf0; // Temperature
+        data[ 4] = (byte) 0x00; // Relative humidity
+        data[ 5] = (byte) 0x00; // Relative humidity
+        data[ 6] = (byte) 0x00; // Ambient light
+        data[ 7] = (byte) 0x00; // Ambient light
+        data[ 8] = (byte) 0xe0; // Barometric pressure
+        data[ 9] = (byte) 0x93; // Barometric pressure
         data[10] = (byte) 0x04; // Barometric pressure
         data[11] = (byte) 0x00; // Barometric pressure
         data[12] = (byte) 0xe4; // Sound noise
@@ -332,6 +341,7 @@ public class AbstractRbtFilterBuilderTest {
         data[35] = (byte) 0x4e; // Acceleration (Y-axis)
         data[36] = (byte) 0x20; // Acceleration (Z-axis)
         data[37] = (byte) 0x4e; // Acceleration (Z-axis)
+        //@formatter:on
 
         MockFilterBuilder builder = new MockFilterBuilder();
         List<AdvertisingDataFilter<RbtAdvertisingDataParser.RbtAdvertisingDataParseResult>> result = builder.addSensorDataAndCalculationDataFilter(data).build();
@@ -341,17 +351,18 @@ public class AbstractRbtFilterBuilderTest {
 
     @Test
     public void addSensorDataAndCalculationDataFilterTest_002() {
+        //@formatter:off
         byte[] data1 = new byte[19];
-        data1[0] = DATA_TYPE_SENSOR_DATA_AND_CALCULATION_DATA;
-        data1[1] = (byte) 0x00; // Sequence number
-        data1[2] = (byte) 0x60; // Temperature
-        data1[3] = (byte) 0xf0; // Temperature
-        data1[4] = (byte) 0x00; // Relative humidity
-        data1[5] = (byte) 0x00; // Relative humidity
-        data1[6] = (byte) 0x00; // Ambient light
-        data1[7] = (byte) 0x00; // Ambient light
-        data1[8] = (byte) 0xe0; // Barometric pressure
-        data1[9] = (byte) 0x93; // Barometric pressure
+        data1[ 0] = DATA_TYPE_SENSOR_DATA_AND_CALCULATION_DATA;
+        data1[ 1] = (byte) 0x00; // Sequence number
+        data1[ 2] = (byte) 0x60; // Temperature
+        data1[ 3] = (byte) 0xf0; // Temperature
+        data1[ 4] = (byte) 0x00; // Relative humidity
+        data1[ 5] = (byte) 0x00; // Relative humidity
+        data1[ 6] = (byte) 0x00; // Ambient light
+        data1[ 7] = (byte) 0x00; // Ambient light
+        data1[ 8] = (byte) 0xe0; // Barometric pressure
+        data1[ 9] = (byte) 0x93; // Barometric pressure
         data1[10] = (byte) 0x04; // Barometric pressure
         data1[11] = (byte) 0x00; // Barometric pressure
         data1[12] = (byte) 0xe4; // Sound noise
@@ -363,16 +374,16 @@ public class AbstractRbtFilterBuilderTest {
         data1[18] = (byte) 0xFF; // Reserve for Future Use
 
         byte[] data2 = new byte[19];
-        data2[0] = DATA_TYPE_SENSOR_DATA_AND_CALCULATION_DATA;
-        data2[1] = (byte) 0x00; // Sequence number
-        data2[2] = (byte) 0x00; // Discomfort index
-        data2[3] = (byte) 0x00; // Discomfort index
-        data2[4] = (byte) 0x60; // Heat stroke
-        data2[5] = (byte) 0xf0; // Heat stroke
-        data2[6] = (byte) VIBRATION_INFORMATION_NONE_BIT; // Vibration information
-        data2[7] = (byte) 0x00; // SI value
-        data2[8] = (byte) 0x00; // SI value
-        data2[9] = (byte) 0x00; // PGA
+        data2[ 0] = DATA_TYPE_SENSOR_DATA_AND_CALCULATION_DATA;
+        data2[ 1] = (byte) 0x00; // Sequence number
+        data2[ 2] = (byte) 0x00; // Discomfort index
+        data2[ 3] = (byte) 0x00; // Discomfort index
+        data2[ 4] = (byte) 0x60; // Heat stroke
+        data2[ 5] = (byte) 0xf0; // Heat stroke
+        data2[ 6] = (byte) VIBRATION_INFORMATION_NONE_BIT; // Vibration information
+        data2[ 7] = (byte) 0x00; // SI value
+        data2[ 8] = (byte) 0x00; // SI value
+        data2[ 9] = (byte) 0x00; // PGA
         data2[10] = (byte) 0x00; // PGA
         data2[11] = (byte) 0x00; // Seismic intensity
         data2[12] = (byte) 0x00; // Seismic intensity
@@ -382,6 +393,7 @@ public class AbstractRbtFilterBuilderTest {
         data2[16] = (byte) 0xb1; // Acceleration (Y-axis)
         data2[17] = (byte) 0xe0; // Acceleration (Z-axis)
         data2[18] = (byte) 0xb1; // Acceleration (Z-axis)
+        //@formatter:on
 
         MockFilterBuilder builder = new MockFilterBuilder();
         List<AdvertisingDataFilter<RbtAdvertisingDataParser.RbtAdvertisingDataParseResult>> result = builder.addSensorDataAndCalculationDataFilter(data1, data2).build();
@@ -391,17 +403,18 @@ public class AbstractRbtFilterBuilderTest {
 
     @Test
     public void addSensorDataAndCalculationDataFilterTest_003() {
+        //@formatter:off
         byte[] data = new byte[38];
-        data[0] = DATA_TYPE_SENSOR_DATA_AND_CALCULATION_DATA;
-        data[1] = (byte) 0x00; // Sequence number
-        data[2] = (byte) 0x60; // Temperature
-        data[3] = (byte) 0xf0; // Temperature
-        data[4] = (byte) 0x00; // Relative humidity
-        data[5] = (byte) 0x00; // Relative humidity
-        data[6] = (byte) 0x00; // Ambient light
-        data[7] = (byte) 0x00; // Ambient light
-        data[8] = (byte) 0xe0; // Barometric pressure
-        data[9] = (byte) 0x93; // Barometric pressure
+        data[ 0] = DATA_TYPE_SENSOR_DATA_AND_CALCULATION_DATA;
+        data[ 1] = (byte) 0x00; // Sequence number
+        data[ 2] = (byte) 0x60; // Temperature
+        data[ 3] = (byte) 0xf0; // Temperature
+        data[ 4] = (byte) 0x00; // Relative humidity
+        data[ 5] = (byte) 0x00; // Relative humidity
+        data[ 6] = (byte) 0x00; // Ambient light
+        data[ 7] = (byte) 0x00; // Ambient light
+        data[ 8] = (byte) 0xe0; // Barometric pressure
+        data[ 9] = (byte) 0x93; // Barometric pressure
         data[10] = (byte) 0x04; // Barometric pressure
         data[11] = (byte) 0x00; // Barometric pressure
         data[12] = (byte) 0xe4; // Sound noise
@@ -430,6 +443,7 @@ public class AbstractRbtFilterBuilderTest {
         data[35] = (byte) 0x4e; // Acceleration (Y-axis)
         data[36] = (byte) 0x20; // Acceleration (Z-axis)
         data[37] = (byte) 0x4e; // Acceleration (Z-axis)
+        //@formatter:on
 
         MockFilterBuilder builder = new MockFilterBuilder();
         List<AdvertisingDataFilter<RbtAdvertisingDataParser.RbtAdvertisingDataParseResult>> result = builder.addSensorDataAndCalculationDataFilter(SensorDataAndCalculationData.CREATOR.createFromByteArray(data)).build();
@@ -439,15 +453,16 @@ public class AbstractRbtFilterBuilderTest {
 
     @Test
     public void addSensorFlagAndCalculationFlagFilterTest_001() {
+        //@formatter:off
         byte[] data = new byte[62];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x16; // AD 2
-        data[4] = (byte) 0xff; // AD 2
-        data[5] = (byte) 0xd5; // AD 2
-        data[6] = (byte) 0x02; // AD 2
-        data[7] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x16; // AD 2
+        data[ 4] = (byte) 0xff; // AD 2
+        data[ 5] = (byte) 0xd5; // AD 2
+        data[ 6] = (byte) 0x02; // AD 2
+        data[ 7] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
         data[26] = (byte) 0x04; // AD 3
         data[27] = (byte) 0x08; // AD 3
         data[28] = (byte) 'R'; // AD 3
@@ -458,6 +473,7 @@ public class AbstractRbtFilterBuilderTest {
         data[33] = (byte) 0xd5; // AD 4
         data[34] = (byte) 0x02; // AD 4
         data[35] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
+        //@formatter:on
 
         MockFilterBuilder builder = new MockFilterBuilder();
         List<AdvertisingDataFilter<RbtAdvertisingDataParser.RbtAdvertisingDataParseResult>> result = builder.addSensorFlagAndCalculationFlagFilter(data).build();
@@ -467,17 +483,18 @@ public class AbstractRbtFilterBuilderTest {
 
     @Test
     public void addSensorFlagAndCalculationFlagFilterTest_002() {
+        //@formatter:off
         byte[] data1 = new byte[19];
-        data1[0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
-        data1[1] = (byte) 0x00; // Sequence number
-        data1[2] = (byte) 0x00; // Temperature flag
-        data1[3] = (byte) 0x00; // Temperature flag
-        data1[4] = (byte) 0x00; // Relative humidity flag
-        data1[5] = (byte) 0x00; // Relative humidity flag
-        data1[6] = (byte) 0x00; // Ambient light flag
-        data1[7] = (byte) 0x00; // Ambient light flag
-        data1[8] = (byte) 0x00; // Barometric pressure flag
-        data1[9] = (byte) 0x00; // Barometric pressure flag
+        data1[ 0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
+        data1[ 1] = (byte) 0x00; // Sequence number
+        data1[ 2] = (byte) 0x00; // Temperature flag
+        data1[ 3] = (byte) 0x00; // Temperature flag
+        data1[ 4] = (byte) 0x00; // Relative humidity flag
+        data1[ 5] = (byte) 0x00; // Relative humidity flag
+        data1[ 6] = (byte) 0x00; // Ambient light flag
+        data1[ 7] = (byte) 0x00; // Ambient light flag
+        data1[ 8] = (byte) 0x00; // Barometric pressure flag
+        data1[ 9] = (byte) 0x00; // Barometric pressure flag
         data1[10] = (byte) 0x00; // Sound noise flag
         data1[11] = (byte) 0x00; // Sound noise flag
         data1[12] = (byte) 0x00; // eTVOC flag
@@ -489,16 +506,16 @@ public class AbstractRbtFilterBuilderTest {
         data1[18] = (byte) 0xFF; // Reserve for Future Use
 
         byte[] data2 = new byte[27];
-        data2[0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
-        data2[1] = (byte) 0x00; // Sequence number
-        data2[2] = (byte) 0x00; // Discomfort index flag
-        data2[3] = (byte) 0x00; // Discomfort index flag
-        data2[4] = (byte) 0x00; // Heat stroke flag
-        data2[5] = (byte) 0x00; // Heat stroke flag
-        data2[6] = (byte) 0x00; // SI value flag
-        data2[7] = (byte) 0x00; // PGA flag
-        data2[8] = (byte) 0x00; // Seismic intensity flag
-        data2[9] = (byte) 0xff; // Reserve for Future Use
+        data2[ 0] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
+        data2[ 1] = (byte) 0x00; // Sequence number
+        data2[ 2] = (byte) 0x00; // Discomfort index flag
+        data2[ 3] = (byte) 0x00; // Discomfort index flag
+        data2[ 4] = (byte) 0x00; // Heat stroke flag
+        data2[ 5] = (byte) 0x00; // Heat stroke flag
+        data2[ 6] = (byte) 0x00; // SI value flag
+        data2[ 7] = (byte) 0x00; // PGA flag
+        data2[ 8] = (byte) 0x00; // Seismic intensity flag
+        data2[ 9] = (byte) 0xff; // Reserve for Future Use
         data2[10] = (byte) 0xff; // Reserve for Future Use
         data2[11] = (byte) 0xff; // Reserve for Future Use
         data2[12] = (byte) 0xff; // Reserve for Future Use
@@ -516,6 +533,7 @@ public class AbstractRbtFilterBuilderTest {
         data2[24] = (byte) 0xff; // Reserve for Future Use
         data2[25] = (byte) 0xff; // Reserve for Future Use
         data2[26] = (byte) 0xff; // Reserve for Future Use
+        //@formatter:on
 
         MockFilterBuilder builder = new MockFilterBuilder();
         List<AdvertisingDataFilter<RbtAdvertisingDataParser.RbtAdvertisingDataParseResult>> result = builder.addSensorFlagAndCalculationFlagFilter(data1, data2).build();
@@ -525,15 +543,16 @@ public class AbstractRbtFilterBuilderTest {
 
     @Test
     public void addSensorFlagAndCalculationFlagFilterTest_003() {
+        //@formatter:off
         byte[] data = new byte[62];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x16; // AD 2
-        data[4] = (byte) 0xff; // AD 2
-        data[5] = (byte) 0xd5; // AD 2
-        data[6] = (byte) 0x02; // AD 2
-        data[7] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x16; // AD 2
+        data[ 4] = (byte) 0xff; // AD 2
+        data[ 5] = (byte) 0xd5; // AD 2
+        data[ 6] = (byte) 0x02; // AD 2
+        data[ 7] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
         data[26] = (byte) 0x04; // AD 3
         data[27] = (byte) 0x08; // AD 3
         data[28] = (byte) 'R'; // AD 3
@@ -544,6 +563,7 @@ public class AbstractRbtFilterBuilderTest {
         data[33] = (byte) 0xd5; // AD 4
         data[34] = (byte) 0x02; // AD 4
         data[35] = DATA_TYPE_SENSOR_FLAG_AND_CALCULATION_FLAG;
+        //@formatter:on
 
         MockFilterBuilder builder = new MockFilterBuilder();
         List<AdvertisingDataFilter<RbtAdvertisingDataParser.RbtAdvertisingDataParseResult>> result = builder.addSensorFlagAndCalculationFlagFilter(SensorFlagAndCalculationFlag.CREATOR.createFromByteArray(data)).build();
@@ -553,17 +573,18 @@ public class AbstractRbtFilterBuilderTest {
 
     @Test
     public void addSerialNumberFilterTest_001() {
+        //@formatter:off
         byte[] data = new byte[31];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x03; // AD 2
-        data[4] = (byte) 0x02; // AD 2
-        data[5] = (byte) 0x0a; // AD 2
-        data[6] = (byte) 0x18; // AD 2
-        data[7] = (byte) 0x12; // AD 3
-        data[8] = (byte) 0xff; // AD 3
-        data[9] = (byte) 0xd5; // AD 3
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x03; // AD 2
+        data[ 4] = (byte) 0x02; // AD 2
+        data[ 5] = (byte) 0x0a; // AD 2
+        data[ 6] = (byte) 0x18; // AD 2
+        data[ 7] = (byte) 0x12; // AD 3
+        data[ 8] = (byte) 0xff; // AD 3
+        data[ 9] = (byte) 0xd5; // AD 3
         data[10] = (byte) 0x02; // AD 3
         data[11] = DATA_TYPE_SERIAL_NUMBER;
         data[26] = (byte) 0x04; // AD 4
@@ -575,6 +596,7 @@ public class AbstractRbtFilterBuilderTest {
         data[23] = (byte) 0x00; // Memory index (Latest)
         data[24] = (byte) 0x00; // Memory index (Latest)
         data[25] = (byte) 0x00; // Memory index (Latest)
+        //@formatter:on
 
         MockFilterBuilder builder = new MockFilterBuilder();
         List<AdvertisingDataFilter<RbtAdvertisingDataParser.RbtAdvertisingDataParseResult>> result = builder.addSerialNumberFilter(data).build();
@@ -584,17 +606,18 @@ public class AbstractRbtFilterBuilderTest {
 
     @Test
     public void addSerialNumberFilterTest_002() {
+        //@formatter:off
         byte[] data = new byte[31];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x03; // AD 2
-        data[4] = (byte) 0x02; // AD 2
-        data[5] = (byte) 0x0a; // AD 2
-        data[6] = (byte) 0x18; // AD 2
-        data[7] = (byte) 0x12; // AD 3
-        data[8] = (byte) 0xff; // AD 3
-        data[9] = (byte) 0xd5; // AD 3
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x03; // AD 2
+        data[ 4] = (byte) 0x02; // AD 2
+        data[ 5] = (byte) 0x0a; // AD 2
+        data[ 6] = (byte) 0x18; // AD 2
+        data[ 7] = (byte) 0x12; // AD 3
+        data[ 8] = (byte) 0xff; // AD 3
+        data[ 9] = (byte) 0xd5; // AD 3
         data[10] = (byte) 0x02; // AD 3
         data[11] = DATA_TYPE_SERIAL_NUMBER;
         data[26] = (byte) 0x04; // AD 4
@@ -606,6 +629,7 @@ public class AbstractRbtFilterBuilderTest {
         data[23] = (byte) 0x00; // Memory index (Latest)
         data[24] = (byte) 0x00; // Memory index (Latest)
         data[25] = (byte) 0x00; // Memory index (Latest)
+        //@formatter:on
 
         MockFilterBuilder builder = new MockFilterBuilder();
         List<AdvertisingDataFilter<RbtAdvertisingDataParser.RbtAdvertisingDataParseResult>> result = builder.addSerialNumberFilter(SerialNumber.CREATOR.createFromByteArray(data)).build();
@@ -623,17 +647,18 @@ public class AbstractRbtFilterBuilderTest {
 
     @Test
     public void addSerialNumberFilterTest_004() {
+        //@formatter:off
         byte[] data = new byte[31];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x03; // AD 2
-        data[4] = (byte) 0x02; // AD 2
-        data[5] = (byte) 0x0a; // AD 2
-        data[6] = (byte) 0x18; // AD 2
-        data[7] = (byte) 0x12; // AD 3
-        data[8] = (byte) 0xff; // AD 3
-        data[9] = (byte) 0xd5; // AD 3
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x03; // AD 2
+        data[ 4] = (byte) 0x02; // AD 2
+        data[ 5] = (byte) 0x0a; // AD 2
+        data[ 6] = (byte) 0x18; // AD 2
+        data[ 7] = (byte) 0x12; // AD 3
+        data[ 8] = (byte) 0xff; // AD 3
+        data[ 9] = (byte) 0xd5; // AD 3
         data[10] = (byte) 0x02; // AD 3
         data[11] = DATA_TYPE_SERIAL_NUMBER;
         data[26] = (byte) 0x04; // AD 4
@@ -645,6 +670,7 @@ public class AbstractRbtFilterBuilderTest {
         data[23] = (byte) 0x00; // Memory index (Latest)
         data[24] = (byte) 0x00; // Memory index (Latest)
         data[25] = (byte) 0x00; // Memory index (Latest)
+        //@formatter:on
 
         MockFilterBuilder builder = new MockFilterBuilder();
         List<AdvertisingDataFilter<RbtAdvertisingDataParser.RbtAdvertisingDataParseResult>> result = builder.addSerialNumberFilter(SerialNumber.CREATOR.createFromByteArray(data), null).build();
@@ -661,53 +687,58 @@ public class AbstractRbtFilterBuilderTest {
     }
 
     private byte[] getSensorDataByteArray() {
+        //@formatter:off
         byte[] data = new byte[31];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x16; // AD 2
-        data[4] = (byte) 0xff; // AD 2
-        data[5] = (byte) 0xd5; // AD 2
-        data[6] = (byte) 0x02; // AD 2
-        data[7] = (byte) 0x01; // AD 2
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x16; // AD 2
+        data[ 4] = (byte) 0xff; // AD 2
+        data[ 5] = (byte) 0xd5; // AD 2
+        data[ 6] = (byte) 0x02; // AD 2
+        data[ 7] = (byte) 0x01; // AD 2
         data[25] = (byte) 0xFF; // Reserve for Future Use
         data[26] = (byte) 0x04; // AD 3
         data[27] = (byte) 0x08; // AD 3
         data[28] = (byte) 'R'; // AD 3
         data[29] = (byte) 'b'; // AD 3
         data[30] = (byte) 't'; // AD 3
+        //@formatter:on
         return data;
     }
 
     private byte[] getCalculationDataByteArray() {
+        //@formatter:off
         byte[] data = new byte[31];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x16; // AD 2
-        data[4] = (byte) 0xff; // AD 2
-        data[5] = (byte) 0xd5; // AD 2
-        data[6] = (byte) 0x02; // AD 2
-        data[7] = (byte) 0x02; // AD 2
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x16; // AD 2
+        data[ 4] = (byte) 0xff; // AD 2
+        data[ 5] = (byte) 0xd5; // AD 2
+        data[ 6] = (byte) 0x02; // AD 2
+        data[ 7] = (byte) 0x02; // AD 2
         data[13] = (byte) VIBRATION_INFORMATION_NONE_BIT; // Vibration information
         data[26] = (byte) 0x04; // AD 3
         data[27] = (byte) 0x08; // AD 3
         data[28] = (byte) 'R'; // AD 3
         data[29] = (byte) 'b'; // AD 3
         data[30] = (byte) 't'; // AD 3
+        //@formatter:on
         return data;
     }
 
     private byte[] getSensorDataAndCalculationDataByteArray() {
+        //@formatter:off
         byte[] data = new byte[62];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x16; // AD 2
-        data[4] = (byte) 0xff; // AD 2
-        data[5] = (byte) 0xd5; // AD 2
-        data[6] = (byte) 0x02; // AD 2
-        data[7] = (byte) 0x03; // AD 2
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x16; // AD 2
+        data[ 4] = (byte) 0xff; // AD 2
+        data[ 5] = (byte) 0xd5; // AD 2
+        data[ 6] = (byte) 0x02; // AD 2
+        data[ 7] = (byte) 0x03; // AD 2
         data[25] = (byte) 0xFF; // Reserve for Future Use
         data[26] = (byte) 0x04; // AD 3
         data[27] = (byte) 0x08; // AD 3
@@ -728,19 +759,21 @@ public class AbstractRbtFilterBuilderTest {
         data[59] = (byte) 0xFF; // Reserve for Future Use
         data[60] = (byte) 0xFF; // Reserve for Future Use
         data[61] = (byte) 0xFF; // Reserve for Future Use
+        //@formatter:on
         return data;
     }
 
     private byte[] getSensorFlagAndCalculationFlagByteArray() {
+        //@formatter:off
         byte[] data = new byte[62];
-        data[0] = (byte) 0x02; // AD 1
-        data[1] = (byte) 0x01; // AD 1
-        data[2] = (byte) 0x06; // AD 1
-        data[3] = (byte) 0x16; // AD 2
-        data[4] = (byte) 0xff; // AD 2
-        data[5] = (byte) 0xd5; // AD 2
-        data[6] = (byte) 0x02; // AD 2
-        data[7] = (byte) 0x03; // AD 2
+        data[ 0] = (byte) 0x02; // AD 1
+        data[ 1] = (byte) 0x01; // AD 1
+        data[ 2] = (byte) 0x06; // AD 1
+        data[ 3] = (byte) 0x16; // AD 2
+        data[ 4] = (byte) 0xff; // AD 2
+        data[ 5] = (byte) 0xd5; // AD 2
+        data[ 6] = (byte) 0x02; // AD 2
+        data[ 7] = (byte) 0x03; // AD 2
         data[25] = (byte) 0xFF; // Reserve for Future Use
         data[26] = (byte) 0x04; // AD 3
         data[27] = (byte) 0x08; // AD 3
@@ -761,6 +794,7 @@ public class AbstractRbtFilterBuilderTest {
         data[59] = (byte) 0xFF; // Reserve for Future Use
         data[60] = (byte) 0xFF; // Reserve for Future Use
         data[61] = (byte) 0xFF; // Reserve for Future Use
+        //@formatter:on
         return data;
     }
 
@@ -775,27 +809,35 @@ public class AbstractRbtFilterBuilderTest {
         RbtAdvertisingDataParser parser = new RbtAdvertisingDataParser.Builder(true).build();
 
         byte[] data = getSensorDataByteArray();
-        data[8] = (byte) 0x01; // Sequence number
+        //@formatter:off
+        data[ 8] = (byte) 0x01; // Sequence number
+        //@formatter:on
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult parseResult = parser.parse(data);
         assertNotNull(parseResult);
         assertTrue(orFilter.isMatched(parseResult));
 
         data = getCalculationDataByteArray();
-        data[8] = (byte) 0x01; // Sequence number
+        //@formatter:off
+        data[ 8] = (byte) 0x01; // Sequence number
+        //@formatter:on
         parseResult = parser.parse(data);
         assertNotNull(parseResult);
         assertTrue(orFilter.isMatched(parseResult));
 
         data = getSensorDataAndCalculationDataByteArray();
-        data[8] = (byte) 0x01; // Sequence number
+        //@formatter:off
+        data[ 8] = (byte) 0x01; // Sequence number
         data[36] = (byte) 0x01; // Sequence number
+        //@formatter:on
         parseResult = parser.parse(data);
         assertNotNull(parseResult);
         assertTrue(orFilter.isMatched(parseResult));
 
         data = getSensorFlagAndCalculationFlagByteArray();
-        data[8] = (byte) 0x01; // Sequence number
+        //@formatter:off
+        data[ 8] = (byte) 0x01; // Sequence number
         data[36] = (byte) 0x01; // Sequence number
+        //@formatter:on
         parseResult = parser.parse(data);
         assertNotNull(parseResult);
         assertTrue(orFilter.isMatched(parseResult));
@@ -812,13 +854,17 @@ public class AbstractRbtFilterBuilderTest {
         RbtAdvertisingDataParser parser = new RbtAdvertisingDataParser.Builder(true).build();
 
         byte[] data = getSensorDataByteArray();
-        data[9] = (byte) 0x01; // Temperature
+        //@formatter:off
+        data[ 9] = (byte) 0x01; // Temperature
+        //@formatter:on
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult parseResult = parser.parse(data);
         assertNotNull(parseResult);
         assertTrue(orFilter.isMatched(parseResult));
 
         data = getSensorDataAndCalculationDataByteArray();
-        data[9] = (byte) 0x01; // Temperature
+        //@formatter:off
+        data[ 9] = (byte) 0x01; // Temperature
+        //@formatter:on
         parseResult = parser.parse(data);
         assertNotNull(parseResult);
         assertTrue(orFilter.isMatched(parseResult));
@@ -973,7 +1019,9 @@ public class AbstractRbtFilterBuilderTest {
         RbtAdvertisingDataParser parser = new RbtAdvertisingDataParser.Builder(true).build();
 
         byte[] data = getCalculationDataByteArray();
-        data[9] = (byte) 0x01; // Discomfort index
+        //@formatter:off
+        data[ 9] = (byte) 0x01; // Discomfort index
+        //@formatter:on
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult parseResult = parser.parse(data);
         assertNotNull(parseResult);
         assertTrue(orFilter.isMatched(parseResult));

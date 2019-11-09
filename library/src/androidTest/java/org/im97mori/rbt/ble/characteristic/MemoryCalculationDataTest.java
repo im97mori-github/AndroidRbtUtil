@@ -18,22 +18,24 @@ public class MemoryCalculationDataTest {
 
     @Test
     public void test001() {
+        //@formatter:off
         byte[] data = new byte[15];
-        data[0] = (byte) ((0x01) & 0xff); // Memory index
-        data[1] = (byte) ((0x00) & 0xff); // Memory index
-        data[2] = (byte) ((0x00) & 0xff); // Memory index
-        data[3] = (byte) ((0x00) & 0xff); // Memory index
-        data[4] = (byte) 0x00; // Discomfort index
-        data[5] = (byte) 0x00; // Discomfort index
-        data[6] = (byte) 0x60; // Heat stroke
-        data[7] = (byte) 0xf0; // Heat stroke
-        data[8] = (byte) VIBRATION_INFORMATION_NONE_BIT; // Vibration information
-        data[9] = (byte) 0x00; // SI value
+        data[ 0] = (byte) ((0x01) & 0xff); // Memory index
+        data[ 1] = (byte) ((0x00) & 0xff); // Memory index
+        data[ 2] = (byte) ((0x00) & 0xff); // Memory index
+        data[ 3] = (byte) ((0x00) & 0xff); // Memory index
+        data[ 4] = (byte) 0x00; // Discomfort index
+        data[ 5] = (byte) 0x00; // Discomfort index
+        data[ 6] = (byte) 0x60; // Heat stroke
+        data[ 7] = (byte) 0xf0; // Heat stroke
+        data[ 8] = (byte) VIBRATION_INFORMATION_NONE_BIT; // Vibration information
+        data[ 9] = (byte) 0x00; // SI value
         data[10] =(byte) 0x00; // SI value
         data[11] =(byte) 0x00; // PGA
         data[12] =(byte) 0x00; // PGA
         data[13] =(byte) 0x00; // Seismic intensity
         data[14] =(byte) 0x00; // Seismic intensity
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -56,22 +58,24 @@ public class MemoryCalculationDataTest {
 
     @Test
     public void test002() {
+        //@formatter:off
         byte[] data = new byte[15];
         data[ 0] = (byte) ((0xff) & 0xff); // Memory index
         data[ 1] = (byte) ((0xff) & 0xff); // Memory index
         data[ 2] = (byte) ((0xff) & 0xff); // Memory index
         data[ 3] = (byte) ((0x7f) & 0xff); // Memory index
-        data[4] = (byte) 0x10; // Discomfort index
-        data[5] = (byte) 0x27; // Discomfort index
-        data[6] = (byte) 0xd4; // Heat stroke
-        data[7] = (byte) 0x30; // Heat stroke
-        data[8] = (byte) VIBRATION_INFORMATION_DURING_VIBRATION_BIT; // Vibration information// Vibration information
-        data[9] = (byte) 0xff; // SI value
+        data[ 4] = (byte) 0x10; // Discomfort index
+        data[ 5] = (byte) 0x27; // Discomfort index
+        data[ 6] = (byte) 0xd4; // Heat stroke
+        data[ 7] = (byte) 0x30; // Heat stroke
+        data[ 8] = (byte) VIBRATION_INFORMATION_DURING_VIBRATION_BIT; // Vibration information// Vibration information
+        data[ 9] = (byte) 0xff; // SI value
         data[10] =(byte) 0xff; // SI value
         data[11] =(byte) 0xff; // PGA
         data[12] =(byte) 0xff; // PGA
         data[13] =(byte) 0xff; // Seismic intensity
         data[14] =(byte) 0xff; // Seismic intensity
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -94,22 +98,24 @@ public class MemoryCalculationDataTest {
 
     @Test
     public void test003() {
+        //@formatter:off
         byte[] data = new byte[15];
         data[ 0] = (byte) ((0x00) & 0xff); // Memory index
         data[ 1] = (byte) ((0x00) & 0xff); // Memory index
         data[ 2] = (byte) ((0x00) & 0xff); // Memory index
         data[ 3] = (byte) ((0x80) & 0xff); // Memory index
-        data[4] = (byte) 0x10; // Discomfort index
-        data[5] = (byte) 0x27; // Discomfort index
-        data[6] = (byte) 0xd4; // Heat stroke
-        data[7] = (byte) 0x30; // Heat stroke
-        data[8] = (byte) VIBRATION_INFORMATION_DURING_EARTH_QUAKE_BIT; // Vibration information// Vibration information
-        data[9] = (byte) 0xff; // SI value
+        data[ 4] = (byte) 0x10; // Discomfort index
+        data[ 5] = (byte) 0x27; // Discomfort index
+        data[ 6] = (byte) 0xd4; // Heat stroke
+        data[ 7] = (byte) 0x30; // Heat stroke
+        data[ 8] = (byte) VIBRATION_INFORMATION_DURING_EARTH_QUAKE_BIT; // Vibration information// Vibration information
+        data[ 9] = (byte) 0xff; // SI value
         data[10] =(byte) 0xff; // SI value
         data[11] =(byte) 0xff; // PGA
         data[12] =(byte) 0xff; // PGA
         data[13] =(byte) 0xff; // Seismic intensity
         data[14] =(byte) 0xff; // Seismic intensity
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -132,22 +138,24 @@ public class MemoryCalculationDataTest {
 
     @Test
     public void test004() {
+        //@formatter:off
         byte[] data = new byte[15];
         data[ 0] = (byte) ((0x00) & 0xff); // Memory index
         data[ 1] = (byte) ((0x00) & 0xff); // Memory index
         data[ 2] = (byte) ((0x00) & 0xff); // Memory index
         data[ 3] = (byte) ((0x80) & 0xff); // Memory index
-        data[4] = (byte) 0x10; // Discomfort index
-        data[5] = (byte) 0x27; // Discomfort index
-        data[6] = (byte) 0xd4; // Heat stroke
-        data[7] = (byte) 0x30; // Heat stroke
-        data[8] = (byte) VIBRATION_INFORMATION_DURING_EARTH_QUAKE_BIT; // Vibration information// Vibration information
-        data[9] = (byte) 0x1f; // SI value
+        data[ 4] = (byte) 0x10; // Discomfort index
+        data[ 5] = (byte) 0x27; // Discomfort index
+        data[ 6] = (byte) 0xd4; // Heat stroke
+        data[ 7] = (byte) 0x30; // Heat stroke
+        data[ 8] = (byte) VIBRATION_INFORMATION_DURING_EARTH_QUAKE_BIT; // Vibration information// Vibration information
+        data[ 9] = (byte) 0x1f; // SI value
         data[10] =(byte) 0xff; // SI value
         data[11] =(byte) 0x2f; // PGA
         data[12] =(byte) 0xff; // PGA
         data[13] =(byte) 0x3f; // Seismic intensity
         data[14] =(byte) 0xff; // Seismic intensity
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -169,22 +177,24 @@ public class MemoryCalculationDataTest {
 
     @Test
     public void test005() {
+        //@formatter:off
         byte[] data = new byte[15];
         data[ 0] = (byte) ((0x00) & 0xff); // Memory index
         data[ 1] = (byte) ((0x00) & 0xff); // Memory index
         data[ 2] = (byte) ((0x00) & 0xff); // Memory index
         data[ 3] = (byte) ((0x80) & 0xff); // Memory index
-        data[4] = (byte) 0x10; // Discomfort index
-        data[5] = (byte) 0x27; // Discomfort index
-        data[6] = (byte) 0xd4; // Heat stroke
-        data[7] = (byte) 0x30; // Heat stroke
-        data[8] = (byte) VIBRATION_INFORMATION_DURING_EARTH_QUAKE_BIT; // Vibration information// Vibration information
-        data[9] = (byte) 0x1f; // SI value
+        data[ 4] = (byte) 0x10; // Discomfort index
+        data[ 5] = (byte) 0x27; // Discomfort index
+        data[ 6] = (byte) 0xd4; // Heat stroke
+        data[ 7] = (byte) 0x30; // Heat stroke
+        data[ 8] = (byte) VIBRATION_INFORMATION_DURING_EARTH_QUAKE_BIT; // Vibration information// Vibration information
+        data[ 9] = (byte) 0x1f; // SI value
         data[10] =(byte) 0xff; // SI value
         data[11] =(byte) 0x2f; // PGA
         data[12] =(byte) 0xff; // PGA
         data[13] =(byte) 0x3f; // Seismic intensity
         data[14] =(byte) 0xff; // Seismic intensity
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -196,22 +206,24 @@ public class MemoryCalculationDataTest {
 
     @Test
     public void test006() {
+        //@formatter:off
         byte[] data = new byte[15];
         data[ 0] = (byte) ((0x00) & 0xff); // Memory index
         data[ 1] = (byte) ((0x00) & 0xff); // Memory index
         data[ 2] = (byte) ((0x00) & 0xff); // Memory index
         data[ 3] = (byte) ((0x80) & 0xff); // Memory index
-        data[4] = (byte) 0x10; // Discomfort index
-        data[5] = (byte) 0x27; // Discomfort index
-        data[6] = (byte) 0xd4; // Heat stroke
-        data[7] = (byte) 0x30; // Heat stroke
-        data[8] = (byte) VIBRATION_INFORMATION_DURING_EARTH_QUAKE_BIT; // Vibration information// Vibration information
-        data[9] = (byte) 0x1f; // SI value
+        data[ 4] = (byte) 0x10; // Discomfort index
+        data[ 5] = (byte) 0x27; // Discomfort index
+        data[ 6] = (byte) 0xd4; // Heat stroke
+        data[ 7] = (byte) 0x30; // Heat stroke
+        data[ 8] = (byte) VIBRATION_INFORMATION_DURING_EARTH_QUAKE_BIT; // Vibration information// Vibration information
+        data[ 9] = (byte) 0x1f; // SI value
         data[10] =(byte) 0xff; // SI value
         data[11] =(byte) 0x2f; // PGA
         data[12] =(byte) 0xff; // PGA
         data[13] =(byte) 0x3f; // Seismic intensity
         data[14] =(byte) 0xff; // Seismic intensity
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);

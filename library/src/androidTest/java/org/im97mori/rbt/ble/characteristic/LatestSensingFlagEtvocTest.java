@@ -14,22 +14,24 @@ public class LatestSensingFlagEtvocTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_etvoc001() {
+        //@formatter:off
         byte[] data1 = new byte[15];
-        data1[0] = (byte) 0x00; // Sequence number
-        data1[1] = (byte) 0x00; // Temperature flag
-        data1[2] = (byte) 0x00; // Temperature flag
-        data1[3] = (byte) 0x00; // Relative humidity flag
-        data1[4] = (byte) 0x00; // Relative humidity flag
-        data1[5] = (byte) 0x00; // Ambient light flag
-        data1[6] = (byte) 0x00; // Ambient light flag
-        data1[7] = (byte) 0x00; // Barometric pressure flag
-        data1[8] = (byte) 0x00; // Barometric pressure flag
-        data1[9] = (byte) 0x00; // Sound noise flag
+        data1[ 0] = (byte) 0x00; // Sequence number
+        data1[ 1] = (byte) 0x00; // Temperature flag
+        data1[ 2] = (byte) 0x00; // Temperature flag
+        data1[ 3] = (byte) 0x00; // Relative humidity flag
+        data1[ 4] = (byte) 0x00; // Relative humidity flag
+        data1[ 5] = (byte) 0x00; // Ambient light flag
+        data1[ 6] = (byte) 0x00; // Ambient light flag
+        data1[ 7] = (byte) 0x00; // Barometric pressure flag
+        data1[ 8] = (byte) 0x00; // Barometric pressure flag
+        data1[ 9] = (byte) 0x00; // Sound noise flag
         data1[10] = (byte) 0x00; // Sound noise flag
         data1[11] = (byte) ALL_EVENT_FLAG_SENSOR_LSB; // eTVOC flag
         data1[12] = (byte) ALL_EVENT_FLAG_SENSOR_MSB; // eTVOC flag
         data1[13] = (byte) 0x00; // eCO2 flag
         data1[14] = (byte) 0x00; // eCO2 flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -165,22 +167,24 @@ public class LatestSensingFlagEtvocTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_etvoc002() {
+        //@formatter:off
         byte[] data1 = new byte[15];
-        data1[0] = (byte) 0x00; // Sequence number
-        data1[1] = (byte) 0x00; // Temperature flag
-        data1[2] = (byte) 0x00; // Temperature flag
-        data1[3] = (byte) 0x00; // Relative humidity flag
-        data1[4] = (byte) 0x00; // Relative humidity flag
-        data1[5] = (byte) 0x00; // Ambient light flag
-        data1[6] = (byte) 0x00; // Ambient light flag
-        data1[7] = (byte) 0x00; // Barometric pressure flag
-        data1[8] = (byte) 0x00; // Barometric pressure flag
-        data1[9] = (byte) 0x00; // Sound noise flag
+        data1[ 0] = (byte) 0x00; // Sequence number
+        data1[ 1] = (byte) 0x00; // Temperature flag
+        data1[ 2] = (byte) 0x00; // Temperature flag
+        data1[ 3] = (byte) 0x00; // Relative humidity flag
+        data1[ 4] = (byte) 0x00; // Relative humidity flag
+        data1[ 5] = (byte) 0x00; // Ambient light flag
+        data1[ 6] = (byte) 0x00; // Ambient light flag
+        data1[ 7] = (byte) 0x00; // Barometric pressure flag
+        data1[ 8] = (byte) 0x00; // Barometric pressure flag
+        data1[ 9] = (byte) 0x00; // Sound noise flag
         data1[10] = (byte) 0x00; // Sound noise flag
         data1[11] = (byte) (RbtConstants.EventFlagSensor.SIMPLE_THRESHOLD_UPPER_LIMIT_1 & 0xff); // eTVOC flag
         data1[12] = (byte) ((RbtConstants.EventFlagSensor.SIMPLE_THRESHOLD_UPPER_LIMIT_1 >> 8) & 0xff); // eTVOC flag
         data1[13] = (byte) 0x00; // eCO2 flag
         data1[14] = (byte) 0x00; // eCO2 flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -316,22 +320,24 @@ public class LatestSensingFlagEtvocTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_etvoc003() {
+        //@formatter:off
         byte[] data1 = new byte[15];
-        data1[0] = (byte) 0x00; // Sequence number
-        data1[1] = (byte) 0x00; // Temperature flag
-        data1[2] = (byte) 0x00; // Temperature flag
-        data1[3] = (byte) 0x00; // Relative humidity flag
-        data1[4] = (byte) 0x00; // Relative humidity flag
-        data1[5] = (byte) 0x00; // Ambient light flag
-        data1[6] = (byte) 0x00; // Ambient light flag
-        data1[7] = (byte) 0x00; // Barometric pressure flag
-        data1[8] = (byte) 0x00; // Barometric pressure flag
-        data1[9] = (byte) 0x00; // Sound noise flag
+        data1[ 0] = (byte) 0x00; // Sequence number
+        data1[ 1] = (byte) 0x00; // Temperature flag
+        data1[ 2] = (byte) 0x00; // Temperature flag
+        data1[ 3] = (byte) 0x00; // Relative humidity flag
+        data1[ 4] = (byte) 0x00; // Relative humidity flag
+        data1[ 5] = (byte) 0x00; // Ambient light flag
+        data1[ 6] = (byte) 0x00; // Ambient light flag
+        data1[ 7] = (byte) 0x00; // Barometric pressure flag
+        data1[ 8] = (byte) 0x00; // Barometric pressure flag
+        data1[ 9] = (byte) 0x00; // Sound noise flag
         data1[10] = (byte) 0x00; // Sound noise flag
         data1[11] = (byte) (RbtConstants.EventFlagSensor.SIMPLE_THRESHOLD_UPPER_LIMIT_2 & 0xff); // eTVOC flag
         data1[12] = (byte) ((RbtConstants.EventFlagSensor.SIMPLE_THRESHOLD_UPPER_LIMIT_2 >> 8) & 0xff); // eTVOC flag
         data1[13] = (byte) 0x00; // eCO2 flag
         data1[14] = (byte) 0x00; // eCO2 flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -467,22 +473,24 @@ public class LatestSensingFlagEtvocTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_etvoc004() {
+        //@formatter:off
         byte[] data1 = new byte[15];
-        data1[0] = (byte) 0x00; // Sequence number
-        data1[1] = (byte) 0x00; // Temperature flag
-        data1[2] = (byte) 0x00; // Temperature flag
-        data1[3] = (byte) 0x00; // Relative humidity flag
-        data1[4] = (byte) 0x00; // Relative humidity flag
-        data1[5] = (byte) 0x00; // Ambient light flag
-        data1[6] = (byte) 0x00; // Ambient light flag
-        data1[7] = (byte) 0x00; // Barometric pressure flag
-        data1[8] = (byte) 0x00; // Barometric pressure flag
-        data1[9] = (byte) 0x00; // Sound noise flag
+        data1[ 0] = (byte) 0x00; // Sequence number
+        data1[ 1] = (byte) 0x00; // Temperature flag
+        data1[ 2] = (byte) 0x00; // Temperature flag
+        data1[ 3] = (byte) 0x00; // Relative humidity flag
+        data1[ 4] = (byte) 0x00; // Relative humidity flag
+        data1[ 5] = (byte) 0x00; // Ambient light flag
+        data1[ 6] = (byte) 0x00; // Ambient light flag
+        data1[ 7] = (byte) 0x00; // Barometric pressure flag
+        data1[ 8] = (byte) 0x00; // Barometric pressure flag
+        data1[ 9] = (byte) 0x00; // Sound noise flag
         data1[10] = (byte) 0x00; // Sound noise flag
         data1[11] = (byte) (RbtConstants.EventFlagSensor.SIMPLE_THRESHOLD_LOWER_LIMIT_1 & 0xff); // eTVOC flag
         data1[12] = (byte) ((RbtConstants.EventFlagSensor.SIMPLE_THRESHOLD_LOWER_LIMIT_1 >> 8) & 0xff); // eTVOC flag
         data1[13] = (byte) 0x00; // eCO2 flag
         data1[14] = (byte) 0x00; // eCO2 flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -618,22 +626,24 @@ public class LatestSensingFlagEtvocTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_etvoc005() {
+        //@formatter:off
         byte[] data1 = new byte[15];
-        data1[0] = (byte) 0x00; // Sequence number
-        data1[1] = (byte) 0x00; // Temperature flag
-        data1[2] = (byte) 0x00; // Temperature flag
-        data1[3] = (byte) 0x00; // Relative humidity flag
-        data1[4] = (byte) 0x00; // Relative humidity flag
-        data1[5] = (byte) 0x00; // Ambient light flag
-        data1[6] = (byte) 0x00; // Ambient light flag
-        data1[7] = (byte) 0x00; // Barometric pressure flag
-        data1[8] = (byte) 0x00; // Barometric pressure flag
-        data1[9] = (byte) 0x00; // Sound noise flag
+        data1[ 0] = (byte) 0x00; // Sequence number
+        data1[ 1] = (byte) 0x00; // Temperature flag
+        data1[ 2] = (byte) 0x00; // Temperature flag
+        data1[ 3] = (byte) 0x00; // Relative humidity flag
+        data1[ 4] = (byte) 0x00; // Relative humidity flag
+        data1[ 5] = (byte) 0x00; // Ambient light flag
+        data1[ 6] = (byte) 0x00; // Ambient light flag
+        data1[ 7] = (byte) 0x00; // Barometric pressure flag
+        data1[ 8] = (byte) 0x00; // Barometric pressure flag
+        data1[ 9] = (byte) 0x00; // Sound noise flag
         data1[10] = (byte) 0x00; // Sound noise flag
         data1[11] = (byte) (RbtConstants.EventFlagSensor.SIMPLE_THRESHOLD_LOWER_LIMIT_2 & 0xff); // eTVOC flag
         data1[12] = (byte) ((RbtConstants.EventFlagSensor.SIMPLE_THRESHOLD_LOWER_LIMIT_2 >> 8) & 0xff); // eTVOC flag
         data1[13] = (byte) 0x00; // eCO2 flag
         data1[14] = (byte) 0x00; // eCO2 flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -769,22 +779,24 @@ public class LatestSensingFlagEtvocTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_etvoc006() {
+        //@formatter:off
         byte[] data1 = new byte[15];
-        data1[0] = (byte) 0x00; // Sequence number
-        data1[1] = (byte) 0x00; // Temperature flag
-        data1[2] = (byte) 0x00; // Temperature flag
-        data1[3] = (byte) 0x00; // Relative humidity flag
-        data1[4] = (byte) 0x00; // Relative humidity flag
-        data1[5] = (byte) 0x00; // Ambient light flag
-        data1[6] = (byte) 0x00; // Ambient light flag
-        data1[7] = (byte) 0x00; // Barometric pressure flag
-        data1[8] = (byte) 0x00; // Barometric pressure flag
-        data1[9] = (byte) 0x00; // Sound noise flag
+        data1[ 0] = (byte) 0x00; // Sequence number
+        data1[ 1] = (byte) 0x00; // Temperature flag
+        data1[ 2] = (byte) 0x00; // Temperature flag
+        data1[ 3] = (byte) 0x00; // Relative humidity flag
+        data1[ 4] = (byte) 0x00; // Relative humidity flag
+        data1[ 5] = (byte) 0x00; // Ambient light flag
+        data1[ 6] = (byte) 0x00; // Ambient light flag
+        data1[ 7] = (byte) 0x00; // Barometric pressure flag
+        data1[ 8] = (byte) 0x00; // Barometric pressure flag
+        data1[ 9] = (byte) 0x00; // Sound noise flag
         data1[10] = (byte) 0x00; // Sound noise flag
         data1[11] = (byte) (RbtConstants.EventFlagSensor.CHANGE_THRESHOLD_RISE_1 & 0xff); // eTVOC flag
         data1[12] = (byte) ((RbtConstants.EventFlagSensor.CHANGE_THRESHOLD_RISE_1 >> 8) & 0xff); // eTVOC flag
         data1[13] = (byte) 0x00; // eCO2 flag
         data1[14] = (byte) 0x00; // eCO2 flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -920,22 +932,24 @@ public class LatestSensingFlagEtvocTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_etvoc007() {
+        //@formatter:off
         byte[] data1 = new byte[15];
-        data1[0] = (byte) 0x00; // Sequence number
-        data1[1] = (byte) 0x00; // Temperature flag
-        data1[2] = (byte) 0x00; // Temperature flag
-        data1[3] = (byte) 0x00; // Relative humidity flag
-        data1[4] = (byte) 0x00; // Relative humidity flag
-        data1[5] = (byte) 0x00; // Ambient light flag
-        data1[6] = (byte) 0x00; // Ambient light flag
-        data1[7] = (byte) 0x00; // Barometric pressure flag
-        data1[8] = (byte) 0x00; // Barometric pressure flag
-        data1[9] = (byte) 0x00; // Sound noise flag
+        data1[ 0] = (byte) 0x00; // Sequence number
+        data1[ 1] = (byte) 0x00; // Temperature flag
+        data1[ 2] = (byte) 0x00; // Temperature flag
+        data1[ 3] = (byte) 0x00; // Relative humidity flag
+        data1[ 4] = (byte) 0x00; // Relative humidity flag
+        data1[ 5] = (byte) 0x00; // Ambient light flag
+        data1[ 6] = (byte) 0x00; // Ambient light flag
+        data1[ 7] = (byte) 0x00; // Barometric pressure flag
+        data1[ 8] = (byte) 0x00; // Barometric pressure flag
+        data1[ 9] = (byte) 0x00; // Sound noise flag
         data1[10] = (byte) 0x00; // Sound noise flag
         data1[11] = (byte) (RbtConstants.EventFlagSensor.CHANGE_THRESHOLD_RISE_2 & 0xff); // eTVOC flag
         data1[12] = (byte) ((RbtConstants.EventFlagSensor.CHANGE_THRESHOLD_RISE_2 >> 8) & 0xff); // eTVOC flag
         data1[13] = (byte) 0x00; // eCO2 flag
         data1[14] = (byte) 0x00; // eCO2 flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -1071,22 +1085,24 @@ public class LatestSensingFlagEtvocTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_etvoc008() {
+        //@formatter:off
         byte[] data1 = new byte[15];
-        data1[0] = (byte) 0x00; // Sequence number
-        data1[1] = (byte) 0x00; // Temperature flag
-        data1[2] = (byte) 0x00; // Temperature flag
-        data1[3] = (byte) 0x00; // Relative humidity flag
-        data1[4] = (byte) 0x00; // Relative humidity flag
-        data1[5] = (byte) 0x00; // Ambient light flag
-        data1[6] = (byte) 0x00; // Ambient light flag
-        data1[7] = (byte) 0x00; // Barometric pressure flag
-        data1[8] = (byte) 0x00; // Barometric pressure flag
-        data1[9] = (byte) 0x00; // Sound noise flag
+        data1[ 0] = (byte) 0x00; // Sequence number
+        data1[ 1] = (byte) 0x00; // Temperature flag
+        data1[ 2] = (byte) 0x00; // Temperature flag
+        data1[ 3] = (byte) 0x00; // Relative humidity flag
+        data1[ 4] = (byte) 0x00; // Relative humidity flag
+        data1[ 5] = (byte) 0x00; // Ambient light flag
+        data1[ 6] = (byte) 0x00; // Ambient light flag
+        data1[ 7] = (byte) 0x00; // Barometric pressure flag
+        data1[ 8] = (byte) 0x00; // Barometric pressure flag
+        data1[ 9] = (byte) 0x00; // Sound noise flag
         data1[10] = (byte) 0x00; // Sound noise flag
         data1[11] = (byte) (RbtConstants.EventFlagSensor.CHANGE_THRESHOLD_DECLINE_1 & 0xff); // eTVOC flag
         data1[12] = (byte) ((RbtConstants.EventFlagSensor.CHANGE_THRESHOLD_DECLINE_1 >> 8) & 0xff); // eTVOC flag
         data1[13] = (byte) 0x00; // eCO2 flag
         data1[14] = (byte) 0x00; // eCO2 flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -1222,22 +1238,24 @@ public class LatestSensingFlagEtvocTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_etvoc009() {
+        //@formatter:off
         byte[] data1 = new byte[15];
-        data1[0] = (byte) 0x00; // Sequence number
-        data1[1] = (byte) 0x00; // Temperature flag
-        data1[2] = (byte) 0x00; // Temperature flag
-        data1[3] = (byte) 0x00; // Relative humidity flag
-        data1[4] = (byte) 0x00; // Relative humidity flag
-        data1[5] = (byte) 0x00; // Ambient light flag
-        data1[6] = (byte) 0x00; // Ambient light flag
-        data1[7] = (byte) 0x00; // Barometric pressure flag
-        data1[8] = (byte) 0x00; // Barometric pressure flag
-        data1[9] = (byte) 0x00; // Sound noise flag
+        data1[ 0] = (byte) 0x00; // Sequence number
+        data1[ 1] = (byte) 0x00; // Temperature flag
+        data1[ 2] = (byte) 0x00; // Temperature flag
+        data1[ 3] = (byte) 0x00; // Relative humidity flag
+        data1[ 4] = (byte) 0x00; // Relative humidity flag
+        data1[ 5] = (byte) 0x00; // Ambient light flag
+        data1[ 6] = (byte) 0x00; // Ambient light flag
+        data1[ 7] = (byte) 0x00; // Barometric pressure flag
+        data1[ 8] = (byte) 0x00; // Barometric pressure flag
+        data1[ 9] = (byte) 0x00; // Sound noise flag
         data1[10] = (byte) 0x00; // Sound noise flag
         data1[11] = (byte) (RbtConstants.EventFlagSensor.CHANGE_THRESHOLD_DECLINE_2 & 0xff); // eTVOC flag
         data1[12] = (byte) ((RbtConstants.EventFlagSensor.CHANGE_THRESHOLD_DECLINE_2 >> 8) & 0xff); // eTVOC flag
         data1[13] = (byte) 0x00; // eCO2 flag
         data1[14] = (byte) 0x00; // eCO2 flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -1373,22 +1391,24 @@ public class LatestSensingFlagEtvocTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_etvoc010() {
+        //@formatter:off
         byte[] data1 = new byte[15];
-        data1[0] = (byte) 0x00; // Sequence number
-        data1[1] = (byte) 0x00; // Temperature flag
-        data1[2] = (byte) 0x00; // Temperature flag
-        data1[3] = (byte) 0x00; // Relative humidity flag
-        data1[4] = (byte) 0x00; // Relative humidity flag
-        data1[5] = (byte) 0x00; // Ambient light flag
-        data1[6] = (byte) 0x00; // Ambient light flag
-        data1[7] = (byte) 0x00; // Barometric pressure flag
-        data1[8] = (byte) 0x00; // Barometric pressure flag
-        data1[9] = (byte) 0x00; // Sound noise flag
+        data1[ 0] = (byte) 0x00; // Sequence number
+        data1[ 1] = (byte) 0x00; // Temperature flag
+        data1[ 2] = (byte) 0x00; // Temperature flag
+        data1[ 3] = (byte) 0x00; // Relative humidity flag
+        data1[ 4] = (byte) 0x00; // Relative humidity flag
+        data1[ 5] = (byte) 0x00; // Ambient light flag
+        data1[ 6] = (byte) 0x00; // Ambient light flag
+        data1[ 7] = (byte) 0x00; // Barometric pressure flag
+        data1[ 8] = (byte) 0x00; // Barometric pressure flag
+        data1[ 9] = (byte) 0x00; // Sound noise flag
         data1[10] = (byte) 0x00; // Sound noise flag
         data1[11] = (byte) (RbtConstants.EventFlagSensor.AVERAGE_VALUE_THRESHOLD_UPPER & 0xff); // eTVOC flag
         data1[12] = (byte) ((RbtConstants.EventFlagSensor.AVERAGE_VALUE_THRESHOLD_UPPER >> 8) & 0xff); // eTVOC flag
         data1[13] = (byte) 0x00; // eCO2 flag
         data1[14] = (byte) 0x00; // eCO2 flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -1524,22 +1544,24 @@ public class LatestSensingFlagEtvocTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_etvoc011() {
+        //@formatter:off
         byte[] data1 = new byte[15];
-        data1[0] = (byte) 0x00; // Sequence number
-        data1[1] = (byte) 0x00; // Temperature flag
-        data1[2] = (byte) 0x00; // Temperature flag
-        data1[3] = (byte) 0x00; // Relative humidity flag
-        data1[4] = (byte) 0x00; // Relative humidity flag
-        data1[5] = (byte) 0x00; // Ambient light flag
-        data1[6] = (byte) 0x00; // Ambient light flag
-        data1[7] = (byte) 0x00; // Barometric pressure flag
-        data1[8] = (byte) 0x00; // Barometric pressure flag
-        data1[9] = (byte) 0x00; // Sound noise flag
+        data1[ 0] = (byte) 0x00; // Sequence number
+        data1[ 1] = (byte) 0x00; // Temperature flag
+        data1[ 2] = (byte) 0x00; // Temperature flag
+        data1[ 3] = (byte) 0x00; // Relative humidity flag
+        data1[ 4] = (byte) 0x00; // Relative humidity flag
+        data1[ 5] = (byte) 0x00; // Ambient light flag
+        data1[ 6] = (byte) 0x00; // Ambient light flag
+        data1[ 7] = (byte) 0x00; // Barometric pressure flag
+        data1[ 8] = (byte) 0x00; // Barometric pressure flag
+        data1[ 9] = (byte) 0x00; // Sound noise flag
         data1[10] = (byte) 0x00; // Sound noise flag
         data1[11] = (byte) (RbtConstants.EventFlagSensor.AVERAGE_VALUE_THRESHOLD_LOWER & 0xff); // eTVOC flag
         data1[12] = (byte) ((RbtConstants.EventFlagSensor.AVERAGE_VALUE_THRESHOLD_LOWER >> 8) & 0xff); // eTVOC flag
         data1[13] = (byte) 0x00; // eCO2 flag
         data1[14] = (byte) 0x00; // eCO2 flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -1675,22 +1697,24 @@ public class LatestSensingFlagEtvocTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_etvoc012() {
+        //@formatter:off
         byte[] data1 = new byte[15];
-        data1[0] = (byte) 0x00; // Sequence number
-        data1[1] = (byte) 0x00; // Temperature flag
-        data1[2] = (byte) 0x00; // Temperature flag
-        data1[3] = (byte) 0x00; // Relative humidity flag
-        data1[4] = (byte) 0x00; // Relative humidity flag
-        data1[5] = (byte) 0x00; // Ambient light flag
-        data1[6] = (byte) 0x00; // Ambient light flag
-        data1[7] = (byte) 0x00; // Barometric pressure flag
-        data1[8] = (byte) 0x00; // Barometric pressure flag
-        data1[9] = (byte) 0x00; // Sound noise flag
+        data1[ 0] = (byte) 0x00; // Sequence number
+        data1[ 1] = (byte) 0x00; // Temperature flag
+        data1[ 2] = (byte) 0x00; // Temperature flag
+        data1[ 3] = (byte) 0x00; // Relative humidity flag
+        data1[ 4] = (byte) 0x00; // Relative humidity flag
+        data1[ 5] = (byte) 0x00; // Ambient light flag
+        data1[ 6] = (byte) 0x00; // Ambient light flag
+        data1[ 7] = (byte) 0x00; // Barometric pressure flag
+        data1[ 8] = (byte) 0x00; // Barometric pressure flag
+        data1[ 9] = (byte) 0x00; // Sound noise flag
         data1[10] = (byte) 0x00; // Sound noise flag
         data1[11] = (byte) (RbtConstants.EventFlagSensor.PEAK_TO_PEAK_THRESHOLD_UPPER & 0xff); // eTVOC flag
         data1[12] = (byte) ((RbtConstants.EventFlagSensor.PEAK_TO_PEAK_THRESHOLD_UPPER >> 8) & 0xff); // eTVOC flag
         data1[13] = (byte) 0x00; // eCO2 flag
         data1[14] = (byte) 0x00; // eCO2 flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -1826,22 +1850,24 @@ public class LatestSensingFlagEtvocTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_etvoc013() {
+        //@formatter:off
         byte[] data1 = new byte[15];
-        data1[0] = (byte) 0x00; // Sequence number
-        data1[1] = (byte) 0x00; // Temperature flag
-        data1[2] = (byte) 0x00; // Temperature flag
-        data1[3] = (byte) 0x00; // Relative humidity flag
-        data1[4] = (byte) 0x00; // Relative humidity flag
-        data1[5] = (byte) 0x00; // Ambient light flag
-        data1[6] = (byte) 0x00; // Ambient light flag
-        data1[7] = (byte) 0x00; // Barometric pressure flag
-        data1[8] = (byte) 0x00; // Barometric pressure flag
-        data1[9] = (byte) 0x00; // Sound noise flag
+        data1[ 0] = (byte) 0x00; // Sequence number
+        data1[ 1] = (byte) 0x00; // Temperature flag
+        data1[ 2] = (byte) 0x00; // Temperature flag
+        data1[ 3] = (byte) 0x00; // Relative humidity flag
+        data1[ 4] = (byte) 0x00; // Relative humidity flag
+        data1[ 5] = (byte) 0x00; // Ambient light flag
+        data1[ 6] = (byte) 0x00; // Ambient light flag
+        data1[ 7] = (byte) 0x00; // Barometric pressure flag
+        data1[ 8] = (byte) 0x00; // Barometric pressure flag
+        data1[ 9] = (byte) 0x00; // Sound noise flag
         data1[10] = (byte) 0x00; // Sound noise flag
         data1[11] = (byte) (RbtConstants.EventFlagSensor.PEAK_TO_PEAK_THRESHOLD_LOWER & 0xff); // eTVOC flag
         data1[12] = (byte) ((RbtConstants.EventFlagSensor.PEAK_TO_PEAK_THRESHOLD_LOWER >> 8) & 0xff); // eTVOC flag
         data1[13] = (byte) 0x00; // eCO2 flag
         data1[14] = (byte) 0x00; // eCO2 flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -1977,22 +2003,24 @@ public class LatestSensingFlagEtvocTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_etvoc014() {
+        //@formatter:off
         byte[] data1 = new byte[15];
-        data1[0] = (byte) 0x00; // Sequence number
-        data1[1] = (byte) 0x00; // Temperature flag
-        data1[2] = (byte) 0x00; // Temperature flag
-        data1[3] = (byte) 0x00; // Relative humidity flag
-        data1[4] = (byte) 0x00; // Relative humidity flag
-        data1[5] = (byte) 0x00; // Ambient light flag
-        data1[6] = (byte) 0x00; // Ambient light flag
-        data1[7] = (byte) 0x00; // Barometric pressure flag
-        data1[8] = (byte) 0x00; // Barometric pressure flag
-        data1[9] = (byte) 0x00; // Sound noise flag
+        data1[ 0] = (byte) 0x00; // Sequence number
+        data1[ 1] = (byte) 0x00; // Temperature flag
+        data1[ 2] = (byte) 0x00; // Temperature flag
+        data1[ 3] = (byte) 0x00; // Relative humidity flag
+        data1[ 4] = (byte) 0x00; // Relative humidity flag
+        data1[ 5] = (byte) 0x00; // Ambient light flag
+        data1[ 6] = (byte) 0x00; // Ambient light flag
+        data1[ 7] = (byte) 0x00; // Barometric pressure flag
+        data1[ 8] = (byte) 0x00; // Barometric pressure flag
+        data1[ 9] = (byte) 0x00; // Sound noise flag
         data1[10] = (byte) 0x00; // Sound noise flag
         data1[11] = (byte) (RbtConstants.EventFlagSensor.INTERVAL_DIFFERENCE_THRESHOLD_RISE & 0xff); // eTVOC flag
         data1[12] = (byte) ((RbtConstants.EventFlagSensor.INTERVAL_DIFFERENCE_THRESHOLD_RISE >> 8) & 0xff); // eTVOC flag
         data1[13] = (byte) 0x00; // eCO2 flag
         data1[14] = (byte) 0x00; // eCO2 flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -2128,22 +2156,24 @@ public class LatestSensingFlagEtvocTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_etvoc015() {
+        //@formatter:off
         byte[] data1 = new byte[15];
-        data1[0] = (byte) 0x00; // Sequence number
-        data1[1] = (byte) 0x00; // Temperature flag
-        data1[2] = (byte) 0x00; // Temperature flag
-        data1[3] = (byte) 0x00; // Relative humidity flag
-        data1[4] = (byte) 0x00; // Relative humidity flag
-        data1[5] = (byte) 0x00; // Ambient light flag
-        data1[6] = (byte) 0x00; // Ambient light flag
-        data1[7] = (byte) 0x00; // Barometric pressure flag
-        data1[8] = (byte) 0x00; // Barometric pressure flag
-        data1[9] = (byte) 0x00; // Sound noise flag
+        data1[ 0] = (byte) 0x00; // Sequence number
+        data1[ 1] = (byte) 0x00; // Temperature flag
+        data1[ 2] = (byte) 0x00; // Temperature flag
+        data1[ 3] = (byte) 0x00; // Relative humidity flag
+        data1[ 4] = (byte) 0x00; // Relative humidity flag
+        data1[ 5] = (byte) 0x00; // Ambient light flag
+        data1[ 6] = (byte) 0x00; // Ambient light flag
+        data1[ 7] = (byte) 0x00; // Barometric pressure flag
+        data1[ 8] = (byte) 0x00; // Barometric pressure flag
+        data1[ 9] = (byte) 0x00; // Sound noise flag
         data1[10] = (byte) 0x00; // Sound noise flag
         data1[11] = (byte) (RbtConstants.EventFlagSensor.INTERVAL_DIFFERENCE_THRESHOLD_DECLINE & 0xff); // eTVOC flag
         data1[12] = (byte) ((RbtConstants.EventFlagSensor.INTERVAL_DIFFERENCE_THRESHOLD_DECLINE >> 8) & 0xff); // eTVOC flag
         data1[13] = (byte) 0x00; // eCO2 flag
         data1[14] = (byte) 0x00; // eCO2 flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -2279,22 +2309,24 @@ public class LatestSensingFlagEtvocTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_etvoc016() {
+        //@formatter:off
         byte[] data1 = new byte[15];
-        data1[0] = (byte) 0x00; // Sequence number
-        data1[1] = (byte) 0x00; // Temperature flag
-        data1[2] = (byte) 0x00; // Temperature flag
-        data1[3] = (byte) 0x00; // Relative humidity flag
-        data1[4] = (byte) 0x00; // Relative humidity flag
-        data1[5] = (byte) 0x00; // Ambient light flag
-        data1[6] = (byte) 0x00; // Ambient light flag
-        data1[7] = (byte) 0x00; // Barometric pressure flag
-        data1[8] = (byte) 0x00; // Barometric pressure flag
-        data1[9] = (byte) 0x00; // Sound noise flag
+        data1[ 0] = (byte) 0x00; // Sequence number
+        data1[ 1] = (byte) 0x00; // Temperature flag
+        data1[ 2] = (byte) 0x00; // Temperature flag
+        data1[ 3] = (byte) 0x00; // Relative humidity flag
+        data1[ 4] = (byte) 0x00; // Relative humidity flag
+        data1[ 5] = (byte) 0x00; // Ambient light flag
+        data1[ 6] = (byte) 0x00; // Ambient light flag
+        data1[ 7] = (byte) 0x00; // Barometric pressure flag
+        data1[ 8] = (byte) 0x00; // Barometric pressure flag
+        data1[ 9] = (byte) 0x00; // Sound noise flag
         data1[10] = (byte) 0x00; // Sound noise flag
         data1[11] = (byte) (RbtConstants.EventFlagSensor.BASE_DIFFERENCE_THRESHOLD_UPPER & 0xff); // eTVOC flag
         data1[12] = (byte) ((RbtConstants.EventFlagSensor.BASE_DIFFERENCE_THRESHOLD_UPPER >> 8) & 0xff); // eTVOC flag
         data1[13] = (byte) 0x00; // eCO2 flag
         data1[14] = (byte) 0x00; // eCO2 flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -2430,22 +2462,24 @@ public class LatestSensingFlagEtvocTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_etvoc017() {
+        //@formatter:off
         byte[] data1 = new byte[15];
-        data1[0] = (byte) 0x00; // Sequence number
-        data1[1] = (byte) 0x00; // Temperature flag
-        data1[2] = (byte) 0x00; // Temperature flag
-        data1[3] = (byte) 0x00; // Relative humidity flag
-        data1[4] = (byte) 0x00; // Relative humidity flag
-        data1[5] = (byte) 0x00; // Ambient light flag
-        data1[6] = (byte) 0x00; // Ambient light flag
-        data1[7] = (byte) 0x00; // Barometric pressure flag
-        data1[8] = (byte) 0x00; // Barometric pressure flag
-        data1[9] = (byte) 0x00; // Sound noise flag
+        data1[ 0] = (byte) 0x00; // Sequence number
+        data1[ 1] = (byte) 0x00; // Temperature flag
+        data1[ 2] = (byte) 0x00; // Temperature flag
+        data1[ 3] = (byte) 0x00; // Relative humidity flag
+        data1[ 4] = (byte) 0x00; // Relative humidity flag
+        data1[ 5] = (byte) 0x00; // Ambient light flag
+        data1[ 6] = (byte) 0x00; // Ambient light flag
+        data1[ 7] = (byte) 0x00; // Barometric pressure flag
+        data1[ 8] = (byte) 0x00; // Barometric pressure flag
+        data1[ 9] = (byte) 0x00; // Sound noise flag
         data1[10] = (byte) 0x00; // Sound noise flag
         data1[11] = (byte) (RbtConstants.EventFlagSensor.BASE_DIFFERENCE_THRESHOLD_LOWER & 0xff); // eTVOC flag
         data1[12] = (byte) ((RbtConstants.EventFlagSensor.BASE_DIFFERENCE_THRESHOLD_LOWER >> 8) & 0xff); // eTVOC flag
         data1[13] = (byte) 0x00; // eCO2 flag
         data1[14] = (byte) 0x00; // eCO2 flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);

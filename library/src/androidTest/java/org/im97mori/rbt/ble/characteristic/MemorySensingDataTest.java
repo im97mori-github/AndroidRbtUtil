@@ -15,17 +15,18 @@ public class MemorySensingDataTest {
 
     @Test
     public void test001() {
+        //@formatter:off
         byte[] data = new byte[20];
-        data[0] = (byte) ((0x01) & 0xff); // Memory index
-        data[1] = (byte) ((0x00) & 0xff); // Memory index
-        data[2] = (byte) ((0x00) & 0xff); // Memory index
-        data[3] = (byte) ((0x00) & 0xff); // Memory index
-        data[4] = (byte) 0x60; // Temperature
-        data[5] = (byte) 0xf0; // Temperature
-        data[6] = (byte) 0x00; // Relative humidity
-        data[7] = (byte) 0x00; // Relative humidity
-        data[8] = (byte) 0x00; // Ambient light
-        data[9] = (byte) 0x00; // Ambient light
+        data[ 0] = (byte) ((0x01) & 0xff); // Memory index
+        data[ 1] = (byte) ((0x00) & 0xff); // Memory index
+        data[ 2] = (byte) ((0x00) & 0xff); // Memory index
+        data[ 3] = (byte) ((0x00) & 0xff); // Memory index
+        data[ 4] = (byte) 0x60; // Temperature
+        data[ 5] = (byte) 0xf0; // Temperature
+        data[ 6] = (byte) 0x00; // Relative humidity
+        data[ 7] = (byte) 0x00; // Relative humidity
+        data[ 8] = (byte) 0x00; // Ambient light
+        data[ 9] = (byte) 0x00; // Ambient light
         data[10] = (byte) 0xe0; // Barometric pressure
         data[11] = (byte) 0x93; // Barometric pressure
         data[12] = (byte) 0x04; // Barometric pressure
@@ -36,6 +37,7 @@ public class MemorySensingDataTest {
         data[17] = (byte) 0x00; // eTVOC
         data[18] = (byte) 0x90; // eCO2
         data[19] = (byte) 0x01; // eCO2
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -61,6 +63,7 @@ public class MemorySensingDataTest {
 
     @Test
     public void test002() {
+        //@formatter:off
         byte[] data = new byte[20];
         data[ 0] = (byte) ((0xff) & 0xff); // Memory index
         data[ 1] = (byte) ((0xff) & 0xff); // Memory index
@@ -82,6 +85,7 @@ public class MemorySensingDataTest {
         data[17] = (byte) 0x7f; // eTVOC
         data[18] = (byte) 0xff; // eCO2
         data[19] = (byte) 0x7f; // eCO2
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -107,6 +111,7 @@ public class MemorySensingDataTest {
 
     @Test
     public void test003() {
+        //@formatter:off
         byte[] data = new byte[20];
         data[ 0] = (byte) ((0x00) & 0xff); // Memory index
         data[ 1] = (byte) ((0x00) & 0xff); // Memory index
@@ -128,6 +133,7 @@ public class MemorySensingDataTest {
         data[17] = (byte) 0x7f; // eTVOC
         data[18] = (byte) 0xff; // eCO2
         data[19] = (byte) 0x7f; // eCO2
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -153,6 +159,7 @@ public class MemorySensingDataTest {
 
     @Test
     public void test004() {
+        //@formatter:off
         byte[] data = new byte[20];
         data[ 0] = (byte) ((0x00) & 0xff); // Memory index
         data[ 1] = (byte) ((0x00) & 0xff); // Memory index
@@ -174,6 +181,7 @@ public class MemorySensingDataTest {
         data[17] = (byte) 0x7f; // eTVOC
         data[18] = (byte) 0xff; // eCO2
         data[19] = (byte) 0x7f; // eCO2
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -196,6 +204,7 @@ public class MemorySensingDataTest {
 
     @Test
     public void test005() {
+        //@formatter:off
         byte[] data = new byte[20];
         data[ 0] = (byte) ((0x00) & 0xff); // Memory index
         data[ 1] = (byte) ((0x00) & 0xff); // Memory index
@@ -217,6 +226,7 @@ public class MemorySensingDataTest {
         data[17] = (byte) 0x7f; // eTVOC
         data[18] = (byte) 0xff; // eCO2
         data[19] = (byte) 0x7f; // eCO2
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -228,6 +238,7 @@ public class MemorySensingDataTest {
 
     @Test
     public void test006() {
+        //@formatter:off
         byte[] data = new byte[20];
         data[ 0] = (byte) ((0x00) & 0xff); // Memory index
         data[ 1] = (byte) ((0x00) & 0xff); // Memory index
@@ -249,6 +260,7 @@ public class MemorySensingDataTest {
         data[17] = (byte) 0x7f; // eTVOC
         data[18] = (byte) 0xff; // eCO2
         data[19] = (byte) 0x7f; // eCO2
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);

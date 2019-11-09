@@ -14,6 +14,7 @@ public class MemoryCalculationFlagPgaTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_pga001() {
+        //@formatter:off
         byte[] data2 = new byte[11];
         data2[ 0] = (byte) ((0x01) & 0xff); // Memory index
         data2[ 1] = (byte) ((0x00) & 0xff); // Memory index
@@ -26,6 +27,7 @@ public class MemoryCalculationFlagPgaTest extends AbstractSensingFlagTest {
         data2[ 8] = (byte) ((0x00) & 0xff); // SI value flag
         data2[ 9] = (byte) ALL_EVENT_FLAG_ACCELERATION; // PGA flag
         data2[10] = (byte) 0x00; // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
@@ -90,6 +92,7 @@ public class MemoryCalculationFlagPgaTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_pga002() {
+        //@formatter:off
         byte[] data2 = new byte[11];
         data2[ 0] = (byte) ((0x01) & 0xff); // Memory index
         data2[ 1] = (byte) ((0x00) & 0xff); // Memory index
@@ -102,6 +105,7 @@ public class MemoryCalculationFlagPgaTest extends AbstractSensingFlagTest {
         data2[ 8] = (byte) ((0x00) & 0xff); // SI value flag
         data2[ 9] = (byte) (RbtConstants.EventFlagAcceleration.SIMPLE_THRESHOLD_UPPER_LIMIT_1 & 0xff); // PGA flag
         data2[10] = (byte) 0x00; // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
@@ -166,6 +170,7 @@ public class MemoryCalculationFlagPgaTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_pga003() {
+        //@formatter:off
         byte[] data2 = new byte[11];
         data2[ 0] = (byte) ((0x01) & 0xff); // Memory index
         data2[ 1] = (byte) ((0x00) & 0xff); // Memory index
@@ -178,6 +183,7 @@ public class MemoryCalculationFlagPgaTest extends AbstractSensingFlagTest {
         data2[ 8] = (byte) ((0x00) & 0xff); // SI value flag
         data2[ 9] = (byte) (RbtConstants.EventFlagAcceleration.SIMPLE_THRESHOLD_UPPER_LIMIT_2 & 0xff); // PGA flag
         data2[10] = (byte) 0x00; // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
@@ -242,6 +248,7 @@ public class MemoryCalculationFlagPgaTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_pga004() {
+        //@formatter:off
         byte[] data2 = new byte[11];
         data2[ 0] = (byte) ((0x01) & 0xff); // Memory index
         data2[ 1] = (byte) ((0x00) & 0xff); // Memory index
@@ -254,6 +261,7 @@ public class MemoryCalculationFlagPgaTest extends AbstractSensingFlagTest {
         data2[ 8] = (byte) ((0x00) & 0xff); // SI value flag
         data2[ 9] = (byte) (RbtConstants.EventFlagAcceleration.CHANGE_THRESHOLD_RISE_1 & 0xff); // PGA flag
         data2[10] = (byte) 0x00; // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
@@ -318,6 +326,7 @@ public class MemoryCalculationFlagPgaTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_pga005() {
+        //@formatter:off
         byte[] data2 = new byte[11];
         data2[ 0] = (byte) ((0x01) & 0xff); // Memory index
         data2[ 1] = (byte) ((0x00) & 0xff); // Memory index
@@ -330,6 +339,7 @@ public class MemoryCalculationFlagPgaTest extends AbstractSensingFlagTest {
         data2[ 8] = (byte) ((0x00) & 0xff); // SI value flag
         data2[ 9] = (byte) (RbtConstants.EventFlagAcceleration.CHANGE_THRESHOLD_RISE_2 & 0xff); // PGA flag
         data2[10] = (byte) 0x00; // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);

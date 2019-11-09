@@ -14,15 +14,17 @@ public class LatestCalculationFlagTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_001() {
+        //@formatter:off
         byte[] data2 = new byte[8];
-        data2[0] = (byte) 0x00; // Sequence number
-        data2[1] = (byte) 0x00; // Discomfort index flag
-        data2[2] = (byte) 0x00; // Discomfort index flag
-        data2[3] = (byte) 0x00; // Heat stroke flag
-        data2[4] = (byte) 0x00; // Heat stroke flag
-        data2[5] = (byte) 0x00; // SI value flag
-        data2[6] = (byte) 0x00; // PGA flag
-        data2[7] = (byte) 0x00; // Seismic intensity flag
+        data2[ 0] = (byte) 0x00; // Sequence number
+        data2[ 1] = (byte) 0x00; // Discomfort index flag
+        data2[ 2] = (byte) 0x00; // Discomfort index flag
+        data2[ 3] = (byte) 0x00; // Heat stroke flag
+        data2[ 4] = (byte) 0x00; // Heat stroke flag
+        data2[ 5] = (byte) 0x00; // SI value flag
+        data2[ 6] = (byte) 0x00; // PGA flag
+        data2[ 7] = (byte) 0x00; // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
@@ -86,15 +88,17 @@ public class LatestCalculationFlagTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_002() {
+        //@formatter:off
         byte[] data2 = new byte[8];
-        data2[0] = (byte) 0xff; // Sequence number
-        data2[1] = (byte) 0x00; // Discomfort index flag
-        data2[2] = (byte) 0x00; // Discomfort index flag
-        data2[3] = (byte) 0x00; // Heat stroke flag
-        data2[4] = (byte) 0x00; // Heat stroke flag
-        data2[5] = (byte) 0x00; // SI value flag
-        data2[6] = (byte) 0x00; // PGA flag
-        data2[7] = (byte) 0x00; // Seismic intensity flag
+        data2[ 0] = (byte) 0xff; // Sequence number
+        data2[ 1] = (byte) 0x00; // Discomfort index flag
+        data2[ 2] = (byte) 0x00; // Discomfort index flag
+        data2[ 3] = (byte) 0x00; // Heat stroke flag
+        data2[ 4] = (byte) 0x00; // Heat stroke flag
+        data2[ 5] = (byte) 0x00; // SI value flag
+        data2[ 6] = (byte) 0x00; // PGA flag
+        data2[ 7] = (byte) 0x00; // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
@@ -158,15 +162,17 @@ public class LatestCalculationFlagTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_003() {
+        //@formatter:off
         byte[] data2 = new byte[8];
-        data2[0] = (byte) 0xff; // Sequence number
-        data2[1] = (byte) 0x00; // Discomfort index flag
-        data2[2] = (byte) 0x00; // Discomfort index flag
-        data2[3] = (byte) 0x00; // Heat stroke flag
-        data2[4] = (byte) 0x00; // Heat stroke flag
-        data2[5] = (byte) 0x00; // SI value flag
-        data2[6] = (byte) 0x00; // PGA flag
-        data2[7] = (byte) 0x00; // Seismic intensity flag
+        data2[ 0] = (byte) 0xff; // Sequence number
+        data2[ 1] = (byte) 0x00; // Discomfort index flag
+        data2[ 2] = (byte) 0x00; // Discomfort index flag
+        data2[ 3] = (byte) 0x00; // Heat stroke flag
+        data2[ 4] = (byte) 0x00; // Heat stroke flag
+        data2[ 5] = (byte) 0x00; // SI value flag
+        data2[ 6] = (byte) 0x00; // PGA flag
+        data2[ 7] = (byte) 0x00; // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
@@ -230,15 +236,17 @@ public class LatestCalculationFlagTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_004() {
+        //@formatter:off
         byte[] data2 = new byte[8];
-        data2[0] = (byte) 0x01; // Sequence number
-        data2[1] = (byte) 0x02; // Discomfort index flag
-        data2[2] = (byte) 0x00; // Discomfort index flag
-        data2[3] = (byte) 0x03; // Heat stroke flag
-        data2[4] = (byte) 0x00; // Heat stroke flag
-        data2[5] = (byte) 0x04; // SI value flag
-        data2[6] = (byte) 0x05; // PGA flag
-        data2[7] = (byte) 0x06; // Seismic intensity flag
+        data2[ 0] = (byte) 0x01; // Sequence number
+        data2[ 1] = (byte) 0x02; // Discomfort index flag
+        data2[ 2] = (byte) 0x00; // Discomfort index flag
+        data2[ 3] = (byte) 0x03; // Heat stroke flag
+        data2[ 4] = (byte) 0x00; // Heat stroke flag
+        data2[ 5] = (byte) 0x04; // SI value flag
+        data2[ 6] = (byte) 0x05; // PGA flag
+        data2[ 7] = (byte) 0x06; // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
@@ -259,15 +267,17 @@ public class LatestCalculationFlagTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_005() {
+        //@formatter:off
         byte[] data2 = new byte[8];
-        data2[0] = (byte) 0xff; // Sequence number
-        data2[1] = (byte) ALL_EVENT_FLAG_SENSOR_LSB; // Discomfort index flag
-        data2[2] = (byte) ALL_EVENT_FLAG_SENSOR_MSB; // Discomfort index flag
-        data2[3] = (byte) ALL_EVENT_FLAG_SENSOR_LSB; // Heat stroke flag
-        data2[4] = (byte) ALL_EVENT_FLAG_SENSOR_MSB; // Heat stroke flag
-        data2[5] = (byte) ALL_EVENT_FLAG_ACCELERATION; // SI value flag
-        data2[6] = (byte) ALL_EVENT_FLAG_ACCELERATION; // PGA flag
-        data2[7] = (byte) ALL_EVENT_FLAG_ACCELERATION; // Seismic intensity flag
+        data2[ 0] = (byte) 0xff; // Sequence number
+        data2[ 1] = (byte) ALL_EVENT_FLAG_SENSOR_LSB; // Discomfort index flag
+        data2[ 2] = (byte) ALL_EVENT_FLAG_SENSOR_MSB; // Discomfort index flag
+        data2[ 3] = (byte) ALL_EVENT_FLAG_SENSOR_LSB; // Heat stroke flag
+        data2[ 4] = (byte) ALL_EVENT_FLAG_SENSOR_MSB; // Heat stroke flag
+        data2[ 5] = (byte) ALL_EVENT_FLAG_ACCELERATION; // SI value flag
+        data2[ 6] = (byte) ALL_EVENT_FLAG_ACCELERATION; // PGA flag
+        data2[ 7] = (byte) ALL_EVENT_FLAG_ACCELERATION; // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
@@ -288,15 +298,17 @@ public class LatestCalculationFlagTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_006() {
+        //@formatter:off
         byte[] data2 = new byte[8];
-        data2[0] = (byte) 0x01; // Sequence number
-        data2[1] = (byte) 0x02; // Discomfort index flag
-        data2[2] = (byte) 0x00; // Discomfort index flag
-        data2[3] = (byte) 0x03; // Heat stroke flag
-        data2[4] = (byte) 0x00; // Heat stroke flag
-        data2[5] = (byte) 0x04; // SI value flag
-        data2[6] = (byte) 0x05; // PGA flag
-        data2[7] = (byte) 0x06; // Seismic intensity flag
+        data2[ 0] = (byte) 0x01; // Sequence number
+        data2[ 1] = (byte) 0x02; // Discomfort index flag
+        data2[ 2] = (byte) 0x00; // Discomfort index flag
+        data2[ 3] = (byte) 0x03; // Heat stroke flag
+        data2[ 4] = (byte) 0x00; // Heat stroke flag
+        data2[ 5] = (byte) 0x04; // SI value flag
+        data2[ 6] = (byte) 0x05; // PGA flag
+        data2[ 7] = (byte) 0x06; // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);
@@ -308,15 +320,17 @@ public class LatestCalculationFlagTest extends AbstractSensingFlagTest {
 
     @Test
     public void test_007() {
+        //@formatter:off
         byte[] data2 = new byte[8];
-        data2[0] = (byte) 0x01; // Sequence number
-        data2[1] = (byte) 0x02; // Discomfort index flag
-        data2[2] = (byte) 0x00; // Discomfort index flag
-        data2[3] = (byte) 0x03; // Heat stroke flag
-        data2[4] = (byte) 0x00; // Heat stroke flag
-        data2[5] = (byte) 0x04; // SI value flag
-        data2[6] = (byte) 0x05; // PGA flag
-        data2[7] = (byte) 0x06; // Seismic intensity flag
+        data2[ 0] = (byte) 0x01; // Sequence number
+        data2[ 1] = (byte) 0x02; // Discomfort index flag
+        data2[ 2] = (byte) 0x00; // Discomfort index flag
+        data2[ 3] = (byte) 0x03; // Heat stroke flag
+        data2[ 4] = (byte) 0x00; // Heat stroke flag
+        data2[ 5] = (byte) 0x04; // SI value flag
+        data2[ 6] = (byte) 0x05; // PGA flag
+        data2[ 7] = (byte) 0x06; // Seismic intensity flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data2);

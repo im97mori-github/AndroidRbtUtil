@@ -13,6 +13,7 @@ public class RequestAccelerationMemoryIndexTest {
 
     @Test
     public void test001() {
+        //@formatter:off
         byte[] data = new byte[6];
         data[ 0] = (byte) ((RequestAccelerationMemoryIndex.ACCELERATION_DATA_TYPE_EARTHQUAKE_DATA) & 0xff);
         data[ 1] = (byte) ((0x01) & 0xff);
@@ -20,6 +21,7 @@ public class RequestAccelerationMemoryIndexTest {
         data[ 3] = (byte) ((0x00) & 0xff);
         data[ 4] = (byte) ((0x00) & 0xff);
         data[ 5] = (byte) ((0x00) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -33,6 +35,7 @@ public class RequestAccelerationMemoryIndexTest {
 
     @Test
     public void test002() {
+        //@formatter:off
         byte[] data = new byte[6];
         data[ 0] = (byte) ((RequestAccelerationMemoryIndex.ACCELERATION_DATA_TYPE_VIBRATION_DATA) & 0xff);
         data[ 1] = (byte) ((0x0a) & 0xff);
@@ -40,6 +43,7 @@ public class RequestAccelerationMemoryIndexTest {
         data[ 3] = (byte) ((0x01) & 0xff);
         data[ 4] = (byte) ((0xff) & 0xff);
         data[ 5] = (byte) ((0x01) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -53,6 +57,7 @@ public class RequestAccelerationMemoryIndexTest {
 
     @Test
     public void test003() {
+        //@formatter:off
         byte[] data = new byte[6];
         data[ 0] = (byte) ((RequestAccelerationMemoryIndex.ACCELERATION_DATA_TYPE_VIBRATION_DATA) & 0xff);
         data[ 1] = (byte) ((0x0a) & 0xff);
@@ -60,6 +65,7 @@ public class RequestAccelerationMemoryIndexTest {
         data[ 3] = (byte) ((0x01) & 0xff);
         data[ 4] = (byte) ((0xff) & 0xff);
         data[ 5] = (byte) ((0x01) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -78,6 +84,7 @@ public class RequestAccelerationMemoryIndexTest {
 
     @Test
     public void test004() {
+        //@formatter:off
         byte[] data = new byte[6];
         data[ 0] = (byte) ((RequestAccelerationMemoryIndex.ACCELERATION_DATA_TYPE_VIBRATION_DATA) & 0xff);
         data[ 1] = (byte) ((0x0a) & 0xff);
@@ -85,6 +92,7 @@ public class RequestAccelerationMemoryIndexTest {
         data[ 3] = (byte) ((0x01) & 0xff);
         data[ 4] = (byte) ((0xff) & 0xff);
         data[ 5] = (byte) ((0x01) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -110,6 +118,7 @@ public class RequestAccelerationMemoryIndexTest {
 
     @Test
     public void test006() {
+        //@formatter:off
         byte[] data = new byte[6];
         data[ 0] = (byte) ((RequestAccelerationMemoryIndex.ACCELERATION_DATA_TYPE_VIBRATION_DATA) & 0xff);
         data[ 1] = (byte) ((0x0a) & 0xff);
@@ -117,6 +126,7 @@ public class RequestAccelerationMemoryIndexTest {
         data[ 3] = (byte) ((0x01) & 0xff);
         data[ 4] = (byte) ((0xff) & 0xff);
         data[ 5] = (byte) ((0x01) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);

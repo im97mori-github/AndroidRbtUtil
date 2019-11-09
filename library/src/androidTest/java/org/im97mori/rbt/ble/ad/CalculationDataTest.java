@@ -13,17 +13,18 @@ public class CalculationDataTest {
 
     @Test
     public void test1() {
+        //@formatter:off
         byte[] data = new byte[27];
-        data[0] = DATA_TYPE_CALCULATION_DATA;
-        data[1] = (byte) 0x00; // Sequence number
-        data[2] = (byte) 0x00; // Discomfort index
-        data[3] = (byte) 0x00; // Discomfort index
-        data[4] = (byte) 0x60; // Heat stroke
-        data[5] = (byte) 0xf0; // Heat stroke
-        data[6] = (byte) VIBRATION_INFORMATION_NONE_BIT; // Vibration information
-        data[7] = (byte) 0x00; // SI value
-        data[8] = (byte) 0x00; // SI value
-        data[9] = (byte) 0x00; // PGA
+        data[ 0] = DATA_TYPE_CALCULATION_DATA;
+        data[ 1] = (byte) 0x00; // Sequence number
+        data[ 2] = (byte) 0x00; // Discomfort index
+        data[ 3] = (byte) 0x00; // Discomfort index
+        data[ 4] = (byte) 0x60; // Heat stroke
+        data[ 5] = (byte) 0xf0; // Heat stroke
+        data[ 6] = (byte) VIBRATION_INFORMATION_NONE_BIT; // Vibration information
+        data[ 7] = (byte) 0x00; // SI value
+        data[ 8] = (byte) 0x00; // SI value
+        data[ 9] = (byte) 0x00; // PGA
         data[10] = (byte) 0x00; // PGA
         data[11] = (byte) 0x00; // Seismic intensity
         data[12] = (byte) 0x00; // Seismic intensity
@@ -41,6 +42,7 @@ public class CalculationDataTest {
         data[24] = (byte) 0xff; // Reserve for Future Use
         data[25] = (byte) 0xff; // Reserve for Future Use
         data[26] = (byte) 0xff; // Reserve for Future Use
+        //@formatter:on
 
         CalculationData result = new CalculationData(data);
         assertEquals(DATA_TYPE_CALCULATION_DATA, result.getDataType());
@@ -66,6 +68,7 @@ public class CalculationDataTest {
 
     @Test
     public void test2() {
+        //@formatter:off
         byte[] data = new byte[27];
         data[ 0] = DATA_TYPE_CALCULATION_DATA;
         data[ 1] = (byte) 0xff; // Sequence number
@@ -94,6 +97,7 @@ public class CalculationDataTest {
         data[24] = (byte) 0xff; // Reserve for Future Use
         data[25] = (byte) 0xff; // Reserve for Future Use
         data[26] = (byte) 0xff; // Reserve for Future Use
+        //@formatter:on
 
         CalculationData result = new CalculationData(data);
         assertEquals(DATA_TYPE_CALCULATION_DATA, result.getDataType());
@@ -119,6 +123,7 @@ public class CalculationDataTest {
 
     @Test
     public void test3() {
+        //@formatter:off
         byte[] data = new byte[19];
         data[ 0] = DATA_TYPE_CALCULATION_DATA;
         data[ 1] = (byte) 0x00; // Sequence number
@@ -139,6 +144,7 @@ public class CalculationDataTest {
         data[16] = (byte) 0xb1; // Acceleration (Y-axis)
         data[17] = (byte) 0xe0; // Acceleration (Z-axis)
         data[18] = (byte) 0xb1; // Acceleration (Z-axis)
+        //@formatter:on
 
         CalculationData result1 = new CalculationData(data);
         Parcel parcel = Parcel.obtain();
@@ -169,8 +175,9 @@ public class CalculationDataTest {
 
     @Test
     public void test4() {
+        //@formatter:off
         byte[] data = new byte[19];
-        data[0] = DATA_TYPE_CALCULATION_DATA;
+        data[ 0] = DATA_TYPE_CALCULATION_DATA;
         data[ 1] = (byte) 0xff; // Sequence number
         data[ 2] = (byte) 0x10; // Discomfort index
         data[ 3] = (byte) 0x27; // Discomfort index
@@ -189,6 +196,7 @@ public class CalculationDataTest {
         data[16] = (byte) 0x4e; // Acceleration (Y-axis)
         data[17] = (byte) 0x20; // Acceleration (Z-axis)
         data[18] = (byte) 0x4e; // Acceleration (Z-axis)
+        //@formatter:on
 
         CalculationData result1 = new CalculationData(data);
         Parcel parcel = Parcel.obtain();
@@ -219,8 +227,9 @@ public class CalculationDataTest {
 
     @Test
     public void test5() {
+        //@formatter:off
         byte[] data = new byte[19];
-        data[0] = DATA_TYPE_CALCULATION_DATA;
+        data[ 0] = DATA_TYPE_CALCULATION_DATA;
         data[ 1] = (byte) 0xff; // Sequence number
         data[ 2] = (byte) 0x10; // Discomfort index
         data[ 3] = (byte) 0x27; // Discomfort index
@@ -239,6 +248,7 @@ public class CalculationDataTest {
         data[16] = (byte) 0x4e; // Acceleration (Y-axis)
         data[17] = (byte) 0x20; // Acceleration (Z-axis)
         data[18] = (byte) 0x4e; // Acceleration (Z-axis)
+        //@formatter:on
 
         CalculationData result1 = new CalculationData(data);
         CalculationData result2 = CalculationData.CREATOR.createFromByteArray(data);

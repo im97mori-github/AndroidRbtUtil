@@ -14,6 +14,7 @@ public class MemorySensingFlagEco2Test extends AbstractSensingFlagTest {
 
     @Test
     public void test_eco2001() {
+        //@formatter:off
         byte[] data1 = new byte[18];
         data1[ 0] = (byte) ((0x01) & 0xff); // Memory index
         data1[ 1] = (byte) ((0x00) & 0xff); // Memory index
@@ -33,6 +34,7 @@ public class MemorySensingFlagEco2Test extends AbstractSensingFlagTest {
         data1[15] = (byte) ((0x00) & 0xff); // eTVOC flag
         data1[16] = (byte) ALL_EVENT_FLAG_SENSOR_LSB; // eCO2 flag
         data1[17] = (byte) ALL_EVENT_FLAG_SENSOR_MSB; // eCO2 flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -169,6 +171,7 @@ public class MemorySensingFlagEco2Test extends AbstractSensingFlagTest {
 
     @Test
     public void test_eco2002() {
+        //@formatter:off
         byte[] data1 = new byte[18];
         data1[ 0] = (byte) ((0x01) & 0xff); // Memory index
         data1[ 1] = (byte) ((0x00) & 0xff); // Memory index
@@ -188,6 +191,7 @@ public class MemorySensingFlagEco2Test extends AbstractSensingFlagTest {
         data1[15] = (byte) ((0x00) & 0xff); // eTVOC flag
         data1[16] = (byte) (byte) (RbtConstants.EventFlagSensor.SIMPLE_THRESHOLD_UPPER_LIMIT_1 & 0xff); // eTVOC flag
         data1[17] = (byte) (byte) ((RbtConstants.EventFlagSensor.SIMPLE_THRESHOLD_UPPER_LIMIT_1 >> 8) & 0xff); // eTVOC flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -324,6 +328,7 @@ public class MemorySensingFlagEco2Test extends AbstractSensingFlagTest {
 
     @Test
     public void test_eco2003() {
+        //@formatter:off
         byte[] data1 = new byte[18];
         data1[ 0] = (byte) ((0x01) & 0xff); // Memory index
         data1[ 1] = (byte) ((0x00) & 0xff); // Memory index
@@ -343,6 +348,7 @@ public class MemorySensingFlagEco2Test extends AbstractSensingFlagTest {
         data1[15] = (byte) ((0x00) & 0xff); // eTVOC flag
         data1[16] = (byte) (byte) (RbtConstants.EventFlagSensor.SIMPLE_THRESHOLD_UPPER_LIMIT_2 & 0xff); // eTVOC flag
         data1[17] = (byte) (byte) ((RbtConstants.EventFlagSensor.SIMPLE_THRESHOLD_UPPER_LIMIT_2 >> 8) & 0xff); // eTVOC flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -479,6 +485,7 @@ public class MemorySensingFlagEco2Test extends AbstractSensingFlagTest {
 
     @Test
     public void test_eco2004() {
+        //@formatter:off
         byte[] data1 = new byte[18];
         data1[ 0] = (byte) ((0x01) & 0xff); // Memory index
         data1[ 1] = (byte) ((0x00) & 0xff); // Memory index
@@ -498,6 +505,7 @@ public class MemorySensingFlagEco2Test extends AbstractSensingFlagTest {
         data1[15] = (byte) ((0x00) & 0xff); // eTVOC flag
         data1[16] = (byte) (byte) (RbtConstants.EventFlagSensor.SIMPLE_THRESHOLD_LOWER_LIMIT_1 & 0xff); // eTVOC flag
         data1[17] = (byte) (byte) ((RbtConstants.EventFlagSensor.SIMPLE_THRESHOLD_LOWER_LIMIT_1 >> 8) & 0xff); // eTVOC flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -634,6 +642,7 @@ public class MemorySensingFlagEco2Test extends AbstractSensingFlagTest {
 
     @Test
     public void test_eco2005() {
+        //@formatter:off
         byte[] data1 = new byte[18];
         data1[ 0] = (byte) ((0x01) & 0xff); // Memory index
         data1[ 1] = (byte) ((0x00) & 0xff); // Memory index
@@ -653,6 +662,7 @@ public class MemorySensingFlagEco2Test extends AbstractSensingFlagTest {
         data1[15] = (byte) ((0x00) & 0xff); // eTVOC flag
         data1[16] = (byte) (byte) (RbtConstants.EventFlagSensor.SIMPLE_THRESHOLD_LOWER_LIMIT_2 & 0xff); // eTVOC flag
         data1[17] = (byte) (byte) ((RbtConstants.EventFlagSensor.SIMPLE_THRESHOLD_LOWER_LIMIT_2 >> 8) & 0xff); // eTVOC flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -789,6 +799,7 @@ public class MemorySensingFlagEco2Test extends AbstractSensingFlagTest {
 
     @Test
     public void test_eco2006() {
+        //@formatter:off
         byte[] data1 = new byte[18];
         data1[ 0] = (byte) ((0x01) & 0xff); // Memory index
         data1[ 1] = (byte) ((0x00) & 0xff); // Memory index
@@ -808,6 +819,7 @@ public class MemorySensingFlagEco2Test extends AbstractSensingFlagTest {
         data1[15] = (byte) ((0x00) & 0xff); // eTVOC flag
         data1[16] = (byte) (byte) (RbtConstants.EventFlagSensor.CHANGE_THRESHOLD_RISE_1 & 0xff); // eTVOC flag
         data1[17] = (byte) (byte) ((RbtConstants.EventFlagSensor.CHANGE_THRESHOLD_RISE_1 >> 8) & 0xff); // eTVOC flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -944,6 +956,7 @@ public class MemorySensingFlagEco2Test extends AbstractSensingFlagTest {
 
     @Test
     public void test_eco2007() {
+        //@formatter:off
         byte[] data1 = new byte[18];
         data1[ 0] = (byte) ((0x01) & 0xff); // Memory index
         data1[ 1] = (byte) ((0x00) & 0xff); // Memory index
@@ -963,6 +976,7 @@ public class MemorySensingFlagEco2Test extends AbstractSensingFlagTest {
         data1[15] = (byte) ((0x00) & 0xff); // eTVOC flag
         data1[16] = (byte) (byte) (RbtConstants.EventFlagSensor.CHANGE_THRESHOLD_RISE_2 & 0xff); // eTVOC flag
         data1[17] = (byte) (byte) ((RbtConstants.EventFlagSensor.CHANGE_THRESHOLD_RISE_2 >> 8) & 0xff); // eTVOC flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -1099,6 +1113,7 @@ public class MemorySensingFlagEco2Test extends AbstractSensingFlagTest {
 
     @Test
     public void test_eco2008() {
+        //@formatter:off
         byte[] data1 = new byte[18];
         data1[ 0] = (byte) ((0x01) & 0xff); // Memory index
         data1[ 1] = (byte) ((0x00) & 0xff); // Memory index
@@ -1118,6 +1133,7 @@ public class MemorySensingFlagEco2Test extends AbstractSensingFlagTest {
         data1[15] = (byte) ((0x00) & 0xff); // eTVOC flag
         data1[16] = (byte) (byte) (RbtConstants.EventFlagSensor.CHANGE_THRESHOLD_DECLINE_1 & 0xff); // eTVOC flag
         data1[17] = (byte) (byte) ((RbtConstants.EventFlagSensor.CHANGE_THRESHOLD_DECLINE_1 >> 8) & 0xff); // eTVOC flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -1254,6 +1270,7 @@ public class MemorySensingFlagEco2Test extends AbstractSensingFlagTest {
 
     @Test
     public void test_eco2009() {
+        //@formatter:off
         byte[] data1 = new byte[18];
         data1[ 0] = (byte) ((0x01) & 0xff); // Memory index
         data1[ 1] = (byte) ((0x00) & 0xff); // Memory index
@@ -1273,6 +1290,7 @@ public class MemorySensingFlagEco2Test extends AbstractSensingFlagTest {
         data1[15] = (byte) ((0x00) & 0xff); // eTVOC flag
         data1[16] = (byte) (byte) (RbtConstants.EventFlagSensor.CHANGE_THRESHOLD_DECLINE_2 & 0xff); // eTVOC flag
         data1[17] = (byte) (byte) ((RbtConstants.EventFlagSensor.CHANGE_THRESHOLD_DECLINE_2 >> 8) & 0xff); // eTVOC flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -1409,6 +1427,7 @@ public class MemorySensingFlagEco2Test extends AbstractSensingFlagTest {
 
     @Test
     public void test_eco2010() {
+        //@formatter:off
         byte[] data1 = new byte[18];
         data1[ 0] = (byte) ((0x01) & 0xff); // Memory index
         data1[ 1] = (byte) ((0x00) & 0xff); // Memory index
@@ -1428,6 +1447,7 @@ public class MemorySensingFlagEco2Test extends AbstractSensingFlagTest {
         data1[15] = (byte) ((0x00) & 0xff); // eTVOC flag
         data1[16] = (byte) (byte) (RbtConstants.EventFlagSensor.AVERAGE_VALUE_THRESHOLD_UPPER & 0xff); // eTVOC flag
         data1[17] = (byte) (byte) ((RbtConstants.EventFlagSensor.AVERAGE_VALUE_THRESHOLD_UPPER >> 8) & 0xff); // eTVOC flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -1564,6 +1584,7 @@ public class MemorySensingFlagEco2Test extends AbstractSensingFlagTest {
 
     @Test
     public void test_eco2011() {
+        //@formatter:off
         byte[] data1 = new byte[18];
         data1[ 0] = (byte) ((0x01) & 0xff); // Memory index
         data1[ 1] = (byte) ((0x00) & 0xff); // Memory index
@@ -1583,6 +1604,7 @@ public class MemorySensingFlagEco2Test extends AbstractSensingFlagTest {
         data1[15] = (byte) ((0x00) & 0xff); // eTVOC flag
         data1[16] = (byte) (byte) (RbtConstants.EventFlagSensor.AVERAGE_VALUE_THRESHOLD_LOWER & 0xff); // eTVOC flag
         data1[17] = (byte) (byte) ((RbtConstants.EventFlagSensor.AVERAGE_VALUE_THRESHOLD_LOWER >> 8) & 0xff); // eTVOC flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -1719,6 +1741,7 @@ public class MemorySensingFlagEco2Test extends AbstractSensingFlagTest {
 
     @Test
     public void test_eco2012() {
+        //@formatter:off
         byte[] data1 = new byte[18];
         data1[ 0] = (byte) ((0x01) & 0xff); // Memory index
         data1[ 1] = (byte) ((0x00) & 0xff); // Memory index
@@ -1738,6 +1761,7 @@ public class MemorySensingFlagEco2Test extends AbstractSensingFlagTest {
         data1[15] = (byte) ((0x00) & 0xff); // eTVOC flag
         data1[16] = (byte) (byte) (RbtConstants.EventFlagSensor.PEAK_TO_PEAK_THRESHOLD_UPPER & 0xff); // eTVOC flag
         data1[17] = (byte) (byte) ((RbtConstants.EventFlagSensor.PEAK_TO_PEAK_THRESHOLD_UPPER >> 8) & 0xff); // eTVOC flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -1874,6 +1898,7 @@ public class MemorySensingFlagEco2Test extends AbstractSensingFlagTest {
 
     @Test
     public void test_eco2013() {
+        //@formatter:off
         byte[] data1 = new byte[18];
         data1[ 0] = (byte) ((0x01) & 0xff); // Memory index
         data1[ 1] = (byte) ((0x00) & 0xff); // Memory index
@@ -1893,6 +1918,7 @@ public class MemorySensingFlagEco2Test extends AbstractSensingFlagTest {
         data1[15] = (byte) ((0x00) & 0xff); // eTVOC flag
         data1[16] = (byte) (byte) (RbtConstants.EventFlagSensor.PEAK_TO_PEAK_THRESHOLD_LOWER & 0xff); // eTVOC flag
         data1[17] = (byte) (byte) ((RbtConstants.EventFlagSensor.PEAK_TO_PEAK_THRESHOLD_LOWER >> 8) & 0xff); // eTVOC flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -2029,6 +2055,7 @@ public class MemorySensingFlagEco2Test extends AbstractSensingFlagTest {
 
     @Test
     public void test_eco2014() {
+        //@formatter:off
         byte[] data1 = new byte[18];
         data1[ 0] = (byte) ((0x01) & 0xff); // Memory index
         data1[ 1] = (byte) ((0x00) & 0xff); // Memory index
@@ -2048,6 +2075,7 @@ public class MemorySensingFlagEco2Test extends AbstractSensingFlagTest {
         data1[15] = (byte) ((0x00) & 0xff); // eTVOC flag
         data1[16] = (byte) (byte) (RbtConstants.EventFlagSensor.INTERVAL_DIFFERENCE_THRESHOLD_RISE & 0xff); // eTVOC flag
         data1[17] = (byte) (byte) ((RbtConstants.EventFlagSensor.INTERVAL_DIFFERENCE_THRESHOLD_RISE >> 8) & 0xff); // eTVOC flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -2184,6 +2212,7 @@ public class MemorySensingFlagEco2Test extends AbstractSensingFlagTest {
 
     @Test
     public void test_eco2015() {
+        //@formatter:off
         byte[] data1 = new byte[18];
         data1[ 0] = (byte) ((0x01) & 0xff); // Memory index
         data1[ 1] = (byte) ((0x00) & 0xff); // Memory index
@@ -2203,6 +2232,7 @@ public class MemorySensingFlagEco2Test extends AbstractSensingFlagTest {
         data1[15] = (byte) ((0x00) & 0xff); // eTVOC flag
         data1[16] = (byte) (byte) (RbtConstants.EventFlagSensor.INTERVAL_DIFFERENCE_THRESHOLD_DECLINE & 0xff); // eTVOC flag
         data1[17] = (byte) (byte) ((RbtConstants.EventFlagSensor.INTERVAL_DIFFERENCE_THRESHOLD_DECLINE >> 8) & 0xff); // eTVOC flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -2339,6 +2369,7 @@ public class MemorySensingFlagEco2Test extends AbstractSensingFlagTest {
 
     @Test
     public void test_eco2016() {
+        //@formatter:off
         byte[] data1 = new byte[18];
         data1[ 0] = (byte) ((0x01) & 0xff); // Memory index
         data1[ 1] = (byte) ((0x00) & 0xff); // Memory index
@@ -2358,6 +2389,7 @@ public class MemorySensingFlagEco2Test extends AbstractSensingFlagTest {
         data1[15] = (byte) ((0x00) & 0xff); // eTVOC flag
         data1[16] = (byte) (byte) (RbtConstants.EventFlagSensor.BASE_DIFFERENCE_THRESHOLD_UPPER & 0xff); // eTVOC flag
         data1[17] = (byte) (byte) ((RbtConstants.EventFlagSensor.BASE_DIFFERENCE_THRESHOLD_UPPER >> 8) & 0xff); // eTVOC flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);
@@ -2494,6 +2526,7 @@ public class MemorySensingFlagEco2Test extends AbstractSensingFlagTest {
 
     @Test
     public void test_eco2017() {
+        //@formatter:off
         byte[] data1 = new byte[18];
         data1[ 0] = (byte) ((0x01) & 0xff); // Memory index
         data1[ 1] = (byte) ((0x00) & 0xff); // Memory index
@@ -2513,6 +2546,7 @@ public class MemorySensingFlagEco2Test extends AbstractSensingFlagTest {
         data1[15] = (byte) ((0x00) & 0xff); // eTVOC flag
         data1[16] = (byte) (byte) (RbtConstants.EventFlagSensor.BASE_DIFFERENCE_THRESHOLD_LOWER & 0xff); // eTVOC flag
         data1[17] = (byte) (byte) ((RbtConstants.EventFlagSensor.BASE_DIFFERENCE_THRESHOLD_LOWER >> 8) & 0xff); // eTVOC flag
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data1);

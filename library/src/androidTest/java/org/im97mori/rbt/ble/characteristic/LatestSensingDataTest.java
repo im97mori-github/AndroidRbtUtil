@@ -13,17 +13,18 @@ public class LatestSensingDataTest {
 
     @Test
     public void test001() {
+        //@formatter:off
         byte[] data = new byte[17];
-        data[0] = (byte) ((0x00) & 0xff); // Sequence number
-        data[1] = (byte) 0x60; // Temperature
-        data[2] = (byte) 0xf0; // Temperature
-        data[3] = (byte) 0x00; // Relative humidity
-        data[4] = (byte) 0x00; // Relative humidity
-        data[5] = (byte) 0x00; // Ambient light
-        data[6] = (byte) 0x00; // Ambient light
-        data[7] = (byte) 0xe0; // Barometric pressure
-        data[8] = (byte) 0x93; // Barometric pressure
-        data[9] = (byte) 0x04; // Barometric pressure
+        data[ 0] = (byte) ((0x00) & 0xff); // Sequence number
+        data[ 1] = (byte) 0x60; // Temperature
+        data[ 2] = (byte) 0xf0; // Temperature
+        data[ 3] = (byte) 0x00; // Relative humidity
+        data[ 4] = (byte) 0x00; // Relative humidity
+        data[ 5] = (byte) 0x00; // Ambient light
+        data[ 6] = (byte) 0x00; // Ambient light
+        data[ 7] = (byte) 0xe0; // Barometric pressure
+        data[ 8] = (byte) 0x93; // Barometric pressure
+        data[ 9] = (byte) 0x04; // Barometric pressure
         data[10] = (byte) 0x00; // Barometric pressure
         data[11] = (byte) 0xe4; // Sound noise
         data[12] = (byte) 0x0c; // Sound noise
@@ -31,6 +32,7 @@ public class LatestSensingDataTest {
         data[14] = (byte) 0x00; // eTVOC
         data[15] = (byte) 0x90; // eCO2
         data[16] = (byte) 0x01; // eCO2
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -55,17 +57,18 @@ public class LatestSensingDataTest {
 
     @Test
     public void test002() {
+        //@formatter:off
         byte[] data = new byte[17];
-        data[0] = (byte) 0xff; // Sequence number
-        data[1] = (byte) 0xd4; // Temperature
-        data[2] = (byte) 0x30; // Temperature
-        data[3] = (byte) 0x10; // Relative humidity
-        data[4] = (byte) 0x27; // Relative humidity
-        data[5] = (byte) 0x30; // Ambient light
-        data[6] = (byte) 0x75; // Ambient light
-        data[7] = (byte) 0xe0; // Barometric pressure
-        data[8] = (byte) 0xc8; // Barometric pressure
-        data[9] = (byte) 0x10; // Barometric pressure
+        data[ 0] = (byte) 0xff; // Sequence number
+        data[ 1] = (byte) 0xd4; // Temperature
+        data[ 2] = (byte) 0x30; // Temperature
+        data[ 3] = (byte) 0x10; // Relative humidity
+        data[ 4] = (byte) 0x27; // Relative humidity
+        data[ 5] = (byte) 0x30; // Ambient light
+        data[ 6] = (byte) 0x75; // Ambient light
+        data[ 7] = (byte) 0xe0; // Barometric pressure
+        data[ 8] = (byte) 0xc8; // Barometric pressure
+        data[ 9] = (byte) 0x10; // Barometric pressure
         data[10] = (byte) 0x00; // Barometric pressure
         data[11] = (byte) 0xe0; // Sound noise
         data[12] = (byte) 0x2e; // Sound noise
@@ -73,6 +76,7 @@ public class LatestSensingDataTest {
         data[14] = (byte) 0x7f; // eTVOC
         data[15] = (byte) 0xff; // eCO2
         data[16] = (byte) 0x7f; // eCO2
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -97,17 +101,18 @@ public class LatestSensingDataTest {
 
     @Test
     public void test003() {
+        //@formatter:off
         byte[] data = new byte[17];
-        data[0] = (byte) 0xff; // Sequence number
-        data[1] = (byte) 0xd4; // Temperature
-        data[2] = (byte) 0x30; // Temperature
-        data[3] = (byte) 0x10; // Relative humidity
-        data[4] = (byte) 0x27; // Relative humidity
-        data[5] = (byte) 0x30; // Ambient light
-        data[6] = (byte) 0x75; // Ambient light
-        data[7] = (byte) 0xe0; // Barometric pressure
-        data[8] = (byte) 0xc8; // Barometric pressure
-        data[9] = (byte) 0x10; // Barometric pressure
+        data[ 0] = (byte) 0xff; // Sequence number
+        data[ 1] = (byte) 0xd4; // Temperature
+        data[ 2] = (byte) 0x30; // Temperature
+        data[ 3] = (byte) 0x10; // Relative humidity
+        data[ 4] = (byte) 0x27; // Relative humidity
+        data[ 5] = (byte) 0x30; // Ambient light
+        data[ 6] = (byte) 0x75; // Ambient light
+        data[ 7] = (byte) 0xe0; // Barometric pressure
+        data[ 8] = (byte) 0xc8; // Barometric pressure
+        data[ 9] = (byte) 0x10; // Barometric pressure
         data[10] = (byte) 0x00; // Barometric pressure
         data[11] = (byte) 0xe0; // Sound noise
         data[12] = (byte) 0x2e; // Sound noise
@@ -115,6 +120,7 @@ public class LatestSensingDataTest {
         data[14] = (byte) 0x7f; // eTVOC
         data[15] = (byte) 0xff; // eCO2
         data[16] = (byte) 0x7f; // eCO2
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -144,17 +150,18 @@ public class LatestSensingDataTest {
 
     @Test
     public void test004() {
+        //@formatter:off
         byte[] data = new byte[17];
-        data[0] = (byte) 0xff; // Sequence number
-        data[1] = (byte) 0xd4; // Temperature
-        data[2] = (byte) 0x30; // Temperature
-        data[3] = (byte) 0x10; // Relative humidity
-        data[4] = (byte) 0x27; // Relative humidity
-        data[5] = (byte) 0x30; // Ambient light
-        data[6] = (byte) 0x75; // Ambient light
-        data[7] = (byte) 0xe0; // Barometric pressure
-        data[8] = (byte) 0xc8; // Barometric pressure
-        data[9] = (byte) 0x10; // Barometric pressure
+        data[ 0] = (byte) 0xff; // Sequence number
+        data[ 1] = (byte) 0xd4; // Temperature
+        data[ 2] = (byte) 0x30; // Temperature
+        data[ 3] = (byte) 0x10; // Relative humidity
+        data[ 4] = (byte) 0x27; // Relative humidity
+        data[ 5] = (byte) 0x30; // Ambient light
+        data[ 6] = (byte) 0x75; // Ambient light
+        data[ 7] = (byte) 0xe0; // Barometric pressure
+        data[ 8] = (byte) 0xc8; // Barometric pressure
+        data[ 9] = (byte) 0x10; // Barometric pressure
         data[10] = (byte) 0x00; // Barometric pressure
         data[11] = (byte) 0xe0; // Sound noise
         data[12] = (byte) 0x2e; // Sound noise
@@ -162,6 +169,7 @@ public class LatestSensingDataTest {
         data[14] = (byte) 0x7f; // eTVOC
         data[15] = (byte) 0xff; // eCO2
         data[16] = (byte) 0x7f; // eCO2
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -173,17 +181,18 @@ public class LatestSensingDataTest {
 
     @Test
     public void test005() {
+        //@formatter:off
         byte[] data = new byte[17];
-        data[0] = (byte) 0xff; // Sequence number
-        data[1] = (byte) 0xd4; // Temperature
-        data[2] = (byte) 0x30; // Temperature
-        data[3] = (byte) 0x10; // Relative humidity
-        data[4] = (byte) 0x27; // Relative humidity
-        data[5] = (byte) 0x30; // Ambient light
-        data[6] = (byte) 0x75; // Ambient light
-        data[7] = (byte) 0xe0; // Barometric pressure
-        data[8] = (byte) 0xc8; // Barometric pressure
-        data[9] = (byte) 0x10; // Barometric pressure
+        data[ 0] = (byte) 0xff; // Sequence number
+        data[ 1] = (byte) 0xd4; // Temperature
+        data[ 2] = (byte) 0x30; // Temperature
+        data[ 3] = (byte) 0x10; // Relative humidity
+        data[ 4] = (byte) 0x27; // Relative humidity
+        data[ 5] = (byte) 0x30; // Ambient light
+        data[ 6] = (byte) 0x75; // Ambient light
+        data[ 7] = (byte) 0xe0; // Barometric pressure
+        data[ 8] = (byte) 0xc8; // Barometric pressure
+        data[ 9] = (byte) 0x10; // Barometric pressure
         data[10] = (byte) 0x00; // Barometric pressure
         data[11] = (byte) 0xe0; // Sound noise
         data[12] = (byte) 0x2e; // Sound noise
@@ -191,6 +200,7 @@ public class LatestSensingDataTest {
         data[14] = (byte) 0x7f; // eTVOC
         data[15] = (byte) 0xff; // eCO2
         data[16] = (byte) 0x7f; // eCO2
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);

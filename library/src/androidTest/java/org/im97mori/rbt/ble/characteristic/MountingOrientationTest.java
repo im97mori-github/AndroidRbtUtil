@@ -13,8 +13,10 @@ public class MountingOrientationTest {
 
     @Test
     public void test1() {
+        //@formatter:off
         byte[] data = new byte[1];
-        data[0] = MountingOrientation.MOUNTING_ORIENTATION_POSITION_1;
+        data[ 0] = MountingOrientation.MOUNTING_ORIENTATION_POSITION_1;
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -25,8 +27,10 @@ public class MountingOrientationTest {
 
     @Test
     public void test2() {
+        //@formatter:off
         byte[] data = new byte[1];
-        data[0] = MountingOrientation.MOUNTING_ORIENTATION_POSITION_2;
+        data[ 0] = MountingOrientation.MOUNTING_ORIENTATION_POSITION_2;
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -37,8 +41,10 @@ public class MountingOrientationTest {
 
     @Test
     public void test3() {
+        //@formatter:off
         byte[] data = new byte[1];
-        data[0] = MountingOrientation.MOUNTING_ORIENTATION_POSITION_3;
+        data[ 0] = MountingOrientation.MOUNTING_ORIENTATION_POSITION_3;
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -49,8 +55,10 @@ public class MountingOrientationTest {
 
     @Test
     public void test4() {
+        //@formatter:off
         byte[] data = new byte[1];
-        data[0] = MountingOrientation.MOUNTING_ORIENTATION_POSITION_4;
+        data[ 0] = MountingOrientation.MOUNTING_ORIENTATION_POSITION_4;
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -61,8 +69,10 @@ public class MountingOrientationTest {
 
     @Test
     public void test5() {
+        //@formatter:off
         byte[] data = new byte[1];
-        data[0] = MountingOrientation.MOUNTING_ORIENTATION_POSITION_5;
+        data[ 0] = MountingOrientation.MOUNTING_ORIENTATION_POSITION_5;
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -73,8 +83,10 @@ public class MountingOrientationTest {
 
     @Test
     public void test6() {
+        //@formatter:off
         byte[] data = new byte[1];
-        data[0] = MountingOrientation.MOUNTING_ORIENTATION_POSITION_6;
+        data[ 0] = MountingOrientation.MOUNTING_ORIENTATION_POSITION_6;
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -85,8 +97,10 @@ public class MountingOrientationTest {
 
     @Test
     public void test7() {
+        //@formatter:off
         byte[] data = new byte[1];
-        data[0] = MountingOrientation.MOUNTING_ORIENTATION_POSITION_6;
+        data[ 0] = MountingOrientation.MOUNTING_ORIENTATION_POSITION_6;
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -102,8 +116,10 @@ public class MountingOrientationTest {
 
     @Test
     public void test8() {
+        //@formatter:off
         byte[] data = new byte[1];
-        data[0] = MountingOrientation.MOUNTING_ORIENTATION_POSITION_6;
+        data[ 0] = MountingOrientation.MOUNTING_ORIENTATION_POSITION_6;
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -115,8 +131,10 @@ public class MountingOrientationTest {
 
     @Test
     public void test9() {
+        //@formatter:off
         byte[] data = new byte[1];
-        data[0] = MountingOrientation.MOUNTING_ORIENTATION_POSITION_6;
+        data[ 0] = MountingOrientation.MOUNTING_ORIENTATION_POSITION_6;
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);

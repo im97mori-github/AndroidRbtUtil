@@ -3,7 +3,6 @@ package org.im97mori.rbt.ble.characteristic;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 
-import org.im97mori.ble.BLEConstants;
 import org.junit.Test;
 
 import static org.im97mori.ble.BLEConstants.BASE_UUID;
@@ -14,10 +13,12 @@ public class AdvertiseSettingTest {
 
     @Test
     public void test001() {
+        //@formatter:off
         byte[] data = new byte[3];
-        data[0] = (byte) ((0xa0) & 0xff);
-        data[1] = (byte) ((0x00) & 0xff);
-        data[2] = (byte) ((AdvertiseSetting.ADVERTISING_MODE_SENSOR_DATA) & 0xff);
+        data[ 0] = (byte) ((0xa0) & 0xff);
+        data[ 1] = (byte) ((0x00) & 0xff);
+        data[ 2] = (byte) ((AdvertiseSetting.ADVERTISING_MODE_SENSOR_DATA) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -30,10 +31,12 @@ public class AdvertiseSettingTest {
 
     @Test
     public void test002() {
+        //@formatter:off
         byte[] data = new byte[3];
-        data[0] = (byte) ((0x00) & 0xff);
-        data[1] = (byte) ((0x40) & 0xff);
-        data[2] = (byte) ((AdvertiseSetting.ADVERTISING_MODE_CALCULATION_DATA) & 0xff);
+        data[ 0] = (byte) ((0x00) & 0xff);
+        data[ 1] = (byte) ((0x40) & 0xff);
+        data[ 2] = (byte) ((AdvertiseSetting.ADVERTISING_MODE_CALCULATION_DATA) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -46,10 +49,12 @@ public class AdvertiseSettingTest {
 
     @Test
     public void test003() {
+        //@formatter:off
         byte[] data = new byte[3];
-        data[0] = (byte) ((0x00) & 0xff);
-        data[1] = (byte) ((0x40) & 0xff);
-        data[2] = (byte) ((AdvertiseSetting.ADVERTISING_MODE_SENSOR_DATA_AND_CALCULATION_DATA) & 0xff);
+        data[ 0] = (byte) ((0x00) & 0xff);
+        data[ 1] = (byte) ((0x40) & 0xff);
+        data[ 2] = (byte) ((AdvertiseSetting.ADVERTISING_MODE_SENSOR_DATA_AND_CALCULATION_DATA) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -62,10 +67,12 @@ public class AdvertiseSettingTest {
 
     @Test
     public void test004() {
+        //@formatter:off
         byte[] data = new byte[3];
-        data[0] = (byte) ((0x00) & 0xff);
-        data[1] = (byte) ((0x40) & 0xff);
-        data[2] = (byte) ((AdvertiseSetting.ADVERTISING_MODE_SENSOR_FLAG_AND_CALCULATION_FLAG) & 0xff);
+        data[ 0] = (byte) ((0x00) & 0xff);
+        data[ 1] = (byte) ((0x40) & 0xff);
+        data[ 2] = (byte) ((AdvertiseSetting.ADVERTISING_MODE_SENSOR_FLAG_AND_CALCULATION_FLAG) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -78,10 +85,12 @@ public class AdvertiseSettingTest {
 
     @Test
     public void test005() {
+        //@formatter:off
         byte[] data = new byte[3];
-        data[0] = (byte) ((0x00) & 0xff);
-        data[1] = (byte) ((0x40) & 0xff);
-        data[2] = (byte) ((AdvertiseSetting.ADVERTISING_MODE_SERIAL_NUMBER) & 0xff);
+        data[ 0] = (byte) ((0x00) & 0xff);
+        data[ 1] = (byte) ((0x40) & 0xff);
+        data[ 2] = (byte) ((AdvertiseSetting.ADVERTISING_MODE_SERIAL_NUMBER) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -94,10 +103,12 @@ public class AdvertiseSettingTest {
 
     @Test
     public void test006() {
+        //@formatter:off
         byte[] data = new byte[3];
-        data[0] = (byte) ((0x00) & 0xff);
-        data[1] = (byte) ((0x40) & 0xff);
-        data[2] = (byte) ((AdvertiseSetting.ADVERTISING_MODE_SERIAL_NUMBER) & 0xff);
+        data[ 0] = (byte) ((0x00) & 0xff);
+        data[ 1] = (byte) ((0x40) & 0xff);
+        data[ 2] = (byte) ((AdvertiseSetting.ADVERTISING_MODE_SERIAL_NUMBER) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -114,10 +125,12 @@ public class AdvertiseSettingTest {
 
     @Test
     public void test007() {
+        //@formatter:off
         byte[] data = new byte[3];
-        data[0] = (byte) ((0x00) & 0xff);
-        data[1] = (byte) ((0x40) & 0xff);
-        data[2] = (byte) ((AdvertiseSetting.ADVERTISING_MODE_SERIAL_NUMBER) & 0xff);
+        data[ 0] = (byte) ((0x00) & 0xff);
+        data[ 1] = (byte) ((0x40) & 0xff);
+        data[ 2] = (byte) ((AdvertiseSetting.ADVERTISING_MODE_SERIAL_NUMBER) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -139,10 +152,12 @@ public class AdvertiseSettingTest {
 
     @Test
     public void test009() {
+        //@formatter:off
         byte[] data = new byte[3];
-        data[0] = (byte) ((0x00) & 0xff);
-        data[1] = (byte) ((0x40) & 0xff);
-        data[2] = (byte) ((AdvertiseSetting.ADVERTISING_MODE_SERIAL_NUMBER) & 0xff);
+        data[ 0] = (byte) ((0x00) & 0xff);
+        data[ 1] = (byte) ((0x40) & 0xff);
+        data[ 2] = (byte) ((AdvertiseSetting.ADVERTISING_MODE_SERIAL_NUMBER) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);

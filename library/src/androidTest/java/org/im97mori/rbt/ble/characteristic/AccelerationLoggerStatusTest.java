@@ -3,7 +3,6 @@ package org.im97mori.rbt.ble.characteristic;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.Parcel;
 
-import org.im97mori.ble.BLEConstants;
 import org.junit.Test;
 
 import static org.im97mori.ble.BLEConstants.BASE_UUID;
@@ -14,10 +13,12 @@ public class AccelerationLoggerStatusTest {
 
     @Test
     public void test001() {
+        //@formatter:off
         byte[] data = new byte[3];
         data[ 0] = (byte) ((AccelerationLoggerStatus.LOGGER_STATUS_WAITING) & 0xff);
         data[ 1] = (byte) ((0x01) & 0xff);
         data[ 2] = (byte) ((0x00) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -29,10 +30,12 @@ public class AccelerationLoggerStatusTest {
 
     @Test
     public void test002() {
+        //@formatter:off
         byte[] data = new byte[3];
         data[ 0] = (byte) ((AccelerationLoggerStatus.LOGGER_STATUS_RUNNING) & 0xff);
         data[ 1] = (byte) ((0x00) & 0xff);
         data[ 2] = (byte) ((0x28) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -44,10 +47,12 @@ public class AccelerationLoggerStatusTest {
 
     @Test
     public void test003() {
+        //@formatter:off
         byte[] data = new byte[3];
         data[ 0] = (byte) ((AccelerationLoggerStatus.LOGGER_STATUS_RUNNING) & 0xff);
         data[ 1] = (byte) ((0x00) & 0xff);
         data[ 2] = (byte) ((0x28) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -64,10 +69,12 @@ public class AccelerationLoggerStatusTest {
 
     @Test
     public void test004() {
+        //@formatter:off
         byte[] data = new byte[3];
         data[ 0] = (byte) ((AccelerationLoggerStatus.LOGGER_STATUS_RUNNING) & 0xff);
         data[ 1] = (byte) ((0x00) & 0xff);
         data[ 2] = (byte) ((0x28) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -79,10 +86,12 @@ public class AccelerationLoggerStatusTest {
 
     @Test
     public void test005() {
+        //@formatter:off
         byte[] data = new byte[3];
         data[ 0] = (byte) ((AccelerationLoggerStatus.LOGGER_STATUS_RUNNING) & 0xff);
         data[ 1] = (byte) ((0x00) & 0xff);
         data[ 2] = (byte) ((0x28) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);

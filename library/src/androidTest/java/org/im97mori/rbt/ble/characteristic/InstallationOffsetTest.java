@@ -22,20 +22,22 @@ public class InstallationOffsetTest {
 
     @Test
     public void test001() {
+        //@formatter:off
         byte[] data = new byte[13];
-        data[0] = (byte) ((0x00) & 0xff);
-        data[1] = (byte) ((0xf0) & 0xff);
-        data[2] = (byte) ((0xd8) & 0xff);
-        data[3] = (byte) ((0xf0) & 0xff);
-        data[4] = (byte) ((0xd8) & 0xff);
-        data[5] = (byte) ((0x00) & 0xff);
-        data[6] = (byte) ((0x00) & 0xff);
-        data[7] = (byte) ((0xc0) & 0xff);
-        data[8] = (byte) ((0xbd) & 0xff);
-        data[9] = (byte) ((0xf0) & 0xff);
+        data[ 0] = (byte) ((0x00) & 0xff);
+        data[ 1] = (byte) ((0xf0) & 0xff);
+        data[ 2] = (byte) ((0xd8) & 0xff);
+        data[ 3] = (byte) ((0xf0) & 0xff);
+        data[ 4] = (byte) ((0xd8) & 0xff);
+        data[ 5] = (byte) ((0x00) & 0xff);
+        data[ 6] = (byte) ((0x00) & 0xff);
+        data[ 7] = (byte) ((0xc0) & 0xff);
+        data[ 8] = (byte) ((0xbd) & 0xff);
+        data[ 9] = (byte) ((0xf0) & 0xff);
         data[10] = (byte) ((0xff) & 0xff);
         data[11] = (byte) ((0xf0) & 0xff);
         data[12] = (byte) ((0xd8) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -61,20 +63,22 @@ public class InstallationOffsetTest {
 
     @Test
     public void test002() {
+        //@formatter:off
         byte[] data = new byte[13];
-        data[0] = (byte) ((ALL_EVENT_FLAG_SENSOR) & 0xff);
-        data[1] = (byte) ((0x10) & 0xff);
-        data[2] = (byte) ((0x27) & 0xff);
-        data[3] = (byte) ((0x10) & 0xff);
-        data[4] = (byte) ((0x27) & 0xff);
-        data[5] = (byte) ((0x10) & 0xff);
-        data[6] = (byte) ((0x27) & 0xff);
-        data[7] = (byte) ((0x40) & 0xff);
-        data[8] = (byte) ((0x42) & 0xff);
-        data[9] = (byte) ((0x0f) & 0xff);
+        data[ 0] = (byte) ((ALL_EVENT_FLAG_SENSOR) & 0xff);
+        data[ 1] = (byte) ((0x10) & 0xff);
+        data[ 2] = (byte) ((0x27) & 0xff);
+        data[ 3] = (byte) ((0x10) & 0xff);
+        data[ 4] = (byte) ((0x27) & 0xff);
+        data[ 5] = (byte) ((0x10) & 0xff);
+        data[ 6] = (byte) ((0x27) & 0xff);
+        data[ 7] = (byte) ((0x40) & 0xff);
+        data[ 8] = (byte) ((0x42) & 0xff);
+        data[ 9] = (byte) ((0x0f) & 0xff);
         data[10] = (byte) ((0x00) & 0xff);
         data[11] = (byte) ((0x10) & 0xff);
         data[12] = (byte) ((0x27) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -100,20 +104,22 @@ public class InstallationOffsetTest {
 
     @Test
     public void test003() {
+        //@formatter:off
         byte[] data = new byte[13];
-        data[0] = (byte) ((InstallationOffset.INSTALLATION_OFFSET_SOUND_NOISE_OFFSET_BIT) & 0xff);
-        data[1] = (byte) ((0x10) & 0xff);
-        data[2] = (byte) ((0x27) & 0xff);
-        data[3] = (byte) ((0x10) & 0xff);
-        data[4] = (byte) ((0x27) & 0xff);
-        data[5] = (byte) ((0x10) & 0xff);
-        data[6] = (byte) ((0x27) & 0xff);
-        data[7] = (byte) ((0x40) & 0xff);
-        data[8] = (byte) ((0x42) & 0xff);
-        data[9] = (byte) ((0x0f) & 0xff);
+        data[ 0] = (byte) ((InstallationOffset.INSTALLATION_OFFSET_SOUND_NOISE_OFFSET_BIT) & 0xff);
+        data[ 1] = (byte) ((0x10) & 0xff);
+        data[ 2] = (byte) ((0x27) & 0xff);
+        data[ 3] = (byte) ((0x10) & 0xff);
+        data[ 4] = (byte) ((0x27) & 0xff);
+        data[ 5] = (byte) ((0x10) & 0xff);
+        data[ 6] = (byte) ((0x27) & 0xff);
+        data[ 7] = (byte) ((0x40) & 0xff);
+        data[ 8] = (byte) ((0x42) & 0xff);
+        data[ 9] = (byte) ((0x0f) & 0xff);
         data[10] = (byte) ((0x00) & 0xff);
         data[11] = (byte) ((0x10) & 0xff);
         data[12] = (byte) ((0x27) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -139,20 +145,22 @@ public class InstallationOffsetTest {
 
     @Test
     public void test004() {
+        //@formatter:off
         byte[] data = new byte[13];
-        data[0] = (byte) ((InstallationOffset.INSTALLATION_OFFSET_BAROMETRIC_PRESSURE_OFFSET_BIT) & 0xff);
-        data[1] = (byte) ((0x10) & 0xff);
-        data[2] = (byte) ((0x27) & 0xff);
-        data[3] = (byte) ((0x10) & 0xff);
-        data[4] = (byte) ((0x27) & 0xff);
-        data[5] = (byte) ((0x10) & 0xff);
-        data[6] = (byte) ((0x27) & 0xff);
-        data[7] = (byte) ((0x40) & 0xff);
-        data[8] = (byte) ((0x42) & 0xff);
-        data[9] = (byte) ((0x0f) & 0xff);
+        data[ 0] = (byte) ((InstallationOffset.INSTALLATION_OFFSET_BAROMETRIC_PRESSURE_OFFSET_BIT) & 0xff);
+        data[ 1] = (byte) ((0x10) & 0xff);
+        data[ 2] = (byte) ((0x27) & 0xff);
+        data[ 3] = (byte) ((0x10) & 0xff);
+        data[ 4] = (byte) ((0x27) & 0xff);
+        data[ 5] = (byte) ((0x10) & 0xff);
+        data[ 6] = (byte) ((0x27) & 0xff);
+        data[ 7] = (byte) ((0x40) & 0xff);
+        data[ 8] = (byte) ((0x42) & 0xff);
+        data[ 9] = (byte) ((0x0f) & 0xff);
         data[10] = (byte) ((0x00) & 0xff);
         data[11] = (byte) ((0x10) & 0xff);
         data[12] = (byte) ((0x27) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -178,20 +186,22 @@ public class InstallationOffsetTest {
 
     @Test
     public void test005() {
+        //@formatter:off
         byte[] data = new byte[13];
-        data[0] = (byte) ((InstallationOffset.INSTALLATION_OFFSET_AMBIENT_LIGHT_GAIN_BIT) & 0xff);
-        data[1] = (byte) ((0x10) & 0xff);
-        data[2] = (byte) ((0x27) & 0xff);
-        data[3] = (byte) ((0x10) & 0xff);
-        data[4] = (byte) ((0x27) & 0xff);
-        data[5] = (byte) ((0x10) & 0xff);
-        data[6] = (byte) ((0x27) & 0xff);
-        data[7] = (byte) ((0x40) & 0xff);
-        data[8] = (byte) ((0x42) & 0xff);
-        data[9] = (byte) ((0x0f) & 0xff);
+        data[ 0] = (byte) ((InstallationOffset.INSTALLATION_OFFSET_AMBIENT_LIGHT_GAIN_BIT) & 0xff);
+        data[ 1] = (byte) ((0x10) & 0xff);
+        data[ 2] = (byte) ((0x27) & 0xff);
+        data[ 3] = (byte) ((0x10) & 0xff);
+        data[ 4] = (byte) ((0x27) & 0xff);
+        data[ 5] = (byte) ((0x10) & 0xff);
+        data[ 6] = (byte) ((0x27) & 0xff);
+        data[ 7] = (byte) ((0x40) & 0xff);
+        data[ 8] = (byte) ((0x42) & 0xff);
+        data[ 9] = (byte) ((0x0f) & 0xff);
         data[10] = (byte) ((0x00) & 0xff);
         data[11] = (byte) ((0x10) & 0xff);
         data[12] = (byte) ((0x27) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -217,20 +227,22 @@ public class InstallationOffsetTest {
 
     @Test
     public void test006() {
+        //@formatter:off
         byte[] data = new byte[13];
-        data[0] = (byte) ((InstallationOffset.INSTALLATION_OFFSET_RELATIVE_HUMIDITY_OFFSET_BIT) & 0xff);
-        data[1] = (byte) ((0x10) & 0xff);
-        data[2] = (byte) ((0x27) & 0xff);
-        data[3] = (byte) ((0x10) & 0xff);
-        data[4] = (byte) ((0x27) & 0xff);
-        data[5] = (byte) ((0x10) & 0xff);
-        data[6] = (byte) ((0x27) & 0xff);
-        data[7] = (byte) ((0x40) & 0xff);
-        data[8] = (byte) ((0x42) & 0xff);
-        data[9] = (byte) ((0x0f) & 0xff);
+        data[ 0] = (byte) ((InstallationOffset.INSTALLATION_OFFSET_RELATIVE_HUMIDITY_OFFSET_BIT) & 0xff);
+        data[ 1] = (byte) ((0x10) & 0xff);
+        data[ 2] = (byte) ((0x27) & 0xff);
+        data[ 3] = (byte) ((0x10) & 0xff);
+        data[ 4] = (byte) ((0x27) & 0xff);
+        data[ 5] = (byte) ((0x10) & 0xff);
+        data[ 6] = (byte) ((0x27) & 0xff);
+        data[ 7] = (byte) ((0x40) & 0xff);
+        data[ 8] = (byte) ((0x42) & 0xff);
+        data[ 9] = (byte) ((0x0f) & 0xff);
         data[10] = (byte) ((0x00) & 0xff);
         data[11] = (byte) ((0x10) & 0xff);
         data[12] = (byte) ((0x27) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -256,20 +268,22 @@ public class InstallationOffsetTest {
 
     @Test
     public void test007() {
+        //@formatter:off
         byte[] data = new byte[13];
-        data[0] = (byte) ((InstallationOffset.INSTALLATION_OFFSET_TEMPERATURE_OFFSET_BIT) & 0xff);
-        data[1] = (byte) ((0x10) & 0xff);
-        data[2] = (byte) ((0x27) & 0xff);
-        data[3] = (byte) ((0x10) & 0xff);
-        data[4] = (byte) ((0x27) & 0xff);
-        data[5] = (byte) ((0x10) & 0xff);
-        data[6] = (byte) ((0x27) & 0xff);
-        data[7] = (byte) ((0x40) & 0xff);
-        data[8] = (byte) ((0x42) & 0xff);
-        data[9] = (byte) ((0x0f) & 0xff);
+        data[ 0] = (byte) ((InstallationOffset.INSTALLATION_OFFSET_TEMPERATURE_OFFSET_BIT) & 0xff);
+        data[ 1] = (byte) ((0x10) & 0xff);
+        data[ 2] = (byte) ((0x27) & 0xff);
+        data[ 3] = (byte) ((0x10) & 0xff);
+        data[ 4] = (byte) ((0x27) & 0xff);
+        data[ 5] = (byte) ((0x10) & 0xff);
+        data[ 6] = (byte) ((0x27) & 0xff);
+        data[ 7] = (byte) ((0x40) & 0xff);
+        data[ 8] = (byte) ((0x42) & 0xff);
+        data[ 9] = (byte) ((0x0f) & 0xff);
         data[10] = (byte) ((0x00) & 0xff);
         data[11] = (byte) ((0x10) & 0xff);
         data[12] = (byte) ((0x27) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -295,20 +309,22 @@ public class InstallationOffsetTest {
 
     @Test
     public void test008() {
+        //@formatter:off
         byte[] data = new byte[13];
-        data[0] = (byte) ((InstallationOffset.INSTALLATION_OFFSET_TEMPERATURE_OFFSET_BIT) & 0xff);
-        data[1] = (byte) ((0x10) & 0xff);
-        data[2] = (byte) ((0x27) & 0xff);
-        data[3] = (byte) ((0xf0) & 0xff);
-        data[4] = (byte) ((0xd8) & 0xff);
-        data[5] = (byte) ((0x09) & 0xff);
-        data[6] = (byte) ((0x26) & 0xff);
-        data[7] = (byte) ((0x40) & 0xff);
-        data[8] = (byte) ((0x42) & 0xff);
-        data[9] = (byte) ((0x0f) & 0xff);
+        data[ 0] = (byte) ((InstallationOffset.INSTALLATION_OFFSET_TEMPERATURE_OFFSET_BIT) & 0xff);
+        data[ 1] = (byte) ((0x10) & 0xff);
+        data[ 2] = (byte) ((0x27) & 0xff);
+        data[ 3] = (byte) ((0xf0) & 0xff);
+        data[ 4] = (byte) ((0xd8) & 0xff);
+        data[ 5] = (byte) ((0x09) & 0xff);
+        data[ 6] = (byte) ((0x26) & 0xff);
+        data[ 7] = (byte) ((0x40) & 0xff);
+        data[ 8] = (byte) ((0x42) & 0xff);
+        data[ 9] = (byte) ((0x0f) & 0xff);
         data[10] = (byte) ((0x00) & 0xff);
         data[11] = (byte) ((0x08) & 0xff);
         data[12] = (byte) ((0x25) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -329,20 +345,22 @@ public class InstallationOffsetTest {
 
     @Test
     public void test009() {
+        //@formatter:off
         byte[] data = new byte[13];
-        data[0] = (byte) ((InstallationOffset.INSTALLATION_OFFSET_TEMPERATURE_OFFSET_BIT) & 0xff);
-        data[1] = (byte) ((0x10) & 0xff);
-        data[2] = (byte) ((0x27) & 0xff);
-        data[3] = (byte) ((0xf0) & 0xff);
-        data[4] = (byte) ((0xd8) & 0xff);
-        data[5] = (byte) ((0x09) & 0xff);
-        data[6] = (byte) ((0x26) & 0xff);
-        data[7] = (byte) ((0x40) & 0xff);
-        data[8] = (byte) ((0x42) & 0xff);
-        data[9] = (byte) ((0x0f) & 0xff);
+        data[ 0] = (byte) ((InstallationOffset.INSTALLATION_OFFSET_TEMPERATURE_OFFSET_BIT) & 0xff);
+        data[ 1] = (byte) ((0x10) & 0xff);
+        data[ 2] = (byte) ((0x27) & 0xff);
+        data[ 3] = (byte) ((0xf0) & 0xff);
+        data[ 4] = (byte) ((0xd8) & 0xff);
+        data[ 5] = (byte) ((0x09) & 0xff);
+        data[ 6] = (byte) ((0x26) & 0xff);
+        data[ 7] = (byte) ((0x40) & 0xff);
+        data[ 8] = (byte) ((0x42) & 0xff);
+        data[ 9] = (byte) ((0x0f) & 0xff);
         data[10] = (byte) ((0x00) & 0xff);
         data[11] = (byte) ((0x08) & 0xff);
         data[12] = (byte) ((0x25) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -372,20 +390,22 @@ public class InstallationOffsetTest {
 
     @Test
     public void test011() {
+        //@formatter:off
         byte[] data = new byte[13];
-        data[0] = (byte) ((InstallationOffset.INSTALLATION_OFFSET_TEMPERATURE_OFFSET_BIT) & 0xff);
-        data[1] = (byte) ((0x10) & 0xff);
-        data[2] = (byte) ((0x27) & 0xff);
-        data[3] = (byte) ((0xf0) & 0xff);
-        data[4] = (byte) ((0xd8) & 0xff);
-        data[5] = (byte) ((0x09) & 0xff);
-        data[6] = (byte) ((0x26) & 0xff);
-        data[7] = (byte) ((0x40) & 0xff);
-        data[8] = (byte) ((0x42) & 0xff);
-        data[9] = (byte) ((0x0f) & 0xff);
+        data[ 0] = (byte) ((InstallationOffset.INSTALLATION_OFFSET_TEMPERATURE_OFFSET_BIT) & 0xff);
+        data[ 1] = (byte) ((0x10) & 0xff);
+        data[ 2] = (byte) ((0x27) & 0xff);
+        data[ 3] = (byte) ((0xf0) & 0xff);
+        data[ 4] = (byte) ((0xd8) & 0xff);
+        data[ 5] = (byte) ((0x09) & 0xff);
+        data[ 6] = (byte) ((0x26) & 0xff);
+        data[ 7] = (byte) ((0x40) & 0xff);
+        data[ 8] = (byte) ((0x42) & 0xff);
+        data[ 9] = (byte) ((0x0f) & 0xff);
         data[10] = (byte) ((0x00) & 0xff);
         data[11] = (byte) ((0x08) & 0xff);
         data[12] = (byte) ((0x25) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);

@@ -13,8 +13,10 @@ public class ModeChangeTest {
 
     @Test
     public void test001() {
+        //@formatter:off
         byte[] data = new byte[1];
         data[ 0] = (byte) ((ModeChange.MODE_CHANGE_NORMAL_MODE) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -25,8 +27,10 @@ public class ModeChangeTest {
 
     @Test
     public void test002() {
+        //@formatter:off
         byte[] data = new byte[1];
         data[ 0] = (byte) ((ModeChange.MODE_CHANGE_ACCELERATION_LOGGER_MODE) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -37,8 +41,10 @@ public class ModeChangeTest {
 
     @Test
     public void test003() {
+        //@formatter:off
         byte[] data = new byte[1];
         data[ 0] = (byte) ((ModeChange.MODE_CHANGE_ACCELERATION_LOGGER_MODE) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -54,8 +60,10 @@ public class ModeChangeTest {
 
     @Test
     public void test004() {
+        //@formatter:off
         byte[] data = new byte[1];
         data[ 0] = (byte) ((ModeChange.MODE_CHANGE_ACCELERATION_LOGGER_MODE) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -75,8 +83,10 @@ public class ModeChangeTest {
 
     @Test
     public void test006() {
+        //@formatter:off
         byte[] data = new byte[1];
         data[ 0] = (byte) ((ModeChange.MODE_CHANGE_ACCELERATION_LOGGER_MODE) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);

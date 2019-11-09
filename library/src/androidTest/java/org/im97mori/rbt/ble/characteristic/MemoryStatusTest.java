@@ -15,6 +15,7 @@ public class MemoryStatusTest {
 
     @Test
     public void test001() {
+        //@formatter:off
         byte[] data = new byte[11];
         data[ 0] = (byte) ((MemoryStatus.STATUS_WAITING) & 0xff);
         data[ 1] = (byte) ((0x01) & 0xff);
@@ -27,6 +28,7 @@ public class MemoryStatusTest {
         data[ 8] = (byte) ((0x00) & 0xff);
         data[ 9] = (byte) ((0x01) & 0xff);
         data[10] = (byte) ((0x00) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -39,6 +41,7 @@ public class MemoryStatusTest {
 
     @Test
     public void test002() {
+        //@formatter:off
         byte[] data = new byte[11];
         data[ 0] = (byte) ((MemoryStatus.STATUS_READY_TO_TRANSFER) & 0xff);
         data[ 1] = (byte) ((0xff) & 0xff);
@@ -51,6 +54,7 @@ public class MemoryStatusTest {
         data[ 8] = (byte) ((0xff) & 0xff);
         data[ 9] = (byte) ((0x10) & 0xff);
         data[10] = (byte) ((0x0e) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -63,6 +67,7 @@ public class MemoryStatusTest {
 
     @Test
     public void test003() {
+        //@formatter:off
         byte[] data = new byte[11];
         data[ 0] = (byte) ((MemoryStatus.STATUS_TRANSFERRING) & 0xff);
         data[ 1] = (byte) ((0x00) & 0xff);
@@ -75,6 +80,7 @@ public class MemoryStatusTest {
         data[ 8] = (byte) ((0xff) & 0xff);
         data[ 9] = (byte) ((0x10) & 0xff);
         data[10] = (byte) ((0x0e) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -87,6 +93,7 @@ public class MemoryStatusTest {
 
     @Test
     public void test004() {
+        //@formatter:off
         byte[] data = new byte[11];
         data[ 0] = (byte) ((MemoryStatus.STATUS_ERROR) & 0xff);
         data[ 1] = (byte) ((0xff) & 0xff);
@@ -99,6 +106,7 @@ public class MemoryStatusTest {
         data[ 8] = (byte) ((0x00) & 0xff);
         data[ 9] = (byte) ((0x10) & 0xff);
         data[10] = (byte) ((0x0e) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -111,6 +119,7 @@ public class MemoryStatusTest {
 
     @Test
     public void test005() {
+        //@formatter:off
         byte[] data = new byte[11];
         data[ 0] = (byte) ((MemoryStatus.STATUS_ERROR) & 0xff);
         data[ 1] = (byte) ((0x00) & 0xff);
@@ -123,6 +132,7 @@ public class MemoryStatusTest {
         data[ 8] = (byte) ((0x7f) & 0xff);
         data[ 9] = (byte) ((0x10) & 0xff);
         data[10] = (byte) ((0x0e) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -140,6 +150,7 @@ public class MemoryStatusTest {
 
     @Test
     public void test006() {
+        //@formatter:off
         byte[] data = new byte[11];
         data[ 0] = (byte) ((MemoryStatus.STATUS_ERROR) & 0xff);
         data[ 1] = (byte) ((0x00) & 0xff);
@@ -152,6 +163,7 @@ public class MemoryStatusTest {
         data[ 8] = (byte) ((0x7f) & 0xff);
         data[ 9] = (byte) ((0x10) & 0xff);
         data[10] = (byte) ((0x0e) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -163,6 +175,7 @@ public class MemoryStatusTest {
 
     @Test
     public void test007() {
+        //@formatter:off
         byte[] data = new byte[11];
         data[ 0] = (byte) ((MemoryStatus.STATUS_ERROR) & 0xff);
         data[ 1] = (byte) ((0x00) & 0xff);
@@ -175,6 +188,7 @@ public class MemoryStatusTest {
         data[ 8] = (byte) ((0x7f) & 0xff);
         data[ 9] = (byte) ((0x10) & 0xff);
         data[10] = (byte) ((0x0e) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -186,12 +200,14 @@ public class MemoryStatusTest {
 
     @Test
     public void test008() {
+        //@formatter:off
         byte[] data = new byte[11];
         data[ 0] = (byte) ((MemoryStatus.STATUS_ERROR) & 0xff);
         data[ 1] = (byte) ((0x00) & 0xff);
         data[ 8] = (byte) ((0x7f) & 0xff);
         data[ 9] = (byte) ((0x10) & 0xff);
         data[10] = (byte) ((0x0e) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
@@ -203,11 +219,13 @@ public class MemoryStatusTest {
 
     @Test
     public void test009() {
+        //@formatter:off
         byte[] data = new byte[11];
         data[ 0] = (byte) ((MemoryStatus.STATUS_ERROR) & 0xff);
         data[ 1] = (byte) ((0x00) & 0xff);
         data[ 9] = (byte) ((0x10) & 0xff);
         data[10] = (byte) ((0x0e) & 0xff);
+        //@formatter:on
 
         BluetoothGattCharacteristic bluetoothGattCharacteristic = new BluetoothGattCharacteristic(BASE_UUID, 0, 0);
         bluetoothGattCharacteristic.setValue(data);
