@@ -78,7 +78,7 @@ public abstract class AbstractRbtFilterBuilder<T> {
      * @return myself
      */
     @NonNull
-    public AbstractRbtFilterBuilder<T> addFilter(@NonNull RbtDataFilter filter) {
+    public AbstractRbtFilterBuilder<T> addFilter(@NonNull RbtDataFilter<?> filter) {
         mFilterList.add(filter);
         return this;
     }
@@ -87,7 +87,7 @@ public abstract class AbstractRbtFilterBuilder<T> {
      * @see #addFilters(List)
      */
     @NonNull
-    public AbstractRbtFilterBuilder<T> addFilters(@NonNull RbtDataFilter... filters) {
+    public AbstractRbtFilterBuilder<T> addFilters(@NonNull RbtDataFilter<?>... filters) {
         return addFilters(Arrays.asList(filters));
     }
 
@@ -96,7 +96,7 @@ public abstract class AbstractRbtFilterBuilder<T> {
      * @return myself
      */
     @NonNull
-    public AbstractRbtFilterBuilder<T> addFilters(@NonNull List<RbtDataFilter> filterList) {
+    public AbstractRbtFilterBuilder<T> addFilters(@NonNull List<RbtDataFilter<?>> filterList) {
         mFilterList.addAll(filterList);
         return this;
     }
@@ -552,7 +552,7 @@ public abstract class AbstractRbtFilterBuilder<T> {
      * @return myself
      * @see SerialNumber#getMemoryIndex()
      */
-    public AbstractRbtFilterBuilder<T> addMemoryIndexFilter(int type, int value) {
+    public AbstractRbtFilterBuilder<T> addMemoryIndexFilter(int type, Long value) {
         mFilterList.add(new SerialNumberFilter(type, value));
         return this;
     }

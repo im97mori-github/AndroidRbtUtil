@@ -5,6 +5,7 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
+import org.im97mori.ble.BLEUtils;
 import org.im97mori.ble.ByteArrayCreater;
 import org.im97mori.ble.advertising.ManufacturerSpecificData;
 import org.im97mori.rbt.RbtConstants;
@@ -12,7 +13,7 @@ import org.im97mori.rbt.RbtConstants;
 /**
  * 3.2 Calculation data
  */
-public class CalculationData extends AbstractRbtPacket implements Parcelable {
+public class CalculationData implements RbtPacket, Parcelable {
 
     /**
      * @see ByteArrayCreater
@@ -104,16 +105,16 @@ public class CalculationData extends AbstractRbtPacket implements Parcelable {
      * @param data byte array from {@link ManufacturerSpecificData#getManufacturerSpecificData()}
      */
     public CalculationData(@NonNull byte[] data) {
-        mSequenceNumber = createUInt8(1, data);
-        mDiscomfortIndex = createSInt16(2, data);
-        mHeatStroke = createSInt16(4, data);
-        mVibrationInformation = createUInt8(6, data);
-        mSiValue = createUInt16(7, data);
-        mPga = createUInt16(9, data);
-        mSeismicIntensity = createUInt16(11, data);
-        mAccelerationXAxis = createSInt16(13, data);
-        mAccelerationYAxis = createSInt16(15, data);
-        mAccelerationZAxis = createSInt16(17, data);
+        mSequenceNumber = BLEUtils.createUInt8(data, 1);
+        mDiscomfortIndex = BLEUtils.createSInt16(data, 2);
+        mHeatStroke = BLEUtils.createSInt16(data, 4);
+        mVibrationInformation = BLEUtils.createUInt8(data, 6);
+        mSiValue = BLEUtils.createUInt16(data, 7);
+        mPga = BLEUtils.createUInt16(data, 9);
+        mSeismicIntensity = BLEUtils.createUInt16(data, 11);
+        mAccelerationXAxis = BLEUtils.createSInt16(data, 13);
+        mAccelerationYAxis = BLEUtils.createSInt16(data, 15);
+        mAccelerationZAxis = BLEUtils.createSInt16(data, 17);
     }
 
     /**

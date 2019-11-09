@@ -5,6 +5,7 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
+import org.im97mori.ble.BLEUtils;
 import org.im97mori.ble.ByteArrayCreater;
 import org.im97mori.ble.advertising.ManufacturerSpecificData;
 import org.im97mori.rbt.RbtConstants;
@@ -16,7 +17,7 @@ import static org.im97mori.rbt.RbtConstants.OutputRange.OUTPUT_RANGE_ETVOC_UNIT;
 /**
  * 3.1 Sensor data
  */
-public class SensorData extends AbstractRbtPacket implements Parcelable {
+public class SensorData implements RbtPacket, Parcelable {
 
     /**
      * @see ByteArrayCreater
@@ -98,14 +99,14 @@ public class SensorData extends AbstractRbtPacket implements Parcelable {
      * @param data byte array from {@link ManufacturerSpecificData#getManufacturerSpecificData()}
      */
     public SensorData(@NonNull byte[] data) {
-        mSequenceNumber = createUInt8(1, data);
-        mTemperature = createSInt16(2, data);
-        mRelativeHumidity = createSInt16(4, data);
-        mAmbientLight = createSInt16(6, data);
-        mBarometricPressure = createSInt32(8, data);
-        mSoundNoise = createSInt16(12, data);
-        mEtvoc = createSInt16(14, data);
-        mEco2 = createSInt16(16, data);
+        mSequenceNumber = BLEUtils.createUInt8(data, 1);
+        mTemperature = BLEUtils.createSInt16(data, 2);
+        mRelativeHumidity = BLEUtils.createSInt16(data, 4);
+        mAmbientLight = BLEUtils.createSInt16(data, 6);
+        mBarometricPressure = BLEUtils.createSInt32(data, 8);
+        mSoundNoise = BLEUtils.createSInt16(data, 12);
+        mEtvoc = BLEUtils.createSInt16(data, 14);
+        mEco2 = BLEUtils.createSInt16(data, 16);
     }
 
     /**

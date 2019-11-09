@@ -7,7 +7,7 @@ import org.im97mori.rbt.ble.ad.RbtAdvertisingDataParser;
 import org.im97mori.rbt.ble.ad.SensorFlagAndCalculationFlag;
 
 @SuppressWarnings("WeakerAccess")
-public class SensorFlagAndCalculationFlagFilter extends RbtDataFilter {
+public class SensorFlagAndCalculationFlagFilter extends RbtDataFilter<Integer> {
 
     /**
      * expected {@link SensorFlagAndCalculationFlag} in Rbt's Advertising data

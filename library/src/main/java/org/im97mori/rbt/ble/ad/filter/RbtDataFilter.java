@@ -1,5 +1,7 @@
 package org.im97mori.rbt.ble.ad.filter;
 
+import androidx.annotation.NonNull;
+
 import org.im97mori.ble.advertising.filter.AdvertisingDataFilter;
 import org.im97mori.rbt.ble.ad.CalculationData;
 import org.im97mori.rbt.ble.ad.RbtAdvertisingDataParser;
@@ -12,7 +14,7 @@ import org.im97mori.rbt.ble.ad.SerialNumber;
  * filter interface for Rbt's Advertising data
  */
 @SuppressWarnings("WeakerAccess")
-public abstract class RbtDataFilter implements AdvertisingDataFilter<RbtAdvertisingDataParser.RbtAdvertisingDataParseResult> {
+public abstract class RbtDataFilter<T2 extends Comparable<T2>> implements AdvertisingDataFilter<RbtAdvertisingDataParser.RbtAdvertisingDataParseResult> {
 
     /**
      * non-partial comparison
@@ -354,7 +356,7 @@ public abstract class RbtDataFilter implements AdvertisingDataFilter<RbtAdvertis
     /**
      * check value
      */
-    protected int mValue;
+    protected T2 mValue;
 
     /**
      * Constructor for complete comparison
@@ -369,7 +371,7 @@ public abstract class RbtDataFilter implements AdvertisingDataFilter<RbtAdvertis
      * @param type   check type
      * @param value  check value
      */
-    protected RbtDataFilter(int target, int type, int value) {
+    protected RbtDataFilter(int target, int type, @NonNull T2 value) {
         mTarget = target;
         mType = type;
         mValue = value;
@@ -381,31 +383,33 @@ public abstract class RbtDataFilter implements AdvertisingDataFilter<RbtAdvertis
      * @param actual comparison value
      * @return {@code true}:condition has been met, {@code false}:not met
      */
-    protected boolean check(int actual) {
+    protected boolean check(T2 actual) {
         boolean result = false;
         if (TYPE_EQUAL == mType) {
-            if (actual == mValue) {
+            if (actual.compareTo(mValue) == 0) {
                 result = true;
             }
         } else if (TYPE_GREATER_THAN == mType) {
-            if (actual > mValue) {
+            if (actual.compareTo(mValue) > 0) {
                 result = true;
             }
         } else if (TYPE_GREATER_EQUAL == mType) {
-            if (actual >= mValue) {
+            if (actual.compareTo(mValue) >= 0) {
                 result = true;
             }
         } else if (TYPE_LESSER_THAN == mType) {
-            if (actual < mValue) {
+            if (actual.compareTo(mValue) < 0) {
                 result = true;
             }
         } else if (TYPE_LESSER_EQUAL == mType) {
-            if (actual <= mValue) {
+            if (actual.compareTo(mValue) <= 0) {
                 result = true;
             }
-        } else if ((actual & mValue) != 0) {
-            // all of bit check
-            result = true;
+        } else {
+            if (actual instanceof Number && mValue instanceof Number && (((Number) actual).longValue() & ((Number) mValue).longValue()) != 0) {
+                // all of bit check
+                result = true;
+            }
         }
         return result;
     }

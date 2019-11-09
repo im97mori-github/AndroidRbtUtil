@@ -9,7 +9,7 @@ import org.im97mori.rbt.ble.ad.SerialNumber;
 import java.util.regex.Pattern;
 
 @SuppressWarnings("WeakerAccess")
-public class SerialNumberFilter extends RbtDataFilter {
+public class SerialNumberFilter extends RbtDataFilter<Long> {
 
     /**
      * expected {@link SerialNumber} in Rbt's Advertising data
@@ -39,7 +39,7 @@ public class SerialNumberFilter extends RbtDataFilter {
      * @param value check value
      * @see #TARGET_MEMORY_INDEX
      */
-    public SerialNumberFilter(int type, int value) {
+    public SerialNumberFilter(int type, long value) {
         super(TARGET_MEMORY_INDEX, type, value);
     }
 

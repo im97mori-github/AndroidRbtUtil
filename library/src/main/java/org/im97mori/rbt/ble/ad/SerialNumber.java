@@ -5,6 +5,7 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
+import org.im97mori.ble.BLEUtils;
 import org.im97mori.ble.ByteArrayCreater;
 import org.im97mori.ble.advertising.ManufacturerSpecificData;
 import org.im97mori.rbt.RbtConstants;
@@ -12,7 +13,7 @@ import org.im97mori.rbt.RbtConstants;
 /**
  * 3.5 Serial number
  */
-public class SerialNumber extends AbstractRbtPacket implements Parcelable {
+public class SerialNumber implements RbtPacket, Parcelable {
 
     /**
      * @see ByteArrayCreater
@@ -56,7 +57,7 @@ public class SerialNumber extends AbstractRbtPacket implements Parcelable {
     /**
      * Memory index (Latest)
      */
-    private final int mMemoryIndex;
+    private final long mMemoryIndex;
 
     /**
      * Constructor for SerialNumber
@@ -65,7 +66,7 @@ public class SerialNumber extends AbstractRbtPacket implements Parcelable {
      */
     public SerialNumber(@NonNull byte[] data) {
         mSerialNumber = new String(data, 1, 10);
-        mMemoryIndex = createUInt32(11, data);
+        mMemoryIndex = BLEUtils.createUInt32(data, 11);
     }
 
     /**
@@ -75,7 +76,7 @@ public class SerialNumber extends AbstractRbtPacket implements Parcelable {
      */
     private SerialNumber(@NonNull Parcel in) {
         mSerialNumber = in.readString();
-        mMemoryIndex = in.readInt();
+        mMemoryIndex = in.readLong();
     }
 
     /**
@@ -92,7 +93,7 @@ public class SerialNumber extends AbstractRbtPacket implements Parcelable {
     @Override
     public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeString(mSerialNumber);
-        dest.writeInt(mMemoryIndex);
+        dest.writeLong(mMemoryIndex);
     }
 
     /**
@@ -113,7 +114,7 @@ public class SerialNumber extends AbstractRbtPacket implements Parcelable {
     /**
      * @return Memory index (Latest)
      */
-    public int getMemoryIndex() {
+    public long getMemoryIndex() {
         return mMemoryIndex;
     }
 

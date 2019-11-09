@@ -163,7 +163,7 @@ public class FilteredRbtScanCallbackTest {
                 list3.add(results);
             }
         };
-        FilteredRbtScanCallback callback = new FilteredRbtScanCallback.Builder().setScanCallback(scanCallback).addFilter(new RbtDataFilter() {
+        FilteredRbtScanCallback callback = new FilteredRbtScanCallback.Builder().setScanCallback(scanCallback).addFilter(new RbtDataFilter<Integer>() {
             @Override
             public boolean isMatched(RbtAdvertisingDataParser.RbtAdvertisingDataParseResult advertisingDataParseResult) {
                 return false;
@@ -320,7 +320,7 @@ public class FilteredRbtScanCallbackTest {
                 list3.add(results);
             }
         };
-        FilteredRbtScanCallback callback = new FilteredRbtScanCallback.Builder().setScanCallback(scanCallback).addFilter(new RbtDataFilter() {
+        FilteredRbtScanCallback callback = new FilteredRbtScanCallback.Builder().setScanCallback(scanCallback).addFilter(new RbtDataFilter<Integer>() {
             @Override
             public boolean isMatched(RbtAdvertisingDataParser.RbtAdvertisingDataParseResult advertisingDataParseResult) {
                 return false;

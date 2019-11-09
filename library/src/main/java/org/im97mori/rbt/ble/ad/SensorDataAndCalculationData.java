@@ -5,6 +5,7 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
+import org.im97mori.ble.BLEUtils;
 import org.im97mori.ble.ByteArrayCreater;
 import org.im97mori.ble.advertising.ManufacturerSpecificData;
 import org.im97mori.rbt.RbtConstants;
@@ -18,7 +19,7 @@ import static org.im97mori.rbt.RbtConstants.OutputRange.OUTPUT_RANGE_ETVOC_UNIT;
 /**
  * 3.3 Sensor data & Calculation data (Scan rsp)
  */
-public class SensorDataAndCalculationData extends AbstractRbtPacket implements Parcelable {
+public class SensorDataAndCalculationData implements RbtPacket, Parcelable {
 
     /**
      * @see ByteArrayCreater
@@ -148,24 +149,24 @@ public class SensorDataAndCalculationData extends AbstractRbtPacket implements P
      * @param data2 2nd byte array from {@link ManufacturerSpecificData#getManufacturerSpecificData()}
      */
     public SensorDataAndCalculationData(@NonNull byte[] data1, @NonNull byte[] data2) {
-        mSequenceNumber = createUInt8(1, data1);
-        mTemperature = createSInt16(2, data1);
-        mRelativeHumidity = createSInt16(4, data1);
-        mAmbientLight = createSInt16(6, data1);
-        mBarometricPressure = createSInt32(8, data1);
-        mSoundNoise = createSInt16(12, data1);
-        mEtvoc = createSInt16(14, data1);
-        mEco2 = createSInt16(16, data1);
+        mSequenceNumber = BLEUtils.createUInt8(data1, 1);
+        mTemperature = BLEUtils.createSInt16(data1, 2);
+        mRelativeHumidity = BLEUtils.createSInt16(data1, 4);
+        mAmbientLight = BLEUtils.createSInt16(data1, 6);
+        mBarometricPressure = BLEUtils.createSInt32(data1, 8);
+        mSoundNoise = BLEUtils.createSInt16(data1, 12);
+        mEtvoc = BLEUtils.createSInt16(data1, 14);
+        mEco2 = BLEUtils.createSInt16(data1, 16);
 
-        mDiscomfortIndex = createSInt16(2, data2);
-        mHeatStroke = createSInt16(4, data2);
-        mVibrationInformation = createUInt8(6, data2);
-        mSiValue = createUInt16(7, data2);
-        mPga = createUInt16(9, data2);
-        mSeismicIntensity = createUInt16(11, data2);
-        mAccelerationXAxis = createSInt16(13, data2);
-        mAccelerationYAxis = createSInt16(15, data2);
-        mAccelerationZAxis = createSInt16(17, data2);
+        mDiscomfortIndex = BLEUtils.createSInt16(data2, 2);
+        mHeatStroke = BLEUtils.createSInt16(data2, 4);
+        mVibrationInformation = BLEUtils.createUInt8(data2, 6);
+        mSiValue = BLEUtils.createUInt16(data2, 7);
+        mPga = BLEUtils.createUInt16(data2, 9);
+        mSeismicIntensity = BLEUtils.createUInt16(data2, 11);
+        mAccelerationXAxis = BLEUtils.createSInt16(data2, 13);
+        mAccelerationYAxis = BLEUtils.createSInt16(data2, 15);
+        mAccelerationZAxis = BLEUtils.createSInt16(data2, 17);
     }
 
     /**

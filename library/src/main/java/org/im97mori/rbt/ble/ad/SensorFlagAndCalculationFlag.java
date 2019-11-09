@@ -5,6 +5,7 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
+import org.im97mori.ble.BLEUtils;
 import org.im97mori.ble.ByteArrayCreater;
 import org.im97mori.ble.advertising.ManufacturerSpecificData;
 import org.im97mori.rbt.RbtConstants;
@@ -14,7 +15,7 @@ import java.util.Arrays;
 /**
  * 3.4 Sensor flag & Calculation flag (Scan rsp)
  */
-public class SensorFlagAndCalculationFlag extends AbstractRbtPacket implements Parcelable {
+public class SensorFlagAndCalculationFlag implements RbtPacket, Parcelable {
 
     /**
      * @see ByteArrayCreater
@@ -124,20 +125,20 @@ public class SensorFlagAndCalculationFlag extends AbstractRbtPacket implements P
      * @param data2 2nd byte array from {@link ManufacturerSpecificData#getManufacturerSpecificData()}
      */
     public SensorFlagAndCalculationFlag(@NonNull byte[] data1, @NonNull byte[] data2) {
-        mSequenceNumber = createUInt8(1, data1);
-        mTemperatureFlag = createUInt16(2, data1);
-        mRelativeHumidityFlag = createUInt16(4, data1);
-        mAmbientLightFlag = createUInt16(6, data1);
-        mBarometricPressureFlag = createUInt16(8, data1);
-        mSoundNoiseFlag = createUInt16(10, data1);
-        mEtvocFlag = createUInt16(12, data1);
-        mEco2Flag = createUInt16(14, data1);
+        mSequenceNumber = BLEUtils.createUInt8(data1, 1);
+        mTemperatureFlag = BLEUtils.createUInt16(data1, 2);
+        mRelativeHumidityFlag = BLEUtils.createUInt16(data1, 4);
+        mAmbientLightFlag = BLEUtils.createUInt16(data1, 6);
+        mBarometricPressureFlag = BLEUtils.createUInt16(data1, 8);
+        mSoundNoiseFlag = BLEUtils.createUInt16(data1, 10);
+        mEtvocFlag = BLEUtils.createUInt16(data1, 12);
+        mEco2Flag = BLEUtils.createUInt16(data1, 14);
 
-        mDiscomfortIndexFlag = createUInt16(2, data2);
-        mHeatStrokeFlag = createUInt16(4, data2);
-        mSiValueFlag = createUInt8(6, data2);
-        mPgaFlag = createUInt8(7, data2);
-        mSeismicIntensityFlag = createUInt8(8, data2);
+        mDiscomfortIndexFlag = BLEUtils.createUInt16(data2, 2);
+        mHeatStrokeFlag = BLEUtils.createUInt16(data2, 4);
+        mSiValueFlag = BLEUtils.createUInt8(data2, 6);
+        mPgaFlag = BLEUtils.createUInt8(data2, 7);
+        mSeismicIntensityFlag = BLEUtils.createUInt8(data2, 8);
     }
 
     /**

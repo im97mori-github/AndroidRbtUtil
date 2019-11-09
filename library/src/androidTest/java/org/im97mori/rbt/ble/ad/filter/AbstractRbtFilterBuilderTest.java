@@ -77,7 +77,7 @@ public class AbstractRbtFilterBuilderTest {
     @Test
     public void addFilterTest_001() {
         MockFilterBuilder builder = new MockFilterBuilder();
-        RbtDataFilter filter = new RbtDataFilter() {
+        RbtDataFilter<Integer> filter = new RbtDataFilter<Integer>() {
             @Override
             public boolean isMatched(RbtAdvertisingDataParser.RbtAdvertisingDataParseResult advertisingDataParseResult) {
                 return false;
@@ -91,13 +91,13 @@ public class AbstractRbtFilterBuilderTest {
     @Test
     public void addFilter2Test_001() {
         MockFilterBuilder builder = new MockFilterBuilder();
-        RbtDataFilter filter1 = new RbtDataFilter() {
+        RbtDataFilter<Integer> filter1 = new RbtDataFilter<Integer>() {
             @Override
             public boolean isMatched(RbtAdvertisingDataParser.RbtAdvertisingDataParseResult advertisingDataParseResult) {
                 return false;
             }
         };
-        RbtDataFilter filter2 = new RbtDataFilter() {
+        RbtDataFilter<Integer> filter2 = new RbtDataFilter<Integer>() {
             @Override
             public boolean isMatched(RbtAdvertisingDataParser.RbtAdvertisingDataParseResult advertisingDataParseResult) {
                 return false;
@@ -112,19 +112,19 @@ public class AbstractRbtFilterBuilderTest {
     @Test
     public void addFilter2Test_002() {
         MockFilterBuilder builder = new MockFilterBuilder();
-        RbtDataFilter filter1 = new RbtDataFilter() {
+        RbtDataFilter<Integer> filter1 = new RbtDataFilter<Integer>() {
             @Override
             public boolean isMatched(RbtAdvertisingDataParser.RbtAdvertisingDataParseResult advertisingDataParseResult) {
                 return false;
             }
         };
-        RbtDataFilter filter2 = new RbtDataFilter() {
+        RbtDataFilter<Integer> filter2 = new RbtDataFilter<Integer>() {
             @Override
             public boolean isMatched(RbtAdvertisingDataParser.RbtAdvertisingDataParseResult advertisingDataParseResult) {
                 return false;
             }
         };
-        List<AdvertisingDataFilter<RbtAdvertisingDataParser.RbtAdvertisingDataParseResult>> result = builder.addFilters(Arrays.asList(filter1, filter2)).build();
+        List<AdvertisingDataFilter<RbtAdvertisingDataParser.RbtAdvertisingDataParseResult>> result = builder.addFilters(Arrays.<RbtDataFilter<?>>asList(filter1, filter2)).build();
         assertEquals(2, result.size());
         assertEquals(filter1, result.get(0));
         assertEquals(filter2, result.get(1));
@@ -133,7 +133,7 @@ public class AbstractRbtFilterBuilderTest {
     @Test
     public void clearFilterTest_001() {
         MockFilterBuilder builder = new MockFilterBuilder();
-        RbtDataFilter filter = new RbtDataFilter() {
+        RbtDataFilter<Integer> filter = new RbtDataFilter<Integer>() {
             @Override
             public boolean isMatched(RbtAdvertisingDataParser.RbtAdvertisingDataParseResult advertisingDataParseResult) {
                 return false;
@@ -1150,12 +1150,12 @@ public class AbstractRbtFilterBuilderTest {
     @Test
     public void addMemoryIndexFilterTest_001() {
         MockFilterBuilder builder = new MockFilterBuilder();
-        List<AdvertisingDataFilter<RbtAdvertisingDataParser.RbtAdvertisingDataParseResult>> result = builder.addMemoryIndexFilter(TYPE_EQUAL, 1).build();
+        List<AdvertisingDataFilter<RbtAdvertisingDataParser.RbtAdvertisingDataParseResult>> result = builder.addMemoryIndexFilter(TYPE_EQUAL, 1L).build();
         assertEquals(1, result.size());
         assertTrue(result.get(0) instanceof SerialNumberFilter);
         assertEquals(((RbtDataFilter) result.get(0)).mTarget, TARGET_MEMORY_INDEX);
         assertEquals(((RbtDataFilter) result.get(0)).mType, TYPE_EQUAL);
-        assertEquals(((RbtDataFilter) result.get(0)).mValue, 1);
+        assertEquals(((RbtDataFilter) result.get(0)).mValue, 1L);
     }
 
     private void addFlagFilterTest(List<AdvertisingDataFilter<RbtAdvertisingDataParser.RbtAdvertisingDataParseResult>> result, int target, int type, int value) {

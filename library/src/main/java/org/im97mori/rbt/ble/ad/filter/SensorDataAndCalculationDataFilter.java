@@ -7,7 +7,7 @@ import org.im97mori.rbt.ble.ad.RbtAdvertisingDataParser;
 import org.im97mori.rbt.ble.ad.SensorDataAndCalculationData;
 
 @SuppressWarnings("WeakerAccess")
-public class SensorDataAndCalculationDataFilter extends RbtDataFilter {
+public class SensorDataAndCalculationDataFilter extends RbtDataFilter<Integer> {
 
     /**
      * expected {@link SensorDataAndCalculationData} in Rbt's Advertising data

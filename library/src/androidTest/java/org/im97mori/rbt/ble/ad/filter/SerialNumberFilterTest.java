@@ -533,7 +533,7 @@ public class SerialNumberFilterTest {
 
         RbtAdvertisingDataParser parser = new RbtAdvertisingDataParser.Builder(true).build();
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(actualData);
-        SerialNumberFilter filter = new SerialNumberFilter(TYPE_EQUAL, 1);
+        SerialNumberFilter filter = new SerialNumberFilter(TYPE_EQUAL, 1L);
 
         assertNotNull(result);
         assertTrue(filter.isMatched(result));
@@ -566,7 +566,7 @@ public class SerialNumberFilterTest {
 
         RbtAdvertisingDataParser parser = new RbtAdvertisingDataParser.Builder(true).build();
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(actualData);
-        SerialNumberFilter filter = new SerialNumberFilter(TYPE_EQUAL, 2);
+        SerialNumberFilter filter = new SerialNumberFilter(TYPE_EQUAL, 2L);
 
         assertNotNull(result);
         assertFalse(filter.isMatched(result));
@@ -599,7 +599,7 @@ public class SerialNumberFilterTest {
 
         RbtAdvertisingDataParser parser = new RbtAdvertisingDataParser.Builder(true).build();
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(actualData);
-        SerialNumberFilter filter = new SerialNumberFilter(TYPE_GREATER_THAN, 0);
+        SerialNumberFilter filter = new SerialNumberFilter(TYPE_GREATER_THAN, 0L);
 
         assertNotNull(result);
         assertTrue(filter.isMatched(result));
@@ -632,7 +632,7 @@ public class SerialNumberFilterTest {
 
         RbtAdvertisingDataParser parser = new RbtAdvertisingDataParser.Builder(true).build();
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(actualData);
-        SerialNumberFilter filter = new SerialNumberFilter(TYPE_GREATER_THAN, 1);
+        SerialNumberFilter filter = new SerialNumberFilter(TYPE_GREATER_THAN, 1L);
 
         assertNotNull(result);
         assertFalse(filter.isMatched(result));
@@ -665,7 +665,7 @@ public class SerialNumberFilterTest {
 
         RbtAdvertisingDataParser parser = new RbtAdvertisingDataParser.Builder(true).build();
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(actualData);
-        SerialNumberFilter filter = new SerialNumberFilter(TYPE_GREATER_THAN, 2);
+        SerialNumberFilter filter = new SerialNumberFilter(TYPE_GREATER_THAN, 2L);
 
         assertNotNull(result);
         assertFalse(filter.isMatched(result));
@@ -698,7 +698,7 @@ public class SerialNumberFilterTest {
 
         RbtAdvertisingDataParser parser = new RbtAdvertisingDataParser.Builder(true).build();
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(actualData);
-        SerialNumberFilter filter = new SerialNumberFilter(TYPE_GREATER_EQUAL, 0);
+        SerialNumberFilter filter = new SerialNumberFilter(TYPE_GREATER_EQUAL, 0L);
 
         assertNotNull(result);
         assertTrue(filter.isMatched(result));
@@ -731,7 +731,7 @@ public class SerialNumberFilterTest {
 
         RbtAdvertisingDataParser parser = new RbtAdvertisingDataParser.Builder(true).build();
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(actualData);
-        SerialNumberFilter filter = new SerialNumberFilter(TYPE_GREATER_EQUAL, 1);
+        SerialNumberFilter filter = new SerialNumberFilter(TYPE_GREATER_EQUAL, 1L);
 
         assertNotNull(result);
         assertTrue(filter.isMatched(result));
@@ -764,7 +764,7 @@ public class SerialNumberFilterTest {
 
         RbtAdvertisingDataParser parser = new RbtAdvertisingDataParser.Builder(true).build();
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(actualData);
-        SerialNumberFilter filter = new SerialNumberFilter(TYPE_GREATER_EQUAL, 2);
+        SerialNumberFilter filter = new SerialNumberFilter(TYPE_GREATER_EQUAL, 2L);
 
         assertNotNull(result);
         assertFalse(filter.isMatched(result));
@@ -797,7 +797,7 @@ public class SerialNumberFilterTest {
 
         RbtAdvertisingDataParser parser = new RbtAdvertisingDataParser.Builder(true).build();
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(actualData);
-        SerialNumberFilter filter = new SerialNumberFilter(TYPE_LESSER_THAN, 0);
+        SerialNumberFilter filter = new SerialNumberFilter(TYPE_LESSER_THAN, 0L);
 
         assertNotNull(result);
         assertFalse(filter.isMatched(result));
@@ -830,7 +830,7 @@ public class SerialNumberFilterTest {
 
         RbtAdvertisingDataParser parser = new RbtAdvertisingDataParser.Builder(true).build();
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(actualData);
-        SerialNumberFilter filter = new SerialNumberFilter(TYPE_LESSER_THAN, 1);
+        SerialNumberFilter filter = new SerialNumberFilter(TYPE_LESSER_THAN, 1L);
 
         assertNotNull(result);
         assertFalse(filter.isMatched(result));
@@ -863,7 +863,7 @@ public class SerialNumberFilterTest {
 
         RbtAdvertisingDataParser parser = new RbtAdvertisingDataParser.Builder(true).build();
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(actualData);
-        SerialNumberFilter filter = new SerialNumberFilter(TYPE_LESSER_THAN, 2);
+        SerialNumberFilter filter = new SerialNumberFilter(TYPE_LESSER_THAN, 2L);
 
         assertNotNull(result);
         assertTrue(filter.isMatched(result));
@@ -896,7 +896,7 @@ public class SerialNumberFilterTest {
 
         RbtAdvertisingDataParser parser = new RbtAdvertisingDataParser.Builder(true).build();
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(actualData);
-        SerialNumberFilter filter = new SerialNumberFilter(TYPE_LESSER_EQUAL, 0);
+        SerialNumberFilter filter = new SerialNumberFilter(TYPE_LESSER_EQUAL, 0L);
 
         assertNotNull(result);
         assertFalse(filter.isMatched(result));
@@ -929,7 +929,7 @@ public class SerialNumberFilterTest {
 
         RbtAdvertisingDataParser parser = new RbtAdvertisingDataParser.Builder(true).build();
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(actualData);
-        SerialNumberFilter filter = new SerialNumberFilter(TYPE_LESSER_EQUAL, 1);
+        SerialNumberFilter filter = new SerialNumberFilter(TYPE_LESSER_EQUAL, 1L);
 
         assertNotNull(result);
         assertTrue(filter.isMatched(result));
@@ -962,7 +962,7 @@ public class SerialNumberFilterTest {
 
         RbtAdvertisingDataParser parser = new RbtAdvertisingDataParser.Builder(true).build();
         RbtAdvertisingDataParser.RbtAdvertisingDataParseResult result = parser.parse(actualData);
-        SerialNumberFilter filter = new SerialNumberFilter(TYPE_LESSER_EQUAL, 2);
+        SerialNumberFilter filter = new SerialNumberFilter(TYPE_LESSER_EQUAL, 2L);
 
         assertNotNull(result);
         assertTrue(filter.isMatched(result));

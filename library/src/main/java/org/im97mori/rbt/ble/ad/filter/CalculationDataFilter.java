@@ -10,7 +10,7 @@ import org.im97mori.rbt.ble.ad.RbtAdvertisingDataParser;
  * filter for {@link CalculationData}
  */
 @SuppressWarnings("WeakerAccess")
-public class CalculationDataFilter extends RbtDataFilter {
+public class CalculationDataFilter extends RbtDataFilter<Integer> {
 
     /**
      * expected {@link CalculationData} in Rbt's Advertising data
