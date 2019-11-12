@@ -9,10 +9,10 @@ import androidx.annotation.Nullable;
 
 import org.im97mori.ble.BLECallbackDistributer;
 import org.im97mori.ble.BLEConstants;
-import org.im97mori.ble.characteristic.dis.Appearance;
-import org.im97mori.ble.characteristic.dis.CentralAddressResolution;
-import org.im97mori.ble.characteristic.dis.DeviceName;
-import org.im97mori.ble.characteristic.dis.PeripheralPreferredConnectionParameters;
+import org.im97mori.ble.characteristic.gas.Appearance;
+import org.im97mori.ble.characteristic.gas.CentralAddressResolution;
+import org.im97mori.ble.characteristic.gas.DeviceName;
+import org.im97mori.ble.characteristic.gas.PeripheralPreferredConnectionParameters;
 import org.junit.Test;
 
 import java.util.UUID;
@@ -20,7 +20,7 @@ import java.util.UUID;
 import static org.im97mori.ble.BLEConstants.CharacteristicUUID.APPEARANCE_CHARACTERISTIC;
 import static org.im97mori.ble.BLEConstants.CharacteristicUUID.CENTRAL_ADDRESS_RESOLUTION_CHARACTERISTIC;
 import static org.im97mori.ble.BLEConstants.CharacteristicUUID.DEVICE_NAME_CHARACTERISTIC;
-import static org.im97mori.ble.BLEConstants.CharacteristicUUID.PERIPHERAL_PREFERRED_CONNECTION_PARAMATERS_CHARACTERISTIC;
+import static org.im97mori.ble.BLEConstants.CharacteristicUUID.PERIPHERAL_PREFERRED_CONNECTION_PARAMETERS_CHARACTERISTIC;
 import static org.im97mori.ble.BLEConstants.ServiceUUID.GENERIC_ACCESS_SERVICE;
 
 public class RbtBLEConnectionGenericAccessServiceTest extends AbstractRbtBLEConnectionTest {
@@ -418,7 +418,7 @@ public class RbtBLEConnectionGenericAccessServiceTest extends AbstractRbtBLEConn
         MockBLETask task = new MockBLETask() {
             @Override
             public boolean doProcess(@NonNull Message message) {
-                MOCK_BLE_CONNECTION.getBLECallback().onCharacteristicReadSuccess(getTaskId(), MOCK_DEVICE, SERVICE_UUID, PERIPHERAL_PREFERRED_CONNECTION_PARAMATERS_CHARACTERISTIC, new byte[8], argument);
+                MOCK_BLE_CONNECTION.getBLECallback().onCharacteristicReadSuccess(getTaskId(), MOCK_DEVICE, SERVICE_UUID, PERIPHERAL_PREFERRED_CONNECTION_PARAMETERS_CHARACTERISTIC, new byte[8], argument);
                 isProccesing.set(false);
                 return true;
             }
@@ -449,7 +449,7 @@ public class RbtBLEConnectionGenericAccessServiceTest extends AbstractRbtBLEConn
         MockBLETask task = new MockBLETask() {
             @Override
             public boolean doProcess(@NonNull Message message) {
-                MOCK_BLE_CONNECTION.getBLECallback().onCharacteristicReadSuccess(getTaskId(), MOCK_DEVICE, SERVICE_UUID, PERIPHERAL_PREFERRED_CONNECTION_PARAMATERS_CHARACTERISTIC, new byte[8], argument);
+                MOCK_BLE_CONNECTION.getBLECallback().onCharacteristicReadSuccess(getTaskId(), MOCK_DEVICE, SERVICE_UUID, PERIPHERAL_PREFERRED_CONNECTION_PARAMETERS_CHARACTERISTIC, new byte[8], argument);
                 isProccesing.set(false);
                 return true;
             }
@@ -480,7 +480,7 @@ public class RbtBLEConnectionGenericAccessServiceTest extends AbstractRbtBLEConn
         MockBLETask task = new MockBLETask() {
             @Override
             public boolean doProcess(@NonNull Message message) {
-                MOCK_BLE_CONNECTION.getBLECallback().onCharacteristicReadFailed(getTaskId(), MOCK_DEVICE, SERVICE_UUID, PERIPHERAL_PREFERRED_CONNECTION_PARAMATERS_CHARACTERISTIC, BLEConstants.ErrorCodes.UNKNOWN, argument);
+                MOCK_BLE_CONNECTION.getBLECallback().onCharacteristicReadFailed(getTaskId(), MOCK_DEVICE, SERVICE_UUID, PERIPHERAL_PREFERRED_CONNECTION_PARAMETERS_CHARACTERISTIC, BLEConstants.ErrorCodes.UNKNOWN, argument);
                 isProccesing.set(false);
                 return true;
             }
@@ -510,7 +510,7 @@ public class RbtBLEConnectionGenericAccessServiceTest extends AbstractRbtBLEConn
         MockBLETask task = new MockBLETask() {
             @Override
             public boolean doProcess(@NonNull Message message) {
-                MOCK_BLE_CONNECTION.getBLECallback().onCharacteristicReadFailed(getTaskId(), MOCK_DEVICE, SERVICE_UUID, PERIPHERAL_PREFERRED_CONNECTION_PARAMATERS_CHARACTERISTIC, BLEConstants.ErrorCodes.UNKNOWN, argument);
+                MOCK_BLE_CONNECTION.getBLECallback().onCharacteristicReadFailed(getTaskId(), MOCK_DEVICE, SERVICE_UUID, PERIPHERAL_PREFERRED_CONNECTION_PARAMETERS_CHARACTERISTIC, BLEConstants.ErrorCodes.UNKNOWN, argument);
                 isProccesing.set(false);
                 return true;
             }
@@ -542,7 +542,7 @@ public class RbtBLEConnectionGenericAccessServiceTest extends AbstractRbtBLEConn
         MockBLETask task = new MockBLETask() {
             @Override
             public boolean doProcess(@NonNull Message message) {
-                MOCK_BLE_CONNECTION.getBLECallback().onCharacteristicReadTimeout(getTaskId(), MOCK_DEVICE, SERVICE_UUID, PERIPHERAL_PREFERRED_CONNECTION_PARAMATERS_CHARACTERISTIC, 0, argument);
+                MOCK_BLE_CONNECTION.getBLECallback().onCharacteristicReadTimeout(getTaskId(), MOCK_DEVICE, SERVICE_UUID, PERIPHERAL_PREFERRED_CONNECTION_PARAMETERS_CHARACTERISTIC, 0, argument);
                 isProccesing.set(false);
                 return true;
             }
@@ -572,7 +572,7 @@ public class RbtBLEConnectionGenericAccessServiceTest extends AbstractRbtBLEConn
         MockBLETask task = new MockBLETask() {
             @Override
             public boolean doProcess(@NonNull Message message) {
-                MOCK_BLE_CONNECTION.getBLECallback().onCharacteristicReadTimeout(getTaskId(), MOCK_DEVICE, SERVICE_UUID, PERIPHERAL_PREFERRED_CONNECTION_PARAMATERS_CHARACTERISTIC, 0, argument);
+                MOCK_BLE_CONNECTION.getBLECallback().onCharacteristicReadTimeout(getTaskId(), MOCK_DEVICE, SERVICE_UUID, PERIPHERAL_PREFERRED_CONNECTION_PARAMETERS_CHARACTERISTIC, 0, argument);
                 isProccesing.set(false);
                 return true;
             }

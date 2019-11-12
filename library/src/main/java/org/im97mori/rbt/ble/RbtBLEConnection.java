@@ -73,7 +73,7 @@ import static org.im97mori.ble.BLEConstants.CharacteristicUUID.FIRMWARE_REVISION
 import static org.im97mori.ble.BLEConstants.CharacteristicUUID.HARDWARE_REVISION_STRING_CHARACTERISTIC;
 import static org.im97mori.ble.BLEConstants.CharacteristicUUID.MANUFACTURER_NAME_STRING_CHARACTERISTIC;
 import static org.im97mori.ble.BLEConstants.CharacteristicUUID.MODEL_NUMBER_STRING_CHARACTERISTIC;
-import static org.im97mori.ble.BLEConstants.CharacteristicUUID.PERIPHERAL_PREFERRED_CONNECTION_PARAMATERS_CHARACTERISTIC;
+import static org.im97mori.ble.BLEConstants.CharacteristicUUID.PERIPHERAL_PREFERRED_CONNECTION_PARAMETERS_CHARACTERISTIC;
 import static org.im97mori.ble.BLEConstants.CharacteristicUUID.SERIAL_NUMBER_STRING_CHARACTERISTIC;
 import static org.im97mori.ble.BLEConstants.DescriptorUUID.CLIENT_CHARACTERISTIC_CONFIGURATION_DESCRIPTOR;
 import static org.im97mori.ble.BLEConstants.ServiceUUID.DEVICE_INFORMATION_SERVICE;
@@ -1354,7 +1354,7 @@ public class RbtBLEConnection extends BLEConnection {
      * @return task id. if {@code null} returned, task was not registed
      */
     public Integer readPeripheralPreferredConnectionParameters(@Nullable Bundle argument, @Nullable RbtCallback rbtCallback) {
-        return createReadCharacteristicTask(GENERIC_ACCESS_SERVICE, PERIPHERAL_PREFERRED_CONNECTION_PARAMATERS_CHARACTERISTIC, ReadCharacteristicTask.TIMEOUT_MILLIS, argument, rbtCallback);
+        return createReadCharacteristicTask(GENERIC_ACCESS_SERVICE, PERIPHERAL_PREFERRED_CONNECTION_PARAMETERS_CHARACTERISTIC, ReadCharacteristicTask.TIMEOUT_MILLIS, argument, rbtCallback);
     }
 
     /**

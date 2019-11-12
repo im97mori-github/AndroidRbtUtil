@@ -107,6 +107,7 @@ public class SensorData implements RbtPacket, Parcelable {
         mSoundNoise = BLEUtils.createSInt16(data, 12);
         mEtvoc = BLEUtils.createSInt16(data, 14);
         mEco2 = BLEUtils.createSInt16(data, 16);
+        BLEUtils.createUInt16(data, 16);
     }
 
     /**

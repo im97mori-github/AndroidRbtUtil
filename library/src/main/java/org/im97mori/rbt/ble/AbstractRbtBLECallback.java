@@ -7,15 +7,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.im97mori.ble.BLECallback;
-import org.im97mori.ble.characteristic.dis.Appearance;
-import org.im97mori.ble.characteristic.dis.CentralAddressResolution;
-import org.im97mori.ble.characteristic.dis.DeviceName;
-import org.im97mori.ble.characteristic.dis.PeripheralPreferredConnectionParameters;
-import org.im97mori.ble.characteristic.gas.FirmwareRevisionString;
-import org.im97mori.ble.characteristic.gas.HardwareRevisionString;
-import org.im97mori.ble.characteristic.gas.ManufacturerNameString;
-import org.im97mori.ble.characteristic.gas.ModelNumberString;
-import org.im97mori.ble.characteristic.gas.SerialNumberString;
+import org.im97mori.ble.characteristic.dis.FirmwareRevisionString;
+import org.im97mori.ble.characteristic.dis.HardwareRevisionString;
+import org.im97mori.ble.characteristic.dis.ManufacturerNameString;
+import org.im97mori.ble.characteristic.dis.ModelNumberString;
+import org.im97mori.ble.characteristic.dis.SerialNumberString;
+import org.im97mori.ble.characteristic.gas.Appearance;
+import org.im97mori.ble.characteristic.gas.CentralAddressResolution;
+import org.im97mori.ble.characteristic.gas.DeviceName;
+import org.im97mori.ble.characteristic.gas.PeripheralPreferredConnectionParameters;
 import org.im97mori.ble.descriptor.ClientCharacteristicConfiguration;
 import org.im97mori.rbt.ble.characteristic.AccelerationLoggerControl;
 import org.im97mori.rbt.ble.characteristic.AccelerationLoggerStatus;
@@ -72,7 +72,7 @@ import static org.im97mori.ble.BLEConstants.CharacteristicUUID.FIRMWARE_REVISION
 import static org.im97mori.ble.BLEConstants.CharacteristicUUID.HARDWARE_REVISION_STRING_CHARACTERISTIC;
 import static org.im97mori.ble.BLEConstants.CharacteristicUUID.MANUFACTURER_NAME_STRING_CHARACTERISTIC;
 import static org.im97mori.ble.BLEConstants.CharacteristicUUID.MODEL_NUMBER_STRING_CHARACTERISTIC;
-import static org.im97mori.ble.BLEConstants.CharacteristicUUID.PERIPHERAL_PREFERRED_CONNECTION_PARAMATERS_CHARACTERISTIC;
+import static org.im97mori.ble.BLEConstants.CharacteristicUUID.PERIPHERAL_PREFERRED_CONNECTION_PARAMETERS_CHARACTERISTIC;
 import static org.im97mori.ble.BLEConstants.CharacteristicUUID.SERIAL_NUMBER_STRING_CHARACTERISTIC;
 import static org.im97mori.rbt.RbtConstants.CharacteristicUUID.ACCELERATION_LOGGER_CONTROL_CHARACTERISTIC;
 import static org.im97mori.rbt.RbtConstants.CharacteristicUUID.ACCELERATION_LOGGER_STATUS_CHARACTERISTIC;
@@ -129,10 +129,6 @@ import static org.im97mori.rbt.RbtConstants.CharacteristicUUID.VIBRATION_COUNT_C
  * {@link BLECallback} to {@link RbtCallback} by UUID
  */
 public abstract class AbstractRbtBLECallback implements RbtCallback, RbtRequestAccelerationMemoryIndexCallback, RbtRequestMemoryIndexCallback {
-//
-//    public AbstractRbtBLECallback(SubscriberInterface subscriberInterface) {
-//        super(subscriberInterface);
-//    }
 
     /**
      * {@inheritDoc}
@@ -229,7 +225,7 @@ public abstract class AbstractRbtBLECallback implements RbtCallback, RbtRequestA
             onDeviceNameReadSuccess(taskId, bluetoothDevice, DeviceName.CREATOR.createFromByteArray(values), argument);
         } else if (APPEARANCE_CHARACTERISTIC.equals(characteristicUUID)) {
             onAppearanceReadSuccess(taskId, bluetoothDevice, Appearance.CREATOR.createFromByteArray(values), argument);
-        } else if (PERIPHERAL_PREFERRED_CONNECTION_PARAMATERS_CHARACTERISTIC.equals(characteristicUUID)) {
+        } else if (PERIPHERAL_PREFERRED_CONNECTION_PARAMETERS_CHARACTERISTIC.equals(characteristicUUID)) {
             onPeripheralPreferredConnectionParametersReadSuccess(taskId, bluetoothDevice, PeripheralPreferredConnectionParameters.CREATOR.createFromByteArray(values), argument);
         } else if (CENTRAL_ADDRESS_RESOLUTION_CHARACTERISTIC.equals(characteristicUUID)) {
             onCentralAddressResolutionReadSuccess(taskId, bluetoothDevice, CentralAddressResolution.CREATOR.createFromByteArray(values), argument);
@@ -341,7 +337,7 @@ public abstract class AbstractRbtBLECallback implements RbtCallback, RbtRequestA
             onDeviceNameReadFailed(taskId, bluetoothDevice, status, argument);
         } else if (APPEARANCE_CHARACTERISTIC.equals(characteristicUUID)) {
             onAppearanceReadFailed(taskId, bluetoothDevice, status, argument);
-        } else if (PERIPHERAL_PREFERRED_CONNECTION_PARAMATERS_CHARACTERISTIC.equals(characteristicUUID)) {
+        } else if (PERIPHERAL_PREFERRED_CONNECTION_PARAMETERS_CHARACTERISTIC.equals(characteristicUUID)) {
             onPeripheralPreferredConnectionParametersReadFailed(taskId, bluetoothDevice, status, argument);
         } else if (CENTRAL_ADDRESS_RESOLUTION_CHARACTERISTIC.equals(characteristicUUID)) {
             onCentralAddressResolutionReadFailed(taskId, bluetoothDevice, status, argument);
@@ -453,7 +449,7 @@ public abstract class AbstractRbtBLECallback implements RbtCallback, RbtRequestA
             onDeviceNameReadTimeout(taskId, bluetoothDevice, timeout, argument);
         } else if (APPEARANCE_CHARACTERISTIC.equals(characteristicUUID)) {
             onAppearanceReadTimeout(taskId, bluetoothDevice, timeout, argument);
-        } else if (PERIPHERAL_PREFERRED_CONNECTION_PARAMATERS_CHARACTERISTIC.equals(characteristicUUID)) {
+        } else if (PERIPHERAL_PREFERRED_CONNECTION_PARAMETERS_CHARACTERISTIC.equals(characteristicUUID)) {
             onPeripheralPreferredConnectionParametersReadTimeout(taskId, bluetoothDevice, timeout, argument);
         } else if (CENTRAL_ADDRESS_RESOLUTION_CHARACTERISTIC.equals(characteristicUUID)) {
             onCentralAddressResolutionReadTimeout(taskId, bluetoothDevice, timeout, argument);

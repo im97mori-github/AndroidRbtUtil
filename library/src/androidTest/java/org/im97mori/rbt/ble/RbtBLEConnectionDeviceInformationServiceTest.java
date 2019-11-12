@@ -9,11 +9,11 @@ import androidx.annotation.Nullable;
 
 import org.im97mori.ble.BLECallbackDistributer;
 import org.im97mori.ble.BLEConstants;
-import org.im97mori.ble.characteristic.gas.FirmwareRevisionString;
-import org.im97mori.ble.characteristic.gas.HardwareRevisionString;
-import org.im97mori.ble.characteristic.gas.ManufacturerNameString;
-import org.im97mori.ble.characteristic.gas.ModelNumberString;
-import org.im97mori.ble.characteristic.gas.SerialNumberString;
+import org.im97mori.ble.characteristic.dis.FirmwareRevisionString;
+import org.im97mori.ble.characteristic.dis.HardwareRevisionString;
+import org.im97mori.ble.characteristic.dis.ManufacturerNameString;
+import org.im97mori.ble.characteristic.dis.ModelNumberString;
+import org.im97mori.ble.characteristic.dis.SerialNumberString;
 import org.junit.Test;
 
 import java.util.UUID;

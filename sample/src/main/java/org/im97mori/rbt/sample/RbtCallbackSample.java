@@ -11,15 +11,15 @@ import android.util.Pair;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.im97mori.ble.characteristic.dis.Appearance;
-import org.im97mori.ble.characteristic.dis.CentralAddressResolution;
-import org.im97mori.ble.characteristic.dis.DeviceName;
-import org.im97mori.ble.characteristic.dis.PeripheralPreferredConnectionParameters;
-import org.im97mori.ble.characteristic.gas.FirmwareRevisionString;
-import org.im97mori.ble.characteristic.gas.HardwareRevisionString;
-import org.im97mori.ble.characteristic.gas.ManufacturerNameString;
-import org.im97mori.ble.characteristic.gas.ModelNumberString;
-import org.im97mori.ble.characteristic.gas.SerialNumberString;
+import org.im97mori.ble.characteristic.dis.FirmwareRevisionString;
+import org.im97mori.ble.characteristic.dis.HardwareRevisionString;
+import org.im97mori.ble.characteristic.dis.ManufacturerNameString;
+import org.im97mori.ble.characteristic.dis.ModelNumberString;
+import org.im97mori.ble.characteristic.dis.SerialNumberString;
+import org.im97mori.ble.characteristic.gas.Appearance;
+import org.im97mori.ble.characteristic.gas.CentralAddressResolution;
+import org.im97mori.ble.characteristic.gas.DeviceName;
+import org.im97mori.ble.characteristic.gas.PeripheralPreferredConnectionParameters;
 import org.im97mori.ble.descriptor.ClientCharacteristicConfiguration;
 import org.im97mori.rbt.ble.AbstractRbtBLECallback;
 import org.im97mori.rbt.ble.characteristic.AccelerationLoggerControl;
@@ -2191,7 +2191,7 @@ public class RbtCallbackSample extends AbstractRbtBLECallback {
 
     @Override
     public void onAppearanceReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull Appearance appearance, @Nullable Bundle argument) {
-        callback(APPEARANCE_VALUE_MAP.get(appearance.getCategory()) + '(' + APPEARANCE_DESCRIPTION_MAP.get(appearance.getCategory()) + ')');
+        callback(APPEARANCE_VALUE_MAP.get(appearance.getCategoryUint16()) + '(' + APPEARANCE_DESCRIPTION_MAP.get(appearance.getCategoryUint16()) + ')');
     }
 
     @Override
@@ -2296,7 +2296,7 @@ public class RbtCallbackSample extends AbstractRbtBLECallback {
 
     @Override
     public void onManufacturerNameStringReadSuccess(@NonNull Integer taskId, @NonNull BluetoothDevice bluetoothDevice, @NonNull ManufacturerNameString manufacturerNameString, @Nullable Bundle argument) {
-        callback(manufacturerNameString.getManufactureName());
+        callback(manufacturerNameString.getManufacturerName());
     }
 
     @Override
