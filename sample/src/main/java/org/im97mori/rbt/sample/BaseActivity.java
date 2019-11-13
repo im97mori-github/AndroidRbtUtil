@@ -15,6 +15,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
 import org.im97mori.rbt.RbtLogUtils;
+import org.im97mori.rbt.ble.advertising.RbtAdvertisingLogUtils;
 
 @SuppressWarnings({"SameReturnValue", "WeakerAccess", "RedundantSuppression"})
 public abstract class BaseActivity extends FragmentActivity implements View.OnClickListener, AlertDialogFragment.AlertDialogFragmentCallback {
@@ -31,6 +32,7 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
         super.onCreate(savedInstanceState);
 
         RbtLogUtils.verbose();
+        RbtAdvertisingLogUtils.verbose();
 
         setContentView(getLayoutId());
 

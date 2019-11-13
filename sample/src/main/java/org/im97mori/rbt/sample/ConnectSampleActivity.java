@@ -31,8 +31,8 @@ import org.im97mori.ble.task.ReadPhyTask;
 import org.im97mori.ble.task.ReadRemoteRssiTask;
 import org.im97mori.ble.task.SetPreferredPhyTask;
 import org.im97mori.rbt.ble.RbtBLEConnection;
-import org.im97mori.rbt.ble.ad.RbtAdvertisingDataParser;
-import org.im97mori.rbt.ble.ad.filter.FilteredRbtScanCallback;
+import org.im97mori.rbt.ble.advertising.RbtAdvertisingDataParser;
+import org.im97mori.rbt.ble.advertising.filter.FilteredRbtScanCallback;
 
 import java.util.LinkedList;
 import java.util.List;

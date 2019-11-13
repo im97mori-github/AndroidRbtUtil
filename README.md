@@ -1,6 +1,6 @@
 # OMRON 2JCIE-BU01 Data Parser
 オムロン社の環境センサ[2JCIE-BU01](https://www.fa.omron.co.jp/products/family/3724/)をAndroid上から利用する為のライブラリです。
-バージョン0.2.0ではBLEのみをサポートしています(USB接続は未対応)。
+バージョン0.4.0ではBLEのみをサポートしています(USB接続は未対応)。
 
 ## Prerequire
 minSdkVersion 18
@@ -17,7 +17,7 @@ project/build.gradle
 project/module/build.gradle
 
     dependencies {
-        implementation 'org.im97mori:rbt:0.3.6'
+        implementation 'org.im97mori:rbt-ble-central:0.4.0'
     }
 
 ## How to use

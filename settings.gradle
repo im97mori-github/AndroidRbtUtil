@@ -1,1 +1,1 @@
-include ':library', ':sample'
+include ':core', ':ble-advertising', ':ble-characteristic:characteristic-mds', ':ble-characteristic:characteristic-lds', ':ble-characteristic:characteristic-as', ':ble-characteristic:characteristic-cs', ':ble-characteristic:characteristic-tss', ':ble-characteristic:characteristic-ess', ':ble-characteristic:characteristic-is', ':ble-library-central', ':sample'

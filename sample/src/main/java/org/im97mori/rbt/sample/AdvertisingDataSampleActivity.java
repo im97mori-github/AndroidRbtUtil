@@ -17,13 +17,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.im97mori.ble.advertising.filter.AdvertisingDataFilter;
-import org.im97mori.rbt.ble.ad.CalculationData;
-import org.im97mori.rbt.ble.ad.RbtAdvertisingDataParser;
-import org.im97mori.rbt.ble.ad.SensorData;
-import org.im97mori.rbt.ble.ad.SensorDataAndCalculationData;
-import org.im97mori.rbt.ble.ad.SensorFlagAndCalculationFlag;
-import org.im97mori.rbt.ble.ad.SerialNumber;
-import org.im97mori.rbt.ble.ad.filter.FilteredRbtScanCallback;
+import org.im97mori.rbt.ble.advertising.CalculationData;
+import org.im97mori.rbt.ble.advertising.RbtAdvertisingDataParser;
+import org.im97mori.rbt.ble.advertising.SensorData;
+import org.im97mori.rbt.ble.advertising.SensorDataAndCalculationData;
+import org.im97mori.rbt.ble.advertising.SensorFlagAndCalculationFlag;
+import org.im97mori.rbt.ble.advertising.SerialNumber;
+import org.im97mori.rbt.ble.advertising.filter.FilteredRbtScanCallback;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

@@ -26,8 +26,8 @@ import org.im97mori.ble.BLEConstants;
 import org.im97mori.ble.advertising.filter.AdvertisingDataFilter;
 import org.im97mori.ble.task.ConnectTask;
 import org.im97mori.rbt.ble.RbtBLEConnection;
-import org.im97mori.rbt.ble.ad.RbtAdvertisingDataParser;
-import org.im97mori.rbt.ble.ad.filter.FilteredRbtScanCallback;
+import org.im97mori.rbt.ble.advertising.RbtAdvertisingDataParser;
+import org.im97mori.rbt.ble.advertising.filter.FilteredRbtScanCallback;
 
 import java.util.LinkedList;
 import java.util.List;

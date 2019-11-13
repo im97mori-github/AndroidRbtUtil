@@ -26,3 +26,10 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+task archiveAll {
+}
+
+archiveAll {
+    dependsOn ":core:uploadArchives", ":ble-advertising:uploadArchives", ":ble-characteristic:characteristic-mds:uploadArchives", ":ble-characteristic:characteristic-lds:uploadArchives", ":ble-characteristic:characteristic-as:uploadArchives", ":ble-characteristic:characteristic-cs:uploadArchives", ":ble-characteristic:characteristic-tss:uploadArchives", ":ble-characteristic:characteristic-ess:uploadArchives", ":ble-characteristic:characteristic-is:uploadArchives", ":ble-library-central:uploadArchives"
+}

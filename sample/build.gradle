@@ -22,5 +22,6 @@ android {
 
 dependencies {
     implementation 'androidx.fragment:fragment:1.1.0'
-    implementation project(path: ':library')
+    implementation project(path: ':ble-library-central')
+    implementation project(path: ':ble-advertising')
 }
